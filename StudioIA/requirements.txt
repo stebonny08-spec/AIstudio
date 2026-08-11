@@ -20,8 +20,9 @@ opencv-python>=4.8.0
 pytesseract>=0.3.10
 Pillow>=10.4.0
 
-# Conversione appunti in PDF
+# Conversione appunti in Markdown
 reportlab>=4.2.0
+markdown>=3.5.0
 
 # RAG: embedding locali + indice vettoriale
 sentence-transformers>=3.0.0
@@ -30,6 +31,9 @@ chromadb>=0.5.5
 # Input vocale
 SpeechRecognition>=3.10.4
 PyAudio>=0.2.14
+
+# Interfaccia ibrida desktop nativa
+pywebview>=5.0.0
 
 numpy>=1.26.4
 requests>=2.31.0
