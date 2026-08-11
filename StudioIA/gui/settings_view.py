@@ -1,12 +1,14 @@
 """
 gui/settings_view.py
 ------------------------
-Pagina di configurazione: chiave API Gemini, cartella locale da indicizzare
+Pagina di configurazione: percorso del modello GGUF locale, parametri del modello
+(context length, GPU layers, threads), cartella locale da indicizzare
 (con pulsante "Sfoglia"), opzione OCR on/off, pulsante di reindicizzazione
 manuale.
 """
 
 from tkinter import filedialog
+import os
 
 import customtkinter as ctk
 
@@ -32,16 +34,76 @@ class SettingsView(ctk.CTkFrame):
         )
         theme.label(header_row, "Impostazioni", size=20, weight="bold").pack(side="left")
 
-        # --- Chiave API ---
-        theme.label(wrapper, "Chiave API Google Gemini", size=13, weight="bold").pack(anchor="w")
+        # --- Modello Locale ---
+        theme.label(wrapper, "Modello AI Locale (GGUF)", size=13, weight="bold").pack(anchor="w")
         theme.label(
             wrapper,
-            "Necessaria per usare l'assistente. Si ottiene gratuitamente da Google AI Studio.",
+            "Seleziona il file del modello in formato GGUF. Il modello verrà caricato direttamente "
+            "dentro l'applicazione senza bisogno di server esterni come Ollama o LM Studio.",
             size=11,
             color="text_secondary",
         ).pack(anchor="w", pady=(0, 6))
-        self.api_key_entry = theme.entry(wrapper, placeholder="Incolla qui la tua chiave API", show="*")
-        self.api_key_entry.pack(fill="x", pady=(0, 20))
+        
+        model_row = ctk.CTkFrame(wrapper, fg_color="transparent")
+        model_row.pack(fill="x", pady=(0, 10))
+        model_row.grid_columnconfigure(0, weight=1)
+        
+        self.model_path_entry = theme.entry(model_row, placeholder="Nessun modello selezionato")
+        self.model_path_entry.grid(row=0, column=0, sticky="ew", padx=(0, 8))
+        
+        theme.primary_button(model_row, "Sfoglia...", command=self._browse_model, width=110).grid(row=0, column=1)
+        
+        theme.label(
+            wrapper,
+            "Dove scaricare modelli GGUF: HuggingFace (TheBloke, bartowski, lmstudio-community)",
+            size=10,
+            color="text_secondary",
+        ).pack(anchor="w", pady=(0, 14))
+
+        # --- Parametri avanzati modello ---
+        theme.label(wrapper, "Parametri Avanzati", size=13, weight="bold").pack(anchor="w")
+        theme.label(
+            wrapper,
+            "Configura le risorse da dedicare al modello. Lascia i valori predefiniti se non sei sicuro.",
+            size=11,
+            color="text_secondary",
+        ).pack(anchor="w", pady=(0, 6))
+        
+        params_frame = ctk.CTkFrame(wrapper, fg_color="transparent")
+        params_frame.pack(fill="x", pady=(0, 20))
+        
+        # Context Length
+        theme.label(params_frame, "Context Length (n_ctx)", size=11).pack(anchor="w")
+        self.n_ctx_entry = theme.entry(params_frame, placeholder="4096")
+        self.n_ctx_entry.pack(fill="x", pady=(0, 10))
+        theme.label(
+            params_frame,
+            "Numero massimo di token nel contesto. Valori più alti richiedono più RAM.",
+            size=10,
+            color="text_secondary",
+        ).pack(anchor="w", pady=(0, 10))
+        
+        # GPU Layers
+        theme.label(params_frame, "GPU Layers (n_gpu_layers)", size=11).pack(anchor="w")
+        self.n_gpu_layers_entry = theme.entry(params_frame, placeholder="-1")
+        self.n_gpu_layers_entry.pack(fill="x", pady=(0, 10))
+        theme.label(
+            params_frame,
+            "Numero di layer da eseguire su GPU (-1 = tutti). Richiede GPU compatibile.",
+            size=10,
+            color="text_secondary",
+        ).pack(anchor="w", pady=(0, 10))
+        
+        # Threads
+        theme.label(params_frame, "CPU Threads (n_threads)", size=11).pack(anchor="w")
+        self.n_threads_entry = theme.entry(params_frame, placeholder="Lascia vuoto per automatico")
+        self.n_threads_entry.pack(fill="x", pady=(0, 14))
+        theme.label(
+            params_frame,
+            "Numero di thread CPU. Lascia vuoto per usare automaticamente (cpu_count - 1).",
+            size=10,
+            color="text_secondary",
+        ).pack(anchor="w", pady=(0, 14))
 
         # --- Cartella locale ---
         theme.label(wrapper, "Cartella locale da analizzare", size=13, weight="bold").pack(anchor="w")
@@ -91,8 +153,19 @@ class SettingsView(ctk.CTkFrame):
         self.refresh_from_config()
 
     def refresh_from_config(self) -> None:
-        self.api_key_entry.delete(0, "end")
-        self.api_key_entry.insert(0, self.config_manager.get("api_key", ""))
+        self.model_path_entry.delete(0, "end")
+        self.model_path_entry.insert(0, self.config_manager.get("local_model_path", ""))
+        
+        self.n_ctx_entry.delete(0, "end")
+        self.n_ctx_entry.insert(0, str(self.config_manager.get("local_model_n_ctx", 4096)))
+        
+        self.n_gpu_layers_entry.delete(0, "end")
+        self.n_gpu_layers_entry.insert(0, str(self.config_manager.get("local_model_n_gpu_layers", -1)))
+        
+        n_threads = self.config_manager.get("local_model_n_threads", None)
+        self.n_threads_entry.delete(0, "end")
+        if n_threads is not None:
+            self.n_threads_entry.insert(0, str(n_threads))
 
         self.folder_entry.delete(0, "end")
         self.folder_entry.insert(0, self.config_manager.get("folder_path", ""))
@@ -102,6 +175,16 @@ class SettingsView(ctk.CTkFrame):
         else:
             self.ocr_switch.deselect()
 
+    def _browse_model(self) -> None:
+        """Apre un dialog per selezionare il file del modello GGUF."""
+        path = filedialog.askopenfilename(
+            title="Seleziona il modello GGUF",
+            filetypes=[("GGUF files", "*.gguf"), ("All files", "*.*")]
+        )
+        if path:
+            self.model_path_entry.delete(0, "end")
+            self.model_path_entry.insert(0, path)
+
     def _browse_folder(self) -> None:
         path = filedialog.askdirectory(title="Seleziona la cartella da analizzare")
         if path:
@@ -109,11 +192,32 @@ class SettingsView(ctk.CTkFrame):
             self.folder_entry.insert(0, path)
 
     def _save(self) -> None:
-        api_key = self.api_key_entry.get().strip()
+        model_path = self.model_path_entry.get().strip()
+        
+        try:
+            n_ctx = int(self.n_ctx_entry.get().strip() or "4096")
+        except ValueError:
+            n_ctx = 4096
+            
+        try:
+            n_gpu_layers = int(self.n_gpu_layers_entry.get().strip() or "-1")
+        except ValueError:
+            n_gpu_layers = -1
+            
+        n_threads_str = self.n_threads_entry.get().strip()
+        n_threads = int(n_threads_str) if n_threads_str else None
+        
         folder_path = self.folder_entry.get().strip()
         ocr_enabled = bool(self.ocr_switch.get())
 
-        self._on_save(api_key, folder_path, ocr_enabled)
+        self._on_save(
+            local_model_path=model_path,
+            local_model_n_ctx=n_ctx,
+            local_model_n_gpu_layers=n_gpu_layers,
+            local_model_n_threads=n_threads,
+            folder_path=folder_path,
+            ocr_enabled=ocr_enabled,
+        )
         self.status_label.configure(text="Impostazioni salvate.", text_color=theme.COLORS["success"])
 
     def _reindex(self) -> None:

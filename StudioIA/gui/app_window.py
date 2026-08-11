@@ -1,23 +1,27 @@
 """
 gui/app_window.py
 --------------------
-Il controller centrale dell'applicazione. Non contiene logica di business
-(quella vive in core/ e data/): il suo compito è collegare i pezzi tra loro
-- sidebar, aree chat, barra di input, impostazioni - e gestire lo stato
-corrente (ambiente attivo, chat attiva) evitando che ogni widget debba
-saperlo per conto proprio.
+Il controller centrale dell'applicazione. Interfaccia moderna con:
+- Barra di ricerca AI centrale
+- Pannello laterale destro per cronologia conversazioni
+- Pannello conversione file (foto/PDF/Word -> Markdown) accessibile tramite bottone +
+- Tutto integrato con il sistema RAG a 3 livelli
 """
 
 import os
+import tkinter as tk
+from pathlib import Path
+from typing import Optional
 
 import customtkinter as ctk
 
 import theme
-from core.gemini_client import GeminiClient, GeminiError
+from core.local_llm_client import LocalLLMClient, LocalLLMError
 from core.local_search import LocalSearchEngine
 from core.rag.vector_store import VectorStore
 from core.router import Router
 from core.voice_input import listen_once
+from core.markdown_converter import convert_to_markdown
 from data.config_manager import ConfigManager, get_app_data_dir
 from data.db import Database
 from gui.chat_area import ChatArea
@@ -39,13 +43,11 @@ class App(ctk.CTk):
         # Stato e servizi di base (config, database, TaskRunner)
         # ------------------------------------------------------------
         self.config_manager = ConfigManager()
-        self.geometry(self.config_manager.get("window_geometry", "1180x760"))
-        self.minsize(900, 600)
+        self.geometry(self.config_manager.get("window_geometry", "1280x800"))
+        self.minsize(1000, 650)
 
         self.db = Database()
 
-        # Il TaskRunner va importato qui (dopo che la finestra esiste)
-        # perché ha bisogno di un widget con after() a cui agganciarsi.
         from utils.threading_utils import TaskRunner
         self.task_runner = TaskRunner(self)
 
@@ -54,100 +56,70 @@ class App(ctk.CTk):
         self.vector_store = VectorStore(vector_store_dir)
         self.local_search = LocalSearchEngine(self.db, self.vector_store)
 
-        # Il client Gemini viene creato "pigro": solo quando serve, così
-        # l'app si apre comunque anche se la chiave API non è ancora
-        # stata configurata (l'utente verrà guidato verso Impostazioni).
-        self._gemini_client = None
-        self.router = Router(self._get_gemini_client, self.local_search, rag_top_k=self.config_manager.get("rag_top_k", 5))
+        self._local_client = None
+        self.router = Router(self._get_local_client, self.local_search, rag_top_k=self.config_manager.get("rag_top_k", 5))
+
+        # Cartella RAG personale
+        self.rag_folder = Path(__file__).parent.parent / "file_AIstudio"
+        self.rag_folder.mkdir(parents=True, exist_ok=True)
 
         # ------------------------------------------------------------
         # Stato di navigazione
         # ------------------------------------------------------------
-        self.current_env = "chat"          # 'chat' | 'tutor'
+        self.current_env = "chat"
         self.active_chat_id = {"chat": None, "tutor": None}
+        
+        # Stato pannelli
+        self.sidebar_open = False
+        self.converter_panel_open = False
 
         # ------------------------------------------------------------
-        # Layout principale: sidebar a sinistra, area centrale a destra
+        # Layout principale
         # ------------------------------------------------------------
-        self.grid_columnconfigure(1, weight=1)
+        self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        self.sidebar = Sidebar(
-            self,
-            on_switch_env=self.switch_environment,
-            on_select_chat=self.load_chat,
-            on_new_chat=self.new_chat,
-            on_open_settings=self.open_settings,
-        )
-        self.sidebar.grid(row=0, column=0, rowspan=2, sticky="ns")
-
-        # Contenitore centrale: chat, tutor e impostazioni vengono
-        # sovrapposti nella stessa cella e mostrati con tkraise().
-        # È il pattern standard di Tkinter per cambiare "pagina" senza
-        # distruggere/ricreare i widget (niente flicker, niente perdita di stato).
-        self.content_container = ctk.CTkFrame(self, fg_color=theme.COLORS["bg_main"], corner_radius=0)
-        self.content_container.grid(row=0, column=1, sticky="nsew", padx=(10, 14), pady=(14, 0))
-        self.content_container.grid_rowconfigure(0, weight=1)
-        self.content_container.grid_columnconfigure(0, weight=1)
-
-        self.chat_area_normal = ChatArea(
-            self.content_container, border_color_key="border_normal", header_text="Chat", header_icon="chat"
-        )
-        self.chat_area_normal.grid(row=0, column=0, sticky="nsew")
-
-        self.chat_area_tutor = ChatArea(
-            self.content_container,
-            border_color_key="border_tutor",
-            header_text="Modalità Insegnamento",
-            header_icon="graduation_cap",
-        )
-        self.chat_area_tutor.grid(row=0, column=0, sticky="nsew")
-
-        self.settings_view = SettingsView(
-            self.content_container,
-            config_manager=self.config_manager,
-            on_save=self.save_settings,
-            on_reindex=self.trigger_reindex,
-        )
-        self.settings_view.grid(row=0, column=0, sticky="nsew")
-
-        # --- Barra di input inferiore (sempre visibile, sotto l'area centrale) ---
-        self.input_bar = InputBar(
-            self,
-            on_send=self.handle_send,
-            on_mic_click=self.handle_mic_click,
-            default_mode=self.config_manager.get("search_mode_default", "automatica"),
-        )
-        self.input_bar.grid(row=1, column=1, sticky="ew", padx=(10, 14), pady=(10, 14))
+        # Header con bottone + e titolo
+        self._create_header()
+        
+        # Area chat centrale
+        self._create_chat_area()
+        
+        # Pannello laterale destro (cronologia)
+        self._create_right_sidebar()
+        
+        # Pannello conversione file
+        self._create_converter_panel()
+        
+        # Barra di input inferiore
+        self._create_input_bar()
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
 
-        # ------------------------------------------------------------
-        # Avvio: mostra la chat, carica lo storico, e se la cartella è già
-        # configurata avvia in background un primo controllo dell'indice.
-        # ------------------------------------------------------------
-        self._show_view("chat")
+        # Avvio
         self.refresh_history()
 
         if not self.config_manager.is_configured():
-            self.sidebar.set_status("Configura la chiave API")
             self.open_settings()
         else:
             self._maybe_start_indexing()
 
     # ======================================================================
-    # Gestione client Gemini (creazione pigra / aggiornamento chiave)
+    # Gestione client LLM Locale (creazione pigra / aggiornamento configurazione)
     # ======================================================================
-    def _get_gemini_client(self) -> GeminiClient:
-        if self._gemini_client is None:
-            self._gemini_client = GeminiClient(
-                api_key=self.config_manager.get("api_key", ""),
-                model_name=self.config_manager.get("gemini_model", "gemini-3.5-flash"),
+    def _get_local_client(self):
+        """Restituisce un client per il modello locale."""
+        if self._local_client is None:
+            self._local_client = LocalLLMClient(
+                model_path=self.config_manager.get("local_model_path", ""),
+                n_ctx=self.config_manager.get("local_model_n_ctx", 4096),
+                n_gpu_layers=self.config_manager.get("local_model_n_gpu_layers", -1),
+                n_threads=self.config_manager.get("local_model_n_threads", None),
             )
-        return self._gemini_client
+        return self._local_client
 
-    def _invalidate_gemini_client(self) -> None:
-        self._gemini_client = None
+    def _invalidate_local_client(self) -> None:
+        self._local_client = None
 
     # ======================================================================
     # Navigazione tra ambienti / viste
@@ -222,7 +194,10 @@ class App(ctk.CTk):
     def handle_send(self, text: str, mode: str) -> None:
         if not self.config_manager.is_configured():
             self.open_settings()
-            self.settings_view.set_status("Inserisci prima una chiave API valida.", is_error=True)
+            self.settings_view.set_status(
+                "Configura il percorso del modello GGUF nelle Impostazioni.", 
+                is_error=True
+            )
             return
 
         env = self.current_env
@@ -266,7 +241,7 @@ class App(ctk.CTk):
         self.input_bar.set_enabled(True)
         chat_area = self.chat_area_tutor if env == "tutor" else self.chat_area_normal
         chat_area.hide_thinking()
-        message = str(error) if isinstance(error, GeminiError) else f"Si è verificato un errore imprevisto: {error}"
+        message = str(error) if isinstance(error, LocalLLMError) else f"Si è verificato un errore imprevisto: {error}"
         chat_area.add_message("ai", f"Attenzione: {message}", None)
         self.db.add_message(chat_id, "ai", f"Attenzione: {message}", None)
 
@@ -299,12 +274,28 @@ class App(ctk.CTk):
     # ======================================================================
     # Impostazioni
     # ======================================================================
-    def save_settings(self, api_key: str, folder_path: str, ocr_enabled: bool) -> None:
-        key_changed = api_key != self.config_manager.get("api_key", "")
-        self.config_manager.update(api_key=api_key, folder_path=folder_path, ocr_enabled=ocr_enabled)
+    def save_settings(
+        self,
+        local_model_path: str,
+        local_model_n_ctx: int,
+        local_model_n_gpu_layers: int,
+        local_model_n_threads: int,
+        folder_path: str,
+        ocr_enabled: bool,
+    ) -> None:
+        path_changed = local_model_path != self.config_manager.get("local_model_path", "")
+        
+        self.config_manager.update(
+            local_model_path=local_model_path,
+            local_model_n_ctx=local_model_n_ctx,
+            local_model_n_gpu_layers=local_model_n_gpu_layers,
+            local_model_n_threads=local_model_n_threads,
+            folder_path=folder_path,
+            ocr_enabled=ocr_enabled,
+        )
 
-        if key_changed:
-            self._invalidate_gemini_client()
+        if path_changed:
+            self._invalidate_local_client()
 
         if folder_path and os.path.isdir(folder_path):
             self._maybe_start_indexing()
@@ -339,6 +330,32 @@ class App(ctk.CTk):
             ocr_enabled=self.config_manager.get("ocr_enabled", True),
             progress_callback=progress,
         )
+
+    # ======================================================================
+    # Funzionalità Appunti2PDF
+    # ======================================================================
+    def handle_appunti_to_pdf(self, image_folder: str, output_pdf: str) -> bool:
+        """Converte una cartella di appunti (immagini) in PDF con OCR"""
+        try:
+            from appunti2pdf.converter import convert_appunti_to_pdf
+            
+            success = convert_appunti_to_pdf(
+                input_path=image_folder,
+                output_pdf=output_pdf,
+                add_ocr=True
+            )
+            
+            if success:
+                self.sidebar.set_status(f"PDF creato: {output_pdf}")
+            else:
+                self.sidebar.set_status("Errore nella conversione PDF", is_error=True)
+            
+            return success
+            
+        except Exception as e:
+            error_msg = f"Errore Appunti2PDF: {e}"
+            self.sidebar.set_status(error_msg, is_error=True)
+            return False
 
     def _update_index_status(self, msg: str, also_settings: bool) -> None:
         self.sidebar.set_status(f"{msg}")

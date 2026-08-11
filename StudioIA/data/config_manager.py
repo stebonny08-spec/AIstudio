@@ -22,13 +22,16 @@ from typing import Any, Dict
 APP_NAME = "StudioIA"
 
 DEFAULT_CONFIG: Dict[str, Any] = {
-    "api_key": "",
     "folder_path": "",
     "ocr_enabled": True,
     "search_mode_default": "automatica",   # automatica | solo_locale | solo_online
     "rag_top_k": 5,
-    "gemini_model": "gemini-3.5-flash",
     "window_geometry": "1180x760",
+    # Configurazione per modello locale GGUF
+    "local_model_path": "",                # Percorso del file .gguf
+    "local_model_n_ctx": 4096,             # Context length
+    "local_model_n_gpu_layers": -1,        # -1 = tutte le layer su GPU
+    "local_model_n_threads": None,         # None = automatico
 }
 
 
@@ -96,5 +99,5 @@ class ConfigManager:
         self.save()
 
     def is_configured(self) -> bool:
-        """True se l'utente ha almeno inserito una chiave API."""
-        return bool(self._data.get("api_key", "").strip())
+        """True se l'utente ha configurato il percorso del modello GGUF."""
+        return bool(self._data.get("local_model_path", "").strip())
