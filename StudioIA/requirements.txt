@@ -1,7 +1,8 @@
 customtkinter>=5.2.2
 
-# SDK ufficiale nuovo di Google per Gemini ('google-generativeai' è deprecato)
-google-genai>=1.20.0
+# llama-cpp-python per eseguire modelli LLM locali in formato GGUF
+# direttamente dentro l'applicazione (senza bisogno di Ollama o LM Studio)
+llama-cpp-python>=0.2.90
 
 # Ricerca web gratuita (il pacchetto si chiamava 'duckduckgo-search', è
 # stato rinominato 'ddgs' dagli stessi sviluppatori)
@@ -17,7 +18,7 @@ PyMuPDF>=1.24.0
 pytesseract>=0.3.10
 Pillow>=10.4.0
 
-# RAG: embedding locale + indice vettoriale
+# RAG: embedding locali + indice vettoriale
 sentence-transformers>=3.0.0
 chromadb>=0.5.5
 
@@ -26,3 +27,4 @@ SpeechRecognition>=3.10.4
 PyAudio>=0.2.14
 
 numpy>=1.26.4
+requests>=2.31.0

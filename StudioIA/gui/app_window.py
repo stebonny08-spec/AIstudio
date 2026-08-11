@@ -13,7 +13,7 @@ import os
 import customtkinter as ctk
 
 import theme
-from core.gemini_client import GeminiClient, GeminiError
+from core.local_llm_client import LocalLLMClient, LocalLLMError
 from core.local_search import LocalSearchEngine
 from core.rag.vector_store import VectorStore
 from core.router import Router
@@ -54,11 +54,13 @@ class App(ctk.CTk):
         self.vector_store = VectorStore(vector_store_dir)
         self.local_search = LocalSearchEngine(self.db, self.vector_store)
 
-        # Il client Gemini viene creato "pigro": solo quando serve, così
-        # l'app si apre comunque anche se la chiave API non è ancora
-        # stata configurata (l'utente verrà guidato verso Impostazioni).
-        self._gemini_client = None
-        self.router = Router(self._get_gemini_client, self.local_search, rag_top_k=self.config_manager.get("rag_top_k", 5))
+        # Il client LLM locale viene creato "pigro": solo quando serve, così
+        # l'app si apre comunque anche se il modello non è ancora
+        # stato configurato (l'utente verrà guidato verso Impostazioni).
+        self._local_client = None
+        
+        # Il router usa il client locale
+        self.router = Router(self._get_local_client, self.local_search, rag_top_k=self.config_manager.get("rag_top_k", 5))
 
         # ------------------------------------------------------------
         # Stato di navigazione
@@ -130,24 +132,27 @@ class App(ctk.CTk):
         self.refresh_history()
 
         if not self.config_manager.is_configured():
-            self.sidebar.set_status("Configura la chiave API")
+            self.sidebar.set_status("Configura il modello locale")
             self.open_settings()
         else:
             self._maybe_start_indexing()
 
     # ======================================================================
-    # Gestione client Gemini (creazione pigra / aggiornamento chiave)
+    # Gestione client LLM Locale (creazione pigra / aggiornamento configurazione)
     # ======================================================================
-    def _get_gemini_client(self) -> GeminiClient:
-        if self._gemini_client is None:
-            self._gemini_client = GeminiClient(
-                api_key=self.config_manager.get("api_key", ""),
-                model_name=self.config_manager.get("gemini_model", "gemini-3.5-flash"),
+    def _get_local_client(self):
+        """Restituisce un client per il modello locale."""
+        if self._local_client is None:
+            self._local_client = LocalLLMClient(
+                model_path=self.config_manager.get("local_model_path", ""),
+                n_ctx=self.config_manager.get("local_model_n_ctx", 4096),
+                n_gpu_layers=self.config_manager.get("local_model_n_gpu_layers", -1),
+                n_threads=self.config_manager.get("local_model_n_threads", None),
             )
-        return self._gemini_client
+        return self._local_client
 
-    def _invalidate_gemini_client(self) -> None:
-        self._gemini_client = None
+    def _invalidate_local_client(self) -> None:
+        self._local_client = None
 
     # ======================================================================
     # Navigazione tra ambienti / viste
@@ -222,7 +227,10 @@ class App(ctk.CTk):
     def handle_send(self, text: str, mode: str) -> None:
         if not self.config_manager.is_configured():
             self.open_settings()
-            self.settings_view.set_status("Inserisci prima una chiave API valida.", is_error=True)
+            self.settings_view.set_status(
+                "Configura il percorso del modello GGUF nelle Impostazioni.", 
+                is_error=True
+            )
             return
 
         env = self.current_env
@@ -266,7 +274,7 @@ class App(ctk.CTk):
         self.input_bar.set_enabled(True)
         chat_area = self.chat_area_tutor if env == "tutor" else self.chat_area_normal
         chat_area.hide_thinking()
-        message = str(error) if isinstance(error, GeminiError) else f"Si è verificato un errore imprevisto: {error}"
+        message = str(error) if isinstance(error, LocalLLMError) else f"Si è verificato un errore imprevisto: {error}"
         chat_area.add_message("ai", f"Attenzione: {message}", None)
         self.db.add_message(chat_id, "ai", f"Attenzione: {message}", None)
 
@@ -299,12 +307,28 @@ class App(ctk.CTk):
     # ======================================================================
     # Impostazioni
     # ======================================================================
-    def save_settings(self, api_key: str, folder_path: str, ocr_enabled: bool) -> None:
-        key_changed = api_key != self.config_manager.get("api_key", "")
-        self.config_manager.update(api_key=api_key, folder_path=folder_path, ocr_enabled=ocr_enabled)
+    def save_settings(
+        self,
+        local_model_path: str,
+        local_model_n_ctx: int,
+        local_model_n_gpu_layers: int,
+        local_model_n_threads: int,
+        folder_path: str,
+        ocr_enabled: bool,
+    ) -> None:
+        path_changed = local_model_path != self.config_manager.get("local_model_path", "")
+        
+        self.config_manager.update(
+            local_model_path=local_model_path,
+            local_model_n_ctx=local_model_n_ctx,
+            local_model_n_gpu_layers=local_model_n_gpu_layers,
+            local_model_n_threads=local_model_n_threads,
+            folder_path=folder_path,
+            ocr_enabled=ocr_enabled,
+        )
 
-        if key_changed:
-            self._invalidate_gemini_client()
+        if path_changed:
+            self._invalidate_local_client()
 
         if folder_path and os.path.isdir(folder_path):
             self._maybe_start_indexing()

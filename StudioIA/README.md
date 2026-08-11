@@ -7,8 +7,8 @@ incorporate, e solo se necessario passa alla ricerca web, sempre segnalando
 la fonte usata. Include una Modalità Insegnamento (tutor) e l'input vocale.
 
 Tutti i dati (chat, indice, cache immagini) restano sul tuo PC. L'unico
-traffico esterno è verso l'API di Google Gemini (per generare le risposte)
-e verso DuckDuckGo (solo quando la ricerca web è effettivamente usata).
+traffico esterno è verso l'API scelta: Google Gemini (cloud) o un modello LLM
+locale in esecuzione sul tuo computer (es. tramite Ollama, LM Studio, vLLM).
 
 ---
 
@@ -33,6 +33,14 @@ e verso DuckDuckGo (solo quando la ricerca web è effettivamente usata).
 
 - **Una chiave API Google Gemini**, gratuita: si ottiene su
   https://aistudio.google.com/apikey
+  
+  **OPPURE**
+
+- **Un server LLM locale** compatibile con API OpenAI, come:
+  - **Ollama**: https://ollama.ai (scaricare e installare, poi eseguire `ollama run llama3`)
+  - **LM Studio**: https://lmstudio.ai (interfaccia grafica per modelli locali)
+  - **vLLM**: per deployment più avanzati
+  - **Text Generation WebUI**: https://github.com/oobabooga/text-generation-webui
 
 ---
 
@@ -71,10 +79,30 @@ di Python da https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio e installarlo c
 python main.py
 ```
 
-Al primo avvio l'app si apre direttamente sulla pagina Impostazioni: inserire
-la chiave API Gemini e selezionare la cartella locale da analizzare, poi
-"Salva impostazioni". L'indicizzazione iniziale parte automaticamente in
-background (la si può seguire dallo stato in basso nella sidebar).
+Al primo avvio l'app si apre direttamente sulla pagina Impostazioni.
+
+### Configurazione con Google Gemini (cloud)
+
+1. Inserire la **Chiave API Gemini** (ottenibile da https://aistudio.google.com/apikey)
+2. Selezionare "Google Gemini (API cloud)" come Motore AI
+3. Opzionalmente modificare il nome del modello (default: `gemini-3.5-flash`)
+4. Selezionare la cartella locale da analizzare
+5. Cliccare "Salva impostazioni"
+
+### Configurazione con Modello Locale (Ollama, LM Studio, ecc.)
+
+1. Assicurarsi che il server LLM sia in esecuzione (es. `ollama serve` per Ollama)
+2. Selezionare "Modello Locale (Ollama, LM Studio, ecc.)" come Motore AI
+3. Inserire l'**URL del Server Locale**:
+   - Ollama: `http://localhost:11434/v1`
+   - LM Studio: `http://localhost:1234/v1`
+   - vLLM: `http://localhost:8000/v1`
+4. Inserire il **Nome del Modello** (es. `llama-3`, `mistral`, `phi-3`)
+5. L'API Key è opzionale per la maggior parte dei server locali (lasciare `not-needed`)
+6. Selezionare la cartella locale da analizzare
+7. Cliccare "Salva impostazioni"
+
+L'indicizzazione iniziale parte automaticamente in background (la si può seguire dallo stato in basso nella sidebar).
 
 ---
 
@@ -94,6 +122,7 @@ StudioIA/
 ├── core/                       logica applicativa
 │   ├── models.py               strutture dati condivise
 │   ├── gemini_client.py        chiamate a Google Gemini (testo + immagini)
+│   ├── local_llm_client.py     chiamate a modelli LLM locali (Ollama, LM Studio, ecc.)
 │   ├── router.py                decide locale / web / entrambi
 │   ├── local_search.py          facciata di ricerca RAG
 │   ├── web_search.py            ricerca DuckDuckGo
