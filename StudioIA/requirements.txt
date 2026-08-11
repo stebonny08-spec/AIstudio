@@ -14,9 +14,14 @@ python-pptx>=0.6.23
 openpyxl>=3.1.5
 PyMuPDF>=1.24.0
 
-# OCR (richiede anche il programma Tesseract installato sul sistema, vedi README)
+# OCR locale con OpenCV e Tesseract (richiede anche il programma Tesseract 
+# installato sul sistema, vedi README)
+opencv-python>=4.8.0
 pytesseract>=0.3.10
 Pillow>=10.4.0
+
+# Conversione appunti in PDF
+reportlab>=4.2.0
 
 # RAG: embedding locali + indice vettoriale
 sentence-transformers>=3.0.0
