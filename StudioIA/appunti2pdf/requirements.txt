@@ -1,0 +1,8 @@
+streamlit>=1.32
+easyocr>=1.7.1
+google-genai>=0.5.0
+reportlab>=4.0.0
+Pillow>=10.0.0
+python-dotenv>=1.0.0
+tenacity>=8.2.0
+pywebview>=5.0
