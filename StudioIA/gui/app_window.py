@@ -77,7 +77,10 @@ class App(ctk.CTk):
         # Layout principale
         # ------------------------------------------------------------
         self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=0)
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=0)
 
         # Header con bottone + e titolo
         self._create_header()
@@ -103,6 +106,106 @@ class App(ctk.CTk):
             self.open_settings()
         else:
             self._maybe_start_indexing()
+
+    def _create_header(self) -> None:
+        header_frame = ctk.CTkFrame(self, fg_color=theme.COLORS["bg_main"])
+        header_frame.grid(row=0, column=0, columnspan=2, sticky="ew", padx=16, pady=(16, 8))
+        header_frame.grid_columnconfigure(0, weight=1)
+
+        title = theme.label(header_frame, WINDOW_TITLE, size=22, weight="bold")
+        title.grid(row=0, column=0, sticky="w")
+
+        self.converter_button = theme.primary_button(
+            header_frame,
+            "Converti file",
+            command=self._toggle_converter_panel,
+            width=140,
+        )
+        self.converter_button.grid(row=0, column=1, sticky="e")
+
+    def _create_chat_area(self) -> None:
+        self.chat_container = ctk.CTkFrame(self, fg_color=theme.COLORS["bg_main"])
+        self.chat_container.grid(row=1, column=0, sticky="nsew", padx=(16, 8), pady=(0, 8))
+        self.chat_container.grid_rowconfigure(0, weight=1)
+        self.chat_container.grid_columnconfigure(0, weight=1)
+
+        self.chat_area_normal = ChatArea(
+            self.chat_container,
+            border_color_key="border_normal",
+            header_text="Chat normale",
+            header_icon="chat",
+        )
+        self.chat_area_normal.grid(row=0, column=0, sticky="nsew")
+
+        self.chat_area_tutor = ChatArea(
+            self.chat_container,
+            border_color_key="border_tutor",
+            header_text="Modalità insegnamento",
+            header_icon="graduation_cap",
+        )
+        self.chat_area_tutor.grid(row=0, column=0, sticky="nsew")
+
+        self.settings_view = SettingsView(
+            self.chat_container,
+            config_manager=self.config_manager,
+            on_save=self.save_settings,
+            on_reindex=self.trigger_reindex,
+        )
+        self.settings_view.grid(row=0, column=0, sticky="nsew")
+
+        self._show_view(self.current_env)
+
+    def _create_right_sidebar(self) -> None:
+        self.sidebar = Sidebar(
+            self,
+            on_switch_env=self.switch_environment,
+            on_select_chat=self.load_chat,
+            on_new_chat=self.new_chat,
+            on_open_settings=self.open_settings,
+            width=260,
+        )
+        self.sidebar.grid(row=1, column=1, sticky="ns", padx=(0, 16), pady=(0, 8))
+        self.sidebar.grid_propagate(False)
+
+    def _create_converter_panel(self) -> None:
+        self.converter_panel = ctk.CTkFrame(
+            self,
+            fg_color=theme.COLORS["bg_card"],
+            corner_radius=16,
+            border_width=1,
+            border_color=theme.COLORS["border_normal"],
+        )
+        self.converter_panel.grid(row=1, column=0, sticky="nsew", padx=(16, 8), pady=(0, 8))
+        self.converter_panel.grid_rowconfigure(0, weight=1)
+        self.converter_panel.grid_columnconfigure(0, weight=1)
+        self.converter_panel.grid_remove()
+
+        placeholder = theme.label(
+            self.converter_panel,
+            "Pannello di conversione file (in arrivo).",
+            size=14,
+            color="text_secondary",
+        )
+        placeholder.pack(expand=True, pady=20)
+
+    def _create_input_bar(self) -> None:
+        self.input_bar = InputBar(
+            self,
+            on_send=self.handle_send,
+            on_mic_click=self.handle_mic_click,
+            default_mode=self.config_manager.get("search_mode_default", "automatica"),
+        )
+        self.input_bar.grid(row=2, column=0, columnspan=2, sticky="ew", padx=16, pady=(0, 16))
+
+    def _toggle_converter_panel(self) -> None:
+        if self.converter_panel_open:
+            self.converter_panel.grid_remove()
+            self.converter_panel_open = False
+            self.converter_button.configure(text="Converti file")
+        else:
+            self.converter_panel.grid()
+            self.converter_panel_open = True
+            self.converter_button.configure(text="Chiudi conversione")
 
     # ======================================================================
     # Gestione client LLM Locale (creazione pigra / aggiornamento configurazione)

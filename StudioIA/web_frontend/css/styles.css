@@ -4,25 +4,25 @@
    ============================================ */
 
 :root {
-    /* Primary Colors - Sage Green for focus and calmness */
-    --primary-color: #6B9080;
-    --primary-hover: #5A7D6F;
-    --primary-light: #A4C3B2;
+    /* Primary Colors - Soft blue for dark theme */
+    --primary-color: #7C9BFF;
+    --primary-hover: #5C7EE6;
+    --primary-light: #5D7FED;
     
-    /* Secondary Colors - Soft Cream for background */
-    --bg-primary: #FDFCF5;
-    --bg-secondary: #F5F4EF;
-    --bg-tertiary: #E8E6DD;
+    /* Secondary Colors - Dark background palette */
+    --bg-primary: #0F1523;
+    --bg-secondary: #171F33;
+    --bg-tertiary: #222B42;
     
     /* Accent Colors */
-    --accent-blue: #6B9080;
-    --accent-purple: #9B7EBD;
-    --accent-orange: #E6A57E;
+    --accent-blue: #7C9BFF;
+    --accent-purple: #A087FF;
+    --accent-orange: #FF9F56;
     
     /* Text Colors */
-    --text-primary: #2D3142;
-    --text-secondary: #4F5D75;
-    --text-muted: #8B9BB4;
+    --text-primary: #F4F7FF;
+    --text-secondary: #A9B3D1;
+    --text-muted: #7A86A8;
     
     /* Status Colors */
     --success: #6B9080;
@@ -85,9 +85,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md) var(--spacing-lg);
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--bg-tertiary);
-    backdrop-filter: blur(10px);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     z-index: 100;
 }
 
@@ -98,14 +98,20 @@ body {
 }
 
 .logo-icon {
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .logo h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--primary-color);
     letter-spacing: -0.5px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .header-actions {
@@ -121,7 +127,7 @@ body {
     height: 40px;
     border-radius: var(--radius-md);
     border: none;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     color: var(--text-secondary);
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -162,6 +168,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    background: var(--bg-primary);
 }
 
 /* Chat Container */
@@ -170,6 +177,7 @@ body {
     overflow-y: auto;
     padding: var(--spacing-lg);
     scroll-behavior: smooth;
+    background: var(--bg-primary);
 }
 
 .welcome-message {
@@ -177,6 +185,10 @@ body {
     margin: 60px auto;
     text-align: center;
     animation: fadeIn 0.5s ease;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
 }
 
 .welcome-icon {
@@ -189,6 +201,20 @@ body {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
+}
+
+.message-content {
+    max-width: 70%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg, rgba(124, 155, 255, 0.20), rgba(92, 126, 230, 0.16));
+    color: var(--text-primary);
 }
 
 .welcome-message > p {
@@ -205,7 +231,8 @@ body {
 }
 
 .feature-card {
-    background: var(--bg-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     text-align: center;
@@ -366,19 +393,19 @@ body {
 .sidebar {
     position: fixed;
     top: 0;
-    right: -320px;
+    left: -320px;
     width: 320px;
     height: 100vh;
     background: var(--bg-secondary);
-    border-left: 1px solid var(--bg-tertiary);
+    border-right: 1px solid var(--bg-tertiary);
     z-index: 200;
-    transition: right var(--transition-normal);
+    transition: left var(--transition-normal);
     display: flex;
     flex-direction: column;
 }
 
 .sidebar.open {
-    right: 0;
+    left: 0;
 }
 
 .sidebar-header {
@@ -393,6 +420,12 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: var(--text-primary);
+}
+
+.sidebar-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
 }
 
 .conversations-list {

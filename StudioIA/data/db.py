@@ -62,6 +62,17 @@ class Database:
             )
             return cur.fetchall()
 
+    def get_conversations(self, limit: int = 50) -> List[sqlite3.Row]:
+        with self._cursor() as cur:
+            cur.execute(
+                "SELECT * FROM chats ORDER BY id DESC LIMIT ?",
+                (limit,),
+            )
+            return cur.fetchall()
+
+    def create_conversation(self, titolo: str) -> int:
+        return self.create_chat(titolo, "chat")
+
     def get_chat(self, chat_id: int) -> Optional[sqlite3.Row]:
         with self._cursor() as cur:
             cur.execute("SELECT * FROM chats WHERE id = ?", (chat_id,))

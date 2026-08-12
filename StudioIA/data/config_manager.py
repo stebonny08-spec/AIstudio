@@ -98,6 +98,12 @@ class ConfigManager:
         self._data.update(kwargs)
         self.save()
 
+    def get_config(self) -> Dict[str, Any]:
+        return dict(self._data)
+
+    def update_config(self, settings: Dict[str, Any]) -> None:
+        self.update(**settings)
+
     def is_configured(self) -> bool:
         """True se l'utente ha configurato il percorso del modello GGUF."""
         return bool(self._data.get("local_model_path", "").strip())

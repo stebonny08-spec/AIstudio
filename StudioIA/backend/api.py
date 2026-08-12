@@ -12,11 +12,13 @@ from datetime import datetime
 # Aggiungi il percorso corrente al path di sistema
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from core.markdown_converter import MarkdownConverter
 from core.local_llm_client import LocalLLMClient
-from core.rag.router import RAGRouter
+from core.local_search import LocalSearchEngine
+from core.markdown_converter import MarkdownConverter
+from core.router import Router
+from core.rag.vector_store import VectorStore
 from data.db import Database
-from data.config_manager import ConfigManager
+from data.config_manager import ConfigManager, get_app_data_dir
 
 
 class StudioIAAPI:
@@ -28,7 +30,9 @@ class StudioIAAPI:
         self.config = ConfigManager()
         self.llm_client = None
         self.rag_router = None
-        self.converter = MarkdownConverter()
+        self.vector_store = None
+        self.local_search = None
+        self.converter = None
         self.current_conversation_id = None
         
         # Inizializza i componenti
@@ -43,11 +47,16 @@ class StudioIAAPI:
             if config.get('local_model_path'):
                 self.llm_client = LocalLLMClient(
                     model_path=config['local_model_path'],
-                    n_ctx=config.get('context_size', 4096)
+                    n_ctx=config.get('local_model_n_ctx', 4096)
                 )
-            
-            # Inizializza RAG router
-            self.rag_router = RAGRouter()
+
+            self.vector_store = VectorStore(str(get_app_data_dir() / "vector_index"))
+            self.local_search = LocalSearchEngine(self.db, self.vector_store)
+            self.rag_router = Router(
+                local_client_provider=self._get_llm_client,
+                local_search=self.local_search,
+                rag_top_k=config.get('rag_top_k', 5),
+            )
             
         except Exception as e:
             print(f"Errore durante l'inizializzazione: {e}")
@@ -76,9 +85,9 @@ class StudioIAAPI:
             for msg in messages:
                 result.append({
                     'id': msg[0],
-                    'content': msg[2],
-                    'role': msg[1],
-                    'timestamp': msg[3]
+                    'content': msg[3],
+                    'role': msg[2],
+                    'timestamp': msg[5]
                 })
             return result
         except Exception as e:
@@ -110,28 +119,20 @@ class StudioIAAPI:
             print(f"Errore nell'invio messaggio: {e}")
             return "Mi scuso, ma ho riscontrato un errore. Per favore riprova."
     
+    def _get_llm_client(self):
+        return self.llm_client
+
     def _generate_response(self, query):
         """Genera una risposta usando RAG e LLM locale"""
         try:
             if not self.llm_client:
                 return "Il modello LLM non è stato configurato. Per favore seleziona un modello nelle impostazioni."
             
-            # Usa RAG router per cercare informazioni
             if self.rag_router:
-                context = self.rag_router.search(query, levels=3)
-                
-                # Costruisci prompt con contesto
-                prompt = f"""Contesto dalle fonti:
-{context}
-
-Domanda dell'utente: {query}
-
-Rispondi in modo chiaro e dettagliato in italiano."""
+                answer = self.rag_router.process_query(query, ambiente="chat", mode="automatica")
+                response = answer.text if hasattr(answer, 'text') else str(answer)
             else:
-                prompt = query
-            
-            # Genera risposta con LLM locale
-            response = self.llm_client.generate(prompt, max_tokens=1024)
+                response = self.llm_client.generate(query, ambiente="chat", context_kind="none")
             
             return response
             
@@ -161,18 +162,31 @@ Rispondi in modo chiaro e dettagliato in italiano."""
                     actual_type = 'word'
             
             # Converti in Markdown
+            if self.converter is None:
+                try:
+                    self.converter = MarkdownConverter()
+                except Exception as e:
+                    return {
+                        'success': False,
+                        'error': f'Markdown converter non disponibile: {e}'
+                    }
+
             output_dir = self.base_dir / 'file_AIstudio'
             output_dir.mkdir(exist_ok=True)
+            output_path = str(output_dir / (Path(file_path).stem + '.md'))
             
-            output_path = self.converter.convert(
-                file_path=file_path,
-                output_dir=str(output_dir),
-                file_type=actual_type
-            )
+            if actual_type == 'image':
+                self.converter.convert_image_to_markdown(str(file_path), output_path)
+            elif actual_type == 'pdf':
+                self.converter.convert_pdf_to_markdown(str(file_path), output_path)
+            elif actual_type == 'word':
+                self.converter.convert_docx_to_markdown(str(file_path), output_path)
+            else:
+                raise ValueError(f"Formato non supportato: {actual_type}")
             
             # Aggiorna indice RAG
-            if self.rag_router:
-                self.rag_router.index_file(output_path)
+            if self.local_search:
+                self.local_search.ensure_index_updated(str(output_dir), ocr_enabled=True)
             
             return {
                 'success': True,

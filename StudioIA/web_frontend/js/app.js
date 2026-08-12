@@ -28,6 +28,7 @@ class StudioIAApp {
         
         // New Conversation
         document.getElementById('newConversationBtn').addEventListener('click', () => this.newConversation());
+        document.getElementById('closeSidebarBtn').addEventListener('click', () => this.toggleSidebar());
         
         // Send Message
         document.getElementById('sendBtn').addEventListener('click', () => this.sendMessage());
@@ -146,11 +147,7 @@ class StudioIAApp {
             this.renderConversations(response);
         } catch (error) {
             console.error('Error loading conversations:', error);
-            // Mock data for development
-            this.renderConversations([
-                { id: 1, title: 'Domande su Matematica', date: 'Oggi' },
-                { id: 2, title: 'Riassunto Storia', date: 'Ieri' }
-            ]);
+            this.renderConversations([]);
         }
     }
     

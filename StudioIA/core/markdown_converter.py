@@ -50,12 +50,10 @@ class MarkdownConverter:
         try:
             pytesseract.get_tesseract_version()
             logger.info("Tesseract OCR inizializzato per MarkdownConverter")
+            self._ocr_available = True
         except Exception as e:
-            logger.error(f"Tesseract non trovato: {e}")
-            raise RuntimeError(
-                "Tesseract OCR non è installato. "
-                "Installa con: sudo apt-get install tesseract-ocr (Linux)"
-            )
+            logger.warning(f"Tesseract non trovato: {e}. OCR disabilitato.")
+            self._ocr_available = False
     
     def preprocess_image_for_ocr(self, image: np.ndarray) -> Tuple[np.ndarray, str]:
         """
@@ -109,6 +107,9 @@ class MarkdownConverter:
                 )
                 
                 # OCR con configurazione ottimizzata
+                if not self._ocr_available:
+                    logger.warning("OCR non disponibile: salto il riconoscimento dei testi.")
+                    continue
                 try:
                     custom_config = r'--oem 3 --psm 6'
                     text = pytesseract.image_to_string(roi_thresh, lang='ita+eng', config=custom_config)
@@ -129,6 +130,9 @@ class MarkdownConverter:
                 C=5
             )
             
+            if not self._ocr_available:
+                logger.warning("OCR non disponibile: restituisco immagine senza testo.")
+                return thresh, ""
             try:
                 custom_config = r'--oem 3 --psm 6'
                 text = pytesseract.image_to_string(thresh, lang='ita+eng', config=custom_config)
