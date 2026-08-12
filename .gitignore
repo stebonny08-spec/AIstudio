@@ -1,44 +1,31 @@
-```
+```bash
+# Environment
+.env
+.env.local
+.env.*
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+
 # Dependencies
-venv/
 .venv/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+venv/
+node_modules/
 
 # Build artifacts
 dist/
 build/
-*.egg-info/
+target/
+*.pyc
+__pycache__/
 
-# Environment files
-.env
-.env.local
-*.env.*
-
-# Logs
-*.log
-
-# Coverage reports
-.coverage
-coverage/
-htmlcov/
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# OS files
+# OS specific
 .DS_Store
 Thumbs.db
-
-# Python specific
-*.py[cod]
-*$py.class
-*.so
-.Python
 ```
