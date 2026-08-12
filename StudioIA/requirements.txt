@@ -37,3 +37,7 @@ pywebview>=5.0.0
 
 numpy>=1.26.4
 requests>=2.31.0
+
+# Parsing HTML per ricerca online specializzata
+beautifulsoup4>=4.12.0
+html5lib>=1.1
