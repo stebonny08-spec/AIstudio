@@ -21,6 +21,7 @@ from core.local_llm_client import FALLBACK_MARKER, LocalLLMError
 from core.local_search import LocalSearchEngine
 from core.models import AnswerResult
 from core.web_search import search_web
+from core.online_search import OnlineSearchEngine, SourceCategory
 from data.preselected_books_manager import PreselectedBooksManager
 
 MAX_IMAGES_PER_ANSWER = 3
@@ -80,10 +81,19 @@ class Router:
         return AnswerResult(text=text, source="locale")
 
     def _answer_web_only(self, client, query, ambiente) -> AnswerResult:
-        web_results = search_web(query)
+        """
+        Esegue ricerca web usando il motore specializzato online_search.
+        Cerca su fonti autorevoli selezionate (enciclopedie, accademiche, 
+        fact-checking, governative, educative).
+        """
+        # Usa il motore di ricerca specializzato invece di DuckDuckGo generico
+        online_engine = OnlineSearchEngine()
+        web_results = online_engine.search_all_sources(query, max_results=10)
+        
         if not web_results:
             text = client.generate(query, ambiente=ambiente, context_kind="none")
             return AnswerResult(text=text, source="nessuna")
+        
         text = client.generate(query, ambiente=ambiente, context_kind="web", web_results=web_results)
         return AnswerResult(text=text, source="web")
 
