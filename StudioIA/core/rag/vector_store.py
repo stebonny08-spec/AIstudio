@@ -1,27 +1,34 @@
 """
 core/rag/vector_store.py
 --------------------------
-Indice vettoriale locale (ChromaDB), persistito su disco nella cartella dati
-dell'app. Contiene sia i chunk di testo sia i "chunk immagine" (riferimenti
-a immagini estratte, indicizzate tramite il testo che le descrive/circonda).
+Indice vettoriale locale (ChromaDB), persistito su disco nelle cartelle dati
+dell'app. Supporta due indici separati:
+- user_files/: per i file dell'utente (vettorizzati dopo conversione)
+- data_base/: per il database di libri pre-selezionati (già vettorizzati)
+
+Ogni indice ha la propria collezione ChromaDB ma usa la stessa struttura
+di dati per chunk di testo e immagini.
 """
 
 from typing import List, Optional
 
 from core.rag.chunker import Chunk
 
-COLLECTION_NAME = "documenti_locali"
+USER_COLLECTION_NAME = "user_files_collection"
+DATA_BASE_COLLECTION_NAME = "data_base_collection"
 
 
 class VectorStore:
-    def __init__(self, persist_dir: str):
+    """Gestisce un indice vettoriale ChromaDB in una specifica cartella."""
+    
+    def __init__(self, persist_dir: str, collection_name: str = USER_COLLECTION_NAME):
         import chromadb
 
         self._client = chromadb.PersistentClient(path=persist_dir)
         # "hnsw:space": "cosine" fa sì che Chroma usi la distanza coseno,
         # la metrica di similarità standard per gli embedding testuali.
         self._collection = self._client.get_or_create_collection(
-            name=COLLECTION_NAME,
+            name=collection_name,
             metadata={"hnsw:space": "cosine"},
         )
 
@@ -39,6 +46,12 @@ class VectorStore:
                     "is_image": c.is_image,
                     "image_path": c.image_path,
                     "mime_type": c.mime_type,
+                    "chunk_type": getattr(c, 'chunk_type', 'TESTO'),
+                    "clip_id": getattr(c, 'clip_id', None),
+                    "latex": getattr(c, 'latex', None),
+                    "testo_ocr": getattr(c, 'testo_ocr', None),
+                    "pagina": getattr(c, 'pagina', None),
+                    "libro": getattr(c, 'libro', None),
                 }
                 for c in chunks
             ],
@@ -82,6 +95,12 @@ class VectorStore:
                     "is_image": meta.get("is_image", False),
                     "image_path": meta.get("image_path", ""),
                     "mime_type": meta.get("mime_type", ""),
+                    "chunk_type": meta.get("chunk_type", "TESTO"),
+                    "clip_id": meta.get("clip_id", None),
+                    "latex": meta.get("latex", None),
+                    "testo_ocr": meta.get("testo_ocr", None),
+                    "pagina": meta.get("pagina", None),
+                    "libro": meta.get("libro", None),
                 }
             )
         return output
