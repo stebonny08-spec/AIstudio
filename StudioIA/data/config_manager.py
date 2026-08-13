@@ -51,7 +51,25 @@ def get_app_data_dir() -> Path:
         path = Path(base) / APP_NAME
 
     path.mkdir(parents=True, exist_ok=True)
+    
+    # Crea le cartelle per i vettori utente e database libri
+    user_files_dir = path / "user_files"
+    data_base_dir = path / "data_base"
+    
+    user_files_dir.mkdir(parents=True, exist_ok=True)
+    data_base_dir.mkdir(parents=True, exist_ok=True)
+    
     return path
+
+
+def get_user_files_dir() -> Path:
+    """Ritorna la cartella per i file vettorizzati dell'utente."""
+    return get_app_data_dir() / "user_files"
+
+
+def get_data_base_dir() -> Path:
+    """Ritorna la cartella per il database di libri vettorizzati."""
+    return get_app_data_dir() / "data_base"
 
 
 class ConfigManager:
