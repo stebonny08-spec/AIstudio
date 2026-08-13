@@ -1,11 +1,26 @@
 customtkinter>=5.2.2
 
-# llama-cpp-python per eseguire modelli LLM locali in formato GGUF
-# direttamente dentro l'applicazione (senza bisogno di Ollama o LM Studio)
-llama-cpp-python>=0.2.90
+# Core AI & LLM - Supporto Qwen3-VL-2B-Q4 (Vision-Language)
+# llamacpp-python con build ottimizzata per GPU (CUDA) o CPU/Vulkan
+# Per NVIDIA GPU: usa l'index-url CUDA appropriato (es. cu121 per CUDA 12.1)
+# Per CPU/AMD: rimuovi l'index-url o usa quello CPU
+llama-cpp-python>=0.2.90 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121
 
-# Ricerca web gratuita (il pacchetto si chiamava 'duckduckgo-search', è
-# stato rinominato 'ddgs' dagli stessi sviluppatori)
+# Vision & Image Processing per Qwen-VL e modelli multimodali
+pillow>=10.4.0
+opencv-python-headless>=4.8.0
+transformers>=4.35.0 # Tokenizer speciale per Qwen-VL
+torch>=2.0.0 --index-url https://download.pytorch.org/whl/cu121
+
+# OCR Avanzato & Formula Recognition (PaddleOCR + pix2tex)
+paddlepaddle>=2.6.0
+paddleocr>=2.7.0
+pix2tex[gui]>=0.1.0
+
+# CLIP per embedding visivi delle immagini
+clip-by-openai>=1.0.0
+
+# Ricerca web gratuita
 ddgs>=9.0.0
 
 # Parsing dei formati file
@@ -13,12 +28,6 @@ python-docx>=1.1.2
 python-pptx>=0.6.23
 openpyxl>=3.1.5
 PyMuPDF>=1.24.0
-
-# OCR locale con OpenCV e Tesseract (richiede anche il programma Tesseract 
-# installato sul sistema, vedi README)
-opencv-python>=4.8.0
-pytesseract>=0.3.10
-Pillow>=10.4.0
 
 # Conversione appunti in Markdown
 reportlab>=4.2.0
