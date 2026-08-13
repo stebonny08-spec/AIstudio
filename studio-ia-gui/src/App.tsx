@@ -1,50 +1,41 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
+import { Sidebar } from "./components/Sidebar";
+import { HomeView } from "./components/HomeView";
+import { ConversionView } from "./components/ConversionView";
+import { ChatView } from "./components/ChatView";
+import { DatabaseView } from "./components/DatabaseView";
+import { SettingsView } from "./components/SettingsView";
 import "./App.css";
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+type View = 'home' | 'conversion' | 'chat' | 'settings' | 'database';
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+function App() {
+  const [currentView, setCurrentView] = useState<View>('home');
+
+  const renderView = () => {
+    switch (currentView) {
+      case 'home':
+        return <HomeView />;
+      case 'conversion':
+        return <ConversionView />;
+      case 'chat':
+        return <ChatView />;
+      case 'database':
+        return <DatabaseView />;
+      case 'settings':
+        return <SettingsView />;
+      default:
+        return <HomeView />;
+    }
+  };
 
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
+    <div className="flex h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+      <Sidebar currentView={currentView} onViewChange={setCurrentView} />
+      <main className="flex-1 overflow-hidden">
+        {renderView()}
+      </main>
+    </div>
   );
 }
 

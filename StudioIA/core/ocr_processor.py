@@ -1,109 +1,271 @@
 """
-OCR Module - Riconoscimento ottico dei caratteri usando OpenCV e Tesseract
-Funziona completamente in locale senza AI
+OCR Module Avanzato - Riconoscimento ottico dei caratteri con supporto multimodale
+Integra: PaddleOCR (OCR), pix2tex (formule LaTeX), CLIP (embedding visivi), Qwen3-VL-2B-Q4 (caption avanzate)
 """
 
 import cv2
 import numpy as np
 import pytesseract
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Dict, Any, Tuple
 import logging
+from PIL import Image
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class LocalOCR:
-    """Classe per l'elaborazione OCR locale di immagini e appunti"""
+class AdvancedOCRProcessor:
+    """Classe per l'elaborazione OCR avanzata con supporto multimodale"""
     
     def __init__(self, tesseract_cmd: Optional[str] = None):
         """
-        Inizializza il motore OCR
-        
-        Args:
-            tesseract_cmd: Percorso personalizzato per tesseract (opzionale)
+        Inizializza il motore OCR con tutti i componenti avanzati
         """
+        # Tesseract legacy (fallback)
         if tesseract_cmd:
             pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
         
-        # Verifica che tesseract sia installato
         try:
             pytesseract.get_tesseract_version()
-            logger.info("Tesseract OCR inizializzato con successo")
+            logger.info("Tesseract OCR disponibile (fallback)")
+            self.tesseract_available = True
+        except Exception:
+            logger.warning("Tesseract non trovato, uso solo PaddleOCR")
+            self.tesseract_available = False
+        
+        # PaddleOCR (primario)
+        try:
+            from paddleocr import PaddleOCR
+            self.paddle_ocr = PaddleOCR(use_angle_cls=True, lang='it')
+            logger.info("PaddleOCR inizializzato")
+            self.paddle_available = True
         except Exception as e:
-            logger.error(f"Tesseract non trovato: {e}")
-            raise RuntimeError(
-                "Tesseract OCR non è installato. "
-                "Installa con: sudo apt-get install tesseract-ocr (Linux) "
-                "o scarica da https://github.com/tesseract-ocr/tesseract"
+            logger.warning(f"PaddleOCR non disponibile: {e}")
+            self.paddle_available = False
+        
+        # pix2tex per formule matematiche
+        try:
+            from pix2tex.cli import LatexOCR
+            self.pix2tex_model = LatexOCR()
+            logger.info("pix2tex inizializzato per formule LaTeX")
+            self.pix2tex_available = True
+        except Exception as e:
+            logger.warning(f"pix2tex non disponibile: {e}")
+            self.pix2tex_available = False
+        
+        # CLIP per embedding visivi
+        try:
+            import clip
+            self.clip_model, self.clip_preprocess = clip.load("ViT-B/32")
+            logger.info("CLIP inizializzato per embedding visivi")
+            self.clip_available = True
+        except Exception as e:
+            logger.warning(f"CLIP non disponibile: {e}")
+            self.clip_available = False
+        
+        # Qwen3-VL-2B-Q4 per caption avanzate
+        try:
+            from .qwen_vl_client import load_qwen_vl_model
+            self.qwen_vl = load_qwen_vl_model(
+                model_dir="./models",
+                model_name="qwen3-vl-2b-q4.gguf",
+                verbose=True
             )
+            if self.qwen_vl:
+                logger.info("Qwen3-VL-2B-Q4 inizializzato per caption avanzate")
+                self.qwen_vl_available = True
+            else:
+                self.qwen_vl_available = False
+        except Exception as e:
+            logger.warning(f"Qwen3-VL non disponibile: {e}")
+            self.qwen_vl_available = False
     
-    def preprocess_image(self, image: np.ndarray) -> np.ndarray:
+    def extract_text_paddle(self, image: np.ndarray) -> Tuple[str, List[Dict]]:
         """
-        Pre-elabora l'immagine per migliorare il riconoscimento OCR
+        Estrae testo usando PaddleOCR
         
-        Args:
-            image: Immagine come array numpy
-            
         Returns:
-            Immagine pre-elaborata
+            Tuple[testo estratto, lista di bounding box con confidenza]
         """
-        # Converti in scala di grigi se necessario
-        if len(image.shape) == 3:
-            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        else:
-            gray = image.copy()
+        if not self.paddle_available:
+            return "", []
         
-        # Applica thresholding per migliorare il contrasto
-        _, thresh = cv2.threshold(
-            gray, 0, 255, 
-            cv2.THRESH_BINARY + cv2.THRESH_OTSU
-        )
+        results = self.paddle_ocr.ocr(image, cls=True)
         
-        # Rimuovi rumore con morfologia
-        kernel = np.ones((1, 1), np.uint8)
-        denoised = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
+        text_lines = []
+        boxes = []
         
-        # Migliora i bordi del testo
-        edges = cv2.Canny(denoised, 50, 150, apertureSize=3)
+        if results and results[0]:
+            for box in results[0]:
+                coords, (text, confidence) = box
+                text_lines.append(text)
+                boxes.append({
+                    'bbox': coords,
+                    'text': text,
+                    'confidence': confidence
+                })
         
-        return denoised
+        return "\n".join(text_lines), boxes
     
-    def detect_document_boundaries(self, image: np.ndarray) -> Optional[np.ndarray]:
+    def detect_formula(self, image: np.ndarray) -> Optional[str]:
         """
-        Rileva i confini del documento nell'immagine
+        Rileva se l'immagine contiene una formula matematica e la converte in LaTeX
         
-        Args:
-            image: Immagine originale
-            
         Returns:
-            Immagine ritagliata del documento o None se non rilevato
+            Formula in formato LaTeX o None se non rilevata
         """
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-        edged = cv2.Canny(blurred, 75, 200)
+        if not self.pix2tex_available:
+            return None
         
-        # Trova contorni
-        contours, _ = cv2.findContours(
-            edged.copy(), 
-            cv2.RETR_EXTERNAL, 
-            cv2.CHAIN_APPROX_SIMPLE
-        )
-        
-        # Ordina contorni per area (dal più grande)
-        contours = sorted(contours, key=cv2.contourArea, reverse=True)
-        
-        for contour in contours:
-            perimeter = cv2.arcLength(contour, True)
-            approx = cv2.approxPolyDP(contour, 0.02 * perimeter, True)
+        try:
+            # Converte numpy array a PIL Image
+            if len(image.shape) == 3:
+                image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+            else:
+                image_pil = Image.fromarray(image)
             
-            # Se il contorno ha 4 punti, probabilmente è un documento
-            if len(approx) == 4:
-                x, y, w, h = cv2.boundingRect(approx)
-                return image[y:y+h, x:x+w]
+            latex = self.pix2tex_model(image_pil)
+            
+            if latex and len(latex.strip()) > 5:  # Formula valida
+                logger.info(f"Formula rilevata: {latex[:50]}...")
+                return latex
+        except Exception as e:
+            logger.debug(f"Nessuna formula rilevata o errore: {e}")
         
         return None
+    
+    def get_clip_embedding(self, image: np.ndarray) -> Optional[np.ndarray]:
+        """
+        Genera embedding visivo usando CLIP
+        
+        Returns:
+            Vettore di embedding o None
+        """
+        if not self.clip_available:
+            return None
+        
+        try:
+            image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+            image_input = self.clip_preprocess(image_pil).unsqueeze(0)
+            
+            with torch.no_grad():
+                embedding = self.clip_model.encode_image(image_input)
+            
+            return embedding.cpu().numpy().flatten()
+        except Exception as e:
+            logger.error(f"Errore CLIP embedding: {e}")
+            return None
+    
+    def generate_advanced_caption(
+        self, 
+        image: np.ndarray, 
+        ocr_text: str = "",
+        latex_formula: Optional[str] = None
+    ) -> str:
+        """
+        Genera caption avanzata usando Qwen3-VL-2B-Q4
+        
+        Logica:
+        1. Se OCR ha abbastanza testo → usa OCR + template (NO VLM)
+        2. Se è formula (pix2tex sicuro) → usa LaTeX + descrizione (NO VLM)
+        3. Altrimenti → Qwen3-VL scrive descrizione ricca
+        
+        Args:
+            image: Immagine come numpy array
+            ocr_text: Testo estratto da OCR
+            latex_formula: Formula LaTeX se rilevata
+        
+        Returns:
+            Caption finale
+        """
+        image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        
+        # Caso 1: Abbastanza testo OCR
+        if ocr_text and len(ocr_text.split()) >= 10:
+            logger.info("Caption generata da OCR (senza VLM)")
+            return f"Immagine contenente testo: {ocr_text}"
+        
+        # Caso 2: Formula matematica
+        if latex_formula:
+            logger.info("Caption generata da formula LaTeX (senza VLM)")
+            return f"Formula matematica: {latex_formula}"
+        
+        # Caso 3: Usa Qwen3-VL per descrizione ricca
+        if self.qwen_vl_available:
+            logger.info("Generazione caption con Qwen3-VL-2B-Q4")
+            try:
+                prompt = "Descrivi questa immagine in dettaglio, includendo elementi visivi, testo visibile, e il contesto generale."
+                caption = self.qwen_vl.generate_caption(image_pil, prompt, max_tokens=256)
+                return caption
+            except Exception as e:
+                logger.error(f"Errore Qwen-VL: {e}")
+        
+        # Fallback: descrizione base
+        logger.warning("Fallback a descrizione base")
+        return "Immagine senza testo significativo o formule rilevate"
+    
+    def process_image_complete(
+        self, 
+        image_path: str,
+        lang: str = 'it+en'
+    ) -> Dict[str, Any]:
+        """
+        Elabora completamente un'immagine con tutti i metodi disponibili
+        
+        Returns:
+            Dizionario completo con:
+            - tipo: "immagine"
+            - percorso: path dell'immagine
+            - libro: nome libro (da metadata)
+            - pagina: numero pagina (da metadata)
+            - caption: descrizione finale
+            - testo_ocr: testo da OCR
+            - latex: formula LaTeX se presente
+            - clip_id: ID embedding CLIP
+        """
+        image = cv2.imread(str(image_path))
+        if image is None:
+            raise ValueError(f"Impossibile caricare immagine: {image_path}")
+        
+        # 1. OCR con PaddleOCR
+        ocr_text, ocr_boxes = self.extract_text_paddle(image)
+        
+        # Fallback a Tesseract se Paddle fallisce
+        if not ocr_text and self.tesseract_available:
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            ocr_text = pytesseract.image_to_string(gray, lang=lang.replace('+', ' '))
+        
+        # 2. Rilevamento formule con pix2tex
+        latex_formula = self.detect_formula(image)
+        
+        # 3. Embedding CLIP
+        clip_embedding = self.get_clip_embedding(image)
+        clip_id = hash(clip_embedding.tobytes()) if clip_embedding is not None else None
+        
+        # 4. Genera caption intelligente
+        caption = self.generate_advanced_caption(image, ocr_text, latex_formula)
+        
+        result = {
+            'tipo': 'immagine',
+            'percorso': str(image_path),
+            'libro': None,  # Da impostare dal chiamante
+            'pagina': None,  # Da impostare dal chiamante
+            'caption': caption,
+            'testo_ocr': ocr_text,
+            'latex': latex_formula,
+            'clip_id': clip_id,
+            'ocr_boxes': ocr_boxes,
+            'clip_embedding': clip_embedding
+        }
+        
+        logger.info(f"Immagine elaborata: {image_path}")
+        logger.info(f"  - OCR: {len(ocr_text)} caratteri")
+        logger.info(f"  - LaTeX: {'presente' if latex_formula else 'assente'}")
+        logger.info(f"  - CLIP ID: {clip_id}")
+        logger.info(f"  - Caption: {caption[:80]}...")
+        
+        return result
     
     def extract_text_from_image(
         self, 
@@ -112,207 +274,36 @@ class LocalOCR:
         preprocess: bool = True
     ) -> str:
         """
-        Estrae testo da un'immagine usando OCR
-        
-        Args:
-            image_path: Percorso dell'immagine
-            lang: Lingue per il riconoscimento (default: italiano+inglese)
-            preprocess: Se applicare pre-processing
-            
-        Returns:
-            Testo estratto
+        Metodo legacy per compatibilità - Estrae testo da immagine
         """
-        try:
-            # Carica immagine
-            image = cv2.imread(str(image_path))
-            if image is None:
-                raise ValueError(f"Impossibile caricare l'immagine: {image_path}")
-            
-            # Rileva e ritaglia documento se presente
-            cropped = self.detect_document_boundaries(image)
-            if cropped is not None:
-                image = cropped
-                logger.info("Documento rilevato e ritagliato")
-            
-            # Pre-processing opzionale
-            if preprocess:
-                image = self.preprocess_image(image)
-            
-            # Esegui OCR
-            text = pytesseract.image_to_string(image, lang=lang)
-            
-            logger.info(f"OCR completato: {len(text)} caratteri estratti")
-            return text.strip()
-            
-        except Exception as e:
-            logger.error(f"Errore OCR: {e}")
-            return ""
-    
-    def extract_text_from_images(
-        self, 
-        image_paths: List[str], 
-        lang: str = 'ita+eng'
-    ) -> str:
-        """
-        Estrae testo da multiple immagini
-        
-        Args:
-            image_paths: Lista di percorsi delle immagini
-            lang: Lingue per il riconoscimento
-            
-        Returns:
-            Testo combinato da tutte le immagini
-        """
-        all_text = []
-        
-        for img_path in image_paths:
-            text = self.extract_text_from_image(img_path, lang)
-            if text:
-                all_text.append(text)
-        
-        return "\n\n---\n\n".join(all_text)
-    
-    def extract_text_from_bytes(
-        self, 
-        image_bytes: bytes, 
-        lang: str = 'ita+eng',
-        preprocess: bool = True
-    ) -> str:
-        """
-        Estrae testo da dati immagine in formato bytes
-        
-        Args:
-            image_bytes: Dati immagine come bytes
-            lang: Lingue per il riconoscimento
-            preprocess: Se applicare pre-processing
-            
-        Returns:
-            Testo estratto
-        """
-        try:
-            # Converte bytes in array numpy
-            nparr = np.frombuffer(image_bytes, np.uint8)
-            image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-            
-            if image is None:
-                raise ValueError("Impossibile decodificare l'immagine")
-            
-            # Rileva e ritaglia documento se presente
-            cropped = self.detect_document_boundaries(image)
-            if cropped is not None:
-                image = cropped
-            
-            # Pre-processing opzionale
-            if preprocess:
-                image = self.preprocess_image(image)
-            
-            # Esegui OCR
-            text = pytesseract.image_to_string(image, lang=lang)
-            
-            logger.info(f"OCR da bytes completato: {len(text)} caratteri")
-            return text.strip()
-            
-        except Exception as e:
-            logger.error(f"Errore OCR da bytes: {e}")
-            return ""
-    
-    def get_confidence_map(self, image_path: str, lang: str = 'ita+eng') -> dict:
-        """
-        Ottiene informazioni dettagliate sull'OCR con livelli di confidenza
-        
-        Args:
-            image_path: Percorso dell'immagine
-            lang: Lingue per il riconoscimento
-            
-        Returns:
-            Dizionario con parole, bounding box e confidenza
-        """
-        image = cv2.imread(str(image_path))
-        if image is None:
-            return {}
-        
-        if self.preprocess:
-            image = self.preprocess_image(image)
-        
-        # Ottieni dati dettagliati
-        data = pytesseract.image_to_data(image, lang=lang, output_type=pytesseract.Output.DICT)
-        
-        results = {
-            'text': [],
-            'conf': [],
-            'bbox': []
-        }
-        
-        n_boxes = len(data['text'])
-        for i in range(n_boxes):
-            if int(data['conf'][i]) > 0:  # Solo risultati con confidenza > 0
-                results['text'].append(data['text'][i])
-                results['conf'].append(data['conf'][i])
-                results['bbox'].append({
-                    'x': data['left'][i],
-                    'y': data['top'][i],
-                    'w': data['width'][i],
-                    'h': data['height'][i]
-                })
-        
-        return results
+        result = self.process_image_complete(image_path, lang)
+        return result['testo_ocr']
 
 
-# Funzione utility per elaborazione batch
-def process_notes_batch(
-    image_folder: str, 
-    output_file: Optional[str] = None,
-    lang: str = 'ita+eng'
-) -> str:
-    """
-    Elabora tutte le immagini in una cartella come appunti
-    
-    Args:
-        image_folder: Percorso della cartella con le immagini
-        output_file: File opzionale dove salvare il testo estratto
-        lang: Lingue per il riconoscimento
-        
-    Returns:
-        Testo combinato da tutte le immagini
-    """
-    ocr = LocalOCR()
-    folder = Path(image_folder)
-    
-    # Trova tutte le immagini
-    image_extensions = ['*.jpg', '*.jpeg', '*.png', '*.bmp', '*.tiff']
-    image_files = []
-    
-    for ext in image_extensions:
-        image_files.extend(folder.glob(ext))
-    
-    if not image_files:
-        logger.warning(f"Nessuna immagine trovata in {image_folder}")
-        return ""
-    
-    # Estrai testo da tutte le immagini
-    combined_text = ocr.extract_text_from_images(
-        [str(f) for f in image_files], 
-        lang=lang
-    )
-    
-    # Salva su file se richiesto
-    if output_file and combined_text:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(combined_text)
-        logger.info(f"Testo salvato in {output_file}")
-    
-    return combined_text
+# Import torch solo se necessario
+try:
+    import torch
+except ImportError:
+    torch = None
+    logger.warning("PyTorch non disponibile - alcune funzionalità potrebbero non funzionare")
+
+
+# Classe legacy per compatibilità
+LocalOCR = AdvancedOCRProcessor
 
 
 if __name__ == "__main__":
-    # Test del modulo
-    print("Test modulo OCR locale")
-    print("=" * 50)
+    print("Test modulo OCR avanzato")
+    print("=" * 60)
     
-    # Verifica installazione
-    try:
-        ocr = LocalOCR()
-        print("✓ Tesseract OCR disponibile")
-    except RuntimeError as e:
-        print(f"✗ Errore: {e}")
-        print("Installa Tesseract prima di usare questo modulo")
+    processor = AdvancedOCRProcessor()
+    
+    print("\nComponenti disponibili:")
+    print(f"  ✓ Tesseract: {processor.tesseract_available}")
+    print(f"  ✓ PaddleOCR: {processor.paddle_available}")
+    print(f"  ✓ pix2tex: {processor.pix2tex_available}")
+    print(f"  ✓ CLIP: {processor.clip_available}")
+    print(f"  ✓ Qwen3-VL-2B-Q4: {processor.qwen_vl_available}")
+    
+    print("\nPer testare l'elaborazione completa:")
+    print("  processor.process_image_complete('tua_immagine.png')")
