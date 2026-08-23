@@ -1,0 +1,485 @@
+"""
+gui/app_window.py
+--------------------
+Il controller centrale dell'applicazione. Interfaccia moderna con:
+- Barra di ricerca AI centrale
+- Pannello laterale destro per cronologia conversazioni
+- Pannello "Aggiungi materiale" (accessibile tramite bottone +) con due
+  modalità: appunti personali (livello 1 del RAG) e libri in Markdown
+  (livello 2 del RAG)
+- Tutto integrato con il sistema RAG a 3 livelli, sempre 100% locale
+  eccetto il livello 3 (ricerca online su fonti affidabili predefinite)
+"""
+
+import os
+from pathlib import Path
+
+import customtkinter as ctk
+
+import theme
+from core.local_llm_client import LocalLLMClient, LocalLLMError
+from core.local_search import LocalSearchEngine
+from core.markdown_converter import convert_to_markdown
+from core.rag.vector_store import VectorStore
+from core.router import Router
+from data.config_manager import ConfigManager, get_app_data_dir
+from data.db import Database
+from data.preselected_books_manager import PreselectedBooksManager
+from gui.chat_area import ChatArea
+from gui.converter_panel import ConverterPanel
+from gui.input_bar import InputBar
+from gui.settings_view import SettingsView
+from gui.sidebar import Sidebar
+
+WINDOW_TITLE = "StudioIA — Assistente locale"
+
+
+class App(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+
+        self.title(WINDOW_TITLE)
+        self.configure(fg_color=theme.COLORS["bg_main"])
+
+        # ------------------------------------------------------------
+        # Stato e servizi di base (config, database, TaskRunner)
+        # ------------------------------------------------------------
+        self.config_manager = ConfigManager()
+        self.geometry(self.config_manager.get("window_geometry", "1280x800"))
+        self.minsize(1000, 650)
+
+        self.db = Database()
+
+        from utils.threading_utils import TaskRunner
+        self.task_runner = TaskRunner(self)
+
+        # Indice vettoriale + motore di ricerca locale (RAG)
+        # LIVELLO 1: materiale caricato dallo studente (convertitore appunti)
+        vector_store_dir = str(get_app_data_dir() / "vector_index")
+        self.vector_store = VectorStore(vector_store_dir)
+        self.local_search = LocalSearchEngine(self.db, self.vector_store)
+
+        # LIVELLO 2: materiale in Markdown già pronto, in una cartella
+        # dedicata separata (convertitore .md, es. libri scaricati da
+        # un'altra app). Riusa l'Embedder del livello 1 invece di caricare
+        # il modello di embedding una seconda volta in memoria.
+        self.books_manager = PreselectedBooksManager()
+        books_vector_dir = str(get_app_data_dir() / "vector_index_books")
+        self.books_vector_store = VectorStore(books_vector_dir)
+        self.books_search = LocalSearchEngine(self.db, self.books_vector_store, self.local_search.embedder)
+
+        self._local_client = None
+        self.router = Router(
+            self._get_local_client,
+            self.local_search,
+            self.books_search,
+            rag_top_k=self.config_manager.get("rag_top_k", 5),
+        )
+
+        # Cartella del livello 1 del RAG, alimentata dal convertitore appunti
+        self.rag_folder = Path(__file__).parent.parent / "file_AIstudio"
+        self.rag_folder.mkdir(parents=True, exist_ok=True)
+
+        # ------------------------------------------------------------
+        # Stato di navigazione
+        # ------------------------------------------------------------
+        self.current_env = "chat"
+        self.active_chat_id = {"chat": None, "tutor": None}
+        
+        # Stato pannelli
+        self.sidebar_open = False
+        self.converter_panel_open = False
+
+        # ------------------------------------------------------------
+        # Layout principale
+        # ------------------------------------------------------------
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=0)
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(2, weight=0)
+
+        # Header con bottone + e titolo
+        self._create_header()
+        
+        # Area chat centrale
+        self._create_chat_area()
+        
+        # Pannello laterale destro (cronologia)
+        self._create_right_sidebar()
+        
+        # Pannello conversione file
+        self._create_converter_panel()
+        
+        # Barra di input inferiore
+        self._create_input_bar()
+
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
+
+        # Avvio
+        self.refresh_history()
+
+        if not self.config_manager.is_configured():
+            self.open_settings()
+        else:
+            self._maybe_start_indexing()
+
+    def _create_header(self) -> None:
+        header_frame = ctk.CTkFrame(self, fg_color=theme.COLORS["bg_main"])
+        header_frame.grid(row=0, column=0, columnspan=2, sticky="ew", padx=16, pady=(16, 8))
+        header_frame.grid_columnconfigure(0, weight=1)
+
+        title = theme.label(header_frame, WINDOW_TITLE, size=22, weight="bold")
+        title.grid(row=0, column=0, sticky="w")
+
+        self.converter_button = theme.primary_button(
+            header_frame,
+            "Converti file",
+            command=self._toggle_converter_panel,
+            width=140,
+        )
+        self.converter_button.grid(row=0, column=1, sticky="e")
+
+    def _create_chat_area(self) -> None:
+        self.chat_container = ctk.CTkFrame(self, fg_color=theme.COLORS["bg_main"])
+        self.chat_container.grid(row=1, column=0, sticky="nsew", padx=(16, 8), pady=(0, 8))
+        self.chat_container.grid_rowconfigure(0, weight=1)
+        self.chat_container.grid_columnconfigure(0, weight=1)
+
+        self.chat_area_normal = ChatArea(
+            self.chat_container,
+            border_color_key="border_normal",
+            header_text="Chat normale",
+            header_icon="chat",
+        )
+        self.chat_area_normal.grid(row=0, column=0, sticky="nsew")
+
+        self.chat_area_tutor = ChatArea(
+            self.chat_container,
+            border_color_key="border_tutor",
+            header_text="Modalità insegnamento",
+            header_icon="graduation_cap",
+        )
+        self.chat_area_tutor.grid(row=0, column=0, sticky="nsew")
+
+        self.settings_view = SettingsView(
+            self.chat_container,
+            config_manager=self.config_manager,
+            on_save=self.save_settings,
+            on_reindex=self.trigger_reindex,
+        )
+        self.settings_view.grid(row=0, column=0, sticky="nsew")
+
+        self._show_view(self.current_env)
+
+    def _create_right_sidebar(self) -> None:
+        self.sidebar = Sidebar(
+            self,
+            on_switch_env=self.switch_environment,
+            on_select_chat=self.load_chat,
+            on_new_chat=self.new_chat,
+            on_open_settings=self.open_settings,
+            width=260,
+        )
+        self.sidebar.grid(row=1, column=1, sticky="ns", padx=(0, 16), pady=(0, 8))
+        self.sidebar.grid_propagate(False)
+
+    def _create_converter_panel(self) -> None:
+        self.converter_panel = ConverterPanel(
+            self,
+            task_runner=self.task_runner,
+            on_add_notes=self._add_notes_material,
+            on_add_to_library=self._add_library_material,
+            fg_color=theme.COLORS["bg_card"],
+            corner_radius=16,
+            border_width=1,
+            border_color=theme.COLORS["border_normal"],
+        )
+        self.converter_panel.grid(row=1, column=0, sticky="nsew", padx=(16, 8), pady=(0, 8))
+        self.converter_panel.grid_remove()
+
+    def _create_input_bar(self) -> None:
+        self.input_bar = InputBar(
+            self,
+            on_send=self.handle_send,
+            default_mode=self.config_manager.get("search_mode_default", "automatica"),
+        )
+        self.input_bar.grid(row=2, column=0, columnspan=2, sticky="ew", padx=16, pady=(0, 16))
+
+    def _toggle_converter_panel(self) -> None:
+        if self.converter_panel_open:
+            self.converter_panel.grid_remove()
+            self.converter_panel_open = False
+            self.converter_button.configure(text="Converti file")
+        else:
+            self.converter_panel.grid()
+            self.converter_panel_open = True
+            self.converter_button.configure(text="Chiudi conversione")
+
+    # ======================================================================
+    # Gestione client LLM Locale (creazione pigra / aggiornamento configurazione)
+    # ======================================================================
+    def _get_local_client(self):
+        """Restituisce un client per il modello locale."""
+        if self._local_client is None:
+            self._local_client = LocalLLMClient(
+                model_path=self.config_manager.get("local_model_path", ""),
+                n_ctx=self.config_manager.get("local_model_n_ctx", 4096),
+                n_gpu_layers=self.config_manager.get("local_model_n_gpu_layers", -1),
+                n_threads=self.config_manager.get("local_model_n_threads", None),
+            )
+        return self._local_client
+
+    def _invalidate_local_client(self) -> None:
+        self._local_client = None
+
+    # ======================================================================
+    # Navigazione tra ambienti / viste
+    # ======================================================================
+    def _show_view(self, name: str) -> None:
+        widget = {
+            "chat": self.chat_area_normal,
+            "tutor": self.chat_area_tutor,
+            "settings": self.settings_view,
+        }[name]
+        widget.tkraise()
+
+    def switch_environment(self, env: str) -> None:
+        self.current_env = env
+        self._show_view(env)
+        self.refresh_history()
+
+    def open_settings(self) -> None:
+        self.settings_view.refresh_from_config()
+        self._show_view("settings")
+
+    # ======================================================================
+    # Gestione chat / storico
+    # ======================================================================
+    def refresh_history(self) -> None:
+        chats = self.db.get_chats(self.current_env)
+        self.sidebar.populate_history(chats, active_chat_id=self.active_chat_id[self.current_env])
+
+    def new_chat(self, env: str) -> None:
+        self.current_env = env
+        self._show_view(env)
+        self.active_chat_id[env] = None
+        self._active_chat_area().clear()
+        self.refresh_history()
+
+    def load_chat(self, chat_id: int) -> None:
+        chat = self.db.get_chat(chat_id)
+        if chat is None:
+            return
+        env = chat["ambiente"]
+        self.current_env = env
+        self.active_chat_id[env] = chat_id
+        self._show_view(env)
+        messages = self.db.get_messages(chat_id)
+        self._active_chat_area().render_messages(messages)
+        self.refresh_history()
+
+    def _active_chat_area(self) -> ChatArea:
+        return self.chat_area_tutor if self.current_env == "tutor" else self.chat_area_normal
+
+    def _ensure_active_chat(self, first_message_text: str) -> int:
+        """Se non c'è ancora una chat attiva per l'ambiente corrente, la crea
+        usando le prime parole del primo messaggio come titolo."""
+        chat_id = self.active_chat_id[self.current_env]
+        if chat_id is not None:
+            return chat_id
+
+        titolo = first_message_text.strip()[:40]
+        if len(first_message_text.strip()) > 40:
+            titolo += "…"
+        if not titolo:
+            titolo = "Nuova conversazione"
+
+        chat_id = self.db.create_chat(titolo, self.current_env)
+        self.active_chat_id[self.current_env] = chat_id
+        self.refresh_history()
+        return chat_id
+
+    # ======================================================================
+    # Invio messaggi (con threading per non bloccare la GUI)
+    # ======================================================================
+    def handle_send(self, text: str, mode: str) -> None:
+        if not self.config_manager.is_configured():
+            self.open_settings()
+            self.settings_view.set_status(
+                "Configura il percorso del modello GGUF nelle Impostazioni.", 
+                is_error=True
+            )
+            return
+
+        env = self.current_env
+        chat_area = self._active_chat_area()
+        chat_id = self._ensure_active_chat(text)
+
+        chat_area.add_message("user", text, None)
+        self.db.add_message(chat_id, "user", text)
+        chat_area.show_thinking()
+        self.input_bar.set_enabled(False)
+
+        self.task_runner.run(
+            self._process_query_background,
+            on_success=lambda result: self._on_answer_ready(result, chat_id, env),
+            on_error=lambda err: self._on_answer_error(err, chat_id, env),
+            query=text,
+            ambiente=env,
+            mode=mode,
+        )
+
+    def _process_query_background(self, query: str, ambiente: str, mode: str):
+        # Prima di ogni ricerca, aggiorniamo gli indici in modo incrementale:
+        # l'intero albero di cartelle viene ri-esplorato (economico), ma
+        # solo i file nuovi/modificati vengono ri-processati (costoso).
+        if mode != "solo_online":
+            ocr_enabled = self.config_manager.get("ocr_enabled", True)
+
+            # LIVELLO 1: cartella del convertitore appunti (sempre presente)
+            self.local_search.ensure_index_updated(str(self.rag_folder), ocr_enabled=ocr_enabled)
+
+            # LIVELLO 1 (extra): cartella personale aggiuntiva impostata
+            # manualmente nelle Impostazioni, se configurata
+            folder_path = self.config_manager.get("folder_path", "")
+            if folder_path and os.path.isdir(folder_path):
+                self.local_search.ensure_index_updated(folder_path, ocr_enabled=ocr_enabled)
+
+            # LIVELLO 2: cartella libri/materiali in Markdown (convertitore .md)
+            self.books_search.ensure_index_updated(
+                self.books_manager.get_books_folder_path(), ocr_enabled=ocr_enabled
+            )
+
+        return self.router.process_query(query, ambiente=ambiente, mode=mode)
+
+    def _on_answer_ready(self, result, chat_id: int, env: str) -> None:
+        self.input_bar.set_enabled(True)
+        chat_area = self.chat_area_tutor if env == "tutor" else self.chat_area_normal
+        chat_area.hide_thinking()
+        chat_area.add_message("ai", result.text, result.source)
+        self.db.add_message(chat_id, "ai", result.text, result.source)
+
+    def _on_answer_error(self, error: Exception, chat_id: int, env: str) -> None:
+        self.input_bar.set_enabled(True)
+        chat_area = self.chat_area_tutor if env == "tutor" else self.chat_area_normal
+        chat_area.hide_thinking()
+        message = str(error) if isinstance(error, LocalLLMError) else f"Si è verificato un errore imprevisto: {error}"
+        chat_area.add_message("ai", f"Attenzione: {message}", None)
+        self.db.add_message(chat_id, "ai", f"Attenzione: {message}", None)
+
+    # ======================================================================
+    # Impostazioni
+    # ======================================================================
+    def save_settings(
+        self,
+        local_model_path: str,
+        local_model_n_ctx: int,
+        local_model_n_gpu_layers: int,
+        local_model_n_threads: int,
+        folder_path: str,
+        ocr_enabled: bool,
+    ) -> None:
+        path_changed = local_model_path != self.config_manager.get("local_model_path", "")
+        
+        self.config_manager.update(
+            local_model_path=local_model_path,
+            local_model_n_ctx=local_model_n_ctx,
+            local_model_n_gpu_layers=local_model_n_gpu_layers,
+            local_model_n_threads=local_model_n_threads,
+            folder_path=folder_path,
+            ocr_enabled=ocr_enabled,
+        )
+
+        if path_changed:
+            self._invalidate_local_client()
+
+        if folder_path and os.path.isdir(folder_path):
+            self._maybe_start_indexing()
+        elif folder_path:
+            self.settings_view.set_status("Il percorso indicato non è una cartella valida.", is_error=True)
+
+    def trigger_reindex(self) -> None:
+        folder_path = self.config_manager.get("folder_path", "")
+        if not folder_path or not os.path.isdir(folder_path):
+            self.settings_view.set_status("Seleziona prima una cartella valida.", is_error=True)
+            return
+        self._maybe_start_indexing(force_status_updates=True)
+
+    def _maybe_start_indexing(self, force_status_updates: bool = False) -> None:
+        folder_path = self.config_manager.get("folder_path", "")
+        if not folder_path or not os.path.isdir(folder_path):
+            return
+
+        def progress(msg: str) -> None:
+            # Chiamata dal thread di background: NON tocchiamo mai i widget
+            # direttamente da qui. task_runner.post() mette il messaggio in
+            # coda in modo thread-safe; verrà consegnato al thread della GUI
+            # dal ciclo di polling di TaskRunner.
+            self.task_runner.post(lambda m: self._update_index_status(m, force_status_updates), msg)
+
+        self.sidebar.set_status("Indicizzazione in corso...")
+        self.task_runner.run(
+            self.local_search.ensure_index_updated,
+            on_success=lambda _r: self.sidebar.set_status("Indice aggiornato"),
+            on_error=lambda e: self.sidebar.set_status(f"Errore indicizzazione: {e}"),
+            folder_path=folder_path,
+            ocr_enabled=self.config_manager.get("ocr_enabled", True),
+            progress_callback=progress,
+        )
+
+    # ======================================================================
+    # Pannello "Aggiungi materiale" (RAG livello 1 e livello 2)
+    #
+    # In entrambe le modalità l'elaborazione (conversione/copia +
+    # vettorizzazione) avviene interamente sotto al cofano: queste funzioni
+    # girano su un thread di background (gestito da ConverterPanel tramite
+    # TaskRunner) e non restituiscono alcun file all'utente, solo un esito.
+    # ======================================================================
+    def _add_notes_material(self, file_path: str) -> None:
+        """LIVELLO 1: converte un file (foto/PDF/Word) in Markdown e lo
+        indicizza subito nella cartella del materiale personale dello
+        studente."""
+        convert_to_markdown(file_path, str(self.rag_folder))
+        self.local_search.ensure_index_updated(
+            str(self.rag_folder),
+            ocr_enabled=self.config_manager.get("ocr_enabled", True),
+        )
+
+    def _add_library_material(self, file_path: str) -> None:
+        """LIVELLO 2: copia un file Markdown già pronto nella cartella dei
+        libri/materiali pre-selezionati e lo indicizza subito."""
+        src = Path(file_path)
+        if src.suffix.lower() != ".md":
+            raise ValueError("In questa modalità sono accettati solo file Markdown (.md)")
+
+        books_dir = Path(self.books_manager.get_books_folder_path())
+        books_dir.mkdir(parents=True, exist_ok=True)
+
+        # Evita di sovrascrivere silenziosamente un libro già presente con
+        # lo stesso nome: aggiunge un suffisso numerico progressivo.
+        dest = books_dir / src.name
+        stem, suffix = dest.stem, dest.suffix
+        counter = 1
+        while dest.exists():
+            dest = books_dir / f"{stem} ({counter}){suffix}"
+            counter += 1
+
+        import shutil
+        shutil.copy2(src, dest)
+
+        self.books_search.ensure_index_updated(
+            str(books_dir),
+            ocr_enabled=self.config_manager.get("ocr_enabled", True),
+        )
+
+    def _update_index_status(self, msg: str, also_settings: bool) -> None:
+        self.sidebar.set_status(f"{msg}")
+        if also_settings:
+            self.settings_view.set_status(msg)
+
+    # ======================================================================
+    def _on_close(self) -> None:
+        self.config_manager.set("window_geometry", self.geometry())
+        self.config_manager.save()
+        self.destroy()
