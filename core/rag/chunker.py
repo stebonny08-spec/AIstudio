@@ -14,6 +14,10 @@ più comuni in entrambe le lingue sono protette da una blacklist, così
 "Dr. Rossi" o "e.g. questo" non vengono spezzati a metà.
 """
 
+# Import "futuri": rende le annotazioni di tipo pigre (PEP 563),
+# evitando NameError se un tipo è usato prima di essere definito.
+from __future__ import annotations
+
 import re
 import uuid
 from dataclasses import dataclass
@@ -21,6 +25,28 @@ from typing import List
 
 DEFAULT_CHUNK_SIZE_WORDS = 350
 DEFAULT_OVERLAP_WORDS = 50
+
+
+# ======================================================================
+# STRUTTURA DATI
+# ----------------------------------------------------------------------
+# Definita PRIMA di qualsiasi funzione che la usa come annotazione.
+# ======================================================================
+
+@dataclass
+class Chunk:
+    id: str
+    source_file: str
+    text: str
+    location_hint: str = ""
+    is_image: bool = False
+    image_path: str = ""
+    mime_type: str = ""
+
+
+# ======================================================================
+# SPLIT IN FRASI
+# ======================================================================
 
 # Abbreviazioni che NON devono chiudere una frase, anche se seguite da
 # un punto. Coprono i casi più frequenti in italiano e in inglese.
@@ -30,26 +56,24 @@ _ABBREVIATIONS = {
     "e.g", "i.e", "cf", "al", "fig", "no", "vol", "pp", "ed",
     # italiano
     "ecc", "es", "cfr", "pag", "pagg", "sez", "cap", "art", "dott",
-    "avv", "ing", "geom", "prof", "sig", "sig.ra", "s.p.a", "s.r.l",
+    "avv", "ing", "geom", "sig", "s.p.a", "s.r.l",
 }
 
 # Regex di split: cattura il punto/esclamativo/interrogativo e lo spazio
-# successivo come separatore. Teniamo il segno di punteggiatura attaccato
-# alla frase precedente tramite lookbehind + gruppo di cattura separato.
-_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Þ\"«\(\[])")
+# successivo come separatore, se seguito da una lettera maiuscola o da
+# un carattere tipico di apertura (virgolette, parentesi).
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Þ\"«\(\[]")
 
-# Regex per riconoscere un "punto di abbreviazione": una parola che termina
-# con un punto, il cui corpo (senza punto, lowercase) è nella blacklist.
+# Regex per riconoscere un "punto di abbreviazione": una parola che
+# termina con un punto, il cui corpo (senza punto, lowercase) è nella
+# blacklist.
 _ABBREV_END_RE = re.compile(r"([A-Za-zÀ-ÖØ-öø-ÿ.]+)\.$")
 
 
 def _split_sentences(text: str) -> List[str]:
     """Divide il testo in frasi, proteggendo le abbreviazioni comuni."""
-    # Split grezzo
     raw = _SENTENCE_SPLIT_RE.split(text)
 
-    # Ricompatta i casi di split erroneo su un'abbreviazione: se la frase
-    # precedente termina con un'abbreviazione nota, uniscila alla successiva.
     sentences: List[str] = []
     buffer = ""
     for piece in raw:
@@ -60,7 +84,6 @@ def _split_sentences(text: str) -> List[str]:
         if m:
             token = m.group(1).lower().rstrip(".")
             if token in _ABBREVIATIONS:
-                # Non è una vera fine di frase: accoda e prosegui
                 buffer = piece
                 continue
         sentences.append(piece.strip())
@@ -83,6 +106,10 @@ def _split_long_sentence(sentence: str, max_words: int) -> List[str]:
         for i in range(0, len(words), max_words)
     ]
 
+
+# ======================================================================
+# FUNZIONE PRINCIPALE
+# ======================================================================
 
 def chunk_text(
     text: str,
