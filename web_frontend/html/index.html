@@ -163,10 +163,6 @@
         justify-content: center;
         cursor: pointer;
     }
-    /* Stella in SVG usata come sfondo decorativo: posizionata in
-       absolute per riempire il contenitore. I contorni sono di un blu
-       leggermente più scuro dello sfondo dell'app (#1a1f2e), così la
-       stella sembra "impressa" nel fondo come una stampa a rilievo. */
     .star-bg {
         position: absolute;
         inset: 0;
@@ -175,7 +171,6 @@
         color: #0e1320;
         pointer-events: none;
     }
-    /* Testo in primo piano, sovrapposto alla stella. */
     .hero-text {
         position: relative;
         z-index: 1;
@@ -280,8 +275,9 @@
     .modal-overlay { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; }
     .modal-overlay.show { opacity: 1; pointer-events: auto; }
     .modal { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; width: 90%; max-width: 520px; max-height: 85vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .modal-wide { max-width: 760px; }
     .modal-overlay.show .modal { transform: scale(1); }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--panel); z-index: 1; border-radius: 16px 16px 0 0; }
     .modal-title { font-size: 20px; font-weight: 700; }
     .modal-body { padding: 24px; }
     .modal-body p { font-size: 14px; line-height: 1.65; color: #c7cdd8; margin-bottom: 12px; }
@@ -313,6 +309,71 @@
     .material-status { font-size: 13px; margin-top: 10px; min-height: 16px; }
     .material-status.success { color: #7fc8a9; }
     .material-status.error { color: var(--red); }
+
+    /* ---------- Modale Licenze ---------- */
+    .licenses-body { padding: 24px 32px 32px; }
+    .licenses-body h2 {
+        font-size: 20px; font-weight: 700; color: var(--text);
+        margin-bottom: 6px; margin-top: 0;
+    }
+    .licenses-body .licenses-intro {
+        color: var(--muted); font-size: 13px; line-height: 1.6;
+        margin-bottom: 24px; padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+    }
+    .licenses-body h3 {
+        font-size: 15px; font-weight: 700; color: var(--accent);
+        margin-top: 28px; margin-bottom: 14px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    }
+    .licenses-body h3:first-of-type { margin-top: 0; }
+    .licenses-body h4 {
+        font-size: 14px; font-weight: 700; color: var(--text);
+        margin-top: 18px; margin-bottom: 6px;
+    }
+    .licenses-body p {
+        font-size: 13.5px; line-height: 1.65; color: #c7cdd8;
+        margin-bottom: 8px;
+    }
+    .licenses-body ul {
+        list-style: none; padding-left: 0; margin-bottom: 12px;
+    }
+    .licenses-body ul li {
+        font-size: 13px; line-height: 1.55; color: #c7cdd8;
+        padding: 3px 0;
+    }
+    .licenses-body ul li strong {
+        color: var(--text); font-weight: 600;
+    }
+    .licenses-body a {
+        color: var(--blue);
+        text-decoration: none;
+        word-break: break-all;
+        transition: color 0.2s;
+    }
+    .licenses-body a:hover {
+        color: var(--accent);
+        text-decoration: underline;
+    }
+    .licenses-body .licenses-section-note {
+        background: var(--card);
+        border-left: 3px solid var(--accent);
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin: 14px 0;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+    .licenses-body .licenses-timestamp {
+        margin-top: 32px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--muted);
+        font-style: italic;
+        text-align: center;
+    }
 </style>
 </head>
 <body>
@@ -369,9 +430,6 @@
 
     <main class="main-content" id="welcomeView">
         <div class="hero-container" id="heroCard">
-            <!-- Stella a 8 punte: usata come sfondo decorativo, contorni
-                 in blu scuro (#0e1320) per un effetto "impressione su
-                 carta". Il testo è sovrapposto in primo piano. -->
             <svg class="star-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linejoin="round">
                     <polygon points="100,10 109.57,76.90 90.43,76.90"/>
@@ -450,6 +508,7 @@
         </div>
     </div>
 
+    <!-- Modal Impostazioni -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
             <div class="modal-header">
@@ -471,10 +530,26 @@
                     <div class="settings-text"><div class="settings-label">Scopri le librerie</div><div class="settings-desc" id="libraryDesc">Librerie e componenti usati</div></div>
                     <button class="btn-outline" id="openLibraryBtn">Librerie</button>
                 </div>
+                <!-- RIQUADRO LICENZE (ultimo in fondo) -->
+                <div class="settings-item" id="openLicensesBtn">
+                    <div class="settings-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="9" y1="13" x2="15" y2="13"/>
+                            <line x1="9" y1="17" x2="15" y2="17"/>
+                        </svg>
+                    </div>
+                    <div class="settings-text">
+                        <div class="settings-label">Licenze</div>
+                        <div class="settings-desc">Licenze di terze parti utilizzate</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal Scopri NovaStudio -->
     <div class="modal-overlay" id="novastudioModal">
         <div class="modal">
             <div class="modal-header">
@@ -496,6 +571,209 @@
         </div>
     </div>
 
+    <!-- Modal Licenze -->
+    <div class="modal-overlay" id="licensesModal">
+        <div class="modal modal-wide">
+            <div class="modal-header">
+                <h2 class="modal-title">Licenze di terze parti</h2>
+                <button class="icon-btn" id="closeLicensesBtn" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <div class="licenses-body">
+
+                <p class="licenses-intro">
+                    Questo progetto utilizza librerie, programmi e modelli di terze parti.
+                    Di seguito sono elencate tutte le componenti, con la rispettiva licenza e
+                    il link al testo completo. Questa lista è aggiornata alla data di ultima
+                    modifica del file.
+                </p>
+
+                <!-- ============ 1 ============ -->
+                <h3>1. Librerie Python — licenze permissive</h3>
+                <p>Le seguenti librerie sono distribuite sotto licenze permissive (MIT, BSD, ISC). Consentono uso commerciale, modifica e ridistribuzione, a condizione di includere il testo della licenza originale nella distribuzione.</p>
+
+                <h4>pywebview</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: BSD 3-Clause</li>
+                    <li><strong>Uso nel progetto</strong>: finestra desktop nativa dell'applicazione</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/r0x0r/pywebview/blob/master/LICENSE" target="_blank" rel="noopener">github.com/r0x0r/pywebview/blob/master/LICENSE</a></li>
+                </ul>
+
+                <h4>llama-cpp-python</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: esecuzione del modello LLM locale in formato GGUF</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/abetlen/llama-cpp-python/blob/main/LICENSE.md" target="_blank" rel="noopener">github.com/abetlen/llama-cpp-python/blob/main/LICENSE.md</a></li>
+                </ul>
+
+                <h4>llama.cpp</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: backend C++ per l'inferenza (incluso in llama-cpp-python)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/ggerganov/llama.cpp/blob/master/LICENSE" target="_blank" rel="noopener">github.com/ggerganov/llama.cpp/blob/master/LICENSE</a></li>
+                </ul>
+
+                <h4>ddgs (ex duckduckgo-search)</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: ricerca web ristretta a fonti affidabili (livello 3 del RAG)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/deedy5/ddgs/blob/main/LICENSE" target="_blank" rel="noopener">github.com/deedy5/ddgs/blob/main/LICENSE</a></li>
+                </ul>
+
+                <h4>python-docx</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: parsing di documenti Word (.docx)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/python-openxml/python-docx/blob/master/LICENSE" target="_blank" rel="noopener">github.com/python-openxml/python-docx/blob/master/LICENSE</a></li>
+                </ul>
+
+                <h4>python-pptx</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: parsing di presentazioni PowerPoint (.pptx)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/scanny/python-pptx/blob/master/LICENSE" target="_blank" rel="noopener">github.com/scanny/python-pptx/blob/master/LICENSE</a></li>
+                </ul>
+
+                <h4>openpyxl</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: parsing di file Excel (.xlsx)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://foss.heptapod.net/openpyxl/openpyxl/-/blob/branch/default/LICENCE.rst" target="_blank" rel="noopener">foss.heptapod.net/openpyxl/openpyxl</a></li>
+                </ul>
+
+                <h4>pdfplumber</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: parsing di file PDF</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt" target="_blank" rel="noopener">github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt</a></li>
+                </ul>
+
+                <h4>pypdf</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: BSD 3-Clause</li>
+                    <li><strong>Uso nel progetto</strong>: estrazione testo da PDF</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/py-pdf/pypdf/blob/main/LICENSE" target="_blank" rel="noopener">github.com/py-pdf/pypdf/blob/main/LICENSE</a></li>
+                </ul>
+
+                <h4>Pillow</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT-CMU (Historical Permission Notice and Disclaimer)</li>
+                    <li><strong>Uso nel progetto</strong>: gestione e riconoscimento dei formati immagine</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/python-pillow/Pillow/blob/main/LICENSE" target="_blank" rel="noopener">github.com/python-pillow/Pillow/blob/main/LICENSE</a></li>
+                </ul>
+
+                <h4>numpy</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: BSD 3-Clause</li>
+                    <li><strong>Uso nel progetto</strong>: calcolo numerico e gestione array</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://numpy.org/doc/stable/license.html" target="_blank" rel="noopener">numpy.org/doc/stable/license.html</a></li>
+                </ul>
+
+                <h4>requests</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: chiamate HTTP (controllo aggiornamenti, download modelli)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/psf/requests/blob/main/LICENSE" target="_blank" rel="noopener">github.com/psf/requests/blob/main/LICENSE</a></li>
+                    <li><strong>NOTICE</strong>: <a href="https://github.com/psf/requests/blob/main/NOTICE" target="_blank" rel="noopener">github.com/psf/requests/blob/main/NOTICE</a></li>
+                </ul>
+
+                <h4>torch (PyTorch)</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: BSD 3-Clause</li>
+                    <li><strong>Uso nel progetto</strong>: backend di calcolo per sentence-transformers (dipendenza indiretta)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE" target="_blank" rel="noopener">github.com/pytorch/pytorch/blob/main/LICENSE</a></li>
+                </ul>
+
+                <!-- ============ 2 ============ -->
+                <h3>2. Librerie Python — licenze Apache 2.0</h3>
+                <p>Apache 2.0 è una licenza permissiva ma con obblighi aggiuntivi rispetto a MIT/BSD: oltre a includere una copia della licenza, è richiesto di includere il file NOTICE (se presente) e di indicare esplicitamente eventuali modifiche apportate al codice della libreria. Include inoltre una clausola sui brevetti.</p>
+
+                <h4>opencv-python</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: pre-processing delle immagini per l'OCR</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/opencv/opencv-python/blob/master/LICENSE.txt" target="_blank" rel="noopener">github.com/opencv/opencv-python/blob/master/LICENSE.txt</a></li>
+                    <li><strong>NOTICE</strong>: <a href="https://github.com/opencv/opencv/blob/4.x/NOTICE" target="_blank" rel="noopener">github.com/opencv/opencv/blob/4.x/NOTICE</a></li>
+                </ul>
+
+                <h4>sentence-transformers</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: calcolo degli embedding per la ricerca semantica</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/UKPLab/sentence-transformers/blob/master/LICENSE" target="_blank" rel="noopener">github.com/UKPLab/sentence-transformers/blob/master/LICENSE</a></li>
+                    <li><strong>NOTICE</strong>: <a href="https://github.com/UKPLab/sentence-transformers/blob/master/NOTICE" target="_blank" rel="noopener">github.com/UKPLab/sentence-transformers/blob/master/NOTICE</a></li>
+                </ul>
+
+                <h4>transformers</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: dipendenza di sentence-transformers</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/huggingface/transformers/blob/main/LICENSE" target="_blank" rel="noopener">github.com/huggingface/transformers/blob/main/LICENSE</a></li>
+                </ul>
+
+                <h4>chromadb</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: indice vettoriale locale per il RAG</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/chroma-core/chroma/blob/main/LICENSE" target="_blank" rel="noopener">github.com/chroma-core/chroma/blob/main/LICENSE</a></li>
+                </ul>
+
+                <!-- ============ 3 ============ -->
+                <h3>3. Librerie Python — licenze copyleft</h3>
+                <div class="licenses-section-note">
+                    Le seguenti librerie sono distribuite sotto licenze copyleft. Questo significa che l'applicazione che le utilizza deve essere distribuita sotto una licenza compatibile (GPL o AGPL) e il codice sorgente deve essere reso disponibile agli utenti finali.
+                </div>
+
+                <h4>PyMuPDF</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: GNU Affero General Public License v3.0 (AGPL-3.0) oppure licenza commerciale Artifex</li>
+                    <li><strong>Uso nel progetto</strong>: parsing di file PDF (se presente)</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">gnu.org/licenses/agpl-3.0.html</a></li>
+                    <li><strong>Licenza commerciale</strong>: <a href="https://artifex.com/licensing/" target="_blank" rel="noopener">artifex.com/licensing</a></li>
+                </ul>
+
+                <h4>pytesseract</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: GNU General Public License v3.0 (GPL-3.0)</li>
+                    <li><strong>Uso nel progetto</strong>: wrapper Python per Tesseract OCR</li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/madmaze/pytesseract/blob/master/LICENSE" target="_blank" rel="noopener">github.com/madmaze/pytesseract/blob/master/LICENSE</a></li>
+                </ul>
+
+                <!-- ============ 4 ============ -->
+                <h3>4. Programmi esterni</h3>
+
+                <h4>Tesseract OCR</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso nel progetto</strong>: riconoscimento ottico dei caratteri (OCR) sulle immagini</li>
+                    <li><strong>Sito ufficiale</strong>: <a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">github.com/tesseract-ocr/tesseract</a></li>
+                    <li><strong>Testo licenza</strong>: <a href="https://github.com/tesseract-ocr/tesseract/blob/main/LICENSE" target="_blank" rel="noopener">github.com/tesseract-ocr/tesseract/blob/main/LICENSE</a></li>
+                </ul>
+
+                <!-- ============ 5 ============ -->
+                <h3>5. Modelli</h3>
+
+                <h4>MiniCPM5-2B</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0 (verificare sulla pagina Hugging Face ufficiale)</li>
+                    <li><strong>Uso nel progetto</strong>: modello LLM locale per la generazione delle risposte</li>
+                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/openbmb/MiniCPM5-2B-GGUF" target="_blank" rel="noopener">huggingface.co/openbmb/MiniCPM5-2B-GGUF</a></li>
+                </ul>
+
+                <h4>multilingual-e5-small</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso nel progetto</strong>: modello di embedding per la ricerca semantica multilingua</li>
+                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/intfloat/multilingual-e5-small" target="_blank" rel="noopener">huggingface.co/intfloat/multilingual-e5-small</a></li>
+                </ul>
+
+                <div class="licenses-timestamp">
+                    Ultimo aggiornamento: <span id="licensesDate">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Aggiungi materiale -->
     <div class="modal-overlay" id="materialModal">
         <div class="modal">
             <div class="modal-header">
@@ -523,7 +801,7 @@
     const $ = id => document.getElementById(id);
     const sidebar = $('sidebar'), sidebarOverlay = $('sidebarOverlay');
     const settingsModal = $('settingsModal'), materialModal = $('materialModal');
-    const novastudioModal = $('novastudioModal');
+    const novastudioModal = $('novastudioModal'), licensesModal = $('licensesModal');
     const welcomeView = $('welcomeView'), chatView = $('chatView');
     const chatInput = $('chatInput'), historyList = $('historyList');
     const fileNameBox = $('fileName'), addFileBtn = $('addFileBtn');
@@ -732,9 +1010,25 @@
     $('openNovaStudioBtn').addEventListener('click', () => { closeModal(settingsModal); openModal(novastudioModal); });
     $('closeNovaStudioBtn').addEventListener('click', () => closeModal(novastudioModal));
 
-    [settingsModal, materialModal, novastudioModal].forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m); }));
+    // ---------- Licenze ----------
+    $('openLicensesBtn').addEventListener('click', () => {
+        closeModal(settingsModal);
+        const now = new Date();
+        const formatted = now.toLocaleDateString('it-IT', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+        $('licensesDate').textContent = formatted;
+        openModal(licensesModal);
+    });
+    $('closeLicensesBtn').addEventListener('click', () => closeModal(licensesModal));
+
+    [settingsModal, materialModal, novastudioModal, licensesModal].forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m); }));
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') { closeSidebar(); closeModelsMenu(); [settingsModal, materialModal, novastudioModal].forEach(closeModal); }
+        if (e.key === 'Escape') {
+            closeSidebar();
+            closeModelsMenu();
+            [settingsModal, materialModal, novastudioModal, licensesModal].forEach(closeModal);
+        }
     });
 
     // ---------- Impostazioni ----------
