@@ -59,10 +59,16 @@ _ABBREVIATIONS = {
     "avv", "ing", "geom", "sig", "s.p.a", "s.r.l",
 }
 
-# Regex di split: cattura il punto/esclamativo/interrogativo e lo spazio
-# successivo come separatore, se seguito da una lettera maiuscola o da
+# Regex di split: separa dopo un punto/esclamativo/interrogativo seguito
+# da uno o più spazi e da una lettera maiuscola (ASCII o accentata) o da
 # un carattere tipico di apertura (virgolette, parentesi).
-_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Þ\"«\(\[]")
+#
+# NB: la parentesi finale chiude il gruppo lookahead `(?=...)`; il `]`
+# finale chiude la classe di caratteri. Senza uno dei due il pattern è
+# squilibrato e il compilatore regex solleva un errore.
+_SENTENCE_SPLIT_RE = re.compile(
+    r'(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Þ«"\(\[])'
+)
 
 # Regex per riconoscere un "punto di abbreviazione": una parola che
 # termina con un punto, il cui corpo (senza punto, lowercase) è nella
