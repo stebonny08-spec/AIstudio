@@ -1,0 +1,118 @@
+{
+  "method": "qaR22_ink: T2 reale R22 - rette/archi ricostruiti + dock B1.1",
+  "prima": {
+    "retta": {
+      "expected": "shape line, dev angolare <=1gradi",
+      "dev_deg": 0.145,
+      "ok": true,
+      "n_raw": 51
+    },
+    "arco": {
+      "expected": "shape curve, residuo render vs curva parametrica ideale <=0.5px (tick)",
+      "residuo_render_px": 0,
+      "tick_curva_ideale": true,
+      "params": [
+        "bez"
+      ],
+      "meanNN_pts_vs_grezzi": 2.582,
+      "residuo_grezzo_vs_render": 2.311,
+      "residuo_render_vs_genvero_px": 2.408,
+      "residuo_grezzo_vs_genvero_px": 1.932,
+      "ok": true
+    },
+    "arco_flick": {
+      "expected": "shape arrow, ali 30-45gradi, ratio 3-4x, tangente <=10gradi",
+      "ali_deg": 35,
+      "ratio": 3.2,
+      "shaft_kind": "curve",
+      "tangente_deg": 0,
+      "base_d": 0,
+      "ali_ok": true,
+      "ratio_ok": true,
+      "base_ok": true,
+      "tangente_ok": true,
+      "ok": true,
+      "stroke_call": {
+        "n": 50,
+        "scale": 1.171303074670571
+      }
+    },
+    "c_aperta": {
+      "expected": "C NON chiusa (intatta) e non riconosciuta: stroke",
+      "c_intatta": true,
+      "rimane_stroke": true,
+      "got": "stroke/?",
+      "ok": true
+    },
+    "fonti_dock": {
+      "shown": true,
+      "hitOk": true,
+      "hit": "BUTTON cls=fn-tb",
+      "overlap_px2": 0,
+      "gap_panel_top_vs_pill_bottom": 48,
+      "z_pannello": 11,
+      "z_pill": 9,
+      "z_maggiore_pannello": true,
+      "non_bloccante": false,
+      "ok": true
+    }
+  },
+  "dopo": {
+    "retta": {
+      "expected": "shape line, dev angolare <=1gradi",
+      "dev_deg": 0.206,
+      "ok": true,
+      "n_raw": 51
+    },
+    "arco": {
+      "expected": "shape curve, residuo render vs curva parametrica ideale <=0.5px (tick)",
+      "residuo_render_px": 0,
+      "tick_curva_ideale": true,
+      "params": [
+        "bez",
+        "arc"
+      ],
+      "meanNN_pts_vs_grezzi": 2.697,
+      "residuo_grezzo_vs_render": 2.368,
+      "residuo_render_vs_genvero_px": 1.262,
+      "residuo_grezzo_vs_genvero_px": 1.932,
+      "ok": true
+    },
+    "arco_flick": {
+      "expected": "shape arrow, ali 30-45gradi, ratio 3-4x, tangente <=10gradi",
+      "ali_deg": 35,
+      "ratio": 3.2,
+      "shaft_kind": "curve",
+      "tangente_deg": 0,
+      "base_d": 0,
+      "ali_ok": true,
+      "ratio_ok": true,
+      "base_ok": true,
+      "tangente_ok": true,
+      "ok": true,
+      "stroke_call": {
+        "n": 50,
+        "scale": 1.171303074670571
+      }
+    },
+    "c_aperta": {
+      "expected": "C NON chiusa (intatta) e non riconosciuta: stroke",
+      "c_intatta": true,
+      "rimane_stroke": true,
+      "got": "stroke/?",
+      "ok": true
+    },
+    "fonti_dock": {
+      "shown": true,
+      "hitOk": true,
+      "hit": "BUTTON cls=fn-tb",
+      "overlap_px2": 0,
+      "gap_panel_top_vs_pill_bottom": 48,
+      "z_pannello": 11,
+      "z_pill": 12,
+      "z_maggiore_pannello": false,
+      "non_bloccante": true,
+      "ok": true
+    }
+  }
+}

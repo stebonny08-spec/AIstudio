@@ -1,0 +1,62 @@
+{
+  "status": "ok",
+  "gruppo": "G4 streaming + TTFT",
+  "generated_at": "2026-10-25T11:11:29+0100",
+  "comando": "python tests/t2a_ttft.py",
+  "test_logico": "python tests/testG4_stream.py (fake SSE infinito + api._run_generation con router finto)",
+  "cancellazione_reale": {
+    "status": "ok",
+    "pezzi_prima_stop": 3,
+    "stop_imposto_dopo_pezzi": 3,
+    "loop_interrotto": true,
+    "uscito_dopo_stop_entro_sec": 0.076,
+    "health_dopo_stop": true,
+    "health_poll_sec": 0.0,
+    "richiesta_successiva_ok": true,
+    "richiesta_successiva_chars": 570,
+    "errore": null,
+    "metodo": "thread consumer con struttura IDENTICA al loop di api._run_generation (check stop_event in cima a ogni pezzo, generator.close() al set) su SidecarClient.complete(stream=True) REALE",
+    "comando": "python tests/t2a_ttft.py"
+  },
+  "dove_si_controlla_stop_event": {
+    "backend/api.py::_run_generation": "check in cima a ogni evento del loop + generator.close()",
+    "core/local_llm_client.py::stream_via_sidecar": "break sul pezzo successivo al set",
+    "core/local_llm_client.py::generate_stream": "stesso check (strada in-process)",
+    "core/sidecar/client.py": "NESSUN check: cancellazione = close() del generatore -> resp.close()"
+  },
+  "carico_sistema": {
+    "cpu_percent_1s": 3.8,
+    "cpu_count": 16,
+    "memory_percent": 71.6,
+    "processi_llama_server": 1,
+    "processi_python": 1,
+    "python_pids": [
+      "python.exe:2036"
+    ]
+  },
+  "ripetizioni": [
+    {
+      "run": 1,
+      "hit_p50": 92.0,
+      "miss_p50": 350.5,
+      "target": {
+        "hit_p50_max_ms": 1500.0,
+        "miss_p50_max_ms": 2500.0,
+        "hit": "RAGGIUNTO",
+        "miss": "RAGGIUNTO",
+        "esito_complessivo": "RAGGIUNTO"
+      },
+      "carico_sistema": {
+        "cpu_percent_1s": 3.8,
+        "cpu_count": 16,
+        "memory_percent": 71.6,
+        "processi_llama_server": 1,
+        "processi_python": 1,
+        "python_pids": [
+          "python.exe:2036"
+        ]
+      }
+    }
+  ],
+  "note": "carico dichiarato: un altro processo (rigenerazione gate) puo' essere in esecuzione; se i tempi sono anomali il test ripete e dichiara cpu%/processi concorrenti in ripetizioni[]"
+}

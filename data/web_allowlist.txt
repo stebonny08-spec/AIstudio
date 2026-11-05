@@ -1,0 +1,28 @@
+# R16 - ALLOWLIST WEB (una riga per dominio, # = commento)
+# Modificabile SOLO da file (nessuna UI). Il filtro vale per TUTTI
+# i provider (ddgs trusted/generico, SearXNG, Wikipedia): i risultati
+# fuori lista vengono SCARTATI (core/web_search.py::_in_allowlist).
+# Seed: core/trusted_sources.py (lista curata originale) + Wikipedia.
+
+treccani.it
+sapere.it
+britannica.com
+scholar.google.com
+jstor.org
+facta.news
+pagellapolitica.it
+bufale.net
+idmo.it
+istruzione.it
+istat.it
+eric.ed.gov
+pubmed.ncbi.nlm.nih.gov
+base-search.net
+core.ac.uk
+snopes.com
+politifact.com
+factcheck.org
+khanacademy.org
+openstax.org
+it.wikipedia.org
+en.wikipedia.org

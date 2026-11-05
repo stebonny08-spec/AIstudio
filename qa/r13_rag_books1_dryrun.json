@@ -1,0 +1,39 @@
+{
+  "status": "VACUO",
+  "parity_top10": 0.0,
+  "recall5": 0.0,
+  "n_chunks": 0,
+  "chroma_count": 0,
+  "dim": null,
+  "queries": [],
+  "n_queries": 0,
+  "metodo": "NESSUNA query derivabile: corpus .md assente o vuoto (C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books\\rag_stage2) -> parity/recall forzati a 0 (cutover BLOCKED).",
+  "comando_riproduzione": "python data/migrate_real.py",
+  "chroma_source": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\vector_index_books",
+  "corpus": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books\\rag_stage2",
+  "migrate_stats": {
+    "ok": true,
+    "migrated": 0,
+    "skipped": 0,
+    "total": 0
+  },
+  "parity_per_query": [],
+  "recall_per_query": [],
+  "ts": "2026-10-24T13:45:47",
+  "error": null,
+  "gate": {
+    "parity_min": 1.0,
+    "recall5_min": 1.0,
+    "pass": false
+  },
+  "store_key": "vector_index_books",
+  "comando": "python data/migrate_real.py --books-dry-run",
+  "corpus_vuoto": true,
+  "dichiarazione": "corpus vuoto REALE: chroma_count=0 embedding, n_chunks=0 -> parity/recall VACUI misurati 0/0 (nessun dato da confrontare)",
+  "block_reason": "parity/recall reale >= 1.000 NON misurabile senza corpus libri: BLOCKED finche' preselected_books e' vuoto",
+  "procedura_manuale": [
+    "1) inserire libri reali: tab Materiali -> libri (l'app crea originals/ + rag_stage2/ e indicizza), OPPURE copiare i .md in %APPDATA%\\NovaStudio\\preselected_books\\originals\\ e in ...\\preselected_books\\rag_stage2\\;",
+    "2) rieseguire: python data/migrate_real.py --books-dry-run (atteso parity_top10=1.000 e recall5=1.000 con corpus reale);",
+    "3) cutover: python data/migrate_real.py --books-cutover."
+  ]
+}

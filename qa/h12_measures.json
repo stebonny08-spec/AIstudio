@@ -1,0 +1,53 @@
+{
+  "h12_workers": {
+    "timestamp": "2026-10-23T00:04:00+02:00",
+    "test_file": "tests/testH12_workers.py",
+    "command": "python tests/testH12_workers.py",
+    "total": 17,
+    "pass": 17,
+    "fail": 0,
+    "errors": 0,
+    "duration_s": 0.133,
+    "smoke": "python -c \"import core.workers.runner\" -> OK",
+    "workers": {
+      "w1_contextualizer": "fatto",
+      "w2_section_summarizer": "fatto",
+      "w3_flashcard_pregenerator": "fatto",
+      "w4_paraphraser": "fatto",
+      "w5_dedup": "fatto",
+      "w6_maintenance_idle": "fatto"
+    },
+    "injections": {
+      "llm_fn": "llm_fn(prompt, profile='fast', classe='micro') -> str; default=default_llm_fn (stub deterministico); produzione=SidecarClient.complete passato dal caller (NON importato qui)",
+      "embed_fn": "embed_fn(text) -> list[float]; usato da W4/W4 validation e W5 soglie; assente -> W4 validation='skipped', W5 action='needs_review'"
+    },
+    "evidence_priority_test": "test_01_priorita_worker_non_degrada_interattivo - con job prio2 pendente in coda e arrivo di un job prio0, l'interattivo viene servito PRIMA (ordine osservato: ['interactive', 'worker_w1'])",
+    "queue": "core.sidecar.queue.CodaPriorita reale, prio=2 per tutti i job worker",
+    "priority_order": [0, 1, 2],
+    "checkpoint": "qa/worker_state/<worker_id>.json (dict item_key -> risultato, salvataggio atomico .tmp + os.replace)",
+    "snapshot_shape": ["worker", "done", "total", "running", "paused"],
+    "batch_sizes": {"w1": 16, "w2": 4, "w3": 4, "w4": 8, "w5": 64, "w6": 1},
+    "thresholds": {
+      "w1_prefix_max_chars": 300,
+      "w2_max_summary_chars": 800,
+      "w2_min_sections_strict_gt": 4,
+      "w3_cards_n": 5,
+      "w4_cosine_min": 0.85,
+      "w5_candidate": 0.92,
+      "w5_borderline_lo": 0.85,
+      "w6_health_range": "0-100 (sha256 di conteggi/mtimes, no LLM)"
+    },
+    "baseline_others": {
+      "tests/testH2_queue.py": "Ran 5 tests - OK (non modificato)",
+      "tests/testH1_parity.py": "Ran 10 tests - OK (non modificato)"
+    },
+    "limits": [
+      "W5 calcola coppie solo dentro lo stesso batch (batch_size=64) e solo cross-materiale: coppie fra batch diversi non considerate",
+      "W2 checkpoint a livello di documento: un doc interrotto a meta viene riassunto per intero alla ripresa (sezioni non marcate singolarmente)",
+      "Item con llm fallito vengono marcati con output fallback (prefisso vuoto) e status job='failed': non vengono ritentati al resume",
+      "F02 registry: import difensivo try/except (core/registry in costruzione); il prompt fallback e' F02-equivalente n=5 ma il testo letterale della spec F02 non era disponibile in lettura",
+      "snapshot() senza worker attivo aggrega tutti i worker (done/total sommati, worker=ids giunti); con uno solo ritorna quello",
+      "llm_fn chiamato solo con kwargs profile/classe: fakes con firma diversa (solo prompt posizionale) genererebbero TypeError contato come llm_error"
+    ]
+  }
+}

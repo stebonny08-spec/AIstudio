@@ -1,0 +1,93 @@
+[14:19:07] worker start (mode=solo_locale, hidden=True)
+[14:19:09] model ready, sleep 20s (reindex background)
+[14:19:29] bridge ready=True
+[14:19:29] warmup inizio
+[14:21:15] warmup fine: ttft=105673.39999997616 err=None
+[14:21:15] misura 1/5 inizio
+[14:22:43] misura 2/5 inizio
+[14:24:15] misura 3/5 inizio
+[14:26:11] misura 4/5 inizio
+[14:27:58] misura 5/5 inizio
+[14:49:56] worker start (mode=solo_locale, hidden=True)
+[14:50:00] model ready, sleep 20s (reindex background)
+[14:50:20] bridge ready=True
+[14:50:20] warmup inizio
+[14:51:13] warmup fine: ttft=None err=stream finito senza token: 'NoneType' object is not iterable
+[14:51:14] misura 1/5 inizio
+[14:52:17] misura 1 senza token: stream finito senza token: 'NoneType' object is not iterable
+[14:52:18] misura 2/5 inizio
+[14:53:16] misura 2 senza token: stream finito senza token: 'NoneType' object is not iterable
+[14:53:17] misura 3/5 inizio
+[14:54:23] misura 3 senza token: stream finito senza token: 'NoneType' object is not iterable
+[14:54:24] misura 4/5 inizio
+[14:55:09] misura 4 senza token: stream finito senza token: 'NoneType' object is not iterable
+[14:55:10] misura 5/5 inizio
+[14:55:36] misura 5 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:27:50] worker start (mode=solo_locale, hidden=True)
+[15:27:54] model ready, sleep 20s (reindex background)
+[15:28:14] bridge ready=True
+[15:28:14] warmup inizio
+[15:29:08] warmup fine: ttft=None err=stream finito senza token: 'NoneType' object is not iterable
+[15:29:09] misura 1/5 inizio
+[15:30:12] misura 1 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:30:13] misura 2/5 inizio
+[15:31:12] misura 2 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:31:13] misura 3/5 inizio
+[15:32:21] misura 3 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:32:22] misura 4/5 inizio
+[15:33:07] misura 4 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:33:08] misura 5/5 inizio
+[15:33:35] misura 5 senza token: stream finito senza token: 'NoneType' object is not iterable
+[15:40:43] worker start (mode=solo_locale, hidden=True)
+[15:40:47] model ready, sleep 20s (reindex background)
+[15:41:07] bridge ready=True
+[15:41:07] warmup inizio
+[15:41:13] warmup fine: ttft=5963.5 err=None
+[15:41:14] misura 1/5 inizio
+[16:34:53] worker start (mode=solo_locale, hidden=True)
+[16:34:57] model ready, sleep 20s (reindex background)
+[16:35:18] bridge ready=True
+[16:35:18] warmup inizio
+[16:35:25] warmup fine: ttft=6880.799999952316 err=None
+[16:35:26] misura 1/5 inizio
+[16:46:19] worker start (mode=solo_locale, hidden=True)
+[16:46:23] model ready, sleep 20s (reindex background)
+[16:46:43] bridge ready=True
+[16:46:43] warmup inizio
+[16:46:49] warmup fine: ttft=5357.700000047684 err=None
+[16:46:50] misura 1/5 inizio
+[17:02:59] worker start (mode=solo_locale, hidden=True)
+[17:06:08] worker start (mode=solo_locale, hidden=True)
+[17:06:12] model ready, sleep 20s (reindex background)
+[17:06:32] bridge ready=True
+[17:06:32] warmup inizio
+[17:06:39] warmup fine: ttft=6355.600000023842 err=None
+[17:06:40] misura 1/5 inizio
+[17:08:17] misura 2/5 inizio
+[17:10:17] misura 2 FALLITA: misura TTFT non completata entro 120s
+[17:10:18] misura 3/5 inizio
+[17:10:39] misura 4/5 inizio
+[22:30:15] worker start (mode=solo_locale, hidden=True)
+[22:30:18] model ready, sleep 20s (reindex background)
+[22:30:38] bridge ready=True
+[22:30:38] warmup inizio
+[22:32:38] warmup FALLITO: misura TTFT non completata entro 120s
+[22:33:38] worker start (mode=solo_locale, hidden=True)
+[22:33:41] model ready, sleep 20s (reindex background)
+[22:34:01] bridge ready=True
+[22:34:01] warmup inizio
+[22:36:03] warmup FALLITO: misura TTFT non completata entro 120s
+[22:37:04] worker start (mode=solo_locale, hidden=True)
+[22:37:07] model ready, sleep 20s (reindex background)
+[22:37:27] bridge ready=True
+[22:37:27] warmup inizio
+[22:39:27] warmup FALLITO: misura TTFT non completata entro 120s
+[23:12:36] worker start (mode=solo_locale, hidden=True)
+[23:12:39] model ready, sleep 20s (reindex background)
+[23:12:59] bridge ready=True
+[23:12:59] warmup inizio
+[23:14:58] warmup fine: ttft=118976.89999997616 err=None
+[23:14:59] misura 1/5 inizio
+[23:16:33] misura 2/5 inizio
+[23:18:33] misura 2 FALLITA: misura TTFT non completata entro 120s
+[23:18:34] misura 3/5 inizio

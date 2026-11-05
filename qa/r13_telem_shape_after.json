@@ -1,0 +1,11 @@
+{
+  "when": "AFTER live wiring (R13)",
+  "tables": 1,
+  "cols": 5,
+  "rows": 23,
+  "header_texts": ["Metrica", "Round 11 (prima)", "Round 12 (dopo)", "Target R12", "Δ"],
+  "first_data_row": ["RSS a riposo (MB)", "24,5", "39,5", "—", "+15"],
+  "has_live_block": true,
+  "live_block": "div.stats-live SOTTO la tabella (tabella storica intatta: stessi 5 header, stesse 23 righe, stessi testi)",
+  "confronto": "rows/cols/header_texts/first_data_row IDENTICI a r13_telem_shape_before.json; unico delta: has_live_block false->true (nuovo div separato)"
+}

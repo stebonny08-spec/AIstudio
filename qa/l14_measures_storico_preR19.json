@@ -1,0 +1,123 @@
+{
+ "method": "page.evaluate: PointerEvent sintetici reali su canvas qa_ui/notes.html a ~240Hz (250 move + fermo600ms + up); trace window.__ink (performance.now in pagina); latenza = paint.n>=evt.n - evt.t (p50/p95); settle = dal last raw al primo paint con punta entro2px; traccia grezza salvata in l14_trace_dopo.json",
+ "prima": {
+  "0": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 250,
+   "n_stop": 1,
+   "p50_ms": 0.2,
+   "p95_ms": 0.3,
+   "settle_ms": 0.2,
+   "trailing_px": 0
+  },
+  "50": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 250,
+   "n_stop": 1,
+   "p50_ms": 0.3,
+   "p95_ms": 0.5,
+   "settle_ms": null,
+   "trailing_px": 8.11
+  },
+  "100": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 250,
+   "n_stop": 1,
+   "p50_ms": 0.3,
+   "p95_ms": 0.6,
+   "settle_ms": null,
+   "trailing_px": 44.82
+  }
+ },
+ "dopo": {
+  "0": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 88,
+   "n_stop": 1,
+   "p50_ms": 8.8,
+   "p95_ms": 16.9,
+   "settle_ms": 12.8,
+   "trailing_px": 4.66
+  },
+  "50": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 88,
+   "n_stop": 1,
+   "p50_ms": 8.4,
+   "p95_ms": 16.7,
+   "settle_ms": 12.2,
+   "trailing_px": 7.88
+  },
+  "100": {
+   "n_raw": 250,
+   "n_evt": 250,
+   "n_paint": 88,
+   "n_stop": 1,
+   "p50_ms": 8.1,
+   "p95_ms": 16.6,
+   "settle_ms": 7.1,
+   "trailing_px": 1.11
+  }
+ },
+ "delta": {
+  "i0": {
+   "p50_ms": [
+    0.2,
+    8.8
+   ],
+   "p95_ms": [
+    0.3,
+    16.9
+   ],
+   "settle_ms": [
+    0.2,
+    12.8
+   ],
+   "trailing_px": [
+    0,
+    4.66
+   ]
+  },
+  "i50": {
+   "p50_ms": [
+    0.3,
+    8.4
+   ],
+   "p95_ms": [
+    0.5,
+    16.7
+   ],
+   "settle_ms": [
+    null,
+    12.2
+   ],
+   "trailing_px": [
+    8.11,
+    7.88
+   ]
+  },
+  "i100": {
+   "p50_ms": [
+    0.3,
+    8.1
+   ],
+   "p95_ms": [
+    0.6,
+    16.6
+   ],
+   "settle_ms": [
+    null,
+    7.1
+   ],
+   "trailing_px": [
+    44.82,
+    1.11
+   ]
+  }
+ }
+}

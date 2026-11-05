@@ -1,0 +1,6 @@
+toolbar_coperta=SI overlap=15072 btn_non_hit=8/8
+retta_perfezionata=SI (shape/curve)
+arco_perfezionato=SI (shape/curve)
+contatori={"shape":2}
+dead_space=169px
+typo_l_anteprima=true

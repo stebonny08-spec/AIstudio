@@ -1,0 +1,290 @@
+{
+ "round": "P1b.3",
+ "file": "qa/p1b_rag.json",
+ "method": "A/B su GT reale qa/gt_set_r15.json con engine reale LocalSearchEngine (indice %APPDATA%/vector_index, search hybrid top5, zero rete nella misura; il solo sidecar locale viene interpellato da HyDE quando RAG_TECH=hyde). Due subprocess per tecnica: OFF = RAG_TECH=none, ON = RAG_TECH=<tech>.",
+ "mechanism": "env RAG_TECH in subprocess separata per run — stesso core.rag.gate.rag_flag della produzione (riproducibile: python qa/p1b_rag_bench.py)",
+ "granularity": "GRANULARITA': i 9 positivi -> 1 query = +0.111 di recall@5; la soglia '+0.03' del regola va letta come 'miglioramento di almeno 1 query sui 9 positivi' (1/9 = 0.111 > 0.03). MRR su stessa scala di query.",
+ "rule_declared": "ON SOLO SE (recall@5 O MRR) >= +0.03 (>=1 query su 9) E ms aggiunti p95 <= 150ms",
+ "gt": "qa/gt_set_r15.json",
+ "harness": "qa/p1b_rag_recall.py (bootstrap identico a qa/r15_recall_gt.py)",
+ "baseline_reference": "qa/r15_recall_gt.json: recall@5 = 1.0 su 9 positivi con la pipeline attuale",
+ "hyde_timeout_s": 8.0,
+ "run_times_s": {
+  "hyde": 43.0,
+  "decompose": 44.2,
+  "crag": 38.8,
+  "rerank": 377.8
+ },
+ "hyde": {
+  "recall_off": 1.0,
+  "recall_on": 1.0,
+  "mrr_off": 0.9259,
+  "mrr_on": 0.9259,
+  "ms_p50": 9.9,
+  "ms_p95": 14.8,
+  "extra": {
+   "ms_abs_off_p50": 33.0,
+   "ms_abs_off_p95": 52.6,
+   "ms_abs_on_p50": 45.1,
+   "ms_abs_on_p95": 61.3,
+   "ranks_off": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "ranks_on": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "neg_no_answer_off": 5,
+   "neg_no_answer_on": 5,
+   "extras_off": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   },
+   "extras_on": {
+    "hyde_ok": 0,
+    "hyde_fallback": 9,
+    "hyde_fallback_reasons": {
+     "llm_down:AiUnavailable": 9
+    },
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   },
+   "hyde_fallback_on": 9,
+   "hyde_ok_on": 0,
+   "hyde_fallback_reasons_on": {
+    "llm_down:AiUnavailable": 9
+   },
+   "note": "ms end-to-end HyDE inclusi generazione LLM + embedding dell'hyp (budget 8s, fallback se sidecar giu')"
+  },
+  "decision": "OFF",
+  "rule_evaluation": {
+   "decision": "OFF",
+   "rule": "ON SOLO SE (recall@5 O MRR) >= +0.03 [granularita': 1 query su 9 positivi = +0.111] E ms aggiunti p95 <= 150ms",
+   "recall_delta": 0.0,
+   "mrr_delta": 0.0,
+   "improve_ok": false,
+   "added_ms_p95": 14.8,
+   "latency_ok": true,
+   "motivazione": "nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio"
+  }
+ },
+ "decompose": {
+  "recall_off": 1.0,
+  "recall_on": 1.0,
+  "mrr_off": 0.9259,
+  "mrr_on": 0.9259,
+  "ms_p50": -1.8,
+  "ms_p95": 3.6,
+  "extra": {
+   "ms_abs_off_p50": 44.3,
+   "ms_abs_off_p95": 60.8,
+   "ms_abs_on_p50": 43.8,
+   "ms_abs_on_p95": 64.9,
+   "ranks_off": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "ranks_on": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "neg_no_answer_off": 5,
+   "neg_no_answer_on": 5,
+   "extras_off": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   },
+   "extras_on": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 2
+   },
+   "subqueries_on_total": 2,
+   "subqueries_off_total": 0,
+   "note": "ms ON inclusi il tempo delle sub-query (prep_ms)"
+  },
+  "decision": "OFF",
+  "rule_evaluation": {
+   "decision": "OFF",
+   "rule": "ON SOLO SE (recall@5 O MRR) >= +0.03 [granularita': 1 query su 9 positivi = +0.111] E ms aggiunti p95 <= 150ms",
+   "recall_delta": 0.0,
+   "mrr_delta": 0.0,
+   "improve_ok": false,
+   "added_ms_p95": 3.6,
+   "latency_ok": true,
+   "motivazione": "nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio"
+  }
+ },
+ "crag": {
+  "recall_off": 1.0,
+  "recall_on": 1.0,
+  "mrr_off": 0.9259,
+  "mrr_on": 0.9259,
+  "ms_p50": 3.1,
+  "ms_p95": 26.7,
+  "extra": {
+   "ms_abs_off_p50": 32.5,
+   "ms_abs_off_p95": 40.5,
+   "ms_abs_on_p50": 36.8,
+   "ms_abs_on_p95": 54.0,
+   "ranks_off": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "ranks_on": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "neg_no_answer_off": 5,
+   "neg_no_answer_on": 5,
+   "extras_off": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   },
+   "extras_on": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 5,
+    "decompose_subqueries_total": 0
+   },
+   "crag_retried_on": 5,
+   "crag_retried_off": 0,
+   "note": "retry solo su casi deboli (gate non pieno): sui 9 positivi piu' forti il costo e' il solo gate"
+  },
+  "decision": "OFF",
+  "rule_evaluation": {
+   "decision": "OFF",
+   "rule": "ON SOLO SE (recall@5 O MRR) >= +0.03 [granularita': 1 query su 9 positivi = +0.111] E ms aggiunti p95 <= 150ms",
+   "recall_delta": 0.0,
+   "mrr_delta": 0.0,
+   "improve_ok": false,
+   "added_ms_p95": 26.7,
+   "latency_ok": true,
+   "motivazione": "nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio"
+  }
+ },
+ "rerank": {
+  "recall_off": 1.0,
+  "recall_on": 1.0,
+  "mrr_off": 0.9259,
+  "mrr_on": 0.8611,
+  "ms_p50": 23317.9,
+  "ms_p95": 25861.8,
+  "extra": {
+   "ms_abs_off_p50": 34.3,
+   "ms_abs_off_p95": 57.9,
+   "ms_abs_on_p50": 23378.3,
+   "ms_abs_on_p95": 25898.0,
+   "ranks_off": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "ranks_on": [
+    1,
+    1,
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+   ],
+   "neg_no_answer_off": 5,
+   "neg_no_answer_on": 4,
+   "extras_off": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   },
+   "extras_on": {
+    "hyde_ok": 0,
+    "hyde_fallback": 0,
+    "hyde_fallback_reasons": {},
+    "crag_retried": 0,
+    "decompose_subqueries_total": 0
+   }
+  },
+  "decision": "OFF",
+  "rule_evaluation": {
+   "decision": "OFF",
+   "rule": "ON SOLO SE (recall@5 O MRR) >= +0.03 [granularita': 1 query su 9 positivi = +0.111] E ms aggiunti p95 <= 150ms",
+   "recall_delta": 0.0,
+   "mrr_delta": -0.0648,
+   "improve_ok": false,
+   "added_ms_p95": 25861.8,
+   "latency_ok": false,
+   "motivazione": "nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta -0.0648): 0 query su 9 recuperate meglio; ms aggiunti p95 25861.8 > 150ms"
+  }
+ },
+ "verdict": {
+  "active_set": [],
+  "attive": "nessuna",
+  "note": "Tutte OFF: nessuna tecnica supera la regola (miglioramento >= 1 query su 9 E p95 <= 150ms). Dettagli per tecnica nei rule_evaluation."
+ },
+ "generated_at": "2026-11-02 22:46:37"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "eseguito",
+  "backup_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261023_163619",
+  "manifest_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261023_163619\\manifest.json",
+  "chunks": 34,
+  "parity": 1.0,
+  "recall5": 1.0,
+  "gates": {
+    "parity": 1.0,
+    "recall5": 1.0,
+    "parity_min": 1.0,
+    "recall5_min": 1.0,
+    "pass": true
+  },
+  "post_check": {
+    "migrate_ok": true,
+    "chunks": 34,
+    "chunks >= dryrun n_chunks": true,
+    "dryrun_n_chunks": 34,
+    "backup_sha_verified": true,
+    "migrate_stats": {
+      "ok": true,
+      "migrated": 34,
+      "upserted_existing": 0,
+      "skipped": 0,
+      "total": 34
+    }
+  },
+  "reason": null,
+  "ts": "2026-10-23T16:36:21"
+}

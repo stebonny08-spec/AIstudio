@@ -1,0 +1,43 @@
+{
+  "probe": "t13_ttft_pywebview",
+  "round": "R13",
+  "timestamp": "2026-10-24T17:05:45+0200",
+  "method": "evaluate_js -> window.pywebview.api.send_message(msg, null, 'solo_locale', false, null, '') + loop su window.pywebview.api.poll_stream(message_id, from_index) fino al PRIMO token; TTFT = performance.now() misurato nel browser da PRIMA dell'invocazione del bridge fino al primo token (end-to-end, JIT poll incluso)",
+  "poll_interval_js_ms": 25,
+  "probe_mode_fe": "solo_locale",
+  "model": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+  "llm_backend": "sidecar (da config, letta dall'app all'avvio)",
+  "n": 2,
+  "warmup_excluded": 1,
+  "p50_ms": 95972.0,
+  "p95_ms": 140964.1,
+  "target_p50_ms": 2000,
+  "target_hit": null,
+  "raw_samples_ms": [
+    95972.0,
+    140964.1
+  ],
+  "samples_detail": [
+    {
+      "i": 1,
+      "ttft_ms": 95972.0,
+      "first_token": " ok"
+    },
+    {
+      "i": 3,
+      "ttft_ms": 140964.1,
+      "first_token": " ok"
+    }
+  ],
+  "hidden": true,
+  "hidden_how": "create_window(hidden=True); window.hide() ha fallito: Main window failed to start",
+  "blocked": null,
+  "errors": [
+    "misura 2 fallita: misura TTFT non completata entro 120s",
+    "misura 4 interrotta: crash nativo 0xc0000005 ucrtbase.dll 17:11:20 (Event Log)"
+  ],
+  "machine_load": {
+    "declared": "R13 tent.6: AMBIENTE NON-QUIET dichiarato nel json originale (1 server orfano preesistente rilevato da env_scan) - vedi qa/qa_r13_ttft_report.md passo 8"
+  },
+  "restored_note": "R15b: file riscritto il 2026-10-24T23:5x da qa/_restore_t_probe_r13.py dopo sovrascrittura accidentale (sonda concorrente del blocco P alle 23:12, n=1 con crash nativo). Valori REALI del run R13 tent.6 originali, provenienza: qa/metrics_history.json round13 + qa/qa_r13_ttft_report.md (passo 8). Nessun valore simulato."
+}

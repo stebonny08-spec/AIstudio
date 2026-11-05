@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA ripasso</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 — QA ripasso/flashcard</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/ripasso.js"></script>
+<script>
+/* Harness R21 per ripasso (pattern documenti.html + modulo via
+   App.registerModule -> QA.mod): seed mazzo + open. */
+(async function () {
+    var QA = window.__QA, sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        QA.store.items.push({
+            id: 'm1', kind: 'mazzo', title: 'Mazzo QA',
+            content: JSON.stringify({ cards: [{ q: 'Domanda 1', a: 'Risposta 1', box: 0 }], color: '#f9974a' }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        QA.store.items.push({
+            id: 'nf21', kind: 'note', title: 'Appunti Fonti Deck',
+            content: JSON.stringify({ objects: [{ t: 'text', x: 40, y: 40, w: 300, h: 30, text: 'Testo per generazione deck.', size: 14, color: '#141414' }] }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        var main = document.getElementById('main');
+        var mod = window.__QA.mod || (window.App && window.App._mod);
+        if (!mod) throw new Error('modulo ripasso non registrato');
+        await mod.open(main, { open: 'm1' });
+        var opened = await window.__qaUntil(function () {
+            return !!document.querySelector('#main > *');
+        }, 10000);
+        if (!opened) throw new Error('lista mazzi non aperta');
+        await sleep(400);
+        window.__qaHarness21 = { ready: true, contesto: 'ripasso' };
+        QA.harnessReady = true;
+        QA.done = false;
+    } catch (e) {
+        QA.errors.push('harness ripasso: ' + (e && e.stack || e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "bench": "h6_bench",
+  "ts": "2026-10-22T21:18:00.504Z",
+  "page": "qa_ui/biblioteca.html",
+  "seed_items": 50,
+  "cycles": 3,
+  "listeners": {
+    "baseline": {
+      "winAdd": 2,
+      "winRem": 0,
+      "docAdd": 0,
+      "docRem": 0
+    },
+    "baseline_active": {
+      "window": 2,
+      "document": 0,
+      "adds": {
+        "window": 2,
+        "document": 0
+      }
+    },
+    "after_cycle1_open": {
+      "winAdd": 2,
+      "winRem": 0,
+      "docAdd": 0,
+      "docRem": 0
+    },
+    "after_cycle3_close": {
+      "winAdd": 2,
+      "winRem": 0,
+      "docAdd": 0,
+      "docRem": 0
+    },
+    "final_open": {
+      "winAdd": 2,
+      "winRem": 0,
+      "docAdd": 0,
+      "docRem": 0
+    },
+    "final_active": {
+      "window": 2,
+      "document": 0,
+      "adds": {
+        "window": 2,
+        "document": 0
+      }
+    },
+    "growth_after_3_opens": 0,
+    "growth_final": 0,
+    "linear_growth": false
+  },
+  "open_ms": {
+    "cycle1": 57,
+    "cycle2": 14.5,
+    "cycle3": 13.7,
+    "final": 14.2
+  },
+  "dom": {
+    "after_cycle1": {
+      "biblioteca_nodes": 1108,
+      "rendered_items": 50
+    },
+    "after_cycle2": {
+      "biblioteca_nodes": 1108,
+      "rendered_items": 50
+    },
+    "after_cycle3": {
+      "biblioteca_nodes": 1108,
+      "rendered_items": 50
+    },
+    "final": {
+      "biblioteca_nodes": 1108,
+      "rendered_items": 50,
+      "document_total": 1123
+    }
+  },
+  "console_errors": [],
+  "harness_errors": [],
+  "screenshot": "qa/h6_biblioteca.png",
+  "ok": true
+}

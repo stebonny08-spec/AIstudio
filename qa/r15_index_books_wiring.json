@@ -1,0 +1,54 @@
+{
+  "round": "R15b",
+  "agent": "IMPLEMENTER-INDEX (blocco I)",
+  "ensure_books": {
+    "result": "ok",
+    "meta_embedding_model_id": "intfloat/multilingual-e5-small"
+  },
+  "meta_api": {
+    "set_probe": "r15",
+    "get_probe": "r15"
+  },
+  "store_count": 0,
+  "query_vec": [],
+  "query_hybrid": [],
+  "query_fts": [],
+  "localsearch_search": {
+    "query": "quando Roma combatté Cartagine nelle guerre puniche",
+    "ms": 0.09,
+    "n_documents": 0,
+    "is_empty": true,
+    "error": null
+  },
+  "router_books_search_wiring": [
+    {
+      "line": 404,
+      "text": "def __init__(self, local_client_provider, local_search, books_search,"
+    },
+    {
+      "line": 408,
+      "text": "self.books_search = books_search"
+    },
+    {
+      "line": 550,
+      "text": "or self.books_search.vector_store.count() > 0"
+    },
+    {
+      "line": 604,
+      "text": "getattr(self.books_search, \"vector_store\", None),"
+    },
+    {
+      "line": 699,
+      "text": "books = self.books_search.search("
+    },
+    {
+      "line": 704,
+      "text": "getattr(self.books_search, \"last_probe\", None) or {})"
+    }
+  ],
+  "verdict": {
+    "meta_api_ok": true,
+    "empty_query_no_error": true,
+    "router_wiring_present": true
+  }
+}

@@ -1,0 +1,223 @@
+{
+ "round": "18-rifinimento",
+ "ts": "2026-11-02T18:28:51+0100",
+ "method": "Router.process_query_stream reale (sidecar MiniCPM5-2B + web allowlist, NET_LOG per caso); NIENTE kill temporale: total_ms INFORMATIVI; guardia output_guard (marker/verbatim/identico/codici [F#]); provenienza dagli eventi sources.stages; encoding check mojibake; warmup fuori misura; nessuna simulazione",
+ "summary": {
+  "n": 4,
+  "ok": 1,
+  "all_ok": false,
+  "total_max_ms": 301096.6,
+  "total_p95_ms": 301096.6,
+  "truncation_present": [],
+  "code_citations": {
+   "v1": [],
+   "v2": [],
+   "v3": [],
+   "v4": []
+  },
+  "fonti_block_url": [],
+  "mojibake": [],
+  "completi": 4,
+  "stages": {
+   "v1": [
+    "web"
+   ],
+   "v2": [
+    "web"
+   ],
+   "v3": [
+    "appunti"
+   ],
+   "v4": [
+    "web"
+   ]
+  },
+  "guard_fail": []
+ },
+ "cases": [
+  {
+   "case": "v1",
+   "query": "spiega la struttura della Divina Commedia",
+   "tipo": "lunga",
+   "total_ms": 301096.6,
+   "first_token_ms": 31810.3,
+   "first_progress_ms": 3.3,
+   "text_len": 622,
+   "text_head": "**Struttura della Divina Commedia:**\n\nLa Divina Commedia è una opera poética scritta da Dante Alighieri. La sua struttura è caratterizzata da una particolare forma artistica, scritta in terzine incatenate di endecasillabi in lingua volgare fiorentina, e funge come un poema allegorico-didascalico ed escatologico.\n\nQuesto corpus è composto dai tre cantiche principali: l'Inferno, il Purgatorio e il P",
+   "text_full": "**Struttura della Divina Commedia:**\n\nLa Divina Commedia è una opera poética scritta da Dante Alighieri. La sua struttura è caratterizzata da una particolare forma artistica, scritta in terzine incatenate di endecasillabi in lingua volgare fiorentina, e funge come un poema allegorico-didascalico ed escatologico.\n\nQuesto corpus è composto dai tre cantiche principali: l'Inferno, il Purgatorio e il Paradiso. Il Purgatorio è la seconda cantica. Le altre cantiche sono l'Inferno ed il Paradiso.\n\nDante Alighieri, o Alighiero, battezzato Durante di Alighiero degli Alighieri, è stato un poeta, scrittore e politico italiano.",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": ".",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 6,
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Divina_Commedia",
+    "https://it.wikipedia.org/wiki/Purgatorio_(Divina_Commedia)",
+    "https://it.wikipedia.org/wiki/Dante_Alighieri",
+    "https://it.wikipedia.org/wiki/Cerchi_dell'Inferno",
+    "https://it.wikipedia.org/wiki/Nastagio_degli_Onesti"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 2,
+   "resets": 1,
+   "emission_blocks": 2,
+   "net_n": 14,
+   "error": null,
+   "ok": false
+  },
+  {
+   "case": "v2",
+   "query": "chi è dante alighieri",
+   "tipo": "solo-web",
+   "total_ms": 278299.1,
+   "first_token_ms": 32234.3,
+   "first_progress_ms": 5.4,
+   "text_len": 226,
+   "text_head": "Dante Alighieri è stato un poeta, scrittore e politico italiano, battezzato Durante di Alighiero degli Alighieri, nato tra il 14 maggio e il 13 giugno 1265 a Firenze e morto a Ravenna la notte tra il 13 e il 14 settembre 1321.",
+   "text_full": "Dante Alighieri è stato un poeta, scrittore e politico italiano, battezzato Durante di Alighiero degli Alighieri, nato tra il 14 maggio e il 13 giugno 1265 a Firenze e morto a Ravenna la notte tra il 13 e il 14 settembre 1321.",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": ".",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 6,
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Dante_Alighieri",
+    "https://it.wikipedia.org/wiki/Divina_Commedia",
+    "https://www.treccani.it/enciclopedia/dante-alighieri/",
+    "https://www.treccani.it/enciclopedia/dante-alighieri_(Dizionario-Biografico)/",
+    "https://www.britannica.com/biography/Dante-Alighieri"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 2,
+   "resets": 2,
+   "emission_blocks": 3,
+   "net_n": 8,
+   "error": null,
+   "ok": false
+  },
+  {
+   "case": "v3",
+   "query": "Qual è il primo accettore di CO2 nelle piante C4?",
+   "tipo": "solo-locale",
+   "total_ms": 177464.7,
+   "first_token_ms": 48348.0,
+   "first_progress_ms": 4.3,
+   "text_len": 1151,
+   "text_head": "Ottima domanda, che tocca un punto cruciale del metabolismo fotosintetico. Per capitare meglio questo concetto, pensiamo alla ricetta di un cibo: per prepararti la pioggia, devi prima accettare le ingredienzi presenti nel contenuto dell'acquasosta.\n\nNelle piante C4, il primo accettore di CO₂ non è un composto così semplice come in altre piante. Per capirne la struttura, ci siamo aiutiti delle info",
+   "text_full": "Ottima domanda, che tocca un punto cruciale del metabolismo fotosintetico. Per capitare meglio questo concetto, pensiamo alla ricetta di un cibo: per prepararti la pioggia, devi prima accettare le ingredienzi presenti nel contenuto dell'acquasosta.\n\nNelle piante C4, il primo accettore di CO₂ non è un composto così semplice come in altre piante. Per capirne la struttura, ci siamo aiutiti delle informazioni dal contesto:\n\n* **Nelle piante C3**, il composto che accetta la CO₂ è il RuBP (che ha 5 atomi di carbonio).\n* **Nelle piante CAM**, il primo composto che accetta la CO₂ è il PEP (con 3 atomi di carbonio).\n* **Nelle piante C4**, si osserva che il processo di fissazione del CO₂ inizia proprio con il composto PEP (anche notato come Fosfoenolpiruvato, con 3 atomi di carbonio) catalizzato dalla **PEPCase**, che convertisce la CO₂ in Ossalacetato (con 4 atomi di carbonio).\n\nIn sintesi, il primo accettore di CO₂ nelle piante C4 è il **PEP (3C)**.\n\nIn modo semplice: mentre le piante C3 usano un composto di 5 atomi di carbonio come ingresso per il CO₂, le piante C4 usano un composto di 3 atomi di carbonio (PEP) per iniziare questo processo.",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": ".",
+   "stages_provenienza": [
+    "appunti"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 1,
+   "web_urls": [],
+   "web_allow_ok": true,
+   "llm_calls": 1,
+   "resets": 0,
+   "emission_blocks": 1,
+   "net_n": 10,
+   "error": null,
+   "ok": true
+  },
+  {
+   "case": "v4",
+   "query": "chi è boccaccio",
+   "tipo": "solo-web",
+   "total_ms": 262042.4,
+   "first_token_ms": 30179.6,
+   "first_progress_ms": 6.4,
+   "text_len": 543,
+   "text_head": "**Giovanni Boccaccio è un poeta e studioso italiano, nato a Certaldo (o a Firenze) nel 1313, morto a Valdelsa nel 1375 da famiglia benestante del contado fiorentino.**\n\n**È autore della raccolta Decameron, con cui con Petrarca ha costruito i fondamenti del humanismo della Rinascimento e ha portato la letteratura vernaculare al livello e al status delle opere antiquati.**\n\n**La Decameron iniziò for",
+   "text_full": "**Giovanni Boccaccio è un poeta e studioso italiano, nato a Certaldo (o a Firenze) nel 1313, morto a Valdelsa nel 1375 da famiglia benestante del contado fiorentino.**\n\n**È autore della raccolta Decameron, con cui con Petrarca ha costruito i fondamenti del humanismo della Rinascimento e ha portato la letteratura vernaculare al livello e al status delle opere antiquati.**\n\n**La Decameron iniziò forse nei anni 1348–53 e, per lo schieramento, la tragica e la comica visione della vita, è considerata il capolacono e la sua opera più famosa.**",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": "*",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 4,
+   "web_urls": [
+    "https://www.treccani.it/enciclopedia/giovanni-boccaccio_(Enciclopedia-dell'Italiano)/",
+    "https://www.britannica.com/biography/Giovanni-Boccaccio",
+    "https://www.britannica.com/biography/Giovanni-Boccaccio/The-Decameron"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 2,
+   "resets": 1,
+   "emission_blocks": 2,
+   "net_n": 9,
+   "error": null,
+   "ok": false
+  }
+ ]
+}

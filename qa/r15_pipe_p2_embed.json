@@ -1,0 +1,48 @@
+{
+ "metric": "p95 latenza encode query con modello WARM; ogni query e' DISTINTA e la LRU e' svuotata prima della misura (encode vero, nessun hit di cache); n=24, singola chiamata embed_one(kind='query') misurata con time.perf_counter",
+ "protocollo": {
+  "n_query": 24,
+  "cache_lru_prima": "clear_query_cache() (miss garantiti)",
+  "warmup": "Embedder.warmup() + attesa flag .warm",
+  "clock": "time.perf_counter",
+  "warmup_spawn_ms": 0.5,
+  "model_load_ms_primo_uso": 15897.5
+ },
+ "encode_warm_ms": {
+  "p50": 20.548,
+  "p95": 28.767,
+  "max": 34.609,
+  "samples": [
+   34.609,
+   27.844,
+   28.767,
+   28.516,
+   27.601,
+   22.903,
+   20.455,
+   20.285,
+   20.387,
+   20.548,
+   20.899,
+   20.66,
+   20.843,
+   20.253,
+   19.593,
+   20.174,
+   20.696,
+   18.707,
+   18.211,
+   18.953,
+   20.609,
+   20.868,
+   19.656,
+   19.508
+  ]
+ },
+ "cache_hit_ms": {
+  "p50": 0.002,
+  "p95": 0.002
+ },
+ "gate_p95_le_100ms": true,
+ "ts": "2026-10-24T23:36:28+0200"
+}

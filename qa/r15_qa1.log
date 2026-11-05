@@ -1,0 +1,262 @@
+[00:12:09] ======================================================================
+[00:12:09] QA-1 R15b — MATRICE FALLIMENTI (start dichiarato)
+[00:12:09] method: Router.process_query_stream a livello core (wiring = api.py._run_generation, mode='automatica'); webview stub dichiarato ma non necessario (backend non importato)
+[00:12:09] reti consentite: SOLO casi web (iii, v-b); config web.mode letta (mai scritta); web OFF via web_override='mai'
+[00:12:09] llama-server PIDs PRIMA del run: []
+[00:12:09] config (sola lettura): {"rag.progress_events": true, "gate.threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "web.wikipedia": true, "web.searxng_url": "", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[00:12:09] webview stub: registrato prima degli import (backend.* non importato)
+[00:12:09] boot store/engine: 25.15ms; chunk local=17 books=0
+[00:12:09] client setup: 299.35ms backend=sidecar
+[00:12:09] spy generate_stream: firma_preservata=True bind_ok=True
+[00:12:09] answer cache rediretta a C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\tmp\r15_qa1_ac.jsonl (produzione intoccata)
+[00:12:25] PRE-SCREEN p1: anchor='+2870' in_top5=True hybrid_ms=15573.48 sims=[0.9172, 0.8957, 0.8811, 0.8765, 0.8768]
+[00:12:25] PRE-SCREEN p4: anchor='Plastocianina' in_top5=True hybrid_ms=82.02 sims=[0.8588, 0.8554, 0.8409, 0.8466, 0.8346]
+[00:12:25] PRE-SCREEN p2: anchor='endergonica' in_top5=True hybrid_ms=73.01 sims=[0.8627, 0.8577, 0.8685, 0.8463, 0.8497]
+[00:12:25] PRE-SCREEN p3: anchor='Fosfoenolpiruvato' in_top5=True hybrid_ms=77.23 sims=[0.851, 0.8417, 0.8419, 0.8412, 0.8406]
+[00:12:25] PRE-SCREEN g1: max_sim=0.8174 fused_vuoto_previsto=False use_rag=False q=zqxwv utrpo mnlkj gbvcd flurble
+[00:12:25] PRE-SCREEN g2: max_sim=0.8328 fused_vuoto_previsto=False use_rag=False q=blorp wozzit snarf xyzz quantum qzxj
+[00:12:25] PRE-SCREEN g3: max_sim=0.8154 fused_vuoto_previsto=False use_rag=False q=kvbnm wplko itruy phptx Pjvka
+[00:12:25] PRE-SCREEN g4: max_sim=0.7393 fused_vuoto_previsto=False use_rag=False q=The quirked flurble grozznik wobbled silently.
+[00:12:25] PRE-SCREEN n4: max_sim=0.825 fused_vuoto_previsto=False use_rag=True q=Ricetta tradizionale della carbonara romana
+[00:12:25] PRE-SCREEN n5: max_sim=0.8143 fused_vuoto_previsto=False use_rag=True q=Spiegami le cause della guerra dei Trent'anni
+[00:12:26] PRE-SCREEN n2: max_sim=0.8041 fused_vuoto_previsto=False use_rag=True q=Come si calcola l'IVA sulla fattura elettronica in Italia?
+[00:12:26] PRE-SCREEN n1: max_sim=0.8401 fused_vuoto_previsto=False use_rag=True q=Qual è la differenza tra mitosi e meiosi nelle cellule?
+[00:12:26] PRE-SCREEN n3: max_sim=0.7809 fused_vuoto_previsto=False use_rag=True q=Quali sono le regole del calcio riguardo al fuorigioco?
+[00:12:26] PRE-SCREEN x1: max_sim=0.8353 fused_vuoto_previsto=False use_rag=True q=Chi ha scoperto la fotosintesi e in che anno è avvenuta?
+[00:15:48] E2E warmup: total=202212ms first_prog=24.91 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[00:15:48] sidecar state dopo warmup: up (llm.backend=sidecar, backend=sidecar, warmup tokens=600, err=None)
+[00:16:55] E2E i_p1: total=67361ms first_prog=2.02 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[00:16:55] CHECK i p1: ok=True
+[00:19:47] E2E i_p4: total=171799ms first_prog=28.19 tok=600 source=locale llm=1 gate=esito=piena top=0.859 ast+0 net+0 err=None
+[00:19:47] CHECK i p4: ok=True
+[00:22:44] E2E ii_x1_mai: total=176566ms first_prog=1.99 tok=600 source=locale llm=1 gate=esito=nulla top=0.835 ast+1 net+0 err=None
+[00:22:44] CHECK ii x1 (1/6): ok=False formula=False
+[00:26:00] E2E ii_x2_mai: total=196039ms first_prog=25.37 tok=600 source=locale llm=1 gate=esito=parziale top=0.838 ast+1 net+0 err=None
+[00:26:00] CHECK ii x2 (2/6): ok=False formula=False
+[00:29:23] E2E ii_x3_mai: total=203543ms first_prog=24.02 tok=600 source=locale llm=1 gate=esito=nulla top=0.867 ast+1 net+0 err=None
+[00:29:23] CHECK ii x3 (3/6): ok=False formula=False
+[00:32:41] E2E ii_x4_mai: total=198042ms first_prog=24.5 tok=600 source=locale llm=1 gate=esito=nulla top=0.865 ast+1 net+0 err=None
+[00:32:41] CHECK ii x4 (4/6): ok=False formula=False
+[00:35:49] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:treccani.it OR site:sapere.it OR site:brita | 2250.9ms | ok=True n=0
+[00:35:49] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:pagellapolitica.it OR site:bufale.net OR si | 1298.2ms | ok=True n=0
+[00:35:49] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search | 1306.7ms | ok=True n=0
+[00:35:49] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:khanacademy.org OR site:openstax.org) | 1825.1ms | ok=True n=0
+[00:35:49] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? | 1539.6ms | ok=True n=5
+[00:35:49] E2E ii_x1_auto: total=187501ms first_prog=1.81 tok=600 source=locale llm=1 gate=esito=nulla top=0.835 ast+2 net+5 err=None
+[00:35:49] CHECK ii x1 (5/6): ok=False formula=False
+[00:39:14] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:treccani.it OR site:sapere.it OR site:britannica.com O | 2140.3ms | ok=True n=0
+[00:39:14] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:pagellapolitica.it OR site:bufale.net OR site:idmo.it  | 1400.2ms | ok=True n=0
+[00:39:14] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search.net OR sit | 1541.5ms | ok=True n=0
+[00:39:14] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:khanacademy.org OR site:openstax.org) | 1331.9ms | ok=True n=0
+[00:39:14] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? | 1219.6ms | ok=True n=5
+[00:39:14] E2E ii_x2_auto: total=205395ms first_prog=1.94 tok=600 source=locale llm=1 gate=esito=parziale top=0.838 ast+2 net+5 err=None
+[00:39:14] CHECK ii x2 (6/6): ok=False formula=False
+[00:42:31] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? (site:treccani.it OR site:sapere.it OR site:britan | 2559.3ms | ok=True n=5
+[00:42:31] E2E iii_n1_auto: total=196852ms first_prog=2.03 tok=600 source=locale llm=1 gate=esito=nulla top=0.840 ast+2 net+1 err=None
+[00:42:31] CHECK iii n1 (1/6): ok=True web_items=5 net=1
+[00:45:11] E2E iv_n3: total=159472ms first_prog=2.06 tok=600 source=locale llm=1 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[00:45:11] CHECK iv n3 (1/6): ok=False esito_c=False llm=1
+[00:48:05] E2E iv_n2: total=174011ms first_prog=1.88 tok=600 source=locale llm=1 gate=esito=nulla top=0.804 ast+1 net+0 err=None
+[00:48:05] CHECK iv n2 (2/6): ok=False esito_c=False llm=1
+[00:50:58] E2E iv_n5: total=173523ms first_prog=1.92 tok=600 source=locale llm=1 gate=esito=nulla top=0.814 ast+1 net+0 err=None
+[00:50:58] CHECK iv n5 (3/6): ok=False esito_c=False llm=1
+[00:53:34] E2E iv_n4: total=156009ms first_prog=1.78 tok=600 source=locale llm=1 gate=esito=nulla top=0.825 ast+1 net+0 err=None
+[00:53:34] CHECK iv n4 (4/6): ok=False esito_c=False llm=1
+[00:56:33] E2E iv_x1: total=178420ms first_prog=1.76 tok=600 source=locale llm=1 gate=esito=nulla top=0.835 ast+1 net+0 err=None
+[00:56:33] CHECK iv x1 (5/6): ok=False esito_c=False llm=1
+[00:59:48] E2E iv_n1: total=195160ms first_prog=2.0 tok=600 source=locale llm=1 gate=esito=nulla top=0.840 ast+1 net+0 err=None
+[00:59:48] CHECK iv n1 (6/6): ok=False esito_c=False llm=1
+[00:59:48] CHECK v(a): BLOCKED — tempo mancante (esito c non riprodotto)
+[00:59:48] CHECK v(b): BLOCKED — tempo mancante (nessun candidato senza-senso con fused vuoto)
+[00:59:48] sidecar shutdown: {'attempted': True, 'state_before': 'up', 'state_after': 'down'}
+[00:59:49] processi residui: {"llama_server_prima": [], "llama_server_dopo_shutdown": [], "llama_server_killati_dichiarati": [], "python_dopo": 1, "note_python": "snapshot non catturato all'avvio per python.exe (altri processi altrui NON toccati); il solo python avviato da questo run e' questo script stesso, che termina alla fine", "sidecar": {"attempted": true, "state_before": "up", "state_after": "down"}}
+[00:59:49] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r15_qa1.json (wall=2860858ms, esiti_ok=False)
+[00:59:49] ESITO i: ok=True status=OK
+[00:59:49] ESITO ii: ok=False status=BLOCKED
+[00:59:49] ESITO iii: ok=True status=OK
+[00:59:49] ESITO iv: ok=False status=BLOCKED
+[00:59:49] ESITO v: ok=False status=BLOCKED
+[00:59:49] ESITO vi: ok=True status=OK
+[00:59:49] TARGETS: v_senza_web_p95=None/<=3000 | v_con_web_p95=None/<=8000 | vi_p95=28.19/<=2000 (n=9)
+[00:59:49] RETE usata (dichiarata): 1 chiamate loggate
+[00:59:49] ======================================================================
+[01:44:08] ======================================================================
+[01:44:08] QA-1 R15b — MATRICE FALLIMENTI (start dichiarato)
+[01:44:08] method: Router.process_query_stream a livello core (wiring = api.py._run_generation, mode='automatica'); webview stub dichiarato ma non necessario (backend non importato)
+[01:44:08] reti consentite: SOLO casi web (iii, v-b); config web.mode letta (mai scritta); web OFF via web_override='mai'
+[01:44:09] llama-server PIDs PRIMA del run: []
+[01:44:09] config (sola lettura): {"rag.progress_events": true, "gate.threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "web.wikipedia": true, "web.searxng_url": "", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[01:44:09] webview stub: registrato prima degli import (backend.* non importato)
+[01:44:09] boot store/engine: 23.53ms; chunk local=17 books=0
+[01:44:09] client setup: 151.52ms backend=sidecar
+[01:44:09] spy generate_stream: firma_preservata=True bind_ok=True
+[01:44:09] answer cache rediretta a C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\tmp\r15_qa1_ac.jsonl (produzione intoccata)
+[01:44:24] PRE-SCREEN p1: anchor='+2870' in_top5=True hybrid_ms=15484.68 sims=[0.9172, 0.8957, 0.8811, 0.8765, 0.8768]
+[01:44:25] PRE-SCREEN p4: anchor='Plastocianina' in_top5=True hybrid_ms=100.51 sims=[0.8588, 0.8554, 0.8409, 0.8466, 0.8346]
+[01:44:25] PRE-SCREEN p2: anchor='endergonica' in_top5=True hybrid_ms=77.32 sims=[0.8627, 0.8577, 0.8685, 0.8463, 0.8497]
+[01:44:25] PRE-SCREEN p3: anchor='Fosfoenolpiruvato' in_top5=True hybrid_ms=77.3 sims=[0.851, 0.8417, 0.8419, 0.8412, 0.8406]
+[01:44:25] PRE-SCREEN g1: max_sim=0.8174 fused_vuoto_previsto=False use_rag=False q=zqxwv utrpo mnlkj gbvcd flurble
+[01:44:25] PRE-SCREEN g2: max_sim=0.8328 fused_vuoto_previsto=False use_rag=False q=blorp wozzit snarf xyzz quantum qzxj
+[01:44:25] PRE-SCREEN g3: max_sim=0.8154 fused_vuoto_previsto=False use_rag=False q=kvbnm wplko itruy phptx Pjvka
+[01:44:25] PRE-SCREEN g4: max_sim=0.7393 fused_vuoto_previsto=False use_rag=False q=The quirked flurble grozznik wobbled silently.
+[01:44:25] PRE-SCREEN n4: max_sim=0.825 fused_vuoto_previsto=False use_rag=True q=Ricetta tradizionale della carbonara romana
+[01:44:25] PRE-SCREEN n5: max_sim=0.8143 fused_vuoto_previsto=False use_rag=True q=Spiegami le cause della guerra dei Trent'anni
+[01:44:25] PRE-SCREEN n2: max_sim=0.8041 fused_vuoto_previsto=False use_rag=True q=Come si calcola l'IVA sulla fattura elettronica in Italia?
+[01:44:25] PRE-SCREEN n1: max_sim=0.8401 fused_vuoto_previsto=False use_rag=True q=Qual è la differenza tra mitosi e meiosi nelle cellule?
+[01:44:25] PRE-SCREEN n3: max_sim=0.7809 fused_vuoto_previsto=False use_rag=True q=Quali sono le regole del calcio riguardo al fuorigioco?
+[01:44:25] PRE-SCREEN x1: max_sim=0.8353 fused_vuoto_previsto=False use_rag=True q=Chi ha scoperto la fotosintesi e in che anno è avvenuta?
+[01:49:02] E2E warmup: total=277245ms first_prog=25.21 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[01:49:02] sidecar state dopo warmup: up (llm.backend=sidecar, backend=sidecar, warmup tokens=600, err=None)
+[01:50:32] E2E i_p1: total=89795ms first_prog=3.45 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[01:50:32] CHECK i p1: ok=True
+[01:54:59] E2E i_p4: total=266528ms first_prog=46.98 tok=600 source=locale llm=1 gate=esito=piena top=0.859 ast+0 net+0 err=None
+[01:54:59] CHECK i p4: ok=True
+[01:59:45] E2E ii_x1_mai: total=285845ms first_prog=2.98 tok=600 source=locale llm=1 gate=esito=parziale top=0.835 ast+1 net+0 err=None
+[01:59:45] CHECK ii x1 (1/6): ok=False formula=False
+[02:07:47] E2E ii_x2_mai: total=482789ms first_prog=41.98 tok=939 source=locale llm=1 gate=esito=parziale top=0.838 ast+1 net+0 err=None
+[02:07:47] CHECK ii x2 (2/6): ok=False formula=False
+[02:15:35] E2E ii_x3_mai: total=467298ms first_prog=51.78 tok=523 source=locale llm=1 gate=esito=parziale top=0.867 ast+1 net+0 err=None
+[02:15:35] CHECK ii x3 (3/6): ok=False formula=False
+[02:22:59] E2E ii_x4_mai: total=444588ms first_prog=39.72 tok=619 source=locale llm=1 gate=esito=parziale top=0.865 ast+1 net+0 err=None
+[02:22:59] CHECK ii x4 (4/6): ok=False formula=False
+[09:42:07] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:treccani.it OR site:sapere.it OR site:brita | 3261.7ms | ok=True n=0
+[09:42:07] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:pagellapolitica.it OR site:bufale.net OR si | 2107.6ms | ok=True n=0
+[09:42:07] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search | 2017.6ms | ok=True n=0
+[09:42:07] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? (site:khanacademy.org OR site:openstax.org) | 2221.5ms | ok=True n=0
+[09:42:07] [RETE DICHIARATA] ii_x1_auto | web_search | ddgs | ddgs://text?q=Chi ha scoperto la fotosintesi e in che anno è avvenuta? | 1225.8ms | ok=True n=5
+[09:42:07] E2E ii_x1_auto: total=29953020ms first_prog=3.73 tok=354 source=locale llm=1 gate=esito=parziale top=0.835 ast+2 net+5 err=None
+[09:42:07] CHECK ii x1 (5/6): ok=False formula=False
+[09:49:53] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:treccani.it OR site:sapere.it OR site:britannica.com O | 2811.6ms | ok=True n=0
+[09:49:53] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:pagellapolitica.it OR site:bufale.net OR site:idmo.it  | 1697.7ms | ok=True n=0
+[09:49:53] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search.net OR sit | 1787.3ms | ok=True n=0
+[09:49:53] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? (site:khanacademy.org OR site:openstax.org) | 1959.8ms | ok=True n=0
+[09:49:53] [RETE DICHIARATA] ii_x2_auto | web_search | ddgs | ddgs://text?q=Che differenza c'è tra un enzima e un ormone? | 1686.9ms | ok=True n=5
+[09:49:53] E2E ii_x2_auto: total=466420ms first_prog=9.12 tok=702 source=locale llm=1 gate=esito=parziale top=0.838 ast+2 net+5 err=None
+[09:49:53] CHECK ii x2 (6/6): ok=False formula=False
+[09:49:54] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? (site:treccani.it OR site:sapere.it OR site:britan | 1058.8ms | ok=True n=5
+[09:49:54] E2E iii_n1_auto: total=1076ms first_prog=3.78 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.840 ast+2 net+1 err=None
+[09:49:54] CHECK iii n1 (1/6): ok=True web_items=5 net=1
+[09:49:54] E2E iv_n3: total=7ms first_prog=1.89 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] CHECK iv n3 (1/6): ok=True esito_c=True llm=0
+[09:49:54] E2E va_1: total=6ms first_prog=1.53 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] E2E va_2: total=7ms first_prog=1.56 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] E2E va_3: total=7ms first_prog=1.56 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] E2E va_4: total=7ms first_prog=1.57 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] E2E va_5: total=7ms first_prog=1.7 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[09:49:54] CHECK v(a): p95=7.06ms target<=3000ms ok=True
+[09:49:56] [RETE DICHIARATA] vb_1 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 1886.8ms | ok=True n=5
+[09:49:56] E2E vb_1: total=1896ms first_prog=1.78 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[09:49:58] [RETE DICHIARATA] vb_2 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 1384.2ms | ok=True n=5
+[09:49:58] E2E vb_2: total=1396ms first_prog=1.83 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[09:50:08] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 2443.4ms | ok=True n=0
+[09:50:08] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pagellapolitica.it OR site:bufale.net OR sit | 1711.2ms | ok=True n=0
+[09:50:08] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search. | 2007.0ms | ok=True n=0
+[09:50:08] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:khanacademy.org OR site:openstax.org) | 1845.6ms | ok=True n=0
+[09:50:08] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? | 2069.0ms | ok=True n=5
+[09:50:08] E2E vb_3: total=10086ms first_prog=1.64 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+5 err=None
+[09:50:10] [RETE DICHIARATA] vb_4 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 1792.4ms | ok=True n=5
+[09:50:10] E2E vb_4: total=1802ms first_prog=1.46 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[09:50:12] [RETE DICHIARATA] vb_5 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 2252.6ms | ok=True n=5
+[09:50:12] E2E vb_5: total=2262ms first_prog=1.66 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[09:50:12] CHECK v(b): p95=10086.11ms target<=8000ms ok=False n=5 winner=n3 tentativi=5
+[09:50:12] sidecar shutdown: {'attempted': True, 'state_before': 'down', 'state_after': 'down'}
+[09:50:13] processi residui: {"llama_server_prima": [], "llama_server_dopo_shutdown": [], "llama_server_killati_dichiarati": [], "python_dopo": 1, "note_python": "snapshot non catturato all'avvio per python.exe (altri processi altrui NON toccati); il solo python avviato da questo run e' questo script stesso, che termina alla fine", "sidecar": {"attempted": true, "state_before": "down", "state_after": "down"}}
+[09:50:13] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r15_qa1.json (wall=32770419ms, esiti_ok=False)
+[09:50:13] ESITO i: ok=True status=OK
+[09:50:13] ESITO ii: ok=False status=BLOCKED
+[09:50:13] ESITO iii: ok=True status=OK
+[09:50:13] ESITO iv: ok=True status=OK
+[09:50:13] ESITO v: ok=False status=BLOCKED
+[09:50:13] ESITO vi: ok=True status=OK
+[09:50:13] TARGETS: v_senza_web_p95=7.06/<=3000 | v_con_web_p95=10086.11/<=8000 | vi_p95=46.98/<=2000 (n=14)
+[09:50:13] RETE usata (dichiarata): 20 chiamate loggate
+[09:50:13] ======================================================================
+[10:29:36] ======================================================================
+[10:29:36] QA-1 R15b — MATRICE FALLIMENTI (start dichiarato)
+[10:29:36] method: Router.process_query_stream a livello core (wiring = api.py._run_generation, mode='automatica'); webview stub dichiarato ma non necessario (backend non importato)
+[10:29:36] reti consentite: SOLO casi web (iii, v-b); config web.mode letta (mai scritta); web OFF via web_override='mai'
+[10:29:37] llama-server PIDs PRIMA del run: []
+[10:29:37] config (sola lettura): {"rag.progress_events": true, "gate.threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "web.wikipedia": true, "web.searxng_url": "", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[10:29:37] webview stub: registrato prima degli import (backend.* non importato)
+[10:29:37] boot store/engine: 14.54ms; chunk local=17 books=0
+[10:29:37] client setup: 119.21ms backend=sidecar
+[10:29:37] spy generate_stream: firma_preservata=True bind_ok=True
+[10:29:37] answer cache rediretta a C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\tmp\r15_qa1_ac.jsonl (produzione intoccata)
+[10:29:51] PRE-SCREEN p1: anchor='+2870' in_top5=True hybrid_ms=14455.64 sims=[0.9172, 0.8957, 0.8811, 0.8765, 0.8768]
+[10:29:51] PRE-SCREEN p4: anchor='Plastocianina' in_top5=True hybrid_ms=85.33 sims=[0.8588, 0.8554, 0.8409, 0.8466, 0.8346]
+[10:29:52] PRE-SCREEN p2: anchor='endergonica' in_top5=True hybrid_ms=88.02 sims=[0.8627, 0.8577, 0.8685, 0.8463, 0.8497]
+[10:29:52] PRE-SCREEN p3: anchor='Fosfoenolpiruvato' in_top5=True hybrid_ms=52.82 sims=[0.851, 0.8417, 0.8419, 0.8412, 0.8406]
+[10:29:52] PRE-SCREEN g1: max_sim=0.8174 fused_vuoto_previsto=False use_rag=False q=zqxwv utrpo mnlkj gbvcd flurble
+[10:29:52] PRE-SCREEN g2: max_sim=0.8328 fused_vuoto_previsto=False use_rag=False q=blorp wozzit snarf xyzz quantum qzxj
+[10:29:52] PRE-SCREEN g3: max_sim=0.8154 fused_vuoto_previsto=False use_rag=True q=kvbnm wplko itruy phptx Pjvka
+[10:29:52] PRE-SCREEN g4: max_sim=0.7393 fused_vuoto_previsto=False use_rag=False q=The quirked flurble grozznik wobbled silently.
+[10:29:52] PRE-SCREEN n4: max_sim=0.825 fused_vuoto_previsto=False use_rag=True q=Ricetta tradizionale della carbonara romana
+[10:29:52] PRE-SCREEN n5: max_sim=0.8143 fused_vuoto_previsto=False use_rag=True q=Spiegami le cause della guerra dei Trent'anni
+[10:29:52] PRE-SCREEN n2: max_sim=0.8041 fused_vuoto_previsto=False use_rag=True q=Come si calcola l'IVA sulla fattura elettronica in Italia?
+[10:29:52] PRE-SCREEN n1: max_sim=0.8401 fused_vuoto_previsto=False use_rag=True q=Qual è la differenza tra mitosi e meiosi nelle cellule?
+[10:29:52] PRE-SCREEN n3: max_sim=0.7809 fused_vuoto_previsto=False use_rag=True q=Quali sono le regole del calcio riguardo al fuorigioco?
+[10:29:52] PRE-SCREEN x1: max_sim=0.8353 fused_vuoto_previsto=False use_rag=True q=Chi ha scoperto la fotosintesi e in che anno è avvenuta?
+[10:33:12] E2E warmup: total=199938ms first_prog=24.27 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[10:33:12] sidecar state dopo warmup: up (llm.backend=sidecar, backend=sidecar, warmup tokens=600, err=None)
+[10:34:23] E2E i_p1: total=71553ms first_prog=2.92 tok=600 source=locale llm=1 gate=esito=piena top=0.917 ast+0 net+0 err=None
+[10:34:23] CHECK i p1: ok=True
+[10:37:04] E2E i_p4: total=160102ms first_prog=24.99 tok=600 source=locale llm=1 gate=esito=piena top=0.859 ast+0 net+0 err=None
+[10:37:04] CHECK i p4: ok=True
+[10:39:49] E2E ii_x1_mai: total=165232ms first_prog=2.04 tok=601 source=locale llm=1 gate=esito=parziale top=0.835 ast+1 net+0 err=None
+[10:39:49] CHECK ii x1 (1/6): ok=True formula=True
+[10:39:55] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? (site:treccani.it OR site:sapere.it OR site:britan | 2815.7ms | ok=True n=0
+[10:39:55] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? (site:pagellapolitica.it OR site:bufale.net OR sit | 1920.0ms | ok=True n=0
+[10:39:55] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search. | 1838.8ms | ok=True n=0
+[10:39:56] [RETE DICHIARATA] iii_n1_auto | web_search | ddgs | ddgs://text?q=Qual è la differenza tra mitosi e meiosi nelle cellule? | 0.0ms | ok=True n=0
+[10:39:56] [RETE DICHIARATA] iii_n1_auto | web_search | wikipedia | budget web esaurito - skip | 0.0ms | ok=True n=0
+[10:39:56] E2E iii_n1_auto: total=6685ms first_prog=1.83 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.840 ast+1 net+5 err=None
+[10:39:56] CHECK iii n1 (1/6): ok=False web_items=0 net=5
+[10:40:01] [RETE DICHIARATA] iii_n2_auto | web_search | ddgs | ddgs://text?q=Come si calcola l'IVA sulla fattura elettronica in Italia? (site:treccani.it OR site:sapere.it OR site:bri | 2362.0ms | ok=True n=0
+[10:40:01] [RETE DICHIARATA] iii_n2_auto | web_search | ddgs | ddgs://text?q=Come si calcola l'IVA sulla fattura elettronica in Italia? (site:pagellapolitica.it OR site:bufale.net OR  | 1739.7ms | ok=True n=0
+[10:40:01] [RETE DICHIARATA] iii_n2_auto | web_search | ddgs | ddgs://text?q=Come si calcola l'IVA sulla fattura elettronica in Italia? (site:pubmed.ncbi.nlm.nih.gov OR site:base-sear | 1660.4ms | ok=True n=0
+[10:40:01] [RETE DICHIARATA] iii_n2_auto | web_search | ddgs | ddgs://text?q=Come si calcola l'IVA sulla fattura elettronica in Italia? | 0.0ms | ok=True n=0
+[10:40:01] [RETE DICHIARATA] iii_n2_auto | web_search | wikipedia | budget web esaurito - skip | 0.0ms | ok=True n=0
+[10:40:01] E2E iii_n2_auto: total=5772ms first_prog=1.7 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.804 ast+1 net+5 err=None
+[10:40:01] CHECK iii n2 (2/6): ok=False web_items=0 net=5
+[10:40:02] [RETE DICHIARATA] iii_n3_auto | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 832.8ms | ok=True n=5
+[10:40:02] E2E iii_n3_auto: total=842ms first_prog=1.55 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[10:40:02] CHECK iii n3 (3/6): ok=True web_items=5 net=1
+[10:40:02] E2E iv_n3: total=7ms first_prog=1.4 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] CHECK iv n3 (1/6): ok=True esito_c=True llm=0
+[10:40:02] E2E va_1: total=6ms first_prog=1.45 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] E2E va_2: total=7ms first_prog=1.76 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] E2E va_3: total=6ms first_prog=1.43 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] E2E va_4: total=6ms first_prog=1.59 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] E2E va_5: total=7ms first_prog=1.66 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+0 err=None
+[10:40:02] CHECK v(a): p95=7.47ms target<=3000ms ok=True
+[10:40:04] [RETE DICHIARATA] vb_1 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 2206.2ms | ok=True n=5
+[10:40:04] E2E vb_1: total=2217ms first_prog=1.81 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[10:40:10] [RETE DICHIARATA] vb_2 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 2458.7ms | ok=True n=0
+[10:40:10] [RETE DICHIARATA] vb_2 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pagellapolitica.it OR site:bufale.net OR sit | 1714.0ms | ok=True n=0
+[10:40:10] [RETE DICHIARATA] vb_2 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search. | 1463.8ms | ok=True n=0
+[10:40:10] [RETE DICHIARATA] vb_2 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? | 0.0ms | ok=True n=0
+[10:40:10] [RETE DICHIARATA] vb_2 | web_search | wikipedia | budget web esaurito - skip | 0.0ms | ok=True n=0
+[10:40:10] E2E vb_2: total=5645ms first_prog=1.36 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+5 err=None
+[10:40:11] [RETE DICHIARATA] vb_3 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 941.1ms | ok=True n=5
+[10:40:11] E2E vb_3: total=950ms first_prog=1.43 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[10:40:17] [RETE DICHIARATA] vb_4 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 2531.5ms | ok=True n=0
+[10:40:17] [RETE DICHIARATA] vb_4 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pagellapolitica.it OR site:bufale.net OR sit | 1545.7ms | ok=True n=0
+[10:40:17] [RETE DICHIARATA] vb_4 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:pubmed.ncbi.nlm.nih.gov OR site:base-search. | 1649.7ms | ok=True n=0
+[10:40:17] [RETE DICHIARATA] vb_4 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? | 0.0ms | ok=True n=0
+[10:40:17] [RETE DICHIARATA] vb_4 | web_search | wikipedia | budget web esaurito - skip | 0.0ms | ok=True n=0
+[10:40:17] E2E vb_4: total=5735ms first_prog=1.54 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+1 net+5 err=None
+[10:40:18] [RETE DICHIARATA] vb_5 | web_search | ddgs | ddgs://text?q=Quali sono le regole del calcio riguardo al fuorigioco? (site:treccani.it OR site:sapere.it OR site:britan | 1344.0ms | ok=True n=5
+[10:40:18] E2E vb_5: total=1354ms first_prog=1.45 tok=19 source=nessuna llm=0 gate=esito=nulla top=0.781 ast+2 net+1 err=None
+[10:40:18] CHECK v(b): p95=5734.91ms target<=8000ms ok=True n=5 winner=n3 tentativi=5
+[10:40:18] sidecar shutdown: {'attempted': True, 'state_before': 'up', 'state_after': 'down'}
+[10:40:20] processi residui: {"llama_server_prima": [], "llama_server_dopo_shutdown": [], "llama_server_killati_dichiarati": [], "python_dopo": 1, "note_python": "snapshot non catturato all'avvio per python.exe (altri processi altrui NON toccati); il solo python avviato da questo run e' questo script stesso, che termina alla fine", "sidecar": {"attempted": true, "state_before": "up", "state_after": "down"}}
+[10:40:20] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r15_qa1.json (wall=643309ms, esiti_ok=True)
+[10:40:20] ESITO i: ok=True status=OK
+[10:40:20] ESITO ii: ok=True status=OK
+[10:40:20] ESITO iii: ok=True status=OK
+[10:40:20] ESITO iv: ok=True status=OK
+[10:40:20] ESITO v: ok=True status=OK
+[10:40:20] ESITO vi: ok=True status=OK
+[10:40:20] TARGETS: v_senza_web_p95=7.47/<=3000 | v_con_web_p95=5734.91/<=8000 | vi_p95=24.99/<=2000 (n=16)
+[10:40:20] RETE usata (dichiarata): 24 chiamate loggate
+[10:40:20] ======================================================================

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "c01",
+    "tipo": "candidato",
+    "query": "Chi ha scoperto la fotosintesi e in che anno è avvenuta?",
+    "query_norm": "scoperto fotosintesi anno"
+  },
+  {
+    "id": "c02",
+    "tipo": "candidato",
+    "query": "Come si coltiva il basilico in vaso sul balcone di casa?",
+    "query_norm": "coltivare basilico vaso balcone"
+  },
+  {
+    "id": "c03",
+    "tipo": "candidato",
+    "query": "Come funziona la respirazione cellulare nei mitocondri?",
+    "query_norm": "respirazione cellulare mitocondri"
+  },
+  {
+    "id": "c04",
+    "tipo": "candidato",
+    "query": "Perché le foglie diventano gialle in autunno?",
+    "query_norm": "foglie gialle autunno"
+  },
+  {
+    "id": "c05",
+    "tipo": "candidato",
+    "query": "Quanta acqua serve un albero da frutto ogni settimana?",
+    "query_norm": "acqua albero frutto settimana"
+  },
+  {
+    "id": "c06",
+    "tipo": "candidato",
+    "query": "Come si misura il pH del terreno di un orto?",
+    "query_norm": "ph terreno orto"
+  },
+  {
+    "id": "c07",
+    "tipo": "candidato",
+    "query": "Qual è la differenza tra diffusione e osmosi nelle membrane cellulari?",
+    "query_norm": "differenza diffusione osmosi membrane cellulari"
+  },
+  {
+    "id": "c09",
+    "tipo": "candidato",
+    "query": "Qual è la vita media di una foglia di quercia?",
+    "query_norm": "vita media foglia quercia"
+  },
+  {
+    "id": "c11",
+    "tipo": "candidato",
+    "query": "A che serve la luce artificiale per le piante d'appartamento?",
+    "query_norm": "luce artificiale piante appartamento"
+  },
+  {
+    "id": "c17",
+    "tipo": "candidato",
+    "query": "Che differenza c'è tra un enzima e un ormone?",
+    "query_norm": "differenza enzima ormone"
+  },
+  {
+    "id": "c21",
+    "tipo": "candidato",
+    "query": "Che ruolo ha il calcio nelle ossa umane?",
+    "query_norm": "ruolo calcio ossa umane"
+  },
+  {
+    "id": "c22",
+    "tipo": "candidato",
+    "query": "Qual è la differenza tra energia potenziale e energia cinetica?",
+    "query_norm": "differenza energia potenziale cinetica"
+  },
+  {
+    "id": "d01",
+    "tipo": "candidato",
+    "query": "Che differenza c'è tra una cellula vegetale e una cellula batterica?",
+    "query_norm": "differenza cellula vegetale batterica"
+  },
+  {
+    "id": "d02",
+    "tipo": "candidato",
+    "query": "Che differenza c'è tra un virus e un batterio?",
+    "query_norm": "differenza virus batterio"
+  },
+  {
+    "id": "d03",
+    "tipo": "candidato",
+    "query": "Qual è la funzione di un enzima digestivo?",
+    "query_norm": "funzione enzima digestivo"
+  },
+  {
+    "id": "d04",
+    "tipo": "candidato",
+    "query": "Come si riproduce una pianta senza semi?",
+    "query_norm": "riproduce pianta senza semi"
+  },
+  {
+    "id": "d05",
+    "tipo": "candidato",
+    "query": "Che ruolo ha l'acqua nel corpo umano?",
+    "query_norm": "ruolo acqua corpo umano"
+  },
+  {
+    "id": "d06",
+    "tipo": "candidato",
+    "query": "Come si coltiva il grano in primavera nei campi?",
+    "query_norm": "coltiva grano primavera campi"
+  },
+  {
+    "id": "d07",
+    "tipo": "candidato",
+    "query": "Che differenza c'è tra un acido e un sale?",
+    "query_norm": "differenza acido sale"
+  },
+  {
+    "id": "d08",
+    "tipo": "candidato",
+    "query": "Come funziona la fotosintesi artificiale in un laboratorio?",
+    "query_norm": "fotosintesi artificiale laboratorio"
+  }
+]

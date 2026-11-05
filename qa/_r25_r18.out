@@ -1,0 +1,95 @@
+[18:05:15] === R18 verify: 4 query (nessun kill, provenienza per stadio) ===
+[18:05:15] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"}
+[18:05:16] boot store 277.56ms chunk=17/0
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2127.12it/s]
+[Embedder] warmup completato (modello caricato in background)
+[SemanticRouter] warmup esempi completato (background)
+[18:06:18] ready: embedder.warm=True semantic.ready=True (62640.66ms)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] MISS profile=default hit_rate=0.00 (hits=0, misses=1)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:56288
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] rigenerazione vincolata (B2/B5): Risposta troppo breve: servono almeno 120 parole ben articolate (o almeno 3 punti strutturati) SOLO sul contesto fornito. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il da
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] validazione R18: {'depth': {'ok': True, 'words': 134, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': False, 'words': 80, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 80 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}}, 'check_ms': 759
+[18:11:51] QA warmup: total=332526 tok=45519.57 n=275 llm=2 guard=True len_ok=True blocks=3 resets=2 src=locale weburls=0 net=0 ok=False err=None
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.50 (hits=1, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=spiega%20la%20struttura%20della%20Divina%20Commedia&limit=5 | 1595ms | ok=True n=5 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Divina_Commedia | 575ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Purgatorio_%28Divina_Commedia%29 | 555ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Dante_Alighieri | 404ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Cerchi_dell%27Inferno | 514ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=spiega la struttura della Divina Commedia (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.goo | 3277ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
+[web_search][RETE] ddgs | ddgs://text?q=spiega la struttura della Divina Commedia | 0ms | ok=True n=0 | fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Nastagio_degli_Onesti | 696ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=spiega la struttura della Divina Commedia | 1909ms | ok=True n=5 | generico (no site:)
+[web_search][RETE] allowlist | https://coggle.it/diagram/ZdXO-RcvlDArQQFr/t/la-struttura-della-divina-commedia | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://www.eroicafenice.com/salotto-culturale/struttura-della-divina-commedia-spiegazione-semplice/ | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://knowunity.it/knows/italiano-dante-e-la-commedia-34a6ec89-a13b-4698-9d64-dd8bf21097d4 | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://cards.algoreducation.com/it/content/ycBGAYXN/divina-commedia-dante | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://www.studenti.it/inferno-dante-alighieri-gironi-struttura.html | 0ms | ok=True n=0 | fuori allowlist - scartato
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): La risposta omette la struttura della Divina Commedia nel contesto che specifica che è un poema allegorico-didascalico ed escatologico scritto in terz
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] validazione R18: {'depth': {'ok': False, 'words': 89, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 89 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 365, 'bullets': 3, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['La risposta omette la struttura della Divina C
+R18 v1: total=301096.6 tok=31810.3 len=622 stages=['web'] trunc=False codes=[] fontiURL=False moji=False completo=True lang=it guard=True blocks=2 ok=False
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.67 (hits=2, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=chi%20%C3%A8%20dante%20alighieri&limit=5 | 890ms | ok=True n=5 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Dante_Alighieri | 360ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Divina_Commedia | 603ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=chi è dante alighieri (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:jsto | 2378ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Societ%C3%A0_Dante_Alighieri | 618ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Inferno_%28Divina_Commedia%29 | 608ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Epistole_%28Dante_Alighieri%29 | 600ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&explaintext=1&exintro=1&redirects=1&titles=Dante_Alighieri | 608ms | ok=True n=1 | lead [it] 1791 char
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): La risposta omette le date precise di nascita fornite nel contesto (14 maggio e 13 giugno 1265), riportandole solo come anno 1265; La risposta omette 
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] validazione R18: {'depth': {'ok': False, 'words': 42, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 42 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 120, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['La risposta omette le date precise di nascita 
+R18 v2: total=278299.1 tok=32234.3 len=226 stages=['web'] trunc=False codes=[] fontiURL=False moji=False completo=True lang=it guard=True blocks=3 ok=False
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.75 (hits=3, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=Qual%20%C3%A8%20il%20primo%20accettore%20di%20CO2%20nelle%20piante%20C4%3F&limit=5 | 708ms | ok=True n=0 | titoli [it]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=Qual%20%C3%A8%20il%20primo%20accettore%20di%20CO2%20nelle%20piante%20C4%3F&limit=5 | 640ms | ok=True n=0 | titoli [en]
+[web_search][RETE] ddgs | ddgs://text?q=Qual è il primo accettore di CO2 nelle piante C4? (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:sch | 2991ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
+[web_search][RETE] ddgs | ddgs://text?q=Qual è il primo accettore di CO2 nelle piante C4? | 0ms | ok=True n=0 | fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico
+[web_search][RETE] ddgs | ddgs://text?q=Qual è il primo accettore di CO2 nelle piante C4? | 949ms | ok=True n=5 | generico (no site:)
+[web_search][RETE] allowlist | https://didattica-2000.archived.uniroma2.it/FIS_VEG/deposito/7bispianteC4CAM.pdf | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://studylibit.com/doc/1043512/lezione-5--piante-c4-e-cam | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://www.climatemonitor.it/?p=55068 | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://online.scuola.zanichelli.it/carbonioenzimidna-files/posca/Sadava_Posca_Soluzioni_B4.pdf | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://corsi.unica.it/scienzeambientalienaturali/files/2020/01/Cenni-fisiologia-e-riproduzione-x-Spdf.pdf | 0ms | ok=True n=0 | fuori allowlist - scartato
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] validazione R18: {'depth': {'ok': True, 'words': 193, 'bullets': 3, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'parse_error': 'json non interpretabile', 'raw_head': '{"ok": false, "violations": ["Nelle piante C3, il composto che accetta la CO₂ è il RuBP (che ha 5 atomi di carbonio)"]]}', 'backend': 'sidecar:think'}, 'attempts': 1, 'check_ms': 53037.1}
+R18 v3: total=177464.7 tok=48348.0 len=1151 stages=['appunti'] trunc=False codes=[] fontiURL=False moji=False completo=True lang=it guard=True blocks=1 ok=True
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.80 (hits=4, misses=1)
+[web_search][RETE] ddgs | ddgs://text?q=chi è boccaccio (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:jstor.org  | 2179ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | query=chi è boccaccio | 0ms | ok=False n=0 | wiki parallela non disponibile entro il budget residuo
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=chi%20%C3%A8%20boccaccio&limit=5 | 7369ms | ok=False n=0 | titoli [it]: HTTPSConnectionPool(host='it.wikipedia.org', port=443): Read timed out. (read timeout=7)
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=chi%20%C3%A8%20boccaccio&limit=5 | 1118ms | ok=True n=5 | titoli [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/The_Decameron | 630ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Riccardo_Scamarcio | 696ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Chinese_cruiser_Hai_Chi | 664ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Mario_Donatone | 510ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Carolina_Crescentini | 641ms | ok=True n=1 | summary [en]
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): La risposta omette il fatto centrale che Giovanni Boccaccio fu un poeta e studioso e autore della raccolta Decameron, sebbene il contesto (fonte 2) es
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Router] validazione R18: {'depth': {'ok': False, 'words': 87, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 87 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 263, 'bullets': 1, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['La risposta omette il fatto centrale che Giova
+R18 v4: total=262042.4 tok=30179.6 len=543 stages=['web'] trunc=False codes=[] fontiURL=False moji=False completo=True lang=it guard=True blocks=2 ok=False
+[18:28:51] scritto qa/r18_verify.json ok=1/4 max_total=301096.6 trunc=[] codes={'v1': [], 'v2': [], 'v3': [], 'v4': []} moji=[]
+[18:28:51] sidecar state post: down

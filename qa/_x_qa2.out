@@ -1,0 +1,8 @@
+CONFIG: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "spec.draft_model": ""}
+Traceback (most recent call last):
+  File "C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\x_qa2_slo.py", line 171, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\x_qa2_slo.py", line 122, in main
+    raise RuntimeError("sidecar non partito (porta assente)")
+RuntimeError: sidecar non partito (porta assente)

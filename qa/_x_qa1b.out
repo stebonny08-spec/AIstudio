@@ -1,0 +1,109 @@
+SNAPSHOT CONFIG: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "llama.server_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe"}
+Singleton sidecar fissato con istanza cfg (engine=xhtoken su disco)
+StudioIAAPI ok (backend reale, stub webview)
+--- S1a: load base con engine xhtoken ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] caricamento modello 'base' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +2193 MB)...
+PASS  S1 load_model(base) accettato | {'success': True, 'loading': True}
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+  [state] loading (progress=0.02 err=None)
+[SidecarServer] pronto su 127.0.0.1:50464
+[StudioIAAPI] Modello pronto per l'uso.
+[models] RSS dopo switch base: n/d MB
+  [state] ready (progress=1.0 err=None)
+PASS  S1 base -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+  [gen] S1_base ok=True len=51 bin=xhtoken
+PASS  S1 completamento base
+PASS  S1 binario FORK per base | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k
+--- S1b: switch al PRO (xhtoken) ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] caricamento modello 'pro' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +4393 MB)...
+PASS  S1 load_model(pro) accettato | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[SidecarServer] pronto su 127.0.0.1:53192
+[StudioIAAPI] Modello pronto per l'uso.
+  [state] ready (progress=1.0 err=None)
+PASS  S1 pro -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[models] RSS dopo switch pro: n/d MB
+  [gen] S1_pro ok=True len=73 bin=xhtoken
+PASS  S1 completamento pro
+PASS  S1 binario FORK per pro | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf -c 8192 --cache-type-k q
+PASS  S1 modello 4B attivo | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 53192
+--- S1c: switch di RITORNO al base ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] caricamento modello 'base' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +2193 MB)...
+PASS  S1 load_model(base) ritorno accettato | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[SidecarServer] pronto su 127.0.0.1:53235
+[StudioIAAPI] Modello pronto per l'uso.
+[models] RSS dopo switch base: n/d MB
+  [state] ready (progress=1.0 err=None)
+PASS  S1 base2 -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+  [gen] S1_base2 ok=True len=111 bin=xhtoken
+PASS  S1 completamento base2
+PASS  S1 binario FORK dopo ritorno | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k
+PASS  S1 modello 1.7B attivo | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 53235
+--- S2: kill XHToken (rename binario) -> atteso fallback upstream ---
+  [sidecar] shutdown ok, nessun llama-server: True
+PASS  S2 binario fork rinominato
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[Sidecar] engine xhtoken KO -> upstream: binario xhtoken mancante: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe
+[Sidecar] engine xhtoken non riprovato: fallback upstream gia' attivo (X5.3)
+[SidecarServer] pronto su 127.0.0.1:58420
+  [gen] S2_dopo_kill ok=True len=136 bin=upstream
+PASS  S2 generazione dopo kill del fork
+PASS  S2 fallback su UPSTREAM | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-server.exe -m C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 58420
+  [s2] status={"state": "up", "port": 58420, "crashes": 0, "message": "motore XHToken non disponibile -> ripiego su upstream (binario xhtoken mancante: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe)", "draft": false, "engine": "upstream", "xhtoken_fallback": true}
+PASS  S2 status.engine == upstream | upstream
+PASS  S2 status.xhtoken_fallback == True (X5.3) | True
+PASS  S2 message utente di ripiego presente | motore XHToken non disponibile -> ripiego su upstream (binario xhtoken mancante: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe)
+PASS  S2 ripristino binario fork
+--- S3: kill Spark (gguf corrotto) su load pro -> atteso MiniCPM5 ---
+  [sidecar] shutdown ok, nessun llama-server: True
+PASS  S3 spark-4b sostituito da file corrotto (size!=0 per get_downloaded_path) | 7936
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] caricamento modello 'pro' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +200 MB)...
+PASS  S3 load_model(pro) accettato (file presente, caricamento poi fallisce) | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+INFO:sentence_transformers.base.model:No device provided, using cpu
+INFO:sentence_transformers.base.model:Loading SentenceTransformer model from intfloat/multilingual-e5-small.
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] crash (exit 1): restart tra 1s (crash 1/3)
+[StudioIAAPI] Errore durante il caricamento del modello: caricamento sidecar fallito: crash (exit 1), restart tra 1s
+[models] RSS dopo switch pro: n/d MB
+[models] fallback al modello MiniCPM5-2B: caricamento sidecar fallito: crash (exit 1), restart tra 1s
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +1936 MB)...
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3050.09it/s]
+[SidecarServer] pronto su 127.0.0.1:58441
+[StudioIAAPI] Modello pronto per l'uso.
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  [state] ready (progress=1.0 err=None)
+PASS  S3 fallback -> ready
+  [s3] local_model_key dopo fallback = fallback (api=fallback)
+PASS  S3 chiave modello == 'fallback' (X6 apply_fallback) | fallback
+PASS  S3 modello fallback = MiniCPM5-2B | C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  [gen] S3_minicpm ok=True len=122 bin=upstream
+PASS  S3 generazione con il fallback MiniCPM5-2B
+PASS  S3 ripristino spark-x2.6-4b.gguf (size uguale) | 3543441312
+CONFIG finale disco: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "llama.server_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe"}
+[StudioIAAPI] Reindex background completato in 40.0s
+RISULTATO QA-1: 28 passati, 0 falliti -> PASS

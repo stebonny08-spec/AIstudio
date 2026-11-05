@@ -1,0 +1,998 @@
+{
+ "schema_version": 1,
+ "schema": {
+  "description": "Cronologia metriche per round (G7 osservabilita'). Ogni elemento di 'rounds': {round, timestamp, build, metrics:{...}, method:{chiave_metrica -> comando/strumento usato per misurarla su file qa/* REALI}}",
+  "append": "Round successivi: append manuale di un nuovo oggetto in 'rounds' (ordine crescente), valorizzando i campi SOLO da file qa/* reali (null dove non misurato); quindi aggiornare la vista a runtime con window.StatsAI.pushRound(entry). Validazione: python tests/testG7_stats.py",
+  "metrics_required": [
+   "rss_30req_mb",
+   "load_sec",
+   "tok_s.fast",
+   "tok_s.think",
+   "tok_s.tool",
+   "ttft_p50_ms",
+   "ttft_p95_ms",
+   "prompt_cache_hit_rate",
+   "kv_delta_mb",
+   "gate.total",
+   "gate.f01",
+   "gate.f04",
+   "gate.f10",
+   "gate.f13",
+   "recall5",
+   "parity",
+   "router_p95_ms",
+   "t1_total"
+  ],
+  "null_allowed": [
+   "ttft_p50_ms",
+   "ttft_p95_ms",
+   "kv_delta_mb"
+  ],
+  "extra_allowed": [
+   "rss_before_mb",
+   "rss_load_mb",
+   "latency_p50_ms",
+   "latency_p95_ms",
+   "recall5_vector"
+  ],
+  "test": "tests/testG7_stats.py (schema + round11 == qa/*_measures.json su disco + get_stats/reset_stats su chiamate simulate)"
+ },
+ "rounds": [
+  {
+   "round": "11",
+   "timestamp": "2026-10-23T16:05:00+02:00",
+   "build": "2026-10-23T16:00:00+02:00",
+   "metrics": {
+    "rss_before_mb": 24.5,
+    "rss_load_mb": 2093.4,
+    "rss_30req_mb": 2578.2,
+    "load_sec": 2.01,
+    "tok_s": {
+     "fast": 10.32,
+     "think": 9.11,
+     "tool": 11.78
+    },
+    "latency_p50_ms": 3941.7,
+    "latency_p95_ms": 4044.9,
+    "ttft_p50_ms": null,
+    "ttft_p95_ms": null,
+    "prompt_cache_hit_rate": 0.45,
+    "kv_delta_mb": null,
+    "gate": {
+     "total": 60,
+     "ok": 45,
+     "f01": {
+      "n": 15,
+      "ok": 15
+     },
+     "f04": {
+      "n": 15,
+      "ok": 15
+     },
+     "f10": {
+      "n": 15,
+      "ok": 10
+     },
+     "f13": {
+      "n": 15,
+      "ok": 5
+     }
+    },
+    "recall5": 1.0,
+    "recall5_vector": 0.9,
+    "parity": 1.0,
+    "router_p95_ms": 0.0107,
+    "t1_total": 10
+   },
+   "method": {
+    "rss_before_mb": "tests/t2a_measures.py -> qa/t2a_measures.json sections.rss_mb.before (psutil Process().memory_info().rss)",
+    "rss_load_mb": "qa/t2a_measures.json sections.rss_mb.after_load",
+    "rss_30req_mb": "qa/t2a_measures.json sections.rss_mb.after_30req (dopo 30 richieste)",
+    "load_sec": "qa/t2a_measures.json sections.model_load_sec.sec (LocalLLMClient, n_ctx=4096)",
+    "tok_s": "qa/t2a_measures.json sections.tok_s.profili.{fast,think,tool}.mediana_tok_s (stima len/4, mediana su 3 misure, warmup escluso)",
+    "latency_p50_ms": "qa/t2a_measures.json sections.latency_ms.p50_ms (nearest-rank, n=20)",
+    "latency_p95_ms": "qa/t2a_measures.json sections.latency_ms.p95_ms",
+    "ttft_p50_ms": "NON misurato nel round11 (time-to-first-token non instrumentato) -> null",
+    "ttft_p95_ms": "NON misurato nel round11 -> null",
+    "prompt_cache_hit_rate": "qa/t2a_measures.json sections.prompt_cache.hit_rate (9 hit / 20)",
+    "kv_delta_mb": "NON misurato nel round11 (delta KV cache per 30 turni) -> null",
+    "gate": "qa/gate_outputs.json: 60 output reali (15 per fid) via run_ai_function; ok = parsed_ok; ricontato da tests/testG7_stats.py",
+    "recall5": "qa/h8_eval.json recall_at_5_hybrid (30 domande, corpus 89 chunk); recall5_vector = recall_at_5_vector",
+    "parity": "python tests/testH1_parity.py -> [PARITY] 50 query | overlap medio top-10 = 1.000",
+    "router_p95_ms": "qa/h7_cache_measures.json h9_router.p95_ms (1000 chiamate Router0LLM, budget 5ms)",
+    "t1_total": "python tests/testH1_parity.py -> 'Ran 10 tests ... OK' (totale test del blocco H1/parity)"
+   }
+  },
+  {
+   "round": "12",
+   "timestamp": "2026-10-23T19:45:58+02:00",
+   "build": "2026-10-23T19:50:00+02:00",
+   "metrics": {
+    "rss_before_mb": 39.6,
+    "rss_load_mb": 2408.6,
+    "rss_30req_mb": 39.7,
+    "load_sec": 2.54,
+    "tok_s": {
+     "fast": {
+      "temperature": 0.8,
+      "n_predict": 128,
+      "warmup": 1,
+      "n_misure": 3,
+      "samples": [
+       {
+        "n_tokens_stima": 102,
+        "elapsed_sec": 10.747,
+        "tok_s": 9.49,
+        "tok_s_timings_server": 11.92
+       },
+       {
+        "n_tokens_stima": 115,
+        "elapsed_sec": 10.224,
+        "tok_s": 11.25,
+        "tok_s_timings_server": 12.52
+       },
+       {
+        "n_tokens_stima": 98,
+        "elapsed_sec": 10.278,
+        "tok_s": 9.53,
+        "tok_s_timings_server": 12.47
+       }
+      ],
+      "mediana_tok_s": 9.53
+     },
+     "think": {
+      "temperature": 0.6,
+      "n_predict": 320,
+      "warmup": 1,
+      "n_misure": 3,
+      "samples": [
+       {
+        "n_tokens_stima": 250,
+        "elapsed_sec": 24.707,
+        "tok_s": 10.12,
+        "tok_s_timings_server": 12.96
+       },
+       {
+        "n_tokens_stima": 263,
+        "elapsed_sec": 24.011,
+        "tok_s": 10.95,
+        "tok_s_timings_server": 13.33
+       },
+       {
+        "n_tokens_stima": 242,
+        "elapsed_sec": 24.365,
+        "tok_s": 9.93,
+        "tok_s_timings_server": 13.14
+       }
+      ],
+      "mediana_tok_s": 10.12
+     },
+     "tool": {
+      "temperature": 0.1,
+      "n_predict": 128,
+      "warmup": 1,
+      "n_misure": 3,
+      "samples": [
+       {
+        "n_tokens_stima": 133,
+        "elapsed_sec": 9.599,
+        "tok_s": 13.86,
+        "tok_s_timings_server": 13.34
+       },
+       {
+        "n_tokens_stima": 124,
+        "elapsed_sec": 9.622,
+        "tok_s": 12.89,
+        "tok_s_timings_server": 13.31
+       },
+       {
+        "n_tokens_stima": 137,
+        "elapsed_sec": 9.459,
+        "tok_s": 14.48,
+        "tok_s_timings_server": 13.56
+       }
+      ],
+      "mediana_tok_s": 13.86
+     }
+    },
+    "latency_p50_ms": null,
+    "latency_p95_ms": null,
+    "ttft_p50_ms": 699.4,
+    "ttft_p95_ms": 754.5,
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": 0.1,
+    "idle_unload_delta_mb": 3.2,
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     }
+    },
+    "recall5": 1.0,
+    "recall5_vector": null,
+    "parity": 1.0,
+    "router_p95_ms": 0.0108,
+    "t1_total": 2057
+   },
+   "method": {
+    "rss_before_mb": "psutil.Process().memory_info().rss prima degli invii — python tests/g2_kv_rss.py",
+    "rss_load_mb": "RSS figlio llama-server caricato — python tests/t2a_sidecar.py",
+    "rss_30req_mb": "RSS padre dopo 30 turni — python tests/g2_kv_rss.py",
+    "load_sec": "media 4× start_on_demand→health 200 (perf_counter) — python tests/t2a_sidecar.py",
+    "tok_s": "mediana 1warmup+3, len(content)/4÷elapsed, per profilo — python tests/t2a_sidecar.py",
+    "latency_p50_ms": "legacy R11 in-process (3941.7); metro UX sostituito da TTFT in R12",
+    "latency_p95_ms": "legacy R11 in-process (4044.9); vedi TTFT",
+    "ttft_p50_ms": "t0 prima di complete(stream=True)→primo pezzo; n=10 hit + n=10 miss — python tests/t2a_ttft.py",
+    "ttft_p95_ms": "nearest-rank su stesse serie — python tests/t2a_ttft.py",
+    "prompt_cache_hit_rate": "20 conversazioni multi-turn, HIT=KV-prefix (system+rag+storia) — python tests/g2_hitrate.py",
+    "kv_delta_mb": "RSS padre delta su 30 turni con rolling — python tests/g2_kv_rss.py",
+    "idle_unload_delta_mb": "RSS padre dopo idle-unload 8s, 0 figli — python tests/t2a_sidecar.py",
+    "gate": "15 output/fid, modello reale, validate+retry — python tests/t2a_gate.py (+ t2a_gate_f13.py per F13 think)",
+    "recall5": "dry-run su indice chroma REALE 34 chunk — python data/migrate_real.py",
+    "parity": "dry-run chroma vs sqlite su 24 query — python data/migrate_real.py",
+    "router_p95_ms": "1000 route() — python tests/testH9_router.py",
+    "t1_total": "1809 JS (20 suite) + 248 py (21 suite + H7/H9 custom)"
+   }
+  },
+  {
+   "round": "13",
+   "timestamp": "2026-10-24T17:47:47+0200",
+   "build": "2026-10-24T17:30:00+02:00",
+   "metrics": {
+    "rss_before_mb": 39.6,
+    "rss_load_mb": 2408.3,
+    "rss_30req_mb": 38.6,
+    "load_sec": 2.4,
+    "tok_s": {
+     "fast": 11.53,
+     "think": 10.07,
+     "tool": 13.35
+    },
+    "latency_p50_ms": null,
+    "latency_p95_ms": null,
+    "ttft_p50_ms": 95972.0,
+    "ttft_p95_ms": 140964.1,
+    "ttft_n": 2,
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": -1.0,
+    "idle_unload_delta_mb": 3.1,
+    "prompt_lookup": "OFF",
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R13 (non rimisurato, vedi method)"
+    },
+    "recall5": 1.0,
+    "parity": 1.0,
+    "router_p95_ms": 0.0107,
+    "t1_total": 2145,
+    "books_parity": "BLOCKED (corpus vuoto 0/0 dichiarato)",
+    "chromadb_runtime_imports": 0,
+    "draft_decision": "Q4_K_M + draft OFF per tutti i profili (qa/r13_spec_measures.json)",
+    "ttft_target_hit": false
+   },
+   "method": {
+    "rss_before_mb": "psutil RSS padre prima degli invii -> qa/g2_kv_rss.json rss_before_mb (python tests/g2_kv_rss.py)",
+    "rss_load_mb": "RSS figlio llama-server caricato (psutil) -> qa/g1_measures.json sections.rss_mb.caricato_figli_llama_server[llama-server.exe] (python tests/t2a_sidecar.py)",
+    "rss_30req_mb": "RSS padre dopo 30 turni -> qa/g2_kv_rss.json rss_after_mb (python tests/g2_kv_rss.py)",
+    "load_sec": "media perf_counter su start_on_demand fino a health 200 -> qa/g1_measures.json load_cold_sec (python tests/t2a_sidecar.py)",
+    "tok_s": "mediana 1warmup+3, len(content)/4 / elapsed_wall, per profilo -> qa/g1_measures.json tok_s.profili (python tests/t2a_sidecar.py)",
+    "ttft_p50_ms": "sonda pywebview end-to-end (bridge incluso, hidden) n=2 -> qa/t_probe_pywebview.json p50_ms; run n=5 originale in qa/r13_ttft_prev_load.json (p50 91962.4); fasi quiet tent.1 in qa/qa_r13_ttft_report.md; verdict BLOCKED (target 2000ms) con cause+procedura nel report",
+    "ttft_p95_ms": "stessa sonda, nearest-rank -> qa/t_probe_pywebview.json p95_ms",
+    "prompt_cache_hit_rate": "20 conversazioni multi-turn, HIT=KV-prefix -> qa/g2_hitrate.json hit_rate (python tests/g2_hitrate.py, eseguito R13)",
+    "kv_delta_mb": "RSS padre delta su 30 turni con rolling -> qa/g2_kv_rss.json delta_parent_mb (python tests/g2_kv_rss.py, eseguito R13)",
+    "gate": "NON rimisurato: invarianza registry verificata (testH4_registry 8/8 + testH4_validators 38/38 invariati; templates/validators/grammatiche intoccate R13; functions.py solo trigger_ui/note su F06/F17 fuori gate) -> valori ricontati da qa/gate_outputs_r12.json",
+    "recall5": "eval retrieval reale -> qa/h8_eval.json recall_at_5_hybrid (rieseguito 2026-10-24)",
+    "parity": "dedupe C3: ranking completo 24/24 query identiche salvo duplicati rimossi, max delta sim 0.0 -> qa/r13_rag_dedupe.json + r13_rag_dedupe_replay.json (python data/migrate_real.py --dedupe-legacy)",
+    "router_p95_ms": "Router0LLM invariato R13 (core/router.py non toccato) -> valore R12 qa/h7_cache_measures.json 0.0108 (conferma: python tests/testH9_router.py in T1)",
+    "t1_total": "python tests/run_t1.py -> jsdom suite ufficiali (20 JS esclusi meta) + unittest/pytest 22 file -> qa/t1_r13.json total_pass"
+   }
+  },
+  {
+   "round": "15b",
+   "timestamp": "2026-10-25T11:28:11+0100",
+   "build": "2026-10-25T11:30:00+01:00",
+   "metrics": {
+    "rss_before_mb": 39.6,
+    "rss_load_mb": 2408.2,
+    "rss_30req_mb": 39.7,
+    "load_sec": 2.16,
+    "tok_s": {
+     "fast": 11.16,
+     "think": 10.99,
+     "tool": 12.45
+    },
+    "latency_p50_ms": null,
+    "latency_p95_ms": null,
+    "ttft_p50_ms": 350.5,
+    "ttft_p95_ms": 357.7,
+    "ttft_hit_p50_ms": 92.0,
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": 0.1,
+    "idle_unload_delta_mb": 2.5,
+    "prompt_lookup": "OFF",
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R15b (non rimisurato, vedi method)"
+    },
+    "recall5": 1.0,
+    "parity": 1.0,
+    "router_p95_ms": 0.0107,
+    "t1_total": 2247,
+    "gt_recall5": 1.0,
+    "gate_threshold": 0.7,
+    "qa1_esiti": {
+     "ok": 6,
+     "total": 6
+    },
+    "qa1_p95": {
+     "v_senza_web_ms": 7.47,
+     "v_con_web_ms": 5734.91,
+     "vi_first_feedback_ms": 24.99
+    },
+    "embed_query_p95_ms": 28.767,
+    "retrieve_p95_ms": 29.83,
+    "first_feedback_p95_ms": 24.99,
+    "llm_calls_default": 1,
+    "web_budget_s": 5.5
+   },
+   "method": {
+    "rss_before_mb": "psutil RSS padre prima degli invii -> qa/g2_kv_rss.json (python tests/g2_kv_rss.py, R15b)",
+    "rss_load_mb": "RSS figlio llama-server caricato -> qa/g1_measures.json rss_mb.caricato_figli (python tests/t2a_sidecar.py, R15b)",
+    "rss_30req_mb": "RSS padre dopo 30 turni -> qa/g2_kv_rss.json rss_after_mb (R15b)",
+    "load_sec": "perf_counter start_on_demand -> health 200 -> qa/g1_measures.json load_cold_sec (R15b)",
+    "tok_s": "mediana 1warmup+3, len/4÷elapsed per profilo -> qa/g1_measures.json (R15b)",
+    "ttft_p50_ms": "t2a_ttft client DIRETTO (R12 method): t0 prima di complete(stream) -> primo pezzo, n=10 hit+10 miss -> qa/r15_ttft_client.json miss.p50 (g4_ttft.json ripristinato identico a R13 per testG8)",
+    "ttft_p95_ms": "nearest-rank miss -> qa/r15_ttft_client.json miss.p95",
+    "prompt_cache_hit_rate": "20 conversazioni multi-turn -> qa/g2_hitrate.json (python tests/g2_hitrate.py, R15b)",
+    "kv_delta_mb": "RSS padre 30 turni rolling -> qa/g2_kv_rss.json delta_parent_mb (R15b)",
+    "gate": "NON rimisurato: registry intoccato R15b (fix in local_llm_client/router/gate NON toccano template/validators/grammatiche) -> riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1",
+    "recall5": "eval retrieval ibrido 30 domande -> qa/h8_eval.json recall_at_5_hybrid (rieseguito R15b)",
+    "parity": "testH1_parity (1.000, in T1) + python data/migrate_real.py --dedupe-legacy = NIENTE_DA_FARE (legacy=0, stage2=17) -> qa/r13_rag_dedupe_dryrun.json rieseguito R15b",
+    "router_p95_ms": "Router0LLM invariato -> qa/h7_cache_measures.json 0.0107 (testH9 in T1)",
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json total_pass",
+    "gt_recall5": "qa/r15_recall_gt.py: 9 positivi GT (anchor in top-5 ibrido) -> qa/r15_recall_gt.json recall5",
+    "gate_threshold": "taratura qa/gt_set_r15.json (18 casi, sweep r15_gate_sweep.json): 0.70 precision/recall 1.000; riga default patchata in data/config_manager.py",
+    "qa1_esiti": "qa/r15_qa1.py tentativo-3 (DOPO fix): esiti (i)-(vi) -> qa/r15_qa1.json cases[].ok",
+    "qa1_p95": "stesso run: p95 v(a) senza web, v(b) con web, vi primo feedback -> qa/r15_qa1.json targets",
+    "embed_query_p95_ms": "qa/r15_pipe_p2_embed.json (p95 encode query warm, n dichiarato dal blocco P)",
+    "retrieve_p95_ms": "qa/r15_pipe_p3_retrieve.json (ibrido FTS+vec+RRF, corpus reale)",
+    "first_feedback_p95_ms": "qa/r15_pipe_p1_feedback.json + qa/r15_qa1.json targets.vi (progress events)",
+    "llm_calls_default": "qa/r15_pipe_p1_calls.json (conteggio reale generate_stream per scenario: default=1, informativa/cache=0)",
+    "web_budget_s": "costante WEB_BUDGET_S in core/web_search.py (budget escalation, verificato qa/r15_qa1 v(b)=5734.91ms)"
+   }
+  },
+  {
+   "round": "16",
+   "timestamp": "2026-10-25T15:20:00+01:00",
+   "build": "2026-10-25T18:20:00+01:00",
+   "metrics": {
+    "rss_before_mb": 39.7,
+    "rss_load_mb": 2408.4,
+    "rss_30req_mb": 39.7,
+    "load_sec": 2.26,
+    "tok_s": {
+     "fast": 10.78,
+     "think": 11.19,
+     "tool": 12.56
+    },
+    "ttft_p50_ms": 465.5,
+    "ttft_p95_ms": 481.1,
+    "ttft_hit_p50_ms": 82.7,
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": 0.0,
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
+    },
+    "recall5": 1.0,
+    "parity": 1.0,
+    "router_p95_ms": 0.0107,
+    "t1_total": 2323,
+    "gt_recall5": 1.0,
+    "gate_threshold": 0.7,
+    "qa1_esiti": {
+     "ok": 5,
+     "total": 20
+    },
+    "qa1_ok_core": 20,
+    "qa1_p95": {
+     "total_ms": 19102.23,
+     "v_senza_web_ms": 34.4,
+     "first_token_ms": 11768.02,
+     "vi_first_feedback_ms": 30.02
+    },
+    "slo20_p95_ok": true,
+    "slo2_p95_ok": false,
+    "guard_fail_n": 0,
+    "llm_calls_default": 1,
+    "embed_query_p95_ms": 28.767,
+    "retrieve_p95_ms": 81.17,
+    "first_feedback_p95_ms": 30.02,
+    "web_budget_s": 5.0,
+    "web_allowlist_domains": 22,
+    "gate_umano": {
+     "ok": 1,
+     "parziale": 7,
+     "ko": 2,
+     "n": 10
+    },
+    "followup_verify": {
+     "ok": 10,
+     "n": 10,
+     "p95_total_ms": 19126.8,
+     "slo20_all": true,
+     "guard_fail": 0,
+     "verbatim_fail": 0,
+     "lingua_it": 10,
+     "inline_citati": 10,
+     "badge_fonti": 10,
+     "cache_hit_rielaborato": true,
+     "cache_text_diverso": true,
+     "flag_wrong_removed": 1,
+     "flag_then_miss": true,
+     "ui_screenshots": "22/22 (qa_browser/r17_chat.js, 4 PNG qa/r17_chat_*.png)"
+    },
+    "r18_rifinimento": {
+     "ok": 4,
+     "n": 4,
+     "total_p95_ms": 52396.5,
+     "truncation_marker": 0,
+     "code_citations_total": 0,
+     "mojibake": 0,
+     "completi": 4,
+     "stages": {
+      "v1": [
+       "web"
+      ],
+      "v2": [
+       "web"
+      ],
+      "v3": [
+       "appunti"
+      ],
+      "v4": [
+       "web"
+      ]
+     },
+     "ui_screenshots": "40/40 (qa_browser/r18_chat.js, 8 PNG qa/r18_chat_*.png)"
+    }
+   },
+   "method": {
+    "rss_before_mb": "psutil RSS padre prima dei 30 turni -> qa/g2_kv_rss.json rss_before_mb (python tests/g2_kv_rss.py, R16)",
+    "rss_load_mb": "RSS figlio llama-server caricato -> qa/g1_measures.json rss_mb.caricato_figli_llama_server[0].rss_mb (python tests/t2a_sidecar.py, R16)",
+    "rss_30req_mb": "RSS padre dopo 30 turni -> qa/g2_kv_rss.json rss_after_mb (R16)",
+    "load_sec": "perf_counter start_on_demand -> health 200 -> qa/g1_measures.json load_cold_sec.sec (R16)",
+    "tok_s": "mediana warmup+3, len/4/elapsed per profilo -> qa/g1_measures.json (python tests/t2a_sidecar.py, R16)",
+    "ttft_p50_ms": "t2a_ttft client DIRETTO (POST /completion, path storico invariato): n=10 miss -> qa/r16_ttft_client.json miss.p50 (R16; qa/g4_ttft.json ripristinato ai valori storici per testG8)",
+    "ttft_p95_ms": "nearest-rank miss -> qa/r16_ttft_client.json miss.p95",
+    "prompt_cache_hit_rate": "20 conversazioni multi-turn -> qa/g2_hitrate.json (python tests/g2_hitrate.py, R16)",
+    "kv_delta_mb": "RSS padre 30 turni rolling -> qa/g2_kv_rss.json delta_parent_mb (R16)",
+    "gate": "NON rimisurato: registry intoccato R16 - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1",
+    "recall5": "eval retrieval ibrido 30 domande -> qa/h8_eval.json recall_at_5_hybrid (retrieval intoccato R16, riconfermato in T1)",
+    "parity": "testH1_parity (1.000, in T1) + python data/migrate_real.py --dedupe-legacy = NIENTE_DA_FARE -> qa/r13_rag_dedupe_dryrun.json (rieseguito R16)",
+    "router_p95_ms": "Router 0-LLM invariato -> qa/h7_cache_measures.json (testH9 in T1)",
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json total_pass",
+    "gt_recall5": "qa/r15_recall_gt.py: 9 positivi GT -> qa/r15_recall_gt.json recall5 (rieseguito R16)",
+    "gate_threshold": "taratura qa/gt_set_r15.json - riga default data/config_manager.py (invariata R16)",
+    "qa1_esiti": "qa/r16_qa1.py tentativo-3 (DOPO i fix): assert STRETTI (incl. primo token <=2s) -> qa/r16_qa1.json cases[].ok",
+    "qa1_ok_core": "stesso run: tutti gli assert TRANNE il sub-SLO primo token -> qa/r16_qa1.json summary.ok_core",
+    "qa1_p95": "p95 nearest-rank da qa/r16_qa1.json summary (total/first_token/first_progress) + totale esito (c) senza web dal caso iii1",
+    "slo20_p95_ok": "qa/r16_qa1.json summary.slo_20s_p95_ok",
+    "slo2_p95_ok": "qa/r16_qa1.json summary.slo_2s_p95_ok (MANCATO dichiarato: fisica fetch+pp)",
+    "guard_fail_n": "qa/r16_qa1.json summary.guard_fail (core.rag.output_guard.check_output su testi reali)",
+    "llm_calls_default": "mediana generate_stream per query sul gruppo locale -> qa/r16_qa1.json cases[].llm_calls",
+    "embed_query_p95_ms": "NON rimisurato R16 (encode path intoccato): qa/r15_pipe_p2_embed.json encode_warm_ms.p95 (misura R15b)",
+    "retrieve_p95_ms": "stadi appunti+libri 'done' ms per caso -> qa/r16_qa1.json cases[].stage_ms (p95, R16)",
+    "first_feedback_p95_ms": "primo evento progress per caso -> qa/r16_qa1.json summary.first_progress_p95 (R16)",
+    "web_budget_s": "costante WEB_BUDGET_S in core/web_search.py (R16: 5.0s, contract.WEB_FETCH_CAP_S)",
+    "web_allowlist_domains": "righe domini di data/web_allowlist.txt (R16 2.2)",
+    "gate_umano": "qa/gate_round16.md (10 risposte revisionate, sorgente qa/r16_gate_raw.json)",
+    "followup_verify": "qa/r17_verify.py (7 query reali + 3 cache): Router reale sidecar+web allowlist (NET_LOG per caso), guardia output_guard, lingua euristica it/en, footer fonti deterministico -> qa/r17_verify.json; UI: qa_browser/r17_chat.js su index.html REALE con sequenze token reali (qa/r17_tokens_*.json) -> 22/22 + 4 screenshot",
+    "r18_rifinimento": "qa/r18_verify.py (4 query reali: Divina Commedia lunga, dante, C4 locale, boccaccio): NIENTE kill temporale (total informativi), guardia anti-codici [F#]/anti-troncatura/encoding, provenienza dagli eventi sources.stages -> qa/r18_verify.json; UI: qa_browser/r18_chat.js su index.html REALE con sequenze token reali (qa/r18_tokens_*.json) -> 40/40 + 8 screenshot"
+   }
+  },
+  {
+   "round": "18",
+   "timestamp": "2026-10-26T20:00:09+0100",
+   "build": "2026-10-26T19:55:00+01:00",
+   "metrics": {
+    "rss_30req_mb": 39.7,
+    "rss_before_mb": 39.7,
+    "rss_load_mb": 2408.4,
+    "load_sec": 2.26,
+    "tok_s": {
+     "fast": 10.78,
+     "think": 11.19,
+     "tool": 12.56
+    },
+    "ttft_p50_ms": 465.5,
+    "ttft_p95_ms": 481.1,
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": 0.0,
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
+    },
+    "router_p95_ms": 0.0107,
+    "recall5": 1.0,
+    "gt_recall5": 1.0,
+    "parity": 1.0,
+    "t1_total": 2356,
+    "t1_fail": -1,
+    "t1_target_ok": true,
+    "qa1": {
+     "ok": false,
+     "n_checks": 88,
+     "n_pass": 87,
+     "n_fail": 1,
+     "probes": 9,
+     "web_tentato": 8,
+     "depth_ok": 0,
+     "gt_dante_1265_1321": true,
+     "gt_petrarca_fr_1304_1374": true,
+     "gt_boccaccio_1313_1375": true,
+     "gt_fotosintesi_no_nitro_4": true,
+     "gt_fotosintesi_co2": false,
+     "intent_sotto_2": true,
+     "retrievalEspanso_2": true,
+     "chitchat_no_research": true,
+     "rete_giu_umana": true,
+     "markers_troncamenti": 0,
+     "blocked": "6/6 tentativi - residuo P1 GT co2 (vedi report)",
+     "p50_total_ms": 104796.7,
+     "p95_total_ms": 129902.6
+    },
+    "f0": {
+     "cases_catena": 4,
+     "circuit_breaker_prima": false,
+     "circuit_breaker_dopo_ttl_s": 60,
+     "fotosintesi_presenze_pre": 5,
+     "attivo_dup_hash": 0
+    },
+    "dedup_migration": {
+     "n_rimossi": 0,
+     "prima": 17,
+     "dopo": 17,
+     "vincolo": "ux_chunks_hash_doc (store_key, source_file, content_hash)"
+    },
+    "web": {
+     "budget_s": 7.0,
+     "breaker_ttl_s": 60.0,
+     "allowlist_domains": 22,
+     "wiki_lead_rescue": true,
+     "wiki_in_front": true
+    },
+    "prompt": {
+     "chunk_chars": 950,
+     "web_chars": 400,
+     "web_max": 6
+    },
+    "intent": {
+     "classi": 4,
+     "sim_soglia": 0.92,
+     "gate_cache": "B3.2 solo stessa-domanda-riformulata"
+    },
+    "grounding": {
+     "profilo": "think+JSON",
+     "regen_max": 1,
+     "parse_fail": "ok=None -> saltato"
+    },
+    "depth_min": {
+     "nuova": 120,
+     "sotto": 80,
+     "riformulata": 80
+    }
+   },
+   "method": {
+    "rss_30req_mb": "PORTATA da round16 (qa/g2_kv_rss.json invariato - nessuna rimisurazione R18)",
+    "rss_before_mb": "PORTATA da round16 (qa/g2_kv_rss.json)",
+    "rss_load_mb": "PORTATA da round16 (qa/g1_measures.json)",
+    "load_sec": "PORTATA da round16 (qa/g1_measures.json)",
+    "tok_s": "PORTATA da round16 (qa/g1_measures.json - t2a_sidecar)",
+    "ttft_p50_ms": "PORTATA da round16 (qa/r16_ttft_client.json)",
+    "ttft_p95_ms": "PORTATA da round16 (qa/r16_ttft_client.json)",
+    "prompt_cache_hit_rate": "PORTATA da round16 (qa/g1_measures.json)",
+    "kv_delta_mb": "PORTATA da round16 (qa/g2_kv_rss.json)",
+    "gate": "PORTATA da round16 (qa/gate_outputs_r12.json ricontato)",
+    "router_p95_ms": "PORTATA da round16 (qa/h7_cache_measures.json)",
+    "recall5": "python qa/r15_recall_gt.py -> qa/r15_recall_gt.json recall_at_5",
+    "gt_recall5": "idem recall5 (9/9)",
+    "parity": "python tests/run_t1.py -> tests/testH1_parity.py 10/10 (T1) + testR13_rag parity su sha (R18)",
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json total_pass",
+    "t1_fail": "qa/t1_r13.json total_fail",
+    "qa1": "python tests/gt_r18_probes.py -> qa/r18_qa1.json (n_checks/n_pass/n_fail,9 sonde reali LLM+rete)",
+    "f0": "qa/f0_round18.json (catena4 casi, breaker, audit indice F0.3)",
+    "dedup_migration": "python data/migrate_dedup.py -> qa/r18_dedup_migration.json",
+    "web": "core/web_search.py WEB_BUDGET_S + core/rag/web_stage.breaker_state + data/web_allowlist.txt (conteggio righe)",
+    "prompt": "core/local_llm_client.py PROMPT_CHUNK_CHARS/PROMPT_WEB_CHARS/PROMPT_WEB_MAX",
+    "intent": "core/rag/intent.py SIM_THRESHOLD + tests/testR18_intent.py",
+    "grounding": "core/rag/grounding.py (run_check/parse_check) + tests/testR18_pipeline.py::TestGrounding",
+    "depth_min": "core/rag/grounding.py _MIN_WORDS + QA-1 depth_ok"
+   }
+  },
+  {
+   "round": "14",
+   "timestamp": "2026-10-27T20:21:06+0100",
+   "build": "2026-10-27T20:03:00+01:00",
+   "metrics": {
+    "t1_total": 2409,
+    "t1_fail": 0,
+    "latenza_aggiunta_ms": {
+     "prima": {
+      "i0": {
+       "p50": 0.2,
+       "p95": 0.3,
+       "settle": 0.2,
+       "trailing_px": 0
+      },
+      "i50": {
+       "p50": 0.3,
+       "p95": 0.5,
+       "settle": null,
+       "trailing_px": 8.11
+      },
+      "i100": {
+       "p50": 0.3,
+       "p95": 0.6,
+       "settle": null,
+       "trailing_px": 44.82
+      }
+     },
+     "dopo": {
+      "i0": {
+       "p50": 8.6,
+       "p95": 16.8,
+       "settle": 10.3,
+       "trailing_px": 7.91
+      },
+      "i50": {
+       "p50": 9.5,
+       "p95": 17.5,
+       "settle": 16.9,
+       "trailing_px": 6.93
+      },
+      "i100": {
+       "p50": 9.4,
+       "p95": 17.4,
+       "settle": 20,
+       "trailing_px": 3.43
+      }
+     },
+     "target": {
+      "p50_le": 16,
+      "p95_le": 33,
+      "invariante_vs_intensita": true
+     },
+     "settlev2frame_le_ms": 33.4
+    },
+    "forme_errori": {
+     "tolleraza_px": "2.5 + 3*amp (amp=helpAssist default 0.6 -> 4.3)",
+     "suite": "tests/a14_shaping.test.js 29/29",
+     "casi": [
+      "line perp<=4.3",
+      "circle r/centro<=4.3",
+      "ellipse aspect=70/30",
+      "rect aspect, square",
+      "toggle OFF=nessun snap",
+      "undo 2 livelli",
+      "hold-still350->circle",
+      "flick-V attach"
+     ]
+    },
+    "schemi_routing": {
+     "prima": {
+      "archi_con_intersezione": 5,
+      "coppie_violate": 5,
+      "punte_oltre_2px": 0,
+      "punte_totali": 18
+     },
+     "dopo": {
+      "archi_con_intersezione": 0,
+      "coppie_violate": 0,
+      "punte_oltre_2px": 0,
+      "punte_totali": 18,
+      "punte_pct_oltre_2px": 0
+     },
+     "nodi_mancanti_dopo": 0
+    },
+    "suite_verde": {
+     "schemaStrategies": 198,
+     "editorWiring": 49,
+     "qaB_schemi": 125,
+     "s14_routing": 14,
+     "qaA_appunti": 92,
+     "l14": 10,
+     "a14": 29
+    },
+    "recall5": 1.0,
+    "parity": 1.0
+   },
+   "method": {
+    "latenza_aggiunta_ms": "node qa_browser/qaLA14_appunti.js [prima|dopo] -> qa/l14_measures.json: PointerEvent sintetici ~240Hz (250 move+fermo600ms+up) su canvas reale qa_ui/notes.html; trace window.__ink (performance.now unico); latenza=paint(n>=evt.n)-evt.t p50/p95; settle=lastRaw al primo paint<=2px; warmup 6 rAF dichiarato",
+    "forme_errori": "node tests/a14_shaping.test.js (jsdom+env canvas rect 800x600, punti in mondo via wc()) - nessuna simulazione: stroke spediti al modulo reale, asserzioni su obj shape",
+    "schemi_routing": "node qa_browser/qaS14_schemi.js [prima|dopo] -> qa/s14_measures.json (path.getPointAtLength su SVG reale, bbox nodi, punte <polygon> vs ancore S1); PRIMA e DOPO sullo stesso script",
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json total_pass (R14 finale)",
+    "suite_verde": "output dei runner node (PASS/FAIL) durante il round",
+    "rss_30req_mb": "PORTATA da round18 (qa/g2_kv_rss.json invariato in R14 - nessuna rimisurazione RSS)",
+    "load_sec": "PORTATA da round18 (qa/g1_measures.json invariato in R14)",
+    "tok_s": "PORTATA da round18 (qa/g1_measures.json - t2a_sidecar, invariato)",
+    "ttft_p50_ms": "PORTATA da round18 (qa/r16_ttft_client.json, invariato)",
+    "ttft_p95_ms": "PORTATA da round18 (qa/r16_ttft_client.json, invariato)",
+    "prompt_cache_hit_rate": "PORTATA da round18 (qa/g1_measures.json)",
+    "kv_delta_mb": "PORTATA da round18 (qa/g2_kv_rss.json)",
+    "gate": "PORTATA da round18 (qa/gate_outputs_r12.json ricontato nei round precedenti)",
+    "recall5": "python qa/r15_recall_gt.py -> qa/r15_recall_gt.json recall5 (R18, file invariato)",
+    "parity": "tests/testH1_parity.py dentro python tests/run_t1.py -> qa/t1_r13.json (verde in T1 R14)",
+    "router_p95_ms": "PORTATA da round18 (qa/h7_cache_measures.json)"
+   }
+  },
+  {
+   "round": "23",
+   "timestamp": "2026-10-31T16:18:04+0100",
+   "build": "2026-10-27T20:03:00+01:00",
+   "metrics": {
+    "t1_total": 3224,
+    "t1_fail": 0,
+    "t1_meta_escluse": {
+     "note": "runner meta / suite blocco con aspettative legacy: esclusi dalla baseline T1 con lo stesso metodo di R11/R12, eseguiti e riportati a sola informativa (NON conteggiati nel verdetto)",
+     "suites": 4,
+     "pass": 368,
+     "fail": 6,
+     "items": [
+      {
+       "file": "qaB1_fogli.js",
+       "pass": 142,
+       "fail": 1,
+       "exit": 1,
+       "sec": 146.1
+      },
+      {
+       "file": "qaD_blockD.js",
+       "pass": 10,
+       "fail": 0,
+       "exit": 0,
+       "sec": 13.2
+      },
+      {
+       "file": "qaF_block.js",
+       "pass": 95,
+       "fail": 4,
+       "exit": 1,
+       "sec": 46.8
+      },
+      {
+       "file": "qaV_blockv.js",
+       "pass": 121,
+       "fail": 1,
+       "exit": 1,
+       "sec": 12.5
+      }
+     ]
+    },
+    "ttft_p50_ms": 998.5,
+    "ttft_p95_ms": 1040.8,
+    "ttft_hit_p50_ms": 94.8,
+    "ttft_hit_p95_ms": 98.6,
+    "ttft_slo": {
+     "hit_p50_le": 1500.0,
+     "miss_p50_le": 4000.0
+    },
+    "rss_30req_mb": 39.7,
+    "load_sec": 2.26,
+    "tok_s": {
+     "fast": 10.78,
+     "think": 11.19,
+     "tool": 12.56
+    },
+    "prompt_cache_hit_rate": 0.7767,
+    "kv_delta_mb": 0.0,
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
+    },
+    "recall5": 1.0,
+    "parity": 1.0,
+    "router_p95_ms": 0.0107,
+    "engine_select": {
+     "criteria": "engine default = XHToken SE draft Spark nativo acceptance >= 0.70 E speedup >= 1.30x sul pro; altrimenti upstream",
+     "acceptance_xt": 0.8402,
+     "acceptance_pass": true,
+     "speedup_xt": 1.24,
+     "speedup_pass": false,
+     "verdict": "ENGINE DEFAULT = UPSTREAM",
+     "note": "speedup xhtoken 1.240 < 1.30 (soglia non raggiunta, con numeri); upstream con draft 1.272 supera acc ma anche lui <1.30 — la regola è selettiva su XHToken, esito dichiarato"
+    },
+    "tok_s_bench_pp512_tg128": {
+     "1.7B": {
+      "upstream": 147.43,
+      "upstream_err": 1.57,
+      "xhtoken": 153.79,
+      "xhtoken_err": 2.48,
+      "ratio_xt_up": 1.043
+     },
+     "4B": {
+      "upstream": 55.8,
+      "upstream_err": 1.07,
+      "xhtoken": 56.35,
+      "xhtoken_err": 0.64,
+      "ratio_xt_up": 1.01
+     },
+     "tg128": {
+      "1.7B": {
+       "upstream": 15.3,
+       "upstream_err": 0.27,
+       "xhtoken": 15.82,
+       "xhtoken_err": 0.3,
+       "ratio_xt_up": 1.034
+      },
+      "4B": {
+       "upstream": 6.7,
+       "upstream_err": 0.06,
+       "xhtoken": 6.76,
+       "xhtoken_err": 0.07,
+       "ratio_xt_up": 1.009
+      }
+     }
+    },
+    "draft_1_7b_to_4b": {
+     "acceptance_upstream": 0.8402,
+     "acceptance_xhtoken": 0.8402,
+     "speedup_upstream": 1.272,
+     "speedup_xhtoken": 1.24,
+     "default": "OFF (regola X4.2: speedup 1.240 < 1.30)"
+    },
+    "rss_mb_steady_ctx4096_q8": {
+     "pro_4B": {
+      "upstream": 4435.8,
+      "xhtoken": 4426.6
+     },
+     "base_1_7B": {
+      "upstream": 1876.8,
+      "xhtoken": 1868
+     }
+    },
+    "qa1_switch_kill": {
+     "pass": 28,
+     "fail": 0,
+     "file": "qa/x_qa1_switch.json"
+    },
+    "qa2_slo_pass": {
+     "miss_p50": true,
+     "hit_p50": true,
+     "streaming": true,
+     "complete": true
+    },
+    "models_ui_dropdown": {
+     "pass": 10,
+     "fail": 0,
+     "file": "qa/r23_models_measures.json"
+    },
+    "t1_meta_legacy_fail": {
+     "n": 6,
+     "note": "suite escluse dalla baseline dal R11/R12: qaF pre-H11, qaB1 baseline count, qaV 5.24 legacy - non regressioni R23 (motivi visibili in qa/t1_r13.log)"
+    }
+   },
+   "method": {
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json (TOTALE ufficiale, baseline 3205 -> 3224)",
+    "ttft_p50_ms": "python qa/x_qa2_slo.py -> qa/x_qa2_slo.json: sidecar REALE (core.sidecar), miss = prefisso unico x5, TTFT = primo chunk SSE, motore = config reale (llama.engine auto -> upstream)",
+    "ttft_p95_ms": "stesso run di ttft_p50_ms (qa/x_qa2_slo.json): p95 nearest-rank sui5 campioni miss (prefissi unici) - p95=1040.8ms <=4000",
+    "ttft_hit_p50_ms": "idem: hit = prompt identico ripetuto x5 dopo warmup (prefix cache)",
+    "engine_select": "python qa/_x_draftbench.py + llama-bench (qa/_x_bench_*.log) -> qa/x3_compare.json (regola X3.3 applicata con i numeri)",
+    "tok_s_bench_pp512_tg128": "llama-bench -p 512 -n 128 su entrambi i motori (qa/_x_bench_{up,xt}_{17b,4b}.log) - stessi argomenti, stessa macchina",
+    "draft_1_7b_to_4b": "python qa/_x_draftbench.py: server REALI -c4096 q8_0, --spec-type draft-simple, n_predict=200 temp=0; acceptance = draft_n_accepted/draft_n dalle timings",
+    "rss_mb_steady_ctx4096_q8": "stesso probe: psutil RSS steady post-load per motore x modello (qa/x3_draftbench.json, qa/x3_rssbase.json)",
+    "qa1_switch_kill": "python qa/x_qa1_switch.py: StudioIAAPI REALE (stub webview) + sidecar reale; switch base->pro->base con engine xhtoken, kill binario fork -> upstream, gguf corrotto -> MiniCPM5; cleanup config/file in finally",
+    "qa2_slo_pass": "qa/x_qa2_slo.json pass (miss<=4000, hit<=1500, streaming, complete)",
+    "models_ui_dropdown": "node qa_browser/qaR23_models.js: dati = python list_models REALE, Chrome/CDP reale, screenshot qa/r23_models_*.png",
+    "rss_30req_mb": "PORTATA da round18 (qa/g2_kv_rss.json, invariato)",
+    "load_sec": "PORTATA da round18 (qa/g1_measures.json, invariato)",
+    "tok_s": "PORTATA da round18 (qa/g1_measures.json profili sidecar invariati)",
+    "prompt_cache_hit_rate": "PORTATA da round18 (qa/g1_measures.json)",
+    "kv_delta_mb": "PORTATA da round18 (qa/g2_kv_rss.json)",
+    "gate": "PORTATA da round18 (qa/gate_outputs_r12.json; testH4 verdi nel T1 R23)",
+    "recall5": "PORTATA da round18 (qa/h8_eval.json)",
+    "parity": "PORTATA da round18 (testH1_parity in T1)",
+    "router_p95_ms": "PORTATA da round18 (qa/h7_cache_measures.json)"
+   }
+  }
+ ]
+}

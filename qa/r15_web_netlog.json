@@ -1,0 +1,1667 @@
+{
+ "round": "R15b",
+ "block": "W",
+ "updated": "2026-11-02T18:47:30+0100",
+ "declared_calls": [
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3889.5,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 708.8,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 760.2,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 862.9,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 478.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 452.6,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  }
+ ],
+ "n": 7,
+ "note": "solo documenti richiesti al web; nessun LLM cloud. Ogni entry: provider/url/ms come da protocollo W.",
+ "all_calls": [
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 613.3,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 668.4,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 4713.2,
+   "ok": false,
+   "n": 0,
+   "note": "batch fallito: error sending request for url (https://www.google.com/search?q=fotosintesi+clorofilliana+%28site%3Atreccani.it+OR+site%3Asapere.it+OR+site%3Abritannica.com+OR+site%3Ascholar.google.com+OR+site%3Ajstor.org+OR+site%3Afacta.news%29&filter=1&start=0&hl=en-US&lr=lang_en&cr=countryUS) > operation timed out"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 537.5,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 657.3,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 267.2,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 359.3,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2765.6,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1821.7,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.youtube.com/watch?v=j3QrttkUQSE",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.venditapianteonline.it/blog/le-basi-della-fotosintesi-clorofilliana/",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 524.3,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 583.5,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 283.1,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 295.6,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2216.2,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1455.8,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.youtube.com/watch?v=j3QrttkUQSE",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.venditapianteonline.it/blog/le-basi-della-fotosintesi-clorofilliana/",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 541.0,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 565.9,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 273.5,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 324.2,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2596.6,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1308.3,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.chimica-online.it/biologia/fotosintesi-clorofilliana.htm",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.studiarapido.it/fotosintesi-clorofilliana-spiegato-semplice/",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 548.5,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 566.7,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 288.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 329.7,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2807.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1110.6,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.chimica-online.it/biologia/fotosintesi-clorofilliana.htm",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.studiarapido.it/fotosintesi-clorofilliana-spiegato-semplice/",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 598.0,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 718.4,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 287.8,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 360.8,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2093.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 722.7,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.youtube.com/watch?v=j3QrttkUQSE",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://www.venditapianteonline.it/blog/le-basi-della-fotosintesi-clorofilliana/",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 500.8,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 491.9,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 301.2,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 301.5,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "allowlist",
+   "url": "https://malware.example.net/p",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fuori allowlist - scartato"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2593.4,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 878.0,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 519.7,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 973.9,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 306.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 325.8,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/q",
+   "ms": 3.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore: TimeoutError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2564.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 644.9,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 541.9,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 668.7,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 263.4,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 337.4,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/q",
+   "ms": 3.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore: TimeoutError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2436.5,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 396.9,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 578.7,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 591.0,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 264.7,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 343.2,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "https://example.org/x",
+   "ms": 5.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore fetch: ConnectionError"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/q",
+   "ms": 3.0,
+   "ok": false,
+   "n": 0,
+   "note": "errore: TimeoutError"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2551.7,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 543.9,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 579.1,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 563.3,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 311.5,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 390.9,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2881.6,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1294.0,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 580.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 537.1,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 302.8,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 309.3,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2890.0,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 620.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 706.8,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 294.0,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 305.4,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3794.2,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1783.9,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 598.1,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 646.2,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 275.9,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 358.3,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 1689.7,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 593.3,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 700.8,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 333.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 460.3,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2887.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1477.8,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 607.5,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 623.1,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 291.7,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 10333.2,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 1580.9,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 546.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 670.3,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 289.9,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 314.2,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3083.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 2415.6,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 730.2,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 664.5,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 332.7,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 356.3,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2252.8,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 713.1,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 753.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 792.8,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 516.1,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 343.4,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2474.6,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 613.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 667.1,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 481.2,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 276.7,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 1375.2,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 830.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 784.7,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 478.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 482.2,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3024.2,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1589.6,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 721.2,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 789.2,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 549.8,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 410.1,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2386.5,
+   "ok": false,
+   "n": 0,
+   "note": "batch fallito: ConnectError: ConnectError(\"error sending request for url (https://search.yahoo.com/search;_ylt=tO3zd8R58k-ZYHyIa30Sx21z;_ylu=aEJhRM_7WehhRYna7r-KUgrvO6zlFAzsFdK3RnjoICW0who?p=fotosintesi+clorofilliana+%28site%3Atreccani.it+OR+site%3Asapere.it+OR+site%3Abritannica.com+OR+site%3Ascholar.google.com+OR+site%3Ajstor.org+OR+site%3Afacta.news%29) > client error (Connect) > Connessione in corso interrotta forzatamente dall'host remoto. (os error 10054)\")"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1448.0,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 738.7,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 674.8,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 503.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 348.1,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3126.1,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 640.0,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2790.7,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1936.5,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 672.3,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 694.5,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 389.1,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 333.5,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3433.6,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 1080.0,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 769.8,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 1035.4,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 548.7,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 462.5,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 2108.7,
+   "ok": true,
+   "n": 3,
+   "note": "trusted batch (6 domini)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 915.6,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 800.4,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 422.0,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 347.7,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+   "ms": 3889.5,
+   "ok": true,
+   "n": 0,
+   "note": "trusted batch (6 domini): nessun risultato (normale)"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 0.0,
+   "ok": true,
+   "n": 0,
+   "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+  },
+  {
+   "provider": "ddgs",
+   "url": "ddgs://text?q=fotosintesi clorofilliana",
+   "ms": 708.8,
+   "ok": true,
+   "n": 3,
+   "note": "generico (no site:)"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 760.2,
+   "ok": true,
+   "n": 0,
+   "note": "titoli [en]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3",
+   "ms": 862.9,
+   "ok": true,
+   "n": 3,
+   "note": "titoli [it]"
+  },
+  {
+   "provider": "wikipedia",
+   "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana",
+   "ms": 478.6,
+   "ok": true,
+   "n": 1,
+   "note": "summary [it]"
+  },
+  {
+   "provider": "fetch",
+   "url": "https://example.com",
+   "ms": 452.6,
+   "status": 200,
+   "ok": true,
+   "note": "readability 156 char (max 4000)"
+  }
+ ]
+}

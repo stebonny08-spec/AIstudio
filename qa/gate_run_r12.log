@@ -1,0 +1,221 @@
+[16:47:33] caricamento modello: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[16:48:55]   llm fid=F01 79383ms len=1460 mt=600
+[16:48:55] F01 #1/15 ok=True retried=False 79384ms (1/60)
+[16:50:44]   llm fid=F01 108750ms len=1518 mt=600
+[16:50:44] F01 #2/15 ok=True retried=False 108751ms (2/60)
+[16:52:27]   llm fid=F01 102938ms len=1583 mt=600
+[16:52:27] F01 #3/15 ok=True retried=False 102939ms (3/60)
+[16:52:27] F01 #4/15 ok=True retried=False 0ms (4/60)
+[16:52:27] F01 #5/15 ok=True retried=False 0ms (5/60)
+[16:52:27] F01 #6/15 ok=True retried=False 0ms (6/60)
+[16:52:27] F01 #7/15 ok=True retried=False 0ms (7/60)
+[16:52:27] F01 #8/15 ok=True retried=False 0ms (8/60)
+[16:52:27] F01 #9/15 ok=True retried=False 0ms (9/60)
+[16:52:27] F01 #10/15 ok=True retried=False 0ms (10/60)
+[16:52:27] F01 #11/15 ok=True retried=False 0ms (11/60)
+[16:52:27] F01 #12/15 ok=True retried=False 0ms (12/60)
+[16:52:27] F01 #13/15 ok=True retried=False 0ms (13/60)
+[16:52:27] F01 #14/15 ok=True retried=False 0ms (14/60)
+[16:52:27] F01 #15/15 ok=True retried=False 0ms (15/60)
+[16:52:42]   llm fid=F04 14680ms len=172 mt=600
+[16:52:42] F04 #1/15 ok=True retried=False 14681ms (16/60)
+[16:52:52]   llm fid=F04 10105ms len=125 mt=600
+[16:52:52] F04 #2/15 ok=True retried=False 10106ms (17/60)
+[16:53:03]   llm fid=F04 11172ms len=134 mt=600
+[16:53:03] F04 #3/15 ok=True retried=False 11173ms (18/60)
+[16:53:03] F04 #4/15 ok=True retried=False 0ms (19/60)
+[16:53:03] F04 #5/15 ok=True retried=False 0ms (20/60)
+[16:53:03] F04 #6/15 ok=True retried=False 0ms (21/60)
+[16:53:03] F04 #7/15 ok=True retried=False 0ms (22/60)
+[16:53:03] F04 #8/15 ok=True retried=False 0ms (23/60)
+[16:53:03] F04 #9/15 ok=True retried=False 0ms (24/60)
+[16:53:03] F04 #10/15 ok=True retried=False 0ms (25/60)
+[16:53:03] F04 #11/15 ok=True retried=False 0ms (26/60)
+[16:53:03] F04 #12/15 ok=True retried=False 0ms (27/60)
+[16:53:03] F04 #13/15 ok=True retried=False 0ms (28/60)
+[16:53:03] F04 #14/15 ok=True retried=False 0ms (29/60)
+[16:53:03] F04 #15/15 ok=True retried=False 0ms (30/60)
+[16:54:04]   llm fid=F10 61192ms len=995 mt=600
+[16:54:04] F10 #1/15 ok=True retried=False 61193ms (31/60)
+[16:55:22]   llm fid=F10 77964ms len=1260 mt=600
+[16:55:22] F10 #2/15 ok=True retried=False 77965ms (32/60)
+[16:55:24]   llm fid=F10 1750ms len=2 mt=600
+[AiRuntime] retry F10 per: title: stringa non vuota obbligatoria; slides: deve essere una lista non vuota
+[16:55:52]   llm fid=F10 28375ms len=347 mt=600
+[16:55:52] F10 #3/15 ok=True retried=True 30127ms (33/60)
+[16:56:53]   llm fid=F10 60182ms len=1018 mt=600
+[16:56:53] F10 #4/15 ok=True retried=False 60183ms (34/60)
+[16:56:54]   llm fid=F10 1780ms len=2 mt=600
+[AiRuntime] retry F10 per: title: stringa non vuota obbligatoria; slides: deve essere una lista non vuota
+[16:58:05]   llm fid=F10 70914ms len=878 mt=600
+[16:58:05] F10 #5/15 ok=True retried=True 72696ms (35/60)
+[16:59:06]   llm fid=F10 61043ms len=980 mt=600
+[16:59:06] F10 #6/15 ok=True retried=False 61044ms (36/60)
+[17:00:14]   llm fid=F10 67291ms len=1089 mt=600
+[17:00:14] F10 #7/15 ok=True retried=False 67292ms (37/60)
+[17:01:19]   llm fid=F10 64965ms len=1035 mt=600
+[17:01:19] F10 #8/15 ok=True retried=False 64966ms (38/60)
+[17:02:14]   llm fid=F10 55423ms len=877 mt=600
+[17:02:14] F10 #9/15 ok=True retried=False 55424ms (39/60)
+[17:03:19]   llm fid=F10 65273ms len=1048 mt=600
+[17:03:19] F10 #10/15 ok=True retried=False 65274ms (40/60)
+[17:04:24]   llm fid=F10 65034ms len=1052 mt=600
+[17:04:24] F10 #11/15 ok=True retried=False 65036ms (41/60)
+[17:05:18]   llm fid=F10 53246ms len=715 mt=600
+[17:05:18] F10 #12/15 ok=True retried=False 53248ms (42/60)
+[17:06:17]   llm fid=F10 59345ms len=966 mt=600
+[17:06:17] F10 #13/15 ok=True retried=False 59346ms (43/60)
+[17:07:21]   llm fid=F10 63702ms len=1051 mt=600
+[17:07:21] F10 #14/15 ok=True retried=False 63703ms (44/60)
+[17:08:29]   llm fid=F10 68729ms len=1052 mt=600
+[17:08:29] F10 #15/15 ok=True retried=False 68730ms (45/60)
+[17:09:14]   llm fid=F13/text 44824ms len=569 mt=600
+[17:09:14] F13 #1/15 ok=True retried=False 44826ms (46/60)
+[17:10:17]   llm fid=F13/text 62886ms len=844 mt=600
+[AiRuntime] retry F13 per: script: 134 parole, attese ~88 (tolleranza +/-18)
+[17:11:13]   llm fid=F13/text 55514ms len=748 mt=600
+[17:11:13] F13 #2/15 ok=False retried=False 118403ms (47/60)
+[17:12:02]   llm fid=F13/text 49673ms len=761 mt=600
+[17:12:02] F13 #3/15 ok=True retried=False 49673ms (48/60)
+[17:13:27]   llm fid=F13/text 85173ms len=1691 mt=600
+[AiRuntime] retry F13 per: script: 274 parole, attese ~112 (tolleranza +/-22)
+[17:14:19]   llm fid=F13/text 52039ms len=1022 mt=600
+[17:14:19] F13 #4/15 ok=False retried=False 137214ms (49/60)
+[17:14:52]   llm fid=F13/text 32988ms len=676 mt=600
+[17:14:52] F13 #5/15 ok=True retried=False 32989ms (50/60)
+[17:16:05]   llm fid=F13/text 72479ms len=1672 mt=600
+[AiRuntime] retry F13 per: script: 259 parole, attese ~138 (tolleranza +/-28)
+[17:17:24]   llm fid=F13/text 79378ms len=1784 mt=600
+[17:17:24] F13 #6/15 ok=False retried=False 151858ms (51/60)
+[17:18:39]   llm fid=F13/text 74467ms len=1535 mt=600
+[AiRuntime] retry F13 per: script: 225 parole, attese ~150 (tolleranza +/-30)
+[17:20:08]   llm fid=F13/text 89266ms len=1791 mt=600
+[17:20:08] F13 #7/15 ok=False retried=False 163735ms (52/60)
+[17:21:06]   llm fid=F13/text 58396ms len=1209 mt=600
+[AiRuntime] retry F13 per: script: 190 parole, attese ~75 (tolleranza +/-15)
+[17:23:56]   llm fid=F13/text 169526ms len=1900 mt=600
+[17:23:56] F13 #8/15 ok=False retried=False 227925ms (53/60)
+[17:25:40]   llm fid=F13/text 104051ms len=926 mt=600
+[AiRuntime] retry F13 per: script: 154 parole, attese ~88 (tolleranza +/-18)
+[17:27:56]   llm fid=F13/text 136100ms len=832 mt=600
+[17:27:56] F13 #9/15 ok=False retried=False 240154ms (54/60)
+[17:31:16]   llm fid=F13/text 199920ms len=2325 mt=600
+[AiRuntime] retry F13 per: script: 295 parole, attese ~100 (tolleranza +/-20)
+[17:32:10]   llm fid=F13/text 53656ms len=1030 mt=600
+[17:32:10] F13 #10/15 ok=False retried=False 253577ms (55/60)
+[17:33:04]   llm fid=F13/text 53876ms len=1253 mt=600
+[AiRuntime] retry F13 per: script: 172 parole, attese ~112 (tolleranza +/-22)
+[17:34:28]   llm fid=F13/text 84803ms len=2049 mt=600
+[17:34:28] F13 #11/15 ok=False retried=False 138681ms (56/60)
+[17:35:52]   llm fid=F13/text 83883ms len=1918 mt=600
+[AiRuntime] retry F13 per: script: 302 parole, attese ~125 (tolleranza +/-25)
+[17:37:03]   llm fid=F13/text 71108ms len=1543 mt=600
+[17:37:03] F13 #12/15 ok=False retried=False 154993ms (57/60)
+[17:37:50]   llm fid=F13/text 46863ms len=1024 mt=600
+[17:37:50] F13 #13/15 ok=True retried=False 46863ms (58/60)
+[17:39:14]   llm fid=F13/text 83811ms len=1834 mt=600
+[AiRuntime] retry F13 per: script: 292 parole, attese ~150 (tolleranza +/-30)
+[17:40:39]   llm fid=F13/text 85295ms len=1839 mt=600
+[17:40:39] F13 #14/15 ok=False retried=False 169108ms (59/60)
+[17:41:29]   llm fid=F13/text 49989ms len=1026 mt=600
+[AiRuntime] retry F13 per: script: 162 parole, attese ~75 (tolleranza +/-15)
+[17:43:03]   llm fid=F13/text 93914ms len=1873 mt=600
+[17:43:03] F13 #15/15 ok=False retried=False 143904ms (60/60)
+[17:43:03] gate finito: 60/60 output → gate_outputs_r12.json + gate_summary_r12.md
+EXIT=0 
+[17:45:27] F13rigen dropped 15 vecchie voci F13, riavvio 15 rigenerazioni
+[17:45:50] F13rigen llm 21297ms len=308 target=75
+[AiRuntime] retry F13 per: script: 46 parole, attese ~75 (tolleranza +/-15)
+[17:47:09] F13rigen llm 78393ms len=1268 target=75
+[17:47:09] F13rigen F13 #1/15 ok=False 99692ms (46/60)
+[17:47:38] F13rigen llm 29154ms len=494 target=88
+[17:47:38] F13rigen F13 #2/15 ok=True 29155ms (47/60)
+[17:48:08] F13rigen llm 30652ms len=548 target=100
+[17:48:08] F13rigen F13 #3/15 ok=True 30653ms (48/60)
+[17:48:58] F13rigen llm 49402ms len=846 target=112
+[AiRuntime] retry F13 per: script: 138 parole, attese ~112 (tolleranza +/-22)
+[17:50:20] F13rigen llm 81834ms len=1552 target=112
+[17:50:20] F13rigen F13 #4/15 ok=False 131238ms (49/60)
+[17:51:05] F13rigen llm 45228ms len=768 target=125
+[17:51:05] F13rigen F13 #5/15 ok=True 45229ms (50/60)
+[17:55:29] F13rigen llm 263912ms len=4797 target=138
+[AiRuntime] retry F13 per: script: 762 parole, attese ~138 (tolleranza +/-28)
+[18:06:30] F13rigen llm 660720ms len=4694 target=138
+[18:06:30] F13rigen F13 #6/15 ok=False 924634ms (51/60)
+[18:09:38] F13rigen dropped 6 vecchie voci F13, riavvio 15 rigenerazioni
+[18:10:00] F13rigen llm 21101ms len=308 target=75
+[AiRuntime] retry F13 per: script: 46 parole, attese ~75 (tolleranza +/-15)
+[18:11:03] F13rigen llm 63050ms len=1268 target=75
+[18:11:03] F13rigen F13 #1/15 ok=False 84153ms (46/60)
+[18:11:28] F13rigen llm 24856ms len=494 target=88
+[18:11:28] F13rigen F13 #2/15 ok=True 24857ms (47/60)
+[18:11:53] F13rigen llm 25243ms len=548 target=100
+[18:11:53] F13rigen F13 #3/15 ok=True 25244ms (48/60)
+[18:12:34] F13rigen llm 40624ms len=846 target=112
+[AiRuntime] retry F13 per: script: 138 parole, attese ~112 (tolleranza +/-22)
+[18:13:41] F13rigen llm 67357ms len=1552 target=112
+[18:13:41] F13rigen F13 #4/15 ok=False 107983ms (49/60)
+[18:14:19] F13rigen llm 37881ms len=768 target=125
+[18:14:19] F13rigen F13 #5/15 ok=True 37882ms (50/60)
+[18:17:50] F13rigen llm 210991ms len=4797 target=138
+[AiRuntime] retry F13 per: script: 762 parole, attese ~138 (tolleranza +/-28)
+[18:21:24] F13rigen llm 213798ms len=4694 target=138
+[18:21:24] F13rigen F13 #6/15 ok=False 424790ms (51/60)
+[18:24:56] F13rigen llm 211587ms len=4472 target=150
+[AiRuntime] retry F13 per: script: 790 parole, attese ~150 (tolleranza +/-30)
+[18:25:18] F13rigen llm 22606ms len=375 target=150
+[18:25:18] F13rigen F13 #7/15 ok=False 234195ms (52/60)
+[18:25:42] F13rigen llm 23791ms len=482 target=75
+[18:25:42] F13rigen F13 #8/15 ok=True 23792ms (53/60)
+[18:26:19] F13rigen llm 36660ms len=757 target=88
+[AiRuntime] retry F13 per: script: 114 parole, attese ~88 (tolleranza +/-18)
+[18:26:45] F13rigen llm 26479ms len=533 target=88
+[18:26:45] F13rigen F13 #9/15 ok=True 63141ms (54/60)
+[18:30:18] F13rigen llm 212494ms len=4630 target=100
+[AiRuntime] retry F13 per: script: 767 parole, attese ~100 (tolleranza +/-20)
+[18:30:51] F13rigen llm 33082ms len=680 target=100
+[18:30:51] F13rigen F13 #10/15 ok=True 245578ms (55/60)
+[18:31:37] F13rigen llm 46562ms len=988 target=112
+[AiRuntime] retry F13 per: script: 155 parole, attese ~112 (tolleranza +/-22)
+[18:32:46] F13rigen llm 68404ms len=1501 target=112
+[18:32:46] F13rigen F13 #11/15 ok=False 114968ms (56/60)
+[18:36:17] F13rigen llm 211646ms len=4900 target=125
+[AiRuntime] retry F13 per: script: 792 parole, attese ~125 (tolleranza +/-25)
+[18:37:21] F13rigen llm 64022ms len=1277 target=125
+[18:37:21] F13rigen F13 #12/15 ok=False 275670ms (57/60)
+[18:38:04] F13rigen llm 42317ms len=913 target=138
+[18:38:04] F13rigen F13 #13/15 ok=True 42317ms (58/60)
+[18:42:28] F13rigen llm 264534ms len=4406 target=150
+[AiRuntime] retry F13 per: script: 790 parole, attese ~150 (tolleranza +/-30)
+[18:43:17] F13rigen llm 48592ms len=773 target=150
+[18:43:17] F13rigen F13 #14/15 ok=True 313127ms (59/60)
+[18:44:08] F13rigen llm 50653ms len=838 target=75
+[AiRuntime] retry F13 per: script: 125 parole, attese ~75 (tolleranza +/-15)
+[18:44:55] F13rigen llm 47435ms len=765 target=75
+[18:44:55] F13rigen F13 #15/15 ok=False 98090ms (60/60)
+[18:44:55] F13rigen F13 finale: 8/15 (target >=12) -> MANCATO
+[18:48:50] F13rigen drop 7 falliti F13 (kept 8 ok), rigenero SOLO gli indici [1, 4, 6, 7, 11, 12, 15]
+[18:49:12] F13rigen llm 19780ms len=308 target=75
+[AiRuntime] retry F13 per: script: 46 parole, attese ~75 (tolleranza +/-15)
+[18:50:28] F13rigen llm 76374ms len=1268 target=75
+[18:50:28] F13rigen F13 #1/15 ok=False 96157ms (54/60)
+[18:51:05] F13rigen llm 37044ms len=670 target=112
+[18:51:05] F13rigen F13 #4/15 ok=True 37045ms (55/60)
+[18:52:04] F13rigen llm 58156ms len=1167 target=138
+[AiRuntime] retry F13 per: script: 171 parole, attese ~138 (tolleranza +/-28)
+[18:52:50] F13rigen llm 45945ms len=892 target=138
+[18:52:50] F13rigen F13 #6/15 ok=True 104103ms (56/60)
+[18:56:49] F13rigen llm 239861ms len=4857 target=150
+[AiRuntime] retry F13 per: script: 724 parole, attese ~150 (tolleranza +/-30)
+[19:00:51] F13rigen llm 241100ms len=4877 target=150
+[19:00:51] F13rigen F13 #7/15 ok=False 480963ms (57/60)
+[19:01:35] F13rigen llm 44888ms len=867 target=112
+[19:01:35] F13rigen F13 #11/15 ok=True 44889ms (58/60)
+[19:02:12] F13rigen llm 37031ms len=702 target=125
+[19:02:12] F13rigen F13 #12/15 ok=True 37031ms (59/60)
+[19:02:43] F13rigen llm 30555ms len=547 target=75
+[19:02:43] F13rigen F13 #15/15 ok=True 30556ms (60/60)
+[19:02:43] F13rigen F13 finale: 13/15 (target >=12) -> RAGGIUNTO
+[19:09:11] resume: 60 output gia' presenti
+[19:09:11] caricamento modello: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[19:09:14] gate finito: 60/60 output → gate_outputs_r12.json + gate_summary_r12.md

@@ -1,0 +1,32 @@
+{
+ "0": {
+  "n_raw": 250,
+  "n_evt": 250,
+  "n_paint": 109,
+  "n_stop": 1,
+  "p50_ms": 9,
+  "p95_ms": 15.9,
+  "settle_ms": 9.2,
+  "trailing_px": 7.89
+ },
+ "50": {
+  "n_raw": 250,
+  "n_evt": 250,
+  "n_paint": 194,
+  "n_stop": 1,
+  "p50_ms": 15.2,
+  "p95_ms": 16.2,
+  "settle_ms": 16,
+  "trailing_px": 4.11
+ },
+ "100": {
+  "n_raw": 250,
+  "n_evt": 250,
+  "n_paint": 195,
+  "n_stop": 1,
+  "p50_ms": 15.3,
+  "p95_ms": 16.2,
+  "settle_ms": 6.4,
+  "trailing_px": 1.32
+ }
+}

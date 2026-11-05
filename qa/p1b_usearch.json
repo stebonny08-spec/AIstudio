@@ -1,0 +1,95 @@
+{
+ "ts": "2026-11-02T22:21:00+0100",
+ "usearch_version": "2.26.6",
+ "note_scale": "vettori random deterministici (seed42) SOLO per la latenza a scala; il corpus reale ha17 vettori - recall misurato solo sul GT reale",
+ "warmup": 10,
+ "n_queries": 50,
+ "latency": [
+  {
+   "label": "reale_17",
+   "n": 17,
+   "dim": 384,
+   "sqlite_vec_backend": "sqlite-vec-ext",
+   "sqlite_vec": {
+    "p50": 0.7196,
+    "p95": 0.885,
+    "n": 50
+   },
+   "usearch": {
+    "p50": 0.0208,
+    "p95": 0.0368,
+    "n": 50
+   }
+  },
+  {
+   "label": "scale_1000",
+   "n": 1000,
+   "dim": 384,
+   "sqlite_vec_backend": "sqlite-vec-ext",
+   "sqlite_vec": {
+    "p50": 0.908,
+    "p95": 1.1858,
+    "n": 50
+   },
+   "usearch": {
+    "p50": 0.1977,
+    "p95": 0.294,
+    "n": 50
+   }
+  },
+  {
+   "label": "scale_10000",
+   "n": 10000,
+   "dim": 384,
+   "sqlite_vec_backend": "sqlite-vec-ext",
+   "sqlite_vec": {
+    "p50": 6.3699,
+    "p95": 6.721,
+    "n": 50
+   },
+   "usearch": {
+    "p50": 0.57,
+    "p95": 0.7181,
+    "n": 50
+   }
+  },
+  {
+   "label": "scale_50000",
+   "n": 50000,
+   "dim": 384,
+   "sqlite_vec_backend": "sqlite-vec-ext",
+   "sqlite_vec": {
+    "p50": 25.6145,
+    "p95": 26.286,
+    "n": 50
+   },
+   "usearch": {
+    "p50": 1.2635,
+    "p95": 1.597,
+    "n": 50
+   }
+  }
+ ],
+ "recall_gt": {
+  "off": {
+   "flag": false,
+   "exit": 0,
+   "out": "p1b_usearch_recall_off.json",
+   "recall5": 1.0,
+   "stderr_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\nLoading weights:   0%|          | 0/199 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 199/199 [00:00<00:00, 2321.77it/s]\n"
+  },
+  "on": {
+   "flag": true,
+   "exit": 0,
+   "out": "p1b_usearch_recall_on.json",
+   "recall5": 1.0,
+   "stderr_tail": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n\nLoading weights:   0%|          | 0/199 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 199/199 [00:00<00:00, 4064.19it/s]\n"
+  }
+ },
+ "decision": {
+  "latency_rule_ok (p95 usearch <= sqlite-vec sul REALE)": true,
+  "recall_rule_ok (>= off -0.01)": true,
+  "USEARCH_ENABLED_DEFAULT": true,
+  "rule": "ON SOLO SE p95<=sqlite-vec sul reale E recall>=recall_off-0.01; se il recall GT non e' interpretabile la regola latenza vale e la lacuna e' dichiarata"
+ }
+}

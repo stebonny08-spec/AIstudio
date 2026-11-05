@@ -1,0 +1,125 @@
+{
+ "ts": "2026-11-02T17:13:20",
+ "n_ctx": 4096,
+ "cache": "k/v q8_0",
+ "target_mb": 3600.0,
+ "weights_bytes": 3543441312,
+ "cases": {
+  "baseline": {
+   "tag": "baseline",
+   "args_extra": [],
+   "full_args": [
+    "llama-server.exe",
+    "-m",
+    "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf",
+    "-c",
+    "4096",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "52820"
+   ],
+   "status": "up",
+   "ready_sec": 6.64,
+   "rss_first_mb": 19.4,
+   "rss_plateau_mb": 4435.1,
+   "rss_peak_mb": 4435.1,
+   "n_samples": 42,
+   "log_tail": "0.00.005.649 I srv  llama_server: initializing ...\n0.00.042.762 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)\n0.00.043.339 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)\n0.00.054.552 I srv    load_model: loading model 'C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf'\n0.04.667.039 I cmn          init: llama threadpool init, n_threads = 8\n0.06.409.133 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'\n0.06.449.373 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)\n0.06.449.420 I srv  llama_server: model loaded\n0.06.449.424 I srv  llama_server: listening on http://127.0.0.1:52820\n",
+   "model_meta": {
+    "block_count": 36,
+    "embedding_length": 2560,
+    "context_length": 1048576
+   }
+  },
+  "b256": {
+   "tag": "b256",
+   "args_extra": [
+    "-b",
+    "256"
+   ],
+   "full_args": [
+    "llama-server.exe",
+    "-m",
+    "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf",
+    "-c",
+    "4096",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "56557",
+    "-b",
+    "256"
+   ],
+   "status": "up",
+   "ready_sec": 4.05,
+   "rss_first_mb": 2.0,
+   "rss_plateau_mb": 4421.3,
+   "rss_peak_mb": 4421.3,
+   "n_samples": 33,
+   "log_tail": "0.00.003.343 I srv  llama_server: initializing ...\n0.00.038.556 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)\n0.00.039.030 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)\n0.00.051.582 I srv    load_model: loading model 'C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf'\n0.02.858.236 I cmn          init: llama threadpool init, n_threads = 8\n0.03.501.190 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'\n0.03.522.831 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)\n0.03.522.865 I srv  llama_server: model loaded\n0.03.522.869 I srv  llama_server: listening on http://127.0.0.1:56557\n",
+   "model_meta": {
+    "block_count": 36,
+    "embedding_length": 2560,
+    "context_length": 1048576
+   }
+  },
+  "b256ub256": {
+   "tag": "b256ub256",
+   "args_extra": [
+    "-b",
+    "256",
+    "--ubatch-size",
+    "256"
+   ],
+   "full_args": [
+    "llama-server.exe",
+    "-m",
+    "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf",
+    "-c",
+    "4096",
+    "--cache-type-k",
+    "q8_0",
+    "--cache-type-v",
+    "q8_0",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "56567",
+    "-b",
+    "256",
+    "--ubatch-size",
+    "256"
+   ],
+   "status": "up",
+   "ready_sec": 4.09,
+   "rss_first_mb": 2.0,
+   "rss_plateau_mb": 4421.5,
+   "rss_peak_mb": 4421.5,
+   "n_samples": 33,
+   "log_tail": "0.00.005.999 I srv  llama_server: initializing ...\n0.00.042.455 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)\n0.00.043.070 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)\n0.00.048.803 I srv    load_model: loading model 'C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf'\n0.03.129.560 I cmn          init: llama threadpool init, n_threads = 8\n0.03.981.371 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'\n0.04.015.900 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)\n0.04.015.950 I srv  llama_server: model loaded\n0.04.015.955 I srv  llama_server: listening on http://127.0.0.1:56567\n",
+   "model_meta": {
+    "block_count": 36,
+    "embedding_length": 2560,
+    "context_length": 1048576
+   }
+  }
+ },
+ "floor": {
+  "weights_mb": 3379.3,
+  "kv_mb": 765.0,
+  "baseline_plateau_mb": 4435.1,
+  "best_tag": "b256",
+  "best_plateau_mb": 4421.3,
+  "target_mb": 3600.0,
+  "reachable": false
+ }
+}

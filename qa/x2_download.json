@@ -1,0 +1,30 @@
+{
+ "ts": "2026-10-31T14:35:00+0100",
+ "models": {
+  "spark-x2.6-1.7b.gguf": {
+   "role": "base (nuovo, R23)",
+   "url": "https://huggingface.co/XHToken/Spark-X2.6-1.7B-GGUF/resolve/main/Spark-X2.6-1.7B-Q4_K_M.gguf",
+   "quant": "Q4_K_M (raccomandato card: primo Q4 elencato; card non espone tabella quant -> scelta Q4_K_M coerente col pro)",
+   "expected_sha256_hf": "7abd9859c10924be3c583945456fa9b25d0569484876105a7b7376f7938fffb7",
+   "computed_sha256": "7abd9859c10924be3c583945456fa9b25d0569484876105a7b7376f7938fffb7",
+   "expected_size": 1768720512,
+   "actual_size": 1768720512,
+   "sha_source": "HF API blobs=true -> lfs.sha256 (pubblicato)",
+   "status": "OK_MATCH"
+  },
+  "spark-x2.6-4b.gguf": {
+   "role": "pro (preesistente R22)",
+   "url": "https://huggingface.co/XHToken/Spark-X2.6-4B-GGUF/resolve/main/Spark-X2.6-4B-Q4_K_M.gguf",
+   "expected_sha256_hf": "91cb2811aebb47ac916aa619d27d4cdd7f4143106b7917accb8ead4cd7f5cbd9",
+   "actual_size": 3543441312,
+   "status": "OK (verificato R22, tools/models/checksum.txt)"
+  },
+  "minicpm5-2b": {
+   "role": "fallback opzionale",
+   "status": "NON scaricato (nessun Spark fallito -> X2.3 non scatta)",
+   "note": "MiniCPM5-1B Q3/Q4 presenti come fallback legacy"
+  }
+ },
+ "fallback_triggered": false,
+ "x2_fallback_log": "non necessario"
+}

@@ -1,0 +1,31 @@
+{
+ "metric": "latenza should_use_rag: PRIMA = primo accesso senza warmup (caricamento E5 + embedding 115 esempi, misurato con release_model() prima di nuovo SemanticRouter); DOPO = nuovo SemanticRouter.warmup() in background + 20 query con vettori pronti (mediana/p95)",
+ "prima_prima_query_ms": 2486.2,
+ "fallback_regole_h9_ms": 0.008,
+ "dopo_warmup_ready_ms": 402.4,
+ "dopo_p50_ms": 19.715,
+ "dopo_p95_ms": 22.989,
+ "dopo_samples_ms": [
+  28.442,
+  20.769,
+  22.989,
+  19.154,
+  18.986,
+  18.009,
+  17.309,
+  19.978,
+  19.338,
+  19.066,
+  19.715,
+  19.511,
+  21.452,
+  19.639,
+  18.697,
+  20.252,
+  19.817,
+  19.869,
+  19.778,
+  20.212
+ ],
+ "ts": "2026-10-24T23:36:31+0200"
+}

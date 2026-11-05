@@ -1,0 +1,15 @@
+[13:02:53] === FASE0 R16 FORENSICS (start) ===
+[13:02:53] query astensioni (reali, ultime): ["Perche' lo scilinguanno zqqpr blorp non esiste?", 'Spiega il funzionamento del kvbnm wplko itruy phptx', 'Quando avviene il flurble grozznik wobbled silenziosamente?', "Qual e' lo zqxwv?", "Che cos'e' l'utrpo mnlkj?", 'Zqxwv utrpo mnlkj gbvcd?', 'chi è dante alighieri', 'chi è petrarca?']
+[13:02:53] piano: [["q1_dante", "chi è dante alighieri"], ["q2", "Che cos'e' l'utrpo mnlkj?"], ["q3", "Zqxwv utrpo mnlkj gbvcd?"], ["q4", "chi è petrarca?"]]
+[13:02:54] config (sola lettura): {"rag.progress_events": true, "gate.threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "web.wikipedia": true, "web.searxng_url": "", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.n_ctx": 8192}
+[13:02:54] boot store/engine: 34.44ms; chunk local=17 books=0
+[13:02:54] client setup: 204.91ms backend=sidecar
+[13:02:54] answer cache rediretta a C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\tmp\f0r16_ac.jsonl
+[13:02:54] sidecar state pre: down
+[13:03:51] CASE q1_dante: total=57224ms first_tok=6964.33 tok=600 backend=sidecar llm=1 markers_out={'User:': 1, 'Assistant:': 1, "DOMANDA DELL'UTENTE": 1} rep={'n_char': 1872, 'dup80': 0, 'line_dup': 8, 'head_dup': 2} err=None
+[13:04:23] CASE q2: total=31705ms first_tok=31704.76 tok=18 backend=in-process llm=0 markers_out={} rep={'n_char': 1129, 'dup80': 0, 'line_dup': 0, 'head_dup': 1} err=None
+[13:04:24] CASE q3: total=1236ms first_tok=1235.94 tok=14 backend=in-process llm=0 markers_out={} rep={'n_char': 850, 'dup80': 0, 'line_dup': 0, 'head_dup': 1} err=None
+[13:04:25] CASE q4: total=1209ms first_tok=1208.51 tok=18 backend=in-process llm=0 markers_out={} rep={'n_char': 1119, 'dup80': 0, 'line_dup': 0, 'head_dup': 1} err=None
+[13:04:26] sidecar state post: down
+[13:04:26] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\f0_round16.json
+[13:04:26] processi residui llama-server: 0

@@ -1,0 +1,97 @@
+
+== 1. Matrice pulsanti per tipo (schemaStrategies.ui) ==
+  PASS  albero: matrice esatta [node,child,sibling,del,connect,layout]
+  PASS  mappa: matrice esatta [child,sibling,del,connect,layout]
+  PASS  lr: matrice esatta [node,child,sibling,del,connect,layout]
+  PASS  libero: matrice esatta [node,child,sibling,del,connect,layout,arco]
+  PASS  riassunto: matrice esatta [child,del,connect,layout]
+  PASS  libero: auto-layout DISABILITATO in matrice
+  PASS  libero: selettore stile arco presente
+  PASS  pannello Testo solo in riassunto
+  PASS  mappa: siblingFallback = child
+  PASS  albero/lr/libero/riassunto: siblingFallback = nodo isolato (default)
+
+== 2. autoLayout: tutti i target finiti e contenuti ==
+  PASS  albero: tutti i target finiti (niente NaN)
+  PASS  albero: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  mappa: tutti i target finiti (niente NaN)
+  PASS  mappa: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  lr: tutti i target finiti (niente NaN)
+  PASS  lr: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  riassunto: tutti i target finiti (niente NaN)
+  PASS  riassunto: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  libero: autoLayout ritorna null (nessun rilayout)
+  PASS  mappa: orfano 1 a distanza finita contenuta
+  PASS  mappa: orfano 2 (senza geometria) a distanza finita
+
+== 3. Force mappa deterministico ==
+  PASS  stesso input -> stessi output (deep-equal)
+  PASS  target arrotondati a interi (nessun residuo float)
+
+== 4. Orfani e righe/colonne separate ==
+  PASS  albero: orfano in riga separata sotto la gerarchia
+  PASS  lr: orfano in colonna propria (dopo gli altri layer)
+  PASS  lr: ciclo gestito (layer finiti, sorgente distinta dal succ.)
+  PASS  riassunto: colonna BFS con orfano accodato per ultimo
+  PASS  albero: arco extra ignorato dalla gerarchia (p e q stessa riga)
+
+== 5. Vincoli di sorgente (schemi.js) ==
+  PASS  centerView: pad 40
+  PASS  clamp zoom [0.25, 2.0] in centerView E zoomAt
+  PASS  undo stack capped a 30
+  PASS  changeType: snapshot PRIMA della migrazione
+  PASS  snapshot spinto PRIMA di migrateSchema
+  PASS  Ctrl+Z in onKey (ctrl/meta, senza shift)
+  PASS  confirm() per gli archi extra ELIMINATO (mai rimossi)
+  PASS  buildStrategyButtons legge la lunghezza di ed.doc.nodes (bootstrap)
+  PASS  animateLayout(targets, 200) esattamente 2 (autoLayout + changeType)
+  PASS  nessuno switch hard-coded su doc.type
+
+== 6a. Bootstrap (0 nodi) ==
+  PASS  mappa vuota: mostra [+ Nodo] (bootstrap)
+  PASS  mappa vuota: matrice completa + Nodo
+  PASS  bootstrap: + Nodo crea il primo nodo
+  PASS  mappa con 1 nodo: + Nodo SPARISCE (torna la matrice 1.1)
+  PASS  mappa con 1 nodo: +Figlio/+Fratello presenti
+  PASS  mappa: + Figlio produce nodo CONNESSO
+  PASS  mappa: + Fratello con genitore = nodo connesso (nessun orfano)
+
+== 6b. Fallback +Fratello senza genitore ==
+  PASS  albero: +Fratello senza genitore = + Nodo (nodo isolato, NESSUN toast)
+  PASS  mappa: +Fratello senza genitore = + Figlio (sempre connesso)
+
+== 6c. Undo cambio tipo (Ctrl+Z) ==
+  PASS  cambio tipo: passo a albero
+  PASS  cambio tipo: layout albero sposta i nodi
+  PASS  cambio tipo: NESSUNA conferma chiamata (confirm eliminato)
+  PASS  cambio tipo: nodi/archi invariati
+  PASS  badge .sc-zoom valido (nessun NaN%, clamp [25,200])
+  PASS  undo: tipo ripristinato a mappa
+  PASS  undo: posizioni nodi ripristinate in un passo
+  PASS  undo: view ripristinata (stesso transform)
+  PASS  undo: secondo Ctrl+Z = no-op stabile
+  PASS  undo: persistito tipo+grafo dopo il save
+  PASS  undo: nessuna conferma in tutto il flusso
+
+== 6d. normalizeDoc: backfill x/y/w/h ==
+  PASS  nodo senza geometria: x/y/w/h riparati (finite, positivi)
+  PASS  transform globale senza NaN (canvas non svuotato)
+  PASS  badge zoom senza NaN
+
+== 6e. Cambio tipo su tutti i tipi: 0 perdite ==
+  PASS  cambio -> albero: nodi(3)/archi(3) intatti
+  PASS  cambio -> albero: transform senza NaN
+  PASS  cambio -> lr: nodi(3)/archi(3) intatti
+  PASS  cambio -> lr: transform senza NaN
+  PASS  cambio -> libero: nodi(3)/archi(3) intatti
+  PASS  cambio -> libero: transform senza NaN
+  PASS  cambio -> riassunto: nodi(3)/archi(3) intatti
+  PASS  cambio -> riassunto: transform senza NaN
+  PASS  cambio -> mappa: nodi(3)/archi(3) intatti
+  PASS  cambio -> mappa: transform senza NaN
+  PASS  tutte le transizioni: zero conferme
+  PASS  ciclo -> albero: 3 archi preservati, 1 extra tratteggiato (mai rimosso)
+  PASS  arco extra renderizzato tratteggiato nel DOM
+
+================================================
+RISULTATI: 74 passati, 0 falliti

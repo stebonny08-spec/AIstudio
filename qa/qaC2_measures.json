@@ -1,0 +1,384 @@
+{
+ "build": "BUILD 2026-10-23T19:50:00+02:00",
+ "viewport": "1366x900",
+ "generatedAt": "2026-10-24T12:34:49.539Z",
+ "stub": {
+  "declared": "STUB UNICO: window.pywebview.api.read_material_text (ponte backend) + StudyStore.listMaterials (patch runtime). Il testo restituito e' letto da fs.readFileSync sul file .md REALE dello stesso path (name/size da fs.statSync). NESSUNA geometria stubbata: rect/DOM reali del browser.",
+  "mechanismByPath": {
+   "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_corto.md": "fs.readFileSync(file reale) -> bridge",
+   "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md": "fs.readFileSync(file reale) -> bridge",
+   "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_lungo.md": "fs.readFileSync(file reale) -> bridge"
+  }
+ },
+ "files": {
+  "fotosintesi": {
+   "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md",
+   "chars": 28783,
+   "bytes": 28817,
+   "sha256_16": "0025cb2f225bcc02"
+  },
+  "lungo": {
+   "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_lungo.md",
+   "chars": 6007,
+   "bytes": 6009,
+   "sha256_16": "f79c9e4609cda70e"
+  },
+  "corto": {
+   "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_corto.md",
+   "chars": 299,
+   "bytes": 301,
+   "sha256_16": "8163b53c05e557ba"
+  }
+ },
+ "picks": {
+  "cortoMid": {
+   "sub": "ima mostri il testo completo senza il pu",
+   "start": 129,
+   "len": 40,
+   "unique": false
+  },
+  "fotoCap": {
+   "sub": "a globale e bilanciata può essere espres",
+   "start": 1230,
+   "len": 40,
+   "unique": false
+  },
+  "lungoCapEnd": {
+   "sub": "volge le reazioni luminose dipendenti da",
+   "start": 2460,
+   "len": 40,
+   "unique": false
+  },
+  "lungoMid": {
+   "sub": "8 scritto per superare la soglia dei 250",
+   "start": 2927,
+   "len": 40,
+   "unique": true
+  },
+  "lungoTail": {
+   "sub": "16 scritto per superare la soglia dei 25",
+   "start": 5900,
+   "len": 40,
+   "unique": true
+  }
+ },
+ "cap": 2500,
+ "C": {
+  "C2a": {
+   "opened": true,
+   "list": {
+    "all": 7,
+    "mat": 3,
+    "matLabels": [
+     "MaterialeFotosintesi",
+     "MaterialeMateriale Lungo QA",
+     "MaterialeMateriale Corto QA"
+    ]
+   },
+   "corto": {
+    "rect": {
+     "w": 274,
+     "h": 306
+    },
+    "display": "block",
+    "visibility": "visible",
+    "meta": {
+     "Percorso: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_corto.md": true,
+     "Indicizzato il 2026-10-17": true,
+     "Nome: qaC2_corto.md": true,
+     "Dimensione: 301 B": true,
+     "Tipo file: md": true
+    },
+    "metaAll": true,
+    "subOk": true,
+    "subIdx": 286,
+    "fullOk": true,
+    "textLen": 456,
+    "__pre": {
+     "clicked": true,
+     "appeared": true
+    }
+   },
+   "foto": {
+    "rect": {
+     "w": 274,
+     "h": 306
+    },
+    "display": "block",
+    "visibility": "visible",
+    "meta": {
+     "Percorso: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md": true,
+     "Indicizzato il 2026-10-16": true,
+     "Nome: fotosintesi_clorofilliana_universitario.md": true,
+     "Dimensione: 28.1 KB": true,
+     "Tipo file: md": true
+    },
+    "metaAll": true,
+    "subOk": true,
+    "subIdx": 1449,
+    "fullOk": null,
+    "textLen": 2723,
+    "__pre": {
+     "clicked": true,
+     "appeared": true
+    }
+   },
+   "picks": {
+    "cortoMid": {
+     "sub": "ima mostri il testo completo senza il pu",
+     "start": 129,
+     "len": 40,
+     "unique": false
+    },
+    "fotoCap": {
+     "sub": "a globale e bilanciata può essere espres",
+     "start": 1230,
+     "len": 40,
+     "unique": false
+    }
+   }
+  },
+  "C2b": {
+   "cap": {
+    "btn": true,
+    "hasCapEnd": true,
+    "hasTail": false,
+    "hasMid": false,
+    "hasEllipsis": true,
+    "textLen": 2681,
+    "__pre": {
+     "clicked": true,
+     "capShown": true,
+     "fileLen": 6007,
+     "cap": 2500
+    }
+   },
+   "full": {
+    "hasFull": true,
+    "hasTail": true,
+    "hasMid": true,
+    "btn": false,
+    "textLen": 6165,
+    "expectLen": 6007,
+    "__pre": {
+     "btnClicked": true,
+     "fullShown": true
+    }
+   },
+   "short": {
+    "hasFull": true,
+    "hasTail": null,
+    "hasMid": null,
+    "btn": false,
+    "textLen": 456,
+    "expectLen": 299,
+    "__pre": {
+     "clickedS": true,
+     "shortShown": true,
+     "fileLen": 299
+    }
+   },
+   "picks": {
+    "capEnd": {
+     "sub": "volge le reazioni luminose dipendenti da",
+     "start": 2460,
+     "len": 40,
+     "unique": false
+    },
+    "tail": {
+     "sub": "16 scritto per superare la soglia dei 25",
+     "start": 5900,
+     "len": 40,
+     "unique": true
+    },
+    "mid": {
+     "sub": "8 scritto per superare la soglia dei 250",
+     "start": 2927,
+     "len": 40,
+     "unique": true
+    }
+   }
+  },
+  "C2c": {
+   "before": 2,
+   "after": 3,
+   "last": {
+    "t": "file",
+    "x": 710,
+    "y": 522,
+    "w": 180,
+    "h": 56,
+    "name": "Fotosintesi",
+    "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md"
+   },
+   "previewReady": true,
+   "clicked": true
+  },
+  "C2f": {
+   "n0": 7,
+   "n1": 1,
+   "n2": 7,
+   "typed": true
+  },
+  "C2d": {
+   "tabOk": true,
+   "side": {
+    "rect": {
+     "w": 300,
+     "h": 724
+    },
+    "hiddenClass": false,
+    "display": "flex",
+    "fontiActive": true,
+    "bodyDisplay": "",
+    "optTotal": 5,
+    "studyOpts": 1,
+    "matOpts": 3,
+    "matLabels": [
+     "Fotosintesi (Materiale)",
+     "Materiale Lungo QA (Materiale)",
+     "Materiale Corto QA (Materiale)"
+    ],
+    "studyLabels": [
+     "Riassunto QA schemi (Riassunto)"
+    ]
+   },
+   "corto": {
+    "rect": {
+     "w": 276,
+     "h": 606
+    },
+    "display": "block",
+    "visibility": "visible",
+    "bodyDisplay": "",
+    "meta": {
+     "Percorso: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\qaC2_corto.md": true,
+     "Indicizzato il 2026-10-17": true,
+     "Nome: qaC2_corto.md": true,
+     "Dimensione: 301 B": true,
+     "Tipo file: md": true
+    },
+    "metaAll": true,
+    "subOk": true,
+    "subIdx": 286,
+    "fullOk": true,
+    "btn": false,
+    "textLen": 456,
+    "__pre": {
+     "okC": true
+    }
+   },
+   "foto": {
+    "rect": {
+     "w": 276,
+     "h": 606
+    },
+    "display": "block",
+    "visibility": "visible",
+    "bodyDisplay": "",
+    "meta": {
+     "Percorso: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md": true,
+     "Indicizzato il 2026-10-16": true,
+     "Nome: fotosintesi_clorofilliana_universitario.md": true,
+     "Dimensione: 28.1 KB": true,
+     "Tipo file: md": true
+    },
+    "metaAll": true,
+    "subOk": true,
+    "subIdx": 1449,
+    "fullOk": null,
+    "btn": true,
+    "textLen": 2723,
+    "__pre": {
+     "okF": true
+    }
+   },
+   "picks": {
+    "cortoMid": {
+     "sub": "ima mostri il testo completo senza il pu",
+     "start": 129,
+     "len": 40,
+     "unique": false
+    },
+    "fotoCap": {
+     "sub": "a globale e bilanciata può essere espres",
+     "start": 1230,
+     "len": 40,
+     "unique": false
+    }
+   }
+  },
+  "C2e": {
+   "insertButtons": 0,
+   "previewTextLen": 2757
+  },
+  "C2g": {
+   "notesErrors": 0,
+   "notesLogs": 0,
+   "schemiErrors": 0,
+   "schemiLogs": 0
+  }
+ },
+ "checks": [
+  {
+   "id": "C2a",
+   "expected": "pannello Fonti con >=1 voce materiale; click -> preview .fn-fprev rect>0 con sottostringa ~40char IDENTICA al file .md reale su disco + metadati Percorso/Indicizzato/Nome/Dimensione/Tipo",
+   "ok": true,
+   "evidence": "pannelloAperto=true vociLista=7 vociMateriale=3 [MaterialeFotosintesi | MaterialeMateriale Lungo QA | MaterialeMateriale Corto QA] || CORTO: sub=\"ima mostri il testo completo senza il pu\"@129 match=true@286 fullFileInDOM=true metaAll=true rect=274x306 textLen=456/299 || FOTO(cap): sub=\"a globale e bilanciata può essere espres\"@1230 match=true@1449 metaAll=true rect=274x306 textLen=2723 (cap 2500) meta={\"Percorso: C:\\\\Users\\\\stebo\\\\Desktop\\\\progetti app\\\\StudioIA_7\\\\file_AIstudio\\\\originals\\\\fotosintesi_clorofilliana_universitario.md\":true,\"Indicizzato il 2026-10-16\":true,\"Nome: fotosintesi_clorofilliana_universitario.md\":true,\"Dimensione: 28.1 KB\":true,\"Tipo file: md\":true}"
+  },
+  {
+   "id": "C2b",
+   "expected": "file >2500 -> anteprima cap (2500char + ellipsis) con pulsante \"Carica testo completo\"; click -> testo TUTTO del file nella preview; file corto <=2500 -> testo completo e pulsante ASSENTE",
+   "ok": true,
+   "evidence": "LUNGO(6007char >2500): capShow=true btnCarica=true capEnd@2460 present=true tail40@5900(uniq=true) present=false mid@2927(uniq=true) present=false ellipsis=true textLen=2681 -> CLICK btn(true) fullShow=true fileCompletoInDOM=true tail=true mid=true btnDopo=false textLen=6165/6007 || CORTO(299char <= 2500): btnCarica=false fileCompletoInDOM=true textLen=456 shown=true"
+  },
+  {
+   "id": "C2c",
+   "expected": "click \"Inserisci nella nota\" -> count oggetti doc nt1 +1 (store dopo debounce 900ms) e nuovo oggetto t:'file' con il path del materiale",
+   "ok": true,
+   "evidence": "previewPronta=true btnDisabled=false click=true oggetti store: 2 -> 3 (debounceOk=true) ultimo={\"t\":\"file\",\"name\":\"Fotosintesi\",\"path\":\"C:\\\\Users\\\\stebo\\\\Desktop\\\\progetti app\\\\StudioIA_7\\\\file_AIstudio\\\\originals\\\\fotosintesi_clorofilliana_universitario.md\",\"w\":180,\"h\":56}"
+  },
+  {
+   "id": "C2f",
+   "expected": "input ricerca \"fotosintesi\" riduce le voci della lista Fonti; rimozione termine -> lista torna al conteggio iniziale",
+   "ok": true,
+   "evidence": "termineInserito=true count prima=7 conTermine=1 dopoCancella=7 (valore input=\"\")"
+  },
+  {
+   "id": "C2d",
+   "expected": "tab Fonti schemi: select con >=1 voce materiale (label Materiale/Libro a path) oltre agli item study; selezione -> .sc-preview rect>0 con tratto IDENTICO al file reale + metadati",
+   "ok": true,
+   "evidence": "tabFontiAttivo=true select: tot=5 study=1 mat=3 matLabels=[\"Fotosintesi (Materiale)\",\"Materiale Lungo QA (Materiale)\",\"Materiale Corto QA (Materiale)\"] studyLabels=[\"Riassunto QA schemi (Riassunto)\"] side rect=300x724 hidden=false display=flex || CORTO: match=true@286 sub=\"ima mostri il testo completo senza il pu\" fullFile=true metaAll=true rect=276x606 || FOTO: match=true@1449 sub=\"a globale e bilanciata può essere espres\" metaAll=true rect=276x606 meta={\"Percorso: C:\\\\Users\\\\stebo\\\\Desktop\\\\progetti app\\\\StudioIA_7\\\\file_AIstudio\\\\originals\\\\fotosintesi_clorofilliana_universitario.md\":true,\"Indicizzato il 2026-10-16\":true,\"Nome: fotosintesi_clorofilliana_universitario.md\":true,\"Dimensione: 28.1 KB\":true,\"Tipo file: md\":true}"
+  },
+  {
+   "id": "C2e",
+   "expected": "pannello Fonti schemi: verificata la presenza/assenza del pulsante inserimento; se assente -> C2e = sola preview (dichiarato), che deve contenere il materiale selezionato",
+   "ok": true,
+   "evidence": "pulsantiInserisciInSide=0 (assenti come da buildSide schemi.js:2216-2226 -> C2e=solo preview, DICHIARATO) previewTextLen=2757 previewConPercorsoFile=true"
+  },
+  {
+   "id": "C2g",
+   "expected": "zero QA.errors / pageerror / console.error durante il giro C2 (notes + schemi)",
+   "ok": true,
+   "evidence": "notes: QA.errors=[] logs=[] | schemi: QA.errors=[] logs=[]"
+  }
+ ],
+ "console": {
+  "notes": {
+   "logs": []
+  },
+  "schemi": {
+   "logs": []
+  }
+ },
+ "harness": {
+  "notes": {
+   "checks": 4,
+   "errors": []
+  },
+  "schemi": {
+   "checks": 3,
+   "errors": []
+  }
+ }
+}

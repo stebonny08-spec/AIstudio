@@ -1,0 +1,143 @@
+[14:51:11] caricamento modello: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[14:52:41]   llm fid=F01 87812ms len=1460 mt=600
+[14:52:41] F01 #1/15 ok=True retried=False 87813ms (1/60)
+[14:54:08]   llm fid=F01 86445ms len=1518 mt=600
+[14:54:08] F01 #2/15 ok=True retried=False 86447ms (2/60)
+[14:55:30]   llm fid=F01 82554ms len=1583 mt=600
+[14:55:30] F01 #3/15 ok=True retried=False 82555ms (3/60)
+[14:55:30] F01 #4/15 ok=True retried=False 0ms (4/60)
+[14:55:30] F01 #5/15 ok=True retried=False 0ms (5/60)
+[14:55:30] F01 #6/15 ok=True retried=False 0ms (6/60)
+[14:55:30] F01 #7/15 ok=True retried=False 0ms (7/60)
+[14:55:30] F01 #8/15 ok=True retried=False 0ms (8/60)
+[14:55:30] F01 #9/15 ok=True retried=False 0ms (9/60)
+[14:55:30] F01 #10/15 ok=True retried=False 0ms (10/60)
+[14:55:30] F01 #11/15 ok=True retried=False 0ms (11/60)
+[14:55:30] F01 #12/15 ok=True retried=False 0ms (12/60)
+[14:55:30] F01 #13/15 ok=True retried=False 0ms (13/60)
+[14:55:30] F01 #14/15 ok=True retried=False 0ms (14/60)
+[14:55:30] F01 #15/15 ok=True retried=False 0ms (15/60)
+[14:55:42]   llm fid=F04 11710ms len=172 mt=600
+[14:55:42] F04 #1/15 ok=True retried=False 11711ms (16/60)
+[14:55:49]   llm fid=F04 7247ms len=125 mt=600
+[14:55:49] F04 #2/15 ok=True retried=False 7247ms (17/60)
+[14:55:57]   llm fid=F04 7936ms len=134 mt=600
+[14:55:57] F04 #3/15 ok=True retried=False 7937ms (18/60)
+[14:55:57] F04 #4/15 ok=True retried=False 0ms (19/60)
+[14:55:57] F04 #5/15 ok=True retried=False 0ms (20/60)
+[14:55:57] F04 #6/15 ok=True retried=False 0ms (21/60)
+[14:55:57] F04 #7/15 ok=True retried=False 0ms (22/60)
+[14:55:57] F04 #8/15 ok=True retried=False 0ms (23/60)
+[14:55:57] F04 #9/15 ok=True retried=False 0ms (24/60)
+[14:55:57] F04 #10/15 ok=True retried=False 0ms (25/60)
+[14:55:57] F04 #11/15 ok=True retried=False 0ms (26/60)
+[14:55:57] F04 #12/15 ok=True retried=False 0ms (27/60)
+[14:55:57] F04 #13/15 ok=True retried=False 0ms (28/60)
+[14:55:57] F04 #14/15 ok=True retried=False 0ms (29/60)
+[14:55:57] F04 #15/15 ok=True retried=False 0ms (30/60)
+[14:56:31]   llm fid=F10 33671ms len=716 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[14:57:11]   llm fid=F10 39963ms len=859 mt=600
+[14:57:11] F10 #1/15 ok=True retried=True 73636ms (31/60)
+[14:57:40]   llm fid=F10 29012ms len=518 mt=600
+[14:57:40] F10 #2/15 ok=True retried=False 29013ms (32/60)
+[14:58:05]   llm fid=F10 24523ms len=423 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[14:58:50]   llm fid=F10 45634ms len=746 mt=600
+[14:58:50] F10 #3/15 ok=True retried=True 70159ms (33/60)
+[14:59:37]   llm fid=F10 46686ms len=1014 mt=600
+[14:59:37] F10 #4/15 ok=True retried=False 46687ms (34/60)
+[15:00:18]   llm fid=F10 40881ms len=846 mt=600
+[15:00:18] F10 #5/15 ok=True retried=False 40882ms (35/60)
+[15:00:55]   llm fid=F10 37643ms len=781 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:01:15]   llm fid=F10 19330ms len=318 mt=600
+[15:01:15] F10 #6/15 ok=False retried=False 56975ms (36/60)
+[15:01:55]   llm fid=F10 40386ms len=736 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:02:25]   llm fid=F10 29469ms len=459 mt=600
+[15:02:25] F10 #7/15 ok=True retried=True 69857ms (37/60)
+[15:02:53]   llm fid=F10 28166ms len=409 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:03:44]   llm fid=F10 50917ms len=844 mt=600
+[15:03:44] F10 #8/15 ok=True retried=True 79084ms (38/60)
+[15:04:12]   llm fid=F10 28001ms len=410 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:04:26]   llm fid=F10 14510ms len=155 mt=600
+[15:04:26] F10 #9/15 ok=False retried=False 42514ms (39/60)
+[15:05:03]   llm fid=F10 37028ms len=716 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:05:30]   llm fid=F10 26885ms len=381 mt=600
+[15:05:30] F10 #10/15 ok=True retried=True 63917ms (40/60)
+[15:06:08]   llm fid=F10 38076ms len=705 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:06:26]   llm fid=F10 17835ms len=249 mt=600
+[15:06:26] F10 #11/15 ok=False retried=False 55913ms (41/60)
+[15:07:01]   llm fid=F10 35155ms len=629 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:07:38]   llm fid=F10 36648ms len=557 mt=600
+[15:07:38] F10 #12/15 ok=False retried=False 71806ms (42/60)
+[15:08:07]   llm fid=F10 29161ms len=545 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:08:38]   llm fid=F10 30720ms len=411 mt=600
+[15:08:38] F10 #13/15 ok=True retried=True 59883ms (43/60)
+[15:09:15]   llm fid=F10 37693ms len=656 mt=600
+[AiRuntime] retry F10 per: slides: 4 slide (richieste da 5 a 8)
+[15:09:46]   llm fid=F10 30767ms len=494 mt=600
+[15:09:46] F10 #14/15 ok=False retried=False 68462ms (44/60)
+[15:10:33]   llm fid=F10 46600ms len=906 mt=600
+[15:10:33] F10 #15/15 ok=True retried=False 46601ms (45/60)
+[15:11:03]   llm fid=F13/text 30308ms len=434 mt=600
+[15:11:03] F13 #1/15 ok=True retried=False 30309ms (46/60)
+[15:11:56]   llm fid=F13/text 52867ms len=928 mt=600
+[AiRuntime] retry F13 per: script: 123 parole, attese ~88 (tolleranza ±13)
+[15:12:52]   llm fid=F13/text 56126ms len=954 mt=600
+[15:12:52] F13 #2/15 ok=False retried=False 108994ms (47/60)
+[15:13:33]   llm fid=F13/text 40558ms len=725 mt=600
+[15:13:33] F13 #3/15 ok=True retried=False 40559ms (48/60)
+[15:14:16]   llm fid=F13/text 43278ms len=862 mt=600
+[AiRuntime] retry F13 per: script: 141 parole, attese ~112 (tolleranza ±17)
+[15:14:38]   llm fid=F13/text 21628ms len=361 mt=600
+[15:14:38] F13 #4/15 ok=False retried=False 64908ms (49/60)
+[15:15:09]   llm fid=F13/text 30982ms len=573 mt=600
+[AiRuntime] retry F13 per: script: 92 parole, attese ~125 (tolleranza ±19)
+[15:16:45]   llm fid=F13/text 96279ms len=1675 mt=600
+[15:16:45] F13 #5/15 ok=False retried=False 127263ms (50/60)
+[15:17:58]   llm fid=F13/text 73429ms len=1481 mt=600
+[AiRuntime] retry F13 per: script: 216 parole, attese ~138 (tolleranza ±21)
+[15:18:32]   llm fid=F13/text 33351ms len=633 mt=600
+[15:18:32] F13 #6/15 ok=False retried=False 106781ms (51/60)
+[15:19:38]   llm fid=F13/text 66387ms len=1271 mt=600
+[AiRuntime] retry F13 per: script: 206 parole, attese ~150 (tolleranza ±22)
+[15:21:15]   llm fid=F13/text 97077ms len=1794 mt=600
+[15:21:15] F13 #7/15 ok=False retried=False 163466ms (52/60)
+[15:21:52]   llm fid=F13/text 37349ms len=616 mt=600
+[AiRuntime] retry F13 per: script: 91 parole, attese ~75 (tolleranza ±11)
+[15:22:20]   llm fid=F13/text 27689ms len=432 mt=600
+[15:22:20] F13 #8/15 ok=True retried=True 65040ms (53/60)
+[15:22:55]   llm fid=F13/text 34759ms len=586 mt=600
+[15:22:55] F13 #9/15 ok=True retried=False 34760ms (54/60)
+[15:23:24]   llm fid=F13/text 29328ms len=583 mt=600
+[AiRuntime] retry F13 per: script: 79 parole, attese ~100 (tolleranza ±15)
+[15:24:14]   llm fid=F13/text 49339ms len=962 mt=600
+[15:24:14] F13 #10/15 ok=False retried=False 78669ms (55/60)
+[15:25:14]   llm fid=F13/text 60842ms len=1189 mt=600
+[AiRuntime] retry F13 per: script: 171 parole, attese ~112 (tolleranza ±17)
+[15:26:04]   llm fid=F13/text 49892ms len=972 mt=600
+[15:26:04] F13 #11/15 ok=False retried=False 110736ms (56/60)
+[15:26:57]   llm fid=F13/text 52998ms len=1126 mt=600
+[AiRuntime] retry F13 per: script: 159 parole, attese ~125 (tolleranza ±19)
+[15:27:58]   llm fid=F13/text 60214ms len=1144 mt=600
+[15:27:58] F13 #12/15 ok=False retried=False 113214ms (57/60)
+[15:28:32]   llm fid=F13/text 34058ms len=624 mt=600
+[AiRuntime] retry F13 per: script: 99 parole, attese ~138 (tolleranza ±21)
+[15:29:48]   llm fid=F13/text 76482ms len=1514 mt=600
+[15:29:48] F13 #13/15 ok=False retried=False 110542ms (58/60)
+[15:31:01]   llm fid=F13/text 72815ms len=1389 mt=600
+[AiRuntime] retry F13 per: script: 232 parole, attese ~150 (tolleranza ±22)
+[15:31:23]   llm fid=F13/text 21677ms len=352 mt=600
+[15:31:23] F13 #14/15 ok=False retried=False 94494ms (59/60)
+[15:31:50]   llm fid=F13/text 27073ms len=488 mt=600
+[15:31:50] F13 #15/15 ok=True retried=False 27074ms (60/60)
+[15:31:50] gate finito: 60/60 output → gate_outputs.json + gate_summary.md
+EXIT=0 

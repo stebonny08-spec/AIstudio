@@ -1,0 +1,272 @@
+[
+ {
+  "id": "F0 catena ?v coerente su index.html reale (stesso stamp su tutti i moduli)",
+  "ok": true,
+  "expected": "stesso ?v=2026-10-30T15:49:23+01:00",
+  "evidence": "[\"js/modules/fonti_panel.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/notes.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/documenti.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/schemi.js?v=2026-10-30T15:49:23+01:00\"] | OSSERVATO pre-esistente: srcs ?v=2026-10-30T15:49:23+01:00 vs QA_TS=2026-10-27T20:03:00+01:00"
+ },
+ {
+  "id": "BOOT editor Appunti (Apri su nota reale)",
+  "ok": true,
+  "expected": "editor aperto",
+  "evidence": "true"
+ },
+ {
+  "id": "BOOT chrome Appunti (pill+canvas)",
+  "ok": true,
+  "expected": ".fn-pill-left + canvas",
+  "evidence": "true"
+ },
+ {
+  "id": "Q1a bottone Fonti APRE il pannello",
+  "ok": true,
+  "expected": "visible=true",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":false,\"h\":669}"
+ },
+ {
+  "id": "Q1b bottone Fonti CHIUDE (stato chiuso = non visibile)",
+  "ok": true,
+  "expected": "visible=false",
+  "evidence": "{\"exists\":true,\"visible\":false,\"collapsed\":false,\"h\":0}"
+ },
+ {
+  "id": "Q1c Esc CHIUDE il pannello aperto",
+  "ok": true,
+  "expected": "visible=false",
+  "evidence": "{\"exists\":true,\"visible\":false,\"collapsed\":false,\"h\":0}"
+ },
+ {
+  "id": "Q2.0 selezione popola la preview",
+  "ok": true,
+  "expected": "preview popolata",
+  "evidence": "Nota del 30/10/2026Appunti"
+ },
+ {
+  "id": "Q2.1 RIGA2 chip nascosti",
+  "ok": true,
+  "expected": "display:none",
+  "evidence": "none"
+ },
+ {
+  "id": "Q2.2 RIGA3 lista altezza 0",
+  "ok": true,
+  "expected": "0px",
+  "evidence": "0px"
+ },
+ {
+  "id": "Q2.3 altezza ESTERNA invariata (B3)",
+  "ok": true,
+  "expected": "740px",
+  "evidence": "740px"
+ },
+ {
+  "id": "Q2.4 preview = interna - RIGA1 - RIGA5 (±2px)",
+  "ok": true,
+  "expected": "atteso 658px",
+  "evidence": "visto 658px"
+ },
+ {
+  "id": "Q2.5 chevron ruotato",
+  "ok": true,
+  "expected": "transform != none",
+  "evidence": "matrix(-1, 0, 0, -1, 0, 0)"
+ },
+ {
+  "id": "Q2.6 selezione corrente ancora in preview da collassato",
+  "ok": true,
+  "expected": "Nota del 30/10/2026Appunti",
+  "evidence": "Nota del 30/10/2026Appunti"
+ },
+ {
+  "id": "Q2.7 \"Inserisci nella nota\" abilitato e cliccabile",
+  "ok": true,
+  "expected": "enabled+click",
+  "evidence": "{\"found\":true,\"wasEnabled\":true}"
+ },
+ {
+  "id": "Q2.8 secondo click: lista tornata visibile",
+  "ok": true,
+  "expected": ">0",
+  "evidence": "486px"
+ },
+ {
+  "id": "Q2.9 altezze precedenti ripristinate (root±2/prev±4)",
+  "ok": true,
+  "expected": "root 740/prev 112",
+  "evidence": "root 740/prev 112"
+ },
+ {
+  "id": "Q3.0 chiavi di stato Appunti prima del reload",
+  "ok": true,
+  "expected": "open=1 top=1",
+  "evidence": "{\"open\":\"1\",\"top\":\"1\"}"
+ },
+ {
+  "id": "Q3.1 Appunti: dopo reload pannello APERTO (auto-ripreso)",
+  "ok": true,
+  "expected": "visible=true",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":true,\"h\":540}"
+ },
+ {
+  "id": "Q3.2 Appunti: dopo reload COLLASSATO (fp21_top)",
+  "ok": true,
+  "expected": "collapsed=true",
+  "evidence": "true"
+ },
+ {
+  "id": "Q3.3a editor Documenti reale aperto",
+  "ok": true,
+  "expected": ".doc-canvas presente (editor, non la lista)",
+  "evidence": "docEd=true bottoni_Apri_in_lista=1"
+ },
+ {
+  "id": "Q3.3 Documenti: bottone Fonti apre",
+  "ok": true,
+  "expected": "visible",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":false,\"h\":669} | {\"docBar\":true,\"btn\":true,\"fp\":true,\"nBtn\":30,\"titles\":[\"Torna all’elenco documenti\",\"Annulla (Ctrl+Z)\",\"Ripeti (Ctrl+Y)\",\"Grassetto (Ctrl+B)\",\"Corsivo (Ctrl+I)\",\"Sottolineato (Ctrl+U)\",\"Barrato\",\"Allinea a sinistra\",\"Allinea al centro\",\"Allinea a destra\",\"Lista puntata\",\"Lista numerata\",\"Riduci rientro\",\"Aumenta rientro\",\"Flashcard dalla "
+ },
+ {
+  "id": "Q3.4 Documenti: dopo reload pannello auto-aperto (B4)",
+  "ok": true,
+  "expected": "visible=true",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":false,\"h\":669}"
+ },
+ {
+  "id": "Q3.5 Schemi: tab Fonti mostra il pannello",
+  "ok": true,
+  "expected": "visible",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":false,\"h\":594}"
+ },
+ {
+  "id": "Q3.6 Schemi: chiavi tab+collasso registrate",
+  "ok": true,
+  "expected": "open=1 top=1",
+  "evidence": "{\"open\":\"1\",\"top\":\"1\"}"
+ },
+ {
+  "id": "Q3.7 Schemi: dopo reload tab Fonti attivo + pannello aperto",
+  "ok": true,
+  "expected": "visible=true",
+  "evidence": "{\"exists\":true,\"visible\":true,\"collapsed\":true,\"h\":145}"
+ },
+ {
+  "id": "Q3.8 Schemi: collasso ripristinato dentro la tab",
+  "ok": true,
+  "expected": "collapsed+tabActive",
+  "evidence": "{\"collapsed\":true,\"tabActive\":true}"
+ },
+ {
+  "id": "Q4.1 toolbar cliccabile con pannello aperto (elementFromPoint)",
+  "ok": true,
+  "expected": "20/20",
+  "evidence": "20/20"
+ },
+ {
+  "id": "Q4.2 resize drag larghezza OK",
+  "ok": true,
+  "expected": "340 +60",
+  "evidence": "400"
+ },
+ {
+  "id": "Q4.3 doppio click = reset size",
+  "ok": true,
+  "expected": "reset",
+  "evidence": "340"
+ },
+ {
+  "id": "Q6.1 Appunti(manoscritto) -> <img> snapshot",
+  "ok": true,
+  "expected": "img.fp21-snap + nessun vuoto",
+  "evidence": "row=true snap=true title=Nota del 30/10/2026Appunti"
+ },
+ {
+  "id": "Q6.2 Documenti -> html renderizzato (mai JSON grezzo)",
+  "ok": true,
+  "expected": "html renderizzato",
+  "evidence": "row=true <div class=\"fp21-aroot\"><blockquote><table><tbody><tr><td><br></td><td><br></td></tr><tr><td><br></t"
+ },
+ {
+  "id": "Q6.3 Presentazioni -> outline slide",
+  "ok": true,
+  "expected": "card slide + bullet",
+  "evidence": "row=true <div class=\"fp21-aroot\"><div class=\"fp21-slide\"><div class=\"fp21-slide-n\">Diapositiva 1/2</div><div "
+ },
+ {
+  "id": "Q6.4 Fogli -> tabella ( celle + num a destra, no \"non leggibile\")",
+  "ok": true,
+  "expected": "table + bfg + fp21-num",
+  "evidence": "row=true <div class=\"fp21-aroot\"><div class=\"fp21-chatmeta\">Foglio2</div><div class=\"fp21-gridwrap\"><table class=\"fp21-grid\"><the"
+ },
+ {
+  "id": "Q6.5 Video -> meta progetto (durata + clip)",
+  "ok": true,
+  "expected": "meta Progetto video",
+  "evidence": "row=true clips=0 <div class=\"fp21-aroot\"><div class=\"fp21-chatmeta\">Progetto video · 0 clip · 0:00</div><p>Nessuna cl"
+ },
+ {
+  "id": "Q6.6 Chat -> transcript bolle (ruolo utente/assistente)",
+  "ok": true,
+  "expected": ">=2 bolle",
+  "evidence": "row=true bub=6"
+ },
+ {
+  "id": "Q6.7 Materiali(md) -> render completo con heading",
+  "ok": true,
+  "expected": "h1/h2 + nessun vuoto",
+  "evidence": "row=true <div class=\"fp21-aroot\"><h1 class=\"fp21-h1\">La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bio"
+ },
+ {
+  "id": "Q6.8 Libri -> testo con capitoli (PARZIALE: nessun libro reale)",
+  "ok": true,
+  "expected": "0 libri in C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books",
+  "evidence": "rows=0 hint=Nessuna fonte corrisponde alla ricerca. books_count=0"
+ },
+ {
+  "id": "Q6.9 B7.8 zero log di vuoto su sorgenti REALI piene",
+  "ok": true,
+  "expected": "0 log vuoto",
+  "evidence": "[]"
+ },
+ {
+  "id": "Q6.10 caso vuoto AD HOC -> \"Nessun testo disponibile\" + console.error",
+  "ok": true,
+  "expected": "messaggio + log [fp21]",
+  "evidence": "created=true saves=1 nNotes=8/7 edReady=true panel=true foundTitle=true msg=true log=true pbody=<div class=\"fp21-aroot\"><p>Nessun testo disponibil rowsN=0 first=(match per titolo)"
+ },
+ {
+  "id": "Q7.1 zero nodi testo con LaTeX grezzo (\\Delta \\text $$)",
+  "ok": true,
+  "expected": "0 nodi",
+  "evidence": "0"
+ },
+ {
+  "id": "Q7.2 zero nodi katex-error (rossi)",
+  "ok": true,
+  "expected": "0 errori",
+  "evidence": "0"
+ },
+ {
+  "id": "Q7.3 matematica renderizzata (katex) o fallback pulito",
+  "ok": true,
+  "expected": "katex>0 o badge fallback",
+  "evidence": "katex=131 fb=0"
+ },
+ {
+  "id": "Q7.4 formula e (CO2)/(H2O) nel testo renderizzato",
+  "ok": true,
+  "expected": "kJ/mol + CO + H2O leggibili",
+  "evidence": "a classica è una reazione fortemente endergonica (ΔG∘=+2870 kJ/mol di glucosio) che co"
+ },
+ {
+  "id": "Q5a zero pageerror durante la sessione",
+  "ok": true,
+  "expected": "0 pageerror",
+  "evidence": "[]"
+ },
+ {
+  "id": "Q5b zero console.error inattesi (i log [fp21] sono attesi/dichiarati)",
+  "ok": true,
+  "expected": "0 inattesi",
+  "evidence": "[]"
+ }
+]

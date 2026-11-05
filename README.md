@@ -1,268 +1,173 @@
-# NovaStudio — Assistente virtuale desktop privato
+# NovaStudio
 
-*(Nome in codice del progetto/repository: StudioIA — i percorsi di cartella qui sotto usano ancora questo nome)*
+Il tutor che ti assiste nello studio. Un'applicazione desktop **100% locale**
+che gira interamente sul tuo computer: i tuoi appunti, i tuoi libri e le
+tue conversazioni restano sempre al sicuro, senza inviare nulla a servizi
+esterni.
 
-Applicazione desktop (finestra nativa, non un sito web) che risponde alle
-tue domande usando un sistema RAG a 3 livelli: prima il materiale che
-carichi tu, poi una libreria di libri/materiali in Markdown, e solo se
-necessario una ricerca online ristretta a un elenco di fonti affidabili
-predefinito — sempre segnalando quale fonte è stata usata.
+## Cosa fa
 
-Tutti i dati (chat, indice, cache immagini) restano sul tuo PC. Il modello
-LLM gira nativamente dentro l'applicazione in formato GGUF, senza bisogno
-di server esterni come Ollama o LM Studio; è configurato internamente,
-senza un'interfaccia per cambiarlo dall'app. Le uniche eccezioni all'uso
-100% offline sono: il download una tantum (al primo avvio) del modello di
-embedding usato per il RAG, e la ricerca online del livello 3. L'unica
-dipendenza esterna di sistema è Tesseract OCR per l'estrazione del testo
-dalle immagini.
+NovaStudio risponde alle tue domande di studio usando:
 
-Il sistema RAG funziona sempre su 3 livelli, in ordine, e passa al livello
-successivo solo se quello precedente non basta a rispondere:
+1. **I tuoi appunti** (foto, PDF, Word) — livello 1 del RAG
+2. **La tua libreria di libri** (PDF convertiti in Markdown) — livello 2 del RAG
+3. **La ricerca online** su fonti affidabili predefinite (enciclopedie,
+   siti universitari, portali di fact-checking) — livello 3 del RAG
 
-1. **Materiale caricato dallo studente** — foto di appunti, PDF o Word
-   caricati dal pannello "Aggiungi materiale" (modalità "Appunti
-   personali"): vengono convertiti in Markdown e vettorizzati subito.
-2. **Materiale in Markdown già pronto**, in una cartella locale dedicata e
-   separata dalla prima (modalità "Libri (Markdown)" dello stesso
-   pannello): pensata per i libri scaricati da un'altra app, già in
-   formato .md.
-3. **Materiale e paper online**, ristretto a un elenco di fonti affidabili
-   predefinito (enciclopedie, motori di ricerca accademici, siti di
-   fact-checking, risorse governative, piattaforme educative — vedi
-   `core/trusted_sources.py` per l'elenco completo e per aggiungerne altri).
+Il sistema RAG a 3 livelli consulta prima gli appunti, poi la libreria,
+poi — solo se serve — il web, sempre nell'ordine e sempre in locale.
 
-## Funzionalità Principali
+Per ogni domanda puoi scegliere una **modalità di studio**:
 
-- **LLM Locale Nativo**: Esegue modelli GGUF direttamente nell'app (senza Ollama/LM Studio)
-- **RAG a 3 Livelli**: Cerca prima nel materiale personale, poi nella libreria Markdown, infine online su fonti affidabili
-- **OCR Locale**: OpenCV + Tesseract per leggere testo da immagini e appunti
-- **Completa Privacy**: Tutto gira in locale (eccetto la ricerca online del livello 3), nessun altro dato lascia il tuo PC
+| Modalità | Cosa fa |
+|---|---|
+| **Ripasso** | Tutor socratico: ti guida con domande progressive |
+| **Esercizio** | Ti segue passo a passo senza mai rivelare la soluzione completa |
+| **Riassunto** | Sintetizza contenuti in modo strutturato |
+| **Chiarimento** | Spiega concetti complessi con analogie quotidiane |
 
----
+Se non scegli nessuna modalità, viene usato un prompt di default.
 
-## 1. Requisiti di sistema
+## Requisiti
 
-- **Python 3.10 o superiore** (consigliato 3.11)
-- **Tesseract OCR** — programma di sistema (non solo libreria Python),
-  necessario per leggere il testo scritto dentro le immagini:
-  - **Windows**: scaricare l'installer da
-    https://github.com/UB-Mannheim/tesseract/wiki e installarlo (segnare il
-    percorso di installazione, es. `C:\Program Files\Tesseract-OCR`, e
-    aggiungerlo alla variabile d'ambiente `PATH`).
-  - **macOS**: `brew install tesseract tesseract-lang`
-  - **Linux (Debian/Ubuntu)**: `sudo apt install tesseract-ocr tesseract-ocr-ita`
+- **Windows 10 o 11** (64-bit)
+- **4 GB di RAM** minimo, 8 GB consigliati
+- **3 GB di spazio libero** su disco (per l'eseguibile + il modello LLM)
+- Connessione a internet **solo** per scaricare il modello LLM al primo avvio
 
-  Se Tesseract non è installato, l'app funziona comunque: semplicemente non
-  verrà estratto testo scritto dentro le immagini (l'opzione OCR può anche
-  essere disattivata dalle Impostazioni).
+**Non serve installare nulla**: né Python, né Git, né Tesseract.
+Tutto è incluso nell'eseguibile.
 
-- **Un modello LLM in formato GGUF**, configurato internamente (non
-  tramite l'interfaccia dell'app — vedi sezione 3).
+## Installazione
 
----
+1. Scarica `NovaStudio-Windows.zip` dalla pagina delle release
+2. Estrai lo ZIP in una cartella a tua scelta (es. `C:\NovaStudio\`)
+3. Doppio clic su `NovaStudio.exe`
 
-## 2. Installazione
+Al primo avvio:
+
+1. Clicca **"Seleziona modelli"** in alto a sinistra
+2. Clicca l'icona ⬇ accanto a "Modello base" (~1.5 GB)
+3. Attendi il download (dipende dalla connessione)
+4. Clicca sul nome del modello per attivarlo (appare una spunta ✓)
+5. Clicca **"Aggiungi materiale"** per caricare i tuoi appunti
+6. Scrivi una domanda nella barra in basso
+
+## Uso quotidiano
+
+### Caricare materiale
+
+- **Appunti personali**: foto di appunti, PDF, Word. Vengono convertiti
+  automaticamente in Markdown e indicizzati (livello 1 del RAG)
+- **Libri**: PDF (es. manuali, libri di testo). Vengono convertiti in
+  Markdown e resi disponibili come fonte di riferimento (livello 2 del RAG)
+
+L'elaborazione è automatica: OCR per le immagini, estrazione testo per i
+PDF, conversione per i Word. Non serve fare nulla a mano.
+
+### Fare una domanda
+
+1. Scrivi la domanda nella barra in basso
+2. (Opzionale) Scegli una modalità di studio tra le 4 isole
+3. (Opzionale) Attiva "Pensiero profondo" per far ragionare il modello
+   più a lungo prima di rispondere
+4. Premi Invio
+
+La risposta arriva con l'indicazione della fonte (appunti, libreria o web).
+
+### Storico conversazioni
+
+Le conversazioni sono salvate automaticamente. Le trovi nella sidebar
+a sinistra, accessibile dal bottone ☰ in alto.
+
+## Come funziona (per curiosità)
+
+### Architettura
+
+### Stack tecnico
+
+- **pywebview** — finestra desktop nativa (WebView2 su Windows)
+- **llama-cpp-python** — esecuzione del modello LLM in formato GGUF
+- **sentence-transformers** — embedding multilingua (modello E5-small)
+- **ChromaDB** — indice vettoriale locale
+- **PyMuPDF, python-docx, python-pptx, openpyxl, pdfplumber** — parsing
+- **OpenCV + Tesseract** — OCR locale (Tesseract è incluso nel bundle)
+- **SQLite** — database locale per conversazioni e cache
+
+### Dove finiscono i dati
+
+Tutto resta **sul tuo PC**, in:
+
+| Sistema | Percorso |
+|---|---|
+| Windows | `%APPDATA%\NovaStudio\` |
+| macOS | `~/Library/Application Support/NovaStudio/` |
+| Linux | `~/.config/NovaStudio/` |
+
+Dentro trovi:
+- `config.json` — impostazioni
+- `studioia.db` — conversazioni e metadati
+- `vector_index/` — indice vettoriale del livello 1 (appunti)
+- `vector_index_books/` — indice vettoriale del livello 2 (libri)
+- `images_cache/` — immagini estratte dai documenti
+- `models/` — modelli LLM scaricati (`.gguf`)
+
+Nessun dato viene mai inviato a server esterni. L'unica connessione di
+rete è:
+1. Il download del modello LLM (una volta sola, da Hugging Face)
+2. La ricerca web del livello 3 del RAG (opzionale, solo quando serve)
+
+### Modello LLM
+
+Il modello di riferimento è **MiniCPM5-2B** (formato GGUF, quantizzazione
+Q4_K_M, ~1.5 GB). Viene scaricato al primo avvio dal menu "Seleziona
+modelli".
+
+Puoi aggiungere altri modelli modificando `data/models_manager.py` →
+`MODELS_CATALOG`. Modelli compatibili: Qwen3, Llama 3.1, Mistral, e in
+generale tutti i modelli GGUF con chat template ChatML.
+
+## Sviluppo
+
+### Requisiti per lo sviluppatore
+
+- **Python 3.11 o superiore** (3.13 testato)
+- **Git for Windows** (per clonare e gestire il repo)
+- **Git Bash** (per lanciare gli script `.sh`)
+
+Tesseract **non serve installarlo**: è incluso nel bundle dell'app.
+
+### Setup
 
 ```bash
-# 1. Posizionarsi nella cartella del progetto
-cd StudioIA
+# Clona il repository
+git clone https://github.com/stebonny08-spec/AIstudio.git
+cd AIstudio
 
-# 2. (Consigliato) creare un ambiente virtuale
-python -m venv venv
-venv\Scripts\activate        # Windows
-source venv/bin/activate     # macOS / Linux
+# Crea il virtual environment
+python -m venv .venv
 
-# 3. Installare le dipendenze
-pip install -r requirements.txt
-```
+# Attivalo (Git Bash)
+source .venv/Scripts/activate
 
-**Nota su OpenCV:** se `pip install opencv-python` fallisce, provare:
+# Installa le dipendenze
+pip install -r requisiti.txt
 
-```bash
-pip install opencv-python-headless
-```
+## Cosa è cambiato rispetto a una versione "vecchia"
 
-**Nota su pywebview (Windows):** su Windows, pywebview usa il motore
-WebView2 di Microsoft, già preinstallato su Windows 10/11 aggiornati. Se
-manca, Windows chiede di installarlo automaticamente al primo avvio (o si
-può scaricare da https://developer.microsoft.com/microsoft-edge/webview2/).
+- **Requisiti**: rimosso "Tesseract OCR" tra le dipendenze da installare
+- **Installazione**: "Non serve installare nulla"
+- **Uso quotidiano**: rimosse istruzioni su come installare Tesseract a parte
+- **Stack tecnico**: nota che Tesseract è nel bundle
+- **Sviluppo**: nota che Tesseract non va installato nemmeno per sviluppare
+- **FAQ**: risposta dedicata a "L'OCR non funziona" che rimanda al fatto che è incluso
 
----
+## Nota su cosa manca ancora nel README
 
-## 3. Avvio
+Ho scritto la sezione **Licenza** in modo che punti a `LICENSE` e
+`THIRD_PARTY_LICENSES.md`. Ma:
 
-```bash
-python main.py
-```
+1. **`LICENSE` non esiste ancora** nella root del progetto. Va creato con la licenza che scegli (MIT, GPL, ecc.).
+2. **`THIRD_PARTY_LICENSES.md`** te l'ho dato nei messaggi precedenti, va salvato nella root.
 
-Si apre una finestra dell'applicazione (non un browser), direttamente sulla
-schermata della chat.
-
-### Il modello LLM è configurato internamente
-
-Questa build non espone un'interfaccia per scegliere o modificare il
-modello LLM (percorso del file .gguf, numero di thread, GPU, ecc.): è un
-dettaglio gestito internamente, non dall'utente finale tramite l'app.
-Finché non è configurato, la chat risponde segnalando semplicemente che il
-modello non è ancora disponibile — il resto dell'app (caricamento
-materiale nei livelli 1 e 2 del RAG) funziona comunque normalmente.
-
-### Come usare l'app
-
-1. **Aggiungi il tuo materiale**: apri il pannello "Aggiungi materiale" (bottone in alto a destra) e scegli la modalità giusta:
-   - **Appunti personali** per foto/PDF/Word (livello 1)
-   - **Libri (Markdown)** per file .md già pronti (livello 2)
-2. **Fai una domanda**: l'app cerca prima nei tuoi appunti personali (Livello 1)
-3. **Se non trova abbastanza**: cerca automaticamente nella libreria Markdown (Livello 2)
-4. **Se ancora non basta**: fa una ricerca online, ristretta alle fonti affidabili predefinite (Livello 3)
-5. **Ricevi la risposta**: con indicata la fonte usata (appunti, libreria, o web)
-
-Puoi scegliere manualmente la modalità di ricerca (automatica / solo locale
-/ solo online) dal bottone a sinistra della barra di input. Lo storico
-delle conversazioni si trova nel menu a scomparsa a sinistra (bottone ☰ in
-alto), dove trovi anche il bottone Impostazioni (icona ⚙️, in basso).
-
----
-
-## 4. Struttura del progetto
-
-```
-StudioIA/
-├── main.py                     punto d'ingresso: apre la finestra pywebview
-├── requirements.txt
-├── backend/
-│   └── api.py                   bridge Python <-> JavaScript (window.pywebview.api)
-├── web_frontend/                 interfaccia grafica (HTML/CSS/JS)
-│   ├── html/index.html
-│   ├── css/styles.css
-│   └── js/app.js
-├── core/                         logica applicativa
-│   ├── models.py                  strutture dati condivise
-│   ├── local_llm_client.py        modello LLM locale nativo (GGUF, llama-cpp-python)
-│   ├── ocr_processor.py           motore OCR locale (OpenCV + Tesseract)
-│   ├── router.py                   decide quale livello RAG usare (1→2→3)
-│   ├── local_search.py             facciata di ricerca RAG
-│   ├── web_search.py               ricerca DuckDuckGo ristretta (livello 3)
-│   ├── trusted_sources.py          elenco dei siti consultabili dal livello 3
-│   ├── markdown_converter.py       conversione foto/PDF/Word -> Markdown
-│   ├── parsers/                     un modulo per formato file (pdf, docx, pptx, xlsx, txt/md, immagini)
-│   └── rag/                         chunking, embedding, indice vettoriale, indicizzatore
-└── data/                          persistenza
-    ├── config_manager.py           config.json (percorso modello, cartella, opzioni)
-    ├── db.py                       accesso SQLite (chat, messaggi, file indicizzati)
-    ├── preselected_books_manager.py  gestione cartella libri (livello 2)
-    └── schema.sql
-```
-
-I dati dell'applicazione (database, indici vettoriali, cache immagini,
-configurazione) sono salvati in:
-
-- Windows: `%APPDATA%\StudioIA`
-- macOS: `~/Library/Application Support/StudioIA`
-- Linux: `~/.config/StudioIA`
-
-La cartella del materiale personale (Livello 1, alimentata dal
-convertitore appunti) si trova in: `StudioIA/file_AIstudio/`
-
-La cartella della libreria Markdown (Livello 2, alimentata dal
-convertitore .md) si trova in: `StudioIA/data/preselected_books/`
-
----
-
-## 5. Scelte di progettazione (perché alcune cose funzionano così)
-
-- **Interfaccia HTML/CSS/JS dentro una finestra nativa (pywebview)**: non è
-  un sito web, non apre un browser, non serve una connessione internet per
-  funzionare (a parte il livello 3 del RAG). È scelta apposta al posto di
-  un toolkit grafico nativo (es. Tkinter) perché permette uno stile molto
-  più curato (colori, spaziature, animazioni) restando comunque un'app
-  desktop a sé stante, con la sua finestra e la sua icona. Tutta la logica
-  (LLM, RAG, database, file) gira in Python sul PC dell'utente; l'HTML è
-  solo la resa grafica.
-
-- **Selettori di file nativi**: il pulsante "Sfoglia..." nel pannello
-  "Aggiungi materiale" apre il selettore di file del sistema operativo
-  tramite pywebview, non un `<input type=file>` di un normale sito web:
-  risultato più affidabile e più "da app vera".
-
-- **Modello LLM nativo**: usiamo `llama-cpp-python` per eseguire modelli GGUF
-  direttamente dentro l'app, senza bisogno di server esterni (Ollama, LM Studio).
-  Questo rende l'app completamente autonoma e portatile.
-
-- **OCR con OpenCV + Tesseract**: il riconoscimento delle immagini usa OpenCV
-  per il pre-processing (miglioramento contrasto, rilevamento bordi) e Tesseract
-  per l'estrazione del testo. Tutto in locale, senza API esterne.
-
-- **Formati supportati**: `.pdf .docx .pptx .xlsx .txt .md .png .jpg .jpeg`. I
-  vecchi formati binari pre-2007 (`.doc .xls .ppt`) non sono inclusi in
-  questa versione: richiederebbero librerie meno stabili e più soggette a
-  bug. Se servono, si possono aggiungere in un secondo momento.
-
-- **Comprensione delle immagini**: le immagini trovate nei file (mappe,
-  grafici, foto) vengono processate con OCR per estrarre il testo. Se il
-  modello LLM supporta multimodalità (es. LLaVA-GGUF), le immagini pertinenti
-  possono essere inviate anche per l'interpretazione visiva diretta.
-
-- **Conversione + vettorizzazione "sotto al cofano"**: sia la modalità
-  "Appunti personali" sia "Libri (Markdown)" del pannello "Aggiungi
-  materiale" elaborano E indicizzano il file immediatamente, senza mai
-  restituirlo o mostrarlo all'utente: è un dettaglio implementativo, non
-  qualcosa da scaricare o gestire manualmente.
-
-- **Indicizzazione "in tempo reale" ma incrementale**: ad ogni domanda,
-  l'intera struttura di cartelle viene ripercorsa (operazione economica),
-  ma vengono ri-analizzati con l'IA solo i file nuovi o modificati rispetto
-  all'ultima scansione (operazione costosa). Così l'app resta sempre
-  aggiornata senza dover ri-processare centinaia di file ad ogni domanda.
-
-- **RAG a 3 livelli, sempre misto**: il sistema cerca prima nel materiale
-  personale, poi nella libreria Markdown, infine online. Ogni livello
-  valuta se le informazioni trovate sono sufficienti prima di passare al
-  successivo — non è l'utente a dover scegliere dove cercare (a meno di
-  selezionare esplicitamente "Solo locale" o "Solo online" dalla barra di
-  input).
-
-- **Ricerca online ristretta**: il livello 3 non è una ricerca generica sul
-  web, ma è limitato ai domini elencati in `core/trusted_sources.py`,
-  interrogati a piccoli gruppi per restare affidabili anche con un elenco
-  lungo di fonti.
-
-- **Ogni chiamata JS -> Python gira su un thread dedicato** (comportamento
-  nativo di pywebview): una risposta LLM lenta non blocca mai la finestra,
-  senza bisogno di gestire manualmente il threading lato Python.
-
-- **Sidebar a scomparsa, Impostazioni come finestra modale**: lo storico
-  conversazioni vive in un menu a scomparsa (tendina) sul lato sinistro,
-  chiuso di default — si apre dal bottone ☰ in alto e si chiude con la ✕
-  o cliccando fuori. Le Impostazioni si aprono invece come una finestra
-  più piccola al centro dello schermo, non a schermo intero. Ogni
-  pannello/finestra dell'app si chiude sempre con un bottone ✕ esplicito.
-
-- **Nessuno streaming della risposta**: la risposta del modello viene mostrata
-  tutta insieme quando è pronta (con un indicatore "Sto pensando..." nel
-  frattempo), non parola per parola.
-
----
-
-## 6. Aggiungere materiale ai livelli 1 e 2
-
-Il modo previsto è tramite il pannello **"Aggiungi materiale"** dentro
-l'app (bottone in alto), scegliendo la modalità giusta — non serve
-toccare manualmente il filesystem né riavviare l'app, l'indicizzazione
-parte subito in automatico.
-
-In alternativa, per aggiungere in blocco molti file alla libreria
-(Livello 2), puoi anche copiarli manualmente in
-`StudioIA/data/preselected_books/` (solo file `.md`): verranno indicizzati
-automaticamente alla prossima domanda fatta all'app.
-
----
-
-## 7. Estensioni future possibili
-
-- Supporto ai formati Office pre-2007
-- Streaming della risposta
-- Esportazione/backup delle conversazioni
-- Modelli LLaVA-GGUF per interpretazione visiva diretta di grafici e diagrammi
-- Fine-tuning semplificato per addestrare il modello su materiale specifico
+Se vuoi, dimmi che licenza vuoi per l'app e ti scrivo il file `LICENSE` completo. Il README è già pronto per puntarci.

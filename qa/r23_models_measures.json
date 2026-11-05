@@ -1,0 +1,153 @@
+{
+ "ts": "2026-10-31T15:14:38.510Z",
+ "viewport": "1366x900",
+ "data_source": "python list_models REALE (catalog R23 + disco)",
+ "models_default": [
+  {
+   "key": "pro",
+   "display_name": "Modello pro (Spark-4B)",
+   "filename": "spark-x2.6-4b.gguf",
+   "size_bytes": 3543441312,
+   "downloaded": true,
+   "id": "spark-pro-4b",
+   "draft": "spark-base-1.7b",
+   "fallback": false,
+   "active": false,
+   "loading": false,
+   "draft_enabled": false
+  },
+  {
+   "key": "base",
+   "display_name": "Modello base (Spark-1.7B)",
+   "filename": "spark-x2.6-1.7b.gguf",
+   "size_bytes": 1768720512,
+   "downloaded": true,
+   "id": "spark-base-1.7b",
+   "draft": null,
+   "fallback": false,
+   "active": false,
+   "loading": false,
+   "draft_enabled": false
+  },
+  {
+   "key": "fallback",
+   "display_name": "MiniCPM5-2B (fallback)",
+   "filename": "MiniCPM5-2B-Q4_K_M.gguf",
+   "size_bytes": 1561318368,
+   "downloaded": true,
+   "id": "minicpm5-2b",
+   "draft": "minicpm5-1b",
+   "fallback": true,
+   "active": false,
+   "loading": false,
+   "draft_enabled": false
+  }
+ ],
+ "pass_default": {
+  "visible": true,
+  "names": [
+   "Modello pro (Spark-4B)",
+   "Modello base (Spark-1.7B)",
+   "MiniCPM5-2B (fallback)"
+  ],
+  "badges": [
+   "draft spark-base-1.7b: OFF (speedup 1,24x < 1,30)",
+   null,
+   "draft minicpm5-1b: OFF (speedup 1,24x < 1,30)"
+  ],
+  "actions": [
+   "",
+   "",
+   ""
+  ],
+  "jsErrors": [],
+  "pageErrors": []
+ },
+ "models_draft_on": [
+  {
+   "key": "pro",
+   "display_name": "Modello pro (Spark-4B)",
+   "filename": "spark-x2.6-4b.gguf",
+   "size_bytes": 3543441312,
+   "downloaded": true,
+   "id": "spark-pro-4b",
+   "draft": "spark-base-1.7b",
+   "fallback": false,
+   "active": false,
+   "loading": false,
+   "draft_enabled": true
+  },
+  {
+   "key": "base",
+   "display_name": "Modello base (Spark-1.7B)",
+   "filename": "spark-x2.6-1.7b.gguf",
+   "size_bytes": 1768720512,
+   "downloaded": true,
+   "id": "spark-base-1.7b",
+   "draft": null,
+   "fallback": false,
+   "active": false,
+   "loading": false,
+   "draft_enabled": false
+  },
+  {
+   "key": "fallback",
+   "display_name": "MiniCPM5-2B (fallback)",
+   "filename": "MiniCPM5-2B-Q4_K_M.gguf",
+   "size_bytes": 1561318368,
+   "downloaded": true,
+   "id": "minicpm5-2b",
+   "draft": "minicpm5-1b",
+   "fallback": true,
+   "active": false,
+   "loading": false,
+   "draft_enabled": true
+  }
+ ],
+ "pass_drafton": {
+  "visible": true,
+  "names": [
+   "Modello pro (Spark-4B)",
+   "Modello base (Spark-1.7B)",
+   "MiniCPM5-2B (fallback)"
+  ],
+  "badges": [
+   "draft spark-base-1.7b: ATTIVO",
+   null,
+   "draft minicpm5-1b: ATTIVO"
+  ],
+  "actions": [
+   "",
+   "",
+   ""
+  ],
+  "jsErrors": [],
+  "pageErrors": []
+ },
+ "pass_scarica": {
+  "visible": true,
+  "names": [
+   "Modello pro (Spark-4B)",
+   "Modello base (Spark-1.7B)",
+   "MiniCPM5-2B (fallback)"
+  ],
+  "badges": [
+   "draft spark-base-1.7b: OFF (speedup 1,24x < 1,30)",
+   null,
+   "draft minicpm5-1b: OFF (speedup 1,24x < 1,30)"
+  ],
+  "actions": [
+   "Scarica… (~3.3 GB)",
+   "",
+   ""
+  ],
+  "jsErrors": [],
+  "pageErrors": []
+ },
+ "checks": {
+  "pass": 10,
+  "fail": 0,
+  "failures": []
+ },
+ "ok": true
+}

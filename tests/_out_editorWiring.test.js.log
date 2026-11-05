@@ -1,0 +1,64 @@
+
+== Caricamento del modulo strategie ==
+  PASS  index.html carica schemaStrategies.js
+  PASS  schemaStrategies.js precede schemi.js in index.html
+
+== 2.1 Delega alla strategia ==
+  PASS  strategy = SchemaStrategies.getStrategy(...)
+  PASS  placeNewNode per i nodi nuovi
+  PASS  canConnect per validare i collegamenti
+  PASS  toast col motivo quando rifiutato
+  PASS  auto-layout con transizione ~200ms
+  PASS  animateLayout usato da autoLayout e changeType
+  PASS  strategy.autoLayout(nodes, edges)
+  PASS  edgeStyle() nel rendering archi
+  PASS  edgeStyle() usato anche per etichetta/dblclick
+  PASS  snap() durante il drag
+  PASS  pulsanti visibili da ui()
+  PASS  pannello testo deciso da ui()
+  PASS  guide decise da ui() e renderizzate
+  PASS  gruppo SVG guide montato
+  PASS  dimensione nodi da strategy.nodeSize()
+
+== 2.2 Rimozione logica hard-coded non dipendente dal tipo ==
+  PASS  isLR() rimossa
+  PASS  layoutCircle() rimossa
+  PASS  nessun switch su type===libero
+  PASS  nessun switch su type===mappa
+  PASS  nessun switch su type===albero
+  PASS  nessun switch su type===riassunto
+  PASS  nessun switch su type===lr
+  PASS  posizioni/dimensioni if-type rimossi da addNode
+  PASS  disabilitazione auto-layout non hard-coded
+
+== 2.3 Etichetta arco solo su mappa ==
+  PASS  dblclick su arco gated da edgeStyle().etichetta
+  PASS  non c’è più il controllo diretto type===mappa
+  PASS  etichetta renderizzata solo se etichetta=true
+
+== 3 Cambio tipo ==
+  PASS  azione changeType presente
+  PASS  changeType usa migrateSchema
+  PASS  nessuna conferma per gli archi extra (solo marcati, mai rimossi)
+  PASS  archi non validi: extra tratteggiati con motivo
+  PASS  selettore tipo collegato a changeType
+  PASS  pulsanti aggiornati al cambio tipo
+  PASS  pannello testo montato per chi lo prevede
+  PASS  doc (con type) persistito in salvataggio
+  PASS  riapertura: strategia ricalcolata da doc.type
+
+== Panoramica funzioni nuove ==
+  PASS  definita function strat
+  PASS  definita function toast
+  PASS  definita function edgeGeom
+  PASS  definita function guideHtml
+  PASS  definita function nodeCardHtml
+  PASS  definita function animateLayout
+  PASS  definita function buildStrategyButtons
+  PASS  definita function refreshToolbar
+  PASS  definita function changeType
+  PASS  definita function syncTestoPanel
+  PASS  definita function onStrategyBtn
+
+================================================
+RISULTATI: 49 passati, 0 falliti

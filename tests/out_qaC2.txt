@@ -1,0 +1,10 @@
+== QA-C2-(i): notes selectFonti mat CON pywebview mock ==
+  PASS  i.0 bottone Fonti presente
+  ECCEZIONE: TypeError: Cannot read properties of undefined (reading 'querySelectorAll')
+    at $$ (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:215:45)
+    at notesWithBackend (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:230:17)
+    at async main (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:392:9)
+================================================
+RISULTATI qaC2_viewer: 1 passati, 1 falliti
+Fallimenti:
+  - ECCEZIONE: TypeError: Cannot read properties of undefined (reading 'querySelectorAll') |     at $$ (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:215:45) |     at notesWithBackend (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:230:17) |     at async main (C:\Users\stebo\Desktop\progetti app\StudioIA_7\tests\qaC2_viewer.js:392:9)

@@ -1,0 +1,58 @@
+# === Python ===
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# === Ambienti e binari pesanti (sorgente + istruzioni negli altri percorsi) ===
+build/
+dist/
+models/
+tesseract/
+
+# === tools: solo script e istruzioni; binari/modelli scaricabili ===
+# (INSTALL_SIDECAR.bat + README_SIDECAR.md descrivono l'installazione)
+tools/*
+!tools/README_SIDECAR.md
+!tools/INSTALL_SIDECAR.bat
+!tools/_install_sidecar.py
+!tools/LICENSE-LLVM-OpenMP
+
+# === Dipendenze node di sviluppo/QA ===
+node_modules/
+
+# === Dati utente e artefatti privati (mai nel repo) ===
+file_AIstudio/
+qa/r27_seed.json
+qa/tmp/
+tmp/
+*.db
+*.sqlite
+*.sqlite3
+
+# === Artefatti pesanti QA (gli screenshot non vengono versionati) ===
+qa/*.png
+
+# === IDE ===
+.vscode/
+
+# === File accidentali creati da shell (non parte del progetto) ===
+/AIstudio
+/AIstudio/
+/Nova
+/a
+/$n
+$n
+/$null
+$null
+/85)
+85)
+/9}
+9}
+/el.click())
+el.click())
+/m\[1])
+m\[1])
+/t.textContent
+t.textContent

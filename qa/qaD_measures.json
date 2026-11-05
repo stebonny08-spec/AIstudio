@@ -1,0 +1,168 @@
+{
+ "build": "BUILD 2026-10-23T19:50:00+02:00",
+ "viewport": "1366x900",
+ "generatedAt": "2026-10-24T12:34:43.532Z",
+ "harness": "qa_ui/home.html (env.js + store.js + app.js reali; 7 moduli stub via App.registerModule; logo e #materialModal copiati da index.html)",
+ "D": {
+  "D1b": {
+   "id": "D1b",
+   "expected": "polygon points del logo in index.html IDENTICI al file di git HEAD (confronto strutturale stringa)",
+   "ok": true,
+   "evidence": "identici (141 char, 16 punti): \"50,2 53.4,41.7 68.4,31.6 58.3,46.6 98,50 58.3,53...\"",
+   "m": {
+    "curLen": 141,
+    "headLen": 141,
+    "identical": true
+   }
+  },
+  "D1a": {
+   "id": "D1a",
+   "expected": "home aperta: svg .logo-star viewBox 0 0 100 100, polygon >8 punti, starGrad #ffd98a/#f9974a, rect ~38x38px, logo-mark/logograd assenti, testi esatti",
+   "ok": true,
+   "evidence": "viewBox=\"0 0 100 100\" punti=16 stops=[#ffd98a,#f9974a] rect=38.0x38.0px oldLogoAbsent=true lockVisible=true view-home=true txt=\"Nova Studio\" sub=\"La tua suite locale per lo studio\"",
+   "m": {
+    "logo": {
+     "viewBox": "0 0 100 100",
+     "nPts": 16,
+     "stops": [
+      "#ffd98a",
+      "#f9974a"
+     ],
+     "w": 38,
+     "h": 38,
+     "display": "block",
+     "svgW": "38px",
+     "svgH": "38px"
+    },
+    "txt": "Nova Studio",
+    "sub": "La tua suite locale per lo studio",
+    "oldAbsent": true,
+    "lockVisible": true,
+    "bodyHome": true,
+    "homeVisible": true,
+    "subVisible": true
+   }
+  },
+  "D1b_dom": {
+   "id": "D1b_dom",
+   "expected": "(interno D1b) points del DOM == points di index.html corrente",
+   "ok": true,
+   "evidence": "dom=50,2 53.4,41.7 68.4,31.6 58.3,46.6 98,50 58.3,53..."
+  },
+  "D2a": {
+   "id": "D2a",
+   "expected": "#homeView contiene 8 button.home-card; 8a con h3 esatto \"Aggiungi materiali\", desc non vuota, rect >0, stessa riga della 7a (o gap riga coerente)",
+   "ok": true,
+   "evidence": "n=8 h3=\"Aggiungi materiali\" desc=\"Carica libri e file nella Biblioteca.\" rect8=268.0x176.0 top7=331.5 top8=331.5 sameRow=true rowGap=-176.0 gridGap=16px cols=4 lastIs8th=true",
+   "m": {
+    "count": 8,
+    "card8": {
+     "h3": "Aggiungi materiali",
+     "desc": "Carica libri e file nella Biblioteca.",
+     "last": "Apre il dialogo materiali",
+     "w": 268,
+     "h": 176,
+     "top7": 331.5,
+     "top8": 331.5,
+     "sameRow": true,
+     "rowGap": -176,
+     "gridGap": "16px",
+     "gridCols": 4
+    },
+    "lastCardIs8th": true
+   }
+  },
+  "D2b": {
+   "id": "D2b",
+   "expected": "click 8a card -> window.Materiali.open() chiamato 1 volta + #materialModal.show + home resta in view + zero errori + modal con 2 tab, #browseBtn e #addFileBtn visibili",
+   "ok": true,
+   "evidence": "matOpenCalls=1 modalShow=true tabs=2[notes,books] browseVis=true addVis=true body.view-home=true homeVisible=true",
+   "m": {
+    "matOpenCalls": 1,
+    "modalShow": true,
+    "nTabs": 2,
+    "tabsData": [
+     "notes",
+     "books"
+    ],
+    "browseVisible": true,
+    "addVisible": true,
+    "browseText": "Sfoglia...",
+    "addText": "Aggiungi ai miei materiali",
+    "bodyHome": true,
+    "homeVisible": true
+   }
+  },
+  "D2b_err": {
+   "id": "D2b_err",
+   "expected": "(interno D2b) zero pageerror/console.error dopo click 8a card",
+   "ok": true,
+   "evidence": "[]"
+  },
+  "D2c": {
+   "id": "D2c",
+   "expected": "SENZA pywebview: click #browseBtn non crasha (zero pageerror/QA.errors), stato invariato, flusso upload reale NON verificabile in T2",
+   "ok": true,
+   "evidence": "pywebview=false fileName=\"Nessun file selezionato\" status=\"\" modalAncoraAperto=true (guard: try/catch in index.html ~1305-1318 cattura TypeError e logga console.error \"Errore selezione file:\" -> NESSUN crash)",
+   "m": {
+    "fileName": "Nessun file selezionato",
+    "materialStatus": "",
+    "modalStillShow": true,
+    "pywebview": false
+   }
+  },
+  "D2c_err": {
+   "id": "D2c_err",
+   "expected": "D2c: zero pageerror + zero QA.errors; console.error atteso e catturato = solo \"Errore selezione file\" (production catch)",
+   "ok": true,
+   "evidence": "pageerrors=0 QA.errors=0 consoleErrors=1 (noti=\"Errore selezione file\" x1) inattesi=[]",
+   "m": {
+    "pageErrors": 0,
+    "consoleErrors": 1,
+    "known": 1
+   }
+  },
+  "D2d": {
+   "id": "D2d",
+   "expected": "click card 1 (Chatbot): renderHome non rompe i click go(id) — body cambia view-*, moduleView aperto, zero errori",
+   "ok": true,
+   "evidence": "body.class=\"view-module\" moduleVisible=true homeHidden=true stubContent=true",
+   "m": {
+    "bodyClass": "view-module",
+    "moduleVisible": true,
+    "homeHidden": true,
+    "stubContent": true,
+    "cardLabel": "Apri Chatbot"
+   }
+  },
+  "D2d_err": {
+   "id": "D2d_err",
+   "expected": "(interno D2d) zero errori dopo click card Chatbot",
+   "ok": true,
+   "evidence": "[]"
+  },
+  "D0": {
+   "id": "D0",
+   "expected": "zero QA.errors / pageerror / console.error per tutto il giro D (l'unica eccezione documentata: console.error catturata del guard browseBtn senza pywebview, misurata in D2c)",
+   "ok": true,
+   "evidence": "QA.errors=[] pageerrors=0 console.error=1 di cui noti(browseBtn guard)=1 inattesi=[]",
+   "m": {
+    "qaErrors": 0,
+    "pageErrors": 0,
+    "consoleErrorsTotal": 1,
+    "knownBrowseGuard": 1
+   }
+  }
+ },
+ "console": {
+  "logs": [
+   "console.error: Errore selezione file: TypeError: Cannot read properties of undefined (reading 'api')"
+  ],
+  "qaErrors": []
+ },
+ "notes": {
+  "d1b": "confronto points index.html corrente vs git HEAD (git show)",
+  "browseGuard": "index.html ~1305-1318: click #browseBtn senza pywebview -> TypeError catturato -> console.error \"Errore selezione file:\", nessun crash, nessun messaggio UI",
+  "uploadLimit": "flusso upload completo (pick/add -> Biblioteca -> rag_stage2) NON verificabile in harness T2 (richiede pywebview reale): coperto dal test Python testC_rag"
+ }
+}

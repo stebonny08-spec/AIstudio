@@ -1,0 +1,338 @@
+{
+ "ts": "2026-11-02T16:31:27.632Z",
+ "tool": "Puppeteer/CDP reale (stesso pattern qaR24_r0_repro.js)",
+ "viewport": "1440x900 -> resize 1100x900",
+ "baseline": {
+  "file": "qa/r24_schemi_baseline.js",
+  "md5": "5AF02CDF3F1ADEE909D0A6B692A60CF0",
+  "hasNormFontiWidth": false
+ },
+ "dragDeltaPx": 260,
+ "prima": {
+  "tag": "PRIMA",
+  "env": {
+   "pywebview": "undefined",
+   "patch_listSubjects": true
+  },
+  "flow": {
+   "mode": "reale",
+   "reason": "Nuovo schema -> Crea schema -> openEditor"
+  },
+  "editor": true,
+  "fontiTab": {
+   "sideExists": true,
+   "sideWasHidden": false,
+   "panelExists": true,
+   "inSide": true,
+   "fallbackText": "Annota qui il riassunto dello schema. La generazione con AI non è disponibile in",
+   "tabOk": true,
+   "toggled": false
+  },
+  "pre": {
+   "side": {
+    "left": 1124,
+    "top": 168,
+    "right": 1424,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 298
+   },
+   "host": {
+    "left": 1125,
+    "top": 219,
+    "right": 1423,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 298,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 1136,
+    "top": 230,
+    "right": 1412,
+    "bottom": 456,
+    "w": 276,
+    "h": 226
+   },
+   "inlineW": "",
+   "lsW": null,
+   "cutRightPx": -12,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 0,
+   "hostOverflowX": 0
+  },
+  "drag": {
+   "ok": true,
+   "hitOk": true,
+   "hitClass": "fp21-rz fp21-rz-r",
+   "sx": 1407.5,
+   "targetX": 1667.5,
+   "realEnd": 1438,
+   "synthCount": 12,
+   "vw": 1440
+  },
+  "postDrag": {
+   "side": {
+    "left": 1124,
+    "top": 168,
+    "right": 1424,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 547
+   },
+   "host": {
+    "left": 1125,
+    "top": 219,
+    "right": 1423,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 547,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 1136,
+    "top": 230,
+    "right": 1672,
+    "bottom": 456,
+    "w": 536,
+    "h": 226
+   },
+   "inlineW": "536px",
+   "lsW": "536",
+   "cutRightPx": 248,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 249,
+   "hostOverflowX": 249
+  },
+  "post": {
+   "side": {
+    "left": 784,
+    "top": 168,
+    "right": 1084,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 547
+   },
+   "host": {
+    "left": 785,
+    "top": 219,
+    "right": 1083,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 547,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 796,
+    "top": 230,
+    "right": 1332,
+    "bottom": 456,
+    "w": 536,
+    "h": 226
+   },
+   "inlineW": "536px",
+   "lsW": "536",
+   "cutRightPx": 248,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 249,
+   "hostOverflowX": 249
+  },
+  "screenshot": "r24_church_schemi_prima.png",
+  "viewportAfter": "1100x900"
+ },
+ "dopo": {
+  "tag": "DOPO",
+  "env": {
+   "pywebview": "undefined",
+   "patch_listSubjects": true
+  },
+  "flow": {
+   "mode": "reale",
+   "reason": "Nuovo schema -> Crea schema -> openEditor"
+  },
+  "editor": true,
+  "fontiTab": {
+   "sideExists": true,
+   "sideWasHidden": false,
+   "panelExists": true,
+   "inSide": true,
+   "fallbackText": "Annota qui il riassunto dello schema. La generazione con AI non è disponibile in",
+   "tabOk": true,
+   "toggled": false
+  },
+  "pre": {
+   "side": {
+    "left": 1124,
+    "top": 168,
+    "right": 1424,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 298
+   },
+   "host": {
+    "left": 1125,
+    "top": 219,
+    "right": 1423,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 298,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 1136,
+    "top": 230,
+    "right": 1412,
+    "bottom": 456,
+    "w": 276,
+    "h": 226
+   },
+   "inlineW": "",
+   "lsW": "536",
+   "cutRightPx": -12,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 0,
+   "hostOverflowX": 0
+  },
+  "drag": {
+   "ok": true,
+   "hitOk": true,
+   "hitClass": "fp21-rz fp21-rz-r",
+   "sx": 1407.5,
+   "targetX": 1667.5,
+   "realEnd": 1438,
+   "synthCount": 12,
+   "vw": 1440
+  },
+  "postDrag": {
+   "side": {
+    "left": 1124,
+    "top": 168,
+    "right": 1424,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 547
+   },
+   "host": {
+    "left": 1125,
+    "top": 219,
+    "right": 1423,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 547,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 1136,
+    "top": 230,
+    "right": 1672,
+    "bottom": 456,
+    "w": 536,
+    "h": 226
+   },
+   "inlineW": "536px",
+   "lsW": "536",
+   "cutRightPx": 248,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 249,
+   "hostOverflowX": 249
+  },
+  "post": {
+   "side": {
+    "left": 784,
+    "top": 168,
+    "right": 1084,
+    "bottom": 892,
+    "w": 300,
+    "h": 724,
+    "clientW": 298,
+    "scrollW": 298
+   },
+   "host": {
+    "left": 785,
+    "top": 219,
+    "right": 1083,
+    "bottom": 891,
+    "clientW": 298,
+    "scrollW": 298,
+    "padL": 11,
+    "padR": 11
+   },
+   "panel": {
+    "left": 796,
+    "top": 230,
+    "right": 1072,
+    "bottom": 456,
+    "w": 276,
+    "h": 226
+   },
+   "inlineW": "276px",
+   "lsW": "536",
+   "cutRightPx": -12,
+   "cutLeftPx": -12,
+   "outTopPx": -62,
+   "outBottomPx": -436,
+   "overflowX": 0,
+   "hostOverflowX": 0
+  },
+  "screenshot": "r24_church_schemi_dopo.png",
+  "viewportAfter": "1100x900"
+ },
+ "asserts": {
+  "pass": 16,
+  "fail": 0,
+  "failures": []
+ },
+ "partial": false,
+ "rss": {
+  "source": "qa/r24_church_rss.json (probe T1, invariato)",
+  "ctx": 4096,
+  "cache": "k/v q8_0",
+  "cases_plateau_mb": {
+   "baseline": 4435.9,
+   "b256": 4421.2,
+   "b256ub256": 4421.5
+  },
+  "floor_teorico": {
+   "pesi_mappati_mb": 3379.3,
+   "kv_q8_0_4096_mb": 765,
+   "resto_buffer_processo_mb": 291.6,
+   "baseline_plateau_mb": 4435.9
+  },
+  "target_mb": 3600,
+  "verdict": "NON_RAGGIUNGIBILE",
+  "reachable": false,
+  "budget": {
+   "DRAFT_RAM_BUDGET_MB": 6144,
+   "invariato": true,
+   "ricalcolo_mb": 5935.9,
+   "motivazione": "RSS pro 4435.9 + margine draft 1500 = 5936 < 6144 (margine ~208 MB); spec.draft_model vuoto (default R13, draft spentivo) -> nessuna case <= 3600 -> server.py NON patchato"
+  }
+ },
+ "pageErrors": [],
+ "httpFails": []
+}

@@ -1,0 +1,17 @@
+{
+  "prima": {
+    "header_px": 34,
+    "search_px": 33,
+    "list_px": 204
+  },
+  "dopo": {
+    "header_px": 0,
+    "search_px": 0,
+    "bar_px": 28,
+    "list_px": 228
+  },
+  "chrome_prima_px": 67,
+  "chrome_dopo_px": 0,
+  "guadagno_px": 67,
+  "nota": "intestazione fissa rimossa (0px); ricerca solo su richiesta (collassata=0px); bar chip = filtro 2.3 conteggiato a parte"
+}

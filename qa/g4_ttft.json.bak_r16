@@ -1,0 +1,94 @@
+{
+  "status": "OK",
+  "gruppo": "G4 streaming + TTFT",
+  "generated_at": "2026-10-23T17:56:27+0200",
+  "comando": "python tests/t2a_ttft.py",
+  "test_associati": "python tests/testG4_stream.py (logico, finto)",
+  "metodo": "TTFT client-side: t0=time.perf_counter() PRIMA di SidecarClient.complete(stream=True); t1=primo pezzo non vuoto; ms=(t1-t0)*1000. p50=mediana statistics.median; p95=nearest-rank sorted[ceil(0.95*n)-1]",
+  "protocollo": "sidecar REALE via core.sidecar (start_on_demand + health), 1 warmup escluso (prefisso HIT), n=10 richieste HIT identiche (cache hit atteso) e n=10 MISS con prefissi diversi (system diverso), prompt corti (una frase), classe micro, drenaggio completo",
+  "target_esiti": {
+    "hit_p50_max_ms": 1500.0,
+    "miss_p50_max_ms": 2500.0,
+    "hit": "RAGGIUNTO",
+    "miss": "RAGGIUNTO",
+    "esito_complessivo": "RAGGIUNTO"
+  },
+  "hit": {
+    "p50": 135.0,
+    "p95": 171.4,
+    "n": 10,
+    "values": [
+      139.6,
+      171.4,
+      160.3,
+      100.0,
+      158.9,
+      130.4,
+      100.3,
+      123.9,
+      100.2,
+      147.1
+    ]
+  },
+  "miss": {
+    "p50": 699.4,
+    "p95": 754.5,
+    "n": 10,
+    "values": [
+      730.0,
+      687.2,
+      722.1,
+      708.1,
+      684.1,
+      754.5,
+      684.8,
+      701.3,
+      681.7,
+      697.5
+    ]
+  },
+  "sidecar": {
+    "start_ok": true,
+    "load_sec": 3.4,
+    "stato": "up",
+    "porta": 60749
+  },
+  "carico_sistema": {
+    "cpu_percent_1s": 58.6,
+    "cpu_count": 16,
+    "memory_percent": 86.8,
+    "processi_llama_server": 1,
+    "processi_python": 2,
+    "python_pids": [
+      "python.exe:13844",
+      "python.exe:22456"
+    ]
+  },
+  "ripetizioni": [
+    {
+      "run": 1,
+      "hit_p50": 135.0,
+      "miss_p50": 699.4,
+      "target": {
+        "hit_p50_max_ms": 1500.0,
+        "miss_p50_max_ms": 2500.0,
+        "hit": "RAGGIUNTO",
+        "miss": "RAGGIUNTO",
+        "esito_complessivo": "RAGGIUNTO"
+      },
+      "carico_sistema": {
+        "cpu_percent_1s": 58.6,
+        "cpu_count": 16,
+        "memory_percent": 86.8,
+        "processi_llama_server": 1,
+        "processi_python": 2,
+        "python_pids": [
+          "python.exe:13844",
+          "python.exe:22456"
+        ]
+      }
+    }
+  ],
+  "ripetuto": false,
+  "run_duration_sec": 401.6
+}

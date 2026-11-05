@@ -1,0 +1,38 @@
+{
+ "ts": "2026-10-24T13:54:47+0200",
+ "checks": {
+  "C1a_layout": {
+   "ok": true,
+   "evidence": "originals=1 file ['fotosintesi_clorofilliana_universitario.md'] | rag_stage2=1 file ['fotosintesi_clorofilliana_universitario.md']"
+  },
+  "C1b_indice_reale": {
+   "ok": true,
+   "evidence": "db=C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db chunks_totali=17 sorgenti_distinte=1"
+  },
+  "C3a_solo_rag_stage2": {
+   "ok": true,
+   "evidence": "store vector_index: sorgenti in originals/ = 0 | in rag_stage2/ = 1 | LEGACY (path radice file_AIstudio, file spostato) = 0 esempi_legacy=[] (atteso: legacy=0 e originals=0, tutto da rag_stage2/)"
+  },
+  "C4a_zero_originals": {
+   "ok": true,
+   "evidence": "chunk con source_file ~ originals/ = 0 (query su 17 chunk reali)"
+  },
+  "C4b_query_reale": {
+   "ok": true,
+   "evidence": "query LIKE 'fotosintesi' -> 17 righe, di cui originals=0; esempi=['C:\\\\Users\\\\stebo\\\\Desktop\\\\progetti app\\\\StudioIA_7\\\\file_AIstudio\\\\rag_stage2\\\\fotosintesi_clorofilliana_universitario.md', 'C:\\\\Users\\\\stebo\\\\Desktop\\\\progetti app\\\\StudioIA_7\\\\file_AIstudio\\\\rag_stage2\\\\fotosintesi_clorofilliana_universitario.md']"
+  },
+  "C3b_migrazione": {
+   "ok": true,
+   "evidence": "status=eseguito parity=1.0 recall5=1.0 chunks=34 backup=manifest"
+  },
+  "C4c_suite_testC_rag": {
+   "ok": true,
+   "evidence": "testC_rag.py 21 test / 0 fail (suite T1)"
+  },
+  "C1c_e2e_upload": {
+   "ok": true,
+   "evidence": "status=OK originals=['appunti_g3_e2e.md', 'documento_g3_e2e.pdf', 'immagine_g3_e2e.png'] stage2_md=3 chunks=7 search_hit=True"
+  }
+ },
+ "ok": true
+}

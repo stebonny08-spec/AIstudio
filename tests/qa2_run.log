@@ -1,0 +1,117 @@
+== QA2 — tipi: albero, mappa, lr, tb, libero, riassunto (n=6) ==
+
+== QA2 — coppie X->mappa e mappa->X ==
+  PASS  QA2[albero>mappa] type/selettore
+  PASS  QA2[albero>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[albero>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[albero>mappa] nessuna conferma chiamata
+  PASS  QA2[albero>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[albero>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[albero>mappa] nessuna crescita al re-render
+    QA2[albero>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[lr>mappa] type/selettore
+  PASS  QA2[lr>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[lr>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[lr>mappa] nessuna conferma chiamata
+  PASS  QA2[lr>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[lr>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[lr>mappa] nessuna crescita al re-render
+    QA2[lr>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[tb>mappa] type/selettore
+  PASS  QA2[tb>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[tb>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[tb>mappa] nessuna conferma chiamata
+  PASS  QA2[tb>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[tb>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[tb>mappa] nessuna crescita al re-render
+    QA2[tb>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[libero>mappa] type/selettore
+  PASS  QA2[libero>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[libero>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[libero>mappa] nessuna conferma chiamata
+  PASS  QA2[libero>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[libero>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[libero>mappa] nessuna crescita al re-render
+    QA2[libero>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[riassunto>mappa] type/selettore
+  PASS  QA2[riassunto>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[riassunto>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[riassunto>mappa] nessuna conferma chiamata
+  PASS  QA2[riassunto>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[riassunto>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[riassunto>mappa] nessuna crescita al re-render
+    QA2[riassunto>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>albero] type/selettore
+  PASS  QA2[mappa>albero] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>albero] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>albero] nessuna conferma chiamata
+  PASS  QA2[mappa>albero] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>albero] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>albero] nessuna crescita al re-render
+    QA2[mappa>albero] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>lr] type/selettore
+  PASS  QA2[mappa>lr] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>lr] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>lr] nessuna conferma chiamata
+  PASS  QA2[mappa>lr] guide presenti e continue
+  PASS  QA2[mappa>lr] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>lr] nessuna crescita al re-render
+    QA2[mappa>lr] dom=3 doc=3 guide=4 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>tb] type/selettore
+  PASS  QA2[mappa>tb] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>tb] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>tb] nessuna conferma chiamata
+  PASS  QA2[mappa>tb] guide presenti e continue
+  PASS  QA2[mappa>tb] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>tb] nessuna crescita al re-render
+    QA2[mappa>tb] dom=3 doc=3 guide=4 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>libero] type/selettore
+  PASS  QA2[mappa>libero] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>libero] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>libero] nessuna conferma chiamata
+  PASS  QA2[mappa>libero] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>libero] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>libero] nessuna crescita al re-render
+    QA2[mappa>libero] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>riassunto] type/selettore
+  PASS  QA2[mappa>riassunto] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>riassunto] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>riassunto] nessuna conferma chiamata
+  PASS  QA2[mappa>riassunto] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>riassunto] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>riassunto] nessuna crescita al re-render
+    QA2[mappa>riassunto] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+
+== QA2 — doppio esatto A->B ==
+  PASS  QA2 doppio: nessuna rimozione con conferma=NO
+  PASS  QA2 doppio: il SECONDO A->B risulta extra CON extraMotivo
+  PASS  QA2 doppio: il PRIMO resta valido
+  PASS  QA2 doppio: DOM 2 archi = 1 extra + 1 pieno (mai 2 pieni)
+  PASS  QA2 doppio: extra tratteggiato in DOM
+  PASS  QA2 doppio: arco pieno NON tratteggiato
+  PASS  QA2 doppio: dash solo su .sc-edge-extra
+  PASS  QA2 doppio: data-eid preservati
+  PASS  QA2 doppio: conferma chiamata (stub sincrono, atteso)
+  PASS  QA2 doppio: con conferma=OK il doppio esatto è rimosso
+  PASS  QA2 doppio: DOM=1 dopo rimozione
+  PASS  QA2 doppio: una sola conferma al cambio con extra
+
+== QA2 — reciproco A->B + B->A ==
+  PASS  QA2 reciproco: in libero entrambi presenti come archi distinti
+  PASS  QA2 reciproco: nessun extra in libero
+  PASS  QA2 reciproco: mappa conserva entrambi gli archi distinti
+  PASS  QA2 reciproco: nessuna conferma in libero->mappa
+  PASS  QA2 reciproco: nessun extra in mappa
+  PASS  QA2 reciproco: in albero il reciproco B->A è extra (con motivo), nessuno perso
+  PASS  QA2 reciproco: DOM 2 archi distinti (1 pieno + 1 extra)
+  PASS  QA2 reciproco: data-eid preservati in albero
+
+== QA2 — hub deterministico (nodo selezionato) ==
+  PASS  QA2 hub: nodo d selezionato PRIMA del cambio (handle presente => ed.sel attivo)
+  PASS  QA2 hub: tutti i nodi renderizzati dopo X->mappa
+    [hub] centri: a=(337,123) b=(588,55) c=(841,113) d=(372,380) e=(248,614)
+    [hub] distanza media agli altri: a=381 b=391 c=520 d=364 e=549
+  PASS  QA2 hub: d selezionato è al centro degli altri (distanza media minima)
+
+================================================
+RISULTATI QA2: 93 passati, 0 falliti

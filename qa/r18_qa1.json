@@ -1,0 +1,2358 @@
+{
+ "round": "18",
+ "qa": "QA-1",
+ "phase": "sonde-real",
+ "ts": "2026-10-26T19:45:07+0100",
+ "method": "Router.process_query_stream reale (sidecar+rete allowlist), storia accumulata per la catena; spy _iter_gen (chunk/repair_note) + LocalSearchEngine.search (query); web: NET_LOG + progress + web_state/breaker; GT B2.3 deterministico sul testo; intent/depth da core.rag",
+ "declarations": {
+  "config_read_only": true,
+  "answer_cache_tmp": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\r18_qa1_ac.jsonl",
+  "breaker_reset_tra_sonde": true,
+  "network": "stadio web allowlist (P8 con R16_WEB_DOWN=1)"
+ },
+ "probes": [
+  {
+   "id": "P1_catena",
+   "query": "cos'è la fotosintesi?",
+   "error": null,
+   "total_ms": 130467.5,
+   "text_len": 2418,
+   "words": 335,
+   "text": "La fotosintesi è il processo biochimico che permette agli organismi autotrofi fotosintetici (piante, alghe, alcuni batteri) di trasformare l'energia solare in energia chimica. In pratica, convertono l'energia elettromagnetica della luce in molecole di carboidrati e intermedi metabolici, immagazzinando così un valore energetico ad alto livello.\n\nIl processo avviene all'interno delle cellule vegetali e, più precisamente, nei **cloroplasti**. Qui, un'architettura complessa di pigmenti e enzimi lavora per consentire questa conversione.\n\nUn'eccezione interessante da tenere a mente: la fotosintesi non è una reazione che libera energia, ma una reazione che **consuma** energia. Dal punto di vista termodinamico, per farla avvenire in modo energeticamente favorevole, è necessario fornire energia esteriore.\n\nEcco le due fasi principali che il documento riporta:\n\n1. **Fotossintesi** (la fase che genera gli carboidrati): Qui vengono convertiti CO₂ e H₂O in glucosio e CO₂ è riempiuto. L'energia fotoelettrica è immagazzinata nelle ATP e nelle NADPH.\n2. **Fotolisi** (la fase che produce ossigeno): Qui gli elettroni vengono riprodotti e l'ossigeno viene liberato. Questa fase è spesso associata a una reazione che produce O₂.\n\nUn dettaglio importante sulle **pigmenti**: i clorofillina e i carotenoidi sono fondamentali. I pigmenti permettono di assorbire la luce e di quelle che non sono sufficienti per la reazione diretta. Anche la **clorofilla a** e la **clorofilla b** sono chiave per l'essenza del processo.\n\nUn'altra cosa utile da ricordare: se il sistema fotosintetica si sovraccarica di radiazione eccessiva, può attivare una meccanismo di protezione. Questo è il **Non-Photochemical Quenching (NPQ)**, che dissipa energia in eccesso per evitare danni cellulari.\n\nPer ricordare meglio la sequenza fondamentale, ecco un'equazione che il documento riporta come reazione stechiometrica globale (con la necessità di ATP e NADPH):\n\n$$6\\text{CO}_2 + 12\\text{H}_2\\text{O} + \\text{energia} \\xrightarrow{\\text{clorofilla}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 + 6\\text{H}_2\\text{O}$$\n\nTuttavia, è importante sottolineare che questa è una sintesi generica. Le fasi intraprese nel cloroplasto sono molto più complesse, che non voglio elencare qui senza avere a che fare con un'appuntatura avanzata. Se vuoi approfondire, puoi guardare i blocchi di codice e i dati numerici riportati nel documento di appunti.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 31.92,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.12,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 0.94,
+     "note": "esito=piena top=0.895"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 2200.98,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 102631.03,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "nuova-domanda",
+    "similarity": null,
+    "rule": "nessun_legame",
+    "metric": "none"
+   },
+   "provenienza": [
+    "appunti"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "appunti"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 7,
+    "net_ok": 7,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2200.98,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793039553.71221,
+     "open_count": 0,
+     "ts": 1793039681.9593225
+    }
+   },
+   "retrieval_queries": [
+    "cos'è la fotosintesi?",
+    "cos'è la fotosintesi?"
+   ],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 10,
+   "log": {
+    "query": "cos'è la fotosintesi?",
+    "esito": "piena",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.7369,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 31.92,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.12,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 0.94,
+      "note": "esito=piena top=0.895"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2200.98,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 102631.03,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 130461.72,
+    "output_len": 2418,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 2418,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "locale",
+    "provenienza": [
+     "appunti"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Zona eufotica",
+      "url": "https://it.wikipedia.org/wiki/Zona_eufotica",
+      "source": "https://it.wikipedia.org/wiki/Zona_eufotica"
+     },
+     {
+      "stage": "web",
+      "title": "Radiazione solare",
+      "url": "https://it.wikipedia.org/wiki/Radiazione_solare",
+      "source": "https://it.wikipedia.org/wiki/Radiazione_solare"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-dei-ragazzi)/",
+      "source": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-dei-ragazzi)/"
+     },
+     {
+      "stage": "web",
+      "title": "La fotosintesi: L'attività della cellula - StudiaFacile ...",
+      "url": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/La-cellula/L-attivit--della-cellula/La-fotosintesi.html",
+      "source": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/La-cellula/L-attivit--della-cellula/La-fotosintesi.html"
+     },
+     {
+      "stage": "web",
+      "title": "fotosìntesi su Enciclopedia | Sapere.it",
+      "url": "https://www.sapere.it/enciclopedia/fotosìntesi.html",
+      "source": "https://www.sapere.it/enciclopedia/fotosìntesi.html"
+     }
+    ],
+    "intent": "nuova-domanda",
+    "intent_info": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none"
+    },
+    "cache_decision": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 335,
+      "bullets": 2,
+      "min": 120,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 1,
+     "check_ms": 25593.4
+    },
+    "ts": 1793039681.9383712
+   }
+  },
+  {
+   "id": "P2_catena",
+   "query": "fammi un riassunto più preciso e puntuale",
+   "error": null,
+   "total_ms": 99544.3,
+   "text_len": 1995,
+   "words": 265,
+   "text": "Certamente. Ecco un riassunto più puntuale, basato solo sulle informazioni fornite nel documento di appunti.\n\n**Fotosintesi** è il processo in cui le piante e altri organismi autotrofi fotosintetici convertono l'energia solare in energia chimica. Questo avviene all'interno dei **cloroplasti**, dove una macchina complessa di pigmenti (come la **clorofilla**) e enzimi lavora per trasformare CO₂ e H₂O in glucosio, immagazzinando così energia in forma di ATP e NADPH.\n\nIl processo è diviso in due fasi principali:\n*   **Fotossintesi**: generazione degli carboidrati.\n*   **Fotolisi**: produzione di ossigeno.\n\nDal punto di vista termodinamico, questa è una reazione **endergonica** (richiede energia esteriore), non una che libera energia.\n\nUn'eccezione interessante è il **Non-Photochemical Quenching (NPQ)**, che agisce come una protezione fotodinamica, dissipando energia in eccesso per evitare danni cellulari.\n\nUn'equazione fondamentale che il documento riporta (con gli enzimi e i substrati necessari) è:\n\n$$6\\text{CO}_2 + 12\\text{H}_2\\text{O} + 9\\text{ATP} + 6\\text{NADPH} + 6\\text{H}^+ \\rightarrow \\text{Glyceraldehyde-3-Phosphate} + \\text{producti metabolici}$$\n\nSe vuoi approfondire, puoi guardare i dati numerici sulle assorbimenti di pigmenti o la struttura della clorofilla riportata nel documento di appunti.La fotosintesi è il processo con cui le piante e altri organismi autotrofi convertono l'energia solare in molecole di carboidrati, utilizzando anidride carbonica e acqua come input. Questa trasformazione avviene all'interno dei cloroplasti, dove pigmenti come la clorofillina assorbono la luce per generare elettroni che, attraverso il ciclo di Calvin, producono glucosio. Per completare la reazione, è necessaria energia chimica immagazzinata nelle ATP e NADPH, mentre l'ossigeno viene rilasciato durante la fase di fotolisi. Il sistema fotosintetico è anche protetto contro sovraccarichi di radiazione, attivando meccanismi di dissipazione energetica per prevenire danni.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 27.16,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.13,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 1.58,
+     "note": "esito=piena top=0.900"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 4176.51,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 76852.1,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "sotto-domanda",
+    "similarity": 0.8057,
+    "rule": "ref=piu preciso,piu preciso,riassunto piu",
+    "metric": "embedding"
+   },
+   "provenienza": [
+    "appunti"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "appunti"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 7,
+    "net_ok": 7,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 4176.51,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793039686.2125537,
+     "open_count": 0,
+     "ts": 1793039781.518191
+    }
+   },
+   "retrieval_queries": [
+    "fotosintesi",
+    "fotosintesi"
+   ],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 10,
+   "log": {
+    "query": "fammi un riassunto più preciso e puntuale",
+    "esito": "piena",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.9356,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 27.16,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.13,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 1.58,
+      "note": "esito=piena top=0.900"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 4176.51,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 76852.1,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 99494.73,
+    "output_len": 673,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 673,
+     "version": "r16.1",
+     "retried": true
+    },
+    "web_status": "ok_con_risultati",
+    "source": "locale",
+    "provenienza": [
+     "appunti"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "The Angel in the Clock",
+      "url": "https://en.wikipedia.org/wiki/The_Angel_in_the_Clock",
+      "source": "https://en.wikipedia.org/wiki/The_Angel_in_the_Clock"
+     },
+     {
+      "stage": "web",
+      "title": "List of animated feature films of 2026",
+      "url": "https://en.wikipedia.org/wiki/List_of_animated_feature_films_of_2026",
+      "source": "https://en.wikipedia.org/wiki/List_of_animated_feature_films_of_2026"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-della-Scienza-e-della-Tecnica)/",
+      "source": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-della-Scienza-e-della-Tecnica)/"
+     },
+     {
+      "stage": "web",
+      "title": "La fotosintesi: L'attività della cellula - StudiaFacile ...",
+      "url": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/La-cellula/L-attivit--della-cellula/La-fotosintesi.html",
+      "source": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/La-cellula/L-attivit--della-cellula/La-fotosintesi.html"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/fotosintesi_res-14be5da2-8baf-11dc-8e9d-0016357eee51_(Enciclopedia-Italiana)/",
+      "source": "https://www.treccani.it/enciclopedia/fotosintesi_res-14be5da2-8baf-11dc-8e9d-0016357eee51_(Enciclopedia-Italiana)/"
+     }
+    ],
+    "intent": "sotto-domanda",
+    "intent_info": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8057,
+     "rule": "ref=piu preciso,piu preciso,riassunto piu",
+     "metric": "embedding"
+    },
+    "cache_decision": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8057,
+     "rule": "ref=piu preciso,piu preciso,riassunto piu",
+     "metric": "embedding",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 92,
+      "bullets": 0,
+      "min": 80,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 1,
+     "check_ms": 18435.7
+    },
+    "ts": 1793039781.5016801
+   }
+  },
+  {
+   "id": "P3_catena",
+   "query": "parlami meglio di questa produzione di ossigeno",
+   "error": null,
+   "total_ms": 110065.8,
+   "text_len": 1179,
+   "words": 164,
+   "text": "Certamente. La fotosintesi non è solo la produzione di glucosio, ma anche un'essenziale fonte di ossigeno. L'ossigeno non viene direttamente prodotto durante la fotosintesi, ma viene rilasciato durante la **fotolisi**, che è la seconda fase della fotosintesi clorofilliana.\n\nEcco perché questo è importante:\n1.  **La fotosintesi è un processo endergonico**: per farla avvenire, bisogna fornire energia solare. Questo energia è immagazzinata e utilizzata per il metabolismo della pianta.\n2.  **L'ossigeno viene rilasciato**: durante la fase di fotolisi, le enzimi del mitocondrio (come il catalina) convertono gli elettroni in ossigeno. Questo è un processo che produce O₂.\n3.  **L'ossigeno è cruciale per la vita**: l'ossigeno prodotto dalle piante viene inalato dagli animali, mentre l'ossigeno che il nostro corpo produce a livello cellulare (dall'ossigenazione dell'ossigeno) è vitale per la respirazione cellulare.\n\nIn sintesi, la fotosintesi è una **ricircolazione dell'ossigeno**: le piante lo rilasciano, mentre gli animali lo consumano. Se le piante sono sotese o malnutrite, l'ossigeno disponibile per gli animali diminuisce, dimostrando l'importanza di questo processo.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 28.14,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 1.63,
+     "note": "esito=piena top=0.885"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 4583.71,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 84148.73,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "sotto-domanda",
+    "similarity": 0.8471,
+    "rule": "ref=questa,parlami meglio,meglio di",
+    "metric": "embedding"
+   },
+   "provenienza": [
+    "appunti"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "appunti"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 15,
+    "net_ok": 14,
+    "net_fail": [
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=fotosintesi produzione ossigeno (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR",
+      "ms": 4089.4,
+      "ok": false,
+      "n": 0,
+      "note": "batch fallito: DecodeError: DecodeError('Body collection error: error decoding response body')"
+     }
+    ],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 4583.71,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793039786.1591444,
+     "open_count": 0,
+     "ts": 1793039891.6004162
+    }
+   },
+   "retrieval_queries": [
+    "fotosintesi produzione ossigeno",
+    "fotosintesi produzione ossigeno"
+   ],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 10,
+   "log": {
+    "query": "parlami meglio di questa produzione di ossigeno",
+    "esito": "piena",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.7978,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 28.14,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.11,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 1.63,
+      "note": "esito=piena top=0.885"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 4583.71,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 84148.73,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 110036.32,
+    "output_len": 1179,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 1179,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "locale",
+    "provenienza": [
+     "appunti"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi clorofilliana",
+      "url": "https://it.wikipedia.org/wiki/Fotosintesi_clorofilliana",
+      "source": "https://it.wikipedia.org/wiki/Fotosintesi_clorofilliana"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi artificiale",
+      "url": "https://it.wikipedia.org/wiki/Fotosintesi_artificiale",
+      "source": "https://it.wikipedia.org/wiki/Fotosintesi_artificiale"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi anossigenica",
+      "url": "https://it.wikipedia.org/wiki/Fotosintesi_anossigenica",
+      "source": "https://it.wikipedia.org/wiki/Fotosintesi_anossigenica"
+     },
+     {
+      "stage": "web",
+      "title": "Ciclo dell'ossigeno",
+      "url": "https://it.wikipedia.org/wiki/Ciclo_dell'ossigeno",
+      "source": "https://it.wikipedia.org/wiki/Ciclo_dell'ossigeno"
+     },
+     {
+      "stage": "web",
+      "title": "Catastrofe dell'ossigeno",
+      "url": "https://it.wikipedia.org/wiki/Catastrofe_dell'ossigeno",
+      "source": "https://it.wikipedia.org/wiki/Catastrofe_dell'ossigeno"
+     }
+    ],
+    "intent": "sotto-domanda",
+    "intent_info": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8471,
+     "rule": "ref=questa,parlami meglio,meglio di",
+     "metric": "embedding"
+    },
+    "cache_decision": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8471,
+     "rule": "ref=questa,parlami meglio,meglio di",
+     "metric": "embedding",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 164,
+      "bullets": 3,
+      "min": 80,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 1,
+     "check_ms": 21272.5
+    },
+    "ts": 1793039891.581686
+   }
+  },
+  {
+   "id": "P4_catena",
+   "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+   "error": null,
+   "total_ms": 129902.6,
+   "text_len": 1402,
+   "words": 193,
+   "text": "Dai tuoi materiali emerge solo questo: Certamente. La produzione di ossigeno durante la fotosintesi non è un processo diretto, ma si muove attraverso due fasi specifiche che il documento di appunti riporta come fasi distinte:\n\n1.  **Fotolisi**: Questo è il processo che genera ossigeno. Il documento riporta che, in un percorso che coinvolge tre compartimenti cellulari, l'ossigeno viene rilasciato tramite il percorso chimico che coinvolge il **perossisoma** e il **mitocondrio**.\n2.  **Fotoesposizione**: Questo è il processo che genera ossigeno tramite la **fotolisi**. Il documento riporta che l'ossigeno viene rilasciato direttamente attorno alla RuBisCO.\n\nEcco perché è importante ricordare questa distinzione:\n*   **La fotosintesi è un processo endergonico**: per farla avvenire, bisogna fornire energia solare. Questo energia è immagazzinata e utilizzata per il metabolismo della pianta.\n*   **L'ossigeno è cruciale per la vita**: l'ossigeno prodotto dalle piante viene inalato dagli animali, mentre l'ossigeno che il nostro corpo produce a livello cellulare (dall'ossigenazione dell'ossigeno) è vitale per la respirazione cellulare.\n\nIn sintesi, la fotosintesi è una **ricircolazione dell'ossigeno**: le piante lo rilasciano, mentre gli animali lo consumono. Se le piante sono sotese o malnutrite, l'ossigeno disponibile per gli animali diminuisce, dimostrando l'importanza di questo processo.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 28.76,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.71,
+     "note": "esito=parziale top=0.878"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 1331.39,
+     "note": "3 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 105362.24,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "sotto-domanda",
+    "similarity": 0.8967,
+    "rule": "ref=di come,approfond,la parte",
+    "metric": "embedding"
+   },
+   "provenienza": [
+    "appunti"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "appunti"
+     ],
+     "items_n": 4
+    }
+   ],
+   "web": {
+    "net_log_n": 3,
+    "net_ok": 3,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 1331.39,
+      "note": "3 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793039892.9886563,
+     "open_count": 0,
+     "ts": 1793040021.518688
+    }
+   },
+   "retrieval_queries": [
+    "fotosintesi produzione ossigeno parte lossigeno",
+    "fotosintesi produzione ossigeno parte lossigeno"
+   ],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 10,
+   "log": {
+    "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+    "esito": "parziale",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.6841,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 28.76,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.11,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 2.71,
+      "note": "esito=parziale top=0.878"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 1331.39,
+      "note": "3 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 105362.24,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 129875.52,
+    "output_len": 1363,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 1363,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "locale",
+    "provenienza": [
+     "appunti"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-della-Scienza-e-della-Tecnica)/",
+      "source": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-della-Scienza-e-della-Tecnica)/"
+     },
+     {
+      "stage": "web",
+      "title": "Fotosintesi - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-dei-ragazzi)/",
+      "source": "https://www.treccani.it/enciclopedia/fotosintesi_(Enciclopedia-dei-ragazzi)/"
+     },
+     {
+      "stage": "web",
+      "title": "Diapositiva 1 - Treccani",
+      "url": "https://static.treccani.it/export/sites/default/Portale/resources/multimedia/Lezioni_di_Scienze/fotosintesi1/presentazione.pdf",
+      "source": "https://static.treccani.it/export/sites/default/Portale/resources/multimedia/Lezioni_di_Scienze/fotosintesi1/presentazione.pdf"
+     }
+    ],
+    "intent": "sotto-domanda",
+    "intent_info": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8967,
+     "rule": "ref=di come,approfond,la parte",
+     "metric": "embedding"
+    },
+    "cache_decision": {
+     "intent": "sotto-domanda",
+     "similarity": 0.8967,
+     "rule": "ref=di come,approfond,la parte",
+     "metric": "embedding",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 187,
+      "bullets": 4,
+      "min": 80,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 1,
+     "check_ms": 23147.7
+    },
+    "ts": 1793040021.5010076
+   }
+  },
+  {
+   "id": "P5_dante",
+   "query": "chi è dante alighieri",
+   "error": null,
+   "total_ms": 54096.2,
+   "text_len": 783,
+   "words": 133,
+   "text": "Dante Alighieri è stato un **poeta, scrittore, pensatore e politico italiano**. La sua opera più famosa è la *Divina Commedia*, un grande poema che racconta anche un percorso di pensiero.\n\nSecondo le fonti, egli nacque a Firenze tra il 1265 e morì a Ravenna nel 1321. La sua fama è legata anche a alcune credenze, come l'ipocoristico \"Dante\" che secondo alcuni fu un gioco di parole.\n\nSe le informazioni sui suoi dettagli personali vanno da un sito web, è importante scegliere sempre le fonti che danno i dati più precisi.\n\nUn pensiero semplice: come pensiamo alle persone che ci hanno ispirato il nostro modo di vedere il mondo, è importante ricordare anche a chi ha contribuito a questo.\n\nSe vuoi approfondire, puoi leggere le enciclopedie o i libri che riportano la sua biografia.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 29.22,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.13,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.6,
+     "note": "esito=nulla top=0.757"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 5206.6,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 37396.98,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "nuova-domanda",
+    "similarity": null,
+    "rule": "nessun_legame",
+    "metric": "none"
+   },
+   "provenienza": [
+    "web"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "web"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 8,
+    "net_ok": 8,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 5206.6,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793040026.759806,
+     "open_count": 0,
+     "ts": 1793040075.6315122
+    }
+   },
+   "retrieval_queries": [
+    "chi è dante alighieri",
+    "chi è dante alighieri"
+   ],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 0,
+   "log": {
+    "query": "chi è dante alighieri",
+    "esito": "nulla",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.4544,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 29.22,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.13,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 2.6,
+      "note": "esito=nulla top=0.757"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 5206.6,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 37396.98,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 54091.68,
+    "output_len": 783,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 783,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "web",
+    "provenienza": [
+     "web"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Dante Alighieri",
+      "url": "https://it.wikipedia.org/wiki/Dante_Alighieri",
+      "source": "https://it.wikipedia.org/wiki/Dante_Alighieri"
+     },
+     {
+      "stage": "web",
+      "title": "Divina Commedia",
+      "url": "https://it.wikipedia.org/wiki/Divina_Commedia",
+      "source": "https://it.wikipedia.org/wiki/Divina_Commedia"
+     },
+     {
+      "stage": "web",
+      "title": "Dante alighièri - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/dante-alighieri/",
+      "source": "https://www.treccani.it/enciclopedia/dante-alighieri/"
+     },
+     {
+      "stage": "web",
+      "title": "ALIGHIERI, Dante - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/dante-alighieri_(Dizionario-Biografico)/",
+      "source": "https://www.treccani.it/enciclopedia/dante-alighieri_(Dizionario-Biografico)/"
+     },
+     {
+      "stage": "web",
+      "title": "Dante Alighieri | Biography, Books, Famous Works, The Divine ...",
+      "url": "https://www.britannica.com/biography/Dante-Alighieri",
+      "source": "https://www.britannica.com/biography/Dante-Alighieri"
+     }
+    ],
+    "intent": "nuova-domanda",
+    "intent_info": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none"
+    },
+    "cache_decision": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 133,
+      "bullets": 0,
+      "min": 120,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 1,
+     "check_ms": 11453.9
+    },
+    "ts": 1793040075.612732
+   }
+  },
+  {
+   "id": "P6_petrarca",
+   "query": "chi è petrarca?",
+   "error": null,
+   "total_ms": 104796.7,
+   "text_len": 2979,
+   "words": 458,
+   "text": "Petrarca è stato un poeta, scrittore e filosofo italiano molto importante. Viveva nel XIV secolo e è considerato un inizio dell'Umanesimo, in quanto ha portato nuove riflessioni sui classici latini.\n\nIl suo nome è legato soprattutto a due grandi qualità:\n- **L'umanità**: fu il primo umanista italiano, promuovendo la rilettura dell'antichità.\n- **L'amore**: con *Il Canzonierie* (o *Canzoniere*), esprimeva sentimenti di amore che hanno lasciato un segno indelebile nella poesia.\n\nC'è anche una curiosità interessante: la sua famiglia era di origine toskaana, ma lui nacque a Arezzo. Inoltre, c'è un comune chiamato *Arquà Petrarca*, che riporta il nome del poeta. Tuttavia, è importante sapere che i dati locali possono differire da quelli delle fonti più grandi.\n\n---\n**Fonte semplice:** Francesco Petrarca (Arezzo, 20 luglio 1304 – Arquà, 19 luglio 1374) è stato uno scrittore, poeta, filosofo e filologo italiano. È considerato una delle figure centrali della cultura europea del XIV secolo e uno dei principali iniziatori dell'Umanesimo italiano. Contribuì alla riscoperta e allo studio dei classici latini, promuovendo un nuovo rapporto con la cultura antica attraverso gli studia hum ...Francesco Petrarca è un poeta e filologo italiano che è considerato una delle figure centrali della cultura europea del XIV secolo. Egli è spesso ricordato per la sua opera \"Il Canzonierie\", che è diventata un testo immortale sopra le opere di amore. Petrarca ha anche contribuito a riprendere e studiare i classici latini, il che lo ha portato a essere visto come uno dei principali iniziatori dell'Umanesimo italiano.Petrarca è un nome che appare in diverse contestazioni, ma la sua figura è centrale. Secondo la fonte di Wikipedia, Francesco Petrarca nacque a Arezzo il ventuno luglio 1304 ed ebbe una lunga carriera letteraria e filologica. La sua influenza è visibile anche in un comune chiamato Arquà Petrarca, che risulta essere una località in Veneto con una certa importanza storica. \n\nÈ importante sottolineare che Petrarca è considerato una delle figure centrali della cultura europea del XIV secolo. La sua attività contribuì alla riscoperta e allo studio dei classici latini, promovendo un nuovo rapporto con la cultura antica. Questo fatto rende la sua eredità ancora oggi rilevante per chi studia storia e letteratura.\n\nLa sua fama è legata anche a una definizione specifica: fu il primo umanista italiano e poeta d'amore immortale con Il Canzonierie. Tuttavia, la sua influenza va oltre la letteratura e si estende anche a filosofia e filologia. È consigliabile ricordare che non tutti i dati sono uguali. Se si trovano fonti locali che riportano dati diversi, bisogna fare attenzione a non confondere le informazioni. La correttezza nella ricerca è fondamentale per comprendere appieno l'importanza di questi personaggi storici. In sintesi, Petrarca rappresenta un pilastro della tradizione italiana, e la sua memoria deve essere preservata per le generazioni future.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 32.84,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.64,
+     "note": "esito=nulla top=0.797"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 2856.52,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 51467.02,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "nuova-domanda",
+    "similarity": null,
+    "rule": "nessun_legame",
+    "metric": "none"
+   },
+   "provenienza": [
+    "web"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "web"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 8,
+    "net_ok": 8,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2856.52,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793040078.5260892,
+     "open_count": 0,
+     "ts": 1793040180.4429674
+    }
+   },
+   "retrieval_queries": [
+    "chi è petrarca?",
+    "chi è petrarca?"
+   ],
+   "gen_calls": 2,
+   "chunk_hashes_dup": [],
+   "chunks_n": 0,
+   "log": {
+    "query": "chi è petrarca?",
+    "esito": "nulla",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.4766,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 32.84,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.11,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 2.64,
+      "note": "esito=nulla top=0.797"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2856.52,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 51467.02,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 104792.35,
+    "output_len": 1365,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 1365,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "web",
+    "provenienza": [
+     "web"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Francesco Petrarca",
+      "url": "https://it.wikipedia.org/wiki/Francesco_Petrarca",
+      "source": "https://it.wikipedia.org/wiki/Francesco_Petrarca"
+     },
+     {
+      "stage": "web",
+      "title": "Arquà Petrarca",
+      "url": "https://it.wikipedia.org/wiki/Arqu%C3%A0_Petrarca",
+      "source": "https://it.wikipedia.org/wiki/Arqu%C3%A0_Petrarca"
+     },
+     {
+      "stage": "web",
+      "title": "PETRARCA, Francesco - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/",
+      "source": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/"
+     },
+     {
+      "stage": "web",
+      "title": "Petrarca, Francesco - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/francesco-petrarca/",
+      "source": "https://www.treccani.it/enciclopedia/francesco-petrarca/"
+     },
+     {
+      "stage": "web",
+      "title": "Francesco Petrarca, vita e opere | Sapere.it",
+      "url": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html",
+      "source": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html"
+     }
+    ],
+    "intent": "nuova-domanda",
+    "intent_info": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none"
+    },
+    "cache_decision": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 212,
+      "bullets": 0,
+      "min": 120,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 2,
+     "first": {
+      "depth": {
+       "ok": false,
+       "words": 68,
+       "bullets": 0,
+       "min": 120,
+       "reason": "profondita' insufficiente: 68 parole (min 120) / 0 punti"
+      },
+      "grounding": {
+       "ok": true,
+       "violations": [],
+       "backend": "sidecar:think"
+      }
+     },
+     "check_ms": 41639.2
+    },
+    "ts": 1793040180.4261734
+   }
+  },
+  {
+   "id": "P7_boccaccio",
+   "query": "chi è giovanni boccaccio?",
+   "error": null,
+   "total_ms": 116410.6,
+   "text_len": 3193,
+   "words": 507,
+   "text": "Il nome **Giovanni Boccaccio** è legato principalmente a due personaggi diversi, che inizialmente potresti pensare come due persone.\n\n### 1. Gli scrittori\nIl **Giovanni Boccaccio** (giugno o luglio 1313 – 21 dicembre 1375) è stato uno scrittore e poeta italiano. Fu una delle figure più importanti nel panorama letterario europeo del XIV secolo. Alcuni studiosi, tra i quali Vittore Branca, lo definiscono come il maggior prosatore europeo del suo tempo, uno scrittore versatile che amala le sue vicende. È famoso soprattutto per il *Decameron* (Il Trasguardo), un racconto di avventure dopo il Grande Calamito delle pandemie del 1347.\n\n### 2. Il militare\nViene invece a identificare anche **Giovanni Boccaccio**, che è stato un militare sabaudo membro dei carabinieri reali, il primo a essere caduto nell'adempimento del proprio dovere. In questo caso, il nome è stato associato a un episodio storico legato alla legione sabauda.\n\n> *Nota:* Sei in seguito a questa domanda, potresti trovare informazioni che riportano dati diversi su un fatto che riguarda entrambi gli individui. In tal caso, la fonte locale riporta un dato diverso.Giovanni Boccaccio è stato un noto poeta e scrittore italiano del XIV secolo, spesso associato a una sua famosa opere, il Decameron. Fu anche considerato un importante inizio per il rinascimismo, poiché ha contribuito a mantenere la lingua italiana in uso e a rafforzarla come forma letteraria. La sua vita è inoltre stata menzionata anche in contesti legati alla letteratura e all'antichità.\n\n*Il Decameron*\n*La formazione del rinascimismo*Giovanni Boccaccio è un nome che appartiene a due figure diverse e spesso confuse nelle cronache storiche. La prima è l'antico scrittore letterario italiano, vissuto nel XIV secolo, noto per le sue opere di romanticismo e per il Decameron. La seconda è il militare sabaudo che, come primo caduto nei carabinieri reali, segnò una lezione di impegno. Entrambi le figure condividono la loro opposizione alla corruzione e alla povertà, ma la loro vita è molto diversa. È importante non confondere i due. La storia ci ricorda che anche le persone di questi secoli hanno un valore storico. Non bisogna dimenticare la scienza letteraria. Non bisogna dimenticare il rispetto per la legge. È questo l'essenza della sua memoria. La sua influenza è ancora oggi rilevante. La sua eredità ci invita a riflettere sulle nostre proprie cose. La sua scrittura è un insegnamento. La sua decisione è un modello. La sua presenza è un'anedranza. Non è sufficiente un solo nome. È la combinazione di due visioni. La letteratura e la moralità. Il primo e il secondo. La storia ci dimostra che questa combinazione è preziosa. La nostra ricordiamento è una responsabilità. Non dobbiamo dimenticare la scienza letteraria. Non dobbiamo dimenticare il rispetto per la legge. La nostra eredità è un impegno continuo. La nostra scrittura è un insegnamento. La nostra decisione è un modello. La nostra presenza è un'anedranza. Non è sufficiente un solo nome. È la combinazione di due visioni. La letteratura e la moralità. Il primo e il secondo. La storia ci dimostra che questa combinazione è preziosa. La nostra ricordiamento è una responsabilità.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 31.93,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.14,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 3.06,
+     "note": "esito=nulla top=0.774"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 2763.22,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 51181.02,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "nuova-domanda",
+    "similarity": null,
+    "rule": "nessun_legame",
+    "metric": "none"
+   },
+   "provenienza": [
+    "web"
+   ],
+   "sources_events": [
+    {
+     "stages": [
+      "web"
+     ],
+     "items_n": 6
+    }
+   ],
+   "web": {
+    "net_log_n": 8,
+    "net_ok": 8,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2763.22,
+      "note": "5 risultati web fusi"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793040183.2437897,
+     "open_count": 0,
+     "ts": 1793040296.86826
+    }
+   },
+   "retrieval_queries": [
+    "chi è giovanni boccaccio?",
+    "chi è giovanni boccaccio?"
+   ],
+   "gen_calls": 2,
+   "chunk_hashes_dup": [],
+   "chunks_n": 0,
+   "log": {
+    "query": "chi è giovanni boccaccio?",
+    "esito": "nulla",
+    "stadi": [
+     "appunti",
+     "web"
+    ],
+    "score": 0.4542,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 31.93,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.14,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 3.06,
+      "note": "esito=nulla top=0.774"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "done",
+      "ms": 2763.22,
+      "note": "5 risultati web fusi"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 51181.02,
+      "note": "1 chiamata generate_stream"
+     }
+    ],
+    "tempo_totale_ms": 116405.81,
+    "output_len": 1618,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 1618,
+     "version": "r16.1"
+    },
+    "web_status": "ok_con_risultati",
+    "source": "web",
+    "provenienza": [
+     "web"
+    ],
+    "sources": [
+     {
+      "stage": "appunti",
+      "title": "fotosintesi_clorofilliana_universitario.md",
+      "url": "",
+      "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+     },
+     {
+      "stage": "web",
+      "title": "Giovanni Boccaccio",
+      "url": "https://it.wikipedia.org/wiki/Giovanni_Boccaccio",
+      "source": "https://it.wikipedia.org/wiki/Giovanni_Boccaccio"
+     },
+     {
+      "stage": "web",
+      "title": "Giovanni Boccaccio (carabiniere)",
+      "url": "https://it.wikipedia.org/wiki/Giovanni_Boccaccio_(carabiniere)",
+      "source": "https://it.wikipedia.org/wiki/Giovanni_Boccaccio_(carabiniere)"
+     },
+     {
+      "stage": "web",
+      "title": "Boccàccio, Giovanni - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/giovanni-boccaccio/",
+      "source": "https://www.treccani.it/enciclopedia/giovanni-boccaccio/"
+     },
+     {
+      "stage": "web",
+      "title": "BOCCACCIO, Giovanni - Enciclopedia - Treccani",
+      "url": "https://www.treccani.it/enciclopedia/giovanni-boccaccio_(Dizionario-Biografico)/",
+      "source": "https://www.treccani.it/enciclopedia/giovanni-boccaccio_(Dizionario-Biografico)/"
+     },
+     {
+      "stage": "web",
+      "title": "Giovanni Boccaccio | Biography, Works, Decameron, Renaissance ...Giovanni Boccaccio - Italian Poet, Decameron, Renaissan",
+      "url": "https://www.britannica.com/biography/Giovanni-Boccaccio",
+      "source": "https://www.britannica.com/biography/Giovanni-Boccaccio"
+     }
+    ],
+    "intent": "nuova-domanda",
+    "intent_info": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none"
+    },
+    "cache_decision": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "validazione": {
+     "depth": {
+      "ok": true,
+      "words": 264,
+      "bullets": 0,
+      "min": 120,
+      "reason": "ok"
+     },
+     "grounding": {
+      "ok": true,
+      "violations": [],
+      "backend": "sidecar:think"
+     },
+     "attempts": 2,
+     "first": {
+      "depth": {
+       "ok": false,
+       "words": 68,
+       "bullets": 0,
+       "min": 120,
+       "reason": "profondita' insufficiente: 68 parole (min 120) / 0 punti"
+      },
+      "grounding": {
+       "ok": true,
+       "violations": [],
+       "backend": "sidecar:think"
+      }
+     },
+     "check_ms": 52518.5
+    },
+    "ts": 1793040296.8510325
+   }
+  },
+  {
+   "id": "P8_rete_giu",
+   "query": "chi era napoleone bonaparte?",
+   "error": null,
+   "total_ms": 35.2,
+   "text_len": 431,
+   "words": 69,
+   "text": "Non ho trovato una risposta affidabile: i materiali locali non coprono bene questa domanda e, per un problema di rete, non sono riuscito a consultare il web in questo momento.\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del programma;\n  * aggiungi alla biblioteca il documento che contiene l'argomento e riprova.",
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 29.13,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.12,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.07,
+     "note": "esito=nulla top=0.758"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "skip",
+     "ms": 0.01,
+     "note": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 0.05,
+     "note": "informativa gate (zero LLM)"
+    }
+   ],
+   "intent": {
+    "intent": "nuova-domanda",
+    "similarity": null,
+    "rule": "nessun_legame",
+    "metric": "none"
+   },
+   "provenienza": [],
+   "sources_events": [
+    {
+     "stages": [],
+     "items_n": 1
+    }
+   ],
+   "web": {
+    "net_log_n": 0,
+    "net_ok": 0,
+    "net_fail": [],
+    "attempted": true,
+    "progress": [
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "skip",
+      "ms": 0.01,
+      "note": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+     }
+    ],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793040183.2437897,
+     "open_count": 0,
+     "ts": 1793040296.9247909
+    }
+   },
+   "retrieval_queries": [
+    "chi era napoleone bonaparte?",
+    "chi era napoleone bonaparte?"
+   ],
+   "gen_calls": 0,
+   "chunk_hashes_dup": [],
+   "chunks_n": 0,
+   "log": {
+    "query": "chi era napoleone bonaparte?",
+    "esito": "informativa",
+    "stadi": [
+     "appunti"
+    ],
+    "score": 0.455,
+    "tempi_per_stadio": [
+     {
+      "stage": "gate",
+      "status": "start",
+      "ms": 0.0,
+      "note": "gate precoce: deciso subito dopo il retrieval"
+     },
+     {
+      "stage": "appunti",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "appunti",
+      "status": "done",
+      "ms": 29.13,
+      "note": "5 chunk"
+     },
+     {
+      "stage": "libri",
+      "status": "start",
+      "ms": 0.0,
+      "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+     },
+     {
+      "stage": "libri",
+      "status": "done",
+      "ms": 0.12,
+      "note": "0 chunk"
+     },
+     {
+      "stage": "gate",
+      "status": "done",
+      "ms": 2.07,
+      "note": "esito=nulla top=0.758"
+     },
+     {
+      "stage": "web",
+      "status": "start",
+      "ms": 0.0,
+      "note": "interrogo lo stadio web (W)"
+     },
+     {
+      "stage": "web",
+      "status": "skip",
+      "ms": 0.01,
+      "note": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+     },
+     {
+      "stage": "synth",
+      "status": "start",
+      "ms": 0.0,
+      "note": "generazione con contesto finale"
+     },
+     {
+      "stage": "synth",
+      "status": "done",
+      "ms": 0.05,
+      "note": "informativa gate (zero LLM)"
+     }
+    ],
+    "tempo_totale_ms": 31.67,
+    "output_len": 431,
+    "marker_check": {
+     "ok": true,
+     "reason": "informativa-deterministica"
+    },
+    "web_status": "giu",
+    "source": "nessuna",
+    "intent": "nuova-domanda",
+    "intent_info": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none"
+    },
+    "cache_decision": {
+     "intent": "nuova-domanda",
+     "similarity": null,
+     "rule": "nessun_legame",
+     "metric": "none",
+     "hit": false,
+     "allowed": null,
+     "reason": "miss"
+    },
+    "ts": 1793040296.9023705
+   }
+  },
+  {
+   "id": "P9_chitchat",
+   "query": "ciao, come stai?",
+   "error": null,
+   "total_ms": 10623.7,
+   "text_len": 300,
+   "words": 51,
+   "text": "Ciao! 😊 Sono l'assistente AI di NovaStudio, pronto a aiutarti con gli appunti, i PDF, le PDF, i file di testo e altro materiale di studio. Se vuoi fare un ripasso, esercizi, riassunti o chiarimenti, oppure usare la modalità \"Pensiero profondo\" per riflettere più a lungo, ti chiedi pure. Buon studio!",
+   "progress": [
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "risposta diretta (nessun materiale)"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 10619.54,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "intent": {
+    "intent": "chit-chat",
+    "similarity": null,
+    "rule": "saluto-iniziale",
+    "metric": "rules"
+   },
+   "provenienza": null,
+   "sources_events": [],
+   "web": {
+    "net_log_n": 0,
+    "net_ok": 0,
+    "net_fail": [],
+    "attempted": false,
+    "progress": [],
+    "breaker": {
+     "presente": true,
+     "ttl_s": 60.0,
+     "open": false,
+     "open_until": 0.0,
+     "last_error": null,
+     "last_success_ts": 1793040183.2437897,
+     "open_count": 0,
+     "ts": 1793040307.5637317
+    }
+   },
+   "retrieval_queries": [],
+   "gen_calls": 1,
+   "chunk_hashes_dup": [],
+   "chunks_n": 0,
+   "log": {
+    "query": "ciao, come stai?",
+    "esito": "chitchat",
+    "stadi": [],
+    "score": null,
+    "tempi_per_stadio": [],
+    "tempo_totale_ms": 10619.55,
+    "output_len": 300,
+    "marker_check": {
+     "ok": true,
+     "markers": [],
+     "too_short": false,
+     "system_echo": false,
+     "canned": [],
+     "verbatim": false,
+     "identical": false,
+     "code_citation": false,
+     "reason": "ok",
+     "phase": "full",
+     "len": 300,
+     "version": "r16.1"
+    },
+    "web_status": "non_eseguito",
+    "source": "nessuna",
+    "ts": 1793040307.547339
+   }
+  }
+ ],
+ "fails": [
+  "P1 GT fotosintesi:co2 :: La fotosintesi è il processo biochimico che permette agli organismi autotrofi fotosintetici (piante, alghe, alcuni batteri) di trasformare l'energia solare in energia chimica. In pratica, convertono l'energia elettromagnetica della luce in molecole di carboidrati e intermedi metabolici, immagazzinan"
+ ],
+ "ok": false,
+ "n_checks": 88,
+ "n_fail": 1,
+ "n_pass": 87
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA home D — logo vecchio + 8a card (QA-T2)</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Copia fedele della regola inline di web_frontend/html/index.html riga 60
+   (.logo-star 38px): base.css (qa_ui esistente, NON modificabile) la
+   sovrascrive con 26px, qui si ripristina il valore di produzione. */
+.logo-star { width: 38px; height: 38px; flex-shrink: 0; }
+</style>
+</head>
+<body class="view-module">
+<header class="header" id="topBar">
+    <div class="header-left">
+        <button class="mod-back" id="chatBackBtn" aria-label="Torna alle conversazioni">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            Conversazioni
+        </button>
+        <div class="logo-container" id="brandLockup" role="link" tabindex="0" title="Torna alla home">
+            <svg class="logo-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs><linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#f9974a"/></linearGradient></defs>
+                <polygon fill="url(#starGrad)" points="50,2 53.4,41.7 68.4,31.6 58.3,46.6 98,50 58.3,53.4 68.4,68.4 53.4,58.3 50,98 46.6,58.3 31.6,68.4 41.7,53.4 2,50 41.7,46.6 31.6,31.6 46.6,41.7"/>
+            </svg>
+            <div class="logo-text-wrap">
+                <span class="logo-text">Nova Studio</span>
+                <span class="logo-sub">La tua suite locale per lo studio</span>
+            </div>
+        </div>
+    </div>
+    <div class="header-right"></div>
+</header>
+<!-- Ancora per il boot di app.js (inserisce #homeView/#moduleView prima di
+     #welcomeView). #main resta hidden: la home reale e' creata da app.js. -->
+<div id="welcomeView" class="hidden"></div>
+<main id="main" class="view-page hidden"></main>
+    <div class="modal-overlay" id="materialModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Aggiungi materiale</h2>
+                <button class="icon-btn" id="closeMaterialBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <button class="tab active" data-tab="notes">ðŸ“„ Materiali di studio</button>
+                    <button class="tab" data-tab="books">ðŸ“š Librerie</button>
+                </div>
+                <div class="tab-info" id="tabInfo"></div>
+                <div class="file-row">
+                    <div class="file-name" id="fileName">Nessun file selezionato</div>
+                    <button class="btn-outline" id="browseBtn">Sfoglia...</button>
+                </div>
+                <div class="file-formats" id="fileFormats"></div>
+                <button class="btn-accent btn-block" id="addFileBtn"></button>
+                <div class="material-status" id="materialStatus"></div>
+            </div>
+        </div>
+    </div>
+<script>
+/* ===== WIRED PRODUCTION (copiato byte-per-byte da web_frontend/html/index.html) =====
+   Riferimenti (righe 851, 857-858) + gestione materiale (righe 1278-1355):
+   tabsData/resetFile/setTab/listener #browseBtn e #addFileBtn — necessari per
+   verificare in D2c il comportamento SENZA pywebview del production. */
+    const $ = id => document.getElementById(id);
+    const fileNameBox = $('fileName'), addFileBtn = $('addFileBtn');
+    const materialStatus = $('materialStatus');
+
+    const tabsData = {
+        notes: {
+            info: "Carica una foto di appunti, un PDF, un documento Word, una presentazione PowerPoint, un file di testo o un file Markdown: verrÃ  elaborato automaticamente e reso disponibile all'AI come materiale di studio personale.",
+            formats: "Formati supportati: JPG, PNG, PDF, DOCX, PPTX, TXT, MD",
+            button: "Aggiungi ai miei materiali"
+        },
+        books: {
+            info: "Carica un PDF da usare come fonte di riferimento (manuale, libro di testo, dispensa): verrÃ  convertito automaticamente in Markdown e reso disponibile come libreria.",
+            formats: "Formato supportato: PDF",
+            button: "Aggiungi alla libreria"
+        }
+    };
+    let currentTab = 'notes';
+    let selectedFilePath = null;
+
+    const resetFile = () => {
+        selectedFilePath = null;
+        fileNameBox.textContent = 'Nessun file selezionato';
+        fileNameBox.classList.remove('selected', 'error');
+        materialStatus.textContent = '';
+        materialStatus.className = 'material-status';
+    };
+    function setTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+        $('tabInfo').textContent = tabsData[tab].info;
+        $('fileFormats').textContent = tabsData[tab].formats;
+        addFileBtn.textContent = tabsData[tab].button;
+        resetFile();
+    }
+    document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTab(t.dataset.tab)));
+    setTab('notes');
+
+    $('browseBtn').addEventListener('click', async () => {
+        try {
+            const picked = currentTab === 'books'
+                ? await window.pywebview.api.pick_library_pdf_file()
+                : await window.pywebview.api.pick_notes_file();
+            if (!picked) return;
+            selectedFilePath = picked.path;
+            fileNameBox.textContent = picked.name;
+            fileNameBox.classList.add('selected');
+            fileNameBox.classList.remove('error');
+            materialStatus.textContent = '';
+            materialStatus.className = 'material-status';
+        } catch (err) { console.error('Errore selezione file:', err); }
+    });
+
+    addFileBtn.addEventListener('click', async () => {
+        if (!selectedFilePath) {
+            fileNameBox.classList.add('error');
+            setTimeout(() => fileNameBox.classList.remove('error'), 600);
+            return;
+        }
+        const label = addFileBtn.textContent;
+        addFileBtn.textContent = 'Elaborazione in corso...';
+        addFileBtn.disabled = true;
+        materialStatus.textContent = '';
+        materialStatus.className = 'material-status';
+
+        try {
+            const result = currentTab === 'books'
+                ? await window.pywebview.api.add_library_material(selectedFilePath)
+                : await window.pywebview.api.add_notes_material(selectedFilePath);
+            if (result && result.success === false) throw new Error(result.error || 'Operazione fallita.');
+            addFileBtn.textContent = 'âœ“ Aggiunto!';
+            materialStatus.textContent = currentTab === 'books'
+                ? 'Risorsa aggiunta alla libreria.'
+                : 'Materiale di studio aggiunto ed elaborato.';
+            materialStatus.className = 'material-status success';
+            setTimeout(() => { addFileBtn.textContent = label; addFileBtn.disabled = false; resetFile(); }, 1200);
+        } catch (err) {
+            addFileBtn.textContent = label;
+            addFileBtn.disabled = false;
+            materialStatus.textContent = `Errore: ${err.message || err}`;
+            materialStatus.className = 'material-status error';
+        }
+    });
+</script>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/store.js"></script>
+<script src="../web_frontend/html/js/app.js"></script>
+<script>
+/* Driver harness QA-T2 blocco D — OWNED da qa_browser/qaD_home_b12.js.
+   - window.Materiali: l'inline script di index.html (riga ~1197) NON esiste
+     qui: si dichiara un wrapper con contatore + apertura reale di #materialModal
+     (HTML statico copiato byte-per-byte da index.html sopra).
+   - 7 moduli STUB registrati via App.registerModule REALE per soddisfare
+     ORDER di renderHome (limite T2 dichiarato: struttura/griglia/logo reali,
+     def delle card 1-7 = stub; l'8a card "Aggiungi materiali' e' interamente
+     prodotta dal renderHome REALE di app.js).
+   - NESSUNA geometria simulata: solo misure reali del browser. */
+(function () {
+    var QA = window.__QA;
+    window.__matOpenCalls = 0;
+    window.Materiali = {
+        open: function () {
+            window.__matOpenCalls = (window.__matOpenCalls || 0) + 1;
+            try { if (typeof resetFile === 'function') resetFile(); } catch (e) { /* ok: come index.html ~1197 */ }
+            var m = document.getElementById('materialModal');
+            if (m) m.classList.add('show');
+        }
+    };
+    var closeBtn = document.getElementById('closeMaterialBtn');
+    if (closeBtn) closeBtn.addEventListener('click', function () {
+        var m = document.getElementById('materialModal');
+        if (m) m.classList.remove('show');
+    });
+
+    var STUB = [
+        { id: 'chatbot', title: 'Chatbot' },
+        { id: 'notes', title: 'Appunti' },
+        { id: 'schemi', title: 'Schemi' },
+        { id: 'produttivita', title: 'Produttivita' },
+        { id: 'ripasso', title: 'Ripasso' },
+        { id: 'biblioteca', title: 'Biblioteca' },
+        { id: 'calendario', title: 'Calendario' }
+    ];
+    STUB.forEach(function (d) {
+        App.registerModule({
+            id: d.id, title: d.title, iconClass: '',
+            recent: function () { return Promise.resolve(''); },
+            open: function (el, params) {
+                el.innerHTML = '';
+                el.appendChild(App.header(d.title, 'modulo stub QA-D'));
+                var b = document.createElement('div');
+                b.className = 'empty-state';
+                b.setAttribute('data-stub', d.id);
+                b.textContent = 'Modulo stub QA-D (' + d.id + ')';
+                el.appendChild(b);
+            }
+        });
+    });
+
+    function markReady() {
+        try {
+            if (!document.getElementById('homeView')) return false;
+            App.go('home'); /* renderHome REALE: 7 card stub + 8a card materiali */
+            QA.harnessReady = true;
+            QA.done = false;
+            return true;
+        } catch (e) {
+            QA.errors.push('harness: ' + (e && e.stack ? e.stack : e));
+            QA.done = true;
+            return false;
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { markReady(); });
+    } else { markReady(); }
+})();
+</script>
+</body>
+</html>

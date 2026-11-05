@@ -1,0 +1,281 @@
+{
+ "method": "node qa_browser/qaS14_schemi.js [prima|dopo] — Chromium headless (puppeteer) su file://qa_ui/schemi.html; archi campionati con path.getPointAtLength(step 1.5px, interior eps 0.01px, nodi endpoint esclusi); coppie violate = gapX<24px E gapY<40px; punta = translate(<polygon>) vs ancora target su bbox secondo la regola S1 (violazione se dist>2px+1e-6); screenshot qa/s14_<tipo>.png",
+ "prima": {
+  "command": "node qa_browser/qaS14_schemi.js prima",
+  "timestamp": "2026-10-27T18:42:57.162Z",
+  "viewport": "1366x900",
+  "totale": {
+   "doc": 5,
+   "archi": 21,
+   "archi_con_intersezione": 5,
+   "coppie_violate": 5,
+   "punte_totali": 18,
+   "punte_oltre_2px": 0,
+   "nodi_mancanti": 0,
+   "punte_pct_oltre_2px": 0
+  },
+  "docs": [
+   {
+    "id": "s14_albero",
+    "type": "albero",
+    "error": null,
+    "nodi_renderizzati": 7,
+    "nodi_attesi": 7,
+    "nodi_mancanti": [],
+    "coppie_violate": 1,
+    "coppie_dettaglio": [
+     {
+      "a": "a6",
+      "b": "a7",
+      "gapX": -158,
+      "gapY": -48
+     }
+    ],
+    "archi_renderizzati": 5,
+    "archi_con_intersezione": 1,
+    "archi_interseccati": [
+     "ea1->a3"
+    ],
+    "punte_totali": 5,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 0,
+    "archi_con_via": 5
+   },
+   {
+    "id": "s14_mappa",
+    "type": "mappa",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 1,
+    "coppie_dettaglio": [
+     {
+      "a": "m5",
+      "b": "m6",
+      "gapX": -158,
+      "gapY": -48
+     }
+    ],
+    "archi_renderizzati": 4,
+    "archi_con_intersezione": 1,
+    "archi_interseccati": [
+     "em1->m2"
+    ],
+    "punte_totali": 4,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 0,
+    "archi_con_via": 4
+   },
+   {
+    "id": "s14_lr",
+    "type": "lr",
+    "error": null,
+    "nodi_renderizzati": 8,
+    "nodi_attesi": 8,
+    "nodi_mancanti": [],
+    "coppie_violate": 1,
+    "coppie_dettaglio": [
+     {
+      "a": "l7",
+      "b": "l8",
+      "gapX": -158,
+      "gapY": -48
+     }
+    ],
+    "archi_renderizzati": 6,
+    "archi_con_intersezione": 1,
+    "archi_interseccati": [
+     "el2->l2"
+    ],
+    "punte_totali": 6,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 6,
+    "archi_con_via": 0
+   },
+   {
+    "id": "s14_libero",
+    "type": "libero",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 1,
+    "coppie_dettaglio": [
+     {
+      "a": "n5",
+      "b": "n6",
+      "gapX": -158,
+      "gapY": -48
+     }
+    ],
+    "archi_renderizzati": 3,
+    "archi_con_intersezione": 1,
+    "archi_interseccati": [
+     "en1->n2"
+    ],
+    "punte_totali": 3,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 3,
+    "archi_con_via": 0
+   },
+   {
+    "id": "s14_riassunto",
+    "type": "riassunto",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 1,
+    "coppie_dettaglio": [
+     {
+      "a": "r5",
+      "b": "r6",
+      "gapX": -248,
+      "gapY": -84
+     }
+    ],
+    "archi_renderizzati": 3,
+    "archi_con_intersezione": 1,
+    "archi_interseccati": [
+     "er1->r2"
+    ],
+    "punte_totali": 0,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 0,
+    "archi_dritti": 3,
+    "archi_con_via": 0
+   }
+  ],
+  "errori": []
+ },
+ "screenshot": [
+  "qa/s14_albero.png",
+  "qa/s14_mappa.png",
+  "qa/s14_lr.png",
+  "qa/s14_libero.png",
+  "qa/s14_riassunto.png"
+ ],
+ "dopo": {
+  "command": "node qa_browser/qaS14_schemi.js dopo",
+  "timestamp": "2026-11-04T18:59:42.489Z",
+  "viewport": "1366x900",
+  "totale": {
+   "doc": 5,
+   "archi": 21,
+   "archi_con_intersezione": 0,
+   "coppie_violate": 0,
+   "punte_totali": 18,
+   "punte_oltre_2px": 0,
+   "nodi_mancanti": 0,
+   "punte_pct_oltre_2px": 0
+  },
+  "docs": [
+   {
+    "id": "s14_albero",
+    "type": "albero",
+    "error": null,
+    "nodi_renderizzati": 7,
+    "nodi_attesi": 7,
+    "nodi_mancanti": [],
+    "coppie_violate": 0,
+    "coppie_dettaglio": [],
+    "archi_renderizzati": 5,
+    "archi_con_intersezione": 0,
+    "archi_interseccati": [],
+    "punte_totali": 5,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 2,
+    "archi_con_via": 3
+   },
+   {
+    "id": "s14_mappa",
+    "type": "mappa",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 0,
+    "coppie_dettaglio": [],
+    "archi_renderizzati": 4,
+    "archi_con_intersezione": 0,
+    "archi_interseccati": [],
+    "punte_totali": 4,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 0,
+    "archi_con_via": 4
+   },
+   {
+    "id": "s14_lr",
+    "type": "lr",
+    "error": null,
+    "nodi_renderizzati": 8,
+    "nodi_attesi": 8,
+    "nodi_mancanti": [],
+    "coppie_violate": 0,
+    "coppie_dettaglio": [],
+    "archi_renderizzati": 6,
+    "archi_con_intersezione": 0,
+    "archi_interseccati": [],
+    "punte_totali": 6,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 4,
+    "archi_con_via": 2
+   },
+   {
+    "id": "s14_libero",
+    "type": "libero",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 0,
+    "coppie_dettaglio": [],
+    "archi_renderizzati": 3,
+    "archi_con_intersezione": 0,
+    "archi_interseccati": [],
+    "punte_totali": 3,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 2,
+    "archi_dritti": 2,
+    "archi_con_via": 1
+   },
+   {
+    "id": "s14_riassunto",
+    "type": "riassunto",
+    "error": null,
+    "nodi_renderizzati": 6,
+    "nodi_attesi": 6,
+    "nodi_mancanti": [],
+    "coppie_violate": 0,
+    "coppie_dettaglio": [],
+    "archi_renderizzati": 3,
+    "archi_con_intersezione": 0,
+    "archi_interseccati": [],
+    "punte_totali": 0,
+    "punte_oltre_2px": 0,
+    "punte_dettaglio": [],
+    "punte_max_dist": 0,
+    "archi_dritti": 1,
+    "archi_con_via": 2
+   }
+  ],
+  "errori": []
+ }
+}

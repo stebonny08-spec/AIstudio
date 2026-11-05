@@ -1,0 +1,369 @@
+{
+  "status": "OK",
+  "parity_top10": 1.0,
+  "recall5": 1.0,
+  "n_chunks": 34,
+  "chroma_count": 34,
+  "dim": 384,
+  "queries": [
+    {
+      "query": "La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio) che comporta il trasferimento di elettroni guidato dalla luce contro un potenziale di riduzione favorevole.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "|  [STROMA] - Elevata concentrazione di RuBisCO, enzimi del ciclo C3,   |",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "1. **Involucro Esterno e Interno:** La membrana esterna contiene porine aspecifiche, mentre la membrana interna è altamente selettiva, regolata da trasportatori di carica specifici (es. traslocatore fosfato/trioso-fosfato).",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Anello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -> Pi*)",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$ (una coppia speciale di molecole di clorofilla *a*), assorbe energia di risonanza eccitonica trasdotta dalle antenne e passa allo stato di eccitazione $P_{680}^*$.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume}} + 4e^-$$",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina contenente FAD, catalizza la riduzione finale di due molecole di Ferredossina per produrre $\\text{NADPH}$:",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "(Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)* riduce l'1,3-BPGA utilizzando NADPH, generando **Gliceraldeide-3-fosfato** ($\\text{G3P}$) e rilascio di fosfato inorganico ($\\text{P}_i$):",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "2. $\\text{Fruttosio-1,6-BP} \\xrightarrow{\\text{FBPasi}} \\text{Fruttosio-6-Fosfato} (6C) + \\text{P}_i$",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "8. Infine, l'enzima **Phosphoribulokinase (PRK)** fosforila il Ru5P consumando ATP per rigenerare il **RuBP**:",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "L'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in grado di catalizzare una reazione concorrente di **ossigenazione** utilizzando $\\text{O}_2$ al posto di $\\text{CO}_2$.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Dove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina. A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "Le piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estremamente aridi e risolvono il dilemma fotosintetico/idrico separando i processi temporalmente nello stesso tipo cellulare.",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Temporale (Notte / Giorno) |",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+      "query": "| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ | $30 - 40^\\circ\\text{C}$ (Notte fredda) |",
+      "gold": "fotosintesi_clorofilliana_universitario.md"
+    }
+  ],
+  "n_queries": 24,
+  "metodo": "(a) parity top-10 su 24 query derivate dai .md di C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2; DeterministicEmbedder (tests/testH1_parity.py) con dim=384 (vettore reale dell'indice); STESSO embedder per chroma (copia read-only) e sqlite (file temp); overlap = intersezione(top10_chroma, top10_sqlite) / min(10). (b) recall@5 con l'embedder di PRODUZIONE (core.rag.embedder, stesso modello dell'indice); hit = >=1 risultato top-5 dal .md di origine.",
+  "comando_riproduzione": "python data/migrate_real.py",
+  "chroma_source": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\vector_index",
+  "corpus": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2",
+  "migrate_stats": {
+    "ok": true,
+    "migrated": 34,
+    "upserted_existing": 0,
+    "skipped": 0,
+    "total": 34
+  },
+  "parity_per_query": [
+    {
+      "query": "La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiolo",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazi",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "|  [STROMA] - Elevata concentrazione di RuBisCO, enzimi del ciclo C3,   |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "1. **Involucro Esterno e Interno:** La membrana esterna contiene porine aspecifi",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Anello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Foto",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina c",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso es",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "(Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)*",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "2. $\\text{Fruttosio-1,6-BP} \\xrightarrow{\\text{FBPasi}} \\text{Fruttosio-6-Fosfat",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "8. Infine, l'enzima **Phosphoribulokinase (PRK)** fosforila il Ru5P consumando A",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "L'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in gr",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Dove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinse",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica ",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalaceta",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Le piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estr",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Tempora",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "overlap": 1.0
+    }
+  ],
+  "recall_per_query": [
+    {
+      "query": "La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiolo",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazi",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "|  [STROMA] - Elevata concentrazione di RuBisCO, enzimi del ciclo C3,   |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "1. **Involucro Esterno e Interno:** La membrana esterna contiene porine aspecifi",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Anello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Foto",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina c",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso es",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "(Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)*",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "2. $\\text{Fruttosio-1,6-BP} \\xrightarrow{\\text{FBPasi}} \\text{Fruttosio-6-Fosfat",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "8. Infine, l'enzima **Phosphoribulokinase (PRK)** fosforila il Ru5P consumando A",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "L'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in gr",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Dove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinse",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica ",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalaceta",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "Le piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estr",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Tempora",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    },
+    {
+      "query": "| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ |",
+      "gold": "fotosintesi_clorofilliana_universitario.md",
+      "hit": true
+    }
+  ],
+  "ts": "2026-10-23T16:35:32",
+  "error": null,
+  "gate": {
+    "parity_min": 1.0,
+    "recall5_min": 1.0,
+    "pass": true
+  }
+}

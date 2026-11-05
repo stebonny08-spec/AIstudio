@@ -1,0 +1,607 @@
+biblioteca.js:78:        b.addEventListener('click', e => { e.stopPropagation(); fn(); });
+biblioteca.js:311:            save.addEventListener('click', async () => {
+biblioteca.js:329:            cancel.addEventListener('click', actions.close);
+biblioteca.js:367:            document.removeEventListener('keydown', onEsc);
+biblioteca.js:368:            setTimeout(() => { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 260);
+biblioteca.js:371:        closeBtn.addEventListener('click', close);
+biblioteca.js:372:        ov.addEventListener('click', e => { if (e.target === ov) close(); });
+biblioteca.js:373:        document.addEventListener('keydown', onEsc);
+biblioteca.js:382:        requestAnimationFrame(() => ov.classList.add('show'));
+biblioteca.js:395:        toggle.addEventListener('click', () => {
+biblioteca.js:412:        selArea.addEventListener('change', () => { area = selArea.value; render(); });
+biblioteca.js:418:        search.addEventListener('input', () => { filters.q = search.value; renderBody(); });
+biblioteca.js:427:        selTipo.addEventListener('change', () => { filters.tipo = selTipo.value; renderBody(); });
+biblioteca.js:434:        selMat.addEventListener('change', () => { filters.materia = selMat.value; renderBody(); });
+biblioteca.js:441:        selTag.addEventListener('change', () => { filters.tag = selTag.value; renderBody(); });
+biblioteca.js:449:        selSort.addEventListener('change', () => { filters.sort = selSort.value; renderBody(); });
+biblioteca.js:455:        reset.addEventListener('click', () => {
+biblioteca.js:575:            card.addEventListener('click', e => {
+biblioteca.js:579:            card.addEventListener('keydown', e => {
+calendario.js:79:        b.addEventListener('click', fn);
+calendario.js:165:        bMat.addEventListener('click', openSubjectsModal);
+calendario.js:216:                evEl.addEventListener('click', e => {
+calendario.js:224:                more.addEventListener('click', e => e.stopPropagation());
+calendario.js:228:            cell.addEventListener('click', () => openEventModal(null, dIso));
+calendario.js:341:        btnNess.addEventListener('click', function () {
+calendario.js:348:        subjInput.getInput().addEventListener('change', function () { syncDot(subjInput.getValue()); });
+calendario.js:408:            c.addEventListener('click', () => App.openItem(item.kind, item.id));
+calendario.js:411:        selL.addEventListener('change', () => {
+calendario.js:488:                inName.addEventListener('change', async () => {
+calendario.js:501:                inCol.addEventListener('change', async () => {
+calendario.js:511:                bDel.addEventListener('click', async () => {
+calendario.js:554:            bAdd.addEventListener('click', doAdd);
+calendario.js:555:            inNew.addEventListener('keydown', e => { if (e.key === 'Enter') doAdd(); });
+calendario.js:590:            document.removeEventListener('keydown', onEsc);
+calendario.js:591:            setTimeout(() => { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 260);
+calendario.js:594:        closeBtn.addEventListener('click', close);
+calendario.js:595:        ov.addEventListener('click', e => { if (e.target === ov) close(); });
+calendario.js:596:        document.addEventListener('keydown', onEsc);
+calendario.js:604:        requestAnimationFrame(() => ov.classList.add('show'));
+chatbot.js:63:        btnNew.addEventListener('click', renderSetup);
+chatbot.js:116:            card.addEventListener('click', e => {
+chatbot.js:120:            card.addEventListener('keydown', e => { if (e.key === 'Enter') openExistingConversation(conv.id); });
+chatbot.js:131:            del.addEventListener('click', async () => {
+chatbot.js:176:        cancel.addEventListener('click', () => renderList(container));
+chatbot.js:180:        start.addEventListener('click', async () => {
+chatbot.js:202:        setTimeout(() => { const i = document.getElementById('setupArgomento'); if (i) i.focus(); }, 80);
+chatbot.js:245:        setTimeout(renderSetup, 60);
+documenti.js:246:        setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 500);
+documenti.js:258:            inp.addEventListener('change', function () {
+documenti.js:293:        saveTimer = setTimeout(flush, 900);
+documenti.js:351:        toastT = setTimeout(function () {
+documenti.js:449:        if (rafId) cancelAnimationFrame(rafId);
+documenti.js:450:        rafId = requestAnimationFrame(function () { rafId = null; relayoutPages(); });
+documenti.js:469:                imgs[i].addEventListener('load', relayoutSoon);
+documenti.js:470:                imgs[i].addEventListener('error', relayoutSoon);
+documenti.js:1174:        if (onResize) { window.removeEventListener('resize', onResize); onResize = null; }
+documenti.js:1175:        if (onSel) { document.removeEventListener('selectionchange', onSel); onSel = null; }
+documenti.js:1176:        if (onDocDown) { document.removeEventListener('mousedown', onDocDown); onDocDown = null; }
+documenti.js:1177:        if (onScroll && st && st.canvas) { st.canvas.removeEventListener('scroll', onScroll); }
+documenti.js:1180:        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+documenti.js:1221:        b.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
+documenti.js:1222:        b.addEventListener('click', function (e) { e.stopPropagation(); fn(); });
+documenti.js:1254:        card.addEventListener('click', open);
+documenti.js:1255:        card.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); });
+documenti.js:1297:        back.addEventListener('click', function () { App.go('produttivita'); });
+documenti.js:1304:        btnNew.addEventListener('click', createNew);
+documenti.js:1386:        search.addEventListener('input', function () { listQ = search.value; renderGrid(); });
+documenti.js:1387:        sort.addEventListener('change', function () { listSort = sort.value; renderGrid(); });
+documenti.js:1391:        requestAnimationFrame(function () { fitShell(); });
+documenti.js:1393:        window.addEventListener('resize', onResize);
+documenti.js:1430:        b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+documenti.js:1431:        b.addEventListener('click', handler);
+documenti.js:1445:        s.addEventListener('change', function () { restoreSel(); onChange(s.value); });
+documenti.js:1458:        inp.addEventListener('input', function () {
+documenti.js:1523:        shell.addEventListener('mousedown', saveSelNow, true);
+documenti.js:1525:        shell.addEventListener('keydown', function (e) {
+documenti.js:1561:        back.addEventListener('click', function () { showList(root); });
+documenti.js:1575:        tInp.addEventListener('input', function () { st.title = tInp.value; scheduleSave(); });
+documenti.js:1576:        tInp.addEventListener('change', function () {
+documenti.js:1583:        tInp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); tInp.blur(); } });
+documenti.js:1673:            b.addEventListener('click', function () { closeTableMenu(); insertTable(a[1], a[2]); });
+documenti.js:1682:        tHr.addEventListener('click', function () { closeTableMenu(); exec('insertHorizontalRule'); });
+documenti.js:1725:        bFind.addEventListener('mousedown', function (e) { e.preventDefault(); });
+documenti.js:1726:        bRep.addEventListener('mousedown', function (e) { e.preventDefault(); });
+documenti.js:1727:        bAll.addEventListener('mousedown', function (e) { e.preventDefault(); });
+documenti.js:1728:        bCls.addEventListener('mousedown', function (e) { e.preventDefault(); });
+documenti.js:1729:        bFind.addEventListener('click', function () { doFind(true); });
+documenti.js:1730:        bRep.addEventListener('click', function () { replaceOne(); });
+documenti.js:1731:        bAll.addEventListener('click', function () { replaceAll(); });
+documenti.js:1732:        bCls.addEventListener('click', function () { toggleFind(false); });
+documenti.js:1733:        fq.addEventListener('keydown', function (e) {
+documenti.js:1737:        fr.addEventListener('keydown', function (e) {
+documenti.js:1755:        ovBtn.addEventListener('click', function (e) {
+documenti.js:1780:            b.addEventListener('click', function () { closeExport(); a[2](); });
+documenti.js:1783:        expBtn.addEventListener('click', function (e) {
+documenti.js:1822:        sheet.addEventListener('mousedown', function (e) {
+documenti.js:1838:        paper.addEventListener('input', function () {
+documenti.js:1842:        paper.addEventListener('blur', function () { saveSelNow(); scheduleSave(); });
+documenti.js:1843:        paper.addEventListener('keyup', function () { updateStates(); saveSelNow(); });
+documenti.js:1844:        paper.addEventListener('mouseup', function () { updateStates(); saveSelNow(); });
+documenti.js:1859:        zbOut.addEventListener('click', zoomOut);
+documenti.js:1864:        zbIn.addEventListener('click', zoomIn);
+documenti.js:1867:        zbFit.addEventListener('click', zoomFit);
+documenti.js:1870:        zb100.addEventListener('click', zoom100);
+documenti.js:1889:        window.addEventListener('resize', onResize);
+documenti.js:1892:        canvas.addEventListener('scroll', onScroll, { passive: true });
+documenti.js:1901:        document.addEventListener('selectionchange', onSel);
+documenti.js:1910:        document.addEventListener('mousedown', onDocDown);
+documenti.js:1912:        if (window.ResizeObserver) {
+documenti.js:1914:                ro = new ResizeObserver(function () {
+documenti.js:1930:        requestAnimationFrame(function () {
+documenti.js:1935:        setTimeout(function () {
+documenti.js:2023:                window.removeEventListener('afterprint', clean);
+documenti.js:2025:            window.addEventListener('afterprint', clean);
+documenti.js:2026:            setTimeout(clean, 1500);
+fogli.js:157:        setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 500);
+fogli.js:247:        saveTimer = setTimeout(flush, 900);
+fogli.js:262:            document.removeEventListener('keydown', st.keyHandler, true);
+fogli.js:266:            window.removeEventListener('resize', st.onWinResize);
+fogli.js:709:        back.addEventListener('click', function () { App.go('produttivita'); });
+fogli.js:713:        btnNew.addEventListener('click', createNew);
+fogli.js:779:        search.addEventListener('input', function () { query = String(search.value || '').trim().toLowerCase(); draw(); });
+fogli.js:780:        sort.addEventListener('change', draw);
+fogli.js:839:        card.addEventListener('click', function (e) {
+fogli.js:843:        card.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); });
+fogli.js:851:        op.addEventListener('click', function () { openEditor(container, it.id); });
+fogli.js:853:        ren.addEventListener('click', async function () {
+fogli.js:860:        dup.addEventListener('click', async function () {
+fogli.js:865:        del.addEventListener('click', async function () {
+fogli.js:930:        back.addEventListener('click', function () { showList(root); });
+fogli.js:935:        undoBtn.addEventListener('click', doUndo);
+fogli.js:941:        redoBtn.addEventListener('click', doRedo);
+fogli.js:953:        titleEl.addEventListener('dblclick', function () { renameDoc(); });
+fogli.js:970:        formula.addEventListener('keydown', function (e) {
+fogli.js:986:        formula.addEventListener('input', function () { acUpdate(formula); });
+fogli.js:987:        formula.addEventListener('blur', function () { acClose(); });
+fogli.js:994:        fHelp.addEventListener('click', function (e) { e.stopPropagation(); openFormuleHelp(fHelp); });
+fogli.js:1008:            inp.addEventListener('input', function () {
+fogli.js:1019:        nfEur.addEventListener('click', function () { pushUndo(); toggleNf('eur'); });
+fogli.js:1023:        nfPct.addEventListener('click', function () { pushUndo(); toggleNf('pct'); });
+fogli.js:1027:        nfInc.addEventListener('click', function () { pushUndo(); changeDecimals(1); });
+fogli.js:1031:        nfDec.addEventListener('click', function () { pushUndo(); changeDecimals(-1); });
+fogli.js:1035:        mgBtn.addEventListener('click', function () { mergeRange(); });
+fogli.js:1039:        bdBtn.addEventListener('click', function (e) { e.stopPropagation(); openBorderMenu(bdBtn); });
+fogli.js:1043:        fzBtn.addEventListener('click', function (e) { e.stopPropagation(); openFreezeMenu(fzBtn); });
+fogli.js:1051:        moreBtn.addEventListener('click', function (e) { e.stopPropagation(); openMoreMenu(moreBtn); });
+fogli.js:1055:        expBtn.addEventListener('click', function (e) { e.stopPropagation(); openExportMenu(expBtn); });
+fogli.js:1088:        sideCol.addEventListener('click', function () { toggleFmtPanel(); });
+fogli.js:1096:        bBtn.addEventListener('click', function () {
+fogli.js:1131:        sideTab.addEventListener('click', function () { toggleFmtPanel(); });
+fogli.js:1141:        wrap.addEventListener('pointerdown', function (e) { onGridPointerDown(e); });
+fogli.js:1145:        wrap.addEventListener('scroll', function () { updateOverlays(); }, { passive: true });
+fogli.js:1147:        window.addEventListener('resize', st.onWinResize);
+fogli.js:1148:        wrap.addEventListener('dblclick', function (e) {
+fogli.js:1161:        wrap.addEventListener('contextmenu', function (e) {
+fogli.js:1210:        document.addEventListener('keydown', st.keyHandler, true);
+fogli.js:1223:        helpBtn.addEventListener('click', function (e) { e.stopPropagation(); openHelpPop(helpBtn); });
+fogli.js:1442:        inp.addEventListener('keydown', function (e) {
+fogli.js:1448:        inp.addEventListener('input', function () { acUpdate(inp); });
+fogli.js:1449:        inp.addEventListener('blur', function () { acClose(); commitEdit(); });
+fogli.js:1479:        inp.addEventListener('change', function () {
+fogli.js:1800:            document.removeEventListener('pointermove', onMove);
+fogli.js:1801:            document.removeEventListener('pointerup', onUp);
+fogli.js:1802:            document.removeEventListener('pointercancel', onUp);
+fogli.js:1805:        document.addEventListener('pointermove', onMove);
+fogli.js:1806:        document.addEventListener('pointerup', onUp);
+fogli.js:1807:        document.addEventListener('pointercancel', onUp);
+fogli.js:1848:            document.removeEventListener('pointermove', onMove);
+fogli.js:1849:            document.removeEventListener('pointerup', onUp);
+fogli.js:1850:            document.removeEventListener('pointercancel', onUp);
+fogli.js:1858:        document.addEventListener('pointermove', onMove);
+fogli.js:1859:        document.addEventListener('pointerup', onUp);
+fogli.js:1860:        document.addEventListener('pointercancel', onUp);
+fogli.js:1961:            document.removeEventListener('pointermove', onMove);
+fogli.js:1962:            document.removeEventListener('pointerup', onUp);
+fogli.js:1963:            document.removeEventListener('pointercancel', onUp);
+fogli.js:1966:        document.addEventListener('pointermove', onMove);
+fogli.js:1967:        document.addEventListener('pointerup', onUp);
+fogli.js:1968:        document.addEventListener('pointercancel', onUp);
+fogli.js:2013:        if (menuListener) { document.removeEventListener('mousedown', menuListener, true); menuListener = null; }
+fogli.js:2030:        setTimeout(function () { if (openMenuEl === m) document.addEventListener('mousedown', menuListener, true); }, 0);
+fogli.js:2041:                b.addEventListener('click', function () { closeMenus(); applyBorders(o[1]); });
+fogli.js:2059:                b.addEventListener('click', function () {
+fogli.js:2069:            nc.addEventListener('click', function () {
+fogli.js:2077:            del.addEventListener('click', function () { closeMenus(); deleteSheet(i); });
+fogli.js:2090:            t.addEventListener('click', function () { switchSheet(i); });
+fogli.js:2091:            t.addEventListener('dblclick', function () { renameSheet(i); });
+fogli.js:2092:            t.addEventListener('contextmenu', function (ev) {
+fogli.js:2101:            more.addEventListener('click', function (ev) {
+fogli.js:2112:        add.addEventListener('click', addSheet);
+fogli.js:2403:            it.addEventListener('mousedown', function (ev) { ev.preventDefault(); });
+fogli.js:2404:            it.addEventListener('click', function () { acPick(i); });
+fogli.js:2706:                b.addEventListener('click', function () { closeMenus(); d[1](); });
+fogli.js:2718:            b1.addEventListener('click', function () { closeMenus(); importCsv(); });
+fogli.js:2724:            b2.addEventListener('click', function () { closeMenus(); exportCsv(); });
+fogli.js:2736:            b.addEventListener('click', function () { closeMenus(); toggleFreeze(); });
+fogli.js:2746:            b1.addEventListener('click', function () { closeMenus(); splitRange(); });
+fogli.js:2751:            b2.addEventListener('click', function () { closeMenus(); renameDoc(); });
+notes.js:180:        if (onClick) b.addEventListener('click', onClick);
+notes.js:276:                setTimeout(() => { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 180);
+notes.js:281:            cancel.addEventListener('click', () => finish(null));
+notes.js:284:            ok.addEventListener('click', () => finish(input.value.trim() || null));
+notes.js:288:            input.addEventListener('keydown', e => {
+notes.js:294:            requestAnimationFrame(() => ov.classList.add('show'));
+notes.js:295:            setTimeout(() => { input.focus(); input.select(); }, 60);
+notes.js:303:        teardownEditor();
+notes.js:414:                card.addEventListener('click', e => {
+notes.js:418:                card.addEventListener('keydown', e => { if (e.key === 'Enter') openEditor(it.id); });
+notes.js:460:        search.addEventListener('input', refresh);
+notes.js:461:        selMat.addEventListener('change', refresh);
+notes.js:462:        selTag.addEventListener('change', refresh);
+notes.js:470:        teardownEditor();
+notes.js:1081:        st.saveTimer = setTimeout(() => {
+notes.js:1103:        // continua la catena se ci sono modifiche in sospeso, anche dopo il teardown
+notes.js:1116:            if (st.saving) { await new Promise(r => setTimeout(r, 40)); continue; }
+notes.js:1191:        ta.addEventListener('keydown', e => {
+notes.js:1195:        ta.addEventListener('blur', () => { closeTextOverlay(true); });
+notes.js:1196:        setTimeout(() => { ta.focus(); if (obj) ta.select(); }, 20);
+notes.js:1613:        inp.addEventListener('change', () => {
+notes.js:2019:        inp.addEventListener('change', () => {
+notes.js:2055:        inp.addEventListener('change', () => {
+notes.js:2178:        rng.addEventListener('input', () => apply(Number(rng.value)));
+notes.js:2179:        num.addEventListener('input', () => {
+notes.js:2183:        num.addEventListener('blur', paint);
+notes.js:2255:        btnBack.addEventListener('click', () => backToList());
+notes.js:2262:        titleBtn.addEventListener('click', () => togglePop(ed.popMeta, openMeta));
+notes.js:2265:        btnPaper.addEventListener('click', () => togglePop(ed.popPaper, openPaper));
+notes.js:2274:        ed.btnUndo.addEventListener('click', () => undo());
+notes.js:2276:        ed.btnRedo.addEventListener('click', () => redo());
+notes.js:2278:        btnImg.addEventListener('click', () => importImage());
+notes.js:2280:        btnTxtFile.addEventListener('click', () => importTextFile());
+notes.js:2282:        btnPpt.addEventListener('click', () => importPpt());
+notes.js:2288:        btnFonti.addEventListener('click', () => toggleFonti());
+notes.js:2291:        ed.btnDelSel.addEventListener('click', () => deleteSelection());
+notes.js:2316:            b.addEventListener('click', () => {
+notes.js:2334:                bHelp.addEventListener('click', () => {
+notes.js:2360:            b.addEventListener('click', () => applyPreset(ps));
+notes.js:2369:        btnColor.addEventListener('click', () => { togglePop(ed.popColor); syncToolGroups(); });
+notes.js:2382:        zlock.addEventListener('click', () => {
+notes.js:2388:        zpct.addEventListener('click', () => togglePop(ed.popZoom));
+notes.js:2397:        pgPrev.addEventListener('click', () => { if (ed) goToPage((ed.doc.page || 0) - 1); });
+notes.js:2400:        pgNext.addEventListener('click', () => { if (ed) goToPage((ed.doc.page || 0) + 1); });
+notes.js:2403:        pgAdd.addEventListener('click', () => addPage());
+notes.js:2427:            b.addEventListener('click', () => applyPaletteColor(c.hex));
+notes.js:2435:        custom.addEventListener('input', () => applyPaletteColor(custom.value));
+notes.js:2450:            b.addEventListener('click', () => { ed.hlColor = c.hex; syncColorSwatches(); });
+notes.js:2475:        bColor.addEventListener('input', () => { if (ed) ed.textColor = bColor.value; });
+notes.js:2502:            b.addEventListener('click', fn);
+notes.js:2533:            rng.addEventListener('input', () => {
+notes.js:2557:        // UNICO listener outside-click dei popover (A1): capture + setTimeout 0
+notes.js:2558:        // (stesso pattern di components/folders.js); rimosso in teardownEditor.
+notes.js:2560:        document.removeEventListener('click', onDocOutside, true);
+notes.js:2561:        ed.popOutsideT = setTimeout(() => {
+notes.js:2563:            if (ed) document.addEventListener('click', onDocOutside, true);
+notes.js:2590:    // components/folders.js (document capture + setTimeout 0). Registrato
+notes.js:2591:    // UNA volta in buildChrome, rimosso in teardownEditor (niente fantasmi).
+notes.js:2702:        closeB.addEventListener('click', () => toggleFonti(false));
+notes.js:2734:        search.addEventListener('input', () => renderFontiList());
+notes.js:2735:        ins.addEventListener('click', () => insertFontiRef(ed.fontiSel));
+notes.js:2799:            b.addEventListener('click', () => selectFonti(s));
+notes.js:2865:            b.addEventListener('click', () => showFullFonteText(key));
+notes.js:2950:            c.addEventListener('click', () => {
+notes.js:2964:            cb.addEventListener('change', () => {
+notes.js:2988:        inT.addEventListener('change', () => {
+notes.js:3013:        inG.addEventListener('change', () => { ed.tags = inG.value; scheduleSave(); });
+notes.js:3026:        selC.addEventListener('change', () => {
+notes.js:3042:        selMode.addEventListener('change', () => convertMode(selMode.value));
+notes.js:3055:        bImprove.addEventListener('click', () => { improveHandwriting(); togglePop(ed.popMeta); });
+notes.js:3058:        bClose.addEventListener('click', () => closeAllPops());
+notes.js:3112:        teardownEditor();
+notes.js:3170:        canvas.addEventListener('pointerdown', onPointerDown);
+notes.js:3171:        canvas.addEventListener('pointermove', onPointerMove);
+notes.js:3172:        canvas.addEventListener('pointerup', endPointer);
+notes.js:3173:        canvas.addEventListener('pointercancel', endPointer);
+notes.js:3174:        canvas.addEventListener('lostpointercapture', () => { /* gestito da up/cancel */ });
+notes.js:3175:        canvas.addEventListener('wheel', onWheel, { passive: false });
+notes.js:3176:        canvas.addEventListener('dblclick', onDblClick);
+notes.js:3178:        canvas.addEventListener('pointermove', e => updateEraserCursor(e));
+notes.js:3179:        canvas.addEventListener('pointerenter', e => updateEraserCursor(e));
+notes.js:3180:        canvas.addEventListener('pointerleave', () => {
+notes.js:3183:        window.addEventListener('keydown', onKeyDown);
+notes.js:3184:        window.addEventListener('resize', onResize);
+notes.js:3190:        requestAnimationFrame(() => {
+notes.js:3202:    function teardownEditor() {
+notes.js:3209:        document.removeEventListener('click', onDocOutside, true);
+notes.js:3210:        window.removeEventListener('keydown', onKeyDown);
+notes.js:3211:        window.removeEventListener('resize', onResize);
+notes.js:3244:            teardownEditor();
+presentazioni.js:274:        setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 500);
+presentazioni.js:282:            inp.addEventListener('change', function () {
+presentazioni.js:395:        saveTimer = setTimeout(flush, 900);
+presentazioni.js:414:        if (st && st.onResize) { window.removeEventListener('resize', st.onResize); st.onResize = null; }
+presentazioni.js:417:        if (keyHandler) { document.removeEventListener('keydown', keyHandler); keyHandler = null; }
+presentazioni.js:422:        document.addEventListener('keydown', keyHandler);
+presentazioni.js:425:        if (docClick) { document.removeEventListener('click', docClick); docClick = null; }
+presentazioni.js:429:        if (smallMenuDoc) { document.removeEventListener('click', smallMenuDoc); smallMenuDoc = null; }
+presentazioni.js:447:            b.addEventListener('click', function () { closeSmallMenu(); it[2](); });
+presentazioni.js:458:        setTimeout(function () { document.addEventListener('click', smallMenuDoc); }, 0);
+presentazioni.js:467:        if (barMenuDoc) { document.removeEventListener('click', barMenuDoc); barMenuDoc = null; }
+presentazioni.js:499:        barMenu.addEventListener('click', function (e) {
+presentazioni.js:500:            if (e.target.closest && e.target.closest('button')) setTimeout(closeBarMenu, 0);
+presentazioni.js:505:        setTimeout(function () { document.addEventListener('click', barMenuDoc); }, 0);
+presentazioni.js:570:        b.addEventListener('click', createNew);
+presentazioni.js:604:            b.addEventListener('click', function (e) { e.stopPropagation(); fn(); });
+presentazioni.js:641:        card.addEventListener('click', function (e) {
+presentazioni.js:645:        card.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); openIt(); } });
+presentazioni.js:681:        requestAnimationFrame(fitListThumbs);
+presentazioni.js:691:        if (listResizer) { window.removeEventListener('resize', listResizer); listResizer = null; }
+presentazioni.js:707:        bHub.addEventListener('click', function () { App.go('produttivita'); });
+presentazioni.js:714:        bNew.addEventListener('click', createNew);
+presentazioni.js:727:        q.addEventListener('input', function () { listQ = q.value; renderList(); });
+presentazioni.js:738:        sort.addEventListener('change', function () { if (sort.value) { listOrd = sort.value; renderList(); } });
+presentazioni.js:746:        more.addEventListener('click', function (e) { e.stopPropagation(); toggleBarMenu(); });
+presentazioni.js:764:        requestAnimationFrame(function () { fitListThumbs(); applyBarOverflow(); });
+presentazioni.js:766:        window.addEventListener('resize', listResizer);
+presentazioni.js:795:            b.addEventListener('click', fn);
+presentazioni.js:806:            b.addEventListener('click', fn);
+presentazioni.js:823:        ti.addEventListener('keydown', function (e) {
+presentazioni.js:827:        ti.addEventListener('change', function () {
+presentazioni.js:852:        fb.addEventListener('click', function (e) {
+presentazioni.js:871:        zOut.addEventListener('click', function () { setZoom(st.zoom - 0.1); });
+presentazioni.js:877:        zl.addEventListener('click', function () { setZoom(1); });
+presentazioni.js:883:        zIn.addEventListener('click', function () { setZoom(st.zoom + 0.1); });
+presentazioni.js:898:        exp.addEventListener('click', function (e) {
+presentazioni.js:910:        more.addEventListener('click', function (e) { e.stopPropagation(); toggleBarMenu(); });
+presentazioni.js:931:            b.addEventListener('click', function () { closeExpMenu(); it[2](); });
+presentazioni.js:942:        setTimeout(function () { document.addEventListener('click', docClick); }, 0);
+presentazioni.js:952:        t.addEventListener('click', fn);
+presentazioni.js:977:        if (listResizer) { window.removeEventListener('resize', listResizer); listResizer = null; }
+presentazioni.js:1043:        window.addEventListener('resize', st.onResize);
+presentazioni.js:1051:        requestAnimationFrame(function () { fitStage(); applyBarOverflow(); });
+presentazioni.js:1177:        coll.addEventListener('click', function () { togglePanel('film'); });
+presentazioni.js:1183:        add.addEventListener('click', function () { addSlide(st.cur); });
+presentazioni.js:1215:            cp.addEventListener('click', function (e) { e.stopPropagation(); dupSlideAt(idxOfSid(s.id)); });
+presentazioni.js:1220:            rm.addEventListener('click', function (e) { e.stopPropagation(); delSlideAt(idxOfSid(s.id)); });
+presentazioni.js:1226:            item.addEventListener('click', function (ev) {
+presentazioni.js:1238:            item.addEventListener('dragstart', function (e) {
+presentazioni.js:1244:            item.addEventListener('dragover', function (e) {
+presentazioni.js:1263:            item.addEventListener('dragleave', function () {
+presentazioni.js:1266:            item.addEventListener('drop', function (e) {
+presentazioni.js:1271:            item.addEventListener('dragend', function () {
+presentazioni.js:1305:        flashTimerLocal = setTimeout(function () { if (f) f.remove(); }, 2600);
+presentazioni.js:1383:            n.addEventListener('mousedown', function (e) { onElMouseDown(e, em, n); });
+presentazioni.js:1384:            n.addEventListener('dblclick', function () {
+presentazioni.js:1399:        stage.addEventListener('mousedown', function (e) {
+presentazioni.js:1533:            document.removeEventListener('mousemove', mv);
+presentazioni.js:1534:            document.removeEventListener('mouseup', up);
+presentazioni.js:1538:        document.addEventListener('mousemove', mv);
+presentazioni.js:1539:        document.addEventListener('mouseup', up);
+presentazioni.js:1577:            document.removeEventListener('mousemove', mv);
+presentazioni.js:1578:            document.removeEventListener('mouseup', up);
+presentazioni.js:1581:        document.addEventListener('mousemove', mv);
+presentazioni.js:1582:        document.addEventListener('mouseup', up);
+presentazioni.js:1606:            document.removeEventListener('mousemove', mv);
+presentazioni.js:1607:            document.removeEventListener('mouseup', up);
+presentazioni.js:1610:        document.addEventListener('mousemove', mv);
+presentazioni.js:1611:        document.addEventListener('mouseup', up);
+presentazioni.js:1667:            t.removeEventListener('blur', done);
+presentazioni.js:1673:        t.addEventListener('blur', done);
+presentazioni.js:1674:        t.addEventListener('keydown', function (e) {
+presentazioni.js:1744:        inp.addEventListener('input', function () {
+presentazioni.js:1752:        inp.addEventListener('change', function () { inp.value = String(Math.round(get())); renderProps(); });
+presentazioni.js:1761:        c.addEventListener('input', function () { set(c.value); touchEl(); });
+presentazioni.js:1762:        c.addEventListener('change', function () { if (onDone) onDone(); });
+presentazioni.js:1779:        cb.addEventListener('click', function () { togglePanel('insp'); });
+presentazioni.js:1811:        lsel.addEventListener('change', function () { if (lsel.value) applyLayout(lsel.value); });
+presentazioni.js:1820:        tsel.addEventListener('change', function () {
+presentazioni.js:1848:        bc.addEventListener('input', function () { em.stroke = bc.value; if (!em.strokeW) em.strokeW = 2; touchEl(); });
+presentazioni.js:1854:        bw.addEventListener('input', function () {
+presentazioni.js:1867:        rng.addEventListener('input', function () {
+presentazioni.js:1885:            sel.addEventListener('change', function () { em.fontFamily = sel.value; touchEl(); });
+presentazioni.js:1902:                b.addEventListener('click', function () {
+presentazioni.js:1916:            bb.addEventListener('click', function () { em.bold = !em.bold; touchEl(); renderProps(); });
+presentazioni.js:1920:            ib.addEventListener('click', function () { em.italic = !em.italic; touchEl(); renderProps(); });
+presentazioni.js:1929:        del.addEventListener('click', removeSelected);
+presentazioni.js:1984:            curT = setTimeout(function () {
+presentazioni.js:2011:                requestAnimationFrame(function () {
+presentazioni.js:2012:                    requestAnimationFrame(function () { holder.classList.add('pp-run'); });
+presentazioni.js:2021:            closeBtn.addEventListener('click', function (e) {
+presentazioni.js:2031:            pv.addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+presentazioni.js:2032:            nx.addEventListener('click', function (e) { e.stopPropagation(); next(); });
+presentazioni.js:2044:        ov.addEventListener('click', function (e) {
+presentazioni.js:2050:        ov.addEventListener('mousemove', armCursor);
+presentazioni.js:2051:        document.addEventListener('keydown', onKey);
+presentazioni.js:2066:        document.removeEventListener('keydown', overlay.onKey);
+presentazioni.js:2141:            'document.getElementById("nx").addEventListener("click",function(){i=Math.min(i+1,slides.length-1);show();});\n' +
+presentazioni.js:2142:            'document.getElementById("pv").addEventListener("click",function(){i=Math.max(i-1,0);show();});\n' +
+presentazioni.js:2143:            'document.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key===" "){i=Math.min(i+1,slides.length-1);show();}if(e.key==="ArrowLeft"){i=Math.max(i-1,0);show();}});\n' +
+presentazioni.js:2144:            'window.addEventListener("resize",function(){fit();show();});\n' +
+presentazioni.js:2156:                window.removeEventListener('afterprint', clean);
+presentazioni.js:2158:            window.addEventListener('afterprint', clean);
+presentazioni.js:2159:            setTimeout(clean, 1500);
+presentazioni.js:2184:            if (listResizer) { window.removeEventListener('resize', listResizer); listResizer = null; }
+produttivita.js:88:            requestAnimationFrame(function () { ov.classList.add('show'); });
+produttivita.js:94:                document.removeEventListener('keydown', onKey, true);
+produttivita.js:103:            document.addEventListener('keydown', onKey, true);
+produttivita.js:104:            ok.addEventListener('click', function () { finish(inp.value); });
+produttivita.js:105:            cancel.addEventListener('click', function () { finish(null); });
+produttivita.js:106:            ov.addEventListener('click', function (e) { if (e.target === ov) finish(null); });
+produttivita.js:107:            setTimeout(function () { inp.focus(); inp.select(); }, 60);
+produttivita.js:141:            card.addEventListener('click', open);
+produttivita.js:142:            card.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); });
+produttivita.js:172:        back.addEventListener('click', function () { App.go('produttivita'); });
+ripasso.js:74:        b.addEventListener('click', fn);
+ripasso.js:81:        b.addEventListener('click', e => { e.stopPropagation(); fn(); });
+ripasso.js:87:        requestAnimationFrame(() => t.classList.add('show'));
+ripasso.js:88:        setTimeout(() => {
+ripasso.js:90:            setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 320);
+ripasso.js:184:        btnNuovo.addEventListener('click', () => openForm(null));
+ripasso.js:192:        search.addEventListener('input', () => { filters.q = search.value; renderBody(); });
+ripasso.js:199:        selMat.addEventListener('change', () => { filters.materia = selMat.value; renderBody(); });
+ripasso.js:206:        selTag.addEventListener('change', () => { filters.tag = selTag.value; renderBody(); });
+ripasso.js:212:        reset.addEventListener('click', () => {
+ripasso.js:281:        card.addEventListener('click', e => {
+ripasso.js:285:        card.addEventListener('keydown', e => {
+ripasso.js:356:        bCancel.addEventListener('click', async () => {
+ripasso.js:363:        bSave.addEventListener('click', async () => {
+ripasso.js:387:        setTimeout(() => { try { inName.focus(); } catch (e) { /* ok */ } }, 40);
+ripasso.js:431:        bBack.addEventListener('click', async () => {
+ripasso.js:440:        bGen.addEventListener('click', () => { genOpen = !genOpen; renderEditor(); });
+ripasso.js:444:        bStudy.addEventListener('click', () => startStudy(d));
+ripasso.js:448:        bSave.addEventListener('click', async () => { await saveEditor(); toast('Mazzo salvato'); });
+ripasso.js:465:        bAdd.addEventListener('click', () => {
+ripasso.js:484:            li.addEventListener('click', () => { selIdx = i; renderEditor(); });
+ripasso.js:519:            bEst.addEventListener('click', async () => {
+ripasso.js:548:            bChat.addEventListener('click', () => App.go('chatbot'));
+ripasso.js:570:        inQ.addEventListener('input', () => { c.q = inQ.value; });
+ripasso.js:571:        inQ.addEventListener('change', () => {
+ripasso.js:584:        taA.addEventListener('input', () => { c.a = taA.value; });
+ripasso.js:585:        taA.addEventListener('change', () => saveEditor());
+ripasso.js:596:        inCol.addEventListener('input', () => { c.color = inCol.value; });
+ripasso.js:597:        inCol.addEventListener('change', () => saveEditor());
+ripasso.js:605:        selFont.addEventListener('change', () => { c.font = selFont.value; saveEditor(); });
+ripasso.js:617:        inImg.addEventListener('change', () => {
+ripasso.js:638:            bRm.addEventListener('click', () => {
+ripasso.js:663:        bUp.addEventListener('click', () => moveCard(selIdx, -1));
+ripasso.js:668:        bDown.addEventListener('click', () => moveCard(selIdx, 1));
+ripasso.js:672:        bDup.addEventListener('click', () => {
+ripasso.js:683:        bDel.addEventListener('click', () => {
+ripasso.js:823:        fc.addEventListener('click', () => {
+ripasso.js:948:    document.addEventListener('keydown', onKey);
+schemi.js:120:        requestAnimationFrame(() => { if (el === toastEl) el.classList.add('show'); });
+schemi.js:121:        toastT = setTimeout(() => {
+schemi.js:134:        if (onClick) b.addEventListener('click', onClick);
+schemi.js:335:                setTimeout(() => { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 180);
+schemi.js:340:            cancel.addEventListener('click', () => finish(null));
+schemi.js:343:            ok.addEventListener('click', () => {
+schemi.js:350:            input.addEventListener('keydown', e => {
+schemi.js:356:            requestAnimationFrame(() => ov.classList.add('show'));
+schemi.js:357:            setTimeout(() => { input.focus(); input.select(); }, 60);
+schemi.js:365:        teardownEditor();
+schemi.js:453:                card.addEventListener('click', e => {
+schemi.js:457:                card.addEventListener('keydown', e => { if (e.key === 'Enter') openEditor(it.id); });
+schemi.js:488:        search.addEventListener('input', refresh);
+schemi.js:489:        selMat.addEventListener('change', refresh);
+schemi.js:497:        teardownEditor();
+schemi.js:1139:        if (ed.animTimer) { cancelAnimationFrame(ed.animTimer); ed.animTimer = null; }
+schemi.js:1160:            if (k < 1) ed.animTimer = requestAnimationFrame(step);
+schemi.js:1168:        ed.animTimer = requestAnimationFrame(step);
+schemi.js:1222:                sel.addEventListener('change', () => {
+schemi.js:1282:        if (ed.animTimer) { cancelAnimationFrame(ed.animTimer); ed.animTimer = null; }
+schemi.js:1429:        ta.addEventListener('keydown', e => {
+schemi.js:1433:        ta.addEventListener('blur', () => closeNodeText(true));
+schemi.js:1434:        setTimeout(() => { ta.focus(); ta.select(); }, 20);
+schemi.js:1832:        st.saveTimer = setTimeout(() => {
+schemi.js:1849:        // continua la catena se ci sono modifiche in sospeso, anche dopo il teardown
+schemi.js:1862:            if (st.saving) { await new Promise(r => setTimeout(r, 40)); continue; }
+schemi.js:2043:            b.addEventListener('click', () => {
+schemi.js:2074:        selPal.addEventListener('change', () => applyStyle('palette', selPal.value));
+schemi.js:2081:            c.addEventListener('input', () => applyStyle(which, c.value));
+schemi.js:2099:        selFs.addEventListener('change', () => applyStyle('fontSize', Number(selFs.value)));
+schemi.js:2106:        chkBold.addEventListener('change', () => applyStyle('bold', chkBold.checked));
+schemi.js:2117:        selShape.addEventListener('change', () => applyStyle('shape', selShape.value));
+schemi.js:2158:        ta.addEventListener('input', () => {
+schemi.js:2187:        inTitolo.addEventListener('input', () => {
+schemi.js:2200:        taT.addEventListener('input', () => {
+schemi.js:2223:        sel.addEventListener('change', () => loadPreview(sel.value));
+schemi.js:2260:            inp.addEventListener('change', () => {
+schemi.js:2268:            window.addEventListener('focus', () => { setTimeout(() => finish(null), 800); });
+schemi.js:2335:        teardownEditor();
+schemi.js:2359:        titleIn.addEventListener('input', () => { if (ed) { ed.title = titleIn.value; scheduleSave(); } });
+schemi.js:2360:        titleIn.addEventListener('change', () => { if (ed) { ed.title = titleIn.value.trim() || 'Senza titolo'; titleIn.value = ed.title; scheduleSave(); } });
+schemi.js:2391:        selType.addEventListener('change', () => { changeType(selType.value); });
+schemi.js:2433:        rngSize.addEventListener('input', () => {
+schemi.js:2440:        colDraw.addEventListener('input', () => { if (ed) ed.drawColor = colDraw.value; });
+schemi.js:2514:        svg.addEventListener('pointerdown', svgDown);
+schemi.js:2515:        svg.addEventListener('pointermove', svgMove);
+schemi.js:2516:        svg.addEventListener('pointerup', svgUp);
+schemi.js:2517:        svg.addEventListener('pointercancel', svgUp);
+schemi.js:2518:        svg.addEventListener('wheel', onWheel, { passive: false });
+schemi.js:2519:        svg.addEventListener('dblclick', onDblClick);
+schemi.js:2520:        window.addEventListener('keydown', onKey);
+schemi.js:2521:        window.addEventListener('keyup', onKeyUp);
+schemi.js:2526:            requestAnimationFrame(() => { if (ed) centerView(); });
+schemi.js:2530:        // tb -> albero. setTimeout per lasciar finire il rendering iniziale; try/catch
+schemi.js:2534:            setTimeout(function () {
+schemi.js:2546:    function teardownEditor() {
+schemi.js:2552:        window.removeEventListener('keydown', onKey);
+schemi.js:2553:        window.removeEventListener('keyup', onKeyUp);
+schemi.js:2588:            teardownEditor();
+video.js:310:        setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 800);
+video.js:318:            inp.addEventListener('change', function () {
+video.js:507:        saveTimer = setTimeout(flush, 900);
+video.js:528:        if (st && st.keyHandler) { window.removeEventListener('keydown', st.keyHandler); st.keyHandler = null; }
+video.js:638:            row.addEventListener('click', function () { insertFromLib(a.type, a.src); });
+video.js:639:            row.addEventListener('dragstart', function (e) {
+video.js:680:        back.addEventListener('click', function () { App.go('produttivita'); });
+video.js:685:        btnNew.addEventListener('click', createNew);
+video.js:747:                img.addEventListener('error', function () { img.remove(); });
+video.js:759:            card.addEventListener('click', function (e) {
+video.js:763:            card.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); });
+video.js:794:        search.addEventListener('input', function () { listQ = search.value; paint(); });
+video.js:795:        sort.addEventListener('change', function () { listSort = sort.value; paint(); });
+video.js:802:        opn.addEventListener('click', function () { openEditor(container, it.id); });
+video.js:804:        ren.addEventListener('click', async function () {
+video.js:811:        dup.addEventListener('click', async function () {
+video.js:816:        del.addEventListener('click', async function () {
+video.js:887:        back.addEventListener('click', function () { showList(root); });
+video.js:893:        renBtn.addEventListener('click', async function () {
+video.js:907:        exportBtn.addEventListener('click', openExportDialog);
+video.js:933:        vtab.addEventListener('click', function () { pane.classList.toggle('collapsed'); });
+video.js:953:            head.addEventListener('click', function () {
+video.js:969:                b.addEventListener('click', function () { addClip(a[0]); });
+video.js:980:            musBtn.addEventListener('click', async function () {
+video.js:995:            vol.addEventListener('input', function () {
+video.js:1000:            vol.addEventListener('change', function () { renderTimeline(); });
+video.js:1020:        lgrab.addEventListener('pointerdown', function (e) {
+video.js:1030:                window.removeEventListener('pointermove', mv);
+video.js:1031:                window.removeEventListener('pointerup', up);
+video.js:1032:                window.removeEventListener('pointercancel', up);
+video.js:1034:            window.addEventListener('pointermove', mv);
+video.js:1035:            window.addEventListener('pointerup', up);
+video.js:1036:            window.addEventListener('pointercancel', up);
+video.js:1050:            b.addEventListener('click', fn);
+video.js:1069:        range.addEventListener('input', function () {
+video.js:1094:            b.addEventListener('click', fn);
+video.js:1117:        zoom.addEventListener('input', function () { setZoom(parseInt(zoom.value, 10) || PPS_DEF); });
+video.js:1150:        scroll.addEventListener('wheel', function (e) {
+video.js:1186:        if (msg && !sticky) st.statusTimer = setTimeout(function () {
+video.js:1280:            plus.addEventListener('click', function (e) {
+video.js:1316:                row.addEventListener('pointerdown', function (e) {
+video.js:1339:                        del.addEventListener('click', function (e) {
+video.js:1372:            b.addEventListener('pointerdown', function (e) {
+video.js:1411:        hnd.addEventListener('pointerdown', function (e) { beginSeek(e); });
+video.js:1414:        rul.addEventListener('pointerdown', function (e) { beginSeek(e); });
+video.js:1440:        node.addEventListener('pointerdown', function (e) {
+video.js:1553:            window.removeEventListener('pointermove', apply);
+video.js:1554:            window.removeEventListener('pointerup', done);
+video.js:1555:            window.removeEventListener('pointercancel', done);
+video.js:1561:        window.addEventListener('pointermove', apply);
+video.js:1562:        window.addEventListener('pointerup', done);
+video.js:1563:        window.addEventListener('pointercancel', done);
+video.js:1580:            window.removeEventListener('pointermove', mv);
+video.js:1581:            window.removeEventListener('pointerup', up);
+video.js:1582:            window.removeEventListener('pointercancel', up);
+video.js:1584:        window.addEventListener('pointermove', mv);
+video.js:1585:        window.addEventListener('pointerup', up);
+video.js:1586:        window.addEventListener('pointercancel', up);
+video.js:1705:            mv.addEventListener('input', function () {
+video.js:1711:            mv.addEventListener('change', function () { renderTimeline(); });
+video.js:1718:            ch.addEventListener('click', async function () {
+video.js:1732:            rm.addEventListener('click', function () {
+video.js:1756:        si.addEventListener('change', function () {
+video.js:1774:        di.addEventListener('change', function () {
+video.js:1798:        selLane.addEventListener('change', function () {
+video.js:1820:            vr.addEventListener('input', function () {
+video.js:1825:            vr.addEventListener('change', function () { applyProps(); });
+video.js:1838:            or_.addEventListener('input', function () {
+video.js:1843:            or_.addEventListener('change', function () { applyProps(); });
+video.js:1855:            sci.addEventListener('change', function () {
+video.js:1873:            xi.addEventListener('change', function () {
+video.js:1885:            yi.addEventListener('change', function () {
+video.js:1907:            sel.addEventListener('change', function () { onCh(sel.value); });
+video.js:1925:            ta.addEventListener('input', function () { c.text = ta.value; scheduleSave(); });
+video.js:1926:            ta.addEventListener('change', function () { applyProps(); });
+video.js:1935:            fs.addEventListener('change', function () {
+video.js:1946:            col.addEventListener('input', function () { c.color = col.value; scheduleSave(); });
+video.js:1947:            col.addEventListener('change', function () { applyProps(); });
+video.js:1961:            ch.addEventListener('click', async function () {
+video.js:1975:        del.addEventListener('click', delClip);
+video.js:2114:                const timer = setTimeout(function () {
+video.js:2220:        if (pv.raf) cancelAnimationFrame(pv.raf);
+video.js:2221:        pv.raf = requestAnimationFrame(tick);
+video.js:2227:        if (pv.raf) { cancelAnimationFrame(pv.raf); pv.raf = 0; }
+video.js:2236:        if (pv.raf) { cancelAnimationFrame(pv.raf); pv.raf = 0; }
+video.js:2274:        pv.raf = requestAnimationFrame(tick);
+video.js:2310:        dlg.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+video.js:2311:        ov.addEventListener('pointerdown', function (e) {
+video.js:2384:        bCan.addEventListener('click', function () {
+video.js:2393:        bExp.addEventListener('click', function () {
+video.js:2708:            try { if (st.exportRaf) cancelAnimationFrame(st.exportRaf); } catch (e) { /* ok */ }
+video.js:2762:            st.exportRaf = requestAnimationFrame(frame);
+video.js:2775:        st.exportRaf = requestAnimationFrame(frame);
+_patch1.js:232:        if (st && st.keyHandler) { window.removeEventListener('keydown', st.keyHandler); st.keyHandler = null; }
+_patch1.js:329:            row.addEventListener('click', function () { insertFromLib(a.type, a.src); });
+_patch1.js:330:            row.addEventListener('dragstart', function (e) {
+_patch1.js:357:        back.addEventListener('click', function () { App.go('produttivita'); });
+_patch1.js:362:        btnNew.addEventListener('click', createNew);
+_patch1.js:424:                img.addEventListener('error', function () { img.remove(); });
+_patch1.js:436:            card.addEventListener('click', function (e) {
+_patch1.js:440:            card.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); });
+_patch1.js:471:        search.addEventListener('input', function () { listQ = search.value; paint(); });
+_patch1.js:472:        sort.addEventListener('change', function () { listSort = sort.value; paint(); });
+_patch1.js:479:        opn.addEventListener('click', function () { openEditor(container, it.id); });
+_patch1.js:481:        ren.addEventListener('click', async function () {
+_patch1.js:488:        dup.addEventListener('click', async function () {
+_patch1.js:493:        del.addEventListener('click', async function () {

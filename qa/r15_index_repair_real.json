@@ -1,0 +1,151 @@
+{
+  "round": "R15b",
+  "agent": "IMPLEMENTER-INDEX (blocco I)",
+  "tool": "data/coverage_audit.py --repair",
+  "ts": "2026-10-24 22:42:31",
+  "audit": {
+    "round": "R15b",
+    "agent": "IMPLEMENTER-INDEX (blocco I)",
+    "tool": "data/coverage_audit.py",
+    "ts": "2026-10-24 22:42:31",
+    "db_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db",
+    "db_indexed_files_rows": 1,
+    "db_chunks_total": 17,
+    "bases": [
+      {
+        "base": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio",
+        "store_key": "vector_index",
+        "persist_dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\vector_index",
+        "files": [
+          {
+            "name": "fotosintesi_clorofilliana_universitario.md",
+            "original": true,
+            "stage2": true,
+            "supported": true,
+            "sidecar": false,
+            "chunks": 17,
+            "indexed": {
+              "percorso_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+              "dimensione": 28817,
+              "data_modifica": 1790095622.3612547,
+              "num_chunk": 17,
+              "data_ultima_indicizzazione": "2026-10-24T22:40:02.620068"
+            },
+            "status": "ok",
+            "issues": []
+          }
+        ],
+        "orphans": {
+          "originals_without_stage2": [],
+          "unsupported_originals_needs_converter": [],
+          "stage2_without_chunks": [],
+          "stage2_missing_indexed_row": [],
+          "stage2_stale_indexed_rows": [],
+          "indexed_rows_missing_file": [],
+          "chunks_without_file": []
+        },
+        "counts": {
+          "originals": 1,
+          "stage2": 1,
+          "files": 1,
+          "chunks": 17,
+          "indexed_rows": 1,
+          "ok": 1,
+          "orphans": 0
+        },
+        "index_meta": {
+          "embedding_model_id": "intfloat/multilingual-e5-small",
+          "updated": "2026-10-24T22:39:59.421117",
+          "probe": "done"
+        }
+      },
+      {
+        "base": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books",
+        "store_key": "vector_index_books",
+        "persist_dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\vector_index_books",
+        "files": [],
+        "orphans": {
+          "originals_without_stage2": [],
+          "unsupported_originals_needs_converter": [],
+          "stage2_without_chunks": [],
+          "stage2_missing_indexed_row": [],
+          "stage2_stale_indexed_rows": [],
+          "indexed_rows_missing_file": [],
+          "chunks_without_file": []
+        },
+        "counts": {
+          "originals": 0,
+          "stage2": 0,
+          "files": 0,
+          "chunks": 0,
+          "indexed_rows": 0,
+          "ok": 0,
+          "orphans": 0
+        },
+        "index_meta": {
+          "embedding_model_id": "intfloat/multilingual-e5-small",
+          "probe": "r15"
+        }
+      }
+    ],
+    "summary": {
+      "bases": 2,
+      "files_total": 1,
+      "files_ok": 1,
+      "chunks_total": 17,
+      "indexed_rows_total": 1,
+      "orphans_total": 0,
+      "db_ok": true,
+      "db_error": null
+    },
+    "elapsed_ms": 1.82
+  },
+  "repair": {
+    "copied": [],
+    "needs_converter": [],
+    "rows_removed": [],
+    "chunks_removed": [],
+    "reindex_stats": [],
+    "notes": []
+  },
+  "post": {
+    "summary": {
+      "bases": 2,
+      "files_total": 1,
+      "files_ok": 1,
+      "chunks_total": 17,
+      "indexed_rows_total": 1,
+      "orphans_total": 0,
+      "db_ok": true,
+      "db_error": null
+    },
+    "orphans_by_base": {
+      "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio": {
+        "originals_without_stage2": [],
+        "unsupported_originals_needs_converter": [],
+        "stage2_without_chunks": [],
+        "stage2_missing_indexed_row": [],
+        "stage2_stale_indexed_rows": [],
+        "indexed_rows_missing_file": [],
+        "chunks_without_file": []
+      },
+      "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books": {
+        "originals_without_stage2": [],
+        "unsupported_originals_needs_converter": [],
+        "stage2_without_chunks": [],
+        "stage2_missing_indexed_row": [],
+        "stage2_stale_indexed_rows": [],
+        "indexed_rows_missing_file": [],
+        "chunks_without_file": []
+      }
+    }
+  },
+  "idempotent_check": {
+    "copied": 0,
+    "rows_removed": 0,
+    "chunks_removed": 0,
+    "files_reindexed": 0,
+    "rows_reconciled": 0,
+    "orphans_after": 0
+  }
+}

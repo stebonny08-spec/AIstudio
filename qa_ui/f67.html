@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA F67 R13 — citazione materiali (documenti) + salva come (chat)</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Copia FIDELLE delle regole produzione di web_frontend/html/index.html
+   (righe 116-141) per #chatView / .msg-row / .bubble-*: nessuna
+   geometria stubbata, solo stili di produzione richiamati qui perche'
+   le regole chat vivono nell'<style> inline di index.html. */
+.chat-view { height: calc(100vh - 210px); overflow-y: auto; padding: 20px 24px 30px; display: flex; flex-direction: column; gap: 20px; }
+.chat-view::-webkit-scrollbar { width: 6px; }
+.chat-view::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.msg-row { display: flex; }
+.msg-row.user { justify-content: flex-end; }
+.msg-row.ai { justify-content: flex-start; }
+.bubble-user {
+    max-width: 75%; background: var(--user-bubble); color: #fff;
+    padding: 12px 16px; border-radius: 14px 14px 4px 14px;
+    font-size: 14px; line-height: 1.5; white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.bubble-ai {
+    max-width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #dfe4ec;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.bubble-ai p { margin: 0 0 12px; }
+.bubble-ai p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body class="view-module">
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 — QA F67 (R13): citazione da materiali + salva come</strong></div></header>
+<!-- Ancora per il boot di app.js (crea #homeView/#moduleView prima di #welcomeView) -->
+<div id="welcomeView" class="hidden"></div>
+<main id="main" class="view-page hidden"></main>
+<section id="chatView" class="chat-view hidden"></section>
+
+<script>
+/* ============================================================
+   STUB SOLO DICHIARATO di window.pywebview.api (consentito in T2).
+   Sono le sole API usate da store.js / AIService / F67a:
+   - materials_list + read_material_text  -> F67a (chunks)
+   - ai_run_function                      -> F06/F17 (output realistici)
+   - study_list/save/get/delete           -> store.js in modalita backend
+   - get_conversations                    -> renderHome degradato
+   Nessuna geometria simulata.
+   ============================================================ */
+window.__qaF67 = { items: [], seq: 1, calls: { f06: 0, f17: 0 }, mats: 0 };
+(function () {
+    var MAT = {
+        path: 'file_AIstudio/rag_stage2/fotosintesi_clorofilliana.md',
+        name: 'fotosintesi_clorofilliana.md',
+        text: 'La fotosintesi clorofilliana e il processo con cui le piante verdi convertono la luce solare in energia chimica. ' +
+            'Avviene nei cloroplasti, organuli presenti nelle cellule vegetali. ' +
+            'Nella fase luminosa si producono ATP e NADPH con liberazione di ossigeno. ' +
+            'Il ciclo di Calvin fissa il biossido di carbonio in glucosio.'
+    };
+    var S = window.__qaF67;
+    function copy(o) { var c = {}; Object.keys(o).forEach(function (k) { c[k] = o[k]; }); return c; }
+    function find(id) { return S.items.filter(function (i) { return i.id === id; })[0] || null; }
+    window.pywebview = {
+        api: {
+            materials_list: function () {
+                S.mats++;
+                return Promise.resolve([{ path: MAT.path, name: MAT.name, indexed_at: '2026-10-24' }]);
+            },
+            read_material_text: function (p) {
+                return Promise.resolve({
+                    success: p === MAT.path, name: MAT.name,
+                    text: p === MAT.path ? MAT.text : '', kind: 'md',
+                    size: MAT.text.length, mtime: 0
+                });
+            },
+            ai_run_function: function (fid, inputsJson) {
+                var inputs = {};
+                try { inputs = JSON.parse(inputsJson || '{}'); } catch (e) { inputs = {}; }
+                if (fid === 'F06') {
+                    S.calls.f06++;
+                    var chunks = String(inputs.chunks || '');
+                    var m = chunks.match(/[^.!?]+[.!?]*/);
+                    return Promise.resolve({
+                        ok: true, badge: 'generato da AI', approval_required: true,
+                        data: {
+                            answer: 'Dai passaggi forniti: la fotosintesi avviene nei cloroplasti.',
+                            citations: [{
+                                quote: (m ? m[0].trim() : chunks.slice(0, 60)),
+                                source: String(inputs.docs || MAT.name)
+                            }]
+                        }
+                    });
+                }
+                if (fid === 'F17') {
+                    S.calls.f17++;
+                    return Promise.resolve({
+                        ok: true, badge: 'generato da AI \u00b7 cross-modulo',
+                        approval_required: true,
+                        data: String(inputs.payload || '')
+                    });
+                }
+                return Promise.resolve({ ok: false, fallback: true, data: null, badge: 'AI non disponibile' });
+            },
+            /* --- store.js in modalita backend (stesso identico contratto) --- */
+            study_list: function (kind) {
+                kind = kind || '';
+                return Promise.resolve(S.items
+                    .filter(function (i) { return !kind || i.kind === kind; })
+                    .map(copy));
+            },
+            study_get: function (id) { var i = find(id); return Promise.resolve(i ? copy(i) : null); },
+            study_save: function (p) {
+                var it = (p && p.id) ? find(p.id) : null;
+                if (it) { Object.keys(p).forEach(function (k) { it[k] = p[k]; }); }
+                else {
+                    p = Object.assign({}, p);
+                    if (!p.id) p.id = 'id' + (S.seq++);
+                    p.created_at = new Date().toISOString();
+                    p.updated_at = p.created_at;
+                    S.items.unshift(p);
+                    it = p;
+                }
+                return Promise.resolve({ item: copy(it) });
+            },
+            study_delete: function (id) {
+                S.items = S.items.filter(function (i) { return i.id !== id; });
+                return Promise.resolve({ success: true });
+            },
+            get_conversations: function () { return Promise.resolve([]); }
+        }
+    };
+})();
+</script>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/store.js"></script>
+<script src="../web_frontend/html/js/app.js"></script>
+<script src="../web_frontend/html/js/modules/documenti.js"></script>
+<script src="../web_frontend/html/js/modules/chatbot.js"></script>
+<script>
+/* Driver harness QA-T2 F67 — OWNED da qa_browser/qaF67_r13.js.
+   - env.js + store.js + app.js + documenti.js + chatbot.js REALI
+   - window.pywebview.api: solo stub dichiarati ( sopra )
+   - Fase A: editor documenti reale in #moduleView (boot reale di app.js
+     su #welcomeView, poi switch view- come fa go() in produzione)
+   - Fase B: #chatView con .msg-row struttura identica ad index.html
+     (addMessageRow) + barra #aiChatBar reale di chatbot.js
+   - NESSUNA geometria simulata: solo misure reali del browser. */
+(function () {
+    var QA = window.__QA;
+    var MSG_AI = 'La fotosintesi avviene nei cloroplasti e produce glucosio ed ossigeno nella fase luminosa.';
+
+    function seedAndRender() {
+        try {
+            var S = window.__qaF67;
+            /* documento reale seeddato via study_save (contratto backend) */
+            var seeded = false;
+            for (var i = 0; i < S.items.length; i++) if (S.items[i].id === 'd1') seeded = true;
+            if (!seeded) {
+                window.pywebview.api.study_save({
+                    id: 'd1', kind: 'documento', title: 'Documento F67',
+                    content: JSON.stringify({ html: '<p>Paragrafo iniziale del documento di prova.</p>' }),
+                    materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+                });
+            }
+
+            /* switch view: da home (boot reale) a modulo, come fa go() */
+            document.body.classList.remove('view-home');
+            document.body.classList.add('view-module');
+            var hv = document.getElementById('homeView');
+            if (hv) hv.classList.add('hidden');
+            var mv = document.getElementById('moduleView');
+            mv.classList.remove('hidden');
+            mv.innerHTML = '';
+            window.StudyTools.documenti.render(mv, { open: 'd1' });
+
+            /* messaggi chat con la struttura REALE di index.html addMessageRow */
+            var cv = document.getElementById('chatView');
+            cv.innerHTML = '';
+            var rowU = document.createElement('div');
+            rowU.className = 'msg-row user';
+            var bubU = document.createElement('div');
+            bubU.className = 'bubble-user';
+            bubU.textContent = 'Puoi riassumere la fotosintesi?';
+            rowU.appendChild(bubU); cv.appendChild(rowU);
+            var rowA = document.createElement('div');
+            rowA.className = 'msg-row ai';
+            var bubA = document.createElement('div');
+            bubA.className = 'bubble-ai';
+            bubA.textContent = MSG_AI;
+            rowA.appendChild(bubA); cv.appendChild(rowA);
+
+            QA.harnessReady = true;
+            QA.done = false;
+        } catch (e) {
+            QA.errors.push('harness: ' + (e && e.stack ? e.stack : e));
+            QA.done = true;
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            /* attende il boot reale di app.js (go('home')) prima di switchare */
+            setTimeout(seedAndRender, 60);
+        });
+    } else { setTimeout(seedAndRender, 60); }
+})();
+</script>
+</body>
+</html>

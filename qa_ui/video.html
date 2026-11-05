@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA video</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 â€” QA video</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/video.js"></script>
+<script>
+(async function () {
+    var QA = window.__QA, sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        var id = 'v1';
+        QA.store.items.push({
+            id: id, kind: 'video', title: 'Progetto video',
+            content: JSON.stringify({
+                clips: [{ id: 'c1', type: 'text', text: 'Titolo di prova', start: 0, dur: 3, lane: 0, transition: 'fade' }],
+                music: { src: '', volume: 70 },
+                lanes: { text: 1, media: 1, audio: 1, music: 0 }
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        var main = document.getElementById('main');
+        window.StudyTools.video.render(main, { open: id });
+        var opened = await window.__qaUntil(function () {
+            return !!document.querySelector('.vv-stage') && document.querySelectorAll('.vv-track').length > 0;
+        }, 10000);
+        await sleep(400);
+
+        /* (1a) la finestra NON scrolla */
+        var docScrollH = document.documentElement.scrollHeight;
+        var innerH = window.innerHeight;
+        var okScroll = docScrollH <= innerH + 2;
+        var editor = document.querySelector('.vv-editor');
+        window.__qaCheck('V1a document non scrolla (scrollHeight<=innerHeight+2)',
+            'documentElement.scrollHeight <= innerHeight+2', okScroll,
+            'editorOpened=' + opened + ' scrollHeight=' + docScrollH + ' innerHeight=' + innerH +
+            ' delta=' + (docScrollH - innerH) + ' (editorContentOverflow=' + (editor.scrollHeight - editor.clientHeight) + 'px)');
+
+        /* (1b) .vv-editor overflow hidden */
+        var csE = getComputedStyle(editor);
+        var ovfOk = csE.overflowX === 'hidden' && csE.overflowY === 'hidden';
+        window.__qaCheck('V1b .vv-editor overflow hidden', 'overflow-x/y = hidden', ovfOk,
+            'overflow=' + csE.overflow + ' (x=' + csE.overflowX + ', y=' + csE.overflowY + ') class="' + editor.className + '"');
+
+        /* (2) nessun pannello .vv-props */
+        var propsN = document.querySelectorAll('.vv-props').length;
+        window.__qaCheck('V2 nessun .vv-props nel DOM', 'count=0', propsN === 0, 'count=' + propsN);
+
+        /* (3) allineamento etichette corsie vs tracce */
+        var labs = [].slice.call(document.querySelectorAll('.vv-tlabels .vv-lab'));
+        var trks = [].slice.call(document.querySelectorAll('.vv-track'));
+        var deltas = [], maxD = -1;
+        var n = Math.min(labs.length, trks.length);
+        for (var i = 0; i < n; i++) {
+            var d = Math.abs(labs[i].getBoundingClientRect().top - trks[i].getBoundingClientRect().top);
+            deltas.push(+d.toFixed(1));
+            if (d > maxD) maxD = d;
+        }
+        var okLab = labs.length > 0 && labs.length === trks.length && maxD <= 6;
+        window.__qaCheck('V3 ogni .vv-lab allineata alla .vv-track i-esima (|dt top|<=6)',
+            'nLab==nTrack && maxDelta<=6', okLab,
+            'nLab=' + labs.length + ' nTrack=' + trks.length + ' maxDelta=' + (maxD >= 0 ? +maxD.toFixed(1) : 'n/a') +
+            ' deltas=' + JSON.stringify(deltas));
+
+        /* (4) preview: 1 solo stage con aspetto 16:9 */
+        var stages = [].slice.call(document.querySelectorAll('.vv-stage'));
+        var ratio = NaN;
+        if (stages.length) {
+            var sr = stages[0].getBoundingClientRect();
+            ratio = sr.height > 0 ? sr.width / sr.height : NaN;
+        }
+        var okStage = stages.length === 1 && ratio >= 1.7 && ratio <= 1.78;
+        window.__qaCheck('V4 1 solo .vv-stage con aspetto w/h in [1.7,1.78] (~16:9)',
+            'count==1 && 1.7<=w/h<=1.78', okStage,
+            'stages=' + stages.length + ' w=' + (stages[0] ? +stages[0].getBoundingClientRect().width.toFixed(1) : 'n/a') +
+            ' h=' + (stages[0] ? +stages[0].getBoundingClientRect().height.toFixed(1) : 'n/a') +
+            ' ratio=' + (isNaN(ratio) ? 'n/a' : ratio.toFixed(3)));
+
+        /* (5) spazio morto sotto la timeline */
+        var body = document.querySelector('.vv-body');
+        var tl = document.querySelector('.vv-tlwrap');
+        var dead = body && tl ? body.getBoundingClientRect().bottom - tl.getBoundingClientRect().bottom : NaN;
+        var okDead = dead <= 4;
+        window.__qaCheck('V5 nessuno spazio morto: vv-body.bottom - vv-tlwrap.bottom <= 4',
+            'delta<=4', okDead, 'delta=' + (isNaN(dead) ? 'n/a' : dead.toFixed(1)) + 'px');
+
+        await window.__qaShot('video_editor');
+        QA.done = true;
+    } catch (e) {
+        QA.errors.push('driver: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>
+

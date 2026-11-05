@@ -1,0 +1,16 @@
+0.00.003.657 I srv  llama_server: initializing ...
+0.00.005.666 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.006.134 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.021.692 I srv    load_model: loading model 'tools\models\spark-x2.6-4b.gguf'
+0.03.202.289 I cmn          init: llama threadpool init, n_threads = 8
+0.04.080.627 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'
+0.04.104.439 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.04.104.473 I srv  server_run_i: model loaded
+0.04.104.482 I srv  server_on_li: listening on http://127.0.0.1:62742
+0.04.543.615 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.04.543.664 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.15.420.838 I slot print_timing: id  0 | task 0 | n_gen =    100, tg =  12.94 t/s, tg_3s =  13.07 t/s
+0.18.489.991 I slot print_timing: id  0 | task 0 | n_gen =    178, tg =  16.51 t/s, tg_3s =  25.41 t/s
+0.19.363.225 I slot print_timing: id  0 | task 0 | prompt eval time =    3226.57 ms /   147 tokens (   21.95 ms per token,    45.56 tokens per second)
+0.19.363.236 I slot print_timing: id  0 | task 0 |        eval time =   11593.08 ms /   200 tokens (   58.26 ms per token,    17.17 tokens per second)
+0.19.363.238 I slot print_ti

@@ -1,0 +1,93 @@
+{
+ "build": "BUILD 2026-10-23T19:50:00+02:00",
+ "viewport": "1366x900",
+ "generatedAt": "2026-10-24T12:35:35.603Z",
+ "harness": "qa_ui/f67.html (env.js + store.js + app.js + documenti.js + chatbot.js REALI; pywebview.api stub SOLO dichiarati; stili chat copiati da index.html)",
+ "F67": {
+  "F1": {
+   "id": "F1",
+   "expected": "(1) voce menu documenti presente + click senza errori (menu contestuale .doc-citemenu -> form F06)",
+   "ok": true,
+   "evidence": "ctx=contextmenu dispatch a 503,205 su .doc-paper 480x720 | menu=open=true voce=\"Inserisci citazione da materiali\" rect=204x46 | formAperto=true | errori=0 qaErrors=0",
+   "m": {
+    "formOk": true,
+    "x": 503,
+    "y": 205,
+    "w": 204,
+    "h": 46,
+    "open": true
+   }
+  },
+  "F1_err": {
+   "id": "F1_err",
+   "expected": "(interno F1) zero pageerror/console.error dopo click voce menu",
+   "ok": true,
+   "evidence": "[]"
+  },
+  "F2": {
+   "id": "F2",
+   "expected": "(2) F06 stub -> preview [Accetta]/[Scarta] -> Accetta -> inserimento citazione + badge .ai-badge nel DOM",
+   "ok": true,
+   "evidence": "preview=true | accetto=\"Accetta\" scarto=\"Scarta\" pre={ \"answer\": \"Dai passaggi forniti: la fotosintesi avviene nei clorop | inserito=true | cite=\"“La fotosintesi clorofilliana e il processo con cui le piant\" badge=\"generato da AI\" f06=1 rect=427x33 | errori=0",
+   "m": {
+    "previewOk": true,
+    "insertedOk": true,
+    "preLen": 291,
+    "f06": 1,
+    "w": 427,
+    "h": 33
+   }
+  },
+  "F2_err": {
+   "id": "F2_err",
+   "expected": "(interno F2) zero pageerror/console.error nel flusso F06",
+   "ok": true,
+   "evidence": "[]"
+  },
+  "F3": {
+   "id": "F3",
+   "expected": "(3) \"Salva come nota\" chatbot -> item kind \"note\" creato nello store + AIService.undo() lo rimuove (badge F17 presente)",
+   "ok": true,
+   "evidence": "btn=true preview17=true salvato=true | kind=note title=\"La fotosintesi avviene nei cloroplasti e\" obj.t=text f17=1 | undo=true dopo(note=0, badgeF17=1, docs=1, mazzi=0) | errori=0",
+   "m": {
+    "btnPresent": true,
+    "pv17Ok": true,
+    "savedOk": true,
+    "undoneOk": true,
+    "f17": 1,
+    "kind": "note",
+    "notes": 0,
+    "docs": 1,
+    "mazzi": 0,
+    "badgeF17": 1
+   }
+  },
+  "F3_err": {
+   "id": "F3_err",
+   "expected": "(interno F3) zero pageerror/console.error nel flusso F17",
+   "ok": true,
+   "evidence": "[]"
+  },
+  "F0": {
+   "id": "F0",
+   "expected": "(4) zero pageerror/console.error/QA.errors per tutto il giro F67",
+   "ok": true,
+   "evidence": "QA.errors=[] pageerrors=0 console.error=0 []",
+   "m": {
+    "qaErrors": 0,
+    "pageErrors": 0,
+    "consoleErrors": 0
+   }
+  }
+ },
+ "console": {
+  "logs": [],
+  "qaErrors": []
+ },
+ "notes": {
+  "f67a": "menu contestuale .doc-paper -> .doc-citemenu (classi doc-dd/doc-mi esistenti) -> F06 {docs,chunks,q} via AIService.runFor",
+  "f67b": "barra #aiChatBar esistente -> 3 button data-ai-f67 -> F17 {payload,meta} -> saveItem kind 'note' (notes.js) + undo delete + badge data-ai-f67-badge",
+  "undo": "uguaglianze stringa/DOM dimostrate in jsdom: tests/qaR13_f67.test.js (28/28)",
+  "contatti": "quote F06 verbatim dai chunks (validator cite _in_text); mazzo F17 convertito front/back -> q/a (forma ripasso.js)"
+ }
+}

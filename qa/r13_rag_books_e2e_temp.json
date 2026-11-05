@@ -1,0 +1,202 @@
+{
+  "status": "OK",
+  "parity_top10": 1.0,
+  "recall5": 1.0,
+  "n_chunks": 12,
+  "chroma_count": 12,
+  "dim": 64,
+  "queries": [
+    {
+      "query": "Appunti alfaalfa lezione numero 0 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 1 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 2 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 3 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 4 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 5 con spiegazione completa del tema alfaalfa e esempi sviluppati nel dettaglio.",
+      "gold": "materialeA.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 0 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 1 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 2 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 3 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 4 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 5 con spiegazione completa del tema bravobravo e esempi sviluppati nel dettaglio.",
+      "gold": "materialeB.md"
+    }
+  ],
+  "n_queries": 12,
+  "metodo": "(a) parity top-10 su 12 query derivate dai .md di C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\md; DeterministicEmbedder (tests/testH1_parity.py) con dim=64 (vettore reale dell'indice); STESSO embedder per chroma (copia read-only) e sqlite (file temp); overlap = intersezione(top10_chroma, top10_sqlite) / min(10). (b) recall@5 con query vettoriali ANCORATE al centroide dei vettori reali del .md gold + 10% rumore deterministico DeterministicEmbedder (modello di produzione non caricabile o dimensione diversa); hit = >=1 risultato top-5 dal .md di origine.",
+  "comando_riproduzione": "python data/migrate_real.py",
+  "chroma_source": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\vector_index_books",
+  "corpus": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\md",
+  "migrate_stats": {
+    "ok": true,
+    "migrated": 12,
+    "upserted_existing": 0,
+    "skipped": 0,
+    "total": 12
+  },
+  "parity_per_query": [
+    {
+      "query": "Appunti alfaalfa lezione numero 0 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 1 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 2 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 3 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 4 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 5 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 0 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 1 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 2 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 3 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 4 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 5 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "overlap": 1.0
+    }
+  ],
+  "recall_per_query": [
+    {
+      "query": "Appunti alfaalfa lezione numero 0 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 1 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 2 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 3 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 4 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti alfaalfa lezione numero 5 con spiegazione completa del tema alfaalfa e e",
+      "gold": "materialeA.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 0 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 1 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 2 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 3 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 4 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    },
+    {
+      "query": "Appunti bravobravo lezione numero 5 con spiegazione completa del tema bravobravo",
+      "gold": "materialeB.md",
+      "hit": true
+    }
+  ],
+  "ts": "2026-11-02T18:46:57",
+  "error": null,
+  "gate": {
+    "parity_min": 1.0,
+    "recall5_min": 1.0,
+    "pass": true
+  },
+  "nota_meccanica": "test MECCANICA su cartella TEMP con corpus sintetico — NON sono libri reali; serve a provare che il pipeline misura 1.0/1.0 quando il corpus esiste"
+}

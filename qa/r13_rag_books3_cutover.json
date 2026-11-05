@@ -1,0 +1,71 @@
+{
+  "operazione": "books_cutover",
+  "store_key": "vector_index_books",
+  "comando": "python data/migrate_real.py --books-cutover",
+  "dryrun": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\r13_rag_books1_dryrun.json",
+  "app_dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio",
+  "chunks": 0,
+  "status": "eseguito",
+  "ts": "2026-10-24T13:50:15",
+  "vacuo": true,
+  "gate": {
+    "parity": 0.0,
+    "recall5": 0.0,
+    "chroma_count": 0,
+    "dryrun_n_chunks": 0,
+    "modo": "vacuo: corpus vuoto dichiarato (parity/recall VACUI 0/0, migrazione 0->0, nessun dato da perdere)"
+  },
+  "sha256_prima": {
+    "chroma.sqlite3": "a220935329167528512eebe388066ca6571591c389e248bf4e761340cf7e433c",
+    "embedding_model.txt": "a1aa3841d29a8b6a0aea5c1e523b17f6b362dcb69d208725d273ab05d5b3f7da"
+  },
+  "backup_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261024_135015",
+  "manifest_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261024_135015\\manifest.json",
+  "backup_sha_verified": true,
+  "migrate_stats": {
+    "ok": true,
+    "migrated": 0,
+    "skipped": 0,
+    "total": 0
+  },
+  "sorgente_intatta_dopo_cutover": true,
+  "file_modificati_dopo_cutover": [],
+  "sha256_dopo_cutover": {
+    "chroma.sqlite3": "a220935329167528512eebe388066ca6571591c389e248bf4e761340cf7e433c",
+    "embedding_model.txt": "a1aa3841d29a8b6a0aea5c1e523b17f6b362dcb69d208725d273ab05d5b3f7da"
+  },
+  "flag_written": true,
+  "flag_content": "{\"source\": \"data/migrate_real.py --books-cutover\", \"store_key\": \"vector_index_books\", \"vacuo\": true, \"chunks\": 0, \"ok\": true, \"migrated\": 0, \"skipped\": 0, \"total\": 0}",
+  "post_check": {
+    "n_total": 0,
+    "n_stage2": 0,
+    "n_legacy": 0,
+    "n_originals": 0,
+    "chunks_store": 0,
+    "atteso": "0 chunk (corpus vuoto dichiarato)",
+    "zero_dichiarato": true
+  },
+  "rollback_test": {
+    "backend_default": "sqlite",
+    "backend_con_env_chroma": "chroma",
+    "chroma_reale_apribile": true,
+    "chroma_reale_count": 0,
+    "sha_dopo_apertura_reale_uguale": false,
+    "file_modificati_apertura_reale": [
+      "chroma.sqlite3"
+    ],
+    "apertura_analisi_dump": {
+      "n_righe_ref": 94,
+      "n_righe_ora": 95,
+      "n_added": 1,
+      "n_removed": 0,
+      "added_sample": [
+        "INSERT INTO \"acquire_write\" VALUES(34,1);"
+      ],
+      "removed_sample": [],
+      "solo_bookkeeping_chromadb": true,
+      "nota": "apertura chroma: righe alterate SOLO in acquire_write (tabella lock interna di chromadb) e contatori header sqlite = dati utente INTATTI"
+    }
+  },
+  "dichiarazione": "corpus vuoto: cutover 0->0 con parity/recall VACUI (0/0); post-check 0 chunk dichiarato; rollback = sorgente chroma byte-intatta dopo il cutover e apribile con RAG_BACKEND=chroma"
+}

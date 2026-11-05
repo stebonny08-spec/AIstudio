@@ -1,0 +1,222 @@
+[
+  {
+    "id": "c01",
+    "query": "Chi ha scoperto la fotosintesi e in che anno è avvenuta?",
+    "vec1": 0.8317,
+    "fts_hits": 10,
+    "bm25_best": -2.272,
+    "fts_evidenza": false,
+    "lex": 0.25,
+    "score": 0.6505,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c02",
+    "query": "Come si coltiva il basilico in vaso sul balcone di casa?",
+    "vec1": 0.8002,
+    "fts_hits": 10,
+    "bm25_best": -3.419,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.708,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c03",
+    "query": "Come funziona la respirazione cellulare nei mitocondri?",
+    "vec1": 0.8678,
+    "fts_hits": 10,
+    "bm25_best": -2.554,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.691,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c04",
+    "query": "Perché le foglie diventano gialle in autunno?",
+    "vec1": 0.8256,
+    "fts_hits": 10,
+    "bm25_best": -0.153,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.5055,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c05",
+    "query": "Quanta acqua serve un albero da frutto ogni settimana?",
+    "vec1": 0.7977,
+    "fts_hits": 10,
+    "bm25_best": -1.314,
+    "fts_evidenza": false,
+    "lex": 0.167,
+    "score": 0.5662,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c06",
+    "query": "Come si misura il pH del terreno di un orto?",
+    "vec1": 0.824,
+    "fts_hits": 10,
+    "bm25_best": -1.905,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.6214,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c07",
+    "query": "Qual è la differenza tra diffusione e osmosi nelle membrane cellulari?",
+    "vec1": 0.8388,
+    "fts_hits": 10,
+    "bm25_best": -3.411,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.7307,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c08",
+    "query": "Come si fa il compost con le foglie secche del giardino?",
+    "vec1": 0.8192,
+    "fts_hits": 10,
+    "bm25_best": -1.481,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.5902,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c09",
+    "query": "Qual è la vita media di una foglia di quercia?",
+    "vec1": 0.809,
+    "fts_hits": 10,
+    "bm25_best": -4.123,
+    "fts_evidenza": true,
+    "lex": 0.4,
+    "score": 0.7603,
+    "outcome@0.70": "piena"
+  },
+  {
+    "id": "c10",
+    "query": "Come cambia la fotosintesi a temperature superiori ai 40 gradi?",
+    "vec1": 0.8586,
+    "fts_hits": 10,
+    "bm25_best": -2.379,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.6738,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c11",
+    "query": "A che serve la luce artificiale per le piante d'appartamento?",
+    "vec1": 0.8081,
+    "fts_hits": 10,
+    "bm25_best": -2.602,
+    "fts_evidenza": false,
+    "lex": 0.2,
+    "score": 0.6583,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c12",
+    "query": "Come si progetta un impianto fotovoltaico per una casa?",
+    "vec1": 0.8034,
+    "fts_hits": 10,
+    "bm25_best": -1.113,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.5563,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c13",
+    "query": "Spiega il ciclo dell'azoto nel terreno agricolo",
+    "vec1": 0.8411,
+    "fts_hits": 10,
+    "bm25_best": -1.662,
+    "fts_evidenza": false,
+    "lex": 0.167,
+    "score": 0.6155,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c14",
+    "query": "Quanto dura il giorno e la notte all'equatore?",
+    "vec1": 0.7947,
+    "fts_hits": 10,
+    "bm25_best": -4.249,
+    "fts_evidenza": true,
+    "lex": 0.4,
+    "score": 0.7601,
+    "outcome@0.70": "piena"
+  },
+  {
+    "id": "c15",
+    "query": "Come si calcola l'indice di clorofilla con il metro a foglia?",
+    "vec1": 0.8419,
+    "fts_hits": 10,
+    "bm25_best": -2.341,
+    "fts_evidenza": false,
+    "lex": 0.2,
+    "score": 0.6612,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c16",
+    "query": "Perché il mare è salato e come si forma il sale?",
+    "vec1": 0.812,
+    "fts_hits": 10,
+    "bm25_best": -1.877,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.6123,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c17",
+    "query": "Che differenza c'è tra un enzima e un ormone?",
+    "vec1": 0.8232,
+    "fts_hits": 10,
+    "bm25_best": -1.735,
+    "fts_evidenza": false,
+    "lex": 0.333,
+    "score": 0.6273,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c18",
+    "query": "Come si trasportano i nutrienti nel legno di un albero alto?",
+    "vec1": 0.8298,
+    "fts_hits": 10,
+    "bm25_best": -3.014,
+    "fts_evidenza": false,
+    "lex": 0.0,
+    "score": 0.6988,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c19",
+    "query": "Qual è il rapporto ATP:NADPH consumato dal ciclo di Calvin?",
+    "vec1": 0.862,
+    "fts_hits": 10,
+    "bm25_best": -1.709,
+    "fts_evidenza": false,
+    "lex": 0.75,
+    "score": 0.8172,
+    "outcome@0.70": "nulla"
+  },
+  {
+    "id": "c20",
+    "query": "Quante ATP richiede la fissazione di una sola molecola di CO2?",
+    "vec1": 0.8607,
+    "fts_hits": 10,
+    "bm25_best": -3.754,
+    "fts_evidenza": true,
+    "lex": 0.286,
+    "score": 0.7667,
+    "outcome@0.70": "piena"
+  }
+]

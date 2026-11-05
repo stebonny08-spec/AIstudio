@@ -1,0 +1,74 @@
+== 1. renderList ==
+  PASS  lista: header "Nuovo schema" presente
+  PASS  lista: contenuto renderizzato (card o empty)
+== 2. renderChooser ==
+  PASS  chooser: 5 .choice
+  PASS  chooser: ordine etichette atteso
+== 3. creazione 5 tipi ==
+  PASS  creazione albero: editor aperto col tipo giusto
+  PASS  creazione albero: content.type salvato === albero
+  PASS  creazione albero: ritorno in lista
+  PASS  creazione mappa: editor aperto col tipo giusto
+  PASS  creazione mappa: content.type salvato === mappa
+  PASS  creazione mappa: ritorno in lista
+  PASS  creazione lr: editor aperto col tipo giusto
+  PASS  creazione lr: content.type salvato === lr
+  PASS  creazione lr: ritorno in lista
+  PASS  creazione libero: editor aperto col tipo giusto
+  PASS  creazione libero: content.type salvato === libero
+  PASS  creazione libero: ritorno in lista
+  PASS  creazione riassunto: editor aperto col tipo giusto
+  PASS  creazione riassunto: content.type salvato === riassunto
+  PASS  creazione riassunto: ritorno in lista
+== 4. apertura + aggiunta nodi ==
+  PASS  apertura: editor mappa montato
+  PASS  apertura: nodo iniziale (Idea centrale)
+  PASS  nodi: matrice mappa (niente +Nodo) + +Figlio x2 -> 3 nodi
+== 5. collegamento canConnect ==
+  PASS  collegamento accettato: arco creato (tot 3)
+  PASS  collegamento rifiutato (duplicato): nessun arco aggiunto
+  PASS  collegamento rifiutato: toast motivato mostrato
+== 6. drag nodo ==
+  PASS  drag: posizione nodo A cambiata
+== 7. auto-layout ==
+  PASS  auto-layout: nodi ridisposti
+  PASS  auto-layout: archi invariati
+== 8. etichetta arco ==
+  PASS  etichetta: modale aperta su doppio-click arco (mappa)
+  PASS  etichetta: salvata e renderizzata
+== 9. testo nodo ==
+  PASS  testo nodo: textarea overlay aperta
+  PASS  testo nodo: commit + render dopo Escape
+== 10. cambia tipo (mappa->albero->lr->mappa) ==
+  PASS  transizione mappa>albero: selType aggiornato
+  PASS  transizione mappa>albero: nodi conservati (3)
+  PASS  transizione mappa>albero: archi conservati (3)
+  PASS  transizione albero>lr: selType aggiornato
+  PASS  transizione albero>lr: nodi conservati (3)
+  PASS  transizione albero>lr: archi conservati (3)
+  PASS  transizione lr>mappa: selType aggiornato
+  PASS  transizione lr>mappa: nodi conservati (3)
+  PASS  transizione lr>mappa: archi conservati (3)
+== 11. flush autosave ==
+  PASS  flush: type===mappa nel content
+  PASS  flush: nodi salvati (3)
+  PASS  flush: etichetta arco salvata nel content
+  PASS  flush: testo nodo salvato
+  PASS  flush: nessun extraCount residuo nel content
+== 12. chiusura ==
+  PASS  chiusura: tornato in lista, editor smontato
+== 13. riapertura + verifica ==
+  PASS  riapertura: tipo mappa persistito
+  PASS  riapertura: nodi presenti (3)
+  PASS  riapertura: 3 archi
+  PASS  riapertura: etichetta persistita
+  PASS  riapertura: testo nodo persistito
+  PASS  riapertura: zero flag legacy nel content
+
+== CONSOLE / ECCEZIONI ==
+  log totali catturati: 0 (noise jsdom escluso: 0, reali: 0)
+  ECCEZIONI/ERRORI reali: 0 | WARN reali: 0
+  PASS  zero eccezioni/console.error reali durante il viaggio
+
+================================================
+JOURNEY: 54 passati, 0 falliti

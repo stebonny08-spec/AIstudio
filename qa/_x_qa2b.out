@@ -1,0 +1,26 @@
+CONFIG: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "spec.draft_model": ""}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:58139
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  warmup_hit(scartato) -> {"tag": "warmup_hit(scartato)", "ttft_ms": 1440.0, "first_seen": true, "n_chunks": 60, "len": 180, "complete": true, "streaming_ok": true, "wall_ms": 6063.0}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  miss_1 -> {"tag": "miss_1", "ttft_ms": 998.5, "first_seen": true, "n_chunks": 60, "len": 191, "complete": true, "streaming_ok": true, "wall_ms": 5380.2}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  miss_2 -> {"tag": "miss_2", "ttft_ms": 1023.6, "first_seen": true, "n_chunks": 60, "len": 196, "complete": true, "streaming_ok": true, "wall_ms": 5417.8}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  miss_3 -> {"tag": "miss_3", "ttft_ms": 995.0, "first_seen": true, "n_chunks": 60, "len": 211, "complete": true, "streaming_ok": true, "wall_ms": 5486.3}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  miss_4 -> {"tag": "miss_4", "ttft_ms": 977.8, "first_seen": true, "n_chunks": 60, "len": 196, "complete": true, "streaming_ok": true, "wall_ms": 5351.0}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  miss_5 -> {"tag": "miss_5", "ttft_ms": 1040.8, "first_seen": true, "n_chunks": 60, "len": 192, "complete": true, "streaming_ok": true, "wall_ms": 5444.7}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  hit_1 -> {"tag": "hit_1", "ttft_ms": 81.2, "first_seen": true, "n_chunks": 60, "len": 221, "complete": true, "streaming_ok": true, "wall_ms": 4443.3}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  hit_2 -> {"tag": "hit_2", "ttft_ms": 94.8, "first_seen": true, "n_chunks": 60, "len": 199, "complete": true, "streaming_ok": true, "wall_ms": 4454.4}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  hit_3 -> {"tag": "hit_3", "ttft_ms": 98.6, "first_seen": true, "n_chunks": 60, "len": 207, "complete": true, "streaming_ok": true, "wall_ms": 4454.3}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  hit_4 -> {"tag": "hit_4", "ttft_ms": 76.3, "first_seen": true, "n_chunks": 60, "len": 187, "complete": true, "streaming_ok": true, "wall_ms": 4437.0}
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+  hit_5 -> {"tag": "hit_5", "ttft_ms": 98.0, "first_seen": true, "n_chunks": 60, "len": 215, "complete": true, "streaming_ok": true, "wall_ms": 4467.5}
+RISULTATO QA-2: miss_p50=True (998<=4000) hit_p50=True (95<=1500) streaming=True complete=True -> PASS

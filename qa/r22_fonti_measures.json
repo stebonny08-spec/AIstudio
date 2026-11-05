@@ -1,0 +1,141 @@
+{
+  "method": "qaR22_fonti: montatura reale qa_ui + fixture iniettate + katex vendored; PRIMA = interception qa/r22_fonti_baseline.js (pre-R22)",
+  "toolbar": {
+    "documenti": {
+      "prima": {
+        "found": [
+          ".doc-bar",
+          ".mod-header"
+        ],
+        "overlaps": {
+          ".doc-bar": 0,
+          ".mod-header": 0
+        },
+        "overlapPx2": 0,
+        "tbBottom": 56,
+        "nBtn": 24,
+        "hitOk": true,
+        "fails": [],
+        "chev": false,
+        "pos": "fixed",
+        "zi": "160",
+        "panelRect": {
+          "t": 58,
+          "b": 628,
+          "l": 1086,
+          "r": 1426
+        },
+        "pageerrors": []
+      },
+      "dopo": {
+        "found": [
+          ".doc-bar",
+          ".mod-header"
+        ],
+        "overlaps": {
+          ".doc-bar": 0,
+          ".mod-header": 0
+        },
+        "overlapPx2": 0,
+        "tbBottom": 56,
+        "nBtn": 24,
+        "hitOk": true,
+        "fails": [],
+        "chev": true,
+        "pos": "fixed",
+        "zi": "20",
+        "panelRect": {
+          "t": 64,
+          "b": 634,
+          "l": 1086,
+          "r": 1426
+        }
+      }
+    },
+    "presentazioni": {
+      "dopo": {
+        "found": [
+          ".pp-bar"
+        ],
+        "overlaps": {
+          ".pp-bar": 0,
+          ".mod-header": null
+        },
+        "overlapPx2": 0,
+        "tbBottom": 50,
+        "nBtn": 15,
+        "hitOk": true,
+        "fails": [],
+        "chev": true,
+        "pos": "fixed",
+        "zi": "5",
+        "panelRect": {
+          "t": 58,
+          "b": 628,
+          "l": 1086,
+          "r": 1426
+        }
+      }
+    }
+  },
+  "resize": {
+    "key": "fp21_w_documenti",
+    "w0": 340,
+    "w1": 460,
+    "persisted": "460",
+    "reset_w": 340,
+    "default_w": 340,
+    "ls_after_reset": null,
+    "ok": true
+  },
+  "snapshot": {
+    "screenshot": "r22_fonti_dopo_snapshot.png",
+    "mix": {
+      "snap": true,
+      "dataUrl": true,
+      "img_before_text": true,
+      "noEmptyMsg": true
+    },
+    "inkOnly": {
+      "snap": true,
+      "dataUrl": true,
+      "noEmptyMsg": true
+    },
+    "empty": {
+      "msg": true
+    },
+    "ok": true
+  },
+  "math": {
+    "fixture": "$x^2$, \\(..\\), $$..$$, \\[..\\]",
+    "katex_nodes": 4,
+    "fallback_nodes": 0,
+    "raw_textnodes": [],
+    "ok": true
+  },
+  "collapse": {
+    "key": "fp21_top_documenti",
+    "prima_list_px": 399,
+    "dopo_list_px": 423,
+    "gained_px": 24,
+    "ls_after_toggle": "1",
+    "reopen_ok": true,
+    "reload_list_px": 423,
+    "reload_ok": true,
+    "screenshot": "r22_fonti_dopo_collapse.png",
+    "ok": true
+  },
+  "documenti_pageerrors": [],
+  "screenshots": [
+    "r22_fonti_prima_documenti.png",
+    "r22_fonti_dopo_documenti.png",
+    "r22_fonti_dopo_snapshot.png",
+    "r22_fonti_dopo_math.png",
+    "r22_fonti_dopo_collapse.png",
+    "r22_fonti_dopo_presentazioni.png"
+  ],
+  "checks_total": 36,
+  "checks_failed": 0,
+  "failed": [],
+  "all_ok": true
+}

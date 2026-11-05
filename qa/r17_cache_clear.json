@@ -1,0 +1,40 @@
+{
+ "ts": "2026-10-25T16:25:04+0100",
+ "answer_cache_entries_prima": 2,
+ "answer_cache_dante_entries": 1,
+ "answer_cache_removal": "eliminato",
+ "db_tables": [
+  "chats",
+  "sqlite_sequence",
+  "messages",
+  "indexed_files",
+  "study_items",
+  "subjects",
+  "calendar_events",
+  "folders",
+  "chunks",
+  "chunks_fts",
+  "chunks_fts_data",
+  "chunks_fts_idx",
+  "chunks_fts_docsize",
+  "chunks_fts_config",
+  "doc_versions",
+  "vec_vector_index",
+  "vec_vector_index_info",
+  "vec_vector_index_chunks",
+  "vec_vector_index_rowids",
+  "vec_vector_index_vector_chunks00",
+  "vecnb_vector_index",
+  "index_meta"
+ ],
+ "messages_cols": [
+  "id",
+  "chat_id",
+  "ruolo",
+  "testo",
+  "fonte",
+  "timestamp"
+ ],
+ "ai_dante_msgs_prima": 7,
+ "ai_dante_msgs_deleted": 7
+}

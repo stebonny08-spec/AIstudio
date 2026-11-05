@@ -1,0 +1,2061 @@
+
+== 1.1/1.2 Registro strategie: struttura ==
+  PASS  SCHEMA_STRATEGIES esiste
+  PASS  strategia presente: albero
+  PASS  albero.initialLayout è funzione
+  PASS  albero.autoLayout è funzione
+  PASS  albero.placeNewNode è funzione
+  PASS  albero.canConnect è funzione
+  PASS  albero.edgeStyle è funzione
+  PASS  albero.snap è funzione
+  PASS  albero.ui è funzione
+  PASS  albero.edgeStyle().forma valida
+  PASS  albero.edgeStyle().freccia boolean
+  PASS  albero.edgeStyle().etichetta boolean
+  PASS  albero.ui().pulsanti lista
+  PASS  albero.ui().pannelloTesto boolean
+  PASS  albero.ui().guide valida
+  PASS  albero.snap().attivo boolean
+  PASS  strategia presente: mappa
+  PASS  mappa.initialLayout è funzione
+  PASS  mappa.autoLayout è funzione
+  PASS  mappa.placeNewNode è funzione
+  PASS  mappa.canConnect è funzione
+  PASS  mappa.edgeStyle è funzione
+  PASS  mappa.snap è funzione
+  PASS  mappa.ui è funzione
+  PASS  mappa.edgeStyle().forma valida
+  PASS  mappa.edgeStyle().freccia boolean
+  PASS  mappa.edgeStyle().etichetta boolean
+  PASS  mappa.ui().pulsanti lista
+  PASS  mappa.ui().pannelloTesto boolean
+  PASS  mappa.ui().guide valida
+  PASS  mappa.snap().attivo boolean
+  PASS  strategia presente: lr
+  PASS  lr.initialLayout è funzione
+  PASS  lr.autoLayout è funzione
+  PASS  lr.placeNewNode è funzione
+  PASS  lr.canConnect è funzione
+  PASS  lr.edgeStyle è funzione
+  PASS  lr.snap è funzione
+  PASS  lr.ui è funzione
+  PASS  lr.edgeStyle().forma valida
+  PASS  lr.edgeStyle().freccia boolean
+  PASS  lr.edgeStyle().etichetta boolean
+  PASS  lr.ui().pulsanti lista
+  PASS  lr.ui().pannelloTesto boolean
+  PASS  lr.ui().guide valida
+  PASS  lr.snap().attivo boolean
+  PASS  strategia presente: libero
+  PASS  libero.initialLayout è funzione
+  PASS  libero.autoLayout è funzione
+  PASS  libero.placeNewNode è funzione
+  PASS  libero.canConnect è funzione
+  PASS  libero.edgeStyle è funzione
+  PASS  libero.snap è funzione
+  PASS  libero.ui è funzione
+  PASS  libero.edgeStyle().forma valida
+  PASS  libero.edgeStyle().freccia boolean
+  PASS  libero.edgeStyle().etichetta boolean
+  PASS  libero.ui().pulsanti lista
+  PASS  libero.ui().pannelloTesto boolean
+  PASS  libero.ui().guide valida
+  PASS  libero.snap().attivo boolean
+  PASS  strategia presente: riassunto
+  PASS  riassunto.initialLayout è funzione
+  PASS  riassunto.autoLayout è funzione
+  PASS  riassunto.placeNewNode è funzione
+  PASS  riassunto.canConnect è funzione
+  PASS  riassunto.edgeStyle è funzione
+  PASS  riassunto.snap è funzione
+  PASS  riassunto.ui è funzione
+  PASS  riassunto.edgeStyle().forma valida
+  PASS  riassunto.edgeStyle().freccia boolean
+  PASS  riassunto.edgeStyle().etichetta boolean
+  PASS  riassunto.ui().pulsanti lista
+  PASS  riassunto.ui().pannelloTesto boolean
+  PASS  riassunto.ui().guide valida
+  PASS  riassunto.snap().attivo boolean
+
+== TASK 4/1 — Albero ==
+  PASS  albero: profondità = righe crescenti
+  PASS  albero: ramo c→f più in basso
+  PASS  albero: fratelli b,c centrati sotto il padre a
+  PASS  albero: d,e centrati sotto b
+  PASS  albero: radice in cima
+  PASS  albero: secondo padre rifiutato
+  PASS  albero: motivo leggibile (secondo padre)
+  PASS  albero: ciclo rifiutato
+  PASS  albero: motivo leggibile (ciclo)
+  PASS  albero: primo padre consentito
+  PASS  albero: self-loop rifiutato
+  PASS  albero: duplicato rifiutato
+  PASS  albero: archi a gomito senza etichetta
+  PASS  albero: pulsanti +Figlio/+Fratello
+  PASS  albero: nuovo figlio posizionato sotto il padre
+  PASS  albero: initialLayout gerarchico
+
+== TASK 4/1 — Mappa concettuale ==
+  PASS  mappa: archi curvi
+  PASS  mappa: etichetta presente (modificabile)
+  PASS  mappa: frecce presenti
+  PASS  mappa: ciclo permesso
+  PASS  mappa: self-loop rifiutato
+  PASS  mappa: duplicato rifiutato
+  PASS  mappa: radialità (hub separato dagli altri)
+  PASS  mappa: nodi su anello (distanze simili)
+  PASS  mappa: initialLayout preserva il manuale
+  PASS  mappa: matrice aggiunta (+Figlio/+Fratello, niente +Nodo)
+
+== TASK 4/1 — Sinistra→destra ==
+  PASS  lr: colonne crescenti lungo il flusso
+  PASS  lr: b e c impilati nella stessa colonna
+  PASS  lr: nodi della colonna impilati in y
+  PASS  lr: frecce con punta, archi dritti avanti
+  PASS  lr: asse flusso x (arco indietro → curva)
+  PASS  lr: guide verticali colonne
+  PASS  lr: nuovo figlio nella colonna successiva
+
+== TASK 4/1 (BLOCCO 3): Alto -> basso rimosso ==
+  PASS  registro: SCHEMA_STRATEGIES.tb rimosso
+  PASS  getStrategy('tb') fallback libero
+  PASS  5 tipi restanti tutti presenti
+  PASS  registro: esattamente 5 tipi (nessun residuo tb)
+  PASS  TYPES test: 5 voci senza tb
+
+== TASK 4/1 — Schema libero ==
+  PASS  libero: auto-layout disabilitato (null)
+  PASS  libero: snap disattivato
+  PASS  libero: nessuna guida
+  PASS  libero: pulsante auto-layout grigio + tooltip
+  PASS  libero: scelta forma arco (dritto/curvo/gomito)
+  PASS  libero: ciclo consentito
+  PASS  libero: secondo padre consentito
+  PASS  libero: arco dritto default
+  PASS  libero: forma arco personalizzabile
+  PASS  libero: forma arco gomito
+  PASS  libero: initialLayout invariato
+
+== TASK 4/1 — Riassunto visuale ==
+  PASS  riassunto: pannello testo affiancato
+  PASS  riassunto: nodi come card multilinea (titolo+corpo)
+  PASS  riassunto: card larghe/alte
+  PASS  riassunto: arco facoltativo consentito
+  PASS  riassunto: stack a colonna (stessa x)
+  PASS  riassunto: y crescenti senza sovrapposizioni (stack)
+  PASS  riassunto: archi semplici senza frecce
+  PASS  riassunto: nuovo nodo impilato sotto
+
+== Differenze obbligatorie tra tutti i tipi ==
+  PASS  forme arco distinte per tipo
+  PASS  etichetta solo su mappa (1/1)
+  PASS  etichetta solo su mappa (tot)
+  PASS  pannelloTesto solo riassunto
+  PASS  snap attivo in tutti tranne libero
+  PASS  auto-layout disabilitato solo per libero
+  PASS  guide solo lr (colonne; tb rimosso)
+
+== TASK 3 — migrateSchema ==
+  PASS  migrate: tipo aggiornato
+  PASS  migrate: nodi e archi conservati
+  PASS  migrate albero→mappa: tutti gli archi validi
+  PASS  migrate: altri campi intatti
+  PASS  migrate: mappa→albero tipo
+  PASS  migrate: contenuto conservato
+  PASS  migrate: 1 arco non valido marcato extra
+  PASS  migrate: è il ciclo c→a a diventare extra
+  PASS  migrate: motivo salvato sull’arco extra
+  PASS  migrate: doppio padre → 1 extra
+  PASS  migrate: archi validi tenuti
+  PASS  migrate → lr: doppio padre ammesso (nessun extra)
+  PASS  migrate: albero→mappa ripristina gli extra
+  PASS  migrate: autoLayout nuova strategia sui nodi conservati
+
+== BLOCCO 2 - migrateSchema pulita/idempotente ==
+  PASS  B2 (i) albero: schema.type aggiornato
+  PASS  B2 (i) albero: nodi(4)/archi(3) conservati
+  PASS  B2 (i) albero: sentiero valido (nessun extra)
+  PASS  B2 (i) albero: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) albero: schema.extraCount === undefined
+  PASS  B2 (i) albero: nessun extraMotivo residuo
+  PASS  B2 (i) mappa: schema.type aggiornato
+  PASS  B2 (i) mappa: nodi(4)/archi(3) conservati
+  PASS  B2 (i) mappa: sentiero valido (nessun extra)
+  PASS  B2 (i) mappa: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) mappa: schema.extraCount === undefined
+  PASS  B2 (i) mappa: nessun extraMotivo residuo
+  PASS  B2 (i) lr: schema.type aggiornato
+  PASS  B2 (i) lr: nodi(4)/archi(3) conservati
+  PASS  B2 (i) lr: sentiero valido (nessun extra)
+  PASS  B2 (i) lr: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) lr: schema.extraCount === undefined
+  PASS  B2 (i) lr: nessun extraMotivo residuo
+  PASS  B2 (i) libero: schema.type aggiornato
+  PASS  B2 (i) libero: nodi(4)/archi(3) conservati
+  PASS  B2 (i) libero: sentiero valido (nessun extra)
+  PASS  B2 (i) libero: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) libero: schema.extraCount === undefined
+  PASS  B2 (i) libero: nessun extraMotivo residuo
+  PASS  B2 (i) riassunto: schema.type aggiornato
+  PASS  B2 (i) riassunto: nodi(4)/archi(3) conservati
+  PASS  B2 (i) riassunto: sentiero valido (nessun extra)
+  PASS  B2 (i) riassunto: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) riassunto: schema.extraCount === undefined
+  PASS  B2 (i) riassunto: nessun extraMotivo residuo
+  PASS  B2 (ii): nessun arco perso in migrazione
+  PASS  B2 (ii): primo A->B resta valido (senza motivo)
+  PASS  B2 (ii): doppio esatto A->B diventa extra CON extraMotivo
+  PASS  B2 (ii): reciproco B->A extra in albero (con motivo)
+  PASS  B2 (ii) libero: nessun arco perso (reciproco conservato)
+  PASS  B2 (ii) libero: A->B e reciproco B->A tornano validi (no extra/motivo)
+  PASS  B2 (ii) libero: doppio esatto resta extra (nessun tipo ammette duplicati esatti, canConnect congelato)
+  PASS  B2 (ii): 3 archi distinti vivi (A->B x2 + B->A), nessuno eliminato
+  PASS  B2 (ii) albero: reciproco B->A extra per ciclo (con motivo)
+  PASS  B2 (ii) libero: TUTTI tornano validi (no extra, no extraMotivo), reciproco non perso
+  PASS  B2 (iii): extraCount assente dopo migrazione
+  PASS  B2 (iii): chiave extraCount rimossa (non undefined)
+  PASS  B2 (iii): arco validato -> extra ed extraMotivo rimossi
+  PASS  B2 (iii): archi conservati
+
+================================================
+RISULTATI: 198 passati, 0 falliti
+
+== TASK 4 — Albero ==
+  PASS  albero: pulsanti +Figlio/+Fratello visibili
+  PASS  albero: pulsanti Collega/Auto-layout
+  PASS  albero: layout gerarchico (righe crescenti)
+  PASS  albero: fratelli centrati sotto la radice
+  PASS  albero: d,e centrati sotto b
+  PASS  albero: 5 archi renderizzati
+  PASS  albero: arco a gomito (3 segmenti L)
+  PASS  albero: nessuna etichetta sugli archi
+  PASS  albero: toast al tentativo di secondo padre
+  PASS  albero: arco rifiutato non nasce
+  PASS  albero: +Fratello attivo con nodo selezionato
+  PASS  albero: +Fratello senza genitore = fallback +Nodo (nessun toast)
+  PASS  albero: +Figlio crea il collegamento figlio
+  PASS  albero: snap attivo durante il drag
+
+== TASK 4 — Mappa concettuale ==
+  PASS  mappa: matrice aggiunta (+Figlio/+Fratello, niente +Nodo)
+  PASS  mappa: 1 arco
+  PASS  mappa: arco curvo (quadratica)
+  PASS  mappa: b→c creato
+  PASS  mappa: ciclo c→a PERMESSO (arco nato)
+  PASS  mappa: doppio click su arco apre il campo etichetta
+  PASS  mappa: etichetta salvata e renderizzata
+  PASS  mappa: auto-layout force/radiale ha ridisposto i nodi
+  PASS  mappa: hub al centro, nodi attorno
+  PASS  mappa: posizioni manuali preservate all’apertura
+
+== TASK 4 — Sinistra→destra ==
+  PASS  lr: colonne crescenti (a→b→d→f)
+  PASS  lr: b,c impilati nella stessa colonna
+  PASS  lr: nodi della colonna impilati in y
+  PASS  lr:5 frecce (archi con punta)
+  PASS  lr: frecce orientate in avanti (verso dx, stack di colonna centrato)
+  PASS  lr: guide colonne visibili
+  PASS  lr: guide verticali
+  PASS  B1 lr: guide SENZA stroke-dasharray (linee continue)
+  PASS  B1 lr: guide estese a tutto canvas (>=10000px nel mondo)
+  PASS  lr: doppio click su arco NON apre l’etichetta
+
+== BLOCCO 3.3 - schema legacy "Alto -> basso" (tb) migrato ad albero ==
+  PASS  3.3 legacy tb si apre come albero (selettore tipo)
+  PASS  3.3 auto-layout al primo caricamento: y(a)<y(b)<y(d)
+  PASS  3.3 auto-layout al primo caricamento: y(a)<y(c)<y(f)
+  PASS  3.3 fratelli stessa riga (tidy tree)
+  PASS  3.3 nodi della riga affiancati in x
+  PASS  3.3 albero: nessuna guida riga (guide=null)
+  PASS  3.3 toolbar albero: pulsanti +Figlio / +Fratello
+  PASS  3.3 nessuna perdita: DOM .sc-edge == 5
+  PASS  3.3 nessuna perdita: doc nodi=6 / archi=5
+  PASS  3.3 salvataggio: type === albero
+
+== TASK 4 — Schema libero ==
+  PASS  libero: auto-layout disabilitato (pulsante grigio)
+  PASS  libero: tooltip sul pulsante disabilitato
+  PASS  libero: nessuna guida
+  PASS  libero: ciclo consentito (b→a)
+  PASS  libero: drag senza snap (dx esatto)
+  PASS  libero: select forma arco (scelta utente)
+  PASS  libero: arco diventa curvo dopo la scelta utente
+
+== TASK 4 — Riassunto visuale ==
+  PASS  riassunto: pannello testo affiancato montato e visibile
+  PASS  riassunto: tab “Testo” presente
+  PASS  riassunto: tab “Testo” attivo all’apertura
+  PASS  riassunto: nodi renderizzati come card
+  PASS  riassunto: card con testo titolo + corpo separati
+  PASS  riassunto: prima riga = titolo
+  PASS  riassunto: corpo multilinea presente
+  PASS  riassunto: textarea del pannello testo visibile
+  PASS  riassunto: pannello sincronizzato col nodo selezionato
+  PASS  riassunto: modifica dal pannello aggiorna la card
+  PASS  riassunto: archi facoltativi (collegamento riuscito)
+  PASS  riassunto: archi semplici senza frecce
+  PASS  riassunto: stack a colonna (stessa x)
+  PASS  riassunto: stack verticale
+
+== TASK 4 — Cambio tipo su schema popolato ==
+  PASS  cambio tipo: type persistito (lr)
+  PASS  cambio tipo: nodi e archi conservati
+  PASS  cambio tipo: selettore aggiornato
+  PASS  cambio tipo: matrice lr aggiornata (+Nodo/+Figlio/+Fratello)
+  PASS  cambio tipo: guide colonne del nuovo tipo applicate
+  PASS  cambio tipo: layout lr applicato con animazione
+  PASS  cambio tipo: tutti i nodi ricollocati (D oltre C)
+  PASS  cambio tipo: lr→albero conserva tutto
+  PASS  cambio tipo: layout gerarchico applicato
+  PASS  cambio tipo → riassunto: pannello testo montato
+  PASS  cambio tipo → riassunto: nodi diventano card
+  PASS  cambio tipo: mappa→albero type
+  PASS  cambio tipo: nessun arco rimosso con conferma=NO
+  PASS  cambio tipo: ciclo marcato extra
+  PASS  cambio tipo: arco extra renderizzato tratteggiato
+  PASS  cambio tipo: stroke-dasharray presente sull’extra
+  PASS  cambio tipo: NESSUNA rimozione mai (confirm eliminato: extra preservati)
+  PASS  riapertura: tipo persistito letto da doc.type
+  PASS  riapertura: strategia lr riapplicata (guide colonne)
+  PASS  riapertura: pulsanti lr (+Nodo/+Figlio)
+
+== BLOCCO 2 - Transizione verso Mappa concettuale (rendering) ==
+    [albero iniziale] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [albero dblclick arco] modale=0
+    [albero->mappa] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+    [mappa + re-render] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+    [mappa dblclick arco] modale=1
+    [mappa->libero] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [libero->riassunto] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [riassunto->mappa] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+  PASS  B2: dopo le transizioni DOM .sc-edge == doc.edges e il conteggio non cresce al re-render
+    [guide] lr=3 -> mappa=0 | residui passi=0/0/0/0
+  PASS  B2: nessuna .sc-guide residua dopo il cambio tipo (lr->mappa da >0 a 0; mappa/libero/riassunto = 0)
+  PASS  B2: etichetta archi editabile solo in mappa (gate edgeStyle().etichetta)
+    [dash] residui non-extra: nessuno
+
+== BLOCCO 2 - Transizioni tutti i tipi (paire ordinate) ==
+  PASS  B2T[albero>mappa] type + selettore aggiornati
+  PASS  B2T[albero>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>mappa] nessuna conferma chiamata
+  PASS  B2T[albero>mappa] nessuna guida residua
+  PASS  B2T[albero>lr] type + selettore aggiornati
+  PASS  B2T[albero>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>lr] nessuna conferma chiamata
+  PASS  B2T[albero>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[albero>libero] type + selettore aggiornati
+  PASS  B2T[albero>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>libero] nessuna conferma chiamata
+  PASS  B2T[albero>libero] nessuna guida residua
+  PASS  B2T[albero>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[albero>riassunto] type + selettore aggiornati
+  PASS  B2T[albero>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>riassunto] nessuna conferma chiamata
+  PASS  B2T[albero>riassunto] nessuna guida residua
+    sorgente albero completata (paire finora=4)
+  PASS  B2T[mappa>albero] type + selettore aggiornati
+  PASS  B2T[mappa>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>albero] nessuna conferma chiamata
+  PASS  B2T[mappa>albero] nessuna guida residua
+  PASS  B2T[mappa>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[mappa>lr] type + selettore aggiornati
+  PASS  B2T[mappa>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>lr] nessuna conferma chiamata
+  PASS  B2T[mappa>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[mappa>libero] type + selettore aggiornati
+  PASS  B2T[mappa>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>libero] nessuna conferma chiamata
+  PASS  B2T[mappa>libero] nessuna guida residua
+  PASS  B2T[mappa>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[mappa>riassunto] type + selettore aggiornati
+  PASS  B2T[mappa>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>riassunto] nessuna conferma chiamata
+  PASS  B2T[mappa>riassunto] nessuna guida residua
+    sorgente mappa completata (paire finora=8)
+  PASS  B2T[lr>albero] type + selettore aggiornati
+  PASS  B2T[lr>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>albero] nessuna conferma chiamata
+  PASS  B2T[lr>albero] nessuna guida residua
+  PASS  B2T[lr>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[lr>mappa] type + selettore aggiornati
+  PASS  B2T[lr>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>mappa] nessuna conferma chiamata
+  PASS  B2T[lr>mappa] nessuna guida residua
+  PASS  B2T[lr>libero] type + selettore aggiornati
+  PASS  B2T[lr>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>libero] nessuna conferma chiamata
+  PASS  B2T[lr>libero] nessuna guida residua
+  PASS  B2T[lr>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[lr>riassunto] type + selettore aggiornati
+  PASS  B2T[lr>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>riassunto] nessuna conferma chiamata
+  PASS  B2T[lr>riassunto] nessuna guida residua
+    sorgente lr completata (paire finora=12)
+  PASS  B2T[libero>albero] type + selettore aggiornati
+  PASS  B2T[libero>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>albero] nessuna conferma chiamata
+  PASS  B2T[libero>albero] nessuna guida residua
+  PASS  B2T[libero>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[libero>mappa] type + selettore aggiornati
+  PASS  B2T[libero>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>mappa] nessuna conferma chiamata
+  PASS  B2T[libero>mappa] nessuna guida residua
+  PASS  B2T[libero>lr] type + selettore aggiornati
+  PASS  B2T[libero>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>lr] nessuna conferma chiamata
+  PASS  B2T[libero>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[libero>riassunto] type + selettore aggiornati
+  PASS  B2T[libero>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>riassunto] nessuna conferma chiamata
+  PASS  B2T[libero>riassunto] nessuna guida residua
+    sorgente libero completata (paire finora=16)
+  PASS  B2T[riassunto>albero] type + selettore aggiornati
+  PASS  B2T[riassunto>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>albero] nessuna conferma chiamata
+  PASS  B2T[riassunto>albero] nessuna guida residua
+  PASS  B2T[riassunto>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[riassunto>mappa] type + selettore aggiornati
+  PASS  B2T[riassunto>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>mappa] nessuna conferma chiamata
+  PASS  B2T[riassunto>mappa] nessuna guida residua
+  PASS  B2T[riassunto>lr] type + selettore aggiornati
+  PASS  B2T[riassunto>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>lr] nessuna conferma chiamata
+  PASS  B2T[riassunto>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[riassunto>libero] type + selettore aggiornati
+  PASS  B2T[riassunto>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>libero] nessuna conferma chiamata
+  PASS  B2T[riassunto>libero] nessuna guida residua
+  PASS  B2T[riassunto>libero] Auto-layout disabilitato (libero)
+    sorgente riassunto completata (paire finora=20)
+  PASS  B2T: tutte le paire ordinate coperte
+
+================================================
+RISULTATI UI: 197 passati, 0 falliti
+== 1. renderList ==
+  PASS  lista: header "Nuovo schema" presente
+  PASS  lista: contenuto renderizzato (card o empty)
+== 2. renderChooser ==
+  PASS  chooser: 5 .choice
+  PASS  chooser: ordine etichette atteso
+== 3. creazione 5 tipi ==
+  PASS  creazione albero: editor aperto col tipo giusto
+  PASS  creazione albero: content.type salvato === albero
+  PASS  creazione albero: ritorno in lista
+  PASS  creazione mappa: editor aperto col tipo giusto
+  PASS  creazione mappa: content.type salvato === mappa
+  PASS  creazione mappa: ritorno in lista
+  PASS  creazione lr: editor aperto col tipo giusto
+  PASS  creazione lr: content.type salvato === lr
+  PASS  creazione lr: ritorno in lista
+  PASS  creazione libero: editor aperto col tipo giusto
+  PASS  creazione libero: content.type salvato === libero
+  PASS  creazione libero: ritorno in lista
+  PASS  creazione riassunto: editor aperto col tipo giusto
+  PASS  creazione riassunto: content.type salvato === riassunto
+  PASS  creazione riassunto: ritorno in lista
+== 4. apertura + aggiunta nodi ==
+  PASS  apertura: editor mappa montato
+  PASS  apertura: nodo iniziale (Idea centrale)
+  PASS  nodi: matrice mappa (niente +Nodo) + +Figlio x2 -> 3 nodi
+== 5. collegamento canConnect ==
+  PASS  collegamento accettato: arco creato (tot 3)
+  PASS  collegamento rifiutato (duplicato): nessun arco aggiunto
+  PASS  collegamento rifiutato: toast motivato mostrato
+== 6. drag nodo ==
+  PASS  drag: posizione nodo A cambiata
+== 7. auto-layout ==
+  PASS  auto-layout: nodi ridisposti
+  PASS  auto-layout: archi invariati
+== 8. etichetta arco ==
+  PASS  etichetta: modale aperta su doppio-click arco (mappa)
+  PASS  etichetta: salvata e renderizzata
+== 9. testo nodo ==
+  PASS  testo nodo: textarea overlay aperta
+  PASS  testo nodo: commit + render dopo Escape
+== 10. cambia tipo (mappa->albero->lr->mappa) ==
+  PASS  transizione mappa>albero: selType aggiornato
+  PASS  transizione mappa>albero: nodi conservati (3)
+  PASS  transizione mappa>albero: archi conservati (3)
+  PASS  transizione albero>lr: selType aggiornato
+  PASS  transizione albero>lr: nodi conservati (3)
+  PASS  transizione albero>lr: archi conservati (3)
+  PASS  transizione lr>mappa: selType aggiornato
+  PASS  transizione lr>mappa: nodi conservati (3)
+  PASS  transizione lr>mappa: archi conservati (3)
+== 11. flush autosave ==
+  PASS  flush: type===mappa nel content
+  PASS  flush: nodi salvati (3)
+  PASS  flush: etichetta arco salvata nel content
+  PASS  flush: testo nodo salvato
+  PASS  flush: nessun extraCount residuo nel content
+== 12. chiusura ==
+  PASS  chiusura: tornato in lista, editor smontato
+== 13. riapertura + verifica ==
+  PASS  riapertura: tipo mappa persistito
+  PASS  riapertura: nodi presenti (3)
+  PASS  riapertura: 3 archi
+  PASS  riapertura: etichetta persistita
+  PASS  riapertura: testo nodo persistito
+  PASS  riapertura: zero flag legacy nel content
+
+== CONSOLE / ECCEZIONI ==
+  log totali catturati: 0 (noise jsdom escluso: 0, reali: 0)
+  ECCEZIONI/ERRORI reali: 0 | WARN reali: 0
+  PASS  zero eccezioni/console.error reali durante il viaggio
+
+================================================
+JOURNEY: 54 passati, 0 falliti
+== QA1 P2/P3: sorgente di guideHtml + grep ==
+  PASS  P3: funzione guideHtml trovata in schemi.js
+--- estratto guideHtml ---
+  1: function guideHtml() {
+  2:         if (!ed || !ed.strategy) return '';
+  3:         const modo = ed.strategy.ui().guide;
+  4:         if (!modo) return '';
+  5:         const ns = ed.doc.nodes;
+  6:         if (ns.length < 2) return '';
+  7:         const verticali = modo === 'colonne';
+  8:         const vals = ns.map(n => verticali ? (n.x + n.w / 2) : (n.y + n.h / 2)).sort((a, b) => a - b);
+  9:         const groups = [];
+  10:         vals.forEach(v => {
+  11:             const g = groups[groups.length - 1];
+  12:             if (g && v - g[g.length - 1] <= 44) g.push(v);
+  13:             else groups.push([v]);
+  14:         });
+  15:         let h = '';
+  16:         // B1: linee continue, leggerissime, estese a tutto il mondo SVG (±50000)
+  17:         // così coprono sempre tutta la vista; nessun tratteggio, nessun segmento
+  18:         // dai bordi dei nodi (niente overshoot ±18px), resta solo la posizione
+  19:         // (centro del gruppo) calcolata con la tolleranza esistente (44).
+  20:         const SPAN = 50000;
+  21:         const col = 'rgba(140,164,255,.11)';
+  22:         groups.forEach(g => {
+  23:             const c = g.reduce((s, v) => s + v, 0) / g.length;
+  24:             if (verticali) {
+  25:                 h += '<line x1="' + c.toFixed(1) + '" y1="' + (-SPAN) +
+  26:                     '" x2="' + c.toFixed(1) + '" y2="' + SPAN +
+  27:                     '" stroke="' + col + '" stroke-width="1" pointer-events="none"/>';
+  28:             } else {
+  29:                 h += '<line x1="' + (-SPAN) + '" y1="' + c.toFixed(1) +
+  30:                     '" x2="' + SPAN + '" y2="' + c.toFixed(1) +
+  31:                     '" stroke="' + col + '" stroke-width="1" pointer-events="none"/>';
+  32:             }
+  33:         });
+  34:         return h;
+  35:     }
+  36: 
+  37:     
+  PASS  P2/P3 grep: guideHtml NON contiene stroke-dasharray
+  PASS  P3 grep: guideHtml NON contiene overshoot dai bordi nodo (-18/+18)
+  PASS  P3 grep: estensione fissa SPAN = 50000 (nessun bordo nodo)
+  PASS  P3 grep: posizione guide = CENTRO nodo (n.x+n.w/2, n.y+n.h/2)
+  PASS  P3 grep: nessun riferimento a bordi min/max dei nodi per l'estensione
+--- tutte le occorrenze stroke-dasharray in schemi.js (carve-out attesi) ---
+  riga 677: (e.extra ? ' stroke-dasharray="7 5"' : '') + '/>';
+  riga 765: const dash = from ? ' stroke-dasharray="6 4"' : '';
+  riga 855: '" rx="5" fill="none" stroke="#f9974a" stroke-width="1.4" stroke-dasharray="5 4" pointer-events="none"/>';
+  PASS  P2 grep: ogni stroke residuo e' un carve-out (edge extra / connectFrom / box disegno)
+--- occorrenze "- 18"/"+ 18" in schemi.js ---
+  riga 782: const maxChars = Math.max(6, Math.floor((n.w - 18) / (fs * 0.56)));
+  PASS  P3 grep: "- 18"/"+ 18" solo fuori da guideHtml (testo nodo / commento)
+
+== QA1 P1/P2/P4: harness schema multi-tipo (albero 6 nodi, lr, tb rimosso: migrato ad albero) ==
+    [apertura albero] type=albero doc.edges=5 dom=5 eid_match=true guide=0
+  PASS  P1 apertura albero: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c apertura albero: zero linee .sc-guide residue
+    [albero dopo auto-layout] type=albero doc.edges=5 dom=5 eid_match=true guide=0
+  PASS  P1 albero dopo auto-layout: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c albero dopo auto-layout: zero linee .sc-guide residue
+    [lr dopo cambio tipo] type=lr doc.edges=5 dom=5 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo cambio tipo: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo cambio tipo: guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo cambio tipo: guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo cambio tipo: estensione span >= 10000
+  PASS  P4 lr dopo cambio tipo: guide verticali (colonne)
+    [lr dopo auto-layout] type=lr doc.edges=5 dom=5 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo auto-layout: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo auto-layout: guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo auto-layout: guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo auto-layout: estensione span >= 10000
+  PASS  P4 lr dopo auto-layout: guide verticali (colonne)
+  PASS  P4: lr auto-layout non aggiunge nodi
+  PASS  P4: pulsante "+ Nodo" presente in lr
+    [lr dopo "+ Nodo"] type=lr doc.edges=5 dom=5 eid_match=true guide=4 span=100000/100000/100000/100000 dash=false
+  PASS  P1 lr dopo "+ Nodo": DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo "+ Nodo": guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo "+ Nodo": guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo "+ Nodo": estensione span >= 10000
+  PASS  P4 lr dopo "+ Nodo": guide verticali (colonne)
+  PASS  P4b: + Nodo aggiunge esattamente 1 nodo
+  PASS  P4b: + Nodo NON aggiunge archi impliciti
+  PASS  P1: id nuovo nodo rilevato
+    [lr dopo arco utente (Collega)] type=lr doc.edges=6 dom=6 eid_match=true guide=4 span=100000/100000/100000/100000 dash=false
+  PASS  P1 lr dopo arco utente (Collega): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo arco utente (Collega): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo arco utente (Collega): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo arco utente (Collega): estensione span >= 10000
+  PASS  P4 lr dopo arco utente (Collega): guide verticali (colonne)
+  PASS  P1: arco creato dall'utente presente in doc.edges
+  PASS  P1: arco utente renderizzato 1:1 nel DOM
+    [lr dopo transizione (ex tb, tipo rimosso)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo transizione (ex tb, tipo rimosso): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo transizione (ex tb, tipo rimosso): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo transizione (ex tb, tipo rimosso): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo transizione (ex tb, tipo rimosso): estensione span >= 10000
+  PASS  P4 lr dopo transizione (ex tb, tipo rimosso): guide verticali (colonne)
+    [lr dopo auto-layout (ex tb, tipo rimosso)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo auto-layout (ex tb, tipo rimosso): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo auto-layout (ex tb, tipo rimosso): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo auto-layout (ex tb, tipo rimosso): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo auto-layout (ex tb, tipo rimosso): estensione span >= 10000
+  PASS  P4 lr dopo auto-layout (ex tb, tipo rimosso): guide verticali (colonne)
+    [mappa] type=mappa doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 mappa: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c mappa: zero linee .sc-guide residue
+  PASS  P4c mappa: nessun arco extra residuo (migrazione pulita)
+    [albero (ritorno)] type=albero doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 albero (ritorno): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c albero (ritorno): zero linee .sc-guide residue
+    [riassunto] type=riassunto doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 riassunto: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c riassunto: zero linee .sc-guide residue
+    [libero] type=libero doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 libero: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c libero: zero linee .sc-guide residue
+    [lr finale (ritorno)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr finale (ritorno): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr finale (ritorno): guide presenti dopo ritorno a colonne
+  PASS  P2 lr finale (ritorno): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr finale (ritorno): estensione span >= 10000
+  PASS  P4 lr finale (ritorno): guide verticali (colonne)
+  PASS  P1: nessun arco perso/nei aggiunti nel ciclo di tipi
+  PASS  P4: nodi conservati nel ciclo di tipi
+
+================================================
+RISULTATI QA1: 65 passati, 0 falliti
+== QA2 — tipi: albero, mappa, lr, libero, riassunto (n=5) ==
+
+== QA2 — coppie X->mappa e mappa->X ==
+  PASS  QA2[albero>mappa] type/selettore
+  PASS  QA2[albero>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[albero>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[albero>mappa] nessuna conferma chiamata
+  PASS  QA2[albero>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[albero>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[albero>mappa] nessuna crescita al re-render
+    QA2[albero>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[lr>mappa] type/selettore
+  PASS  QA2[lr>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[lr>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[lr>mappa] nessuna conferma chiamata
+  PASS  QA2[lr>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[lr>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[lr>mappa] nessuna crescita al re-render
+    QA2[lr>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[libero>mappa] type/selettore
+  PASS  QA2[libero>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[libero>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[libero>mappa] nessuna conferma chiamata
+  PASS  QA2[libero>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[libero>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[libero>mappa] nessuna crescita al re-render
+    QA2[libero>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[riassunto>mappa] type/selettore
+  PASS  QA2[riassunto>mappa] nodi(4)/archi(3) invariati
+  PASS  QA2[riassunto>mappa] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[riassunto>mappa] nessuna conferma chiamata
+  PASS  QA2[riassunto>mappa] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[riassunto>mappa] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[riassunto>mappa] nessuna crescita al re-render
+    QA2[riassunto>mappa] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>albero] type/selettore
+  PASS  QA2[mappa>albero] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>albero] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>albero] nessuna conferma chiamata
+  PASS  QA2[mappa>albero] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>albero] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>albero] nessuna crescita al re-render
+    QA2[mappa>albero] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>lr] type/selettore
+  PASS  QA2[mappa>lr] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>lr] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>lr] nessuna conferma chiamata
+  PASS  QA2[mappa>lr] guide presenti e continue
+  PASS  QA2[mappa>lr] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>lr] nessuna crescita al re-render
+    QA2[mappa>lr] dom=3 doc=3 guide=4 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>libero] type/selettore
+  PASS  QA2[mappa>libero] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>libero] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>libero] nessuna conferma chiamata
+  PASS  QA2[mappa>libero] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>libero] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>libero] nessuna crescita al re-render
+    QA2[mappa>libero] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+  PASS  QA2[mappa>riassunto] type/selettore
+  PASS  QA2[mappa>riassunto] nodi(4)/archi(3) invariati
+  PASS  QA2[mappa>riassunto] DOM .sc-edge==doc.edges e data-eid identico
+  PASS  QA2[mappa>riassunto] nessuna conferma chiamata
+  PASS  QA2[mappa>riassunto] zero guide renderizzate (.sc-guide line==0, contenitore non cresciuto vs pristine)
+  PASS  QA2[mappa>riassunto] zero dash fuori da .sc-edge-extra (path valido: 0 dash)
+  PASS  QA2[mappa>riassunto] nessuna crescita al re-render
+    QA2[mappa>riassunto] dom=3 doc=3 guide=0 dash=0 confirm=0 rerender=3->3
+
+== QA2 — doppio esatto A->B ==
+  PASS  QA2 doppio: nessuna rimozione con conferma=NO
+  PASS  QA2 doppio: il SECONDO A->B risulta extra CON extraMotivo
+  PASS  QA2 doppio: il PRIMO resta valido
+  PASS  QA2 doppio: DOM 2 archi = 1 extra + 1 pieno (mai 2 pieni)
+  PASS  QA2 doppio: extra tratteggiato in DOM
+  PASS  QA2 doppio: arco pieno NON tratteggiato
+  PASS  QA2 doppio: dash solo su .sc-edge-extra
+  PASS  QA2 doppio: data-eid preservati
+  PASS  QA2 doppio: NESSUNA conferma al cambio (solo marcatura extra)
+  PASS  QA2 doppio: NESSUNA rimozione anche con confirm=OK (doppio extra preservato)
+  PASS  QA2 doppio: DOM=2 (1 pieno + 1 extra preservato)
+  PASS  QA2 doppio: zero conferme anche col doppio extra
+
+== QA2 — reciproco A->B + B->A ==
+  PASS  QA2 reciproco: in libero entrambi presenti come archi distinti
+  PASS  QA2 reciproco: nessun extra in libero
+  PASS  QA2 reciproco: mappa conserva entrambi gli archi distinti
+  PASS  QA2 reciproco: nessuna conferma in libero->mappa
+  PASS  QA2 reciproco: nessun extra in mappa
+  PASS  QA2 reciproco: in albero il reciproco B->A è extra (con motivo), nessuno perso
+  PASS  QA2 reciproco: DOM 2 archi distinti (1 pieno + 1 extra)
+  PASS  QA2 reciproco: data-eid preservati in albero
+
+== QA2 — hub deterministico (nodo selezionato) ==
+  PASS  QA2 hub: nodo d selezionato PRIMA del cambio (handle presente => ed.sel attivo)
+  PASS  QA2 hub: tutti i nodi renderizzati dopo X->mappa
+    [hub] centri: a=(-130,-157) b=(123,-216) c=(379,-185) d=(-38,84) e=(-209,276)
+    [hub] distanza media agli altri: a=367 b=363 c=503 d=338 e=509
+  PASS  QA2 hub: d selezionato è al centro degli altri (distanza media minima)
+
+================================================
+RISULTATI QA2: 79 passati, 0 falliti
+
+== PUNTO 1 — chooser "Nuovo schema" ==
+  PASS  P1 pulsante "Nuovo schema" presente in elenco
+    DOM .choice [5]: ["Albero","Mappa concettuale","Sinistra → destra","Schema libero","Riassunto visuale"]
+  PASS  P1 esattamente 5 bottoni .choice
+  PASS  P1 etichette nell'ordine esatto (Albero, Mappa concettuale, Sinistra → destra, Schema libero, Riassunto visuale)
+  PASS  P1 ZERO opzione "Alto → basso" nella griglia
+    TYPES(sorgiente): ["albero","mappa","lr","libero","riassunto"]
+  PASS  P1 TYPES sorgente = 5 id ordinati
+
+== PUNTO 2 — select.sc-type-sel ==
+  PASS  P2 selettore .sc-type-sel montato
+    DOM option values: ["albero","mappa","lr","libero","riassunto"]
+    DOM option labels : ["Albero","Mappa concettuale","Sinistra → destra","Schema libero","Riassunto visuale"]
+  PASS  P2 values esattamente i 5 id (albero, mappa, lr, libero, riassunto)
+  PASS  P2 nessun value "tb"/"alto-basso"
+  PASS  P2 nessuna label contenente "Alto"
+
+== PUNTO 3 — doc legacy "alto-basso" (alias difensivo) ==
+  PASS  [alto-basso] editor montato (polling <60ms dal render)
+  PASS  [alto-basso] selType.value==='albero' al PRIMO caricamento (prima dell'auto-layout)
+    [alto-basso] y PRIMA auto-layout: {"a":600,"b":100,"c":150,"d":50,"e":300,"f":450}
+  PASS  [alto-basso] posizioni PRIMA = SCRAMBLE non toccate dal parse (a y=600 > b y=100)
+    [alto-basso] y DOPO  auto-layout: {"a":60,"b":190,"c":190,"d":320,"e":320,"f":320}
+  PASS  [alto-basso] y gerarchiche dopo >=550ms: y(root)<y(figli)<y(nipoti)
+  PASS  [alto-basso] nessuna guida (albero guide=null)
+  PASS  [alto-basso] DOM .sc-edge == 5 (archi invariati)
+  PASS  [alto-basso] DOM nodi == 6 (nodi invariati)
+  PASS  [alto-basso] dopo flush: content.type === 'albero'
+  PASS  [alto-basso] dopo flush: 6 nodi / 5 archi invariati
+  PASS  [alto-basso] flag pendingLegacyLayout/legacyTb MAI nel content salvato (grep=0)
+
+== PUNTO 4 — rollback sicuro / casi limite ==
+  PASS  P4a doc legacy vuoto aperto come albero, nessun errore (autoLayout ritorna in silenzio: !nodes.length)
+  PASS  P4c content JSON vuoto: grep pendingLegacyLayout|legacyTb = 0
+  PASS  P4b zero eccezioni/log errati non-filtrati durante aperture legacy
+    log catturati totali=0 reali=0 (filtrati noise css/notImplemented=0)
+  PASS  P4 difesa: getStrategy('tb') -> fallback libero
+  PASS  P4 difesa: getStrategy('alto-basso') -> fallback libero
+  PASS  P4 SCHEMA_STRATEGIES = 5 tipi (registro ripulito)
+
+== PUNTO 5 — sweep citazioni residue ==
+  PASS  P5 MODULI.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 NOTE.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 PIANO_INTERFACCIA.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 README.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 MODULI.md riporta 5 tipi (albero, mappa concettuale, sinistra→destra, schema libero, riassunto visuale)
+    MODULI.md: - Tipi (5): **albero · mappa concettuale · sinistra→destra · schema libero · riassunto visuale**.
+  PASS  P5 MODIFICHE.md storico preesistente: voce round 2 presente e prima della ROUND 3
+  PASS  P5 MODIFICHE.md storico: voce ROUND 3 presente
+  PASS  P5 MODIFICHE.md storico: voce Round 4 presente
+  PASS  P5 MODIFICHE.md: sezione "Round 5" appendita
+    ## Round 5 — Schemi: linee spurie, transizione mappa, rimozione tipo Alto→basso
+  PASS  P5 MODIFICHE.md: residui AMMESSI confermati nello storico preesistente (round 2/3)
+    MODIFICHE.md residui storici (AMMESSI): L124,L197 | residui dentro Round 5 (testuale/dichiarativo): L290,L296,L297
+    schemi.js hit sweep:
+      L101: // BLOCCO 3.3: doc legacy "Alto -> basso" (id reale 'tb', alias 'alto-basso') appena
+      L230: // BLOCCO 3.3: migrazione dati schema legacy "Alto -> basso" (id reale 'tb' e alias
+      L231: // 'alto-basso') verso il tipo 'albero'. Mapping NON distruttivo: nodes, edges e
+      L234: if (d.type === 'tb' || d.type === 'alto-basso') {
+  PASS  P5 schemi.js: nessuna citazione ATTIVA (solo commenti/id migrazione 'tb'/'alto-basso' ammessi)
+  PASS  P5 schemi.js testi UTENTE (hint/title/toast/placeholder/aria): zero citazioni
+    schemaStrategies.js hit sweep: 0
+  PASS  P5 schemaStrategies.js: residui solo commento/parametro direzione 'tb' (ammesso: NON è il tipo)
+    [residui AMMESSI confermati]: storico MODIFICHE round2/3 (L124,L197); commenti migrazione schemi.js L101,L230,L231,L234; direzione 'tb' schemaStrategies (parametro tidyTreeTargets); test/patch.
+
+== PUNTO 6 — regressioni complete ==
+  PASS  P6 editorWiring.test.js → 49/49
+    editorWiring.test.js: 49 passati, 0 falliti
+  PASS  P6 schemaStrategies.test.js → 198/198
+    schemaStrategies.test.js: 198 passati, 0 falliti
+  PASS  P6 uiHarness.test.js → 197/197
+    uiHarness.test.js: 197 passati, 0 falliti
+    [citazione uiHarness scenarioLegacyTb/caso tb]:
+      PASS  3.3 legacy tb si apre come albero (selettore tipo)
+      PASS  3.3 auto-layout al primo caricamento: y(a)<y(b)<y(d)
+      PASS  3.3 auto-layout al primo caricamento: y(a)<y(c)<y(f)
+      PASS  3.3 fratelli stessa riga (tidy tree)
+      PASS  3.3 nodi della riga affiancati in x
+      PASS  3.3 albero: nessuna guida riga (guide=null)
+      PASS  3.3 toolbar albero: pulsanti +Figlio / +Fratello
+      PASS  3.3 nessuna perdita: DOM .sc-edge == 5
+      PASS  3.3 nessuna perdita: doc nodi=6 / archi=5
+      PASS  3.3 salvataggio: type === albero
+  PASS  P6 scenarioLegacyTb (type tb) in uiHarness: tutti PASS, zero FAIL
+  PASS  P6 qa1_block1.js → 65/65
+    qa1_block1.js: 65 passati, 0 falliti
+  PASS  P6 qa2_block2.js → 79/79
+    qa2_block2.js: 79 passati, 0 falliti
+  PASS  P6 node --check schemi.js
+  PASS  P6 node --check schemaStrategies.js
+  PASS  P6 grep: animateLayout(targets, 200) esattamente 2 in schemi.js
+  PASS  P6 grep: migrateSchema(ed.doc, nuovo) esattamente 1
+  PASS  P6 grep: changeType(selType.value) esattamente 1
+  PASS  P6 grep: zero doc.type === 'mappa' (schemi.js + schemaStrategies.js)
+  PASS  P6 grep: albero usa ancora tidyTreeTargets(nodes, edges, 'tb') come DIREZIONE (parametro intatto)
+
+================================================
+RISULTATI QA3: 51 passati, 0 falliti
+
+== Caricamento del modulo strategie ==
+  PASS  index.html carica schemaStrategies.js
+  PASS  schemaStrategies.js precede schemi.js in index.html
+
+== 2.1 Delega alla strategia ==
+  PASS  strategy = SchemaStrategies.getStrategy(...)
+  PASS  placeNewNode per i nodi nuovi
+  PASS  canConnect per validare i collegamenti
+  PASS  toast col motivo quando rifiutato
+  PASS  auto-layout con transizione ~200ms
+  PASS  animateLayout usato da autoLayout e changeType
+  PASS  strategy.autoLayout(nodes, edges)
+  PASS  edgeStyle() nel rendering archi
+  PASS  edgeStyle() usato anche per etichetta/dblclick
+  PASS  snap() durante il drag
+  PASS  pulsanti visibili da ui()
+  PASS  pannello testo deciso da ui()
+  PASS  guide decise da ui() e renderizzate
+  PASS  gruppo SVG guide montato
+  PASS  dimensione nodi da strategy.nodeSize()
+
+== 2.2 Rimozione logica hard-coded non dipendente dal tipo ==
+  PASS  isLR() rimossa
+  PASS  layoutCircle() rimossa
+  PASS  nessun switch su type===libero
+  PASS  nessun switch su type===mappa
+  PASS  nessun switch su type===albero
+  PASS  nessun switch su type===riassunto
+  PASS  nessun switch su type===lr
+  PASS  posizioni/dimensioni if-type rimossi da addNode
+  PASS  disabilitazione auto-layout non hard-coded
+
+== 2.3 Etichetta arco solo su mappa ==
+  PASS  dblclick su arco gated da edgeStyle().etichetta
+  PASS  non c’è più il controllo diretto type===mappa
+  PASS  etichetta renderizzata solo se etichetta=true
+
+== 3 Cambio tipo ==
+  PASS  azione changeType presente
+  PASS  changeType usa migrateSchema
+  PASS  nessuna conferma per gli archi extra (solo marcati, mai rimossi)
+  PASS  archi non validi: extra tratteggiati con motivo
+  PASS  selettore tipo collegato a changeType
+  PASS  pulsanti aggiornati al cambio tipo
+  PASS  pannello testo montato per chi lo prevede
+  PASS  doc (con type) persistito in salvataggio
+  PASS  riapertura: strategia ricalcolata da doc.type
+
+== Panoramica funzioni nuove ==
+  PASS  definita function strat
+  PASS  definita function toast
+  PASS  definita function edgeGeom
+  PASS  definita function guideHtml
+  PASS  definita function nodeCardHtml
+  PASS  definita function animateLayout
+  PASS  definita function buildStrategyButtons
+  PASS  definita function refreshToolbar
+  PASS  definita function changeType
+  PASS  definita function syncTestoPanel
+  PASS  definita function onStrategyBtn
+
+================================================
+RISULTATI: 49 passati, 0 falliti
+
+== 1. Matrice pulsanti per tipo (schemaStrategies.ui) ==
+  PASS  albero: matrice esatta [node,child,sibling,del,connect,layout]
+  PASS  mappa: matrice esatta [child,sibling,del,connect,layout]
+  PASS  lr: matrice esatta [node,child,sibling,del,connect,layout]
+  PASS  libero: matrice esatta [node,child,sibling,del,connect,layout,arco]
+  PASS  riassunto: matrice esatta [child,del,connect,layout]
+  PASS  libero: auto-layout DISABILITATO in matrice
+  PASS  libero: selettore stile arco presente
+  PASS  pannello Testo solo in riassunto
+  PASS  mappa: siblingFallback = child
+  PASS  albero/lr/libero/riassunto: siblingFallback = nodo isolato (default)
+
+== 2. autoLayout: tutti i target finiti e contenuti ==
+  PASS  albero: tutti i target finiti (niente NaN)
+  PASS  albero: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  mappa: tutti i target finiti (niente NaN)
+  PASS  mappa: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  lr: tutti i target finiti (niente NaN)
+  PASS  lr: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  riassunto: tutti i target finiti (niente NaN)
+  PASS  riassunto: coordinate contenute (<50000, prima era +-1.5M)
+  PASS  libero: autoLayout ritorna null (nessun rilayout)
+  PASS  mappa: orfano 1 a distanza finita contenuta
+  PASS  mappa: orfano 2 (senza geometria) a distanza finita
+
+== 3. Force mappa deterministico ==
+  PASS  stesso input -> stessi output (deep-equal)
+  PASS  target arrotondati a interi (nessun residuo float)
+
+== 4. Orfani e righe/colonne separate ==
+  PASS  albero: orfano in riga separata sotto la gerarchia
+  PASS  lr: orfano in colonna propria (dopo gli altri layer)
+  PASS  lr: ciclo gestito (layer finiti, sorgente distinta dal succ.)
+  PASS  riassunto: colonna BFS con orfano accodato per ultimo
+  PASS  albero: arco extra ignorato dalla gerarchia (p e q stessa riga)
+
+== 5. Vincoli di sorgente (schemi.js) ==
+  PASS  centerView: pad 40
+  PASS  clamp zoom [0.25, 2.0] in centerView E zoomAt
+  PASS  undo stack capped a 30
+  PASS  changeType: snapshot PRIMA della migrazione
+  PASS  snapshot spinto PRIMA di migrateSchema
+  PASS  Ctrl+Z in onKey (ctrl/meta, senza shift)
+  PASS  confirm() per gli archi extra ELIMINATO (mai rimossi)
+  PASS  buildStrategyButtons legge la lunghezza di ed.doc.nodes (bootstrap)
+  PASS  animateLayout(targets, 200) esattamente 2 (autoLayout + changeType)
+  PASS  nessuno switch hard-coded su doc.type
+
+== 6a. Bootstrap (0 nodi) ==
+  PASS  mappa vuota: mostra [+ Nodo] (bootstrap)
+  PASS  mappa vuota: matrice completa + Nodo
+  PASS  bootstrap: + Nodo crea il primo nodo
+  PASS  mappa con 1 nodo: + Nodo SPARISCE (torna la matrice 1.1)
+  PASS  mappa con 1 nodo: +Figlio/+Fratello presenti
+  PASS  mappa: + Figlio produce nodo CONNESSO
+  PASS  mappa: + Fratello con genitore = nodo connesso (nessun orfano)
+
+== 6b. Fallback +Fratello senza genitore ==
+  PASS  albero: +Fratello senza genitore = + Nodo (nodo isolato, NESSUN toast)
+  PASS  mappa: +Fratello senza genitore = + Figlio (sempre connesso)
+
+== 6c. Undo cambio tipo (Ctrl+Z) ==
+  PASS  cambio tipo: passo a albero
+  PASS  cambio tipo: layout albero sposta i nodi
+  PASS  cambio tipo: NESSUNA conferma chiamata (confirm eliminato)
+  PASS  cambio tipo: nodi/archi invariati
+  PASS  badge .sc-zoom valido (nessun NaN%, clamp [25,200])
+  PASS  undo: tipo ripristinato a mappa
+  PASS  undo: posizioni nodi ripristinate in un passo
+  PASS  undo: view ripristinata (stesso transform)
+  PASS  undo: secondo Ctrl+Z = no-op stabile
+  PASS  undo: persistito tipo+grafo dopo il save
+  PASS  undo: nessuna conferma in tutto il flusso
+
+== 6d. normalizeDoc: backfill x/y/w/h ==
+  PASS  nodo senza geometria: x/y/w/h riparati (finite, positivi)
+  PASS  transform globale senza NaN (canvas non svuotato)
+  PASS  badge zoom senza NaN
+
+== 6e. Cambio tipo su tutti i tipi: 0 perdite ==
+  PASS  cambio -> albero: nodi(3)/archi(3) intatti
+  PASS  cambio -> albero: transform senza NaN
+  PASS  cambio -> lr: nodi(3)/archi(3) intatti
+  PASS  cambio -> lr: transform senza NaN
+  PASS  cambio -> libero: nodi(3)/archi(3) intatti
+  PASS  cambio -> libero: transform senza NaN
+  PASS  cambio -> riassunto: nodi(3)/archi(3) intatti
+  PASS  cambio -> riassunto: transform senza NaN
+  PASS  cambio -> mappa: nodi(3)/archi(3) intatti
+  PASS  cambio -> mappa: transform senza NaN
+  PASS  tutte le transizioni: zero conferme
+  PASS  ciclo -> albero: 3 archi preservati, 1 extra tratteggiato (mai rimosso)
+  PASS  arco extra renderizzato tratteggiato nel DOM
+
+================================================
+RISULTATI: 74 passati, 0 falliti
+== QA4-1: matrice pulsanti per tipo (doc con 1 nodo) ==
+  PASS  QA1.1 albero: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 albero: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 albero: + Nodo presente
+  PASS  QA1.1 albero: auto-layout attivo
+  PASS  QA1.1 albero: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 albero: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 lr: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 lr: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 lr: + Nodo presente
+  PASS  QA1.1 lr: auto-layout attivo
+  PASS  QA1.1 lr: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 lr: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 libero: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 libero: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 libero: + Nodo presente
+  PASS  QA1.1 libero: auto-layout DISABILITATO
+  PASS  QA1.1 libero: select stile arco presente
+  PASS  QA1.1 libero: opzioni arco [Dritto,Curvo,Gomito]
+  PASS  QA1.1 libero: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 mappa: .tool-btn completi [+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 mappa: matrice AGGIUNTA esatta [child,sibling]
+  PASS  QA1.1 mappa: + Nodo ABSENTE (SBAGLIATO se presente)
+  PASS  QA1.1 mappa: auto-layout attivo
+  PASS  QA1.1 mappa: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 mappa: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 riassunto: .tool-btn completi [+ Figlio,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 riassunto: matrice AGGIUNTA esatta [child]
+  PASS  QA1.1 riassunto: + Nodo ABSENTE (spec 1.1: solo + Figlio)
+  PASS  QA1.1 riassunto: SOLO + Figlio tra i pulsanti di aggiunta
+  PASS  QA1.1 riassunto: auto-layout attivo
+  PASS  QA1.1 riassunto: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 riassunto: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 riassunto: tab Testo ATTIVO in apertura (auto-apertura)
+== QA4-2: semantica +Nodo / +Figlio / +Fratello / fallback ==
+  PASS  QA1.2 + Nodo: +1 nodo, ZERO archi (con selezione attiva)
+  PASS  QA1.2 + Nodo: nessun toast
+  PASS  QA1.2 + Figlio (albero): nodo + 1 arco
+  PASS  QA1.2 + Figlio (albero): arco selezionato -> nuovo
+  PASS  QA1.2 + Fratello (albero): arco GENITORE -> nuovo (non selezionato -> nuovo)
+  PASS  QA1.2 + Nodo (con selezione): nodo isolato, archi invariati
+  PASS  QA1.2 albero: 2° genitore RIFIUTATO (nessun arco aggiunto)
+  PASS  QA1.2 albero: toast motivato sul 2° genitore
+  PASS  QA1.2 albero: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 lr: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 libero: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 mappa: +Fratello senza genitore = + Figlio (SEMPRE connesso)
+== QA4-3: bootstrap 0 nodi ==
+  PASS  QA1.3 albero: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 albero: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 albero: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 lr: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 lr: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 lr: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 libero: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 libero: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 libero: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 mappa: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 mappa: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 mappa: con 1 nodo + Nodo SPARISCE (torna la matrice)
+  PASS  QA1.3 mappa: con 1 nodo + Figlio presente
+  PASS  QA1.3 mappa: + Fratello presente (matrice [child,sibling])
+  PASS  QA1.3 riassunto: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 riassunto: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 riassunto: con 1 nodo + Nodo SPARISCE (torna la matrice)
+  PASS  QA1.3 riassunto: con 1 nodo + Figlio presente
+  PASS  QA1.3 riassunto: + Fratello assente (matrice [child])
+== QA4-4: chrome al cambio tipo (tab Testo / etichetta / layout / arco) ==
+  PASS  QA1.4[albero]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[albero]: select stile arco assente
+  PASS  QA1.4[albero]: auto-layout attivo
+  PASS  QA1.4[albero]: arco renderizzato nel DOM
+  PASS  QA1.4[albero]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[lr]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[lr]: select stile arco assente
+  PASS  QA1.4[lr]: auto-layout attivo
+  PASS  QA1.4[lr]: arco renderizzato nel DOM
+  PASS  QA1.4[lr]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[libero]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[libero]: select stile arco presente
+  PASS  QA1.4[libero]: auto-layout DISABILITATO
+  PASS  QA1.4[libero]: arco renderizzato nel DOM
+  PASS  QA1.4[libero]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[mappa]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[mappa]: select stile arco assente
+  PASS  QA1.4[mappa]: auto-layout attivo
+  PASS  QA1.4[mappa]: arco renderizzato nel DOM
+  PASS  QA1.4[mappa]: dblclick arco APRE modale etichetta
+  PASS  QA1.4[mappa]: etichetta salvata nel doc
+  PASS  QA1.4[riassunto]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[riassunto]: tab Testo ATTIVO dopo cambio tipo (auto-apertura)
+  PASS  QA1.4[riassunto]: select stile arco assente
+  PASS  QA1.4[riassunto]: auto-layout attivo
+  PASS  QA1.4[riassunto]: arco renderizzato nel DOM
+  PASS  QA1.4[riassunto]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4: NESSUNA chiamata a confirm() in tutto il ciclo dei tipi
+
+================================================
+RISULTATI qa4_matrix: 92 passati, 0 falliti
+== QA4-5: apertura ==
+  PASS  QA2.5 apertura: 9 nodi
+  PASS  QA2.5 apertura: 8 archi, stessi id
+  PASS  QA2.5 apertura: type=mappa
+  PASS  QA2.5 apertura: DOM 9 nodi / 8 archi
+  PASS  QA2.6 apertura: posizioni DOM finite
+== QA4-7: bootstrap vincoli (passaggio ad albero) ==
+  PASS  QA2.7 type=albero dopo changeType
+  PASS  QA2.7 nodi invariati (9)
+  PASS  QA2.7 edges.length INVIARIATO (MAI rimossi)
+  PASS  QA2.7 archi violatori marcati extra===true (2° genitore + ciclo)
+  PASS  QA2.7 extra con extraMotivo
+  PASS  QA2.7 DOM: 2 gruppi .sc-edge-extra
+  PASS  QA2.7 DOM: extra renderizzato TRATTEGGIATO (stroke-dasharray)
+  PASS  QA2.7 dash solo sugli extra (nessun trattino fuori)
+  PASS  QA2.10 bootstrap: zero confirm()
+== QA4-5/6/9/10: ciclo albero->mappa->lr->libero->riassunto->albero x3 ==
+  PASS  QA2.5 ciclo1->mappa: type aggiornato
+  PASS  QA2.5 ciclo1->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo1->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->mappa: zero confirm()
+  PASS  QA2.6 ciclo1->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->mappa: nessuna perdita dopo autoLayout
+    [ciclo1->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->lr: type aggiornato
+  PASS  QA2.5 ciclo1->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->lr: view transform senza NaN
+  PASS  QA2.6 ciclo1->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->lr: zero confirm()
+  PASS  QA2.6 ciclo1->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->lr: nessuna perdita dopo autoLayout
+    [ciclo1->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->libero: type aggiornato
+  PASS  QA2.5 ciclo1->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->libero: view transform senza NaN
+  PASS  QA2.6 ciclo1->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo1->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->libero: zero confirm()
+  PASS  QA2.9 ciclo1->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo1->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo1->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->riassunto: type aggiornato
+  PASS  QA2.5 ciclo1->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo1->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->riassunto: zero confirm()
+  PASS  QA2.6 ciclo1->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->riassunto: nessuna perdita dopo autoLayout
+    [ciclo1->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->albero: type aggiornato
+  PASS  QA2.5 ciclo1->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->albero: view transform senza NaN
+  PASS  QA2.6 ciclo1->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo1->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo1->albero: zero confirm()
+  PASS  QA2.6 ciclo1->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->albero: nessuna perdita dopo autoLayout
+    [ciclo1->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->mappa: type aggiornato
+  PASS  QA2.5 ciclo2->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo2->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->mappa: zero confirm()
+  PASS  QA2.6 ciclo2->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->mappa: nessuna perdita dopo autoLayout
+    [ciclo2->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->lr: type aggiornato
+  PASS  QA2.5 ciclo2->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->lr: view transform senza NaN
+  PASS  QA2.6 ciclo2->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->lr: zero confirm()
+  PASS  QA2.6 ciclo2->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->lr: nessuna perdita dopo autoLayout
+    [ciclo2->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->libero: type aggiornato
+  PASS  QA2.5 ciclo2->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->libero: view transform senza NaN
+  PASS  QA2.6 ciclo2->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo2->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->libero: zero confirm()
+  PASS  QA2.9 ciclo2->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo2->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo2->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->riassunto: type aggiornato
+  PASS  QA2.5 ciclo2->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo2->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->riassunto: zero confirm()
+  PASS  QA2.6 ciclo2->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->riassunto: nessuna perdita dopo autoLayout
+    [ciclo2->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->albero: type aggiornato
+  PASS  QA2.5 ciclo2->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->albero: view transform senza NaN
+  PASS  QA2.6 ciclo2->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo2->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo2->albero: zero confirm()
+  PASS  QA2.6 ciclo2->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->albero: nessuna perdita dopo autoLayout
+    [ciclo2->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->mappa: type aggiornato
+  PASS  QA2.5 ciclo3->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo3->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->mappa: zero confirm()
+  PASS  QA2.6 ciclo3->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->mappa: nessuna perdita dopo autoLayout
+    [ciclo3->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->lr: type aggiornato
+  PASS  QA2.5 ciclo3->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->lr: view transform senza NaN
+  PASS  QA2.6 ciclo3->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->lr: zero confirm()
+  PASS  QA2.6 ciclo3->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->lr: nessuna perdita dopo autoLayout
+    [ciclo3->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->libero: type aggiornato
+  PASS  QA2.5 ciclo3->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->libero: view transform senza NaN
+  PASS  QA2.6 ciclo3->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo3->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->libero: zero confirm()
+  PASS  QA2.9 ciclo3->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo3->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo3->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->riassunto: type aggiornato
+  PASS  QA2.5 ciclo3->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo3->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->riassunto: zero confirm()
+  PASS  QA2.6 ciclo3->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->riassunto: nessuna perdita dopo autoLayout
+    [ciclo3->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->albero: type aggiornato
+  PASS  QA2.5 ciclo3->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->albero: view transform senza NaN
+  PASS  QA2.6 ciclo3->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo3->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo3->albero: zero confirm()
+  PASS  QA2.6 ciclo3->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->albero: nessuna perdita dopo autoLayout
+    [ciclo3->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.6 badge .sc-zoom valido dopo i cicli
+== QA4-8: UNDO (un solo Ctrl+Z dopo changeType) ==
+  PASS  QA2.8 pre-condizione: siamo ad albero
+  PASS  QA2.8 changeType -> mappa applicato
+  PASS  QA2.8 UN Ctrl+Z: tipo ripristinato (albero)
+  PASS  QA2.8 UN Ctrl+Z: posizioni 9 nodi ripristinate in UN passo
+  PASS  QA2.8 UN Ctrl+Z: view ripristinata in UN passo
+  PASS  QA2.8 UN Ctrl+Z: NESSUNA perdita nodi/archi
+  PASS  QA2.8 UN Ctrl+Z: extra coerenti allo stato ripristinato
+  PASS  QA2.8 UN Ctrl+Z: DOM extra coerente
+  PASS  QA2.8 UN Ctrl+Z: zero confirm()
+  PASS  QA2.10 FINALE: NESSUNA chiamata a confirm() in 3 cicli + undo + bootstrap
+
+================================================
+RISULTATI qa4_relayout: 205 passati, 0 falliti
+  PASS  0.0 editor Appunti aperto (baseline)
+  PASS  0.1 listener outside-click registrato all'apertura
+== QA-A-1: popover outside-click / Esc / trigger ==
+  PASS  1.0 elementi base presenti
+  PASS  1.1 click trigger apre popColor
+  PASS  1.2 outside-click (canvas) chiude popColor
+  PASS  1.3 popColor riaperto
+  PASS  1.4 Esc (window) chiude popColor
+  PASS  1.5 toggle Migliora scrittura apre popHelp
+  PASS  1.6 outside-click chiude popHelp
+  PASS  1.7 popHelp chiuso ma toggle resta acceso (mode)
+  PASS  1.8 toggle OFF rimuove .mode e chiude
+  PASS  1.9 trigger riapre (nessun incastramento outside-click)
+  PASS  1.10 secondo click sul trigger richiude
+  PASS  1.11 mutual exclusion: trigger popMeta apre meta e chiude color
+  PASS  1.12 popMeta contiene input
+  PASS  1.13 Esc da input del popover chiude (funziona dai popover)
+  PASS  1.14 Esc senza popover non altera lo strumento
+  PASS  1.15 ESATTAMENTE 1 listener document click-capture
+== QA-A-2: stato strumento (esattamente 1 attivo) ==
+  PASS  2.0 stato iniziale: solo penna attiva
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "penna" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "penna": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "evidenziatore" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "evidenziatore": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "gomma" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "gomma": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "testo" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "testo": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "lazo" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "lazo": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "selezione" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "selezione": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.4 preset markR: solo preset acceso
+  PASS  2.5 gomma con preset markR attivo: solo gomma
+  PASS  2.6 penna di default: solo penna
+  PASS  2.7 penType=pencil via popover: SOLO preset matita (penna spenta)
+  PASS  2.8 penType=marker via popover: SOLO preset markR
+  PASS  2.9 penType=pen via popover: solo penna, preset spenti
+  PASS  2.10 click penna con penType pencil -> reset a penna default
+== QA-A-3: toggle Migliora scrittura (.mode, non tool) ==
+  PASS  3.0 precondizione: preset matita attivo
+  PASS  3.1 toggle acceso -> classe .mode
+  PASS  3.2 toggle acceso -> SENZA .active (no riempimento pieno)
+  PASS  3.3 toggle fuori dallo sweep data-tool
+  PASS  3.4 toggle NON conta come tool attivo (invariato)
+  PASS  3.5 esattamente 1 .fn-tb.active anche con toggle acceso
+  PASS  3.6 CSS .fn-tb.mode: bordo 1.5px
+  PASS  3.7 CSS .fn-tb.mode: background trasparente
+  PASS  3.8 CSS .fn-tb.mode: NESSUN riempimento pieno
+  PASS  3.9 toggle spento -> .mode rimossa
+  PASS  3.10 tool invariato dopo toggle OFF
+== QA-A-4: pannello Fonti ==
+  PASS  4.0 pillL presente
+  PASS  4.1 bottone "Fonti" presente in pillL
+  PASS  4.2 title="Fonti"
+  PASS  4.3 pannello chiuso inizialmente
+  PASS  4.4 click Fonti apre il pannello
+  PASS  4.5 bottone Fonti in stato .mode (aperto)
+  PASS  4.6 elenco fonti (study note/riassunto/documento + mat) con >=1 voce
+  PASS  4.7 fonte study "Riassunto Alfa" elencata
+  PASS  4.8 fonte study "Documento Beta" elencata
+  PASS  4.9 materiale "Libro Gamma" elencato
+  PASS  4.10 input di ricerca presente
+  PASS  4.11 ricerca senza risultati -> 0 voci
+  PASS  4.12 ricerca senza risultati -> hint
+  PASS  4.13 ricerca "alfa" filtra a 1 voce
+  PASS  4.14 ricerca "gamma" filtra al materiale mat
+  PASS  4.15 ricerca svuotata -> elenco completo
+  PASS  4.16 voce Riassunto Alfa cliccabile
+  PASS  4.17 inserisci DISABILITATO prima della selezione
+  PASS  4.18 anteprima testo della fonte
+  PASS  4.19 inserisci ABILITATO dopo selezione
+  PASS  4.20 voce selezionata evidenziata (.active)
+  PASS  4.21 riferimento "Fonte: ..." inserito e SALVATO nel doc
+  PASS  4.22 riferimento contiene titolo + id
+  PASS  4.23 riferimento e un oggetto canonico t:text (misurato)
+  PASS  4.24 bottone Annulla presente
+  PASS  4.25 undo rimuove il riferimento (reversibile)
+  PASS  4.26 anteprima materiale mostra il percorso
+  PASS  4.27 oggetto t:file con path inserito e salvato
+  PASS  4.28 content della nota resta JSON valido dopo inserimento
+  PASS  4.29 bottone chiusura pannello presente
+  PASS  4.30 pannello chiuso dal suo bottone
+  PASS  4.31 bottone Fonti torna senza .mode
+  PASS  4.32 bottone Fonti riapre il pannello
+  PASS  4.33 secondo click richiude (toggle esplicito)
+== QA-A-5: teardown listener + console pulita ==
+  PASS  5.1 dopo close: ZERO listener document click-capture (nessun fantasma)
+  PASS  5.2 nessun listener riesumato da click residui
+  PASS  5.3 zero eccezioni console (error + jsdomError)
+
+================================================
+RISULTATI qaA_appunti: 92 passati, 0 falliti
+== QA-B (a): ordine DOM layer + overlay ==
+  PASS  layer: ordine guide -> sc-nodes -> sc-edges -> sc-draw -> sc-overlay
+  PASS  layer: sc-guide PRIMO (sotto tutto)
+  PASS  layer: fill nodi PRIMA degli archi (archi painted sopra)
+  PASS  layer: overlay DOPO sc-edges (painted sopra gli archi)
+  PASS  count g.sc-node[data-nid] invariato (= nodi renderizzati)
+  PASS  querySelector([data-nid]) -> PRIMO il gruppo fill (.sc-nodes), non l'overlay
+  PASS  overlay: 1 .sc-label per nodo renderizzato
+  PASS  overlay label SENZA data-nid (non altera i conteggi [data-nid])
+  PASS  overlay SENZA class sc-node (i test contano solo g.sc-node[data-nid])
+  PASS  overlay: label copia il testo del nodo
+  PASS  overlay: pointer-events=none (i click cadono su fill/archi sottostanti)
+  PASS  selezione: [data-nid] = 2 fill + 1 handle (overlay resta senza data-nid)
+  PASS  selezione: handle .sc-handle dentro il gruppo .sc-node
+  PASS  arco sempre renderizzato in .sc-edges
+== QA-B (b): 4 tab sempre presenti + hint + editor titolo/corpo ==
+  PASS  albero: esattamente 4 tab
+  PASS  albero: tab [Riassunto,Fonti,Stile,Testo]
+  PASS  albero: tutti i tab visibili (nessun gate)
+  PASS  albero: corpo pannello Testo montato
+  PASS  albero: senza selezione hint "Seleziona un nodo" VISIBILE
+  PASS  albero: editor con input Titolo + textarea Corpo
+  PASS  albero: senza selezione editor in attesa (disabled)
+  PASS  albero: con selezione editor abilitato
+  PASS  albero: input Titolo = prima riga di n.text
+  PASS  albero: textarea = testo completo
+  PASS  albero: edit Titolo aggiorna il nodo in DOM
+  PASS  albero: textarea sincronizza l'input Titolo
+  PASS  albero: n.text = titolo + "\n" + corpo salvato
+  PASS  lr: esattamente 4 tab
+  PASS  lr: tab [Riassunto,Fonti,Stile,Testo]
+  PASS  lr: tutti i tab visibili (nessun gate)
+  PASS  lr: corpo pannello Testo montato
+  PASS  lr: senza selezione hint "Seleziona un nodo" VISIBILE
+  PASS  lr: editor con input Titolo + textarea Corpo
+  PASS  lr: senza selezione editor in attesa (disabled)
+  PASS  lr: con selezione editor abilitato
+  PASS  lr: input Titolo = prima riga di n.text
+  PASS  lr: textarea = testo completo
+  PASS  lr: edit Titolo aggiorna il nodo in DOM
+  PASS  lr: textarea sincronizza l'input Titolo
+  PASS  lr: n.text = titolo + "\n" + corpo salvato
+  PASS  libero: esattamente 4 tab
+  PASS  libero: tab [Riassunto,Fonti,Stile,Testo]
+  PASS  libero: tutti i tab visibili (nessun gate)
+  PASS  libero: corpo pannello Testo montato
+  PASS  libero: senza selezione hint "Seleziona un nodo" VISIBILE
+  PASS  libero: editor con input Titolo + textarea Corpo
+  PASS  libero: senza selezione editor in attesa (disabled)
+  PASS  libero: con selezione editor abilitato
+  PASS  libero: input Titolo = prima riga di n.text
+  PASS  libero: textarea = testo completo
+  PASS  libero: edit Titolo aggiorna il nodo in DOM
+  PASS  libero: textarea sincronizza l'input Titolo
+  PASS  libero: n.text = titolo + "\n" + corpo salvato
+  PASS  mappa: esattamente 4 tab
+  PASS  mappa: tab [Riassunto,Fonti,Stile,Testo]
+  PASS  mappa: tutti i tab visibili (nessun gate)
+  PASS  mappa: corpo pannello Testo montato
+  PASS  mappa: senza selezione hint "Seleziona un nodo" VISIBILE
+  PASS  mappa: editor con input Titolo + textarea Corpo
+  PASS  mappa: senza selezione editor in attesa (disabled)
+  PASS  mappa: con selezione editor abilitato
+  PASS  mappa: input Titolo = prima riga di n.text
+  PASS  mappa: textarea = testo completo
+  PASS  mappa: edit Titolo aggiorna il nodo in DOM
+  PASS  mappa: textarea sincronizza l'input Titolo
+  PASS  mappa: n.text = titolo + "\n" + corpo salvato
+  PASS  riassunto: esattamente 4 tab
+  PASS  riassunto: tab [Riassunto,Fonti,Stile,Testo]
+  PASS  riassunto: tutti i tab visibili (nessun gate)
+  PASS  riassunto: auto-apertura tab Testo all'apertura
+  PASS  riassunto: corpo pannello Testo montato
+  PASS  riassunto: senza selezione hint "Seleziona un nodo" VISIBILE
+  PASS  riassunto: editor con input Titolo + textarea Corpo
+  PASS  riassunto: senza selezione editor in attesa (disabled)
+  PASS  riassunto: con selezione editor abilitato
+  PASS  riassunto: input Titolo = prima riga di n.text
+  PASS  riassunto: textarea = testo completo
+  PASS  riassunto: edit Titolo aggiorna il nodo in DOM
+  PASS  riassunto: textarea sincronizza l'input Titolo
+  PASS  riassunto: n.text = titolo + "\n" + corpo salvato
+  PASS  pre: riassunto apre su Testo
+  PASS  cambio tipo a albero: NESSUN redirect (l'utente resta sul tab Testo)
+  PASS  tab Testo ancora visibile dopo il cambio tipo
+== QA-B (c): undo/redo (Ctrl+Z / Ctrl+Y / bottoni) ==
+  PASS  setup: + Nodo -> 2 nodi
+  PASS  undo: 1 Ctrl+Z rimuove il nodo aggiunto
+  PASS  redo: Ctrl+Y rifà l'aggiunta
+  PASS  undo di nuovo: 1 passo anche dopo il redo
+  PASS  bottoni undo/redo presenti
+  PASS  bottoni undo/redo FUORI da .sc-btnwrap (matrice intatta)
+  PASS  nessun Annulla/Ripristina dentro .sc-btnwrap
+  PASS  bottoni disabilitati con stack vuoti (updateChrome)
+  PASS  setup: cambio tipo a lr
+  PASS  bottone ↶ attivo dopo un azione
+  PASS  bottone ↷ ancora disabilitato (redo non disponibile)
+  PASS  bottone ↶: 1 click = 1 passo (tipo ripristinato a albero)
+  PASS  bottone ↶: posizioni ripristinate nello stesso passo
+  PASS  bottone ↷ attivo dopo l'undo
+  PASS  bottone ↷: redo in 1 click
+== QA-B (d): tool Mano eliminato + spacePan ==
+  PASS  nessun bottone con title contenente "Mano"
+  PASS  nessun bottone con label "Mano"
+  PASS  bottone "Matita" presente (disegno preservato)
+  PASS  Matita con title coerente
+  PASS  sorgente: title "Disegna a mano libera..." eliminato
+  PASS  sorgente: Matita -> toggleTool draw (disegno non reso inaccessibile)
+  PASS  sorgente: listener keyup onKeyUp aggiunto E rimosso in teardown
+  PASS  sorgente: onKey gestisce SPAZIO -> spacePan
+  PASS  SPAZIO keydown: preventDefault (nessun scroll/attivazione)
+  PASS  SPAZIO keydown: cursor grab (spacePan attivo)
+  PASS  SPAZIO keyup: cursor ripristinato
+  PASS  Escape: esce dallo stato spacePan/tool
+  PASS  sorgente: doc.drawings/drawHtml preservati (disegni salvati leggibili)
+== QA-B (e): drag = 1 passo di undo ==
+  PASS  setup: rect nodo a
+  PASS  drag: posizione cambiata
+  PASS  undo drag: 1 SOLO Ctrl+Z ripristina il pre-stato
+  PASS  2° Ctrl+Z dopo il drag: no-op stabile
+  PASS  click senza movimento: nessun passo di undo aggiunto
+== QA-B (f): autoLayout/changeType = 1 passo ==
+  PASS  autoLayout: nodi ridisposti
+  PASS  autoLayout: 1 SOLO Ctrl+Z ripristina il pre-stato (1 passo)
+  PASS  autoLayout: 2° Ctrl+Z = no-op
+  PASS  setup: cambio tipo a mappa
+  PASS  changeType: 1 SOLO Ctrl+Z ripristina il tipo (no doppio push)
+  PASS  changeType: posizioni ripristinate nello stesso passo
+  PASS  changeType undo: NESSUNA perdita nodi/archi
+  PASS  changeType: 2° Ctrl+Z = no-op stabile
+  PASS  changeType: Ctrl+Y rifà il cambio tipo in 1 passo
+
+================================================
+RISULTATI qaB_schemi: 125 passati, 0 falliti
+== QA-C2-(i): notes selectFonti mat CON pywebview mock ==
+  PASS  i.0 bottone Fonti presente
+  PASS  i.1 elenco fonti con voci mat incluse (>=5)
+  PASS  i.2 etichetta "Libro" per path preselected_books
+  PASS  i.3 etichetta "Materiale" per path non-L2
+  PASS  i.4 voce materiale "Libro Gamma" cliccabile
+  PASS  i.5 preview contiene "CONTENUTO LIBRO XYZ"
+  PASS  i.6 metadato Percorso presente
+  PASS  i.7 metadato Nome presente
+  PASS  i.8 metadato Dimensione presente
+  PASS  i.9 metadato Tipo file presente
+  PASS  i.10 data indicizzazione presente
+  PASS  i.11 testo capato a 2500 char
+  PASS  i.12 pulsante "Carica testo completo" presente
+  PASS  i.13 dopo il click il pulsante e rimosso
+  PASS  i.14 testo INTEGRALE mostrato (cap rimosso)
+  PASS  i.15 coda del testo completa visibile
+  PASS  i.16 zero eccezioni console
+== QA-C2-(ii): notes selectFonti mat SENZA pywebview (fallback) ==
+  PASS  ii.0 bottone Fonti presente
+  PASS  ii.1 voce materiale elencata anche senza backend
+  PASS  ii.2 fallback mostra il percorso
+  PASS  ii.3 fallback msg "nessun testo" mostrato
+  PASS  ii.4 nessun "Caricamento" residuo (promise risolta)
+  PASS  ii.5 NESSUN pulsante "testo completo" senza contenuto
+  PASS  ii.6 zero eccezioni console (nessuna eccezione)
+  PASS  ii.7 insertFontiRef invariato: oggetto t:file salvato (quaderno: pages[].objects)
+== QA-C2-(iii): schemi loadSources/loadPreview mat ==
+  PASS  iii.0 tab Fonti presente
+  PASS  iii.1 select Fonti montato
+  PASS  iii.2 loadSources include >=1 voce mat:
+  PASS  iii.3 voce mat etichettata "(Libro)" per preselected_books
+  PASS  iii.4 voce mat etichettata "(Materiale)" per path L1
+  PASS  iii.5 preview schemi contiene "CONTENUTO LIBRO XYZ"
+  PASS  iii.6 metadato Percorso nella preview schemi
+  PASS  iii.7 metadato Nome nella preview schemi
+  PASS  iii.8 pulsante "Carica testo completo" presente
+  PASS  iii.9 testo integrale dopo il click
+  PASS  iii.10 preview item study invariata dopo C2
+  PASS  iii.11 zero eccezioni console
+== QA-C2-baseline: schemi senza listMaterials (compat qaB) ==
+  PASS  b.1 senza listMaterials: NESSUNA voce mat (select baseline identica)
+  PASS  b.2 opzione placeholder presente
+  PASS  b.3 zero eccezioni console
+================================================
+RISULTATI qaC2_viewer: 40 passati, 0 falliti
+
+== D1: logo vecchio ripristinato (git HEAD righe 386-392) ==
+  PASS  index.html contiene id="brandLockup"
+  PASS  blocco header home usa svg.logo-star (non logo-mark)
+  PASS  gradiente id="starGrad" presente
+  PASS  polygon points copiato per intero da git HEAD
+  PASS  nessun svg logo-mark nel blocco header home
+  PASS  nessun riferimento a logoGrad in index.html
+  PASS  classe .logo-star sized ~38px
+
+== D1: titolo/sottotitolo e wiring intatti ==
+  PASS  .logo-text "Nova Studio" intatto
+  PASS  .logo-sub intatto
+  PASS  sidebar-title (~riga 470) invariato
+  PASS  regola display #brandLockup (modules.css) intatta
+
+== D2: window.Materiali in index.html ==
+  PASS  window.Materiali definito in index.html
+  PASS  Materiali.open e una funzione
+  PASS  Materiali.open usa openModal(materialModal)
+  PASS  Materiali.open tenta resetFile() prima di aprire
+
+== D2: 8a card in renderHome (app.js) ==
+  PASS  renderHome presente in app.js
+  PASS  card "Aggiungi materiali" dentro renderHome
+  PASS  click card: chiama Materiali.open con fallback su materialModal
+  PASS  card aggiunta DOPO il forEach ORDER
+  PASS  card agganciata al grid PRIMA di wrap.appendChild(grid)
+  PASS  nessun registerModule("materiali")
+  PASS  icona plus/upload presente in ICONS
+  PASS  card usa .home-last come le altre
+  PASS  8a card senza data-last async (label statica)
+
+== T1: ordine script e invarianti untouched ==
+  PASS  index.html carica schemaStrategies.js
+  PASS  schemaStrategies.js precede schemi.js
+  PASS  hero hidden invariato (renderHome)
+  PASS  welcomeView ancorato invariato (boot)
+  PASS  welcomeView ancora in hideAll
+  PASS  click #brandLockup -> go(home) intatto (app.js ~262-266)
+
+== Smoke renderHome (DOM shim, jsdom non disponibile) ==
+  PASS  app.js caricato nello shim (window.App definito)
+  PASS  homeView creata da boot()
+  PASS  home-wrap presente
+  PASS  hero = "home-hero hidden" (untouched)
+  PASS  griglia .home-grid presente
+  PASS  numero card nella home = 8
+  PASS  8a card usa classe home-card
+  PASS  8a card: testo "Aggiungi materiali"
+  PASS  8a card: icona SVG inline renderizzata
+  PASS  click 8a card chiama Materiali.open
+  PASS  fallback: click apre #materialModal (show)
+
+========================================
+RISULTATO qaD_home: 41/41 passati, 0 falliti
+
+== BLOCCO 4 — Documenti: pill D1 + zoom + toggle stili D2/D3 ==
+  PASS  4.1 nessun .doc-status nel shell dell'editor
+  PASS  4.1 pill sinistra in basso dentro .doc-main
+  PASS  4.1 pill destra dentro .doc-main
+  PASS  4.1 pill sinistra posizionata bottom-left (absolute)
+  PASS  4.1 pill destra posizionata bottom-right (absolute)
+  PASS  4.1 pill sinistra: "N parole · M caratteri · Pagina x/y"
+  PASS  4.1 nessun % di zoom nella pill sinistra
+  PASS  4.1 pager = Pagina k/n (zoom solo a destra)
+  PASS  4.1 gruppo zoom presente nella pill destra (.doc-pill-r)
+  PASS  4.1 % zoom visibile in pagina (.doc-zoomval nella pill destra)
+  PASS  4.1 pill: pointer-events none sul container
+  PASS  4.1 pill: pointer-events auto sui bottoni zoom
+  PASS  4.1 print: .doc-pill nascosta in stampa
+  PASS  4.1 controlli [−][%][+][Adatta][100%] tutti presenti
+  PASS  4.1 + → 110%
+  PASS  4.1 + → 120%
+  PASS  4.1 zoom applicato con transform
+  PASS  4.1 − → 110%
+  PASS  4.1 100% reset
+  PASS  4.1 clamp massimo 300%
+  PASS  4.1 clamp minimo 25%
+  PASS  4.1 Adatta (spazio non misurabile → 100%)
+  PASS  4.1 Adatta riempie l'altezza (cap a 100% rimosso → 176%)
+  PASS  4.1 stage a piena altezza (1980px = spazio disponibile, nessuna fascia sotto)
+  PASS  4.1 ritorno al 100% dopo il test Adatta
+  PASS  4.1 foglio ad altezza esatta (1640px, non 2246px di multipli)
+  PASS  4.1 paginazione preservata (separatore a 1123px, 2 pagine)
+  PASS  4.1 pager aggiornato a Pagina 1/2
+  PASS  4.1 scroll canvas → pager aggiornato (Pagina 2/2)
+  PASS  4.2 editor contenteditable presente
+  PASS  4.2 paragrafo con testo
+  PASS  4.2 pulsanti B/I/U presenti
+  PASS  4.2 preventDefault sul mousedown del pulsante stile
+  PASS  4.2 stato B off su testo non grassetto
+  PASS  4.2 B applica il grassetto
+  PASS  4.2 pulsante B attivo dopo applicazione
+  PASS  4.2 stato B on dopo riselezione (aggiornato a ogni cambio selezione)
+  PASS  4.2 B rimuove e il testo torna normale (nessun residuo)
+  PASS  4.2 pulsante B off dopo rimozione
+  PASS  4.2 nessun tag residuo <b>/<strong>
+  PASS  4.2 I applica il corsivo
+  PASS  4.2 I rimuove senza residui
+  PASS  4.2 U applica il sottolineato
+  PASS  4.2 U rimuove senza residui
+  PASS  4.2 rimozione parziale: il resto resta grassetto
+  PASS  4.2 nessuna perdita di testo
+  PASS  4.2 "CC" scollegato dal <b>
+  PASS  4.2 applicazione multi-blocco con HTML valido
+  PASS  4.2 nessun <p> annidato dentro <b>
+  PASS  4.2 caret: stato iniziale U off
+  PASS  4.2 caret: click U attiva lo stato di digitazione
+  PASS  4.2 caret: secondo click disattiva lo stato
+  PASS  4.2 selezione dentro <i> → I attivo
+  PASS  4.2 selezione su testo normale → I spento
+  PASS  4.2 anello: applica B>I>U annidati
+  PASS  4.2 anello: U rimosso singolarmente (b>i intatti)
+  PASS  4.2 anello: I rimosso singolarmente (b intatto)
+  PASS  4.2 anello: B rimosso → nessun residuo, testo intatto
+  PASS  4.2 setup undo: B applicato
+  PASS  4.2 Ctrl+Z intercettato (preventDefault)
+  PASS  4.2 Ctrl+Z annulla l'operazione di stile
+  PASS  4.2 stato B off dopo Ctrl+Z
+  PASS  4.2 Ctrl+Y ripristina lo stile
+  PASS  4.2 setup bottone: B applicato
+  PASS  4.2 bottoni Annulla/Ripeti presenti
+  PASS  4.2 bottone Annulla usa lo stack custom (B annullato)
+  PASS  4.2 bottone Ripeti usa lo stack custom
+  PASS  4.2 input colore presente
+  PASS  4.2 colore applicato (fallback manuale)
+  PASS  4.2 Ctrl+Z annulla il colore (stesso stack)
+  PASS  4.2 select Interlinea presente
+  PASS  4.2 interlinea applicata
+  PASS  4.2 Ctrl+Z annulla l'interlinea (stesso stack)
+  PASS  4.2 setup pending: U ON con caret
+  PASS  4.2 selezione estesa → U spento (typingMarks azzerati)
+  PASS  4.2 caret successivo: nessun pending U stantio
+  PASS  4.2 setup digitazione: pending B ON con caret
+  PASS  4.2 digitazione: input azzera il pending (stato non stantio)
+  PASS  4.2 digitazione pulita: testo inserito senza mark ereditati
+  PASS  4.1 la schermata LISTA usa ancora .doc-status
+  PASS  4.1 nessuna pill overlay nella LISTA
+
+================================================
+RISULTATI DOCUMENTI: 81 passati, 0 falliti
+
+== BLOCCO 5 — Fogli: motore, funzioni, errori, aiuto ==
+  PASS  5.1 barra formula presente
+  PASS  5.5 placeholder con esempio funzionante (=2+2)
+  PASS  5.1/5.3 =SUM(A1:A3) → 60 nella cella
+  PASS  5.3 AVERAGE
+  PASS  5.3 MIN
+  PASS  5.3 MAX
+  PASS  5.3 COUNT
+  PASS  5.3 COUNTA
+  PASS  5.3 IF con ";"
+  PASS  5.3 IF con ","
+  PASS  5.3 AND
+  PASS  5.3 OR
+  PASS  5.3 NOT
+  PASS  5.3 CONCAT
+  PASS  5.3 CONCAT con ","
+  PASS  5.3 ABS
+  PASS  5.3 ROUND(x;n)
+  PASS  5.3 SQRT
+  PASS  5.3 POWER
+  PASS  5.3 case-insensitive (=sum)
+  PASS  5.2 potenza ^
+  PASS  5.2 confronto <
+  PASS  5.2 parentesi
+  PASS  5.2 letterale TRUE
+  PASS  5.2 stringa + riferimento
+  PASS  5.4 =1/0 → #DIV/0!
+  PASS  5.4 ciclo → #CIRC!
+  PASS  5.4 riferimento inesistente → #REF!
+  PASS  5.4 funzione ignota → #NAME?
+  PASS  5.4 sintassi errata → #ERR!
+  PASS  5.1 live: =2+2 → 4 nella cella
+  PASS  5.1 live: barra formula = "=2+2"
+  PASS  5.4 live: J1 dipende da I1 (4*3=12)
+  PASS  5.4 live: modificando I1 la formula dipendente si aggiorna (J1=15)
+  PASS  5.1 live: valore non-formula grezzo
+  PASS  5.5 pulsante "?" in toolbar
+  PASS  5.5 popover Formule aperto
+  PASS  5.5 titolo sezione Formule
+  PASS  5.5 regola del prefisso "=" con esempio =2+2
+  PASS  5.5 tabella funzioni: SUM
+  PASS  5.5 tabella funzioni: AVERAGE
+  PASS  5.5 tabella funzioni: MIN
+  PASS  5.5 tabella funzioni: MAX
+  PASS  5.5 tabella funzioni: COUNT
+  PASS  5.5 tabella funzioni: COUNTA
+  PASS  5.5 tabella funzioni: IF
+  PASS  5.5 tabella funzioni: AND
+  PASS  5.5 tabella funzioni: OR
+  PASS  5.5 tabella funzioni: NOT
+  PASS  5.5 tabella funzioni: CONCAT
+  PASS  5.5 tabella funzioni: ABS
+  PASS  5.5 tabella funzioni: ROUND
+  PASS  5.5 tabella funzioni: SQRT
+  PASS  5.5 tabella funzioni: POWER
+  PASS  5.5 esempio =SUM(A1:A5)
+  PASS  5.5 esempio =IF(A1>=6,"sì","no")
+  PASS  5.5 elenco errori
+  PASS  5.5 sintassi per IF nella tabella
+  PASS  F1 fill handle presente nel DOM
+  PASS  F1 fill visibile con selezione
+  PASS  F1 angolo cella A1: left=133 top=45 (44+96-7 / 26+26-7)
+  PASS  F1 fill z-index 7 (sopra header sticky 4/5/6)
+  PASS  F1 range overlay attivo con shift+click
+  PASS  F1 geometria rect A1:C3
+  PASS  F1 handle sull'angolo esatto del rect (range)
+  PASS  F1 posizione assoluta angolo range (325,97)
+  PASS  F1 dispatch scroll senza errori
+  PASS  F1 handle resize colonna presente
+  PASS  F1 handle segue resize colonna durante il drag (left=163)
+  PASS  F1 handle aggiornato dopo render/resize (left=163)
+  PASS  F2 pannello Formato cella presente
+  PASS  F2 titolo pannello "Formato cella"
+  PASS  F2 CSS pannello con overflow-y:auto (stile pp-insp)
+  PASS  F2 B rimosso dalla toolbar
+  PASS  F2 input colore rimossi dalla toolbar
+  PASS  F2 B nel pannello
+  PASS  F2 input colore testo/sfondo nel pannello
+  PASS  F2 B applicato a tutta la selezione
+  PASS  F2 B toggle off alla seconda pressione
+  PASS  F2 colore testo applicato alla cella
+  PASS  F2 syncColorInputs: reset su cella senza colore
+  PASS  F2 syncColorInputs: ripristino colore cella selezionata
+  PASS  F2 bottone collasso + linguetta presenti
+  PASS  F2 pannello collassato, linguetta visibile
+  PASS  F2 pannello riaperto dalla linguetta
+  PASS  F3 nessun pulsante allineamento in toolbar
+  PASS  F3 icone allineamento rimosse dal sorgente
+  PASS  F3 label allineamento assente dal sorgente
+  PASS  F4 nessun width inline fisso 440px nel sorgente
+  PASS  F4 popover max-width min(400px,92vw)/400px
+  PASS  F4 popover max-height + scroll interno
+  PASS  F4 .fg-pop-item white-space:normal
+  PASS  F4 .fg-pop-item overflow-wrap:break-word
+  PASS  F4 <code> del popover wrappa (pre-wrap)
+  PASS  F4 tabella funzioni non tronca (table-layout:auto)
+  PASS  F4 popover senza width inline (gestito da CSS)
+  PASS  F4 popover riaperto: testo/tabella completi
+  PASS  F5 .fg-top scrollbar nascosta in Chromium
+  PASS  F5 .fg-tabs scrollbar nascosta in Chromium
+  PASS  F5 .fg-wrap thumb a tema (#3a4054)
+  PASS  F5 .fg-side thumb a tema (#3a4054)
+  PASS  F6 ordine toolbar [Elenco|undo|titolo|ref|formula|?|formati|more|export]
+  PASS  F6 nessun B/colore/allineamento residuo in toolbar
+  PASS  F6 badge conteggio fogli presente
+  PASS  1.1(a) K13: handle = angolo basso-destro del rect della cella
+  PASS  1.1(a) handle coerente con td.offset* quando il browser espone il layout
+  PASS  1.1(b) rect range K13:M15 = geometria reale
+  PASS  1.1(b) handle = angolo esatto del rect (range)
+  PASS  1.1(b) handle e rect coerenti dopo scroll
+  PASS  1.1(b) handle segue resize colonna durante il drag
+  PASS  1.1(b) handle = angolo del rect dopo render/resize
+  PASS  1.1(b) voce di menu Blocca fino alla selezione presente
+  PASS  1.1(b) rect con cella frozen+scroll rettificato dal td reale
+  PASS  1.1(b) pallino sull'angolo del rect anche con freeze+scroll
+  PASS  1.1(b) dopo sblocco/scroll a 0: rect e pallino tornano sulla geometria
+  PASS  1.1 merge K13:M15: handle sull'angolo reale del rettangolo unito
+  PASS  1.1 merge rimosso: handle torna sull'angolo di K13
+  PASS  1.2 larghezza pannello 180-220px
+  PASS  1.2 righe pannello compatte (<=36px)
+  PASS  1.2 swatch colore 24-28px
+  PASS  1.2 titolo sezione piccolo (<=11px)
+  PASS  1.2 contenuto aderente in alto (padding-top <=8px)
+  PASS  1.3 editor .fg-editor creato con F2
+  PASS  1.3 editor left/top == rettangolo td (content-space, scroll incluso)
+  PASS  1.3 editor width == larghezza td
+  PASS  1.3 editor altezza >=26 (>= riga)
+  PASS  1.3 editor dentro lo scroller .fg-wrap
+  PASS  1.3 editor sopra la cella (z-index 10)
+  PASS  1.3 Esc chiude l'editor
+  PASS  1.3 blur -> commit del valore in cella
+  PASS  1.4 regola scrollbar VERTICALE su .fg-wrap (scroller reale della griglia)
+  PASS  1.4 thumb verticale scura #3a4054
+  PASS  1.4 track verticale trasparente
+  PASS  1.4 scrollbar-color standard (asse verticale Firefox) su .fg-wrap
+  PASS  nessun errore JS non gestito
+
+================================================
+RISULTATI FOGLI: 135 passati, 0 falliti
+
+== BLOCCO 1 — Video: colonna sinistra ==
+  PASS  1.4 container editor con layout dedicato
+  PASS  1.4 .vv-body presente
+  PASS  1.4 .vv-split presente
+  PASS  1.4 split = 2 colonne [sx][preview] (nessuna colonna proprieta)
+  PASS  1.1 colonna sinistra per prima (affiancata a sinistra della preview)
+  PASS  1.4 preview al centro
+  PASS  1.4 riquadro preview dentro la colonna centrale
+  PASS  V1 nessun pannello .vv-props (proprietà a destra
+  PASS  1.4 timeline sotto a tutta larghezza
+  PASS  1.2 linguetta verticale di collasso
+  PASS  V5 alias classe .vv-side sul .vv-pane (regola collasso attiva)
+  PASS  1.1 pannello .vv-panel.vv-left presente
+  PASS  1.2 maniglia drag di ridimensionamento presente
+  PASS  1.2 larghezza default 200px
+  PASS  CSS .vv-editor flex
+  PASS  CSS .vv-split flex (riga di colonne)
+  PASS  V1 CSS barra contestuale .vv-ctxbar al posto della colonnaproprietà 260px
+  PASS  1.3 pannello sinistro senza scrollbar interna (overflow-y:hidden)
+  PASS  1.3 bottoni altezza 32px
+  PASS  1.3 griglia 2×2
+  PASS  1.2 collasso via linguetta (regola CSS)
+  PASS  1.3 sezioni collassabili (regola CSS)
+  PASS  1.4 altezza editor sul viewport (view-page utile - 44px)
+  PASS  V4 editor overflow hidden (nessun scroll di pagina)
+  PASS  V2 preview senza scroll (.vv-main overflow hidden)
+  PASS  V2 stage 16:9 scalato sull'altezza disponibile
+  PASS  V2 transport non cresce (flex:0 0 auto)
+  PASS  V4 altezza timeline adattiva clamp(160px,40vh,40vh)
+  PASS  V3 label+lane in un unico scroller verticale (.vv-tlbody)
+  PASS  V3 tinner altezza auto (niente 185px fisso)
+  PASS  V3 playhead copre tutto l'altezza del contenuto lane
+  PASS  V3 lane 40px (passo 46px)
+  PASS  V3 etichetta corsia allineata 40px
+  PASS  V3 area lane riempie lo scroller verticale
+  PASS  V3b header gruppo sticky con + sempre visibile
+  PASS  V3 etichette dentro il container scroll (.vv-tlbody)
+  PASS  V3 playhead dentro .vv-tinner (altezza contenuto)
+  PASS  V3f zoom nella riga header della timeline (.vv-tltools)
+  PASS  V1 barra contestuale nascosta senza selezione
+  PASS  V1 nessun .vv-props nel DOM
+  PASS  1.3 contenitore .vv-addgrid presente
+  PASS  1.3 4 bottoni (Testo, Immagine, Video, Audio)
+  PASS  1.3 bottoni non full-width
+  PASS  1.3 etichette bottoni
+  PASS  1.1 due sezioni: Aggiungi elemento + Musica di sottofondo
+  PASS  1.1 intestazioni sezioni corrette
+  PASS  1.1 Musica: Scegli traccia compatto
+  PASS  1.1 Musica: Volume slider
+  PASS  1.1 etichetta traccia
+  PASS  1.3 sezione collassabile (click intestazione)
+  PASS  1.3 sezione riapribile
+  PASS  1.2 pannello collassato dalla linguetta
+  PASS  1.2 pannello riaperto dalla linguetta
+  PASS  1.2 resize a 250px
+  PASS  1.2 clamp massimo 320px
+  PASS  1.2 clamp minimo 180px
+  PASS  1.2 resize stabile dopo pointerup
+  PASS  1.3 nessun overflow auto inline sul pannello
+  PASS  1.x +Testo funziona (clip creata)
+
+== BLOCCO 2 — Video: corsie multiple ==
+  PASS  2.1 gruppo media con 2 corsie
+  PASS  2.1 corsie numerate 0/1
+  PASS  2.2 entrambe le clip renderizzate (nessuna rimossa)
+  PASS  2.2 clip su corsie diverse, stesso intervallo [0,4]
+  PASS  2.1 quattro intestazioni gruppo
+  PASS  2.1 pulsante "+" su ogni gruppo
+  PASS  2.1 etichetta "Video/Immagini 2"
+  PASS  2.4 due immagini visibili in preview insieme
+  PASS  2.4 corsia alta = sopra (zIndex 100/101)
+  PASS  2.x pulsante Play presente
+  PASS  2.4 due corsie audio montate insieme in preview
+  PASS  2.4 entrambe le audio riprodotte contemporaneamente
+  PASS  2.4 pausa su entrambe le corsie audio
+  PASS  2.3 clip di partenza presente
+  PASS  2.3 stessa corsia rifiuta sovrapposizione (rimane a 4.0s)
+  PASS  2.3 clip adiacente invariata
+  PASS  2.1 "+" aggiunge la corsia (media 2 → 3)
+  PASS  2.1 etichetta "Video/Immagini 3"
+  PASS  2.7 pulsante elimina corsia presente
+  PASS  2.7 corsia vuota eliminata
+  PASS  2.7 nessuna conferma per la corsia vuota
+  PASS  2.7 conferma esplicita per corsia occupata
+  PASS  2.7 corsia occupata rimossa dopo conferma
+  PASS  2.7 clip della corsia rimossa
+  PASS  2.7 clip delle corsie rimaste conservate
+  PASS  2.7 richiesta conferma (Annulla)
+  PASS  2.7 corsia tenuta con Annulla
+  PASS  2.7 clip conservata con Annulla
+  PASS  2.5 due corsie media pronte
+  PASS  2.5 clip spostata sulla corsia 2 durante il drag
+  PASS  2.5 clip confermata sulla corsia 2 dopo il drag
+  PASS  2.4 testo montato in preview
+  PASS  2.4 testo sopra l'immagine
+  PASS  2.6 durata totale = fine massima (12s su corsia 2)
+  PASS  2.6 righello adattato (≥12s×60px)
+  PASS  2.6 tacca 0:12 presente
+  PASS  V1 barra contestuale nascosta senza selezione (apertura)
+  PASS  V1 barra contestuale visibile con clip selezionata
+  PASS  V1 nessun .vv-props nel DOM (proprieta in barra)
+  PASS  V1 barra: Inizio + Durata
+  PASS  V1 barra: Transizioni in/out
+  PASS  V1 barra: Volume
+  PASS  2.4 pannello proprietà: selettore Corsia
+  PASS  2.4 selettore corsia con 2 opzioni
+  PASS  2.4 proprietà Posizione X/Y per video
+  PASS  2.4 proprietà Scala per video
+  PASS  2.3 campo Inizio presente
+  PASS  2.3 Inizio sovrappositivo rifiutato (rimane 0)
+  PASS  2.3 messaggio di rifiuto nella status
+  PASS  2.1 pulsante + anche sul gruppo Musica
+  PASS  2.1 gruppo Musica: riga sottofondo + nuova corsia
+  PASS  2.1 traccia musicale inserita nella nuova corsia
+  PASS  2.1 etichetta "Musica 2"
+  PASS  2.1 corsie persistite nel contenuto (media=1 dopo eliminazioni)
+
+================================================
+RISULTATI VIDEO: 113 passati, 0 falliti
+
+== BLOCCO 3 — Presentazioni: duplicati rimossi ==
+  PASS  3.3 toolbar presente
+  PASS  3.1 toolbar senza selettori (Layout/Transizione rimossi)
+  PASS  3.1 toolbar senza swatch Sfondo
+  PASS  3.1 nessuna voce "Layout…" in toolbar
+  PASS  3.1 nessuna transizione "Fade (300ms)" in toolbar
+  PASS  3.3 [← Elenco] presente
+  PASS  3.3 [undo/redo] presenti
+  PASS  3.3 inserimenti (testo, immagine, video, audio, forme)
+  PASS  3.3 zoom (−, %, +)
+  PASS  3.3 etichetta zoom %
+  PASS  3.3 [Presenta] presente
+  PASS  3.3 [Export▾] presente
+  PASS  3.2 pannello Proprietà presente
+  PASS  3.2 sezione Slide presente
+  PASS  3.2 Sfondo nel pannello
+  PASS  3.2 Layout nel pannello
+  PASS  3.2 Transizione nel pannello
+  PASS  3.2 swatch Sfondo nel pannello proprietà
+  PASS  3.2 selettore Layout nel pannello
+  PASS  3.2 selettore Transizione (Fade 300ms) nel pannello
+  PASS  3.4 canvas (.pp-stage) presente
+  PASS  3.2 sfondo applicato al canvas dal pannello
+  PASS  3.1 toolbar ancora senza duplicati dopo renderProps
+  PASS  3.2 layout persistito dal pannello
+  PASS  3.2 transizione persistita dal pannello
+  PASS  3.2 sfondo persistito dal pannello
+  PASS  3.3 pulsante testo presente
+  PASS  3.3 inserimento testo ok
+  PASS  3.4 toolbar compatta (bottoni=14)
+  PASS  3.4 area canvas presente (spazio recuperato in barra)
+  PASS  3.3 undo ancora cablato
+
+================================================
+RISULTATI PRESENTAZIONI: 31 passati, 0 falliti

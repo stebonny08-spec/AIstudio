@@ -1,0 +1,5 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4779.19it/s]
+[Embedder] warmup completato (modello caricato in background)
+[usearch] Index.load ok: n=17 ndim=384 (hnsw_vector_index.usearch, 16.5ms cumulati)
+[p1b_recall] tech=none state=off recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=43.6 ms_p95=59.2 -> qa\p1b_recall_final.json

@@ -1,0 +1,94 @@
+{
+ "base_start": true,
+ "rss_base_mb": 2408.30078125,
+ "base_c1": {
+  "sec": 5.19,
+  "chars": 232,
+  "pred_n": 64,
+  "tok_s": 13.165692962665439,
+  "prompt_tok_s": 51.99626666805324,
+  "text": "»\n\n- **Answer**: Photosynthesis. The process by which plants convert light energy into chemical energy.\n\n### 22. **Cosa si dice del termine \"anana\" in lingua italiana?**\n\n- **Answer**: \"Anana\" is a term that can refer to the banana,"
+ },
+ "base_c2": {
+  "sec": 0.21,
+  "chars": 0,
+  "pred_n": 2,
+  "tok_s": 13.055682485801945,
+  "prompt_tok_s": 124.0329307431123,
+  "text": ""
+ },
+ "base_sampling_fast": {
+  "temp": 0.8,
+  "top_p": 0.95,
+  "classi": {
+   "micro": 200,
+   "standard": 600
+  }
+ },
+ "switch_bp": {
+  "up": true,
+  "sec": 4.01,
+  "rss_before_mb": 2419.5234375,
+  "rss_after_mb": 4435.796875
+ },
+ "pro_c1": {
+  "sec": 10.72,
+  "chars": 179,
+  "pred_n": 64,
+  "tok_s": 6.142912819098726,
+  "prompt_tok_s": 45.169449965154996,
+  "text": "taisyklы.\n\nРассуждая о сути цикла, мы обнаружили несколько важных моментов. Во-первых, цикл является не просто механизмом, а живым организмом, который требует своего поддержания"
+ },
+ "pro_c2": {
+  "sec": 10.63,
+  "chars": 168,
+  "pred_n": 64,
+  "tok_s": 6.200563424529842,
+  "prompt_tok_s": 34.98912057032266,
+  "text": "E' l'energia solare. E' l'energia solare. E' l'energia solare. E' l'energia solare. E' l'energia solare. E' l'energia solare. E' l'energia solare. E' l'energia solare."
+ },
+ "pro_sampling_fast": {
+  "temp": 1.0,
+  "top_p": 0.95,
+  "classi": {
+   "micro": 200,
+   "standard": 600
+  },
+  "top_k": -1,
+  "repetition_penalty": 1.0
+ },
+ "pro_sampling_tool": {
+  "temp": 0.1,
+  "stop": [
+   "\n\n"
+  ],
+  "json_mode": true,
+  "classi": {
+   "micro": 200,
+   "standard": 600
+  }
+ },
+ "pro_chat": {
+  "chars": 64,
+  "sec": 3.54,
+  "text": "Il mare è la grande palestra silenziosa e profumata del pianeta.",
+  "leaks": []
+ },
+ "rss_pro_for_guard_mb": 4470.828125,
+ "want_draft_pro_rss": true,
+ "want_draft_budget_1mb": false,
+ "switch_pb": {
+  "up": true,
+  "sec": 3.07,
+  "rss_before_mb": 4470.828125,
+  "rss_after_mb": 2408.3984375
+ },
+ "base_c3_after_switch": {
+  "sec": 4.93,
+  "chars": 195,
+  "pred_n": 64,
+  "tok_s": 13.192023725540574,
+  "prompt_tok_s": 91.69925265109089,
+  "text": "(Dove scegliere i numeri?). Perché, se ci si sceglie, è necessario avere una logica.\n\n### 5. La logica dei numeri\n\nInoltre, è importante considerare anche il significato dei numeri. I numeri non"
+ }
+}

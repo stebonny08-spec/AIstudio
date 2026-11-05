@@ -1,0 +1,259 @@
+{
+  "round": "R13",
+  "task": "S2 confronto quant (draft)",
+  "ts": 1792841829.6324294,
+  "method": {
+    "tool": "llama-server.exe reale (llama-bench: nessuna opzione draft nel --help, NON usabile per questo confronto)",
+    "request": "POST /completion identico per tutti i modi: profile=think classe=standard n_predict=600, 2 run + 1 warmup",
+    "tps_metric": "timings.predicted_per_second (media run)",
+    "acceptance_metric": "derivata da campi draft nelle timings SOLO se esposti; altrimenti null e si misura lo speedup end-to-end reale",
+    "ram_metric": "picco RSS processo llama-server (psutil 0.25s)"
+  },
+  "target_model": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+  "drafts": {
+    "Q4_K_M": {
+      "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\MiniCPM5-1B-Q4_K_M.gguf",
+      "size_bytes": 688065920
+    },
+    "Q3_K_M": {
+      "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\MiniCPM5-1B-Q3_K_M.gguf",
+      "size_bytes": 582899072,
+      "provenance": "quantizzato localmente (llama-quantize) dal F16 ufficiale openbmb/MiniCPM5-1B"
+    }
+  },
+  "measured": {
+    "baseline": {
+      "mode": "baseline",
+      "draft_model": "",
+      "server_load_s": 1.68,
+      "draft_mode_flag": false,
+      "runs": [
+        {
+          "wall_s": 48.17,
+          "chars": 1861,
+          "tps": 12.77,
+          "predicted_n": 600,
+          "acceptance": null,
+          "timing_fields": [
+            "cache_n",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [],
+          "draft_active": false,
+          "acceptance_client": null
+        },
+        {
+          "wall_s": 48.06,
+          "chars": 1831,
+          "tps": 12.49,
+          "predicted_n": 600,
+          "acceptance": null,
+          "timing_fields": [
+            "cache_n",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [],
+          "draft_active": false,
+          "acceptance_client": null
+        }
+      ],
+      "rss_peak_mb": 2576.5
+    },
+    "draft_Q4_K_M": {
+      "mode": "draft",
+      "draft_model": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\MiniCPM5-1B-Q4_K_M.gguf",
+      "server_load_s": 2.27,
+      "draft_mode_flag": true,
+      "runs": [
+        {
+          "wall_s": 54.74,
+          "chars": 1955,
+          "tps": 11.25,
+          "predicted_n": 600,
+          "acceptance": 0.4903581267217631,
+          "timing_fields": [
+            "cache_n",
+            "draft_n",
+            "draft_n_accepted",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [
+            "draft_n",
+            "draft_n_accepted"
+          ],
+          "draft_active": true,
+          "acceptance_client": 0.4903581267217631
+        },
+        {
+          "wall_s": 50.33,
+          "chars": 1776,
+          "tps": 11.93,
+          "predicted_n": 600,
+          "acceptance": 0.5645645645645646,
+          "timing_fields": [
+            "cache_n",
+            "draft_n",
+            "draft_n_accepted",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [
+            "draft_n",
+            "draft_n_accepted"
+          ],
+          "draft_active": true,
+          "acceptance_client": 0.5645645645645646
+        }
+      ],
+      "rss_peak_mb": 3675.7
+    },
+    "draft_Q3_K_M": {
+      "mode": "draft",
+      "draft_model": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\MiniCPM5-1B-Q3_K_M.gguf",
+      "server_load_s": 2.27,
+      "draft_mode_flag": true,
+      "runs": [
+        {
+          "wall_s": 48.26,
+          "chars": 1825,
+          "tps": 12.9,
+          "predicted_n": 600,
+          "acceptance": 0.5876923076923077,
+          "timing_fields": [
+            "cache_n",
+            "draft_n",
+            "draft_n_accepted",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [
+            "draft_n",
+            "draft_n_accepted"
+          ],
+          "draft_active": true,
+          "acceptance_client": 0.5876923076923077
+        },
+        {
+          "wall_s": 46.19,
+          "chars": 1729,
+          "tps": 13.01,
+          "predicted_n": 600,
+          "acceptance": 0.5637181409295352,
+          "timing_fields": [
+            "cache_n",
+            "draft_n",
+            "draft_n_accepted",
+            "predicted_ms",
+            "predicted_n",
+            "predicted_per_second",
+            "predicted_per_token_ms",
+            "prompt_ms",
+            "prompt_n",
+            "prompt_per_second",
+            "prompt_per_token_ms"
+          ],
+          "draft_fields": [
+            "draft_n",
+            "draft_n_accepted"
+          ],
+          "draft_active": true,
+          "acceptance_client": 0.5637181409295352
+        }
+      ],
+      "rss_peak_mb": 3405.3
+    }
+  },
+  "tps_mean": {
+    "baseline": 12.63,
+    "draft_Q4_K_M": 11.59,
+    "draft_Q3_K_M": 12.96
+  },
+  "speedup": {
+    "Q4_vs_baseline": 0.918,
+    "Q3_vs_baseline": 1.026,
+    "Q3_vs_Q4": 1.118
+  },
+  "acceptance": {
+    "exposed": true,
+    "Q4": 0.527,
+    "Q3": 0.576,
+    "timing_fields_seen": [
+      "cache_n",
+      "draft_n",
+      "draft_n_accepted",
+      "predicted_ms",
+      "predicted_n",
+      "predicted_per_second",
+      "predicted_per_token_ms",
+      "prompt_ms",
+      "prompt_n",
+      "prompt_per_second",
+      "prompt_per_token_ms"
+    ]
+  },
+  "ram": {
+    "rss_peak_mb": {
+      "baseline": 2576.5,
+      "draft_Q4_K_M": 3675.7,
+      "draft_Q3_K_M": 3405.3
+    },
+    "system_used_before_mb": 9949.8,
+    "system_used_after_mb": 10042.9
+  },
+  "rule": {
+    "statement": "Q3 SOLO SE acceptance(Q3)>=acceptance(Q4)-0.03 E speedup(Q3)>=speedup(Q4)-0.05 E risparmio>=120MB, altrimenti Q4",
+    "thresholds": {
+      "acceptance_delta_min": 0.03,
+      "speedup_delta_min": 0.05,
+      "size_saving_min_mb": 120
+    },
+    "rule_inputs": {
+      "acceptance_Q4": 0.527,
+      "acceptance_Q3": 0.576,
+      "speedup_Q4": 0.918,
+      "speedup_Q3": 1.026,
+      "size_saving_bytes": 105166848,
+      "size_saving_mb": 105.2
+    },
+    "conditions": {
+      "acceptance_ok": true,
+      "speedup_ok": true,
+      "size_ok": false
+    },
+    "decision": "Q4_K_M",
+    "reason": "risparmio 105.2 MB < 120 MB"
+  }
+}

@@ -1,0 +1,175 @@
+{
+ "ts": "2026-10-31T15:02:54+0100",
+ "model": "tools\\models\\spark-x2.6-4b.gguf",
+ "draft": "tools\\models\\spark-x2.6-1.7b.gguf",
+ "n_predict": 200,
+ "temperature": 0.0,
+ "cases": {
+  "up_off": {
+   "args": [
+    "tools\\llama-server.exe",
+    "-m",
+    "tools\\models\\spark-x2.6-4b.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "62511"
+   ],
+   "status": "?",
+   "rss_after_load_mb": 11244.9,
+   "ok": true,
+   "wall_s": 74.3,
+   "tokens_per_second": 6.314559028164614,
+   "predicted_n": 200,
+   "acceptance": null,
+   "rss_peak_mb": 11721.5,
+   "draft_n": null,
+   "draft_n_accepted": null,
+   "timings_keys": [
+    "cache_n",
+    "predicted_ms",
+    "predicted_n",
+    "predicted_per_second",
+    "predicted_per_token_ms",
+    "prompt_ms",
+    "prompt_n",
+    "prompt_per_second",
+    "prompt_per_token_ms"
+   ]
+  },
+  "up_draft": {
+   "args": [
+    "tools\\llama-server.exe",
+    "-m",
+    "tools\\models\\spark-x2.6-4b.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "62512",
+    "--model-draft",
+    "tools\\models\\spark-x2.6-1.7b.gguf"
+   ],
+   "status": "?",
+   "rss_after_load_mb": 7368.4,
+   "ok": true,
+   "wall_s": 69.4,
+   "tokens_per_second": 5.574521222160273,
+   "predicted_n": 200,
+   "acceptance": null,
+   "rss_peak_mb": 8407.4,
+   "draft_n": null,
+   "draft_n_accepted": null,
+   "timings_keys": [
+    "cache_n",
+    "predicted_ms",
+    "predicted_n",
+    "predicted_per_second",
+    "predicted_per_token_ms",
+    "prompt_ms",
+    "prompt_n",
+    "prompt_per_second",
+    "prompt_per_token_ms"
+   ],
+   "timings_raw": {
+    "cache_n": 0,
+    "prompt_n": 274,
+    "prompt_ms": 6686.379,
+    "prompt_per_token_ms": 24.402843065693432,
+    "prompt_per_second": 40.97883174136554,
+    "predicted_n": 200,
+    "predicted_ms": 35698.133,
+    "predicted_per_token_ms": 179.3876030150754,
+    "predicted_per_second": 5.574521222160273
+   }
+  },
+  "xt_off": {
+   "args": [
+    "tools\\llama-xhtoken\\build\\bin\\llama-server.exe",
+    "-m",
+    "tools\\models\\spark-x2.6-4b.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "62513"
+   ],
+   "status": "?",
+   "rss_after_load_mb": 10495.2,
+   "ok": true,
+   "wall_s": 77.6,
+   "tokens_per_second": 5.3639883922213,
+   "predicted_n": 200,
+   "acceptance": null,
+   "rss_peak_mb": 10922.8,
+   "draft_n": null,
+   "draft_n_accepted": null,
+   "timings_keys": [
+    "cache_n",
+    "predicted_ms",
+    "predicted_n",
+    "predicted_per_second",
+    "predicted_per_token_ms",
+    "prompt_ms",
+    "prompt_n",
+    "prompt_per_second",
+    "prompt_per_token_ms"
+   ]
+  },
+  "xt_draft": {
+   "args": [
+    "tools\\llama-xhtoken\\build\\bin\\llama-server.exe",
+    "-m",
+    "tools\\models\\spark-x2.6-4b.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "62514",
+    "--model-draft",
+    "tools\\models\\spark-x2.6-1.7b.gguf"
+   ],
+   "status": "?",
+   "rss_after_load_mb": 6287.4,
+   "ok": true,
+   "wall_s": 59.2,
+   "tokens_per_second": 6.450224991302731,
+   "predicted_n": 200,
+   "acceptance": null,
+   "rss_peak_mb": 9013.2,
+   "draft_n": null,
+   "draft_n_accepted": null,
+   "timings_keys": [
+    "cache_n",
+    "predicted_ms",
+    "predicted_n",
+    "predicted_per_second",
+    "predicted_per_token_ms",
+    "prompt_ms",
+    "prompt_n",
+    "prompt_per_second",
+    "prompt_per_token_ms"
+   ],
+   "timings_raw": {
+    "cache_n": 0,
+    "prompt_n": 274,
+    "prompt_ms": 6058.596,
+    "prompt_per_token_ms": 22.11166423357664,
+    "prompt_per_second": 45.22499932327556,
+    "predicted_n": 200,
+    "predicted_ms": 30851.637,
+    "predicted_per_token_ms": 155.03335175879397,
+    "predicted_per_second": 6.450224991302731
+   }
+  }
+ },
+ "derived": {
+  "tg_up_off": 6.314559028164614,
+  "tg_up_draft": 5.574521222160273,
+  "tg_xt_off": 5.3639883922213,
+  "tg_xt_draft": 6.450224991302731,
+  "acc_up": null,
+  "acc_xt": null,
+  "rss_up_mb": 11244.9,
+  "rss_xt_mb": 10495.2,
+  "speedup_up": 0.883,
+  "speedup_xt": 1.203
+ }
+}

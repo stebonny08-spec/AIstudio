@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA Biblioteca H6 (biblioteca.js) — QA_UI_H6</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 — QA Biblioteca H6 (biblioteca.js, Chromium reale)</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/biblioteca.js"></script>
+<script>
+/* Driver harness H6 (Biblioteca):
+   - patch API mancanti nello stub env.js (StudyStore.listConversations/listMaterials,
+     Folders.list/nameOf, App.openItem, App.ICONS mancanti) — richieste da biblioteca.js
+   - seed 50 item REALI via QA.store (5 kind ciclici)
+   - espone window.__h6 (open/close/domCount/renderedItems) per qa_browser/h6_bench.js
+   NESSUNA geometria simulata. */
+(async function () {
+    var QA = window.__QA;
+    try {
+        /* --- patch stub (Biblioteca le usa in reload/render) --- */
+        StudyStore.listConversations = function () { return Promise.resolve([]); };
+        StudyStore.listMaterials = function () { return Promise.resolve([]); };
+        Folders.list = function () { return Promise.resolve([]); };
+        Folders.nameOf = function () { return ''; };
+        App.openItem = function () { };
+        ['biblioteca', 'chatbot', 'ripasso', 'produttivita'].forEach(function (k) {
+            if (!App.ICONS[k]) App.ICONS[k] = App.ICONS.notes;
+        });
+
+        /* --- seed 50 item (kind ciclici su ITEM_KINDS di biblioteca) --- */
+        var kinds = ['note', 'schema', 'riassunto', 'mazzo', 'presentazione', 'documento', 'foglio', 'video', 'altro'];
+        for (var i = 0; i < 50; i++) {
+            QA.store.items.push({
+                id: 'b' + i,
+                kind: kinds[i % kinds.length],
+                title: 'Elemento Biblioteca ' + i,
+                content: 'Contenuto di prova H6 per l item numero ' + i,
+                materia: ['FISICA', 'STORIA', 'MATEMATICA'][i % 3],
+                tags: (i % 4 === 0) ? 'esame,ripasso' : '',
+                description: 'Descrizione item H6 ' + i,
+                thumbnail: '',
+                folder_id: ''
+            });
+        }
+
+        var mod = QA.mod;
+        if (!mod) throw new Error('modulo biblioteca non registrato via App.registerModule');
+
+        window.__h6 = {
+            mod: mod,
+            /* apre la vista e ritorna i millisecondi reali (performance.now) */
+            open: async function () {
+                var main = document.getElementById('main');
+                var t0 = performance.now();
+                await mod.open(main, {});
+                await new Promise(function (r) {
+                    requestAnimationFrame(function () { requestAnimationFrame(function () { r(); }); });
+                });
+                return performance.now() - t0;
+            },
+            close: function () { mod.close(); },
+            /* porta l'area su "Tutti (elenco piano)" => 50 item piatti visibili */
+            showAll: function () {
+                var sel = document.querySelector('select[aria-label="Area con cartelle"]');
+                if (sel && sel.value !== 'all') {
+                    sel.value = 'all';
+                    sel.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            },
+            domCount: function () {
+                var m = document.getElementById('main');
+                return m ? m.querySelectorAll('*').length : 0;
+            },
+            renderedItems: function () {
+                var m = document.getElementById('main');
+                if (!m) return 0;
+                var n = 0;
+                var all = m.querySelectorAll('*');
+                for (var j = 0; j < all.length; j++) {
+                    if (/^Elemento Biblioteca \d+$/.test((all[j].textContent || '').trim())) n++;
+                }
+                return n;
+            },
+            hasRender: function () {
+                var m = document.getElementById('main');
+                return !!(m && m.querySelector('.mod-header') && m.children.length > 1);
+            }
+        };
+        QA.harnessReady = true;
+    } catch (e) {
+        QA.errors.push('harness biblioteca: ' + (e && e.stack ? e.stack : e));
+    }
+})();
+</script>
+</body>
+</html>

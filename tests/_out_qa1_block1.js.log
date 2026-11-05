@@ -1,0 +1,128 @@
+== QA1 P2/P3: sorgente di guideHtml + grep ==
+  PASS  P3: funzione guideHtml trovata in schemi.js
+--- estratto guideHtml ---
+  1: function guideHtml() {
+  2:         if (!ed || !ed.strategy) return '';
+  3:         const modo = ed.strategy.ui().guide;
+  4:         if (!modo) return '';
+  5:         const ns = ed.doc.nodes;
+  6:         if (ns.length < 2) return '';
+  7:         const verticali = modo === 'colonne';
+  8:         const vals = ns.map(n => verticali ? (n.x + n.w / 2) : (n.y + n.h / 2)).sort((a, b) => a - b);
+  9:         const groups = [];
+  10:         vals.forEach(v => {
+  11:             const g = groups[groups.length - 1];
+  12:             if (g && v - g[g.length - 1] <= 44) g.push(v);
+  13:             else groups.push([v]);
+  14:         });
+  15:         let h = '';
+  16:         // B1: linee continue, leggerissime, estese a tutto il mondo SVG (±50000)
+  17:         // così coprono sempre tutta la vista; nessun tratteggio, nessun segmento
+  18:         // dai bordi dei nodi (niente overshoot ±18px), resta solo la posizione
+  19:         // (centro del gruppo) calcolata con la tolleranza esistente (44).
+  20:         const SPAN = 50000;
+  21:         const col = 'rgba(140,164,255,.11)';
+  22:         groups.forEach(g => {
+  23:             const c = g.reduce((s, v) => s + v, 0) / g.length;
+  24:             if (verticali) {
+  25:                 h += '<line x1="' + c.toFixed(1) + '" y1="' + (-SPAN) +
+  26:                     '" x2="' + c.toFixed(1) + '" y2="' + SPAN +
+  27:                     '" stroke="' + col + '" stroke-width="1" pointer-events="none"/>';
+  28:             } else {
+  29:                 h += '<line x1="' + (-SPAN) + '" y1="' + c.toFixed(1) +
+  30:                     '" x2="' + SPAN + '" y2="' + c.toFixed(1) +
+  31:                     '" stroke="' + col + '" stroke-width="1" pointer-events="none"/>';
+  32:             }
+  33:         });
+  34:         return h;
+  35:     }
+  36: 
+  37:     
+  PASS  P2/P3 grep: guideHtml NON contiene stroke-dasharray
+  PASS  P3 grep: guideHtml NON contiene overshoot dai bordi nodo (-18/+18)
+  PASS  P3 grep: estensione fissa SPAN = 50000 (nessun bordo nodo)
+  PASS  P3 grep: posizione guide = CENTRO nodo (n.x+n.w/2, n.y+n.h/2)
+  PASS  P3 grep: nessun riferimento a bordi min/max dei nodi per l'estensione
+--- tutte le occorrenze stroke-dasharray in schemi.js (carve-out attesi) ---
+  riga 677: (e.extra ? ' stroke-dasharray="7 5"' : '') + '/>';
+  riga 765: const dash = from ? ' stroke-dasharray="6 4"' : '';
+  riga 855: '" rx="5" fill="none" stroke="#f9974a" stroke-width="1.4" stroke-dasharray="5 4" pointer-events="none"/>';
+  PASS  P2 grep: ogni stroke residuo e' un carve-out (edge extra / connectFrom / box disegno)
+--- occorrenze "- 18"/"+ 18" in schemi.js ---
+  riga 782: const maxChars = Math.max(6, Math.floor((n.w - 18) / (fs * 0.56)));
+  PASS  P3 grep: "- 18"/"+ 18" solo fuori da guideHtml (testo nodo / commento)
+
+== QA1 P1/P2/P4: harness schema multi-tipo (albero 6 nodi, lr, tb rimosso: migrato ad albero) ==
+    [apertura albero] type=albero doc.edges=5 dom=5 eid_match=true guide=0
+  PASS  P1 apertura albero: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c apertura albero: zero linee .sc-guide residue
+    [albero dopo auto-layout] type=albero doc.edges=5 dom=5 eid_match=true guide=0
+  PASS  P1 albero dopo auto-layout: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c albero dopo auto-layout: zero linee .sc-guide residue
+    [lr dopo cambio tipo] type=lr doc.edges=5 dom=5 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo cambio tipo: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo cambio tipo: guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo cambio tipo: guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo cambio tipo: estensione span >= 10000
+  PASS  P4 lr dopo cambio tipo: guide verticali (colonne)
+    [lr dopo auto-layout] type=lr doc.edges=5 dom=5 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo auto-layout: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo auto-layout: guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo auto-layout: guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo auto-layout: estensione span >= 10000
+  PASS  P4 lr dopo auto-layout: guide verticali (colonne)
+  PASS  P4: lr auto-layout non aggiunge nodi
+  PASS  P4: pulsante "+ Nodo" presente in lr
+    [lr dopo "+ Nodo"] type=lr doc.edges=5 dom=5 eid_match=true guide=4 span=100000/100000/100000/100000 dash=false
+  PASS  P1 lr dopo "+ Nodo": DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo "+ Nodo": guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo "+ Nodo": guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo "+ Nodo": estensione span >= 10000
+  PASS  P4 lr dopo "+ Nodo": guide verticali (colonne)
+  PASS  P4b: + Nodo aggiunge esattamente 1 nodo
+  PASS  P4b: + Nodo NON aggiunge archi impliciti
+  PASS  P1: id nuovo nodo rilevato
+    [lr dopo arco utente (Collega)] type=lr doc.edges=6 dom=6 eid_match=true guide=4 span=100000/100000/100000/100000 dash=false
+  PASS  P1 lr dopo arco utente (Collega): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo arco utente (Collega): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo arco utente (Collega): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo arco utente (Collega): estensione span >= 10000
+  PASS  P4 lr dopo arco utente (Collega): guide verticali (colonne)
+  PASS  P1: arco creato dall'utente presente in doc.edges
+  PASS  P1: arco utente renderizzato 1:1 nel DOM
+    [lr dopo transizione (ex tb, tipo rimosso)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo transizione (ex tb, tipo rimosso): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo transizione (ex tb, tipo rimosso): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo transizione (ex tb, tipo rimosso): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo transizione (ex tb, tipo rimosso): estensione span >= 10000
+  PASS  P4 lr dopo transizione (ex tb, tipo rimosso): guide verticali (colonne)
+    [lr dopo auto-layout (ex tb, tipo rimosso)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr dopo auto-layout (ex tb, tipo rimosso): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr dopo auto-layout (ex tb, tipo rimosso): guide presenti dopo ritorno a colonne
+  PASS  P2 lr dopo auto-layout (ex tb, tipo rimosso): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr dopo auto-layout (ex tb, tipo rimosso): estensione span >= 10000
+  PASS  P4 lr dopo auto-layout (ex tb, tipo rimosso): guide verticali (colonne)
+    [mappa] type=mappa doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 mappa: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c mappa: zero linee .sc-guide residue
+  PASS  P4c mappa: nessun arco extra residuo (migrazione pulita)
+    [albero (ritorno)] type=albero doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 albero (ritorno): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c albero (ritorno): zero linee .sc-guide residue
+    [riassunto] type=riassunto doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 riassunto: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c riassunto: zero linee .sc-guide residue
+    [libero] type=libero doc.edges=6 dom=6 eid_match=true guide=0
+  PASS  P1 libero: DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4c libero: zero linee .sc-guide residue
+    [lr finale (ritorno)] type=lr doc.edges=6 dom=6 eid_match=true guide=3 span=100000/100000/100000 dash=false
+  PASS  P1 lr finale (ritorno): DOM .sc-edge == doc.edges (stessi data-eid)
+  PASS  P4d lr finale (ritorno): guide presenti dopo ritorno a colonne
+  PASS  P2 lr finale (ritorno): guide SENZA stroke-dasharray (continue)
+  PASS  P2 lr finale (ritorno): estensione span >= 10000
+  PASS  P4 lr finale (ritorno): guide verticali (colonne)
+  PASS  P1: nessun arco perso/nei aggiunti nel ciclo di tipi
+  PASS  P4: nodi conservati nel ciclo di tipi
+
+================================================
+RISULTATI QA1: 65 passati, 0 falliti

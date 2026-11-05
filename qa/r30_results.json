@@ -1,0 +1,188 @@
+[
+ {
+  "id": "F0 catena ?v coerente (9 moduli editor/Fonti, stesso stamp)",
+  "ok": true,
+  "expected": "stesso ?v su 9 moduli",
+  "evidence": "catena v=2026-10-30T15:49:23+01:00 assenti=0 | drift storico censito=[\"2026-10-27T20:03:00+01:00\"] | QA_TS=2026-10-27T20:03:00+01:00"
+ },
+ {
+  "id": "BOOT editor Appunti",
+  "ok": true,
+  "expected": "editor",
+  "evidence": "-"
+ },
+ {
+  "id": "BOOT snapshot reale caricata (nota con tratti)",
+  "ok": true,
+  "expected": "img.fp21-snap con data-cw",
+  "evidence": "row=true pv=true"
+ },
+ {
+  "id": "L3.1 pannello 280px: img == larghezza area (±2) + canvas >= boxW x DPR",
+  "ok": true,
+  "expected": "280px",
+  "evidence": "w=280 | boxW=244 imgW=244 boxH=178 imgH=172 of=contain canvas=244x171 >= 244 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.1 pannello 340px: img == larghezza area (±2) + canvas >= boxW x DPR",
+  "ok": true,
+  "expected": "340px",
+  "evidence": "w=340 | boxW=304 imgW=304 boxH=190 imgH=191 of=contain canvas=304x190 >= 304 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.1 pannello 560px: img == larghezza area (±2) + canvas >= boxW x DPR",
+  "ok": true,
+  "expected": "560px",
+  "evidence": "w=560 | boxW=524 imgW=524 boxH=213 imgH=214 of=contain canvas=524x213 >= 524 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.1 collasso: layout rieseguito (img riempie area a tutta altezza)",
+  "ok": true,
+  "expected": "fit + chip nascosti",
+  "evidence": "boxW=524 imgW=524 boxH=616 imgH=362 of=contain canvas=524x361 >= 524 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.1 espanso: layout tornato al precedente",
+  "ok": true,
+  "expected": "fit",
+  "evidence": "boxW=524 imgW=524 boxH=213 imgH=214 of=contain canvas=524x213 >= 524 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.1 DPR=2: canvas sorgente >= area x 2 (rigenerazione adattiva)",
+  "ok": true,
+  "expected": "canvas >= 1048",
+  "evidence": "canvas=1048 dpr=2 attr=2 | boxW=524 imgW=524 boxH=213 imgH=214 of=contain canvas=1048x426 >= 1048 (dpr 2/attr 2)"
+ },
+ {
+  "id": "L3.2 finestra 1280: scrollWidth<=clientWidth+2 e root>=95% area",
+  "ok": true,
+  "expected": "root >= 498px",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.2 finestra 1600: scrollWidth<=clientWidth+2 e root>=95% area",
+  "ok": true,
+  "expected": "root >= 498px",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.2 finestra 1920: scrollWidth<=clientWidth+2 e root>=95% area",
+  "ok": true,
+  "expected": "root >= 498px",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.2 finestra 1600 - adattatore fogli: nessun sforo + root>=95%",
+  "ok": true,
+  "expected": "root>=95%",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.2 finestra 1600 - adattatore md: nessun sforo + root>=95%",
+  "ok": true,
+  "expected": "root>=95%",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.2 finestra 1600 - adattatore doc: nessun sforo + root>=95%",
+  "ok": true,
+  "expected": "root>=95%",
+  "evidence": "scroll=524/524 rootW=524 boxW=524"
+ },
+ {
+  "id": "L3.3 drag pannello -> layout coerente (fit + root + scroll)",
+  "ok": true,
+  "expected": "w=430",
+  "evidence": "boxW=394 imgW=394 boxH=189 imgH=190 of=contain canvas=394x189 >= 394 (dpr 1/attr 1) | scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.3 toggle collasso -> layout coerente",
+  "ok": true,
+  "expected": "fit",
+  "evidence": "boxW=394 imgW=394 boxH=616 imgH=274 of=contain canvas=394x273 >= 394 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.3 toggle espanso -> layout coerente",
+  "ok": true,
+  "expected": "fit",
+  "evidence": "boxW=394 imgW=394 boxH=190 imgH=192 of=contain canvas=394x191 >= 394 (dpr 1/attr 1)"
+ },
+ {
+  "id": "L3.3 RO attivi col pannello aperto",
+  "ok": true,
+  "expected": ">=1",
+  "evidence": "1"
+ },
+ {
+  "id": "L3.3 RO rilasciato alla chiusura del modulo (destroy)",
+  "ok": true,
+  "expected": "dopo close = 0",
+  "evidence": "0"
+ },
+ {
+  "id": "L3.3 NESSUN leak di ResizeObserver (prima == dopo)",
+  "ok": true,
+  "expected": "prima=1",
+  "evidence": "dopo=1"
+ },
+ {
+  "id": "L3.4 appunti: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 documenti: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 presentazioni: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 fogli: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 video: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 chat: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 md: root>=95% area + nessun sforo + screenshot",
+  "ok": true,
+  "expected": "root>=95% e scroll ok",
+  "evidence": "row=true scroll=394/394 rootW=394 boxW=394"
+ },
+ {
+  "id": "L3.4 Libri (PARZIALE: preselected_books vuota, 0 file)",
+  "ok": true,
+  "expected": "0 libri -> solo hint di lista, nessun crash",
+  "evidence": "books=0 rows=0"
+ },
+ {
+  "id": "Z1 zero pageerror",
+  "ok": true,
+  "expected": "0",
+  "evidence": "[]"
+ },
+ {
+  "id": "Z2 zero console.error inattesi",
+  "ok": true,
+  "expected": "0",
+  "evidence": "[]"
+ }
+]

@@ -1,0 +1,1559 @@
+{
+ "ts": "2026-11-02T17:04:23.602Z",
+ "viewport": "1440x900",
+ "cells": {
+  "b1_toolbar": {
+   "panelShown": true,
+   "overlapPx2": 0,
+   "buttons": [
+    {
+     "label": "Annulla (Ctrl+Z): su una",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "Ripeti (Ctrl+Y)",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "Immagine",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "Documento",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "File PPT/PPTX",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "Fonti",
+     "visible": true,
+     "hitOk": true
+    },
+    {
+     "label": "Elimina selezione",
+     "visible": false,
+     "hitOk": true
+    },
+    {
+     "label": "Genera flashcard dalla n",
+     "visible": true,
+     "hitOk": true
+    }
+   ]
+  },
+  "b2_panel": {
+   "dead": 5,
+   "panelH": 300,
+   "typo": false
+  },
+  "a1_retta": {
+   "before_n": 0,
+   "after_n": 1,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "vclass": "line",
+    "npts": 2,
+    "paramsKeys": [],
+    "params": {}
+   },
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 1,
+    "n_classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "line": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 1,
+    "swapped_pixels": 65,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 0,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 0,
+    "n_classified": 0,
+    "refined": 0,
+    "discarded": 0,
+    "byKind": {},
+    "strokes_live": 0,
+    "perfected_on_release": 0,
+    "swapped_pixels": 0,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 0,
+     "n_classified": 0,
+     "refined": 0,
+     "discarded": 0,
+     "byKind": {}
+    }
+   },
+   "resid": {
+    "kind": "line",
+    "npts": 2,
+    "resVsIdeal": 5.0607,
+    "resE2e": 0,
+    "angVsGen": 0
+   }
+  },
+  "a2_arco": {
+   "before_n": 1,
+   "after_n": 2,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "vclass": "arc",
+    "npts": 33,
+    "paramsKeys": [
+     "bez"
+    ],
+    "params": {
+     "bez": [
+      [
+       [
+        1044.4444444444443,
+        316.6268242730035
+       ],
+       [
+        1043.182169669122,
+        218.33958851750828
+       ],
+       [
+        1127.6854643239308,
+        137.29785326320928
+       ],
+       [
+        1224.0912341169333,
+        137.73054594156633
+       ]
+      ],
+      [
+       [
+        1224.0912341169333,
+        137.73054594156633
+       ],
+       [
+        1320.1751149000627,
+        138.1617939033041
+       ],
+       [
+        1402.3354277734215,
+        222.9721154341977
+       ],
+       [
+        1400,
+        317.35709296332465
+       ]
+      ]
+     ]
+    }
+   },
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 2,
+    "n_classified": 2,
+    "refined": 2,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 2,
+    "swapped_pixels": 136,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 1,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 1,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 1,
+    "n_classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "line": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 1,
+    "swapped_pixels": 65,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "curve",
+    "npts": 33,
+    "resVsGen": 1.2008,
+    "maxTurnDeg": 6.22,
+    "tipGap": 355.6
+   }
+  },
+  "a3_s": {
+   "before_n": 2,
+   "after_n": 3,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "vclass": "freeform",
+    "npts": 118,
+    "paramsKeys": [
+     "freeform"
+    ],
+    "params": {
+     "freeform": true
+    }
+   },
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 1,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 3,
+    "n_classified": 3,
+    "refined": 3,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 2
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 3,
+    "swapped_pixels": 254,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 2,
+    "n_classified": 2,
+    "refined": 2,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 2,
+    "swapped_pixels": 136,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 1,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "curve",
+    "npts": 118,
+    "flexChanges": 2,
+    "maxTurnDeg": 8.32,
+    "t": "shape",
+    "paramsKeys": [
+     "freeform"
+    ]
+   }
+  },
+  "a4_loop": {
+   "before_n": 3,
+   "after_n": 4,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "vclass": "freeform",
+    "npts": 94,
+    "paramsKeys": [
+     "freeform"
+    ],
+    "params": {
+     "freeform": true
+    }
+   },
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 2,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 4,
+    "n_classified": 4,
+    "refined": 4,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 3
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 4,
+    "swapped_pixels": 365,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 1,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 3,
+    "n_classified": 3,
+    "refined": 3,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 2
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 3,
+    "swapped_pixels": 254,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "curve",
+    "npts": 94,
+    "flexChanges": 0,
+    "maxTurnDeg": 6.16,
+    "t": "shape",
+    "paramsKeys": [
+     "freeform"
+    ]
+   }
+  },
+  "a5_c": {
+   "before_n": 4,
+   "after_n": 5,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "vclass": "freeform",
+    "npts": 62,
+    "paramsKeys": [
+     "freeform"
+    ],
+    "params": {
+     "freeform": true
+    }
+   },
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 5,
+    "n_classified": 5,
+    "refined": 5,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 5,
+    "swapped_pixels": 427,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 2,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 4,
+    "n_classified": 4,
+    "refined": 4,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 3
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 4,
+    "swapped_pixels": 365,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "curve",
+    "npts": 62,
+    "resVsGen": 0.0276,
+    "maxTurnDeg": 4.23,
+    "tipGap": 99.5
+   }
+  },
+  "a6_verticale": {
+   "before_n": 5,
+   "after_n": 6,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "vclass": "line",
+    "npts": 2,
+    "paramsKeys": [],
+    "params": {}
+   },
+   "counters": {
+    "classified": {
+     "line": 2,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 6,
+    "n_classified": 6,
+    "refined": 6,
+    "discarded": 0,
+    "byKind": {
+     "line": 2,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 6,
+    "swapped_pixels": 492,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 5,
+    "n_classified": 5,
+    "refined": 5,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 5,
+    "swapped_pixels": 427,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "line",
+    "npts": 2,
+    "resVsIdeal": 3.0343,
+    "resE2e": 0,
+    "angVsGen": 0
+   }
+  },
+  "a6_diagonale": {
+   "before_n": 6,
+   "after_n": 7,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "vclass": "line",
+    "npts": 2,
+    "paramsKeys": [],
+    "params": {}
+   },
+   "counters": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 7,
+    "n_classified": 7,
+    "refined": 7,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 7,
+    "swapped_pixels": 557,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 2,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 6,
+    "n_classified": 6,
+    "refined": 6,
+    "discarded": 0,
+    "byKind": {
+     "line": 2,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 6,
+    "swapped_pixels": 492,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "line",
+    "npts": 2,
+    "resVsIdeal": 4.0468,
+    "resE2e": 0,
+    "angVsGen": 0
+   }
+  },
+  "a7_flick": {
+   "before_n": 7,
+   "after_n": 8,
+   "last": {
+    "t": "shape",
+    "kind": "arrow",
+    "vclass": "arrow",
+    "npts": 2,
+    "paramsKeys": [
+     "shaft",
+     "head"
+    ],
+    "params": {
+     "shaft": {
+      "kind": "line",
+      "pts": [
+       [
+        1044.4444444444443,
+        894.4444444444451
+       ],
+       [
+        1341.8181694878472,
+        894.4444444444451
+       ]
+      ]
+     },
+     "head": {
+      "angoloAlaDeg": 35,
+      "lunghezza": 12.8,
+      "tangente": [
+       1,
+       0
+      ],
+      "base": [
+       1341.8181694878472,
+       894.4444444444451
+      ]
+     }
+    }
+   },
+   "counters": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "total": 8,
+    "n_classified": 8,
+    "refined": 8,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4,
+     "arrow": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 8,
+    "swapped_pixels": 618,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 1
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "arrow": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 7,
+    "n_classified": 7,
+    "refined": 7,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 7,
+    "swapped_pixels": 557,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "arrow",
+    "npts": 2,
+    "arrow": [
+     4,
+     4
+    ],
+    "tipGap": 297.4
+   }
+  },
+  "a7_arrow_params": [
+   4,
+   4
+  ],
+  "a8_zoomLabel": "275%",
+  "a8_scale": 2.753120576285154,
+  "a8_mm": {
+   "ax": 538.4785809230659,
+   "ay": 386.54911307691617,
+   "kx": 2.753120576285155,
+   "cx": 800,
+   "cy": 550
+  },
+  "a8_zoom_retta": {
+   "before_n": 0,
+   "after_n": 1,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "vclass": "line",
+    "npts": 2,
+    "paramsKeys": [],
+    "params": {}
+   },
+   "counters": {
+    "classified": {
+     "line": 4,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "total": 9,
+    "n_classified": 9,
+    "refined": 9,
+    "discarded": 0,
+    "byKind": {
+     "line": 4,
+     "curve": 4,
+     "arrow": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 9,
+    "swapped_pixels": 683,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "countersPrev": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "total": 8,
+    "n_classified": 8,
+    "refined": 8,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4,
+     "arrow": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 8,
+    "swapped_pixels": 618,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 1
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "arrow": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "resid": {
+    "kind": "line",
+    "npts": 2,
+    "resVsIdeal": 4.5557,
+    "resE2e": 0,
+    "angVsGen": 0
+   }
+  },
+  "a8_zoomBack": "100%",
+  "lat_trace": {
+   "n": 626,
+   "p50": 0.5,
+   "p95": 0.699999988079071,
+   "max": 2
+  }
+ },
+ "checks": {
+  "pass": 33,
+  "fail": 0,
+  "failures": []
+ },
+ "ok": true,
+ "pageErrors": [],
+ "httpFails": [],
+ "countersSeries": [
+  {
+   "cell": "a1_retta",
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 1,
+    "n_classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "line": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 1,
+    "swapped_pixels": 65,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 1,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 0,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 1,
+    "perfPrev": 0
+   }
+  },
+  {
+   "cell": "a2_arco",
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 2,
+    "n_classified": 2,
+    "refined": 2,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 2,
+    "swapped_pixels": 136,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 1,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 1,
+     "arc": 0,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 2,
+    "perfPrev": 1
+   }
+  },
+  {
+   "cell": "a3_s",
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 1,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 3,
+    "n_classified": 3,
+    "refined": 3,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 2
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 3,
+    "swapped_pixels": 254,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 1,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 0,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 3,
+    "perfPrev": 2
+   }
+  },
+  {
+   "cell": "a4_loop",
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 2,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 4,
+    "n_classified": 4,
+    "refined": 4,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 3
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 4,
+    "swapped_pixels": 365,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 2,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 1,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 4,
+    "perfPrev": 3
+   }
+  },
+  {
+   "cell": "a5_c",
+   "counters": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 5,
+    "n_classified": 5,
+    "refined": 5,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 5,
+    "swapped_pixels": 427,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 1,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 2,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 5,
+    "perfPrev": 4
+   }
+  },
+  {
+   "cell": "a6_verticale",
+   "counters": {
+    "classified": {
+     "line": 2,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 6,
+    "n_classified": 6,
+    "refined": 6,
+    "discarded": 0,
+    "byKind": {
+     "line": 2,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 6,
+    "swapped_pixels": 492,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 2,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 1,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 6,
+    "perfPrev": 5
+   }
+  },
+  {
+   "cell": "a6_diagonale",
+   "counters": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "total": 7,
+    "n_classified": 7,
+    "refined": 7,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 7,
+    "swapped_pixels": 557,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "classifiedPrev": {
+     "line": 2,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 7,
+    "perfPrev": 6
+   }
+  },
+  {
+   "cell": "a7_flick",
+   "counters": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "total": 8,
+    "n_classified": 8,
+    "refined": 8,
+    "discarded": 0,
+    "byKind": {
+     "line": 3,
+     "curve": 4,
+     "arrow": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 8,
+    "swapped_pixels": 618,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 0,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 1
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "arrow": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "classifiedPrev": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 0
+    },
+    "perfected": 8,
+    "perfPrev": 7
+   }
+  },
+  {
+   "cell": "a8_zoom_retta",
+   "counters": {
+    "classified": {
+     "line": 4,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "total": 9,
+    "n_classified": 9,
+    "refined": 9,
+    "discarded": 0,
+    "byKind": {
+     "line": 4,
+     "curve": 4,
+     "arrow": 1
+    },
+    "strokes_live": 0,
+    "perfected_on_release": 9,
+    "swapped_pixels": 683,
+    "residual_px": 0,
+    "stroke": {
+     "classified": {
+      "line": 1,
+      "arc": 0,
+      "freeform": 0,
+      "closed": 0,
+      "arrow": 0
+     },
+     "total": 1,
+     "n_classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     },
+     "perfected_on_release": 1
+    }
+   },
+   "deltaClass": {
+    "classified": {
+     "line": 4,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "classifiedPrev": {
+     "line": 3,
+     "arc": 1,
+     "freeform": 3,
+     "closed": 0,
+     "arrow": 1
+    },
+    "perfected": 9,
+    "perfPrev": 8
+   }
+  }
+ ]
+}

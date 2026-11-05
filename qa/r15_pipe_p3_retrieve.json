@@ -1,0 +1,20 @@
+{
+ "metric": "latenza retrieve ibrido search(hybrid=True) su corpus REALE (rag_stage2 .md chunked) con modello E5 reale WARM; wall = perf_counter attorno alla chiamata; n=20 query; soft time-box dichiarato = 1000ms",
+ "corpus_chunks": 22,
+ "n_query": 20,
+ "wall_ms": {
+  "p50": 26.96,
+  "p95": 29.83,
+  "max": 53.13
+ },
+ "stage_ms": {
+  "embed_p95": 25.55,
+  "fts_p95": 1.06,
+  "vec_p95": 3.27,
+  "total_probe_p95": 29.82
+ },
+ "soft_timebox_ms": 1000.0,
+ "gate_p95_le_timebox": true,
+ "timebox_policy": "soft: se superato il router LOGGA 'retrieve time-box SOFT superato' e CONTINUA (mai abort)",
+ "ts": "2026-10-24T23:36:35+0200"
+}

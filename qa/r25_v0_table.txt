@@ -1,0 +1,11 @@
+toolbar_coperta=NO overlap=0px2 btn_non_hit=1/8 coveredBy=pill
+retta_perfezionata_al_rilascio=SI(shape/curve)
+arco_perfezionato_al_rilascio=SI(shape/curve)
+verticale=SI(shape/curve) diagonale=SI(shape/curve)
+S_due_flessi=SWAP→curve loop=SWAP→curve C_aperta=SWAP→curve (atteso V0: nessun snap forzato su S/loop/C - si classifica: freeform resta stroke curvo, C resta aperta)
+retta_flick=shape/curve (freccia attesa: t=shape kind=arrow)
+contatori_V0={"classified":1,"refined":1,"discarded":0,"byKind":{"curve":1},"stroke":{"classified":1,"refined":1,"discarded":0,"byKind":{"curve":1}}}
+contatori_V0_nuovi_assenti=strokes_live,perfected_on_release,swapped_pixels,residual_px
+perfected_on_release=ASSENTE dopo retta (atteso>=1 -> FAIL se 0/assente)
+dead_space=5px
+typo_l_anteprima=false

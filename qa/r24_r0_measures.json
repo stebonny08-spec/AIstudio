@@ -1,0 +1,175 @@
+{
+ "ts": "2026-10-31T08:32:42.996Z",
+ "viewport": "1440x900",
+ "pageErrors": [],
+ "panelOpen": {
+  "exists": true,
+  "shown": true,
+  "rect": {
+   "x": 12,
+   "y": 58,
+   "width": 340,
+   "height": 540,
+   "top": 58,
+   "right": 352,
+   "bottom": 598,
+   "left": 12
+  },
+  "pos": "fixed",
+  "z": "160"
+ },
+ "toolbar": {
+  "exists": true,
+  "rect": {
+   "x": 12,
+   "y": 56,
+   "width": 327.65625,
+   "height": 48,
+   "top": 56,
+   "right": 339.65625,
+   "bottom": 104,
+   "left": 12
+  },
+  "z": "12",
+  "buttons": [
+   {
+    "label": "Annulla (Ctrl+Z): su una forma",
+    "center": [
+     37,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "circle.[object"
+   },
+   {
+    "label": "Ripeti (Ctrl+Y)",
+    "center": [
+     74,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   },
+   {
+    "label": "Immagine",
+    "center": [
+     121,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   },
+   {
+    "label": "Documento",
+    "center": [
+     158,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   },
+   {
+    "label": "File PPT/PPTX",
+    "center": [
+     195,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   },
+   {
+    "label": "data-fonti",
+    "center": [
+     232,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   },
+   {
+    "label": "Elimina selezione",
+    "center": [
+     0,
+     0
+    ],
+    "visible": false,
+    "hitOk": false,
+    "hit": "CANVAS."
+   },
+   {
+    "label": "Genera flashcard dalla nota/se",
+    "center": [
+     292,
+     80
+    ],
+    "visible": true,
+    "hitOk": false,
+    "hit": "DIV.fp21-bar"
+   }
+  ],
+  "overlapPx2": 15072,
+  "pillCenterCovered": false,
+  "coveredBy": "PANNELLO_FONTI"
+ },
+ "panel": {
+  "panelH": 540,
+  "panelW": 340,
+  "insertBottom": 429,
+  "deadSpaceUnderInsertPx": 169,
+  "listH": 198,
+  "prevH": 60,
+  "typo_l_anteprima": true,
+  "typo_fix_present": false,
+  "previewPlaceholder": "Seleziona una fonte per leggerne l anteprima."
+ },
+ "inkRetta": {
+  "n": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 33
+  }
+ },
+ "inkArco": {
+  "n": 2,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 49
+  }
+ },
+ "counts": {
+  "byType": {
+   "shape": 2
+  },
+  "traceLen": 445,
+  "state": {
+   "tool": "penna",
+   "helpOn": false,
+   "assist": 0.6,
+   "smooth": 0.5,
+   "active": false,
+   "shpOn": true,
+   "arrowOn": true,
+   "holdMs": 350,
+   "ghost": false,
+   "ghostFlash": false,
+   "dw": 1600,
+   "dh": 1100,
+   "pointers": 0
+  }
+ },
+ "httpFails": [
+  "404 http://127.0.0.1:8877/favicon.ico"
+ ],
+ "envPatch": {
+  "listSubjectsTimeoutRace": true,
+  "pywebview": "undefined"
+ }
+}

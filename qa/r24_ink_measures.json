@@ -1,0 +1,177 @@
+{
+ "ts": "2026-10-31T10:23:36.588Z",
+ "viewport": "1440x900",
+ "tool": "Puppeteer/CDP reale (playwright assente)",
+ "envPatch": {
+  "pywebview": "undefined",
+  "patch_listSubjects": true
+ },
+ "releaseRefinePrima": "undefined",
+ "prima": {
+  "retta": {
+   "n": 1,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "npts": 2,
+    "paramsKeys": []
+   },
+   "counters": null
+  },
+  "arco": {
+   "n": 2,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "npts": 33,
+    "paramsKeys": [
+     "bez"
+    ]
+   },
+   "counters": null
+  },
+  "ink24Lines": 0
+ },
+ "releaseRefineDopo": true,
+ "countersZeroDopo": {
+  "n": 0,
+  "last": null,
+  "counters": {
+   "classified": 0,
+   "refined": 0,
+   "discarded": 0,
+   "byKind": {},
+   "stroke": {
+    "classified": 0,
+    "refined": 0,
+    "discarded": 0,
+    "byKind": {}
+   }
+  }
+ },
+ "helpOffOnda10": true,
+ "dopo": {
+  "retta": {
+   "n": 1,
+   "last": {
+    "t": "shape",
+    "kind": "line",
+    "npts": 2,
+    "paramsKeys": []
+   },
+   "counters": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "line": 1
+    },
+    "stroke": {
+     "classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "line": 1
+     }
+    }
+   }
+  },
+  "arco": {
+   "n": 2,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "npts": 33,
+    "paramsKeys": [
+     "bez"
+    ]
+   },
+   "counters": {
+    "classified": 2,
+    "refined": 2,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 1
+    },
+    "stroke": {
+     "classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     }
+    }
+   }
+  },
+  "onda10": {
+   "n": 3,
+   "last": {
+    "t": "shape",
+    "kind": "curve",
+    "npts": 33,
+    "paramsKeys": [
+     "bez"
+    ]
+   },
+   "counters": {
+    "classified": 3,
+    "refined": 3,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 2
+    },
+    "stroke": {
+     "classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     }
+    }
+   }
+  },
+  "measures": {
+   "nShapes": 2,
+   "nStrokes": 0,
+   "kinds": [
+    "line",
+    "curve"
+   ],
+   "lineResE2e": 0,
+   "lineSegLen": 511.9883418015486,
+   "lineAngVsGen": 0.3864260718791307,
+   "lineRawSpan": 511.9999999999999,
+   "lineCover": 0.9999772300811498,
+   "arcResVsGen": 0.611961069639834,
+   "arcMaxTurnDeg": 6.24480294245391,
+   "arcRenderedPts": 33,
+   "counters": {
+    "classified": 2,
+    "refined": 2,
+    "discarded": 0,
+    "byKind": {
+     "line": 1,
+     "curve": 1
+    },
+    "stroke": {
+     "classified": 1,
+     "refined": 1,
+     "discarded": 0,
+     "byKind": {
+      "curve": 1
+     }
+    }
+   }
+  },
+  "helpOffOnda10": true
+ },
+ "ink24": [
+  "[ink24] classificati=1 perfezionati=1 scartati=0 byKind={\"line\":1} | sessione: classificati=1 perfezionati=1 scartati=0",
+  "[ink24] classificati=1 perfezionati=1 scartati=0 byKind={\"curve\":1} | sessione: classificati=2 perfezionati=2 scartati=0",
+  "[ink24] classificati=1 perfezionati=1 scartati=0 byKind={\"curve\":1} | sessione: classificati=3 perfezionati=3 scartati=0"
+ ],
+ "pageErrors": [],
+ "httpFails": []
+}

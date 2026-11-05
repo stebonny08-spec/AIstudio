@@ -1,0 +1,285 @@
+
+== TASK 4 — Albero ==
+  PASS  albero: pulsanti +Figlio/+Fratello visibili
+  PASS  albero: pulsanti Collega/Auto-layout
+  PASS  albero: layout gerarchico (righe crescenti)
+  PASS  albero: fratelli centrati sotto la radice
+  PASS  albero: d,e centrati sotto b
+  PASS  albero: 5 archi renderizzati
+  PASS  albero: arco a gomito (3 segmenti L)
+  PASS  albero: nessuna etichetta sugli archi
+  PASS  albero: toast al tentativo di secondo padre
+  PASS  albero: arco rifiutato non nasce
+  PASS  albero: +Fratello attivo con nodo selezionato
+  PASS  albero: la radice non ha fratelli (toast)
+  PASS  albero: +Figlio crea il collegamento figlio
+  PASS  albero: snap attivo durante il drag
+
+== TASK 4 — Mappa concettuale ==
+  PASS  mappa: niente pulsanti figlio/fratello
+  PASS  mappa: 1 arco
+  PASS  mappa: arco curvo (quadratica)
+  PASS  mappa: b→c creato
+  PASS  mappa: ciclo c→a PERMESSO (arco nato)
+  PASS  mappa: doppio click su arco apre il campo etichetta
+  PASS  mappa: etichetta salvata e renderizzata
+  PASS  mappa: auto-layout force/radiale ha ridisposto i nodi
+  PASS  mappa: hub al centro, nodi attorno
+  PASS  mappa: posizioni manuali preservate all’apertura
+
+== TASK 4 — Sinistra→destra ==
+  PASS  lr: colonne crescenti (a→b→d→f)
+  PASS  lr: b,c impilati nella stessa colonna
+  PASS  lr: nodi della colonna impilati in y
+  PASS  lr:5 frecce (archi con punta)
+  PASS  lr: frecce orientate orizzontalmente (verso dx/sx)
+  PASS  lr: guide colonne visibili
+  PASS  lr: guide verticali
+  PASS  B1 lr: guide SENZA stroke-dasharray (linee continue)
+  PASS  B1 lr: guide estese a tutto canvas (>=10000px nel mondo)
+  PASS  lr: doppio click su arco NON apre l’etichetta
+
+== TASK 4 — Alto→basso ==
+  PASS  tb: righe crescenti (a→b→d→f)
+  PASS  tb: b,c nella stessa riga
+  PASS  tb: nodi della riga affiancati in x
+  PASS  tb:5 frecce
+  PASS  tb: frecce orientate verso il basso
+  PASS  tb: guide righe visibili
+  PASS  tb: guide orizzontali
+  PASS  B1 tb: guide SENZA stroke-dasharray (linee continue)
+  PASS  B1 tb: guide estese a tutto canvas (>=10000px nel mondo)
+
+== TASK 4 — Schema libero ==
+  PASS  libero: auto-layout disabilitato (pulsante grigio)
+  PASS  libero: tooltip sul pulsante disabilitato
+  PASS  libero: nessuna guida
+  PASS  libero: ciclo consentito (b→a)
+  PASS  libero: drag senza snap (dx esatto)
+  PASS  libero: select forma arco (scelta utente)
+  PASS  libero: arco diventa curvo dopo la scelta utente
+
+== TASK 4 — Riassunto visuale ==
+  PASS  riassunto: pannello testo affiancato montato e visibile
+  PASS  riassunto: tab “Testo” presente
+  PASS  riassunto: tab “Testo” attivo all’apertura
+  PASS  riassunto: nodi renderizzati come card
+  PASS  riassunto: card con testo titolo + corpo separati
+  PASS  riassunto: prima riga = titolo
+  PASS  riassunto: corpo multilinea presente
+  PASS  riassunto: textarea del pannello testo visibile
+  PASS  riassunto: pannello sincronizzato col nodo selezionato
+  PASS  riassunto: modifica dal pannello aggiorna la card
+  PASS  riassunto: archi facoltativi (collegamento riuscito)
+  PASS  riassunto: archi semplici senza frecce
+  PASS  riassunto: stack a colonna (stessa x)
+  PASS  riassunto: stack verticale
+
+== TASK 4 — Cambio tipo su schema popolato ==
+  PASS  cambio tipo: type persistito (lr)
+  PASS  cambio tipo: nodi e archi conservati
+  PASS  cambio tipo: selettore aggiornato
+  PASS  cambio tipo: pulsanti aggiornati (niente +Figlio per lr)
+  PASS  cambio tipo: guide colonne del nuovo tipo applicate
+  PASS  cambio tipo: layout lr applicato con animazione
+  PASS  cambio tipo: tutti i nodi ricollocati (D oltre C)
+  PASS  cambio tipo: lr→albero conserva tutto
+  PASS  cambio tipo: layout gerarchico applicato
+  PASS  cambio tipo → riassunto: pannello testo montato
+  PASS  cambio tipo → riassunto: nodi diventano card
+  PASS  cambio tipo: mappa→albero type
+  PASS  cambio tipo: nessun arco rimosso con conferma=NO
+  PASS  cambio tipo: ciclo marcato extra
+  PASS  cambio tipo: arco extra renderizzato tratteggiato
+  PASS  cambio tipo: stroke-dasharray presente sull’extra
+  PASS  cambio tipo: con conferma gli archi non validi sono rimossi
+  PASS  riapertura: tipo persistito letto da doc.type
+  PASS  riapertura: strategia lr riapplicata (guide colonne)
+  PASS  riapertura: pulsanti lr (senza +Figlio)
+
+== BLOCCO 2 - Transizione verso Mappa concettuale (rendering) ==
+    [albero iniziale] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [albero dblclick arco] modale=0
+    [albero->mappa] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+    [mappa + re-render] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+    [mappa dblclick arco] modale=1
+    [mappa->libero] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [libero->riassunto] DOM=4 doc.edges=4 guide=0 etichette=0 dash=0 (extra 0)
+    [riassunto->mappa] DOM=4 doc.edges=4 guide=0 etichette=4 dash=0 (extra 0)
+  PASS  B2: dopo le transizioni DOM .sc-edge == doc.edges e il conteggio non cresce al re-render
+    [guide] lr=3 -> mappa=0 | residui passi=0/0/0/0
+  PASS  B2: nessuna .sc-guide residua dopo il cambio tipo (lr->mappa da >0 a 0; mappa/libero/riassunto = 0)
+  PASS  B2: etichetta archi editabile solo in mappa (gate edgeStyle().etichetta)
+    [dash] residui non-extra: nessuno
+
+== BLOCCO 2 - Transizioni tutti i tipi (paire ordinate) ==
+  PASS  B2T[albero>mappa] type + selettore aggiornati
+  PASS  B2T[albero>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>mappa] nessuna conferma chiamata
+  PASS  B2T[albero>mappa] nessuna guida residua
+  PASS  B2T[albero>lr] type + selettore aggiornati
+  PASS  B2T[albero>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>lr] nessuna conferma chiamata
+  PASS  B2T[albero>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[albero>tb] type + selettore aggiornati
+  PASS  B2T[albero>tb] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>tb] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>tb] nessuna conferma chiamata
+  PASS  B2T[albero>tb] guide tb presenti e continue (no dasharray)
+  PASS  B2T[albero>libero] type + selettore aggiornati
+  PASS  B2T[albero>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>libero] nessuna conferma chiamata
+  PASS  B2T[albero>libero] nessuna guida residua
+  PASS  B2T[albero>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[albero>riassunto] type + selettore aggiornati
+  PASS  B2T[albero>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[albero>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[albero>riassunto] nessuna conferma chiamata
+  PASS  B2T[albero>riassunto] nessuna guida residua
+    sorgente albero completata (paire finora=5)
+  PASS  B2T[mappa>albero] type + selettore aggiornati
+  PASS  B2T[mappa>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>albero] nessuna conferma chiamata
+  PASS  B2T[mappa>albero] nessuna guida residua
+  PASS  B2T[mappa>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[mappa>lr] type + selettore aggiornati
+  PASS  B2T[mappa>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>lr] nessuna conferma chiamata
+  PASS  B2T[mappa>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[mappa>tb] type + selettore aggiornati
+  PASS  B2T[mappa>tb] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>tb] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>tb] nessuna conferma chiamata
+  PASS  B2T[mappa>tb] guide tb presenti e continue (no dasharray)
+  PASS  B2T[mappa>libero] type + selettore aggiornati
+  PASS  B2T[mappa>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>libero] nessuna conferma chiamata
+  PASS  B2T[mappa>libero] nessuna guida residua
+  PASS  B2T[mappa>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[mappa>riassunto] type + selettore aggiornati
+  PASS  B2T[mappa>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[mappa>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[mappa>riassunto] nessuna conferma chiamata
+  PASS  B2T[mappa>riassunto] nessuna guida residua
+    sorgente mappa completata (paire finora=10)
+  PASS  B2T[lr>albero] type + selettore aggiornati
+  PASS  B2T[lr>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>albero] nessuna conferma chiamata
+  PASS  B2T[lr>albero] nessuna guida residua
+  PASS  B2T[lr>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[lr>mappa] type + selettore aggiornati
+  PASS  B2T[lr>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>mappa] nessuna conferma chiamata
+  PASS  B2T[lr>mappa] nessuna guida residua
+  PASS  B2T[lr>tb] type + selettore aggiornati
+  PASS  B2T[lr>tb] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>tb] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>tb] nessuna conferma chiamata
+  PASS  B2T[lr>tb] guide tb presenti e continue (no dasharray)
+  PASS  B2T[lr>libero] type + selettore aggiornati
+  PASS  B2T[lr>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>libero] nessuna conferma chiamata
+  PASS  B2T[lr>libero] nessuna guida residua
+  PASS  B2T[lr>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[lr>riassunto] type + selettore aggiornati
+  PASS  B2T[lr>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[lr>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[lr>riassunto] nessuna conferma chiamata
+  PASS  B2T[lr>riassunto] nessuna guida residua
+    sorgente lr completata (paire finora=15)
+  PASS  B2T[tb>albero] type + selettore aggiornati
+  PASS  B2T[tb>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[tb>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[tb>albero] nessuna conferma chiamata
+  PASS  B2T[tb>albero] nessuna guida residua
+  PASS  B2T[tb>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[tb>mappa] type + selettore aggiornati
+  PASS  B2T[tb>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[tb>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[tb>mappa] nessuna conferma chiamata
+  PASS  B2T[tb>mappa] nessuna guida residua
+  PASS  B2T[tb>lr] type + selettore aggiornati
+  PASS  B2T[tb>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[tb>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[tb>lr] nessuna conferma chiamata
+  PASS  B2T[tb>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[tb>libero] type + selettore aggiornati
+  PASS  B2T[tb>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[tb>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[tb>libero] nessuna conferma chiamata
+  PASS  B2T[tb>libero] nessuna guida residua
+  PASS  B2T[tb>libero] Auto-layout disabilitato (libero)
+  PASS  B2T[tb>riassunto] type + selettore aggiornati
+  PASS  B2T[tb>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[tb>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[tb>riassunto] nessuna conferma chiamata
+  PASS  B2T[tb>riassunto] nessuna guida residua
+    sorgente tb completata (paire finora=20)
+  PASS  B2T[libero>albero] type + selettore aggiornati
+  PASS  B2T[libero>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>albero] nessuna conferma chiamata
+  PASS  B2T[libero>albero] nessuna guida residua
+  PASS  B2T[libero>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[libero>mappa] type + selettore aggiornati
+  PASS  B2T[libero>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>mappa] nessuna conferma chiamata
+  PASS  B2T[libero>mappa] nessuna guida residua
+  PASS  B2T[libero>lr] type + selettore aggiornati
+  PASS  B2T[libero>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>lr] nessuna conferma chiamata
+  PASS  B2T[libero>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[libero>tb] type + selettore aggiornati
+  PASS  B2T[libero>tb] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>tb] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>tb] nessuna conferma chiamata
+  PASS  B2T[libero>tb] guide tb presenti e continue (no dasharray)
+  PASS  B2T[libero>riassunto] type + selettore aggiornati
+  PASS  B2T[libero>riassunto] nodi(4)/archi(3) invariati
+  PASS  B2T[libero>riassunto] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[libero>riassunto] nessuna conferma chiamata
+  PASS  B2T[libero>riassunto] nessuna guida residua
+    sorgente libero completata (paire finora=25)
+  PASS  B2T[riassunto>albero] type + selettore aggiornati
+  PASS  B2T[riassunto>albero] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>albero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>albero] nessuna conferma chiamata
+  PASS  B2T[riassunto>albero] nessuna guida residua
+  PASS  B2T[riassunto>albero] pulsante "+ Figlio" presente (albero)
+  PASS  B2T[riassunto>mappa] type + selettore aggiornati
+  PASS  B2T[riassunto>mappa] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>mappa] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>mappa] nessuna conferma chiamata
+  PASS  B2T[riassunto>mappa] nessuna guida residua
+  PASS  B2T[riassunto>lr] type + selettore aggiornati
+  PASS  B2T[riassunto>lr] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>lr] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>lr] nessuna conferma chiamata
+  PASS  B2T[riassunto>lr] guide lr presenti e continue (no dasharray)
+  PASS  B2T[riassunto>tb] type + selettore aggiornati
+  PASS  B2T[riassunto>tb] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>tb] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>tb] nessuna conferma chiamata
+  PASS  B2T[riassunto>tb] guide tb presenti e continue (no dasharray)
+  PASS  B2T[riassunto>libero] type + selettore aggiornati
+  PASS  B2T[riassunto>libero] nodi(4)/archi(3) invariati
+  PASS  B2T[riassunto>libero] DOM .sc-edge==3 e data-eid == doc.edges
+  PASS  B2T[riassunto>libero] nessuna conferma chiamata
+  PASS  B2T[riassunto>libero] nessuna guida residua
+  PASS  B2T[riassunto>libero] Auto-layout disabilitato (libero)
+    sorgente riassunto completata (paire finora=30)
+  PASS  B2T: tutte le paire ordinate coperte
+
+================================================
+RISULTATI UI: 248 passati, 0 falliti

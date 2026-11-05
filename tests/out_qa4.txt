@@ -1,0 +1,99 @@
+== QA4-1: matrice pulsanti per tipo (doc con 1 nodo) ==
+  PASS  QA1.1 albero: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 albero: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 albero: + Nodo presente
+  PASS  QA1.1 albero: auto-layout attivo
+  PASS  QA1.1 albero: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 albero: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 lr: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 lr: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 lr: + Nodo presente
+  PASS  QA1.1 lr: auto-layout attivo
+  PASS  QA1.1 lr: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 lr: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 libero: .tool-btn completi [+ Nodo,+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 libero: matrice AGGIUNTA esatta [child,node,sibling]
+  PASS  QA1.1 libero: + Nodo presente
+  PASS  QA1.1 libero: auto-layout DISABILITATO
+  PASS  QA1.1 libero: select stile arco presente
+  PASS  QA1.1 libero: opzioni arco [Dritto,Curvo,Gomito]
+  PASS  QA1.1 libero: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 mappa: .tool-btn completi [+ Figlio,+ Fratello,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 mappa: matrice AGGIUNTA esatta [child,sibling]
+  PASS  QA1.1 mappa: + Nodo ABSENTE (SBAGLIATO se presente)
+  PASS  QA1.1 mappa: auto-layout attivo
+  PASS  QA1.1 mappa: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 mappa: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 riassunto: .tool-btn completi [+ Figlio,Cancella,Collega,Auto-layout]
+  PASS  QA1.1 riassunto: matrice AGGIUNTA esatta [child]
+  PASS  QA1.1 riassunto: + Nodo ABSENTE (spec 1.1: solo + Figlio)
+  PASS  QA1.1 riassunto: SOLO + Figlio tra i pulsanti di aggiunta
+  PASS  QA1.1 riassunto: auto-layout attivo
+  PASS  QA1.1 riassunto: NESSUN select stile arco in .sc-btnwrap
+  PASS  QA1.1 riassunto: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.1 riassunto: tab Testo ATTIVO in apertura (auto-apertura)
+== QA4-2: semantica +Nodo / +Figlio / +Fratello / fallback ==
+  PASS  QA1.2 + Nodo: +1 nodo, ZERO archi (con selezione attiva)
+  PASS  QA1.2 + Nodo: nessun toast
+  PASS  QA1.2 + Figlio (albero): nodo + 1 arco
+  PASS  QA1.2 + Figlio (albero): arco selezionato -> nuovo
+  PASS  QA1.2 + Fratello (albero): arco GENITORE -> nuovo (non selezionato -> nuovo)
+  PASS  QA1.2 + Nodo (con selezione): nodo isolato, archi invariati
+  PASS  QA1.2 albero: 2° genitore RIFIUTATO (nessun arco aggiunto)
+  PASS  QA1.2 albero: toast motivato sul 2° genitore
+  PASS  QA1.2 albero: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 lr: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 libero: +Fratello senza genitore = + Nodo (isolato, NESSUN toast)
+  PASS  QA1.2 mappa: +Fratello senza genitore = + Figlio (SEMPRE connesso)
+== QA4-3: bootstrap 0 nodi ==
+  PASS  QA1.3 albero: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 albero: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 albero: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 lr: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 lr: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 lr: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 libero: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 libero: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 libero: con 1 nodo matrice completa [node,child,sibling]
+  PASS  QA1.3 mappa: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 mappa: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 mappa: con 1 nodo + Nodo SPARISCE (torna la matrice)
+  PASS  QA1.3 mappa: con 1 nodo + Figlio presente
+  PASS  QA1.3 mappa: + Fratello presente (matrice [child,sibling])
+  PASS  QA1.3 riassunto: 0 nodi -> [+ Nodo] visibile
+  PASS  QA1.3 riassunto: + Nodo crea il PRIMO nodo
+  PASS  QA1.3 riassunto: con 1 nodo + Nodo SPARISCE (torna la matrice)
+  PASS  QA1.3 riassunto: con 1 nodo + Figlio presente
+  PASS  QA1.3 riassunto: + Fratello assente (matrice [child])
+== QA4-4: chrome al cambio tipo (tab Testo / etichetta / layout / arco) ==
+  PASS  QA1.4[albero]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[albero]: select stile arco assente
+  PASS  QA1.4[albero]: auto-layout attivo
+  PASS  QA1.4[albero]: arco renderizzato nel DOM
+  PASS  QA1.4[albero]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[lr]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[lr]: select stile arco assente
+  PASS  QA1.4[lr]: auto-layout attivo
+  PASS  QA1.4[lr]: arco renderizzato nel DOM
+  PASS  QA1.4[lr]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[libero]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[libero]: select stile arco presente
+  PASS  QA1.4[libero]: auto-layout DISABILITATO
+  PASS  QA1.4[libero]: arco renderizzato nel DOM
+  PASS  QA1.4[libero]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4[mappa]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[mappa]: select stile arco assente
+  PASS  QA1.4[mappa]: auto-layout attivo
+  PASS  QA1.4[mappa]: arco renderizzato nel DOM
+  PASS  QA1.4[mappa]: dblclick arco APRE modale etichetta
+  PASS  QA1.4[mappa]: etichetta salvata nel doc
+  PASS  QA1.4[riassunto]: tab Testo SEMPRE visibile (4 tab in ogni tipo)
+  PASS  QA1.4[riassunto]: tab Testo ATTIVO dopo cambio tipo (auto-apertura)
+  PASS  QA1.4[riassunto]: select stile arco assente
+  PASS  QA1.4[riassunto]: auto-layout attivo
+  PASS  QA1.4[riassunto]: arco renderizzato nel DOM
+  PASS  QA1.4[riassunto]: dblclick arco NON apre modale (etichetta non editabile)
+  PASS  QA1.4: NESSUNA chiamata a confirm() in tutto il ciclo dei tipi
+
+================================================
+RISULTATI qa4_matrix: 92 passati, 0 falliti

@@ -1,0 +1,56 @@
+[1/384] Linking CXX static library ggml\src\ggml-cpu.a
+[2/384] Building CXX object vendor/hash/CMakeFiles/vendor-hash.dir/sha1/sha1.c.obj
+[3/384] Building C object vendor/hash/CMakeFiles/vendor-hash.dir/sha256/sha256.c.obj
+[4/384] Linking CXX static library ggml\src\ggml.a
+[5/384] Building CXX object vendor/hash/CMakeFiles/vendor-hash.dir/hash.cpp.obj
+[6/384] Building CXX object common/CMakeFiles/llama-common-base.dir/build-info.cpp.obj
+[7/384] Building C object vendor/hash/CMakeFiles/vendor-hash.dir/xxhash/xxhash.c.obj
+[8/384] Linking CXX static library common\libllama-common-base.a
+[9/384] Linking CXX static library vendor\hash\libvendor-hash.a
+[10/384] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-iswa.cpp.obj
+[11/384] Building CXX object src/CMakeFiles/llama.dir/llama-mmap.cpp.obj
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-mmap.cpp:589:91: warning: unused parameter 'lazy_ranges' [-Wunused-parameter]
+  589 |     impl(struct llama_file * file, size_t prefetch, bool numa, const llama_mmap::ranges & lazy_ranges) {
+      |                                                                                           ^
+1 warning generated.
+[12/384] Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.obj
+FAILED: [code=1] src/CMakeFiles/llama.dir/llama-context.cpp.obj 
+C:\Users\stebo\AppData\Local\Microsoft\WinGet\Packages\MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\llvm-mingw-20261020-ucrt-x86_64\bin\clang++.exe -DGGML_USE_CPU -D_CRT_SECURE_NO_WARNINGS -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/." -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/build/src" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/../include" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/ggml/src/../include" -O3 -DNDEBUG -Xclang -fno-pch-timestamp -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi -MD -MT src/CMakeFiles/llama.dir/llama-context.cpp.obj -MF src\CMakeFiles\llama.dir\llama-context.cpp.obj.d -o src/CMakeFiles/llama.dir/llama-context.cpp.obj -c "C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp"
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:2203:43: error: no member named 'all_of' in namespace 'std'; did you mean '__all_of'?
+ 2203 |             const bool all_sampled = std::all_of(res->t_sampled.begin(), res->t_sampled.end(), [](const ggml_tensor * t) { return t != nullptr; });
+      |                                           ^~~~~~
+      |                                           __all_of
+C:/Users/stebo/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20261020-ucrt-x86_64/include/c++/v1/__algorithm/simd_utils.h:135:46: note: '__all_of' declared here
+  135 | [[__nodiscard__]] _LIBCPP_HIDE_FROM_ABI bool __all_of(__simd_vector<_Tp, _Np> __vec) noexcept {
+      |                                              ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:2203:38: error: no matching function for call to '__all_of'
+ 2203 |             const bool all_sampled = std::all_of(res->t_sampled.begin(), res->t_sampled.end(), [](const ggml_tensor * t) { return t != nullptr; });
+      |                                      ^~~~~~~~~~~
+C:/Users/stebo/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20261020-ucrt-x86_64/include/c++/v1/__algorithm/simd_utils.h:135:46: note: candidate function template not viable: requires single argument '__vec', but 3 arguments were provided
+  135 | [[__nodiscard__]] _LIBCPP_HIDE_FROM_ABI bool __all_of(__simd_vector<_Tp, _Np> __vec) noexcept {
+      |                                              ^        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 errors generated.
+[13/384] Building CXX object src/CMakeFiles/llama.dir/llama-model-saver.cpp.obj
+[14/384] Building CXX object src/CMakeFiles/llama.dir/llama-memory-recurrent.cpp.obj
+[15/384] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-idx.cpp.obj
+[16/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/parsers.cpp.obj
+[17/384] Building CXX object src/CMakeFiles/llama.dir/unicode-data.cpp.obj
+[18/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/cohere2moe.cpp.obj
+[19/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/functionary-v3-2.cpp.obj
+[20/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/gigachat-v3.cpp.obj
+[21/384] Building CXX object src/CMakeFiles/llama.dir/llama-quant.cpp.obj
+[22/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/gemma4.cpp.obj
+[23/384] Building CXX object common/CMakeFiles/llama-common.dir/parsers/deepseek.cpp.obj
+[24/384] Building CXX object src/CMakeFiles/llama.dir/llama-sampler.cpp.obj
+[25/384] Building CXX object src/CMakeFiles/llama.dir/llama-vocab.cpp.obj
+[26/384] Building CXX object src/CMakeFiles/llama.dir/llama-model-loader.cpp.obj
+[27/384] Building CXX object vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj
+FAILED: [code=1] vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj 
+C:\Users\stebo\AppData\Local\Microsoft\WinGet\Packages\MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\llvm-mingw-20261020-ucrt-x86_64\bin\clang++.exe -DCPPHTTPLIB_FORM_URL_ENCODED_PAYLOAD_MAX_LENGTH=1048576 -DCPPHTTPLIB_LISTEN_BACKLOG=512 -DCPPHTTPLIB_REQUEST_URI_MAX_LENGTH=32768 -DCPPHTTPLIB_TCP_NODELAY=1 -D_CRT_SECURE_NO_WARNINGS  -O3 -DNDEBUG -Xclang -fno-pch-timestamp -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi -w -pthread -MD -MT vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj -MF vendor\cpp-httplib\CMakeFiles\cpp-httplib.dir\httplib.cpp.obj.d -o vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj -c "C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/vendor/cpp-httplib/httplib.cpp"
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/vendor/cpp-httplib/httplib.cpp:1708:9: error: no member named 'CreateFile2' in the global namespace
+ 1708 |       ::CreateFile2(wpath.c_str(), GENERIC_READ,
+      |         ^~~~~~~~~~~
+1 error generated.
+[28/384] Building CXX object src/CMakeFiles/llama.dir/unicode.cpp.obj
+[29/384] Building CXX object src/CMakeFiles/llama.dir/llama-model.cpp.obj
+ninja: build stopped: subcommand failed.

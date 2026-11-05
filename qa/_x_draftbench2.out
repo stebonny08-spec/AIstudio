@@ -1,0 +1,5 @@
+[up_off] ok=True tps=6.1289626130200725 acc=None rss=4435.8
+[up_draft] ok=True tps=7.7968820542927055 acc=0.8402 rss=6369.2
+[xt_off] ok=True tps=6.429301590460597 acc=None rss=4426.6
+[xt_draft] ok=True tps=7.970579190347764 acc=0.8402 rss=6352.2
+DERIVED {"tg_up_off": 6.1289626130200725, "tg_up_draft": 7.7968820542927055, "tg_xt_off": 6.429301590460597, "tg_xt_draft": 7.970579190347764, "acc_up": 0.8402, "acc_xt": 0.8402, "rss_up_mb": 4435.8, "rss_xt_mb": 4426.6, "speedup_up": 1.272, "speedup_xt": 1.24}

@@ -1,0 +1,17 @@
+{
+ "metric": "tempo da process_query_stream() al PRIMO evento (progress 'gate' start = primo feedback UI); modello WARM, indice costruito, n=5, mediana; clock time.perf_counter; web_override=mai",
+ "first_event_ms": {
+  "p50": 22.68,
+  "max": 25.87,
+  "samples": [
+   25.87,
+   22.68,
+   21.73,
+   24.27,
+   22.53
+  ]
+ },
+ "first_event_stage": "gate/start",
+ "gate_p50_le_2000ms": true,
+ "ts": "2026-10-24T23:36:36+0200"
+}

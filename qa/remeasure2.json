@@ -1,0 +1,22 @@
+{
+ "ts": "2026-10-16T22:02:34.217Z",
+ "fogli_k13": {
+  "dR": 1,
+  "dB": 1,
+  "scrollLeft": 0,
+  "side": 200
+ },
+ "fogli_scroll": {
+  "dR": 1,
+  "dB": 1,
+  "scrollLeft": 400
+ },
+ "video_1440": {
+  "scrollH": 900,
+  "innerH": 900,
+  "noScroll": true,
+  "props": 0,
+  "labs": 4,
+  "tracks": 4
+ }
+}

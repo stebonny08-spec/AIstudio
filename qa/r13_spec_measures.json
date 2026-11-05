@@ -1,0 +1,418 @@
+{
+  "round": "R13",
+  "task": "S4 misure per profilo + prompt-lookup + RAM",
+  "ts": 1792842067.9371963,
+  "duration_s": 689.8,
+  "draft_model_used": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\MiniCPM5-1B-Q4_K_M.gguf (scelta S2)",
+  "method": "llama-server reale, 2 run/caso ON e OFF, stessa richiesta; tps=timings.predicted_per_second; acceptance=draft_n_accepted/draft_n",
+  "thresholds": {
+    "acceptance_min": 0.7,
+    "speedup_min": 1.3,
+    "ram_draft_max_mb": 2900,
+    "unload_delta_max_mb": 50,
+    "prompt_lookup_min_speedup": 1.05
+  },
+  "per_profile": {
+    "fast_micro": {
+      "profile": "fast",
+      "classe": "micro",
+      "tps_off": 13.145,
+      "tps_on": 11.17,
+      "acceptance_on": 0.439,
+      "speedup": 0.85,
+      "runs_off": [
+        {
+          "wall_s": 15.21,
+          "chars": 579,
+          "tps": 13.2,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 200
+        },
+        {
+          "wall_s": 15.31,
+          "chars": 595,
+          "tps": 13.09,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 200
+        }
+      ],
+      "runs_on": [
+        {
+          "wall_s": 18.26,
+          "chars": 710,
+          "tps": 11.0,
+          "acceptance": 0.4396887159533074,
+          "draft_active": true,
+          "predicted_n": 200
+        },
+        {
+          "wall_s": 17.68,
+          "chars": 977,
+          "tps": 11.34,
+          "acceptance": 0.4375,
+          "draft_active": true,
+          "predicted_n": 200
+        }
+      ],
+      "draft_decision": "OFF",
+      "draft_motivation": "acceptance 0.439 < 0.70; speedup 0.85x < 1.30x"
+    },
+    "fast_standard": {
+      "profile": "fast",
+      "classe": "standard",
+      "tps_off": 12.725,
+      "tps_on": 13.29,
+      "acceptance_on": 0.606,
+      "speedup": 1.044,
+      "runs_off": [
+        {
+          "wall_s": 20.74,
+          "chars": 879,
+          "tps": 13.05,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 267
+        },
+        {
+          "wall_s": 48.38,
+          "chars": 1963,
+          "tps": 12.4,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 600
+        }
+      ],
+      "runs_on": [
+        {
+          "wall_s": 43.88,
+          "chars": 1871,
+          "tps": 13.79,
+          "acceptance": 0.6427406199021207,
+          "draft_active": true,
+          "predicted_n": 600
+        },
+        {
+          "wall_s": 46.96,
+          "chars": 2092,
+          "tps": 12.79,
+          "acceptance": 0.5701357466063348,
+          "draft_active": true,
+          "predicted_n": 600
+        }
+      ],
+      "draft_decision": "OFF",
+      "draft_motivation": "acceptance 0.606 < 0.70; speedup 1.044x < 1.30x"
+    },
+    "think_longform": {
+      "profile": "think",
+      "classe": "think",
+      "tps_off": 12.545,
+      "tps_on": 14.67,
+      "acceptance_on": 0.811,
+      "speedup": 1.169,
+      "runs_off": [
+        {
+          "wall_s": 121.67,
+          "chars": 4488,
+          "tps": 12.37,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 1500
+        },
+        {
+          "wall_s": 66.12,
+          "chars": 2852,
+          "tps": 12.72,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 841
+        }
+      ],
+      "runs_on": [
+        {
+          "wall_s": 120.36,
+          "chars": 4854,
+          "tps": 12.51,
+          "acceptance": 0.6530612244897959,
+          "draft_active": true,
+          "predicted_n": 1500
+        },
+        {
+          "wall_s": 89.23,
+          "chars": 5284,
+          "tps": 16.83,
+          "acceptance": 0.9695652173913043,
+          "draft_active": true,
+          "predicted_n": 1500
+        }
+      ],
+      "draft_decision": "OFF",
+      "draft_motivation": "speedup 1.169x < 1.30x"
+    },
+    "tool_micro": {
+      "profile": "tool",
+      "classe": "micro",
+      "tps_off": 13.29,
+      "tps_on": 10.83,
+      "acceptance_on": 0.478,
+      "speedup": 0.815,
+      "runs_off": [
+        {
+          "wall_s": 1.76,
+          "chars": 82,
+          "tps": 13.32,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 22
+        },
+        {
+          "wall_s": 1.23,
+          "chars": 47,
+          "tps": 13.26,
+          "acceptance": null,
+          "draft_active": false,
+          "predicted_n": 16
+        }
+      ],
+      "runs_on": [
+        {
+          "wall_s": 1.31,
+          "chars": 28,
+          "tps": 7.02,
+          "acceptance": 0.26666666666666666,
+          "draft_active": true,
+          "predicted_n": 8
+        },
+        {
+          "wall_s": 3.12,
+          "chars": 176,
+          "tps": 14.64,
+          "acceptance": 0.6888888888888889,
+          "draft_active": true,
+          "predicted_n": 45
+        }
+      ],
+      "draft_decision": "OFF",
+      "draft_motivation": "acceptance 0.478 < 0.70; speedup 0.815x < 1.30x"
+    }
+  },
+  "draft_policy_S3": {
+    "fast_micro": false,
+    "fast_standard": false,
+    "think_longform": true,
+    "tool_micro": false,
+    "w2": true,
+    "note": "want_draft: profile=='think' OR classe=='think' -> draft (long-form); W2 via flag DRAFT_LONGFORM (kwarg draft) se llm_fn lo supporta; micro/standard/tool senza draft"
+  },
+  "prompt_lookup": {
+    "baseline_r12_speedup": 1.049,
+    "threshold": 1.05,
+    "grep_hits": [
+      {
+        "file": "data\\config_manager.py",
+        "line": 42,
+        "text": "# --- H5: motore / autotune / speculazione (OPT-IN tranne prompt_lookup) ---"
+      },
+      {
+        "file": "data\\config_manager.py",
+        "line": 47,
+        "text": "\"spec.prompt_lookup\": True,          # prompt lookup: ON di default"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 41,
+        "text": "\"prompt_lookup_min_speedup\": 1.05}"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 108,
+        "text": "def grep_prompt_lookup():"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 122,
+        "text": "if \"prompt_lookup\" in line:"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 178,
+        "text": "hits = grep_prompt_lookup()"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 183,
+        "text": "\"threshold\": THRESH[\"prompt_lookup_min_speedup\"],"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 194,
+        "text": "\"spec.prompt_lookup=false da R12; DEFAULT_CONFIG resta \""
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 224,
+        "text": "\"prompt_lookup\": lk,"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 236,
+        "text": "\"prompt_lookup_decision\": lk[\"decision\"],"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 23,
+        "text": "1.4 lookup      — 10 output JSON corti, flag spec.prompt_lookup ON vs OFF,"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 159,
+        "text": "def measure_prompt_lookup(port) -> dict:"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 160,
+        "text": "\"\"\"10 output JSON corti con spec.prompt_lookup ON vs OFF.\"\"\""
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 174,
+        "text": "cfg.set(\"spec.prompt_lookup\", True)"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 177,
+        "text": "cfg.set(\"spec.prompt_lookup\", False)"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 188,
+        "text": "cfg.set(\"spec.prompt_lookup\", True)"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 193,
+        "text": "cfg.set(\"spec.prompt_lookup\", False)"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 198,
+        "text": "\"'prompt_lookup' su tutto il codice .py (esclusi .venv/dist) \""
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 218,
+        "text": "\"config_scritta\": {\"spec.prompt_lookup\": decision == \"ON\"},"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 278,
+        "text": "\"idle_unload\", \"prompt_lookup\", \"autotune\"):"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 355,
+        "text": "# ---------------- 1.4 prompt_lookup (server gia' caldo) ------------"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 357,
+        "text": "lookup = measure_prompt_lookup(srv.port)"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 359,
+        "text": "out[\"sections\"][\"prompt_lookup\"] = lookup"
+      },
+      {
+        "file": "tests\\t2a_sidecar.py",
+        "line": 363,
+        "text": "out[\"sections\"][\"prompt_lookup\"] = {"
+      },
+      {
+        "file": "tests\\testH5_flags.py",
+        "line": 62,
+        "text": "self.assertIs(DEFAULT_CONFIG.get(\"spec.prompt_lookup\"), True)"
+      },
+      {
+        "file": "tests\\testH5_flags.py",
+        "line": 66,
+        "text": "# (d) prompt_lookup default True; draft/eagle3 False (OPT-IN)"
+      },
+      {
+        "file": "tests\\testH5_flags.py",
+        "line": 68,
+        "text": "self.assertTrue(DEFAULT_CONFIG[\"spec.prompt_lookup\"])"
+      },
+      {
+        "file": "tests\\testH5_flags.py",
+        "line": 71,
+        "text": "# tutti gli altri nuovi flag OPT-IN (tranne prompt_lookup)"
+      }
+    ],
+    "code_consumers": [
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 41,
+        "text": "\"prompt_lookup_min_speedup\": 1.05}"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 108,
+        "text": "def grep_prompt_lookup():"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 122,
+        "text": "if \"prompt_lookup\" in line:"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 178,
+        "text": "hits = grep_prompt_lookup()"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 183,
+        "text": "\"threshold\": THRESH[\"prompt_lookup_min_speedup\"],"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 194,
+        "text": "\"spec.prompt_lookup=false da R12; DEFAULT_CONFIG resta \""
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 224,
+        "text": "\"prompt_lookup\": lk,"
+      },
+      {
+        "file": "tools\\_r13_measures.py",
+        "line": 236,
+        "text": "\"prompt_lookup_decision\": lk[\"decision\"],"
+      }
+    ],
+    "speedup_with_draft": null,
+    "speedup_note": "NESSUN componente di esecuzione legge il flag (grep su core/data/backend/tools/tests: solo config_manager=definizione e testH5=assert default) -> con o senza draft il contributo e' 1.0x = nessuna variazione; baseline R12 1.049x gia' sotto soglia 1.05x",
+    "decision": "REMOZIONE (flag spento a runtime: config.json spec.prompt_lookup=false da R12; DEFAULT_CONFIG resta True SOLO per il contratto tests/testH5_flags.py che non posso modificare -> nessun consumatore = nessun effetto)"
+  },
+  "ram": {
+    "server_rss_peak_no_draft_mb": 2576.5,
+    "server_rss_peak_with_draft_mb": 3855.1,
+    "limit_with_draft_mb": 2900,
+    "with_draft_under_limit": false,
+    "system_used_before_mb": 10056.8,
+    "system_used_after_unload_mb": 9926.5,
+    "unload_delta_mb": -130.3,
+    "unload_delta_limit_mb": 50,
+    "unload_ok": true,
+    "note": "unload di ENTRambi gli stati server (draft ON e OFF) misurato su memoria di sistema usata prima/dopo il ciclo completo"
+  },
+  "last_meta_contract": [
+    "timings",
+    "acceptance",
+    "draft_active",
+    "ts"
+  ]
+}

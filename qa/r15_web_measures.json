@@ -1,0 +1,218 @@
+{
+ "block": "W",
+ "build": {
+  "qa_ts": "2026-10-25T11:30:00+01:00",
+  "v_bad": 0,
+  "v_unique": 1
+ },
+ "checks": {
+  "W6a": {
+   "id": "W6a",
+   "expected": "il poll di produzione passa p.progress a renderStreamProgress",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6b": {
+   "id": "W6b",
+   "expected": "a done il poll passa p.sources a finalizeStreamingBubble",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6c": {
+   "id": "W6c",
+   "expected": "finalizeStreamingBubble renderizza renderSourceBadges",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6d": {
+   "id": "W6d",
+   "expected": "sendMessage passa getWebOverride() come web_override a send_message",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6e": {
+   "id": "W6e",
+   "expected": "chip web: listener click -> cycleWebOverride",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6f": {
+   "id": "W6f",
+   "expected": "loadWebSettings: apertura gearBtn + boot (waitForApi)",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6g": {
+   "id": "W6g",
+   "expected": "Impostazioni usano app_settings_get/set (API contratto)",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W6h": {
+   "id": "W6h",
+   "expected": "reset dedup progress a ogni poll ( _progLen = 0 )",
+   "ok": true,
+   "evidence": "marker presente in index.html"
+  },
+  "W1": {
+   "id": "W1",
+   "expected": "#settingsModal aperto contiene: select web.mode (auto/sempre/mai), soglia gate 0.05-0.90 (range+number), URL SearXNG, toggle Wikipedia, nota privacy con DuckDuckGo/nessun LLM cloud; tutte con rect>0",
+   "ok": true,
+   "evidence": "mancanti=[] privacy=true options=[\"auto\",\"sempre\",\"mai\"]",
+   "m": {
+    "rects": {
+     "webModeSelect": {
+      "w": 86,
+      "h": 37
+     },
+     "gateThresholdRange": {
+      "w": 150,
+      "h": 16
+     },
+     "gateThresholdInput": {
+      "w": 78,
+      "h": 35
+     },
+     "searxngUrlInput": {
+      "w": 220,
+      "h": 35
+     },
+     "wikipediaToggle": {
+      "w": 13,
+      "h": 13
+     },
+     "privacyWebDesc": {
+      "w": 376,
+      "h": 75
+     },
+     "settingsModal": {
+      "w": 1318,
+      "h": 765
+     }
+    },
+    "privacy": "Quando il web Ã¨ attivo (Auto/Sempre), le tue query di ricerca vengono inviate a DuckDuckGo/SearXNG/Wikipedia: nessun LL"
+   }
+  },
+  "W2": {
+   "id": "W2",
+   "expected": "loadWebSettings riempie i controlli dai valori contratto (gate 0.45, web.mode auto, wiki on); change su select/soglia/searxng/wiki chiama saveWebSetting -> app_settings_set dello STUB (web.mode=sempre, gate.threshold=0.60 numero, url, wiki=false) e il chip si sincronizza su web.mode",
+   "ok": true,
+   "evidence": "sub={\"defOk\":true,\"savesOk\":true,\"mirrorOk\":true,\"chipOk\":true,\"overrideOk\":true,\"rngVal\":\"0.6\",\"chipAfter\":\"Web: Sempre\",\"overrideAfter\":\"sempre\"} pre={\"loaded\":true,\"mode\":\"auto\",\"thr\":0.45,\"rng\":0.45,\"se\":\"\",\"wiki\":true,\"chip\":\"Web: Auto\",\"override\":\"auto\"} saves={\"web.mode\":\"sempre\",\"gate.threshold\":0.6,\"web.searxng_url\":\"http://localhost:8888\",\"web.wikipedia\":false}",
+   "m": {
+    "pre": {
+     "loaded": true,
+     "mode": "auto",
+     "thr": 0.45,
+     "rng": 0.45,
+     "se": "",
+     "wiki": true,
+     "chip": "Web: Auto",
+     "override": "auto"
+    },
+    "saves": {
+     "web.mode": "sempre",
+     "gate.threshold": 0.6,
+     "web.searxng_url": "http://localhost:8888",
+     "web.wikipedia": false
+    },
+    "savesCount": 4,
+    "sub": {
+     "defOk": true,
+     "savesOk": true,
+     "mirrorOk": true,
+     "chipOk": true,
+     "overrideOk": true,
+     "rngVal": "0.6",
+     "chipAfter": "Web: Sempre",
+     "overrideAfter": "sempre"
+    }
+   }
+  },
+  "W3": {
+   "id": "W3",
+   "expected": "progress di poll_stream (3 stadi appunti/libri/web, lista crescente) renderizzato da renderStreamProgress in elemento .streaming-spinner.stage-progress (rect>0, testo \"appunti... libri... web...\"), dedup per lunghezza crescente stabile, spinner originale compatibile",
+   "ok": true,
+   "evidence": "text=\"appunti... ok  .  libri... ok  .  web...\" dedup=true spinnerCompat=true rect=170x21",
+   "m": {
+    "text": "appunti... ok  .  libri... ok  .  web...",
+    "rect": {
+     "w": 170.4,
+     "h": 21.3
+    }
+   }
+  },
+  "W4": {
+   "id": "W4",
+   "expected": "sources finali (appunti/libri/web) renderizzate da renderSourceBadges: 3 badge con label locale/libri/web, badge web con href https + target _blank, tutti con rect>0",
+   "ok": true,
+   "evidence": "n=3 labels=[\"locale\",\"libri\",\"web\"] webHref=https://www.treccani.it/enciclopedia/fotosintesi/ target=_blank",
+   "m": {
+    "labels": [
+     "locale",
+     "libri",
+     "web"
+    ],
+    "href": "https://www.treccani.it/enciclopedia/fotosintesi/",
+    "rects": [
+     {
+      "w": 188.3,
+      "h": 27.5
+     },
+     {
+      "w": 178.4,
+      "h": 27.5
+     },
+     {
+      "w": 223.6,
+      "h": 27.5
+     }
+    ]
+   }
+  },
+  "W5": {
+   "id": "W5",
+   "expected": "chip #webToggleChip accanto all'input: default = web.mode (\"Web: Sempre\" dopo il save), ciclo auto->sempre->mai->auto via cycleWebOverride, getWebOverride() passato come web_override a send_message (stub registra \"sempre\"), rect>0",
+   "ok": true,
+   "evidence": "default=sempre (\"Web: Sempre\") ciclo=mai>auto>sempre sent=sempre rect=104x36",
+   "m": {
+    "v0": "sempre",
+    "v1": "mai",
+    "v2": "auto",
+    "v3": "sempre",
+    "sent": {
+     "message": "domanda di prova",
+     "mode": "automatica",
+     "topic": "",
+     "web_override": "sempre"
+    },
+    "rect": {
+     "w": 104.3,
+     "h": 36
+    }
+   }
+  }
+ },
+ "errors": [],
+ "extracted": {
+  "build": "2026-10-25T11:30:00+01:00",
+  "styles": 1,
+  "markup": {
+   "settingsModal": 7749,
+   "inputRow": 1275
+  },
+  "functions": [
+   "createStreamingBubble",
+   "renderStreamProgress",
+   "renderSourceBadges",
+   "setWebOverrideChip",
+   "syncWebToggleChip",
+   "cycleWebOverride",
+   "getWebOverride",
+   "wireWebSettingsControls",
+   "applyWebSettingsToUI",
+   "loadWebSettings",
+   "saveWebSetting"
+  ]
+ },
+ "console": []
+}

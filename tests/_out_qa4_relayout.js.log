@@ -1,0 +1,227 @@
+== QA4-5: apertura ==
+  PASS  QA2.5 apertura: 9 nodi
+  PASS  QA2.5 apertura: 8 archi, stessi id
+  PASS  QA2.5 apertura: type=mappa
+  PASS  QA2.5 apertura: DOM 9 nodi / 8 archi
+  PASS  QA2.6 apertura: posizioni DOM finite
+== QA4-7: bootstrap vincoli (passaggio ad albero) ==
+  PASS  QA2.7 type=albero dopo changeType
+  PASS  QA2.7 nodi invariati (9)
+  PASS  QA2.7 edges.length INVIARIATO (MAI rimossi)
+  PASS  QA2.7 archi violatori marcati extra===true (2° genitore + ciclo)
+  PASS  QA2.7 extra con extraMotivo
+  PASS  QA2.7 DOM: 2 gruppi .sc-edge-extra
+  PASS  QA2.7 DOM: extra renderizzato TRATTEGGIATO (stroke-dasharray)
+  PASS  QA2.7 dash solo sugli extra (nessun trattino fuori)
+  PASS  QA2.10 bootstrap: zero confirm()
+== QA4-5/6/9/10: ciclo albero->mappa->lr->libero->riassunto->albero x3 ==
+  PASS  QA2.5 ciclo1->mappa: type aggiornato
+  PASS  QA2.5 ciclo1->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo1->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->mappa: zero confirm()
+  PASS  QA2.6 ciclo1->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->mappa: nessuna perdita dopo autoLayout
+    [ciclo1->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->lr: type aggiornato
+  PASS  QA2.5 ciclo1->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->lr: view transform senza NaN
+  PASS  QA2.6 ciclo1->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->lr: zero confirm()
+  PASS  QA2.6 ciclo1->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->lr: nessuna perdita dopo autoLayout
+    [ciclo1->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->libero: type aggiornato
+  PASS  QA2.5 ciclo1->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->libero: view transform senza NaN
+  PASS  QA2.6 ciclo1->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo1->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->libero: zero confirm()
+  PASS  QA2.9 ciclo1->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo1->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo1->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->riassunto: type aggiornato
+  PASS  QA2.5 ciclo1->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo1->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo1->riassunto: zero confirm()
+  PASS  QA2.6 ciclo1->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->riassunto: nessuna perdita dopo autoLayout
+    [ciclo1->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo1->albero: type aggiornato
+  PASS  QA2.5 ciclo1->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo1->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo1->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo1->albero: view transform senza NaN
+  PASS  QA2.6 ciclo1->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo1->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo1->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo1->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo1->albero: zero confirm()
+  PASS  QA2.6 ciclo1->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo1->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo1->albero: nessuna perdita dopo autoLayout
+    [ciclo1->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->mappa: type aggiornato
+  PASS  QA2.5 ciclo2->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo2->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->mappa: zero confirm()
+  PASS  QA2.6 ciclo2->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->mappa: nessuna perdita dopo autoLayout
+    [ciclo2->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->lr: type aggiornato
+  PASS  QA2.5 ciclo2->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->lr: view transform senza NaN
+  PASS  QA2.6 ciclo2->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->lr: zero confirm()
+  PASS  QA2.6 ciclo2->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->lr: nessuna perdita dopo autoLayout
+    [ciclo2->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->libero: type aggiornato
+  PASS  QA2.5 ciclo2->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->libero: view transform senza NaN
+  PASS  QA2.6 ciclo2->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo2->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->libero: zero confirm()
+  PASS  QA2.9 ciclo2->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo2->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo2->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->riassunto: type aggiornato
+  PASS  QA2.5 ciclo2->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo2->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo2->riassunto: zero confirm()
+  PASS  QA2.6 ciclo2->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->riassunto: nessuna perdita dopo autoLayout
+    [ciclo2->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo2->albero: type aggiornato
+  PASS  QA2.5 ciclo2->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo2->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo2->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo2->albero: view transform senza NaN
+  PASS  QA2.6 ciclo2->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo2->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo2->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo2->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo2->albero: zero confirm()
+  PASS  QA2.6 ciclo2->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo2->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo2->albero: nessuna perdita dopo autoLayout
+    [ciclo2->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->mappa: type aggiornato
+  PASS  QA2.5 ciclo3->mappa: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->mappa: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->mappa: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->mappa: view transform senza NaN
+  PASS  QA2.6 ciclo3->mappa: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->mappa: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->mappa: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->mappa: zero confirm()
+  PASS  QA2.6 ciclo3->mappa: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->mappa: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->mappa: nessuna perdita dopo autoLayout
+    [ciclo3->mappa] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->lr: type aggiornato
+  PASS  QA2.5 ciclo3->lr: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->lr: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->lr: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->lr: view transform senza NaN
+  PASS  QA2.6 ciclo3->lr: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->lr: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->lr: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->lr: zero confirm()
+  PASS  QA2.6 ciclo3->lr: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->lr: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->lr: nessuna perdita dopo autoLayout
+    [ciclo3->lr] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->libero: type aggiornato
+  PASS  QA2.5 ciclo3->libero: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->libero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->libero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->libero: view transform senza NaN
+  PASS  QA2.6 ciclo3->libero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->libero: targets null SOLO in libero
+  PASS  QA2.7 ciclo3->libero: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->libero: zero confirm()
+  PASS  QA2.9 ciclo3->libero: pulsante Auto-layout DISABILITATO
+  PASS  QA2.9 ciclo3->libero: autoLayout libero NON sposta posizioni (x/y prima==dopo)
+    [ciclo3->libero] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->riassunto: type aggiornato
+  PASS  QA2.5 ciclo3->riassunto: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->riassunto: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->riassunto: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->riassunto: view transform senza NaN
+  PASS  QA2.6 ciclo3->riassunto: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->riassunto: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->riassunto: nessun residuo extra su tipo valido
+  PASS  QA2.10 ciclo3->riassunto: zero confirm()
+  PASS  QA2.6 ciclo3->riassunto: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->riassunto: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->riassunto: nessuna perdita dopo autoLayout
+    [ciclo3->riassunto] n=9 e=8 extra=0 confirm=0 DOM=9/8
+  PASS  QA2.5 ciclo3->albero: type aggiornato
+  PASS  QA2.5 ciclo3->albero: doc.nodes.length==9
+  PASS  QA2.5 ciclo3->albero: edges invariati (stessi id)
+  PASS  QA2.6 ciclo3->albero: posizioni nodi FINITE dopo changeType
+  PASS  QA2.6 ciclo3->albero: view transform senza NaN
+  PASS  QA2.6 ciclo3->albero: DOM 9 nodi / 8 archi
+  PASS  QA2.6 ciclo3->albero: targets autoLayout TUTTI finiti
+  PASS  QA2.7 ciclo3->albero: extra===true su ciclo+2° genitore
+  PASS  QA2.7 ciclo3->albero: DOM extra tratticgiato x2
+  PASS  QA2.10 ciclo3->albero: zero confirm()
+  PASS  QA2.6 ciclo3->albero: pulsante Auto-layout attivo
+  PASS  QA2.6 ciclo3->albero: posizioni FINITE dopo autoLayout
+  PASS  QA2.6 ciclo3->albero: nessuna perdita dopo autoLayout
+    [ciclo3->albero] n=9 e=8 extra=2 confirm=0 DOM=9/8
+  PASS  QA2.6 badge .sc-zoom valido dopo i cicli
+== QA4-8: UNDO (un solo Ctrl+Z dopo changeType) ==
+  PASS  QA2.8 pre-condizione: siamo ad albero
+  PASS  QA2.8 changeType -> mappa applicato
+  PASS  QA2.8 UN Ctrl+Z: tipo ripristinato (albero)
+  PASS  QA2.8 UN Ctrl+Z: posizioni 9 nodi ripristinate in UN passo
+  PASS  QA2.8 UN Ctrl+Z: view ripristinata in UN passo
+  PASS  QA2.8 UN Ctrl+Z: NESSUNA perdita nodi/archi
+  PASS  QA2.8 UN Ctrl+Z: extra coerenti allo stato ripristinato
+  PASS  QA2.8 UN Ctrl+Z: DOM extra coerente
+  PASS  QA2.8 UN Ctrl+Z: zero confirm()
+  PASS  QA2.10 FINALE: NESSUNA chiamata a confirm() in 3 cicli + undo + bootstrap
+
+================================================
+RISULTATI qa4_relayout: 205 passati, 0 falliti

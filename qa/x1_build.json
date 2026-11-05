@@ -1,0 +1,63 @@
+{
+ "ts": "2026-10-31T14:45:00+0100",
+ "repo": "https://github.com/XHToken/llama.cpp.git",
+ "local_path": "tools/llama-xhtoken",
+ "head": {
+  "sha": "22c0ae1871b60123c5afc008a78fe9c6fffa2858",
+  "date": "2026-10-30T16:23:41+08:00",
+  "subject": "Merge pull request #19 from Septend-fun/dspark/xhtoken-draft",
+  "shallow": false
+ },
+ "toolchain": {
+  "compiler": "clang 23.1.4 (llvm-mingw-20261020-ucrt-x86_64, winget MartinStorsjo.LLVM-MinGW.UCRT)",
+  "reason": "MSVC/VC.Tools assenti su host (vswhere: Build Tools 2026 senza workload C++); gcc assente; LLVM-MinGW = clang+lld+libc++ locale senza elevation",
+  "generator": "Ninja",
+  "cmake_flags": [
+   "-DCMAKE_BUILD_TYPE=Release",
+   "-DGGML_CUDA=OFF (host CPU-only)",
+   "-DGGML_NATIVE=ON (-march=native -> AVX2/AVX512 secondo CPUID host)",
+   "-D_WIN32_WINNT=0x0A00 (fix cpp-httplib CreateFile2)"
+  ]
+ },
+ "patches_locali_dichiarate": [
+  "src/llama-context.cpp: + #include <algorithm> (1 riga; libc++ 23 non include <algorithm> transitivamente — std::all_of non visibile)"
+ ],
+ "build": {
+  "target_dir": "tools/llama-xhtoken/build/bin/",
+  "outputs_ok": [
+   "llama-server.exe",
+   "llama-bench.exe",
+   "llama-cli.exe",
+   "llama-speculative.exe"
+  ],
+  "wall_clock": "prima build (con errori) 14:36:06 -> build finale OK 14:41:14 (~5 min totali di build effettiva su 8 thread, Ninja 444 target)",
+  "exit": 0,
+  "log": [
+   "qa/_x_build1.log",
+   "qa/_x_build2.log",
+   "qa/_x_build3.log",
+   "qa/_x_build4.log"
+  ]
+ },
+ "runtime_dlls_copiate": [
+  "libc++.dll",
+  "libomp.dll",
+  "libunwind.dll"
+ ],
+ "smoke": {
+  "help": {
+   "exit": 0,
+   "bytes": 47021,
+   "log": "qa/_x_help.log"
+  },
+  "version": "0.7.0-dev (build 11945, commit 22c0ae187) built with Clang 23.1.4 for Windows AMD64",
+  "gen50": {
+   "model": "tools/models/MiniCPM5-1B-Q3_K_M.gguf (modello reale piccolo usato come dummy)",
+   "cmd": "llama-cli -m ... -p \"The capital of France is\" -n 50 --seed 42 -t 8",
+   "exit": 0,
+   "evidence": "modello caricato, thinking+risposta generate, [Prompt: 171.0 t/s | Generation: 36.6 t/s], exit pulito",
+   "note": "-no-cnv non esiste nel fork (flag upstream rimosso) -> chat mode con -p"
+  },
+  "ok": true
+ }
+}

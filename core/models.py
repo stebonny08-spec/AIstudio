@@ -48,6 +48,13 @@ class RetrievedChunk:
 @dataclass
 class LocalSearchResult:
     chunks: List[RetrievedChunk] = field(default_factory=list)
+    # H8 — gate di confidenza sul recupero: alta|media|bassa|nessuna.
+    # "media" è il default "non calcolato" per chi costruisce il result
+    # a mano; LocalSearchEngine lo imposta sempre esplicitamente.
+    confidence: str = "media"
+    # H8 — se False il caller deve astenersi: "non ho abbastanza
+    # informazioni" (nessun chunk forte ≥0.45 né debole ≥0.35).
+    should_answer: bool = True
 
     @property
     def is_empty(self) -> bool:

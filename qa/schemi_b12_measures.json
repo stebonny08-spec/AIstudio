@@ -1,0 +1,548 @@
+{
+ "meta": {
+  "buildTs": "2026-10-23T19:50:00+02:00",
+  "viewport": "1366x900",
+  "stepsTotal": 16,
+  "cambiTotali": 15,
+  "zoomMin": 76,
+  "zoomMax": 127,
+  "marginMin": 49,
+  "marginMax": 57,
+  "errori": [],
+  "tentativiMaxUsati": 2
+ },
+ "steps": [
+  {
+   "giro": 1,
+   "tipo": "albero",
+   "initial": true,
+   "tentativi": 1,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "albero",
+   "zoomBadge": "127%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-54.60,14.62) scale(1.2688)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 1,
+   "tipo": "mappa",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "mappa",
+   "zoomBadge": "76%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(445.72,340.20) scale(0.7562)",
+   "pulsanti": [
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 1,
+   "tipo": "lr",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "lr",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 1,
+   "tipo": "libero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "libero",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 1,
+   "tipo": "riassunto",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "riassunto",
+   "zoomBadge": "88%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(382.13,-30.55) scale(0.8819)",
+   "pulsanti": [
+    "+ Figlio",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 1,
+   "tipo": "albero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "albero",
+   "zoomBadge": "109%",
+   "minViewportMargins": 55.2,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-25.58,-19.37) scale(1.0930)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 2,
+   "tipo": "mappa",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "mappa",
+   "zoomBadge": "76%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(445.72,340.20) scale(0.7562)",
+   "pulsanti": [
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 2,
+   "tipo": "lr",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "lr",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 2,
+   "tipo": "libero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "libero",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 2,
+   "tipo": "riassunto",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "riassunto",
+   "zoomBadge": "88%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(382.13,-30.55) scale(0.8819)",
+   "pulsanti": [
+    "+ Figlio",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 2,
+   "tipo": "albero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "albero",
+   "zoomBadge": "109%",
+   "minViewportMargins": 55.2,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-25.58,-19.37) scale(1.0930)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 3,
+   "tipo": "mappa",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "mappa",
+   "zoomBadge": "76%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(445.72,340.20) scale(0.7562)",
+   "pulsanti": [
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 3,
+   "tipo": "lr",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "lr",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 3,
+   "tipo": "libero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "libero",
+   "zoomBadge": "99%",
+   "minViewportMargins": 57,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-19.37,333.29) scale(0.9895)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 3,
+   "tipo": "riassunto",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "riassunto",
+   "zoomBadge": "88%",
+   "minViewportMargins": 49,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(382.13,-30.55) scale(0.8819)",
+   "pulsanti": [
+    "+ Figlio",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  },
+  {
+   "giro": 3,
+   "tipo": "albero",
+   "initial": false,
+   "tentativi": 2,
+   "ok": true,
+   "nodiRender": 9,
+   "archiRender": 6,
+   "docNodi": 9,
+   "docArchi": 6,
+   "docType": "albero",
+   "zoomBadge": "109%",
+   "minViewportMargins": 55.2,
+   "fuoriViewport": 0,
+   "nonFiniteRects": 0,
+   "nodiConNaN": 0,
+   "worldTransform": "translate(-25.58,-19.37) scale(1.0930)",
+   "pulsanti": [
+    "+ Nodo",
+    "+ Figlio",
+    "+ Fratello",
+    "Cancella",
+    "Collega",
+    "Auto-layout"
+   ],
+   "testiOk": true,
+   "fail": []
+  }
+ ],
+ "emptyTest": {
+  "ok": true,
+  "evidence": "prima: tipo=mappa nodi=0 btn+ Nodo=true vis=true labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] | click=true dopo: nodi=1 labels=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]"
+ },
+ "texts": {
+  "baselineDom": [
+   {
+    "nid": "n1",
+    "t": "Radice"
+   },
+   {
+    "nid": "n2",
+    "t": "Figlio A"
+   },
+   {
+    "nid": "n3",
+    "t": "Figlio B"
+   },
+   {
+    "nid": "n4",
+    "t": "Nipote A"
+   },
+   {
+    "nid": "n5",
+    "t": "Nipote B"
+   },
+   {
+    "nid": "n6",
+    "t": "Isola 1"
+   },
+   {
+    "nid": "n7",
+    "t": "Isola 2"
+   },
+   {
+    "nid": "n8",
+    "t": "Nodo isolato"
+   },
+   {
+    "nid": "n9",
+    "t": "Isola 3"
+   }
+  ],
+  "finalDom": [
+   {
+    "nid": "n1",
+    "t": "Radice"
+   },
+   {
+    "nid": "n2",
+    "t": "Figlio A"
+   },
+   {
+    "nid": "n3",
+    "t": "Figlio B"
+   },
+   {
+    "nid": "n4",
+    "t": "Nipote A"
+   },
+   {
+    "nid": "n5",
+    "t": "Nipote B"
+   },
+   {
+    "nid": "n6",
+    "t": "Isola 1"
+   },
+   {
+    "nid": "n7",
+    "t": "Isola 2"
+   },
+   {
+    "nid": "n8",
+    "t": "Nodo isolato"
+   },
+   {
+    "nid": "n9",
+    "t": "Isola 3"
+   }
+  ],
+  "ok": true
+ },
+ "screenshots": [
+  "qa/schemi_b12_albero_giro1.png",
+  "qa/schemi_b12_mappa_giro1.png",
+  "qa/schemi_b12_lr_giro1.png",
+  "qa/schemi_b12_libero_giro1.png",
+  "qa/schemi_b12_riassunto_giro1.png",
+  "qa/schemi_b12_albero_giro3.png",
+  "qa/schemi_b12_vuoto_mappa.png",
+  "qa/schemi_b12_vuoto_mappa_dopo_click.png"
+ ]
+}

@@ -1,0 +1,77 @@
+{
+  "probe": "t13_ttft_pywebview",
+  "round": "R13",
+  "timestamp": "2026-10-24T14:18:45+0200",
+  "method": "evaluate_js -> window.pywebview.api.send_message(msg, null, 'automatica', false, null, '') + loop su window.pywebview.api.poll_stream(message_id, from_index) fino al PRIMO token; TTFT = performance.now() misurato nel browser da PRIMA dell'invocazione del bridge fino al primo token (end-to-end, JIT poll incluso)",
+  "poll_interval_js_ms": 25,
+  "probe_mode_fe": "solo_locale",
+  "model": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+  "llm_backend": "sidecar (da config, letta dall'app all'avvio)",
+  "n": 5,
+  "warmup_excluded": 1,
+  "p50_ms": 91962.4,
+  "p95_ms": 115949.8,
+  "target_p50_ms": 2000,
+  "target_hit": false,
+  "raw_samples_ms": [
+    87944.9,
+    91962.4,
+    115949.8,
+    106999.4,
+    49955.1
+  ],
+  "samples_detail": [
+    {
+      "i": 1,
+      "ttft_ms": 87944.9,
+      "first_token": "\n\n"
+    },
+    {
+      "i": 2,
+      "ttft_ms": 91962.4,
+      "first_token": "\n\n"
+    },
+    {
+      "i": 3,
+      "ttft_ms": 115949.8,
+      "first_token": "\n\n"
+    },
+    {
+      "i": 4,
+      "ttft_ms": 106999.4,
+      "first_token": "\n\n"
+    },
+    {
+      "i": 5,
+      "ttft_ms": 49955.1,
+      "first_token": "\n\n"
+    }
+  ],
+  "hidden": true,
+  "hidden_how": "create_window(hidden=True); window.hide() ha fallito: Main window failed to start",
+  "blocked": null,
+  "errors": [],
+  "cleanup": {
+    "conversations_deleted": 6,
+    "llama_server_shutdown": false,
+    "orphan_children_killed": [],
+    "children_before": []
+  },
+  "model_exists": true,
+  "machine_load": {
+    "cpu_percent_1s": 1.8,
+    "mem_percent": 60.5,
+    "cpu_count": 16,
+    "declared": "carico dichiarato: 3 delegati R13 in parallelo sullo stesso progetto + reindex di background REALE (flusso identico a main.py)"
+  },
+  "warmup_detail": {
+    "pending": false,
+    "ttft_ms": 105673.39999997616,
+    "first_token": "\n\n",
+    "conversation_id": 20,
+    "message_id": "d2fe141478b5465d9cc3f9837472cd20"
+  },
+  "machine_load_after": {
+    "cpu_percent_1s": 5.3
+  }
+}

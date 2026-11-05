@@ -1,0 +1,8 @@
+load_backend: loaded RPC backend from C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\ggml-rpc.dll
+load_backend: loaded CPU backend from C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\ggml-cpu-haswell.dll
+| model                          |       size |     params | backend    | threads |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | --------------: | -------------------: |
+| spark2_5 1.7B Q4_K - Medium    |   1.64 GiB |     1.98 B | CPU        |       8 |           pp512 |        147.43 ± 1.57 |
+| spark2_5 1.7B Q4_K - Medium    |   1.64 GiB |     1.98 B | CPU        |       8 |           tg128 |         15.30 ± 0.27 |
+
+build: 4231b23dc (11838)

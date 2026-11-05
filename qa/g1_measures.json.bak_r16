@@ -1,0 +1,351 @@
+{
+  "status": "OK",
+  "generated_at": "2026-10-25T10:55:43+0100",
+  "gruppo": "G1 sidecar reale",
+  "comando_riproduciibile": "python tests/t2a_sidecar.py",
+  "test_associati": "python tests/testG1_sidecar.py (server reale) + testH2_queue.py + testH2_server.py",
+  "binary": {
+    "status": "ok",
+    "present": true,
+    "path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe",
+    "bench_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-bench.exe",
+    "version": "version: 0.7.0-dev (build 11838, commit 4231b23dc)",
+    "fonte": "https://github.com/ggml-org/llama.cpp/releases (asset llama-b11838-bin-win-cpu-x64.zip)",
+    "install": "python tools/_install_sidecar.py (o tools/INSTALL_SIDECAR.bat; procedure manuale: tools/README_SIDECAR.md)",
+    "metodo_verifica": "`tools\\llama-server.exe --version`"
+  },
+  "sections": {
+    "load_cold_sec": {
+      "status": "ok",
+      "sec": 2.16,
+      "target_sec": 3.0,
+      "raggiunto": true,
+      "metodo": "time.perf_counter() attorno a SidecarServer(config).start_on_demand() (ready = GET /health 200)",
+      "comando": "python tests/t2a_sidecar.py",
+      "stato_finale": "up"
+    },
+    "completions": {
+      "status": "ok",
+      "n": 3,
+      "dettaglio": [
+        {
+          "n": 1,
+          "profile": "fast",
+          "classe": "micro",
+          "chars": 573,
+          "non_vuota": true,
+          "elapsed_sec": 15.94,
+          "api": "core.sidecar.SidecarClient.complete"
+        },
+        {
+          "n": 2,
+          "profile": "tool",
+          "classe": "micro",
+          "chars": 79,
+          "non_vuota": true,
+          "elapsed_sec": 1.84,
+          "api": "core.sidecar.SidecarClient.complete"
+        },
+        {
+          "n": 3,
+          "profile": "fast",
+          "classe": "micro",
+          "chars": 501,
+          "non_vuota": true,
+          "elapsed_sec": 15.23,
+          "api": "core.sidecar.SidecarClient.complete"
+        }
+      ],
+      "comando": "python tests/t2a_sidecar.py"
+    },
+    "tok_s": {
+      "status": "ok",
+      "metodo_primario": "len(content)/4 (stima chars) / elapsed_wall [IDENTICO Round 11 in-process]",
+      "metodo_secondario": "llama-server timings.predicted_per_second (registrato, non usato nel confronto)",
+      "protocollo": "1 warmup + 3 misure, mediana per profilo (identico a qa/t2a_measures.json Round 11)",
+      "comando": "python tests/t2a_sidecar.py",
+      "profili": {
+        "fast": {
+          "temperature": 0.8,
+          "n_predict": 128,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens_stima": 107,
+              "elapsed_sec": 9.588,
+              "tok_s": 11.16,
+              "tok_s_timings_server": 13.35
+            },
+            {
+              "n_tokens_stima": 112,
+              "elapsed_sec": 9.503,
+              "tok_s": 11.79,
+              "tok_s_timings_server": 13.47
+            },
+            {
+              "n_tokens_stima": 106,
+              "elapsed_sec": 9.551,
+              "tok_s": 11.1,
+              "tok_s_timings_server": 13.4
+            }
+          ],
+          "mediana_tok_s": 11.16
+        },
+        "think": {
+          "temperature": 0.6,
+          "n_predict": 320,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens_stima": 268,
+              "elapsed_sec": 24.125,
+              "tok_s": 11.11,
+              "tok_s_timings_server": 13.27
+            },
+            {
+              "n_tokens_stima": 248,
+              "elapsed_sec": 23.909,
+              "tok_s": 10.37,
+              "tok_s_timings_server": 13.39
+            },
+            {
+              "n_tokens_stima": 24,
+              "elapsed_sec": 2.183,
+              "tok_s": 10.99,
+              "tok_s_timings_server": 13.39
+            }
+          ],
+          "mediana_tok_s": 10.99
+        },
+        "tool": {
+          "temperature": 0.1,
+          "n_predict": 128,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens_stima": 127,
+              "elapsed_sec": 9.892,
+              "tok_s": 12.84,
+              "tok_s_timings_server": 12.94
+            },
+            {
+              "n_tokens_stima": 114,
+              "elapsed_sec": 9.519,
+              "tok_s": 11.98,
+              "tok_s_timings_server": 13.45
+            },
+            {
+              "n_tokens_stima": 118,
+              "elapsed_sec": 9.48,
+              "tok_s": 12.45,
+              "tok_s_timings_server": 13.51
+            }
+          ],
+          "mediana_tok_s": 12.45
+        }
+      }
+    },
+    "prompt_lookup": {
+      "status": "ok",
+      "comando": "python tests/t2a_sidecar.py",
+      "protocollo": "10 richieste consecutive per flag, stesso prompt JSON corto, n_predict=48, temperature=0.1, profilo tool",
+      "prompt": "Rispondi SOLO con JSON: {\"risposta\":\"ok\",\"valore\":42}",
+      "samples_on": [
+        {
+          "elapsed_sec": 3.589,
+          "chars": 188
+        },
+        {
+          "elapsed_sec": 3.656,
+          "chars": 229
+        },
+        {
+          "elapsed_sec": 3.814,
+          "chars": 229
+        },
+        {
+          "elapsed_sec": 3.768,
+          "chars": 202
+        },
+        {
+          "elapsed_sec": 3.673,
+          "chars": 190
+        },
+        {
+          "elapsed_sec": 3.598,
+          "chars": 182
+        },
+        {
+          "elapsed_sec": 3.56,
+          "chars": 212
+        },
+        {
+          "elapsed_sec": 3.642,
+          "chars": 219
+        },
+        {
+          "elapsed_sec": 3.725,
+          "chars": 198
+        },
+        {
+          "elapsed_sec": 3.627,
+          "chars": 188
+        }
+      ],
+      "samples_off": [
+        {
+          "elapsed_sec": 3.573,
+          "chars": 163
+        },
+        {
+          "elapsed_sec": 3.585,
+          "chars": 190
+        },
+        {
+          "elapsed_sec": 3.576,
+          "chars": 188
+        },
+        {
+          "elapsed_sec": 3.622,
+          "chars": 219
+        },
+        {
+          "elapsed_sec": 3.57,
+          "chars": 190
+        },
+        {
+          "elapsed_sec": 3.582,
+          "chars": 188
+        },
+        {
+          "elapsed_sec": 3.563,
+          "chars": 181
+        },
+        {
+          "elapsed_sec": 3.568,
+          "chars": 219
+        },
+        {
+          "elapsed_sec": 3.584,
+          "chars": 206
+        },
+        {
+          "elapsed_sec": 3.563,
+          "chars": 190
+        }
+      ],
+      "mediana_on_sec": 3.649,
+      "mediana_off_sec": 3.575,
+      "speedup_off_su_on": 0.98,
+      "soglia": 1.15,
+      "decisione": "OFF",
+      "motivazione": "speedup misurato 0.98x < 1.15x. Inoltre grep di 'prompt_lookup' su tutto il codice .py (esclusi .venv/dist) trova SOLO data/config_manager.py e tests/testH5_flags.py: nessun componente di esecuzione consuma il flag, quindi on/off non può cambiare le prestazioni. Flag imposto a False nella config utente (DEFAULT_CONFIG resta True per testH5_flags); riattivare quando il motore speculativo avrà un consumatore.",
+      "config_scritta": {
+        "spec.prompt_lookup": false
+      }
+    },
+    "idle_unload": {
+      "status": "ok",
+      "idle_unload_sec_iniettato": 8,
+      "sec_rilevati": 8.41,
+      "stato": "down",
+      "metodo": "cfg dict mutato a runtime (monitor rilegge llama.idle_unload_sec ad ogni tick 0.5s), poi poll dello stato fino a 'down'",
+      "comando": "python tests/t2a_sidecar.py"
+    },
+    "rss_mb": {
+      "status": "ok",
+      "method": "psutil.Process().memory_info().rss (psutil)",
+      "comando": "python tests/t2a_sidecar.py",
+      "baseline_prima_mb": 27.2,
+      "caricato_mb": 30.1,
+      "caricato_figli_llama_server": [
+        {
+          "pid": 3912,
+          "name": "llama-server.exe",
+          "rss_mb": 2408.2
+        },
+        {
+          "pid": 10236,
+          "name": "conhost.exe",
+          "rss_mb": 7.4
+        }
+      ],
+      "dopo_n_req_mb": 29.7,
+      "dopo_n_req_figli": [
+        {
+          "pid": 3912,
+          "name": "llama-server.exe",
+          "rss_mb": 2419.8
+        },
+        {
+          "pid": 10236,
+          "name": "conhost.exe",
+          "rss_mb": 7.4
+        }
+      ],
+      "n_req": 35,
+      "dopo_idle_unload_mb": 29.7,
+      "dopo_idle_unload_figli": [],
+      "dopo_idle_unload_residui_llama_server": [],
+      "delta_dopo_unload_vs_baseline_mb": 2.5,
+      "target_dopo_unload": "baseline + <=50MB e 0 figli llama-server residui",
+      "target_raggiunto": true,
+      "nota": "llama-server è un processo SEPARATO: il suo RSS (caricato/figli) non fa parte del processo padre; dopo l'unload il figlio deve azzerarsi."
+    },
+    "autotune": {
+      "status": "ok",
+      "comando": "data.autotune.run_autotune_once(ConfigManager()) → subprocess [tools\\llama-bench.exe] (modello default models/7B/ggml-model-q4_0.gguf = hardlink al gguf NovaStudio)",
+      "result": {
+        "done": true,
+        "reason": "gia eseguito",
+        "result": {
+          "pp_tok_s": 123.59,
+          "tg_tok_s": 13.43,
+          "bench_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-bench.exe"
+        }
+      },
+      "nota_hardlink": "llama-bench senza argomenti usa il path default relative 'models/7B/ggml-model-q4_0.gguf': creato hardlink mklink /H (0 byte extra)"
+    },
+    "confronto_sidecar_vs_inprocess": {
+      "status": "ok",
+      "fonte_inprocess": "qa/t2a_measures.json (Round 11)",
+      "load_cold_sec": {
+        "in_process": 2.01,
+        "sidecar": 2.16
+      },
+      "tok_s_mediana": {
+        "fast": {
+          "in_process": 10.32,
+          "sidecar": 11.16,
+          "delta": 0.84
+        },
+        "think": {
+          "in_process": 9.11,
+          "sidecar": 10.99,
+          "delta": 1.88
+        },
+        "tool": {
+          "in_process": 11.78,
+          "sidecar": 12.45,
+          "delta": 0.67
+        }
+      },
+      "rss_caricato_mb": {
+        "in_process_dopo_30req": 2578.2,
+        "sidecar_figlio_dopo_n_req": 2419.8,
+        "sidecar_padre_dopo_n_req": 29.7
+      },
+      "metodo_tok_s": "mediana su 3 (1 warmup escluso), len(content)/4/elapsed — identico sui due lati"
+    },
+    "verifiche": {
+      "status": "ok",
+      "testH2_queue": "python tests/testH2_queue.py (atteso 5/5)",
+      "testH2_server": "python tests/testH2_server.py (atteso 11/11, invariati)",
+      "testG1_sidecar": "python tests/testG1_sidecar.py (server reale: avvio+3 completion, idle-unload 8s, fallback in-process con server_path='')"
+    }
+  },
+  "run_duration_sec": 268.6
+}

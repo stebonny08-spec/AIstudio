@@ -1,0 +1,421 @@
+[0/1] Re-running CMake...
+-- llama.cpp version: 0.7.0-dev
+CMAKE_BUILD_TYPE=Release
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- GGML_SYSTEM_ARCH: x86
+-- Including CPU backend
+-- x86 detected
+-- Adding CPU backend variant ggml-cpu: -march=native 
+-- ggml version: 0.27.0
+-- ggml commit:  22c0ae187
+-- Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY OPENSSL_INCLUDE_DIR) 
+CMake Warning at vendor/cpp-httplib/CMakeLists.txt:154 (message):
+  OpenSSL not found, HTTPS support disabled
+
+
+-- Generating embedded license file for target: llama-app
+-- Configuring done (1.5s)
+-- Generating done (1.0s)
+-- Build files have been written to: C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/build
+[1/356] Linking CXX static library vendor\cpp-httplib\libcpp-httplib.a
+[2/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/translate-gemma.cpp.obj
+[3/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/kimi-k2.cpp.obj
+[4/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/lfm2.cpp.obj
+[5/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/ministral3.cpp.obj
+[6/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/muse-glimmer.cpp.obj
+[7/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/ling3.cpp.obj
+[8/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/llm-jp-harmony.cpp.obj
+[9/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/muse-spark.cpp.obj
+[10/356] Building CXX object common/CMakeFiles/llama-common.dir/chat-auto-parser-helpers.cpp.obj
+[11/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/minicpm5.cpp.obj
+[12/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/k2-horizon.cpp.obj
+[13/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/harmony-xml.cpp.obj
+[14/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/kimi-k3.cpp.obj
+[15/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/minimax-m3.cpp.obj
+[16/356] Building CXX object common/CMakeFiles/llama-common.dir/parsers/qwen3-coder.cpp.obj
+[17/356] Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.obj
+[18/356] Building CXX object common/CMakeFiles/llama-common.dir/chat-auto-parser-generator.cpp.obj
+[19/356] Linking CXX static library src\libllama.a
+[20/356] Building CXX object common/CMakeFiles/llama-common.dir/file-lock.cpp.obj
+[21/356] Building CXX object common/CMakeFiles/llama-common.dir/llguidance.cpp.obj
+[22/356] Building CXX object common/CMakeFiles/llama-common.dir/imatrix-loader.cpp.obj
+[23/356] Building CXX object common/CMakeFiles/llama-common.dir/fit.cpp.obj
+[24/356] Building CXX object common/CMakeFiles/llama-common.dir/log.cpp.obj
+[25/356] Building CXX object common/CMakeFiles/llama-common.dir/ngram-mod.cpp.obj
+[26/356] Building CXX object common/CMakeFiles/llama-common.dir/json-schema.cpp.obj
+[27/356] Building CXX object common/CMakeFiles/llama-common.dir/debug.cpp.obj
+[28/356] Building CXX object common/CMakeFiles/llama-common.dir/console.cpp.obj
+[29/356] Building CXX object common/CMakeFiles/llama-common.dir/ngram-map.cpp.obj
+[30/356] Building CXX object common/CMakeFiles/llama-common.dir/ngram-cache.cpp.obj
+[31/356] Building CXX object common/CMakeFiles/llama-common.dir/subproc.cpp.obj
+[32/356] Building CXX object common/CMakeFiles/llama-common.dir/reasoning-budget.cpp.obj
+[33/356] Building CXX object common/CMakeFiles/llama-common.dir/chat-peg-parser.cpp.obj
+[34/356] Building CXX object common/CMakeFiles/llama-common.dir/unicode.cpp.obj
+[35/356] Building CXX object common/CMakeFiles/llama-common.dir/trie.cpp.obj
+[36/356] Building CXX object common/CMakeFiles/llama-common.dir/json-schema-to-grammar.cpp.obj
+[37/356] Building CXX object common/CMakeFiles/llama-common.dir/hf-cache.cpp.obj
+[38/356] Building CXX object common/CMakeFiles/llama-common.dir/sampling.cpp.obj
+[39/356] Building CXX object common/CMakeFiles/llama-common.dir/chat-diff-analyzer.cpp.obj
+[40/356] Building CXX object common/CMakeFiles/llama-common.dir/chat.cpp.obj
+[41/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/string.cpp.obj
+[42/356] Building CXX object common/CMakeFiles/llama-common.dir/common.cpp.obj
+[43/356] Building CXX object common/CMakeFiles/llama-common.dir/json.cpp.obj
+[44/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/lexer.cpp.obj
+[45/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/parser.cpp.obj
+[46/356] Building CXX object common/CMakeFiles/llama-common.dir/preset.cpp.obj
+[47/356] Building CXX object common/CMakeFiles/llama-common.dir/peg-parser.cpp.obj
+[48/356] Building CXX object common/CMakeFiles/llama-common.dir/download.cpp.obj
+[49/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/caps.cpp.obj
+[50/356] Building CXX object common/CMakeFiles/llama-common.dir/speculative.cpp.obj
+[51/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/runtime.cpp.obj
+[52/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-helper-gen.cpp.obj
+[53/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/conformer.cpp.obj
+[54/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/cogvlm.cpp.obj
+[55/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/deepseek4v.cpp.obj
+[56/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-audio.cpp.obj
+[57/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/dotsocr.cpp.obj
+[58/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/dots3note.cpp.obj
+[59/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-image.cpp.obj
+[60/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/exaone4_5.cpp.obj
+[61/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/gemma4a.cpp.obj
+[62/356] Building CXX object common/CMakeFiles/llama-common.dir/jinja/value.cpp.obj
+[63/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/gemma4v.cpp.obj
+[64/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/gemma4ua.cpp.obj
+[65/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd.cpp.obj
+[66/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/gemma4uv.cpp.obj
+[67/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/glm4v.cpp.obj
+[68/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/granite4-vision.cpp.obj
+[69/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/internvl.cpp.obj
+[70/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/granite-speech.cpp.obj
+[71/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/hunyuanvl.cpp.obj
+[72/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/kimik25.cpp.obj
+[73/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/kimivl.cpp.obj
+[74/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/nemotron-v2-vl.cpp.obj
+[75/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/nemotron-omni.cpp.obj
+[76/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/muse-spark-audio.cpp.obj
+[77/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/muse-glimmer.cpp.obj
+[78/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/llama4.cpp.obj
+[79/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/llava.cpp.obj
+[80/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/minicpmv.cpp.obj
+[81/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/pixtral.cpp.obj
+[82/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/paddleocr.cpp.obj
+[83/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/sensenova-u1.cpp.obj
+[84/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-helper.cpp.obj
+[85/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/minimax-m3.cpp.obj
+[86/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen2vl.cpp.obj
+[87/356] Building CXX object common/CMakeFiles/llama-common.dir/arg.cpp.obj
+[88/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen3vl.cpp.obj
+[89/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/ling3vl.cpp.obj
+[90/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/mimovl.cpp.obj
+[91/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/clip.cpp.obj
+[92/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen3a.cpp.obj
+[93/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/mimo-audio.cpp.obj
+[94/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen3tts-spkenc.cpp.obj
+[95/356] Linking CXX static library common\libllama-common.a
+[96/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/pockettts-seanet.cpp.obj
+[97/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen3tts-gen.cpp.obj
+[98/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/pockettts-spkenc.cpp.obj
+[99/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/soprano.cpp.obj
+[100/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/step3vl.cpp.obj
+[101/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/siglip.cpp.obj
+[102/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/voxtral-rt.cpp.obj
+[103/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/whisper-enc.cpp.obj
+[104/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/pockettts-gen.cpp.obj
+[105/356] Provisioning UI assets
+-- UI: downloading from b11945: https://huggingface.co/buckets/ggml-org/llama-ui/resolve/b11945/dist.tar.gz
+-- UI: archive verified and extracted
+-- UI: HF download succeeded, stamp updated (ggml-org/llama-ui|b11945, resolved: b11945)
+-- UI: gzip compression applied (C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/build/tools/ui/ui-gzip/_gzip)
+-- UI: embedded 70 assets
+[106/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/deepseekocr2.cpp.obj
+[107/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/deepseekocr.cpp.obj
+[108/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/youtuvl.cpp.obj
+[109/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/mobilenetv5.cpp.obj
+[110/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/yasa2.cpp.obj
+[111/356] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/parakeet.cpp.obj
+[112/356] Linking CXX static library tools\mtmd\libmtmd.a
+[113/356] Building CXX object examples/diffusion/CMakeFiles/llama-diffusion.dir/diffusion.cpp.obj
+[114/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-chat.cpp.obj
+[115/356] Building CXX object tools/batched-bench/CMakeFiles/llama-batched-bench-impl.dir/batched-bench.cpp.obj
+[116/356] Building CXX object tools/server/CMakeFiles/llama-server-impl.dir/server-connect.cpp.obj
+[117/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-stream.cpp.obj
+[118/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-queue.cpp.obj
+[119/356] Building CXX object tools/ui/CMakeFiles/llama-ui.dir/ui.cpp.obj
+[120/356] Linking CXX static library tools\ui\libllama-ui.a
+[121/356] Building CXX object tools/quantize/CMakeFiles/llama-quantize-impl.dir/quantize.cpp.obj
+[122/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-schema.cpp.obj
+[123/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-mcp.cpp.obj
+[124/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-decision.cpp.obj
+[125/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-task.cpp.obj
+[126/356] Building CXX object tools/perplexity/CMakeFiles/llama-perplexity-impl.dir/perplexity.cpp.obj
+[127/356] Building CXX object tools/cli/CMakeFiles/llama-cli-impl.dir/cli-client.cpp.obj
+[128/356] Building CXX object tools/completion/CMakeFiles/llama-completion-impl.dir/completion.cpp.obj
+[129/356] Building CXX object tools/cli/CMakeFiles/llama-cli-impl.dir/cli.cpp.obj
+[130/356] Building CXX object tools/fit-params/CMakeFiles/llama-fit-params-impl.dir/fit-params.cpp.obj
+[131/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-common.cpp.obj
+[132/356] Building CXX object tools/server/CMakeFiles/llama-server-impl.dir/server.cpp.obj
+[133/356] Building CXX object tests/CMakeFiles/test-unicode.dir/test-unicode.cpp.obj
+[134/356] Building CXX object tools/server/CMakeFiles/llama-server-impl.dir/server-http.cpp.obj
+[135/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/cases-rs.cpp.obj
+[136/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/test-log.cpp.obj
+[137/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/cases-kv.cpp.obj
+[138/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/test-case.cpp.obj
+[139/356] Building CXX object tests/CMakeFiles/test-tokenizer-0.dir/test-tokenizer-0.cpp.obj
+[140/356] Building CXX object tests/CMakeFiles/test-sampling.dir/test-sampling.cpp.obj
+[141/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/test-util.cpp.obj
+[142/356] Building CXX object tests/CMakeFiles/test-grammar-parser.dir/test-grammar-parser.cpp.obj
+[143/356] Building CXX object tests/CMakeFiles/test-reasoning-budget.dir/test-reasoning-budget.cpp.obj
+[144/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/test-llama-context.cpp.obj
+[145/356] Building CXX object tests/CMakeFiles/test-llama-grammar.dir/test-llama-grammar.cpp.obj
+[146/356] Building CXX object tools/cli/CMakeFiles/llama-cli-impl.dir/cli-context.cpp.obj
+[147/356] Building CXX object tests/CMakeFiles/test-llama-context.dir/llama-context/test-runner.cpp.obj
+[148/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-tools.cpp.obj
+[149/356] Building CXX object tests/CMakeFiles/test-gbnf-validator.dir/test-gbnf-validator.cpp.obj
+[150/356] Building CXX object tests/CMakeFiles/test-tokenizer-1-bpe.dir/test-tokenizer-1-bpe.cpp.obj
+[151/356] Building CXX object tools/llama-bench/CMakeFiles/llama-bench-impl.dir/llama-bench.cpp.obj
+[152/356] Building CXX object tests/CMakeFiles/test-tokenizer-1-spm.dir/test-tokenizer-1-spm.cpp.obj
+[153/356] Building CXX object tests/CMakeFiles/test-chat-peg-parser.dir/peg-parser/simple-tokenize.cpp.obj
+[154/356] Building CXX object tests/CMakeFiles/test-grammar-integration.dir/test-grammar-integration.cpp.obj
+[155/356] Building CXX object tests/CMakeFiles/test-log.dir/test-log.cpp.obj
+[156/356] Building CXX object tests/CMakeFiles/test-json-schema-to-grammar.dir/test-json-schema-to-grammar.cpp.obj
+[157/356] Building CXX object tests/CMakeFiles/test-quantize-stats.dir/test-quantize-stats.cpp.obj
+[158/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/simple-tokenize.cpp.obj
+[159/356] Building CXX object tools/server/CMakeFiles/server-context.dir/server-context.cpp.obj
+[160/356] Building CXX object tests/CMakeFiles/test-speculative-rejection-sampling.dir/test-speculative-rejection-sampling.cpp.obj
+[161/356] Linking CXX static library tools\server\libserver-context.a
+[162/356] Building CXX object tests/CMakeFiles/test-fusion.dir/test-fusion.cpp.obj
+[163/356] Building CXX object tools/server/CMakeFiles/llama-server-impl.dir/server-models.cpp.obj
+[164/356] Building CXX object tests/CMakeFiles/test-llama-archs.dir/test-llama-archs.cpp.obj
+[165/356] Linking CXX static library tools\server\libllama-server-impl.a
+[166/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/test-peg-parser.cpp.obj
+[167/356] Building CXX object tests/CMakeFiles/test-json-schema.dir/test-json-schema.cpp.obj
+[168/356] Building CXX object tests/CMakeFiles/test-chat-analysis.dir/test-chat-analysis.cpp.obj
+[169/356] Building CXX object tests/CMakeFiles/test-batch-alloc.dir/test-batch-alloc.cpp.obj
+[170/356] Building CXX object tests/CMakeFiles/test-thread-safety.dir/test-thread-safety.cpp.obj
+[171/356] Building CXX object tests/CMakeFiles/test-tiled-mulmat.dir/test-tiled-mulmat.cpp.obj
+[172/356] Building CXX object tests/CMakeFiles/test-chat-template.dir/test-chat-template.cpp.obj
+[173/356] Building CXX object tests/CMakeFiles/test-model-load-cancel.dir/test-model-load-cancel.cpp.obj
+[174/356] Building CXX object tests/CMakeFiles/test-server-component.dir/test-server-component.cpp.obj
+[175/356] Building CXX object tests/CMakeFiles/test-opt.dir/test-opt.cpp.obj
+[176/356] Building CXX object tests/CMakeFiles/test-arg-parser.dir/test-arg-parser.cpp.obj
+[177/356] Building CXX object tests/CMakeFiles/test-autorelease.dir/test-autorelease.cpp.obj
+[178/356] Building CXX object tests/CMakeFiles/test-barrier.dir/test-barrier.cpp.obj
+[179/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/test-json-parser.cpp.obj
+[180/356] Building CXX object tests/CMakeFiles/test-col2im-1d.dir/test-col2im-1d.cpp.obj
+[181/356] Building CXX object tests/CMakeFiles/test-rope.dir/test-rope.cpp.obj
+[182/356] Building CXX object tests/CMakeFiles/test-quantize-fns.dir/test-quantize-fns.cpp.obj
+[183/356] Building CXX object tests/CMakeFiles/test-conv-1d.dir/test-conv-1d.cpp.obj
+[184/356] Building C object tests/CMakeFiles/test-c.dir/test-c.c.obj
+[185/356] Building C object tests/CMakeFiles/test-mtmd-c-api.dir/test-mtmd-c-api.c.obj
+[186/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/test-python-dict-parser.cpp.obj
+[187/356] Building CXX object tests/CMakeFiles/test-gelu-quick.dir/test-gelu-quick.cpp.obj
+[188/356] Building CXX object tests/CMakeFiles/test-quantize-perf.dir/test-quantize-perf.cpp.obj
+[189/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/test-gbnf-generation.cpp.obj
+[190/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/test-basic.cpp.obj
+[191/356] Building CXX object tests/CMakeFiles/test-alloc.dir/test-alloc.cpp.obj
+[192/356] Building CXX object tests/CMakeFiles/test-peg-parser.dir/peg-parser/test-unicode.cpp.obj
+[193/356] Building CXX object tests/CMakeFiles/test-gguf.dir/test-gguf.cpp.obj
+[194/356] Building CXX object tests/CMakeFiles/test-chat-auto-parser.dir/test-chat-auto-parser.cpp.obj
+[195/356] Building CXX object examples/batched/CMakeFiles/llama-batched.dir/batched.cpp.obj
+[196/356] Building CXX object tests/CMakeFiles/test-chat-peg-parser.dir/test-chat-peg-parser.cpp.obj
+[197/356] Building CXX object examples/gguf/CMakeFiles/llama-gguf.dir/gguf.cpp.obj
+[198/356] Building CXX object examples/embedding/CMakeFiles/llama-embedding.dir/embedding.cpp.obj
+[199/356] Building CXX object tests/CMakeFiles/test-export-graph-ops.dir/test-export-graph-ops.cpp.obj
+[200/356] Building CXX object examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/gguf-hash.cpp.obj
+[201/356] Building CXX object examples/eval-callback/CMakeFiles/llama-eval-callback.dir/eval-callback.cpp.obj
+[202/356] Building CXX object tests/CMakeFiles/test-backend-sampler.dir/test-backend-sampler.cpp.obj
+[203/356] Building CXX object examples/idle/CMakeFiles/llama-idle.dir/idle.cpp.obj
+[204/356] Building CXX object examples/simple/CMakeFiles/llama-simple.dir/simple.cpp.obj
+[205/356] Building CXX object examples/lookup/CMakeFiles/llama-lookup.dir/lookup.cpp.obj
+[206/356] Building CXX object examples/lookup/CMakeFiles/llama-lookup-merge.dir/lookup-merge.cpp.obj
+[207/356] Building CXX object examples/lookup/CMakeFiles/llama-lookup-create.dir/lookup-create.cpp.obj
+[208/356] Building CXX object examples/simple-chat/CMakeFiles/llama-simple-chat.dir/simple-chat.cpp.obj
+[209/356] Linking CXX static library examples\diffusion\libllama-diffusion.a
+[210/356] Building CXX object examples/debug/CMakeFiles/llama-debug.dir/debug.cpp.obj
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/examples/debug/debug.cpp:112:35: warning: format specifies type 'char *' but the argument has type 'const value_type *' (aka 'const wchar_t *') [-Wformat]
+  112 |         LOG("Data saved to %s\n", filepath.c_str());
+      |                            ~~     ^~~~~~~~~~~~~~~~
+      |                            %ls
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:119:78: note: expanded from macro 'LOG'
+  119 | #define LOG(...)             LOG_TMPL(GGML_LOG_LEVEL_NONE, LOG_LEVEL_OUTPUT, __VA_ARGS__)
+      |                                                                              ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:115:56: note: expanded from macro 'LOG_TMPL'
+  115 |             common_log_add(common_log_main(), (level), __VA_ARGS__); \
+      |                                                        ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/examples/debug/debug.cpp:125:35: warning: format specifies type 'char *' but the argument has type 'const value_type *' (aka 'const wchar_t *') [-Wformat]
+  125 |         LOG("Data saved to %s\n", filepath.c_str());
+      |                            ~~     ^~~~~~~~~~~~~~~~
+      |                            %ls
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:119:78: note: expanded from macro 'LOG'
+  119 | #define LOG(...)             LOG_TMPL(GGML_LOG_LEVEL_NONE, LOG_LEVEL_OUTPUT, __VA_ARGS__)
+      |                                                                              ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:115:56: note: expanded from macro 'LOG_TMPL'
+  115 |             common_log_add(common_log_main(), (level), __VA_ARGS__); \
+      |                                                        ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/examples/debug/debug.cpp:147:37: warning: format specifies type 'char *' but the argument has type 'const value_type *' (aka 'const wchar_t *') [-Wformat]
+  147 |         LOG("Prompt saved to %s\n", filepath.c_str());
+      |                              ~~     ^~~~~~~~~~~~~~~~
+      |                              %ls
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:119:78: note: expanded from macro 'LOG'
+  119 | #define LOG(...)             LOG_TMPL(GGML_LOG_LEVEL_NONE, LOG_LEVEL_OUTPUT, __VA_ARGS__)
+      |                                                                              ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:115:56: note: expanded from macro 'LOG_TMPL'
+  115 |             common_log_add(common_log_main(), (level), __VA_ARGS__); \
+      |                                                        ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/examples/debug/debug.cpp:158:37: warning: format specifies type 'char *' but the argument has type 'const value_type *' (aka 'const wchar_t *') [-Wformat]
+  158 |         LOG("Tokens saved to %s\n", filepath.c_str());
+      |                              ~~     ^~~~~~~~~~~~~~~~
+      |                              %ls
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:119:78: note: expanded from macro 'LOG'
+  119 | #define LOG(...)             LOG_TMPL(GGML_LOG_LEVEL_NONE, LOG_LEVEL_OUTPUT, __VA_ARGS__)
+      |                                                                              ^~~~~~~~~~~
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/common/./log.h:115:56: note: expanded from macro 'LOG_TMPL'
+  115 |             common_log_add(common_log_main(), (level), __VA_ARGS__); \
+      |                                                        ^~~~~~~~~~~
+4 warnings generated.
+[211/356] Building CXX object examples/passkey/CMakeFiles/llama-passkey.dir/passkey.cpp.obj
+[212/356] Building CXX object examples/lookup/CMakeFiles/llama-lookup-stats.dir/lookup-stats.cpp.obj
+[213/356] Building CXX object tools/batched-bench/CMakeFiles/llama-batched-bench.dir/main.cpp.obj
+[214/356] Linking CXX static library tools\batched-bench\libllama-batched-bench-impl.a
+[215/356] Building CXX object examples/parallel/CMakeFiles/llama-parallel.dir/parallel.cpp.obj
+[216/356] Building CXX object pocs/vdot/CMakeFiles/llama-vdot.dir/vdot.cpp.obj
+[217/356] Building CXX object examples/retrieval/CMakeFiles/llama-retrieval.dir/retrieval.cpp.obj
+[218/356] Building CXX object tools/llama-bench/CMakeFiles/llama-bench.dir/main.cpp.obj
+[219/356] Building CXX object examples/lookahead/CMakeFiles/llama-lookahead.dir/lookahead.cpp.obj
+[220/356] Building CXX object pocs/vdot/CMakeFiles/llama-q8dot.dir/q8dot.cpp.obj
+[221/356] Linking CXX static library tools\llama-bench\libllama-bench-impl.a
+[222/356] Building CXX object tools/completion/CMakeFiles/llama-completion.dir/main.cpp.obj
+[223/356] Building CXX object tools/perplexity/CMakeFiles/llama-perplexity.dir/main.cpp.obj
+[224/356] Linking CXX static library tools\completion\libllama-completion-impl.a
+[225/356] Building CXX object tests/CMakeFiles/test-jinja.dir/test-jinja.cpp.obj
+[226/356] Building CXX object examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/speculative-simple.cpp.obj
+[227/356] Linking CXX static library tools\perplexity\libllama-perplexity-impl.a
+[228/356] Building CXX object tools/cli/CMakeFiles/llama-cli.dir/main.cpp.obj
+[229/356] Linking CXX static library tools\quantize\libllama-quantize-impl.a
+[230/356] Building CXX object tools/server/CMakeFiles/llama-server.dir/main.cpp.obj
+[231/356] Building CXX object tools/quantize/CMakeFiles/llama-quantize.dir/main.cpp.obj
+[232/356] Linking CXX static library tools\cli\libllama-cli-impl.a
+[233/356] Building CXX object examples/training/CMakeFiles/llama-finetune.dir/finetune.cpp.obj
+[234/356] Building CXX object examples/gen-docs/CMakeFiles/llama-gen-docs.dir/gen-docs.cpp.obj
+[235/356] Building CXX object tests/CMakeFiles/test-mtmd-impl.dir/test-mtmd-impl.cpp.obj
+[236/356] Building CXX object tools/mtmd/CMakeFiles/llama-qwen2vl-cli.dir/deprecation-warning.cpp.obj
+[237/356] Building CXX object tools/mtmd/CMakeFiles/llama-llava-cli.dir/deprecation-warning.cpp.obj
+[238/356] Building CXX object tools/mtmd/CMakeFiles/llama-gemma3-cli.dir/deprecation-warning.cpp.obj
+[239/356] Building CXX object tools/fit-params/CMakeFiles/llama-fit-params.dir/main.cpp.obj
+[240/356] Linking CXX static library tools\fit-params\libllama-fit-params-impl.a
+[241/356] Building CXX object tools/mtmd/CMakeFiles/llama-minicpmv-cli.dir/deprecation-warning.cpp.obj
+[242/356] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.obj
+[243/356] Building CXX object examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/convert-llama2c-to-ggml.cpp.obj
+[244/356] Building CXX object examples/speculative/CMakeFiles/llama-speculative.dir/speculative.cpp.obj
+[245/356] Linking CXX executable bin\test-llama-context.exe
+[246/356] Linking CXX executable bin\test-tokenizer-0.exe
+[247/356] Building CXX object tests/CMakeFiles/test-model-resolution.dir/test-model-resolution.cpp.obj
+[248/356] Linking CXX executable bin\test-unicode.exe
+[249/356] Building CXX object examples/diffusion/CMakeFiles/llama-diffusion-cli.dir/diffusion-cli.cpp.obj
+[250/356] Building CXX object app/CMakeFiles/llama-app.dir/llama.cpp.obj
+[251/356] Linking CXX executable bin\test-sampling.exe
+[252/356] Building CXX object tools/tts/CMakeFiles/llama-tts.dir/tts.cpp.obj
+[253/356] Linking CXX executable bin\test-reasoning-budget.exe
+[254/356] Linking CXX executable bin\test-grammar-parser.exe
+[255/356] Linking CXX executable bin\test-grammar-integration.exe
+[256/356] Linking CXX executable bin\test-batch-alloc.exe
+[257/356] Linking CXX executable bin\test-llama-grammar.exe
+[258/356] Linking CXX executable bin\test-quantize-stats.exe
+[259/356] Linking CXX executable bin\test-gbnf-validator.exe
+[260/356] Linking CXX executable bin\test-json-schema-to-grammar.exe
+[261/356] Linking CXX executable bin\test-server-component.exe
+[262/356] Linking CXX executable bin\test-tokenizer-1-spm.exe
+[263/356] Linking CXX executable bin\test-tokenizer-1-bpe.exe
+[264/356] Linking CXX executable bin\test-llama-archs.exe
+[265/356] Building CXX object tools/gguf-split/CMakeFiles/llama-gguf-split.dir/gguf-split.cpp.obj
+[266/356] Linking CXX executable bin\test-jinja.exe
+[267/356] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.obj
+[268/356] Linking CXX executable bin\test-fusion.exe
+[269/356] Linking CXX executable bin\test-speculative-rejection-sampling.exe
+[270/356] Linking CXX executable bin\test-chat-peg-parser.exe
+[271/356] Linking CXX executable bin\test-json-schema.exe
+[272/356] Linking CXX executable bin\test-chat-auto-parser.exe
+[273/356] Building CXX object tools/mtmd/CMakeFiles/llama-mtmd-debug.dir/debug/mtmd-debug.cpp.obj
+[274/356] Linking CXX executable bin\test-chat-template.exe
+[275/356] Linking CXX executable bin\test-log.exe
+[276/356] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.obj
+[277/356] Linking CXX executable bin\test-chat-analysis.exe
+[278/356] Linking CXX executable bin\test-peg-parser.exe
+[279/356] Linking CXX executable bin\test-arg-parser.exe
+[280/356] Linking CXX executable bin\test-thread-safety.exe
+[281/356] Linking CXX executable bin\test-model-resolution.exe
+[282/356] Linking CXX executable bin\test-opt.exe
+[283/356] Linking CXX executable bin\test-tiled-mulmat.exe
+[284/356] Building CXX object tools/tokenize/CMakeFiles/llama-tokenize.dir/tokenize.cpp.obj
+[285/356] Linking CXX executable bin\test-autorelease.exe
+[286/356] Linking CXX executable bin\test-model-load-cancel.exe
+[287/356] Linking CXX executable bin\test-quantize-fns.exe
+[288/356] Linking CXX executable bin\test-barrier.exe
+[289/356] Linking CXX executable bin\test-backend-sampler.exe
+[290/356] Linking CXX executable bin\test-quantize-perf.exe
+[291/356] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.obj
+[292/356] Linking CXX executable bin\test-rope.exe
+[293/356] Linking CXX executable bin\test-col2im-1d.exe
+[294/356] Linking CXX executable bin\test-conv-1d.exe
+[295/356] Linking CXX executable bin\test-gelu-quick.exe
+[296/356] Linking CXX executable bin\test-mtmd-impl.exe
+[297/356] Linking CXX executable bin\test-gguf.exe
+[298/356] Linking CXX executable bin\test-c.exe
+[299/356] Linking CXX executable bin\test-alloc.exe
+[300/356] Linking CXX executable bin\test-mtmd-c-api.exe
+[301/356] Linking CXX executable bin\llama-gguf-hash.exe
+[302/356] Linking CXX executable bin\test-export-graph-ops.exe
+[303/356] Linking CXX executable bin\llama-gguf.exe
+[304/356] Linking CXX executable bin\llama-batched.exe
+[305/356] Linking CXX executable bin\llama-debug.exe
+[306/356] Linking CXX executable bin\llama-embedding.exe
+[307/356] Linking CXX executable bin\llama-eval-callback.exe
+[308/356] Linking CXX executable bin\llama-lookahead.exe
+[309/356] Linking CXX executable bin\llama-lookup-create.exe
+[310/356] Linking CXX executable bin\llama-lookup-stats.exe
+[311/356] Building CXX object tools/cvector-generator/CMakeFiles/llama-cvector-generator.dir/cvector-generator.cpp.obj
+[312/356] Linking CXX executable bin\llama-idle.exe
+[313/356] Linking CXX executable bin\llama-lookup-merge.exe
+[314/356] Linking CXX executable bin\llama-lookup.exe
+[315/356] Linking CXX executable bin\llama-simple-chat.exe
+[316/356] Linking CXX executable bin\llama-simple.exe
+[317/356] Linking CXX executable bin\llama-retrieval.exe
+[318/356] Linking CXX executable bin\llama-parallel.exe
+[319/356] Linking CXX executable bin\llama-passkey.exe
+[320/356] Linking CXX executable bin\llama-speculative-simple.exe
+[321/356] Linking CXX executable bin\llama-speculative.exe
+[322/356] Linking CXX executable bin\llama-convert-llama2c-to-ggml.exe
+[323/356] Linking CXX executable bin\llama-vdot.exe
+[324/356] Linking CXX executable bin\llama-q8dot.exe
+[325/356] Linking CXX executable bin\llama-diffusion-cli.exe
+[326/356] Linking CXX executable bin\llama-finetune.exe
+[327/356] Linking CXX executable bin\llama-gen-docs.exe
+[328/356] Linking CXX executable bin\llama-gguf-split.exe
+[329/356] Linking CXX executable bin\llama-batched-bench.exe
+[330/356] Linking CXX executable bin\llama-bench.exe
+[331/356] Linking CXX executable bin\llama-perplexity.exe
+[332/356] Linking CXX executable bin\llama-completion.exe
+[333/356] Linking CXX executable bin\llama-minicpmv-cli.exe
+[334/356] Linking CXX executable bin\llama-gemma3-cli.exe
+[335/356] Linking CXX executable bin\llama-quantize.exe
+[336/356] Linking CXX executable bin\llama-llava-cli.exe
+[337/356] Linking CXX executable bin\llama-qwen2vl-cli.exe
+[338/356] Linking CXX executable bin\llama-tokenize.exe
+[339/356] Linking CXX executable bin\llama-server.exe
+[340/356] Linking CXX executable bin\llama-cli.exe
+[341/356] Linking CXX executable bin\llama-tts.exe
+[342/356] Linking CXX executable bin\llama-export-lora.exe
+[343/356] Linking CXX executable bin\llama-mtmd-debug.exe
+[344/356] Linking CXX executable bin\llama-fit-params.exe
+[345/356] Linking CXX executable bin\llama-cvector-generator.exe
+[346/356] Linking CXX executable bin\llama-results.exe
+[347/356] Linking CXX executable bin\llama.exe
+[348/356] Building CXX object tools/mtmd/CMakeFiles/llama-mtmd-cli.dir/mtmd-cli.cpp.obj
+[349/356] Linking CXX executable bin\llama-mtmd-cli.exe
+[350/356] Building CXX object tools/imatrix/CMakeFiles/llama-imatrix.dir/imatrix.cpp.obj
+[351/356] Linking CXX executable bin\llama-imatrix.exe
+[352/356] Building CXX object tests/CMakeFiles/test-backend-ops.dir/test-backend-ops.cpp.obj
+[353/356] Linking CXX executable bin\test-backend-ops.exe
+[354/356] Building CXX object tests/CMakeFiles/test-chat.dir/test-chat.cpp.obj
+[355/356] Linking CXX executable bin\test-chat.exe

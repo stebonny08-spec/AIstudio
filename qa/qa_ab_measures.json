@@ -1,0 +1,339 @@
+{
+ "build": "BUILD 2026-10-23T19:50:00+02:00",
+ "viewport": "1366x900",
+ "generatedAt": "2026-10-24T12:34:11.820Z",
+ "A": {
+  "A1a": {
+   "opened": true,
+   "closed": true,
+   "rect": {
+    "show": true,
+    "w": 270,
+    "h": 57,
+    "display": "block"
+   }
+  },
+  "A1b": {
+   "opened": true,
+   "closed": true,
+   "rect": {
+    "show": true,
+    "w": 170,
+    "h": 196,
+    "display": "flex"
+   }
+  },
+  "A1c": {
+   "opened": true,
+   "closed": true,
+   "rect": {
+    "show": true,
+    "w": 560,
+    "h": 496,
+    "display": "block"
+   }
+  },
+  "A1d": {
+   "opened": true,
+   "closed": true,
+   "rect": {
+    "show": true,
+    "w": 255,
+    "h": 241,
+    "display": "block"
+   }
+  },
+  "A1e": {
+   "escOpened": true,
+   "escClosed": true
+  },
+  "A2a": {
+   "count": 1,
+   "ids": [
+    "matita"
+   ]
+  },
+  "A2b": {
+   "count": 1,
+   "ids": [
+    "penna"
+   ]
+  },
+  "A2c": {
+   "count": 1,
+   "ids": [
+    "gomma"
+   ]
+  },
+  "A2d": {
+   "count": 1,
+   "ids": [
+    "evidenziatore"
+   ]
+  },
+  "A2e": {
+   "count": 1,
+   "ids": [
+    "lazo"
+   ]
+  },
+  "A2f": {
+   "count": 1,
+   "ids": [
+    "selezione"
+   ]
+  },
+  "A2g": {
+   "bgToggle": "rgba(249, 151, 74, 0.16)",
+   "bgToolActive": "rgb(249, 151, 74)",
+   "borderTop": "1px rgb(249, 151, 74)",
+   "dataTool": false,
+   "activeCount": 1
+  },
+  "A3a": {
+   "left": 12,
+   "width": 300,
+   "display": "flex",
+   "items": 4,
+   "stageCenter": 683,
+   "sideCenter": 162
+  },
+  "A3b": {
+   "s1": {
+    "q": "fisica",
+    "items": 1,
+    "hint": ""
+   },
+   "s2": {
+    "q": "zzqxwj",
+    "items": 0,
+    "hint": "Nessuna fonte corrisponde alla ricerca."
+   },
+   "s3": {
+    "q": "",
+    "items": 4,
+    "hint": ""
+   }
+  },
+  "A3c": {
+   "preview": "{\"mode\":\"quaderno\",\"sheet\":\"quadretti\",\"w\":1600,\"h\":1100,\"page\":0,\"pages\":[{\"objects\":[{\"t\":\"text\",\"x\":120,\"y\":120,\"w\":520,\"h\":40,\"text\":\"Lezione di fisica: cinematica del punto materiale, velocita me"
+  },
+  "A3d": {
+   "before": 2,
+   "after": 3
+  },
+  "A3e": {
+   "before": 2,
+   "afterUndo": 2
+  }
+ },
+ "B": {
+  "B1a": {
+   "nodesFirst": true,
+   "overlayAfter": true,
+   "order": [
+    "sc-guide",
+    "sc-nodes",
+    "sc-edges",
+    "sc-draw",
+    "sc-overlay"
+   ]
+  },
+  "B1b": {
+   "nodes": 6,
+   "edges": 5,
+   "midSamples": 2,
+   "midHits": 2,
+   "extSamples": 26,
+   "extHits": 26,
+   "outside": 0,
+   "misses": []
+  },
+  "B1c": {
+   "nid": "r1",
+   "before": {
+    "l": 77,
+    "t": 269
+   },
+   "after": {
+    "l": 147,
+    "t": 319
+   }
+  },
+  "B2a_albero": {
+   "type": "albero",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "100%"
+  },
+  "B2a_mappa": {
+   "type": "mappa",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "117%"
+  },
+  "B1d": {
+   "nodes": 6,
+   "edges": 5,
+   "midSamples": 1,
+   "midHits": 1,
+   "extSamples": 1,
+   "extHits": 1,
+   "outside": 0,
+   "misses": []
+  },
+  "B2a_lr": {
+   "type": "lr",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "136%"
+  },
+  "B2a_libero": {
+   "type": "libero",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "136%"
+  },
+  "B2a_riassunto": {
+   "type": "riassunto",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "135%"
+  },
+  "B2a_albero_ritorno": {
+   "type": "albero",
+   "tabs": [
+    "Riassunto",
+    "Fonti",
+    "Stile",
+    "Testo"
+   ],
+   "visible": true,
+   "badge": "109%"
+  },
+  "B2b": {
+   "visible": true,
+   "hint": "Seleziona un nodo per scrivere qui il suo testo (titolo + corpo).",
+   "taDisabled": true
+  },
+  "B2c": {
+   "nid": "r1",
+   "expected": "Radice"
+  },
+  "B2d": {
+   "nid": "r1"
+  },
+  "B3a": {
+   "undo": true,
+   "redo": true,
+   "undoInWrap": false,
+   "redoInWrap": false
+  },
+  "B3b": {
+   "seq": [
+    6,
+    7,
+    6,
+    7
+   ]
+  },
+  "B3c": {
+   "before": {
+    "type": "albero",
+    "badge": "109%",
+    "nid": "r1",
+    "rect": {
+     "l": 371.8,
+     "t": 357.3,
+     "w": 186
+    }
+   },
+   "after": {
+    "type": "albero",
+    "badge": "109%",
+    "rect": {
+     "l": 371.8,
+     "t": 357.3,
+     "w": 186
+    }
+   }
+  },
+  "B3d": {
+   "seq": [
+    "albero",
+    "lr",
+    "albero"
+   ]
+  },
+  "B4a": {
+   "mano": 0,
+   "matita": 1
+  },
+  "B4b": {
+   "before": "translate(-25.58,122.72) scale(1.0930)",
+   "after": "translate(94.42,192.72) scale(1.0930)",
+   "delta": [
+    120,
+    70
+   ]
+  },
+  "B4c": {
+   "cursorBefore": "default",
+   "cursorSpace": "grab",
+   "cursorAfter": "default",
+   "moved": true
+  },
+  "B4d": {
+   "sequence": [
+    "none",
+    "flex",
+    "none"
+   ]
+  }
+ },
+ "console": {
+  "A": {
+   "logs": [],
+   "qaErrors": []
+  },
+  "B": {
+   "logs": [],
+   "qaErrors": []
+  }
+ },
+ "harness": {
+  "notes": {
+   "checks": 18,
+   "errors": []
+  },
+  "schemi": {
+   "checks": 22,
+   "errors": []
+  }
+ }
+}

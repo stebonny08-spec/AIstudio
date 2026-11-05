@@ -1,0 +1,288 @@
+{
+ "round": "15b",
+ "method": "engine reale LocalSearchEngine(indice %APPDATA%/vector_index, E5 locale) + search(hybrid=True, top_k=5); zero LLM, zero rete; bootstrap identico a qa/f0_probe.py; soglia gate dichiarata 0.70 (accordo gate E2E in qa/r15_qa1.json)",
+ "gt": "qa/gt_set_r15.json",
+ "threshold_declared": 0.7,
+ "n_pos": 9,
+ "hits_top5": 9,
+ "recall5": 1.0,
+ "target_recall5": 1.0,
+ "target_hit": true,
+ "neg_retrieval_info": [
+  {
+   "id": "n1",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "n2",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "n3",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "n4",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "n5",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  }
+ ],
+ "par_retrieval_info": [
+  {
+   "id": "x1",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "x2",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "x3",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "x4",
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  }
+ ],
+ "total_ms": 20544.8,
+ "per_case": [
+  {
+   "id": "p1",
+   "tipo": "positivo",
+   "query": "Nella fotosintesi clorofilliana qual è il valore di ΔG in kJ/mol della reazione che produce glucosio?",
+   "anchor": "+2870",
+   "hit_top5": true,
+   "search_ms": 19925.8,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p2",
+   "tipo": "positivo",
+   "query": "Perché la fotosintesi ossigenica è una reazione fortemente endergonica?",
+   "anchor": "endergonica",
+   "hit_top5": true,
+   "search_ms": 49.6,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p3",
+   "tipo": "positivo",
+   "query": "Qual è il primo accettore di CO2 nelle piante C4?",
+   "anchor": "Fosfoenolpiruvato",
+   "hit_top5": true,
+   "search_ms": 51.7,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p4",
+   "tipo": "positivo",
+   "query": "Che ruolo svolge la plastocianina nella catena di trasporto degli elettroni?",
+   "anchor": "Plastocianina",
+   "hit_top5": true,
+   "search_ms": 48.3,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p5",
+   "tipo": "positivo",
+   "query": "Come funziona l'ATP sintasi plastidiale durante il flusso di protoni?",
+   "anchor": "ATP Sintasi",
+   "hit_top5": true,
+   "search_ms": 41.2,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p6",
+   "tipo": "positivo",
+   "query": "Quante reazioni su 4-5 catalizzate dalla RuBisCO sono ossigenazioni nelle piante C3 a 25 gradi?",
+   "anchor": "1 reazione su 4-5",
+   "hit_top5": true,
+   "search_ms": 31.8,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p7",
+   "tipo": "positivo",
+   "query": "Qual è il costo energetico in ATP:NADPH per CO2 confrontando le vie C3, C4 e CAM?",
+   "anchor": "Costo Energetico",
+   "hit_top5": true,
+   "search_ms": 33.4,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p8",
+   "tipo": "positivo",
+   "query": "Come fanno le piante CAM a fissare l'anidride carbonica durante la fase notturna?",
+   "anchor": "Fase Notturna",
+   "hit_top5": true,
+   "search_ms": 39.6,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "p9",
+   "tipo": "positivo",
+   "query": "Quanta energia libera serve alle piante per trasformare anidride carbonica e acqua in zucchero usando la luce?",
+   "anchor": "+2870",
+   "hit_top5": true,
+   "search_ms": 36.9,
+   "top5": [
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md",
+    "fotosintesi_clorofilliana_universitario.md"
+   ],
+   "n_ret": 5,
+   "h8_confidence": "alta"
+  },
+  {
+   "id": "n1",
+   "tipo": "negativo",
+   "query": "Qual è la differenza tra mitosi e meiosi nelle cellule?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "nulla"
+  },
+  {
+   "id": "n2",
+   "tipo": "negativo",
+   "query": "Come si calcola l'IVA sulla fattura elettronica in Italia?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "nulla"
+  },
+  {
+   "id": "n3",
+   "tipo": "negativo",
+   "query": "Quali sono le regole del calcio riguardo al fuorigioco?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "nulla"
+  },
+  {
+   "id": "n4",
+   "tipo": "negativo",
+   "query": "Ricetta tradizionale della carbonara romana",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "nulla"
+  },
+  {
+   "id": "n5",
+   "tipo": "negativo",
+   "query": "Spiegami le cause della guerra dei Trent'anni",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "nulla"
+  },
+  {
+   "id": "x1",
+   "tipo": "parziale",
+   "query": "Chi ha scoperto la fotosintesi e in che anno è avvenuta?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "parziale (mai piena)"
+  },
+  {
+   "id": "x2",
+   "tipo": "parziale",
+   "query": "Che differenza c'è tra un enzima e un ormone?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "parziale (mai piena)"
+  },
+  {
+   "id": "x3",
+   "tipo": "parziale",
+   "query": "Qual è la funzione di un enzima digestivo?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "parziale (mai piena)"
+  },
+  {
+   "id": "x4",
+   "tipo": "parziale",
+   "query": "Come funziona la fotosintesi artificiale in un laboratorio?",
+   "n_ret": 5,
+   "h8_confidence": "alta",
+   "atteso": "parziale (mai piena)"
+  }
+ ]
+}

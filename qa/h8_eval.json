@@ -1,0 +1,258 @@
+{
+  "metric": "recall@5 = frazione di domande con almeno 1 chunk del topic tra i primi 5 recuperati (source_file == gt); soglie 0.45/0.35 NON applicate a livello di ranking",
+  "corpus_chunks": 89,
+  "questions": 30,
+  "embedder": "DeterministicEmbedder (riusato da tests/testH1_parity.py)",
+  "recall_at_5_vector": 0.9,
+  "recall_at_5_hybrid": 1.0,
+  "delta_hybrid_minus_vector": 0.1,
+  "gate": {
+    "hybrid_ge_vector": true,
+    "min_primary": 0.7,
+    "min_used": 0.7,
+    "gate_lowered": false,
+    "notes": "gate primario 0.70 raggiunto"
+  },
+  "per_question": [
+    {
+      "q": "spiega fotosintesi clorofilliana",
+      "gt_source": "SYN::rag_stage2/doc_0.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 3,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è fotosintesi clorofilliana secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_0.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega mitosi divisione cellulare",
+      "gt_source": "SYN::rag_stage2/doc_1.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è mitosi divisione cellulare secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_1.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega algebra lineare matrici",
+      "gt_source": "SYN::rag_stage2/doc_2.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è algebra lineare matrici secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_2.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 3,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega rivoluzione francese",
+      "gt_source": "SYN::rag_stage2/doc_3.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è rivoluzione francese secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_3.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega programmazione python funzioni",
+      "gt_source": "SYN::rag_stage2/doc_4.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è programmazione python funzioni secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_4.md",
+      "hit_vector": false,
+      "hit_hybrid": true,
+      "rank_vector": null,
+      "rank_hybrid": 2
+    },
+    {
+      "q": "spiega ricorsione algoritmi",
+      "gt_source": "SYN::rag_stage2/doc_5.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è ricorsione algoritmi secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_5.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega termodinamica entropia",
+      "gt_source": "SYN::rag_stage2/doc_6.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è termodinamica entropia secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_6.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 2,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega impero romano strade",
+      "gt_source": "SYN::rag_stage2/doc_7.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è impero romano strade secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_7.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega integrazione funzioni",
+      "gt_source": "SYN::rag_stage2/doc_8.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è integrazione funzioni secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_8.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 2,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega apprendimento automatico neuroni",
+      "gt_source": "SYN::rag_stage2/doc_9.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è apprendimento automatico neuroni secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_9.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega guerra fredata blocco orientale",
+      "gt_source": "SYN::rag_stage2/doc_10.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è guerra fredata blocco orientale secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_10.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "spiega reazione chimica equilibrio",
+      "gt_source": "SYN::rag_stage2/doc_11.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "che cos'è reazione chimica equilibrio secondo gli appunti",
+      "gt_source": "SYN::rag_stage2/doc_11.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "riassumo per l'esame: fotosintesi clorofilliana",
+      "gt_source": "SYN::rag_stage2/doc_0.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 3,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "riassumo per l'esame: mitosi divisione cellulare",
+      "gt_source": "SYN::rag_stage2/doc_1.md",
+      "hit_vector": false,
+      "hit_hybrid": true,
+      "rank_vector": null,
+      "rank_hybrid": 2
+    },
+    {
+      "q": "riassumo per l'esame: algebra lineare matrici",
+      "gt_source": "SYN::rag_stage2/doc_2.md",
+      "hit_vector": false,
+      "hit_hybrid": true,
+      "rank_vector": null,
+      "rank_hybrid": 2
+    },
+    {
+      "q": "riassumo per l'esame: rivoluzione francese",
+      "gt_source": "SYN::rag_stage2/doc_3.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "riassumo per l'esame: programmazione python funzioni",
+      "gt_source": "SYN::rag_stage2/doc_4.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    },
+    {
+      "q": "riassumo per l'esame: ricorsione algoritmi",
+      "gt_source": "SYN::rag_stage2/doc_5.md",
+      "hit_vector": true,
+      "hit_hybrid": true,
+      "rank_vector": 1,
+      "rank_hybrid": 1
+    }
+  ]
+}

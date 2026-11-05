@@ -1,0 +1,107 @@
+{
+ "q2": {
+  "m0": {
+   "root": 740,
+   "top": 76,
+   "list": 486,
+   "prev": 112,
+   "ins": 32,
+   "padT": 8,
+   "padB": 4,
+   "gap": 6,
+   "styleH": ""
+  },
+  "m1": {
+   "root": 740,
+   "top": 26,
+   "list": 0,
+   "prev": 658,
+   "ins": 32,
+   "chipsDisplay": "none",
+   "chevRot": "matrix(-1, 0, 0, -1, 0, 0)",
+   "collapsed": true,
+   "padT": 8,
+   "padB": 4,
+   "gap": 6
+  },
+  "m2": {
+   "root": 740,
+   "list": 486,
+   "prev": 112,
+   "collapsed": false
+  }
+ },
+ "q4": {
+  "total": 20,
+  "hit": 20,
+  "w0": 340,
+  "wAfter": 400,
+  "wReset": 340
+ },
+ "q7": {
+  "raw": 0,
+  "katex": 131,
+  "err": 0,
+  "fb": 0
+ },
+ "matrix": [
+  {
+   "tipo": "Appunti (manoscritto)",
+   "atteso": "<img> snapshot + testo",
+   "ok": true,
+   "visto": "Nota del 30/10/2026Appunti"
+  },
+  {
+   "tipo": "Documenti",
+   "atteso": "html renderizzato",
+   "ok": true,
+   "visto": "Documento senza titolo 15/10/2026Documento"
+  },
+  {
+   "tipo": "Presentazioni",
+   "atteso": "outline slide",
+   "ok": true,
+   "visto": "Presentazione senza titolo 15/10/2026Presentazione"
+  },
+  {
+   "tipo": "Fogli",
+   "atteso": "tabella HTML griglia",
+   "ok": true,
+   "visto": "Foglio senza titolo 15/10/2026Foglio"
+  },
+  {
+   "tipo": "Video",
+   "atteso": "meta+elenco clip",
+   "ok": true,
+   "visto": "Progetto video senza titolo 15/10/2026Video clips=0"
+  },
+  {
+   "tipo": "Chat",
+   "atteso": "transcript turni",
+   "ok": true,
+   "visto": "chi è dante alighieriChat"
+  },
+  {
+   "tipo": "Materiali (md)",
+   "atteso": "render completo (heading)",
+   "ok": true,
+   "visto": "fotosintesi_clorofilliana_universitario.mdMateriale"
+  },
+  {
+   "tipo": "Libri",
+   "atteso": "testo con capitoli (md)",
+   "ok": false,
+   "visto": "PARZIALE: preselected_books vuota (0 file) - cella non verificabile su sorgente reale"
+  },
+  {
+   "tipo": "Appunti VUOTO (ad hoc)",
+   "atteso": "solo qui: \"Nessun testo disponibile\"+log",
+   "ok": true,
+   "visto": "Nota del 04/11/2026Appunti"
+  }
+ ],
+ "books": {
+  "dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books",
+  "count": 0
+ }
+}

@@ -1,0 +1,2021 @@
+{
+ "method": "node qa_browser/qaS19_routing.js [prima|dopo|all] — Chromium headless (puppeteer) su file://qa_ui/schemi.html; fase PRIMA con request interception su modules/schemi.js (servita la copia baseline qa/r19_schemi_baseline.js); ancore: tabella C1-C11 (4 lati, centri, +2px EDGE_OUT); intersezioni: Liang-Barsky esatto sui segmenti L (eps interiore 0.01, nodi endpoint esclusi) + getPointAtLength(step 1px) per le Q; punta: translate(<polygon>) <= 2px dall'ancora target; ortogonalità: |dx|<=0.6 o |dy|<=0.6 per segmento (Q esentate); struttura: data-caso == caso atteso; C8 bus: orizzontali identici; C11: coppie gapX<32 E gapY<48. Screenshot qa/r19_s_prima_<caso>.png / qa/r19_s_dopo_<caso>.png",
+ "prima": {
+  "command": "node qa_browser/qaS19_routing.js prima",
+  "timestamp": "2026-11-04T18:59:54.377Z",
+  "viewport": "1366x900",
+  "totale": {
+   "casi": 13,
+   "casi_ok": 0,
+   "archi": 24,
+   "intersezioni": 0,
+   "intersezioni_tot": 0,
+   "punte_totali": 24,
+   "punte_oltre_2px": 3,
+   "non_ortogonali": 8,
+   "segmenti_oltre4": 0,
+   "anchor_fail": 3,
+   "orient_fail": 6,
+   "caso_fail": 24,
+   "q_fail": 0,
+   "coppie_violate": 0,
+   "nodi_mancanti": 0,
+   "errori": 0
+  },
+  "cases": {
+   "c1": {
+    "key": "c1",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e1a",
+      "caso": "",
+      "exp": "C1",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 162 L 185 258",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e1b",
+      "caso": "",
+      "exp": "C1b",
+      "isQ": false,
+      "ok": false,
+      "d": "M 585 162 L 645 258",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_prima_c1.png"
+   },
+   "c2": {
+    "key": "c2",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e2a",
+      "caso": "",
+      "exp": "C2",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 258 L 185 162",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e2b",
+      "caso": "",
+      "exp": "C2b",
+      "isQ": false,
+      "ok": false,
+      "d": "M 585 258 L 645 162",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_prima_c2.png"
+   },
+   "c3": {
+    "key": "c3",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e3a",
+      "caso": "",
+      "exp": "C3",
+      "isQ": false,
+      "ok": false,
+      "d": "M 272 230 L 398 230",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     },
+     {
+      "eid": "e3b",
+      "caso": "",
+      "exp": "C3b",
+      "isQ": false,
+      "ok": false,
+      "d": "M 272 430 L 398 460",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_prima_c3.png"
+   },
+   "c4": {
+    "key": "c4",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e4",
+      "caso": "",
+      "exp": "C4",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 162 L 285 162 L 285 348 L 385 348",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": [
+       162,
+       348
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c4.png"
+   },
+   "c5": {
+    "key": "c5",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e5",
+      "caso": "",
+      "exp": "C5",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 348 L 385 162",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c5.png"
+   },
+   "c6": {
+    "key": "c6",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e6",
+      "caso": "",
+      "exp": "C6",
+      "isQ": false,
+      "ok": false,
+      "d": "M 272 130 L 498 330",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c6.png"
+   },
+   "c7": {
+    "key": "c7",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e7",
+      "caso": "",
+      "exp": "C7",
+      "isQ": false,
+      "ok": false,
+      "d": "M 498 130 L 272 330",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c7.png"
+   },
+   "c8": {
+    "key": "c8",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e8a",
+      "caso": "",
+      "exp": "C8",
+      "isQ": false,
+      "ok": false,
+      "d": "M 398 110 L 398 230 L 272 230 L 272 350",
+      "casoOk": false,
+      "anchor": {
+       "s": 92.698,
+       "t": 92.698
+      },
+      "anchorOk": false,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 92.698,
+      "tipOk": false,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     },
+     {
+      "eid": "e8b",
+      "caso": "",
+      "exp": "C8",
+      "isQ": false,
+      "ok": false,
+      "d": "M 485 142 L 485 230 L 485 230 L 485 318",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e8c",
+      "caso": "",
+      "exp": "C8",
+      "isQ": false,
+      "ok": false,
+      "d": "M 572 110 L 572 230 L 698 230 L 698 350",
+      "casoOk": false,
+      "anchor": {
+       "s": 92.698,
+       "t": 92.698
+      },
+      "anchorOk": false,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 92.698,
+      "tipOk": false,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 3,
+    "archi_attesi": 3,
+    "screenshot": "qa/r19_s_prima_c8.png"
+   },
+   "c9": {
+    "key": "c9",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e9",
+      "caso": "",
+      "exp": "C9",
+      "isQ": false,
+      "ok": false,
+      "d": "M 232 230 L 232 188 L 634 188 L 634 230 L 658 230",
+      "casoOk": false,
+      "anchor": {
+       "s": 92.698,
+       "t": 92.698
+      },
+      "anchorOk": false,
+      "segs": 4,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 92.698,
+      "tipOk": false,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": [
+       188,
+       230
+      ]
+     }
+    ],
+    "nodi_renderizzati": 3,
+    "nodi_attesi": 3,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c9.png"
+   },
+   "c10": {
+    "key": "c10",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e10",
+      "caso": "",
+      "exp": "C10",
+      "isQ": false,
+      "ok": false,
+      "d": "M 232 110 L 658 370",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 3,
+    "nodi_attesi": 3,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c10.png"
+   },
+   "c11": {
+    "key": "c11",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e11",
+      "caso": "",
+      "exp": "C1b",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 162 L 235 206",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": false,
+      "nonOrto": 1,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_prima_c11.png"
+   },
+   "curva": {
+    "key": "curva",
+    "error": null,
+    "edges": [
+     {
+      "eid": "eq",
+      "caso": "",
+      "exp": "C3",
+      "isQ": true,
+      "ok": false,
+      "d": "M 272 130 Q 385.0 179.7 498 130",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": null,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "eh",
+      "caso": "",
+      "exp": "C1",
+      "isQ": false,
+      "ok": false,
+      "d": "M 185 162 L 185 314",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_prima_curva.png"
+   },
+   "real": {
+    "key": "real",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e1",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 252 88 L 305 88 L 305 68 L 358 68",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       88,
+       68
+      ]
+     },
+     {
+      "eid": "e2",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 252 88 L 252 143 L 358 143 L 358 198",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": [
+       143
+      ]
+     },
+     {
+      "eid": "e3",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 532 68 L 585 68 L 585 48 L 638 48",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       68,
+       48
+      ]
+     },
+     {
+      "eid": "e4",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 532 68 L 532 123 L 638 123 L 638 178",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": false,
+      "qOk": true,
+      "horizYs": [
+       123
+      ]
+     },
+     {
+      "eid": "e5",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 252 368 L 305 368 L 305 368 L 358 368",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       368,
+       368
+      ]
+     },
+     {
+      "eid": "e6",
+      "caso": "",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": false,
+      "d": "M 445 398 L 445 433 L 445 433 L 445 468",
+      "casoOk": false,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 9,
+    "nodi_attesi": 9,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 6,
+    "archi_attesi": 6,
+    "screenshot": "qa/r19_s_prima_real.png"
+   }
+  },
+  "errori": []
+ },
+ "dopo": {
+  "command": "node qa_browser/qaS19_routing.js dopo",
+  "timestamp": "2026-11-04T19:00:04.678Z",
+  "viewport": "1366x900",
+  "totale": {
+   "casi": 13,
+   "casi_ok": 13,
+   "archi": 24,
+   "intersezioni": 0,
+   "intersezioni_tot": 0,
+   "punte_totali": 24,
+   "punte_oltre_2px": 0,
+   "non_ortogonali": 0,
+   "segmenti_oltre4": 0,
+   "anchor_fail": 0,
+   "orient_fail": 0,
+   "caso_fail": 0,
+   "q_fail": 0,
+   "coppie_violate": 0,
+   "nodi_mancanti": 0,
+   "errori": 0
+  },
+  "cases": {
+   "c1": {
+    "key": "c1",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e1a",
+      "caso": "C1",
+      "exp": "C1",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 162 L 185 258",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e1b",
+      "caso": "C1b",
+      "exp": "C1b",
+      "isQ": false,
+      "ok": true,
+      "d": "M 585 162 L 585 210 L 645 210 L 645 258",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       210
+      ]
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_dopo_c1.png"
+   },
+   "c2": {
+    "key": "c2",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e2a",
+      "caso": "C2",
+      "exp": "C2",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 258 L 185 162",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e2b",
+      "caso": "C2b",
+      "exp": "C2b",
+      "isQ": false,
+      "ok": true,
+      "d": "M 585 258 L 585 210 L 645 210 L 645 162",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       210
+      ]
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_dopo_c2.png"
+   },
+   "c3": {
+    "key": "c3",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e3a",
+      "caso": "C3",
+      "exp": "C3",
+      "isQ": false,
+      "ok": true,
+      "d": "M 272 230 L 398 230",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     },
+     {
+      "eid": "e3b",
+      "caso": "C3b",
+      "exp": "C3b",
+      "isQ": false,
+      "ok": true,
+      "d": "M 272 430 L 335 430 L 335 460 L 398 460",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       430,
+       460
+      ]
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_dopo_c3.png"
+   },
+   "c4": {
+    "key": "c4",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e4",
+      "caso": "C4",
+      "exp": "C4",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 162 L 185 255 L 385 255 L 385 348",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       255
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c4.png"
+   },
+   "c5": {
+    "key": "c5",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e5",
+      "caso": "C5",
+      "exp": "C5",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 348 L 185 255 L 385 255 L 385 162",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       255
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c5.png"
+   },
+   "c6": {
+    "key": "c6",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e6",
+      "caso": "C6",
+      "exp": "C6",
+      "isQ": false,
+      "ok": true,
+      "d": "M 272 130 L 385 130 L 385 330 L 498 330",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       130,
+       330
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c6.png"
+   },
+   "c7": {
+    "key": "c7",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e7",
+      "caso": "C7",
+      "exp": "C7",
+      "isQ": false,
+      "ok": true,
+      "d": "M 498 130 L 385 130 L 385 330 L 272 330",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       130,
+       330
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c7.png"
+   },
+   "c8": {
+    "key": "c8",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e8a",
+      "caso": "C8",
+      "exp": "C8",
+      "isQ": false,
+      "ok": true,
+      "d": "M 485 142 L 485 230 L 185 230 L 185 318",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     },
+     {
+      "eid": "e8b",
+      "caso": "C8",
+      "exp": "C8",
+      "isQ": false,
+      "ok": true,
+      "d": "M 485 142 L 485 318",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "e8c",
+      "caso": "C8",
+      "exp": "C8",
+      "isQ": false,
+      "ok": true,
+      "d": "M 485 142 L 485 230 L 785 230 L 785 318",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       230
+      ]
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": {
+     "y": 230,
+     "ok": true,
+     "n": 3
+    },
+    "nodi_mancanti": [],
+    "archi_renderizzati": 3,
+    "archi_attesi": 3,
+    "screenshot": "qa/r19_s_dopo_c8.png"
+   },
+   "c9": {
+    "key": "c9",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e9",
+      "caso": "C9",
+      "exp": "C9",
+      "isQ": false,
+      "ok": true,
+      "d": "M 145 262 L 145 304 L 745 304 L 745 262",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       304
+      ]
+     }
+    ],
+    "nodi_renderizzati": 3,
+    "nodi_attesi": 3,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c9.png"
+   },
+   "c10": {
+    "key": "c10",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e10",
+      "caso": "C10",
+      "exp": "C10",
+      "isQ": false,
+      "ok": true,
+      "d": "M 232 110 L 232 370 L 658 370",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 2,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       370
+      ]
+     }
+    ],
+    "nodi_renderizzati": 3,
+    "nodi_attesi": 3,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c10.png"
+   },
+   "c11": {
+    "key": "c11",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e11",
+      "caso": "C1b",
+      "exp": "C1b",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 162 L 185 184 L 235 184 L 235 206",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       184
+      ]
+     }
+    ],
+    "nodi_renderizzati": 2,
+    "nodi_attesi": 2,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 1,
+    "archi_attesi": 1,
+    "screenshot": "qa/r19_s_dopo_c11.png"
+   },
+   "curva": {
+    "key": "curva",
+    "error": null,
+    "edges": [
+     {
+      "eid": "eq",
+      "caso": "C3",
+      "exp": "C3",
+      "isQ": true,
+      "ok": true,
+      "d": "M 272 130 Q 385.0 179.7 498 130",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": null,
+      "qOk": true,
+      "horizYs": []
+     },
+     {
+      "eid": "eh",
+      "caso": "C1",
+      "exp": "C1",
+      "isQ": false,
+      "ok": true,
+      "d": "M 185 162 L 185 314",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 4,
+    "nodi_attesi": 4,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 2,
+    "archi_attesi": 2,
+    "screenshot": "qa/r19_s_dopo_curva.png"
+   },
+   "real": {
+    "key": "real",
+    "error": null,
+    "edges": [
+     {
+      "eid": "e1",
+      "caso": "C3b",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 252 88 L 305 88 L 305 68 L 358 68",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       88,
+       68
+      ]
+     },
+     {
+      "eid": "e2",
+      "caso": "C6",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 252 88 L 305 88 L 305 198 L 358 198",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       88,
+       198
+      ]
+     },
+     {
+      "eid": "e3",
+      "caso": "C3b",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 532 68 L 585 68 L 585 48 L 638 48",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       68,
+       48
+      ]
+     },
+     {
+      "eid": "e4",
+      "caso": "C6",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 532 68 L 585 68 L 585 178 L 638 178",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 3,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       68,
+       178
+      ]
+     },
+     {
+      "eid": "e5",
+      "caso": "C3",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 252 368 L 358 368",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": [
+       368
+      ]
+     },
+     {
+      "eid": "e6",
+      "caso": "C1",
+      "exp": "ANY",
+      "isQ": false,
+      "ok": true,
+      "d": "M 445 398 L 445 468",
+      "casoOk": true,
+      "anchor": {
+       "s": 0,
+       "t": 0
+      },
+      "anchorOk": true,
+      "segs": 1,
+      "segsOk": true,
+      "orthoOk": true,
+      "nonOrto": 0,
+      "inter": [],
+      "tipDist": 0,
+      "tipOk": true,
+      "orientOk": true,
+      "qOk": true,
+      "horizYs": []
+     }
+    ],
+    "nodi_renderizzati": 9,
+    "nodi_attesi": 9,
+    "coppie_violate": [],
+    "bus": null,
+    "nodi_mancanti": [],
+    "archi_renderizzati": 6,
+    "archi_attesi": 6,
+    "screenshot": "qa/r19_s_dopo_real.png"
+   }
+  },
+  "errori": []
+ },
+ "shaping": {
+  "prima": {
+   "c_aperta": {
+    "r": {
+     "n": 111,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke (NO snap)",
+    "obtained": {
+     "count": 3,
+     "t": "shape",
+     "kind": "ellipse",
+     "arrow": false,
+     "ptsN": 0
+    },
+    "ok": false
+   },
+   "cerchio_chiuso": {
+    "r": {
+     "n": 131,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/circle",
+    "obtained": {
+     "count": 4,
+     "t": "shape",
+     "kind": "circle",
+     "arrow": false,
+     "ptsN": 0
+    },
+    "ok": true
+   },
+   "coloring": {
+    "r": {
+     "n": 221,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke (NO snap)",
+    "obtained": {
+     "count": 5,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 221
+    },
+    "ok": true
+   },
+   "rettangolo_impreciso": {
+    "r": {
+     "n": 121,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/rectangle",
+    "obtained": {
+     "count": 6,
+     "t": "shape",
+     "kind": "rectangle",
+     "arrow": false,
+     "ptsN": 4
+    },
+    "ok": true
+   },
+   "quadrato": {
+    "r": {
+     "n": 97,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/square",
+    "obtained": {
+     "count": 7,
+     "t": "shape",
+     "kind": "square",
+     "arrow": false,
+     "ptsN": 4
+    },
+    "ok": true
+   },
+   "arco_flick": {
+    "r": {
+     "n": 43,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape + arrow=true",
+    "obtained": {
+     "count": 8,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 43
+    },
+    "ok": false,
+    "no_raw_residual": false
+   },
+   "curva_tremolante": {
+    "r": {
+     "n": 167,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke + residuo<=2.5px",
+    "obtained": {
+     "count": 9,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 167
+    },
+    "ok": true,
+    "residual_px": 1.88
+   },
+   "undo2": {
+    "expected": "1° undo -> stroke grezzo (count invariato), 2° undo -> rimosso",
+    "shape_before": true,
+    "u1": {
+     "count": 10,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 75
+    },
+    "u2": {
+     "count": 9,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 167
+    },
+    "ok": true
+   }
+  },
+  "dopo": {
+   "c_aperta": {
+    "r": {
+     "n": 111,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke (NO snap)",
+    "obtained": {
+     "count": 3,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 105
+    },
+    "ok": true
+   },
+   "cerchio_chiuso": {
+    "r": {
+     "n": 131,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/circle",
+    "obtained": {
+     "count": 4,
+     "t": "shape",
+     "kind": "circle",
+     "arrow": false,
+     "ptsN": 0
+    },
+    "ok": true
+   },
+   "coloring": {
+    "r": {
+     "n": 221,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke (NO snap)",
+    "obtained": {
+     "count": 5,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 221
+    },
+    "ok": true
+   },
+   "rettangolo_impreciso": {
+    "r": {
+     "n": 121,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/rectangle",
+    "obtained": {
+     "count": 6,
+     "t": "shape",
+     "kind": "rectangle",
+     "arrow": false,
+     "ptsN": 4
+    },
+    "ok": true
+   },
+   "quadrato": {
+    "r": {
+     "n": 97,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape/square",
+    "obtained": {
+     "count": 7,
+     "t": "shape",
+     "kind": "square",
+     "arrow": false,
+     "ptsN": 4
+    },
+    "ok": true
+   },
+   "arco_flick": {
+    "r": {
+     "n": 43,
+     "scale": 1.171303074670571
+    },
+    "expected": "shape + arrow=true",
+    "obtained": {
+     "count": 8,
+     "t": "shape",
+     "kind": "curve",
+     "arrow": true,
+     "ptsN": 36
+    },
+    "ok": true,
+    "no_raw_residual": true
+   },
+   "curva_tremolante": {
+    "r": {
+     "n": 167,
+     "scale": 1.171303074670571
+    },
+    "expected": "stroke + residuo<=2.5px",
+    "obtained": {
+     "count": 9,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 167
+    },
+    "ok": true,
+    "residual_px": 1.88
+   },
+   "undo2": {
+    "expected": "1° undo -> stroke grezzo (count invariato), 2° undo -> rimosso",
+    "shape_before": true,
+    "u1": {
+     "count": 10,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 75
+    },
+    "u2": {
+     "count": 9,
+     "t": "stroke",
+     "arrow": false,
+     "ptsN": 167
+    },
+    "ok": true
+   }
+  }
+ },
+ "ui": {
+  "prima": {
+   "toolbar": {
+    "n": 8,
+    "labels": [
+     "Annulla (Ctrl+Z): su una forma riconosciuta, il 1° annulla riporta al tratto grezzo, il 2° lo rimuove",
+     "Ripeti (Ctrl+Y)",
+     "Immagine",
+     "Documento",
+     "File PPT/PPTX",
+     "Fonti",
+     "Flashcard dalla selezione (AI: F01)",
+     "Migliora testo (AI: F05) - chiaro / conciso / formale"
+    ],
+    "hasAI": true,
+    "hasMigliora": true,
+    "hasFlashcard": false,
+    "shaping": 2,
+    "order_ok": false
+   },
+   "single_tool": 1,
+   "single_tool_ok": true,
+   "popover": {
+    "open": true,
+    "closed_outside": true,
+    "ok": true
+   },
+   "fonti": {
+    "chips": [],
+    "n_items": 6,
+    "items": [
+     "AppuntiNota QA-A",
+     "Appunti · FISICAAppunti Fisica Cinetica",
+     "Riassunto · STORIARiassunto Storia Romana",
+     "DocumentoDispensa Geologia",
+     "LibroLibro Gamma",
+     "Materialeriassunto-md.md"
+    ],
+    "has_chips": false,
+    "md": {
+     "clicked": true,
+     "has_h1": false,
+     "has_strong": false,
+     "has_li": false,
+     "has_badge": false,
+     "has_path": true,
+     "has_rawpath": true,
+     "preview_len": 166
+    },
+    "insert": {
+     "ok": true,
+     "validJson": true,
+     "selected": true
+    }
+   },
+   "expected": {
+    "toolbar": "ordine=undo,redo,immagine,Documento,ppt,fonti,Flashcard; AI/Migliora assenti; nessun [data-shaping]",
+    "fonti": "chips Tutti|Appunti|Materiali|Libri; md renderizzato (h1/strong/li); NESSUN metadato/path; insert funzionante",
+    "single_tool": "1 sollo tool attivo",
+    "popover": "aperto + chiuso da click fuori"
+   },
+   "ok_dopo": false
+  },
+  "dopo": {
+   "toolbar": {
+    "n": 7,
+    "labels": [
+     "Annulla (Ctrl+Z): su una forma riconosciuta, il 1° annulla riporta al tratto grezzo, il 2° lo rimuove",
+     "Ripeti (Ctrl+Y)",
+     "Immagine",
+     "Documento",
+     "File PPT/PPTX",
+     "Fonti",
+     "Genera flashcard dalla nota/selezione (AI: F01)"
+    ],
+    "hasAI": false,
+    "hasMigliora": false,
+    "hasFlashcard": true,
+    "shaping": 0,
+    "order_ok": true
+   },
+   "single_tool": 1,
+   "single_tool_ok": true,
+   "popover": {
+    "open": true,
+    "closed_outside": true,
+    "ok": true
+   },
+   "fonti": {
+    "chips": [
+     "Tutti",
+     "Appunti",
+     "Materiali",
+     "Libri"
+    ],
+    "n_items": 6,
+    "items": [
+     "AppuntiNota QA-A",
+     "Appunti · FISICAAppunti Fisica Cinetica",
+     "Riassunto · STORIARiassunto Storia Romana",
+     "DocumentoDispensa Geologia",
+     "LibroLibro Gamma",
+     "Materialeriassunto-md.md"
+    ],
+    "has_chips": true,
+    "md": {
+     "clicked": true,
+     "has_h1": true,
+     "has_strong": true,
+     "has_li": true,
+     "has_badge": true,
+     "has_path": false,
+     "has_rawpath": false,
+     "preview_len": 88
+    },
+    "insert": {
+     "ok": true,
+     "validJson": true,
+     "selected": true
+    }
+   },
+   "expected": {
+    "toolbar": "ordine=undo,redo,immagine,Documento,ppt,fonti,Flashcard; AI/Migliora assenti; nessun [data-shaping]",
+    "fonti": "chips Tutti|Appunti|Materiali|Libri; md renderizzato (h1/strong/li); NESSUN metadato/path; insert funzionante",
+    "single_tool": "1 sollo tool attivo",
+    "popover": "aperto + chiuso da click fuori"
+   },
+   "ok_dopo": true
+  }
+ }
+}

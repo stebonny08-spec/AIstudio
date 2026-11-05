@@ -1,0 +1,162 @@
+{
+  "thresholds": [
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85
+  ],
+  "sweep": [
+    {
+      "threshold": 0.3,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.35,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.4,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.45,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.5,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.55,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.6,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 0,
+      "parziali_come_piena": 4,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.65,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 3,
+      "parziali_come_piena": 1,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.7,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 4,
+      "parziali_come_piena": 0,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.75,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "parziali_corretti": 4,
+      "parziali_come_piena": 0,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.8,
+      "tp": 8,
+      "fp": 0,
+      "fn": 1,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 0.889,
+      "parziali_corretti": 4,
+      "parziali_come_piena": 0,
+      "parziali_come_nulla": 0
+    },
+    {
+      "threshold": 0.85,
+      "tp": 6,
+      "fp": 0,
+      "fn": 3,
+      "tn": 5,
+      "precision": 1.0,
+      "recall": 0.667,
+      "parziali_corretti": 4,
+      "parziali_come_piena": 0,
+      "parziali_come_nulla": 0
+    }
+  ]
+}

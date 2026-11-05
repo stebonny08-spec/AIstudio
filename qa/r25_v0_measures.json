@@ -1,0 +1,430 @@
+{
+ "ts": "2026-11-02T16:08:29.991Z",
+ "viewport": "1440x900",
+ "pageErrors": [],
+ "panelOpen": {
+  "exists": true,
+  "shown": true,
+  "rect": {
+   "x": 12,
+   "y": 150,
+   "width": 340,
+   "height": 300,
+   "top": 150,
+   "right": 352,
+   "bottom": 450,
+   "left": 12
+  },
+  "pos": "fixed",
+  "z": "11"
+ },
+ "toolbar": {
+  "exists": true,
+  "rect": {
+   "x": 12,
+   "y": 56,
+   "width": 327.65625,
+   "height": 48,
+   "top": 56,
+   "right": 339.65625,
+   "bottom": 104,
+   "left": 12
+  },
+  "z": "12",
+  "buttons": [
+   {
+    "label": "Annulla (Ctrl+Z): su una forma",
+    "center": [
+     37,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "Ripeti (Ctrl+Y)",
+    "center": [
+     74,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "Immagine",
+    "center": [
+     121,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "Documento",
+    "center": [
+     158,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "File PPT/PPTX",
+    "center": [
+     195,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "data-fonti",
+    "center": [
+     232,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   },
+   {
+    "label": "Elimina selezione",
+    "center": [
+     0,
+     0
+    ],
+    "visible": false,
+    "hitOk": false,
+    "hit": "CANVAS."
+   },
+   {
+    "label": "Genera flashcard dalla nota/se",
+    "center": [
+     292,
+     80
+    ],
+    "visible": true,
+    "hitOk": true,
+    "hit": "BUTTON.fn-tb"
+   }
+  ],
+  "overlapPx2": 0,
+  "coveredBy": "pill"
+ },
+ "panel": {
+  "panelH": 300,
+  "panelW": 340,
+  "insertBottom": 445,
+  "deadSpaceUnderInsertPx": 5,
+  "listH": 122,
+  "prevH": 60,
+  "typo_l_anteprima": false,
+  "typo_fix_present": true,
+  "previewPlaceholder": "Seleziona una fonte per leggerne l’anteprima."
+ },
+ "s1_retta_ondulata": {
+  "name": "s1_retta_ondulata",
+  "pts": 61,
+  "nBefore": 0,
+  "nAfter": 1,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 33,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 1,
+   "refined": 1,
+   "discarded": 0,
+   "byKind": {
+    "curve": 1
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 1
+  }
+ },
+ "s2_arco_ondulato": {
+  "name": "s2_arco_ondulato",
+  "pts": 71,
+  "nBefore": 1,
+  "nAfter": 2,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 49,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 2,
+   "refined": 2,
+   "discarded": 0,
+   "byKind": {
+    "curve": 2
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 2
+  }
+ },
+ "s3_s_due_flessi": {
+  "name": "s3_s_due_flessi",
+  "pts": 71,
+  "nBefore": 2,
+  "nAfter": 3,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 65,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 3,
+   "refined": 3,
+   "discarded": 0,
+   "byKind": {
+    "curve": 3
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 3
+  }
+ },
+ "s4_loop": {
+  "name": "s4_loop",
+  "pts": 111,
+  "nBefore": 3,
+  "nAfter": 4,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 49,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 4,
+   "refined": 4,
+   "discarded": 0,
+   "byKind": {
+    "curve": 4
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 4
+  }
+ },
+ "s5_c_aperta": {
+  "name": "s5_c_aperta",
+  "pts": 61,
+  "nBefore": 4,
+  "nAfter": 5,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 62,
+   "paramsKeys": [
+    "bez",
+    "arc"
+   ]
+  },
+  "counters": {
+   "classified": 5,
+   "refined": 5,
+   "discarded": 0,
+   "byKind": {
+    "curve": 5
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 5
+  }
+ },
+ "s6_verticale_ondulata": {
+  "name": "s6_verticale_ondulata",
+  "pts": 61,
+  "nBefore": 5,
+  "nAfter": 6,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 33,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 6,
+   "refined": 6,
+   "discarded": 0,
+   "byKind": {
+    "curve": 6
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 6
+  }
+ },
+ "s7_diagonale_ondulata": {
+  "name": "s7_diagonale_ondulata",
+  "pts": 61,
+  "nBefore": 6,
+  "nAfter": 7,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 33,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 7,
+   "refined": 7,
+   "discarded": 0,
+   "byKind": {
+    "curve": 7
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 7
+  }
+ },
+ "s8_retta_flick": {
+  "name": "s8_retta_flick",
+  "pts": 56,
+  "nBefore": 7,
+  "nAfter": 8,
+  "delta": 1,
+  "last": {
+   "t": "shape",
+   "kind": "curve",
+   "npts": 49,
+   "paramsKeys": [
+    "bez"
+   ]
+  },
+  "counters": {
+   "classified": 8,
+   "refined": 8,
+   "discarded": 0,
+   "byKind": {
+    "curve": 8
+   },
+   "stroke": {
+    "classified": 1,
+    "refined": 1,
+    "discarded": 0,
+    "byKind": {
+     "curve": 1
+    }
+   }
+  },
+  "countersNew": {
+   "classified": 8
+  }
+ },
+ "countsFinal": {
+  "by": {
+   "shape/curve": 8
+  },
+  "traceLen": 1893,
+  "state": {
+   "tool": "penna",
+   "helpOn": false,
+   "assist": 0.6,
+   "smooth": 0.5,
+   "active": false,
+   "shpOn": true,
+   "arrowOn": true,
+   "holdMs": 350,
+   "releaseRefine": true,
+   "ghost": false,
+   "ghostFlash": false,
+   "dw": 1600,
+   "dh": 1100,
+   "pointers": 0
+  }
+ },
+ "envPatch": {
+  "listSubjectsTimeoutRace": true,
+  "pywebview": "undefined"
+ },
+ "httpFails": []
+}

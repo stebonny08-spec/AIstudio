@@ -1,0 +1,122 @@
+{
+  "method": "qaU20_matrix: stroke sintetico jitter + hold reale, assert geometrici su SVG/canvas, PRIMA=baseline r20_notes_baseline.js",
+  "prima": {
+    "q1": {
+      "ghost_during_hold": false,
+      "committed_during_hold": true,
+      "ghost_ok": null,
+      "all": [
+        "shape:rectangle"
+      ],
+      "kind": "rectangle",
+      "corner_err_max": 1.5645660604889002,
+      "corner_ok": true,
+      "editable": false,
+      "ok": true
+    },
+    "q2": {
+      "aspect": null,
+      "ok": false
+    },
+    "q3a": {
+      "kind": "circle",
+      "ok": true
+    },
+    "q3b": {
+      "kind": "circle",
+      "r": 49.39822595617485,
+      "ok": true
+    },
+    "q3c": {
+      "t": "stroke",
+      "ok": true
+    },
+    "q3d": {
+      "t": "stroke",
+      "ok": true
+    },
+    "q4": {},
+    "q5": {
+      "kind": "line"
+    },
+    "q6": {
+      "kind": "curve"
+    },
+    "q7": {
+      "built": false,
+      "ok": false
+    },
+    "pageerrors": []
+  },
+  "dopo": {
+    "q1": {
+      "ghost_during_hold": true,
+      "committed_during_hold": false,
+      "ghost_ok": true,
+      "all": [
+        "shape:rectangle"
+      ],
+      "kind": "rectangle",
+      "corner_err_max": 0.9899377877576683,
+      "corner_ok": true,
+      "editable": true,
+      "ok": true
+    },
+    "q2": {
+      "kind": "square",
+      "aspect": 0.9855580243105735,
+      "ok": true
+    },
+    "q3a": {
+      "kind": "circle",
+      "ok": true
+    },
+    "q3b": {
+      "kind": "circle",
+      "r": 49.399132939674004,
+      "ok": true
+    },
+    "q3c": {
+      "t": "shape",
+      "kind": "curve",
+      "ok": true
+    },
+    "q3d": {
+      "t": "stroke",
+      "ok": true
+    },
+    "q4": {
+      "kind": "curve",
+      "residuo": 1.8,
+      "signFrac": 1,
+      "maxAdj": 3.61,
+      "ok": true
+    },
+    "q5": {
+      "kind": "arrow",
+      "shaft": "line",
+      "angoloAla": 35,
+      "rapportoL": 3.2,
+      "baseErr": 0,
+      "ok": true
+    },
+    "q6": {
+      "kind": "arrow",
+      "shaft": "curve",
+      "tangenteErr": 0,
+      "baseErr": 0,
+      "angoloAla": 35,
+      "ok": true
+    },
+    "q7": {
+      "built": true,
+      "moved": true,
+      "weldAfterMove": 0,
+      "saldatura_ok": true,
+      "undo2fing": true,
+      "redo3fing": true,
+      "ok": true
+    },
+    "pageerrors": []
+  }
+}

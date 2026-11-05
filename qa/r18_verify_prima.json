@@ -1,0 +1,225 @@
+{
+ "round": "18-rifinimento",
+ "ts": "2026-10-25T18:10:07+0100",
+ "method": "Router.process_query_stream reale (sidecar MiniCPM5-2B + web allowlist, NET_LOG per caso); NIENTE kill temporale: total_ms INFORMATIVI; guardia output_guard (marker/verbatim/identico/codici [F#]); provenienza dagli eventi sources.stages; encoding check mojibake; warmup fuori misura; nessuna simulazione",
+ "summary": {
+  "n": 4,
+  "ok": 4,
+  "all_ok": true,
+  "total_max_ms": 59866.9,
+  "total_p95_ms": 59866.9,
+  "truncation_present": [],
+  "code_citations": {
+   "v1": [],
+   "v2": [],
+   "v3": [],
+   "v4": []
+  },
+  "fonti_block_url": [],
+  "mojibake": [],
+  "completi": 4,
+  "stages": {
+   "v1": [
+    "web"
+   ],
+   "v2": [
+    "web"
+   ],
+   "v3": [
+    "appunti"
+   ],
+   "v4": [
+    "web"
+   ]
+  },
+  "guard_fail": []
+ },
+ "cases": [
+  {
+   "case": "v1",
+   "query": "spiega la struttura della Divina Commedia",
+   "tipo": "lunga",
+   "total_ms": 59866.9,
+   "first_token_ms": 10877.7,
+   "first_progress_ms": 24.7,
+   "text_len": 1933,
+   "text_head": "La *Divina Commedia* è un poema lungo e profondo, scritto in terzine (frammenti di quattro versi) e in endecasillabi (frammenti di cinque versi). La struttura si divide in tre parti principali, o *cantiche*: l'Inferno, il Purgatorio e il Paradiso. Ognuna di queste parti racconta una storia di rilievo, ma anche di continuità, che porta il lettore attraverso i concetti della condizione umana.\n\nUno p",
+   "text_full": "La *Divina Commedia* è un poema lungo e profondo, scritto in terzine (frammenti di quattro versi) e in endecasillabi (frammenti di cinque versi). La struttura si divide in tre parti principali, o *cantiche*: l'Inferno, il Purgatorio e il Paradiso. Ognuna di queste parti racconta una storia di rilievo, ma anche di continuità, che porta il lettore attraverso i concetti della condizione umana.\n\nUno può pensare alla struttura come una gerarchia: l'Inferno è il più basso, il Purgatorio è la transizione e il Paradiso è la cima. Ma anche la struttura è più fine. Dante, in realtà, ha usato la poesia per mostrare come il concetto di \"passaggio\" sia un filo che collega le tre parti. L'Inferno mostra le cose che sono state già punite, il Purgatorio mostra quelle che sono state purgate ma non potranno mai essere deluse, e il Paradiso mostra il cielo e la beatificazione dell'anima.\n\nUn altro aspetto importante è la dimensione della poesia. Dante ha scritto questo poema come un dialogo tra lui e un'introspezione, ma anche come un'opera di linguaggio. Le terzine e gli endecasillabi non sono solo forme di poesia, ma anche un modo per esprimere concetti complessi. Le frasi brevi e le righe lunghe hanno un significato che va oltre la semplice estetica.\n\n---\n**Teoremi della struttura:**\n```\nInferno → Purgatorio → Paradiso\n```\nQuesto flusso rappresenta il percorso spirituale di un anno.\n\n---\n**Definizione di canto:**\nOgni canto è una sezione che racconta una storia, ma che insegna anche un insegnamento. In questo modo, la Divina Commedia non è solo una descrizione di luoghi, ma una guida morale.\n\nLa comprensione della struttura della *Divina Commedia* dipende dalla capacità di osservare come le parti si completano a vicenda. Ogni volta che il lettore arriva a una parte, ha già una certa idea di quanto è importante seguire il percorso descritto. Questa idea di continuità è ciò che rende la poesia particolarmente potente.",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": ".",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 6,
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Divina_Commedia",
+    "https://it.wikipedia.org/wiki/Purgatorio_(Divina_Commedia)",
+    "https://it.wikipedia.org/wiki/Dante_Alighieri",
+    "https://it.wikipedia.org/wiki/Cerchi_dell'Inferno",
+    "https://it.wikipedia.org/wiki/Parche"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 1,
+   "resets": 0,
+   "emission_blocks": 1,
+   "net_n": 14,
+   "error": null,
+   "ok": true
+  },
+  {
+   "case": "v2",
+   "query": "chi è dante alighieri",
+   "tipo": "solo-web",
+   "total_ms": 28290.7,
+   "first_token_ms": 8878.7,
+   "first_progress_ms": 22.4,
+   "text_len": 778,
+   "text_head": "Dante Alighieri è un poeta, scrittore, filosofo e pensatore italiano, principalmente noto per la sua opera epica *La commedia* (o *Divina Commedia*). La sua vita tocca anche temi politici e morali, e il suo linguaggio è spesso considerato un riferimento culturale importante.\n\nUn piccolo pensiero per rendere la sua importanza più chiara:\n\n> *Se la poesia di Dante fosse un viaggio, ci invierebbe in ",
+   "text_full": "Dante Alighieri è un poeta, scrittore, filosofo e pensatore italiano, principalmente noto per la sua opera epica *La commedia* (o *Divina Commedia*). La sua vita tocca anche temi politici e morali, e il suo linguaggio è spesso considerato un riferimento culturale importante.\n\nUn piccolo pensiero per rendere la sua importanza più chiara:\n\n> *Se la poesia di Dante fosse un viaggio, ci invierebbe in un mondo dove l'amore, il dolore e la libertà sono tutti lezioni.*\n\nIl suo ruolo è molto simile a un **tutor** di filosofia e letteratura, perché non si limita a scrivere, ma anche a insegnare e a riflettere su come pensare e vivere. La sua influenza continua a essere sentita ancora oggi, anche se spesso viene omessa in discussioni su temi come l'etica e l'autodeterminazione.",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": ".",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 6,
+   "web_urls": [
+    "https://www.treccani.it/enciclopedia/dante-alighieri/",
+    "https://www.treccani.it/enciclopedia/dante-alighieri_(Dizionario-Biografico)/",
+    "https://www.britannica.com/biography/Dante-Alighieri",
+    "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/dante-alighieri.html",
+    "https://www.sapere.it/enciclopedia/Dante+Alighièri+(poeta).html"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 1,
+   "resets": 0,
+   "emission_blocks": 1,
+   "net_n": 7,
+   "error": null,
+   "ok": true
+  },
+  {
+   "case": "v3",
+   "query": "Qual è il primo accettore di CO2 nelle piante C4?",
+   "tipo": "solo-locale",
+   "total_ms": 24284.1,
+   "first_token_ms": 5401.6,
+   "first_progress_ms": 26.7,
+   "text_len": 742,
+   "text_head": "La risposta è legata alla struttura speciale delle piante C4. Il primo accettore di CO₂ in questo tipo di piante non è l'atmosfera, ma una sostanza prodotta in un passo preliminare. \n\nPrima di tutto, il CO₂ che entra nelle piante viene trasferito in un'altra forma tramite un processo chiamato **PEPCase** (prossimazione dell'acido malico). Questo processo convertisce il CO₂ presente nel suo stato g",
+   "text_full": "La risposta è legata alla struttura speciale delle piante C4. Il primo accettore di CO₂ in questo tipo di piante non è l'atmosfera, ma una sostanza prodotta in un passo preliminare. \n\nPrima di tutto, il CO₂ che entra nelle piante viene trasferito in un'altra forma tramite un processo chiamato **PEPCase** (prossimazione dell'acido malico). Questo processo convertisce il CO₂ presente nel suo stato gassoso in **acido malico** e lo stila in una cellula particolare.\n\nPoi, il CO₂ che vengono iniettati in questa cellula vengono accettati come substrato per la prima fase della **cattura di CO₂**. Questo substrato è l'acido malico, che ora deve essere trasformato per essere ridotto.\n\nQuindi, il primo accettatore di CO₂ è l'acido malico.\n\n```",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": "`",
+   "stages_provenienza": [
+    "appunti"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 1,
+   "web_urls": [],
+   "web_allow_ok": true,
+   "llm_calls": 1,
+   "resets": 0,
+   "emission_blocks": 1,
+   "net_n": 0,
+   "error": null,
+   "ok": true
+  },
+  {
+   "case": "v4",
+   "query": "chi è boccaccio",
+   "tipo": "solo-web",
+   "total_ms": 50830.3,
+   "first_token_ms": 9508.0,
+   "first_progress_ms": 24.1,
+   "text_len": 1536,
+   "text_head": "Boccaccio è un nome che nasconde una storia più profonda. Se ti chiedi chi sia, non si tratta di un semplice anacronismo, ma di una figura che ha segnato il passaggio da una epoca a un'altra.\n\n**Cosa è Boccaccio**\nBoccaccio era un poeta e uno scrittore italiano del Cinquecento. La sua opera più famosa è il \"Decameron\", un racconto di storie di un gruppo di uomini e donne ristrette dopo l'epidemia ",
+   "text_full": "Boccaccio è un nome che nasconde una storia più profonda. Se ti chiedi chi sia, non si tratta di un semplice anacronismo, ma di una figura che ha segnato il passaggio da una epoca a un'altra.\n\n**Cosa è Boccaccio**\nBoccaccio era un poeta e uno scrittore italiano del Cinquecento. La sua opera più famosa è il \"Decameron\", un racconto di storie di un gruppo di uomini e donne ristrette dopo l'epidemia del 1348, e che ha cambiato il modo in cui si raccontava il vero e il falso.\n\n**Perché è importante**\nBoccaccio ha fatto una cosa fondamentale: ha dato risalto alla lingua italiana. Prima che Boccaccio fosse scritto, il valore della lingua era legato al latino. Lui ha insegnato a parlare l'italiano come un'arte, non come un'istruzione.\n\n**Un fatto curioso**\nBoccaccio era anche un poeta, ma non semplicemente per il Decameron. Egli ha scritto anche poesie e anche una lettera che ha rafforzato le sue relazioni con altre città.\n\n**La chiave di tutto**\nSe pensi a Boccaccio, pensi a una persona che ha cambiato la percezione della lingua. Non è un mito, è un fatto storico che continua a essere rilevante.\n\n**Un piccolo insegnamento**\nLa storia di Boccaccio ci ricorda che anche il nostro linguaggio può cambiare. E il cambiamento nasce spesso dalla consapevolezza di noi stessi.\n\n---\n**Coda tecnica**\n```python\n# Se vuoi riflettere sul nome Boccaccio, pensa a come un nome può diventare un simbolo\n# di cambiamento, senza che sia necessario un grande cambiamento per essere significativo\nname = \"Boccaccio\"\nmeaning = \"cambiamento\"\n```",
+   "lingua": "it",
+   "guard_ok": true,
+   "guard_markers": [],
+   "guard_verbatim": false,
+   "guard_identical": false,
+   "client_marker": {
+    "ok": true,
+    "reason": "ok",
+    "verbatim": false,
+    "identical": false,
+    "code_citation": false
+   },
+   "truncation_marker": false,
+   "code_citations": [],
+   "fonti_block_url": false,
+   "mojibake": false,
+   "completo": true,
+   "ultimo_char": "`",
+   "stages_provenienza": [
+    "web"
+   ],
+   "provenienza_ok": true,
+   "sources_n": 6,
+   "web_urls": [
+    "https://www.treccani.it/enciclopedia/giovanni-boccaccio_(Enciclopedia-dell'Italiano)/",
+    "https://www.britannica.com/biography/Giovanni-Boccaccio",
+    "https://www.britannica.com/biography/Giovanni-Boccaccio/The-Decameron",
+    "https://www.sapere.it/enciclopedia/Boccàccio,+Giovanni.html",
+    "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/giovanni-boccaccio.html"
+   ],
+   "web_allow_ok": true,
+   "llm_calls": 1,
+   "resets": 0,
+   "emission_blocks": 1,
+   "net_n": 7,
+   "error": null,
+   "ok": true
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+[F0] appdata=C:\Users\stebo\AppData\Roaming\NovaStudio
+[F0] boot store/engine: 46.86 ms; chunks local=17 books=0
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3907.71it/s]
+[F0] q1: use_rag=True vec_top1=[0.9125] gate_sims=[0.9125, 0.8943, 0.8796, 0.8754, 0.8734] conf=alta outcome=risposta-locale (source=locale)
+[F0] q2: use_rag=True vec_top1=[0.8604] gate_sims=[0.8604, 0.8561, 0.8537, 0.8489, 0.8485] conf=alta outcome=risposta-locale (source=locale)
+[F0] q3: use_rag=True vec_top1=[0.8596] gate_sims=[0.8661, 0.8637, 0.8603, 0.8596, 0.8593] conf=alta outcome=risposta-locale (source=locale)
+[F0] q4: use_rag=True vec_top1=[0.82] gate_sims=[0.82, 0.8121, 0.8119, 0.8113, 0.8093] conf=alta outcome=risposta-locale (source=locale)
+[F0] q5: use_rag=True vec_top1=[0.8638] gate_sims=[0.8693, 0.8638, 0.8601, 0.8539, 0.8502] conf=alta outcome=risposta-locale (source=locale)
+[F0] E2E inizio (sidecar llama-server locale, rete solo per q4/ddgs)
+[PrefixCache] MISS profile=default hit_rate=0.00 (hits=0, misses=1)
+[Router] Semantic decision: RAG=True (sim_rag=0.794, sim_no_rag=0.780)
+[LocalLLMClient] === Modello caricato ===
+[LocalLLMClient]   Strategia: GPU + flash_attn + KV cache Q8_0
+[LocalLLMClient]   n_ctx: 8192
+[LocalLLMClient]   n_gpu_layers richiesti: -1
+[LocalLLMClient]   n_threads CPU: 15
+[LocalLLMClient]   Backend GPU disponibile: False
+[LocalLLMClient]   System info: CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |
+[LocalLLMClient] =======================
+[E2E] q1: total=85351ms token=35 source=locale llm_calls=1 err=None
+[PrefixCache] HIT profile=default hit_rate=0.50 (hits=1, misses=1)
+[Router] Semantic decision: RAG=True (sim_rag=0.786, sim_no_rag=0.768)
+[E2E] q4: total=132636ms token=321 source=web llm_calls=2 err=None
+[F0] reindex: {'ms': 3171.08, 'chunks_before': 17, 'chunks_after': 17, 'indexed_files_rows_after': 1, 'error': None}
+[F0] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\f0_forensics.json
+{
+  "per_root_cause": {
+    "OK": 4,
+    "NO-WEB": 1
+  },
+  "blocking_findings": [
+    "indexed_files VUOTO (0 righe) con 17 chunk presenti → ogni reindex background (300s) rifull re-parse+re-embed del file (reindex misurato: 3171.08 ms)",
+    "Il gate H8 (confidence/should_answer) NON è letto da router.py/api.py (grep: consumatori solo core/local_search.py + core/models.py) → oggi l'astensione non decide nulla nel percorso generativo",
+    "Percorso produzione search(hybrid=False): FTS5/BM25 e fusione RRF mai consultati in query (grep hybrid=True: solo definizioni/commenti in local_search.py) → dump FTS/RRF di F0.1 è diagnostico"
+  ],
+  "e2e_llm_calls": {
+    "q1": 1,
+    "q4": 2
+  },
+  "e2e_total_ms": {
+    "q1": 85350.56,
+    "q4": 132635.96
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "operazione": "dedupe_legacy_c3",
+  "store_key": "vector_index",
+  "db": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_replay_0g442d84\\studioia.db",
+  "apply": true,
+  "comando": "python data/migrate_real.py --dedupe-legacy",
+  "comando_apply": "python data/migrate_real.py --dedupe-legacy --apply",
+  "ts": "2026-10-24T13:36:39",
+  "status": "eseguito",
+  "n_total": 34,
+  "n_legacy": 17,
+  "n_stage2": 17,
+  "n_originals": 0,
+  "legacy": [
+    {
+      "id": "d2b96f8f-c633-43be-b237-c39ab418fb3e",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "68dfa23be6b4983e5d7940fbf9beb10838a5e89c62184470f52bc945e77816b7",
+      "chars": 1187,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "49f566ae-464c-4e81-a0a2-b325b543f637",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "90a90460ab320bc4e7903b30efbc0143b98ae19a8aa36c9b8981e19c926752c0",
+      "chars": 3052,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "c8fc698d-2551-408f-a02e-2c6413516d17",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "e06dbe013f6d67ceae611251dd5192e25ece9e2d0385e4a47bc14295845601b8",
+      "chars": 831,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "1d499471-70d1-46fe-b511-a8b223ded089",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "2af168ccc7d51af0f5cd9058ee80b5a17c7c22389025baba6064398b19a6b500",
+      "chars": 2902,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "5413e99f-9831-4f28-aad9-7365760eab3b",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "ef99ecaf46fc74c31965d7ab3175968ddbd5c3e51e0dee7d20b982263c4dbc28",
+      "chars": 3022,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "e6de1856-85d3-4f46-915f-2782f5cf73c1",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "1db83245926b8606547f02fd2749c429a7de54e433eda596394db8f60f00737e",
+      "chars": 2725,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "7727279e-d88b-461f-8e4f-94e4d1993a53",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "683e79b795e72d4a79b38c87e57cc05c96f2f037598582c866b263571232ed91",
+      "chars": 2403,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "50d2a500-af37-4e4d-8e33-a55fd4d9c4ed",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "7dee4872a61c2ac48e128b795b80f33647e4bf32cdd7ba24b96e8f6525b037cf",
+      "chars": 1792,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "942dc1cc-5fae-4faf-b561-d244faf3864e",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "ac9f2dbb4a8cce6d104d4691c10638f9952554a5ca6c6a9e6ed2ae7ab48b93cf",
+      "chars": 3350,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "7ef0f853-748a-4869-ab77-0d9045e8ce85",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "82358145c658250bdac5c5446e5ad9fdd6e0240c895139491729033d5b8f793a",
+      "chars": 3157,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "644e1b20-27fd-4fec-9283-627521b96447",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "d01da9ba230b1d98699b3345d3e36ddbc0fa134953efaaf6caf532949cdbf32b",
+      "chars": 2282,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "1c9a2e36-f6c9-44a3-aa1f-f5ae71cf3ddb",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "73ca0760ce7072c38159ad264fe4722d823033b44871004a5a53c4cb91d07b95",
+      "chars": 2779,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "fc943f8d-3cf7-464c-a583-06739102fd9b",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "1be466ae83f26731e4851f5b28b5e2f10b9a67b0dd084c092c754d2447035a08",
+      "chars": 3238,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "1e23b4fd-20c3-4727-8e2b-00af4a794042",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "51fc4ce9cc3ff80bb2fcc5aa9a2b90b87b401363c0f979ae1130fce4d813401f",
+      "chars": 1474,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "304b7404-8f7e-4900-9160-f5df13fe5772",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "6859d8cb0bd9251a3f2e7b61831608ab05410f3236c7e6281f929878748d33d2",
+      "chars": 3474,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "050ee825-932d-4875-98c8-c08f65748dd7",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "26bd6293b977611ea12f487b32f3c33b08067f3c28e37ce55f22c301597ad4cb",
+      "chars": 2243,
+      "duplicated_in_stage2": true
+    },
+    {
+      "id": "b4842ac9-5eda-4bf5-8ac5-c2dcd13e4983",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      "sha256": "74654944eb38d1898fede56e9197a284d245c75351d35ebfeaaeee172db0a2b7",
+      "chars": 392,
+      "duplicated_in_stage2": true
+    }
+  ],
+  "stage2_sources": [
+    "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+  ],
+  "originals_sources": [],
+  "deleted": 17,
+  "n_queries": 24,
+  "retrieval_baseline": {
+    "ok": true,
+    "n_chunks": 34,
+    "top_k": 34,
+    "dim": 384,
+    "metodo": "ranking completo (top_k=tutti i 34 chunk) su copia read-only del DB reale (sqlite backup API); query derivate da file_AIstudio/rag_stage2/*.md con DeterministicEmbedder (tests/testH1_parity.py, dim=384 letta dall'indice); identita' hit = sha256(testo)|source_file; incluso ranking FTS informativo (bm25 dipende da idf).",
+    "error": null
+  },
+  "backup_path": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_replay_0g442d84\\backup_chroma_20261024_133643",
+  "manifest_path": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_replay_0g442d84\\backup_chroma_20261024_133643\\manifest.json",
+  "backup_sha_verified": true,
+  "delete": {
+    "ok": true,
+    "deleted": 17,
+    "expected": 17
+  },
+  "post_check": {
+    "n_legacy": 0,
+    "n_stage2": 17,
+    "n_originals": 0,
+    "n_total": 17,
+    "atteso": "legacy=0 e originals=0, tutto da rag_stage2/",
+    "originals_invariati": true,
+    "stage2_invariato": true
+  },
+  "retrieval_parity": {
+    "ok": true,
+    "n_queries": 24,
+    "n_queries_ok": 24,
+    "strict_all": true,
+    "vuoto": false,
+    "per_query": [
+      {
+        "query": "La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "|  [STROMA] - Elevata concentrazione di RuBisCO, enzimi del ciclo C3,   |",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "1. **Involucro Esterno e Interno:** La membrana esterna contiene porine aspecifiche, mentre la membrana interna è altamente selettiva, regolata da trasportatori",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Anello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -> Pi*)",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$ (una coppia speciale di molecole di clorofilla *a*), assorbe energia di risonan",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume}} + 4e^-$$",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina contenente FAD, catalizza la riduzione finale di due molecole di Ferredossina per",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sin",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "(Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)* riduce l'1,3-BPGA utilizzando NADPH, generando **Gliceraldeide-3-fosfato** ($\\t",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "2. $\\text{Fruttosio-1,6-BP} \\xrightarrow{\\text{FBPasi}} \\text{Fruttosio-6-Fosfato} (6C) + \\text{P}_i$",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "8. Infine, l'enzima **Phosphoribulokinase (PRK)** fosforila il Ru5P consumando ATP per rigenerare il **RuBP**:",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "L'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in grado di catalizzare una reazione concorrente di **ossigenazione** utilizzando $\\t",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Dove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina. A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP ",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "Le piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estremamente aridi e risolvono il dilemma fotosintetico/idrico separando i processi ",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Temporale (Notte / Giorno) |",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      },
+      {
+        "query": "| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ | $30 - 40^\\circ\\text{C}$ (Notte fredda) |",
+        "n_before": 34,
+        "n_before_senza_legacy": 17,
+        "n_after": 17,
+        "chiavi_uguali": true,
+        "ordine_stretto": true,
+        "ordine_ok_modulo_tie": true,
+        "max_delta_similarity": 0.0,
+        "fts_set_uguali": true,
+        "ok": true
+      }
+    ],
+    "metodo": "ranking completo (top_k=tutti i 34 chunk) su copia read-only del DB reale (sqlite backup API); query derivate da file_AIstudio/rag_stage2/*.md con DeterministicEmbedder (tests/testH1_parity.py, dim=384 letta dall'indice); identita' hit = sha256(testo)|source_file; incluso ranking FTS informativo (bm25 dipende da idf)."
+  },
+  "retrieval_after": {
+    "ok": true,
+    "n_chunks": 17,
+    "top_k": 17,
+    "error": null
+  }
+}

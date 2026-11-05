@@ -1,0 +1,154 @@
+{
+  "db": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db",
+  "tables": [
+    "calendar_events",
+    "chats",
+    "chunks",
+    "chunks_fts",
+    "chunks_fts_config",
+    "chunks_fts_data",
+    "chunks_fts_docsize",
+    "chunks_fts_idx",
+    "doc_versions",
+    "folders",
+    "indexed_files",
+    "messages",
+    "sqlite_sequence",
+    "study_items",
+    "subjects",
+    "vec_vector_index",
+    "vec_vector_index_chunks",
+    "vec_vector_index_info",
+    "vec_vector_index_rowids",
+    "vec_vector_index_vector_chunks00",
+    "vecnb_vector_index"
+  ],
+  "fts_tables": [
+    "chunks_fts",
+    "chunks_fts_data",
+    "chunks_fts_idx",
+    "chunks_fts_docsize",
+    "chunks_fts_config"
+  ],
+  "per_store": [
+    {
+      "store_key": "vector_index",
+      "n": 17
+    }
+  ],
+  "n_fts_rows": 17,
+  "chunks": [
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia\n\n## Documento Docente e Materiale di Studio Avanzato\n**Livello:** Corso di Laurea Magistrale / Universitario  \n**Settore Scientifico-Disciplinare:** BIO/04 (Fisiologia Vegeta",
+      "L": 1187
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio) che comporta il trasferimento di elettroni guidato dalla luce contro un potenziale di riduzione fa",
+      "L": 3052
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a forma di moneta. Sono domini arricchiti nel *Fotosistema II (PSII)* e nel suo complesso antenna raccolglitore di luce (*LH",
+      "L": 831
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corretto flusso di elettroni.\n\n## 1.3 Pigmenti Fotosintetici e Spet",
+      "L": 2902
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale Primario |\n| :--- | :--- | :--- |\n| **Clorofilla a** | $430",
+      "L": 3022
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico.\n\n### Il Complesso di Evoluzione dell'Ossigeno (OEC)\nPer ripristinare l'el",
+      "L": 2725
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma.\n\n**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema",
+      "L": 2403
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientr",
+      "L": 1792
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + ",
+      "L": 3350
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}3\\text{-cheto-}D\\text{-arabinitolo-}1,5\\text{-bisfosfato}$),",
+      "L": 3157
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GAPDH possiedono ponti disolfuro catalitici. Alla luce, il flusso elettronico del PSI riduce la Ferredossina, la quale don",
+      "L": 2282
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della prote",
+      "L": 2779
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differ",
+      "L": 3238
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) | | v | | Malato (4C) ---------+-----\\ (Plasmodesmi) +-------",
+      "L": 1474
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$\n\n*La PEPCase ha un'affinità altissima pe",
+      "L": 3474
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente.\n* **Fase Diurna:** Gli stomi rimangono ermeticamente chiusi. L'acido malico esce",
+      "L": 2243
+    },
+    {
+      "store_key": "vector_index",
+      "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "t": "Sinauer Associates / Oxford University Press.\n2. Nelson, D. L., & Cox, M. M. (2021). *Lehninger Principles of Biochemistry* (8th ed.). W. H. Freeman and Company.\n3. Blankenship, R. E. (2021). *Molecular Mechanisms of Photosynthesis* (3rd ed.). Wiley-Blackwell.",
+      "L": 392
+    }
+  ],
+  "n_chunks": 17,
+  "vec_tables": [
+    "vec_vector_index",
+    "vec_vector_index_info",
+    "vec_vector_index_chunks",
+    "vec_vector_index_rowids",
+    "vec_vector_index_vector_chunks00",
+    "vecnb_vector_index"
+  ],
+  "vec_err": "no such module: vec0"
+}

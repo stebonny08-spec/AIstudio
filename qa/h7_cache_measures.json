@@ -1,0 +1,68 @@
+{
+  "report": "H7 cache 3 strati + H9 router 0-LLM",
+  "generated_at": "2026-10-22T23:43:00",
+  "h7_cache": {
+    "status": "OK",
+    "file": "core/ai_cache.py",
+    "tests": "12/12",
+    "tests_file": "tests/testH7_cache.py",
+    "layers": {
+      "layer1_exact": "sha256(fid + prompt normalizzato) -> risposta",
+      "layer2_semantic": "cosine >= 0.92 sulla stessa fid -> risposta (needs_revision=False)",
+      "layer3_delta": "0.80 <= cosine < 0.92 -> risposta con needs_revision=True (bozza)",
+      "miss": "cosine < 0.80 oppure strato inerte -> (None, None, False)"
+    },
+    "api": [
+      "AiCache(embed_fn=None, max_entries=500, semantic_threshold=0.92, delta_threshold=0.80)",
+      "get(fid, prompt, embedding=None) -> (hit_layer|None, value|None, needs_revision)",
+      "get_with_meta(fid, prompt, embedding=None) -> (layer, value, needs_revision, meta{layer, source_key, ts})",
+      "put(fid, prompt, response, embedding=None, doc_ids=None) -> cache_key",
+      "register_doc_version(doc_id, version)  # bump versione -> invalida voci del doc",
+      "invalidate_docs(doc_ids) -> int rimosse",
+      "invalidate_negative(cache_key| (fid,prompt)) -> bool",
+      "cache_key(fid, prompt) -> str",
+      "provenance_badge(layer) -> 'cache esatta' | 'cache semantica 92%' | 'bozza da cache (da revisionare)' | 'generato da AI'",
+      "approval_required(fid) -> bool",
+      "stats() / __len__ / last_meta"
+    ],
+    "gate": "put() NON scrive dati: solo dict in-memory; scrittura solo dopo approvazione del caller. approval_required True: F01,F02,F05,F06,F08,F09,F10,F12,F13,F14,F17 | False: F03,F04,F07,F11,F15,F16 | fid sconosciuto: True (conservativo). Badge: provenance_badge(); undo: lato UI su miss/generato-da-AI.",
+    "persistence": "in-memory OrderedDict LRU, cap 500 voci, nessuna dipendenza esterna (stdlib: hashlib/time/collections/math)"
+  },
+  "h9_router": {
+    "status": "OK",
+    "file": "core/ai_router.py",
+    "tests": "13/13",
+    "tests_file": "tests/testH9_router.py",
+    "p95_ms": 0.0107,
+    "latency_calls": 1000,
+    "budget_ms": 5.0,
+    "rules_order": [
+      "(a) cache_hit -> cache",
+      "(b) module fogli + formula -> tool (F07 eseguibile / F08 descrizione)",
+      "(c) has_selection + azione doc/appunti -> tool (F01 / F05)",
+      "(e) comando: 'salva come'->F01, 'crea flashcard'->F12, 'pianifica'->F10 -> tool",
+      "(d*) centroidi opzionali SOLO query ambigue 10-12 parole no-keyword, soglia cosine",
+      "(d) marker domanda o >8 parole -> rag (con subqueries <=3 se complessa)",
+      "(f) default -> chat"
+    ],
+    "api": [
+      "Router0LLM(embed_fn=None, centroids_path=None, centroids=None, centroid_threshold=0.5)",
+      "route(text, has_selection=False, module=None, cache_hit=None) -> {intent, subqueries, reason, fid}",
+      "compose_subqueries(subs) -> str  # join per il composer LLM del caller",
+      "QUESTION_MARKERS / COMMAND_FID_MAP / SELECTION_ACTIONS / COMPLEX_CONNECTORS / INTENTS"
+    ],
+    "decomposizione": "rag complessa (>2 frasi o connettivi 'e anche'/'inoltre'/'confronta') -> split deterministico <=3 sub-query"
+  },
+  "totals": {
+    "test_functions": "25/25",
+    "assertions_h7": 40,
+    "assertions_h9": 34
+  },
+  "limits": [
+    "embed_fn INJECTATO: senza embed_fn il layer2/3 della cache e' inerte e i centroidi del router non attivano (solo regole, nessun errore)",
+    "centroidi opzionali: centroids_path/centroids assente -> solo regole deterministiche; centroidi finti testati",
+    "mapping fid comandi (flashcard->F12, pianifica->F10, formula->F07/F08) euristico e centralizzato in COMMAND_FID_MAP/SELECTION_ACTIONS, allineabile al registry quando core/registry sara' pronto",
+    "cache solo in-memory: nessuna persistenza su disco (per scelta, nessuna dipendenza esterna)",
+    "composer LLM think NON incluso: compose_subqueries espone solo il join dei sub-query"
+  ]
+}

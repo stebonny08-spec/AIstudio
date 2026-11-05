@@ -1,0 +1,244 @@
+
+== 1.1/1.2 Registro strategie: struttura ==
+  PASS  SCHEMA_STRATEGIES esiste
+  PASS  strategia presente: albero
+  PASS  albero.initialLayout è funzione
+  PASS  albero.autoLayout è funzione
+  PASS  albero.placeNewNode è funzione
+  PASS  albero.canConnect è funzione
+  PASS  albero.edgeStyle è funzione
+  PASS  albero.snap è funzione
+  PASS  albero.ui è funzione
+  PASS  albero.edgeStyle().forma valida
+  PASS  albero.edgeStyle().freccia boolean
+  PASS  albero.edgeStyle().etichetta boolean
+  PASS  albero.ui().pulsanti lista
+  PASS  albero.ui().pannelloTesto boolean
+  PASS  albero.ui().guide valida
+  PASS  albero.snap().attivo boolean
+  PASS  strategia presente: mappa
+  PASS  mappa.initialLayout è funzione
+  PASS  mappa.autoLayout è funzione
+  PASS  mappa.placeNewNode è funzione
+  PASS  mappa.canConnect è funzione
+  PASS  mappa.edgeStyle è funzione
+  PASS  mappa.snap è funzione
+  PASS  mappa.ui è funzione
+  PASS  mappa.edgeStyle().forma valida
+  PASS  mappa.edgeStyle().freccia boolean
+  PASS  mappa.edgeStyle().etichetta boolean
+  PASS  mappa.ui().pulsanti lista
+  PASS  mappa.ui().pannelloTesto boolean
+  PASS  mappa.ui().guide valida
+  PASS  mappa.snap().attivo boolean
+  PASS  strategia presente: lr
+  PASS  lr.initialLayout è funzione
+  PASS  lr.autoLayout è funzione
+  PASS  lr.placeNewNode è funzione
+  PASS  lr.canConnect è funzione
+  PASS  lr.edgeStyle è funzione
+  PASS  lr.snap è funzione
+  PASS  lr.ui è funzione
+  PASS  lr.edgeStyle().forma valida
+  PASS  lr.edgeStyle().freccia boolean
+  PASS  lr.edgeStyle().etichetta boolean
+  PASS  lr.ui().pulsanti lista
+  PASS  lr.ui().pannelloTesto boolean
+  PASS  lr.ui().guide valida
+  PASS  lr.snap().attivo boolean
+  PASS  strategia presente: tb
+  PASS  tb.initialLayout è funzione
+  PASS  tb.autoLayout è funzione
+  PASS  tb.placeNewNode è funzione
+  PASS  tb.canConnect è funzione
+  PASS  tb.edgeStyle è funzione
+  PASS  tb.snap è funzione
+  PASS  tb.ui è funzione
+  PASS  tb.edgeStyle().forma valida
+  PASS  tb.edgeStyle().freccia boolean
+  PASS  tb.edgeStyle().etichetta boolean
+  PASS  tb.ui().pulsanti lista
+  PASS  tb.ui().pannelloTesto boolean
+  PASS  tb.ui().guide valida
+  PASS  tb.snap().attivo boolean
+  PASS  strategia presente: libero
+  PASS  libero.initialLayout è funzione
+  PASS  libero.autoLayout è funzione
+  PASS  libero.placeNewNode è funzione
+  PASS  libero.canConnect è funzione
+  PASS  libero.edgeStyle è funzione
+  PASS  libero.snap è funzione
+  PASS  libero.ui è funzione
+  PASS  libero.edgeStyle().forma valida
+  PASS  libero.edgeStyle().freccia boolean
+  PASS  libero.edgeStyle().etichetta boolean
+  PASS  libero.ui().pulsanti lista
+  PASS  libero.ui().pannelloTesto boolean
+  PASS  libero.ui().guide valida
+  PASS  libero.snap().attivo boolean
+  PASS  strategia presente: riassunto
+  PASS  riassunto.initialLayout è funzione
+  PASS  riassunto.autoLayout è funzione
+  PASS  riassunto.placeNewNode è funzione
+  PASS  riassunto.canConnect è funzione
+  PASS  riassunto.edgeStyle è funzione
+  PASS  riassunto.snap è funzione
+  PASS  riassunto.ui è funzione
+  PASS  riassunto.edgeStyle().forma valida
+  PASS  riassunto.edgeStyle().freccia boolean
+  PASS  riassunto.edgeStyle().etichetta boolean
+  PASS  riassunto.ui().pulsanti lista
+  PASS  riassunto.ui().pannelloTesto boolean
+  PASS  riassunto.ui().guide valida
+  PASS  riassunto.snap().attivo boolean
+
+== TASK 4/1 — Albero ==
+  PASS  albero: profondità = righe crescenti
+  PASS  albero: ramo c→f più in basso
+  PASS  albero: fratelli b,c centrati sotto il padre a
+  PASS  albero: d,e centrati sotto b
+  PASS  albero: radice in cima
+  PASS  albero: secondo padre rifiutato
+  PASS  albero: motivo leggibile (secondo padre)
+  PASS  albero: ciclo rifiutato
+  PASS  albero: motivo leggibile (ciclo)
+  PASS  albero: primo padre consentito
+  PASS  albero: self-loop rifiutato
+  PASS  albero: duplicato rifiutato
+  PASS  albero: archi a gomito senza etichetta
+  PASS  albero: pulsanti +Figlio/+Fratello
+  PASS  albero: nuovo figlio posizionato sotto il padre
+  PASS  albero: initialLayout gerarchico
+
+== TASK 4/1 — Mappa concettuale ==
+  PASS  mappa: archi curvi
+  PASS  mappa: etichetta presente (modificabile)
+  PASS  mappa: frecce presenti
+  PASS  mappa: ciclo permesso
+  PASS  mappa: self-loop rifiutato
+  PASS  mappa: duplicato rifiutato
+  PASS  mappa: radialità (hub separato dagli altri)
+  PASS  mappa: nodi su anello (distanze simili)
+  PASS  mappa: initialLayout preserva il manuale
+  PASS  mappa: niente pulsanti figlio/fratello
+
+== TASK 4/1 — Sinistra→destra ==
+  PASS  lr: colonne crescenti lungo il flusso
+  PASS  lr: b e c impilati nella stessa colonna
+  PASS  lr: nodi della colonna impilati in y
+  PASS  lr: frecce con punta, archi dritti avanti
+  PASS  lr: asse flusso x (arco indietro → curva)
+  PASS  lr: guide verticali colonne
+  PASS  lr: nuovo figlio nella colonna successiva
+
+== TASK 4/1 — Alto→basso ==
+  PASS  tb: righe crescenti lungo il flusso
+  PASS  tb: b e c nella stessa riga
+  PASS  tb: nodi della riga affiancati in x
+  PASS  tb: frecce verso il basso, archi dritti
+  PASS  tb: asse flusso y (arco indietro → curva)
+  PASS  tb: guide orizzontali righe
+  PASS  tb: nuovo figlio nella riga successiva
+
+== TASK 4/1 — Schema libero ==
+  PASS  libero: auto-layout disabilitato (null)
+  PASS  libero: snap disattivato
+  PASS  libero: nessuna guida
+  PASS  libero: pulsante auto-layout grigio + tooltip
+  PASS  libero: scelta forma arco (dritto/curvo/gomito)
+  PASS  libero: ciclo consentito
+  PASS  libero: secondo padre consentito
+  PASS  libero: arco dritto default
+  PASS  libero: forma arco personalizzabile
+  PASS  libero: forma arco gomito
+  PASS  libero: initialLayout invariato
+
+== TASK 4/1 — Riassunto visuale ==
+  PASS  riassunto: pannello testo affiancato
+  PASS  riassunto: nodi come card multilinea (titolo+corpo)
+  PASS  riassunto: card larghe/alte
+  PASS  riassunto: arco facoltativo consentito
+  PASS  riassunto: stack a colonna (stessa x)
+  PASS  riassunto: y crescenti senza sovrapposizioni (stack)
+  PASS  riassunto: archi semplici senza frecce
+  PASS  riassunto: nuovo nodo impilato sotto
+
+== Differenze obbligatorie tra tutti i tipi ==
+  PASS  forme arco distinte per tipo
+  PASS  etichetta solo su mappa (1/1)
+  PASS  etichetta solo su mappa (tot)
+  PASS  pannelloTesto solo riassunto
+  PASS  snap attivo in tutti tranne libero
+  PASS  auto-layout disabilitato solo per libero
+  PASS  guide solo lr (colonne) e tb (righe)
+
+== TASK 3 — migrateSchema ==
+  PASS  migrate: tipo aggiornato
+  PASS  migrate: nodi e archi conservati
+  PASS  migrate albero→mappa: tutti gli archi validi
+  PASS  migrate: altri campi intatti
+  PASS  migrate: mappa→albero tipo
+  PASS  migrate: contenuto conservato
+  PASS  migrate: 1 arco non valido marcato extra
+  PASS  migrate: è il ciclo c→a a diventare extra
+  PASS  migrate: motivo salvato sull’arco extra
+  PASS  migrate: doppio padre → 1 extra
+  PASS  migrate: archi validi tenuti
+  PASS  migrate → lr: doppio padre ammesso (nessun extra)
+  PASS  migrate: albero→mappa ripristina gli extra
+  PASS  migrate: autoLayout nuova strategia sui nodi conservati
+
+== BLOCCO 2 - migrateSchema pulita/idempotente ==
+  PASS  B2 (i) albero: schema.type aggiornato
+  PASS  B2 (i) albero: nodi(4)/archi(3) conservati
+  PASS  B2 (i) albero: sentiero valido (nessun extra)
+  PASS  B2 (i) albero: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) albero: schema.extraCount === undefined
+  PASS  B2 (i) albero: nessun extraMotivo residuo
+  PASS  B2 (i) mappa: schema.type aggiornato
+  PASS  B2 (i) mappa: nodi(4)/archi(3) conservati
+  PASS  B2 (i) mappa: sentiero valido (nessun extra)
+  PASS  B2 (i) mappa: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) mappa: schema.extraCount === undefined
+  PASS  B2 (i) mappa: nessun extraMotivo residuo
+  PASS  B2 (i) lr: schema.type aggiornato
+  PASS  B2 (i) lr: nodi(4)/archi(3) conservati
+  PASS  B2 (i) lr: sentiero valido (nessun extra)
+  PASS  B2 (i) lr: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) lr: schema.extraCount === undefined
+  PASS  B2 (i) lr: nessun extraMotivo residuo
+  PASS  B2 (i) tb: schema.type aggiornato
+  PASS  B2 (i) tb: nodi(4)/archi(3) conservati
+  PASS  B2 (i) tb: sentiero valido (nessun extra)
+  PASS  B2 (i) tb: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) tb: schema.extraCount === undefined
+  PASS  B2 (i) tb: nessun extraMotivo residuo
+  PASS  B2 (i) libero: schema.type aggiornato
+  PASS  B2 (i) libero: nodi(4)/archi(3) conservati
+  PASS  B2 (i) libero: sentiero valido (nessun extra)
+  PASS  B2 (i) libero: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) libero: schema.extraCount === undefined
+  PASS  B2 (i) libero: nessun extraMotivo residuo
+  PASS  B2 (i) riassunto: schema.type aggiornato
+  PASS  B2 (i) riassunto: nodi(4)/archi(3) conservati
+  PASS  B2 (i) riassunto: sentiero valido (nessun extra)
+  PASS  B2 (i) riassunto: idempotente (2a chiamata deep-equal)
+  PASS  B2 (i) riassunto: schema.extraCount === undefined
+  PASS  B2 (i) riassunto: nessun extraMotivo residuo
+  PASS  B2 (ii): nessun arco perso in migrazione
+  PASS  B2 (ii): primo A->B resta valido (senza motivo)
+  PASS  B2 (ii): doppio esatto A->B diventa extra CON extraMotivo
+  PASS  B2 (ii): reciproco B->A extra in albero (con motivo)
+  PASS  B2 (ii) libero: nessun arco perso (reciproco conservato)
+  PASS  B2 (ii) libero: A->B e reciproco B->A tornano validi (no extra/motivo)
+  PASS  B2 (ii) libero: doppio esatto resta extra (nessun tipo ammette duplicati esatti, canConnect congelato)
+  PASS  B2 (ii): 3 archi distinti vivi (A->B x2 + B->A), nessuno eliminato
+  PASS  B2 (ii) albero: reciproco B->A extra per ciclo (con motivo)
+  PASS  B2 (ii) libero: TUTTI tornano validi (no extra, no extraMotivo), reciproco non perso
+  PASS  B2 (iii): extraCount assente dopo migrazione
+  PASS  B2 (iii): chiave extraCount rimossa (non undefined)
+  PASS  B2 (iii): arco validato -> extra ed extraMotivo rimossi
+  PASS  B2 (iii): archi conservati
+
+================================================
+RISULTATI: 221 passati, 0 falliti

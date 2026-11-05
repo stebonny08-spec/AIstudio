@@ -1,0 +1,66 @@
+ERR?[nospec_pro]=None
+[nospec_pro] ok=True tok/s=6.166591619143369 acc=None sha=e295684f58c2563d
+ERR?[nospec_base]=None
+[nospec_base] ok=True tok/s=13.584276098022498 acc=None sha=5671fb887a38359b
+ERR?[pro_ngramsimple_d3]=None
+[pro_ngramsimple_d3] ok=True tok/s=6.010198007332442 acc=None sha=e295684f58c2563d
+ERR?[pro_ngramsimple_d5]=None
+[pro_ngramsimple_d5] ok=True tok/s=5.851635401241493 acc=None sha=e295684f58c2563d
+ERR?[pro_ngramsimple_d8]=None
+[pro_ngramsimple_d8] ok=True tok/s=5.989089023444425 acc=None sha=e295684f58c2563d
+ERR?[pro_ngrammapk_d3]=None
+[pro_ngrammapk_d3] ok=True tok/s=16.458036926707237 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammapk_d5]=None
+[pro_ngrammapk_d5] ok=True tok/s=18.95178893459328 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammapk_d8]=None
+[pro_ngrammapk_d8] ok=True tok/s=18.602962395560493 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammapk4v_d3]=None
+[pro_ngrammapk4v_d3] ok=True tok/s=16.600858306085126 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammapk4v_d5]=None
+[pro_ngrammapk4v_d5] ok=True tok/s=18.7740542570168 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammapk4v_d8]=None
+[pro_ngrammapk4v_d8] ok=True tok/s=18.018058803157235 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammod_d3]=None
+[pro_ngrammod_d3] ok=True tok/s=13.87181923193201 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammod_d5]=None
+[pro_ngrammod_d5] ok=True tok/s=15.404564504059335 acc=1.0 sha=e295684f58c2563d
+ERR?[pro_ngrammod_d8]=None
+[pro_ngrammod_d8] ok=True tok/s=15.78212358068944 acc=1.0 sha=e295684f58c2563d
+ERR?[base_ngramsimple_d3]=None
+[base_ngramsimple_d3] ok=True tok/s=14.076463064421958 acc=None sha=5671fb887a38359b
+ERR?[base_ngramsimple_d5]=None
+[base_ngramsimple_d5] ok=True tok/s=13.530379168818607 acc=None sha=5671fb887a38359b
+ERR?[base_ngramsimple_d8]=None
+[base_ngramsimple_d8] ok=True tok/s=13.332264072355471 acc=None sha=5671fb887a38359b
+ERR?[base_ngrammapk_d3]=None
+[base_ngrammapk_d3] ok=True tok/s=27.13750464508167 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammapk_d5]=None
+[base_ngrammapk_d5] ok=True tok/s=29.08190472738783 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammapk_d8]=None
+[base_ngrammapk_d8] ok=True tok/s=31.82457144776213 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammapk4v_d3]=None
+[base_ngrammapk4v_d3] ok=True tok/s=30.17801693729827 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammapk4v_d5]=None
+[base_ngrammapk4v_d5] ok=True tok/s=28.304194710102465 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammapk4v_d8]=None
+[base_ngrammapk4v_d8] ok=True tok/s=27.9986757611243 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammod_d3]=None
+[base_ngrammod_d3] ok=True tok/s=27.380737967300796 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammod_d5]=None
+[base_ngrammod_d5] ok=True tok/s=28.29091189285962 acc=1.0 sha=5671fb887a38359b
+ERR?[base_ngrammod_d8]=None
+[base_ngrammod_d8] ok=True tok/s=28.43919143520166 acc=1.0 sha=5671fb887a38359b
+ERR?[nospec_pro_L2]=None
+[nospec_pro_L2] ok=True tok/s=5.712565793184736 acc=None sha=856c6affb373f84b
+ERR?[pro_ngrammapk_d5_L2]=None
+[pro_ngrammapk_d5_L2] ok=True tok/s=9.124646941503174 acc=1.0 sha=856c6affb373f84b
+ERR?[pro_ngrammapk4v_d5_L2]=None
+[pro_ngrammapk4v_d5_L2] ok=True tok/s=9.756835153318125 acc=1.0 sha=856c6affb373f84b
+ERR?[pro_ngrammapk_d8_L2]=None
+[pro_ngrammapk_d8_L2] ok=True tok/s=9.927503780059197 acc=1.0 sha=856c6affb373f84b
+ERR?[fork_pro_ngrammapk_d5]=None
+[fork_pro_ngrammapk_d5] ok=True tok/s=18.687348083128835 acc=1.0 sha=e295684f58c2563d
+ERR?[fork_pro_ngrammapk4v_d5]=None
+[fork_pro_ngrammapk4v_d5] ok=True tok/s=17.165413950858095 acc=1.0 sha=e295684f58c2563d
+DECISIONS [{"model": "pro", "variant": "ngram-simple", "best_draft_max": 3, "best_speedup": 0.975, "best_acceptance": null, "quality_ok": true, "decision": "OFF"}, {"model": "pro", "variant": "ngram-map-k", "best_draft_max": 5, "best_speedup": 3.073, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}, {"model": "pro", "variant": "ngram-map-k4v", "best_draft_max": 5, "best_speedup": 3.044, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}, {"model": "pro", "variant": "ngram-mod", "best_draft_max": 8, "best_speedup": 2.559, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}, {"model": "base", "variant": "ngram-simple", "best_draft_max": 3, "best_speedup": 1.036, "best_acceptance": null, "quality_ok": true, "decision": "OFF"}, {"model": "base", "variant": "ngram-map-k", "best_draft_max": 8, "best_speedup": 2.343, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}, {"model": "base", "variant": "ngram-map-k4v", "best_draft_max": 3, "best_speedup": 2.222, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}, {"model": "base", "variant": "ngram-mod", "best_draft_max": 8, "best_speedup": 2.094, "best_acceptance": 1.0, "quality_ok": true, "decision": "ON(long-form)"}]
+VERDICT {"winner": "ngram ngram-map-k d5", "speedup": 3.073, "vs_draft_spark_best": 1.272, "rule": "ON long-form SOLO se speedup>=1.30 E quality invariata; altrimenti OFF. Confronto con draft Spark: mai entrambi."}

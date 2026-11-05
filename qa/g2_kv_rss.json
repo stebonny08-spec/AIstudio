@@ -1,0 +1,196 @@
+{
+ "status": "OK",
+ "target_delta_mb": 50,
+ "delta_parent_mb": 0.0,
+ "esito_target": "RAGGIUNTO",
+ "rss_before_mb": 39.7,
+ "rss_after_mb": 39.7,
+ "child_rss_loaded_mb": 2547.6,
+ "turns": 30,
+ "rolling_policy": "trim_history ogni 4 turni con history_char_budget(4096)",
+ "load_sidecar_s": 2.39,
+ "metodo": "psutil.Process().memory_info().rss del PADRE (modello nel figlio llama-server); 30 turni reali via SidecarClient",
+ "comando": "python tests/g2_kv_rss.py",
+ "per_turn": [
+  {
+   "turn": 1,
+   "ms": 971,
+   "ok": true,
+   "chars": 14
+  },
+  {
+   "turn": 2,
+   "ms": 673,
+   "ok": true,
+   "chars": 14
+  },
+  {
+   "turn": 3,
+   "ms": 438,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 4,
+   "ms": 788,
+   "ok": true,
+   "chars": 15
+  },
+  {
+   "turn": 5,
+   "ms": 697,
+   "ok": true,
+   "chars": 14
+  },
+  {
+   "turn": 6,
+   "ms": 1067,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 7,
+   "ms": 923,
+   "ok": true,
+   "chars": 23
+  },
+  {
+   "turn": 8,
+   "ms": 1065,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 9,
+   "ms": 996,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 10,
+   "ms": 997,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 11,
+   "ms": 333,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 12,
+   "ms": 992,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 13,
+   "ms": 299,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 14,
+   "ms": 311,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 15,
+   "ms": 991,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 16,
+   "ms": 993,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 17,
+   "ms": 996,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 18,
+   "ms": 1062,
+   "ok": true,
+   "chars": 30
+  },
+  {
+   "turn": 19,
+   "ms": 328,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 20,
+   "ms": 328,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 21,
+   "ms": 333,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 22,
+   "ms": 330,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 23,
+   "ms": 625,
+   "ok": true,
+   "chars": 14
+  },
+  {
+   "turn": 24,
+   "ms": 1013,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 25,
+   "ms": 987,
+   "ok": true,
+   "chars": 29
+  },
+  {
+   "turn": 26,
+   "ms": 337,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 27,
+   "ms": 621,
+   "ok": true,
+   "chars": 14
+  },
+  {
+   "turn": 28,
+   "ms": 349,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 29,
+   "ms": 328,
+   "ok": true,
+   "chars": 2
+  },
+  {
+   "turn": 30,
+   "ms": 330,
+   "ok": true,
+   "chars": 2
+  }
+ ]
+}

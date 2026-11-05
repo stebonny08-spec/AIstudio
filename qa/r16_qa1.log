@@ -1,0 +1,116 @@
+[14:41:11] === R16 QA-1 matrice 20 query (start) ===
+[14:41:11] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[14:41:11] boot store 25.83ms chunk=17/0
+[14:41:28] ready: embedder.warm=True semantic.ready=True (16400.14ms)
+[14:41:47] QA warmup_scartata: total=19088 tok=11119.68 n=99 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:41:47] warmup scartata: total=19088.36ms first_tok=11119.68
+[14:41:47] matrice: 20 query
+[14:42:06] QA i1: total=19138 tok=2391.47 n=207 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:42:25] QA i2: total=19046 tok=2107.78 n=212 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:42:43] QA i3: total=17145 tok=5373.49 n=144 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:43:02] QA i4: total=19102 tok=5372.64 n=171 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:43:21] QA i5: total=19044 tok=3665.93 n=191 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:43:41] QA i6: total=19072 tok=5746.09 n=167 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:44:00] QA i7: total=19053 tok=6016.36 n=164 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:44:19] QA i8: total=19089 tok=5593.24 n=171 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:44:38] QA i9: total=19041 tok=3975.1 n=190 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:44:58] QA i10: total=19088 tok=5324.98 n=171 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:45:17] QA ii1: total=19075 tok=10329.95 n=113 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=1 ok=False err=None
+[14:45:36] QA ii2: total=19030 tok=11768.02 n=94 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=4 net=12 ok=False err=None
+[14:45:56] QA ii3: total=19093 tok=10835.72 n=105 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=3 net=8 ok=False err=None
+[14:46:15] QA ii4: total=19091 tok=13018.87 n=79 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=14 ok=False err=None
+[14:46:34] QA ii5: total=19099 tok=6958.88 n=158 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=1 net=8 ok=False err=None
+[14:46:34] QA iii1: total=34 tok=33.54 n=18 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=True err=None
+[14:46:35] QA iii2: total=29 tok=27.99 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=True err=None
+[14:46:35] QA iii3: total=49 tok=48.29 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=True err=None
+[14:46:35] QA iii4: total=46 tok=45.1 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=True err=None
+[14:46:35] QA iii5: total=62 tok=60.84 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=True err=None
+[14:46:36] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r16_qa1.json
+[14:46:36] RIEPILOGO ok=5/20 total_p95=19102.23 tok_p95=11768.02 slo20=True slo2=False guard_fail=[]
+[14:46:36] sidecar state post: down
+[14:48:09] === R16 QA-2 gate: 10 risposte piene ===
+[14:48:09] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[14:48:09] boot store 25.6ms chunk=17/0
+[14:48:25] ready: embedder.warm=True semantic.ready=True (15787.52ms)
+[14:48:44] QA warmup_scartata: total=19070 tok=11061.44 n=100 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:49:03] GATE-RUN i1: len=742 tok=2367.2 guard=True src=locale urls=0
+[14:49:23] GATE-RUN i4: len=613 tok=5410.2 guard=True src=locale urls=0
+[14:49:42] GATE-RUN i5: len=696 tok=3779.2 guard=True src=locale urls=0
+[14:50:01] GATE-RUN i9: len=726 tok=4120.2 guard=True src=locale urls=0
+[14:50:20] GATE-RUN i10: len=643 tok=5445.5 guard=True src=locale urls=0
+[14:50:40] GATE-RUN ii1: len=272 tok=13737.7 guard=True src=web urls=5
+[14:50:59] GATE-RUN ii2: len=530 tok=7333.3 guard=True src=web urls=5
+[14:51:09] GATE-RUN ii3: len=173 tok=6081.3 guard=True src=web urls=1
+[14:51:28] GATE-RUN ii4: len=526 tok=7623.5 guard=True src=web urls=5
+[14:51:48] GATE-RUN ii5: len=512 tok=7448.7 guard=True src=web urls=1
+[14:51:48] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r16_gate_raw.json
+[14:51:48] scritto qa/gate_round16.md (scheletro)
+[14:51:48] sidecar state post: down
+[16:27:55] === R17 verify: 7 query reali + cache ===
+[16:27:55] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:27:55] boot store 17.03ms chunk=17/0
+[16:28:10] ready: embedder.warm=True semantic.ready=True (14238.7ms)
+[16:28:29] QA warmup: total=19046 tok=16027.64 n=40 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[16:31:20] scritto qa/r17_verify.json ok=10/10 p95=19105.5 guard_fail=[]
+[16:31:20] sidecar state post: down
+[16:34:55] === R17 verify: 7 query reali + cache ===
+[16:34:55] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:34:55] boot store 26.99ms chunk=17/0
+[16:35:11] ready: embedder.warm=True semantic.ready=True (16232.88ms)
+[16:35:43] QA warmup: total=31852 tok=11869.88 n=17 llm=1 guard=True len_ok=True blocks=2 resets=2 src=locale weburls=0 net=0 ok=False err=None
+[16:39:35] scritto qa/r17_verify.json ok=4/10 p95=28933.2 guard_fail=[]
+[16:39:36] sidecar state post: down
+[16:44:17] === R17 verify: 7 query reali + cache ===
+[16:44:17] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:44:17] boot store 25.46ms chunk=17/0
+[16:44:34] ready: embedder.warm=True semantic.ready=True (16627.72ms)
+[16:44:53] QA warmup: total=19109 tok=12056.49 n=85 llm=1 guard=True len_ok=True blocks=2 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[16:47:48] scritto qa/r17_verify.json ok=10/10 p95=19087.7 guard_fail=[]
+[16:47:48] sidecar state post: down
+[16:50:07] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:50:07] boot store 29.4ms chunk=17/0
+[16:50:24] ready: embedder.warm=True semantic.ready=True (17061.97ms)
+[16:50:43] QA warmup: total=19087 tok=12192.28 n=86 llm=1 guard=True len_ok=True blocks=2 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[16:51:03] QA put_probe: total=19253 tok=5819.95 n=17 llm=1 guard=True len_ok=True blocks=2 resets=2 src=locale weburls=0 net=0 ok=False err=None
+[16:53:17] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:53:17] boot store 24.28ms chunk=17/0
+[16:53:33] ready: embedder.warm=True semantic.ready=True (15924.96ms)
+[16:53:52] QA warmup: total=19041 tok=11814.53 n=90 llm=1 guard=True len_ok=True blocks=2 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[16:54:10] QA put_probe: total=17643 tok=5832.87 n=146 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[16:56:32] === R17 verify: 7 query reali + cache ===
+[16:56:32] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[16:56:32] boot store 26.89ms chunk=17/0
+[16:56:49] ready: embedder.warm=True semantic.ready=True (16411.1ms)
+[16:57:08] QA warmup: total=19086 tok=10847.27 n=104 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[17:00:16] scritto qa/r17_verify.json ok=10/10 p95=19126.8 guard_fail=[]
+[17:00:16] sidecar state post: down
+[18:06:16] === R18 verify: 4 query (nessun kill, provenienza per stadio) ===
+[18:06:16] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[18:06:16] boot store 36.18ms chunk=17/0
+[18:06:39] ready: embedder.warm=True semantic.ready=True (22722.71ms)
+[18:07:23] QA warmup: total=43617 tok=11789.28 n=361 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[18:10:07] scritto qa/r18_verify.json ok=4/4 max_total=59866.9 trunc=[] codes={'v1': [], 'v2': [], 'v3': [], 'v4': []} moji=[]
+[18:10:07] sidecar state post: down
+[18:11:06] === R18 verify: 4 query (nessun kill, provenienza per stadio) ===
+[18:11:06] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[18:11:06] boot store 26.09ms chunk=17/0
+[18:11:22] ready: embedder.warm=True semantic.ready=True (15959.18ms)
+[18:13:21] QA warmup: total=118916 tok=10469.68 n=1286 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[18:16:02] scritto qa/r18_verify.json ok=4/4 max_total=52396.5 trunc=[] codes={'v1': [], 'v2': [], 'v3': [], 'v4': []} moji=[]
+[18:16:02] sidecar state post: down
+[18:05:15] === R18 verify: 4 query (nessun kill, provenienza per stadio) ===
+[18:05:15] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"}
+[18:05:16] boot store 277.56ms chunk=17/0
+[18:06:18] ready: embedder.warm=True semantic.ready=True (62640.66ms)
+[18:11:51] QA warmup: total=332526 tok=45519.57 n=275 llm=2 guard=True len_ok=True blocks=3 resets=2 src=locale weburls=0 net=0 ok=False err=None
+[18:28:51] scritto qa/r18_verify.json ok=1/4 max_total=301096.6 trunc=[] codes={'v1': [], 'v2': [], 'v3': [], 'v4': []} moji=[]
+[18:28:51] sidecar state post: down
+[22:48:18] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"}
+[22:48:18] boot store 39.2ms chunk=17/0
+[22:48:35] ready: embedder.warm=True semantic.ready=True (16342.87ms)
+[22:51:11] QA warmup_ttft: total=155498 tok=31867.94 n=107 llm=2 guard=True len_ok=True blocks=3 resets=2 src=web weburls=5 net=7 ok=False err=None
+[22:56:06] QA t1: total=295129 tok=52439.29 n=25 llm=2 guard=True len_ok=True blocks=4 resets=3 src=locale weburls=0 net=10 ok=False err=None
+[23:00:41] QA t2: total=275268 tok=5157.09 n=468 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=1 net=9 ok=False err=None
+[23:05:31] QA t3: total=289636 tok=34699.04 n=95 llm=2 guard=True len_ok=True blocks=2 resets=1 src=web weburls=5 net=8 ok=False err=None
+[23:07:57] QA t4: total=146916 tok=40339.27 n=454 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=8 ok=False err=None
+[23:11:15] QA t5: total=197257 tok=24378.88 n=837 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=7 ok=False err=None

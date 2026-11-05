@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA fogli</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 â€” QA fogli</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/fogli.js"></script>
+<script>
+(async function () {
+    var QA = window.__QA, sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        var id = 'f1';
+        QA.store.items.push({
+            id: id, kind: 'foglio', title: 'Foglio',
+            content: JSON.stringify({ sheets: [{ cells: { 'A1': { v: '10' }, 'B1': { v: 'x' }, 'C1': { v: 'y' }, 'K13': { v: '7' } } }], current: 0 }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        var main = document.getElementById('main');
+        window.StudyTools.fogli.render(main, { open: id });
+        var opened = await window.__qaUntil(function () {
+            return !!document.querySelector('td[data-ref="K13"]') && !!document.querySelector('.fg-fill');
+        }, 10000);
+        await sleep(400);
+
+        function selectK13() {
+            var td = document.querySelector('td[data-ref="K13"]');
+            td.dispatchEvent(new PointerEvent('pointerdown', {
+                bubbles: true, cancelable: true, pointerId: 7, pointerType: 'mouse', isPrimary: true,
+                button: 0, buttons: 1, clientX: 12, clientY: 12
+            }));
+        }
+        function measureSel() {
+            var td = document.querySelector('td[data-ref="K13"]');
+            var fill = document.querySelector('.fg-fill');
+            if (!td || !fill) return null;
+            var t = td.getBoundingClientRect(), f = fill.getBoundingClientRect();
+            return {
+                dR: +Math.abs(f.right - t.right).toFixed(1), dB: +Math.abs(f.bottom - t.bottom).toFixed(1),
+                tdRight: +t.right.toFixed(1), tdBottom: +t.bottom.toFixed(1),
+                fillRight: +f.right.toFixed(1), fillBottom: +f.bottom.toFixed(1),
+                fillW: +f.width.toFixed(1), fillH: +f.height.toFixed(1)
+            };
+        }
+
+        /* (a) selezione K13 -> .fg-fill angolo basso-destro entro 14px */
+        selectK13();
+        await sleep(200);
+        var m1 = measureSel();
+        var ok1 = !!m1 && m1.dR <= 14 && m1.dB <= 14;
+        window.__qaCheck('F1a .fg-fill angolo basso-destro di td K13 entro 14px',
+            '|fill.right-td.right|<=14 && |fill.bottom-td.bottom|<=14', ok1,
+            'editorOpened=' + opened + ' ' + JSON.stringify(m1));
+
+        /* (b) scroll .fg-wrap di 100px -> riconfronto */
+        var wrap = document.querySelector('.fg-wrap');
+        var st0 = wrap.scrollTop;
+        wrap.scrollTop = st0 + 100;
+        await sleep(250); /* scroll reale del browser -> updateOverlays */
+        var m2 = measureSel();
+        var scrolled = wrap.scrollTop - st0;
+        var ok1b = !!m2 && m2.dR <= 14 && m2.dB <= 14;
+        window.__qaCheck('F1b fill resta sull\'angolo dopo scroll .fg-wrap (+100px)',
+            'scrollTop delta=100 e |delta|<=14 su entrambi gli assi', ok1b,
+            'scrollTopDelta=' + scrolled + ' ' + JSON.stringify(m2));
+
+        /* (c) .fg-side larghezza 180..220 */
+        var side = document.querySelector('.fg-side');
+        var wSide = side ? side.offsetWidth : -1;
+        window.__qaCheck('F2 .fg-side offsetWidth in [180,220]', '180<=w<=220', wSide >= 180 && wSide <= 220,
+            'offsetWidth=' + wSide);
+
+        /* (d) dblclick cella -> .fg-editor copre la td */
+        var tdK = document.querySelector('td[data-ref="K13"]');
+        tdK.dispatchEvent(new MouseEvent('dblclick', { bubbles: true, detail: 2 }));
+        var hasEd = await window.__qaUntil(function () { return !!document.querySelector('.fg-editor'); }, 4000);
+        await sleep(100);
+        var ed = document.querySelector('.fg-editor');
+        var okEd = false, evEd = 'editor assente';
+        if (ed) {
+            var t = tdK.getBoundingClientRect(), e = ed.getBoundingClientRect();
+            var dL = Math.abs(e.left - t.left), dT = Math.abs(e.top - t.top), dW = Math.abs(e.width - t.width);
+            okEd = dL <= 6 && dT <= 6 && dW <= 6 && e.height >= t.height - 4;
+            evEd = 'dL=' + dL.toFixed(1) + ' dT=' + dT.toFixed(1) + ' dW=' + dW.toFixed(1) +
+                ' editorH=' + e.height.toFixed(1) + ' tdH=' + t.height.toFixed(1);
+        }
+        window.__qaCheck('F3 dblclick td K13 -> .fg-editor allineata alla td (dl/dt/dw<=6, h>=tdh-4)',
+            'rect editor == rect td', okEd, evEd);
+
+        /* (e) scrollbar temata: scrollbar-color con rgb scuro */
+        var sbc = getComputedStyle(wrap).scrollbarColor;
+        var mrgb = /rgba?\(\s*(\d+)\D+(\d+)\D+(\d+)/.exec(sbc);
+        var dark = false;
+        if (mrgb) dark = (+mrgb[1] < 120 && +mrgb[2] < 120 && +mrgb[3] < 150);
+        window.__qaCheck('F4 .fg-wrap scrollbarColor con primo colore scuro', 'rgb scuro (canali <120/120/150)', dark,
+            'scrollbarColor="' + sbc + '"');
+
+        /* chiudi editor (Escape) ma mantieni la selezione visibile per lo screenshot */
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        await sleep(150);
+        var fillVisible = (function () {
+            var f = document.querySelector('.fg-fill');
+            if (!f) return false;
+            var r = f.getBoundingClientRect();
+            return r.width > 0 && r.top >= 0 && r.bottom <= window.innerHeight;
+        })();
+        QA.fillVisibleAtShot = fillVisible;
+
+        await window.__qaShot('fogli_fill');
+        QA.done = true;
+    } catch (e) {
+        QA.errors.push('driver: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>
+

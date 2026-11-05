@@ -1,0 +1,69 @@
+{
+ "ts": "2026-11-02T22:48:18+0100",
+ "method": "qa/r16_qa1.run_query su app wiring reale (Router.process_query_stream, sidecar+gate+web), TTFT = first_token_ms, SLO p50<=2000ms",
+ "slo_p50_ms": 2000,
+ "cases": [
+  {
+   "id": "t1",
+   "query": "Qual e' il primo accettore di CO2 nelle piante C4?",
+   "first_token_ms": 52439.29,
+   "total_ms": 295129.32,
+   "ok_core": false,
+   "n_tokens": 25,
+   "text_len": 1546
+  },
+  {
+   "id": "t2",
+   "query": "Spiega il ciclo di Krebs in modo sintetico ma completo.",
+   "first_token_ms": 5157.09,
+   "total_ms": 275267.69,
+   "ok_core": false,
+   "n_tokens": 468,
+   "text_len": 1644
+  },
+  {
+   "id": "t3",
+   "query": "chi e' dante alighieri",
+   "first_token_ms": 34699.04,
+   "total_ms": 289636.27,
+   "ok_core": false,
+   "n_tokens": 95,
+   "text_len": 287
+  },
+  {
+   "id": "t4",
+   "query": "chi e' petrarca e perche' e' importante",
+   "first_token_ms": 40339.27,
+   "total_ms": 146915.58,
+   "ok_core": false,
+   "n_tokens": 454,
+   "text_len": 1522
+  },
+  {
+   "id": "t5",
+   "query": "Descrivi la struttura della Divina Commedia secondo i materiali.",
+   "first_token_ms": 24378.88,
+   "total_ms": 197256.95,
+   "ok_core": false,
+   "n_tokens": 837,
+   "text_len": 2727
+  }
+ ],
+ "accelerators": {
+  "usearch.enabled": true,
+  "spec.ngram_longform": true,
+  "spec.ngram_variant": "ngram-map-k",
+  "rag.hyde": null,
+  "rag.decompose": null,
+  "rag.crag_lite": null,
+  "rerank.enabled": null,
+  "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"
+ },
+ "summary": {
+  "n": 5,
+  "p50": 34699.0,
+  "p95": 52439.3,
+  "max": 52439.3
+ },
+ "slo_p50_ok": false
+}

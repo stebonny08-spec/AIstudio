@@ -1,0 +1,199 @@
+{
+ "ts": "2026-10-31T15:48:03+0100",
+ "phases": {
+  "s1": {
+   "engine": "xhtoken"
+  },
+  "s2": {
+   "renamed": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe",
+   "engine_cfg": "xhtoken"
+  },
+  "s3": {
+   "state": true,
+   "error": "None",
+   "local_model_key": "fallback"
+  }
+ },
+ "gen": [
+  {
+   "tag": "S1_base",
+   "ok": true,
+   "n": 51,
+   "ms": 3613,
+   "engine_bin": "xhtoken"
+  },
+  {
+   "tag": "S1_pro",
+   "ok": true,
+   "n": 73,
+   "ms": 6888,
+   "engine_bin": "xhtoken"
+  },
+  {
+   "tag": "S1_base2",
+   "ok": true,
+   "n": 111,
+   "ms": 3119,
+   "engine_bin": "xhtoken"
+  },
+  {
+   "tag": "S2_dopo_kill",
+   "ok": true,
+   "n": 136,
+   "ms": 5198,
+   "engine_bin": "upstream"
+  },
+  {
+   "tag": "S3_minicpm",
+   "ok": true,
+   "n": 122,
+   "ms": 3956,
+   "engine_bin": "upstream"
+  }
+ ],
+ "checks": [
+  {
+   "name": "S1 load_model(base) accettato",
+   "ok": true,
+   "extra": "{'success': True, 'loading': True}"
+  },
+  {
+   "name": "S1 base -> ready",
+   "ok": true,
+   "extra": "None"
+  },
+  {
+   "name": "S1 completamento base",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S1 binario FORK per base",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k"
+  },
+  {
+   "name": "S1 load_model(pro) accettato",
+   "ok": true,
+   "extra": "{'success': True, 'loading': True}"
+  },
+  {
+   "name": "S1 pro -> ready",
+   "ok": true,
+   "extra": "None"
+  },
+  {
+   "name": "S1 completamento pro",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S1 binario FORK per pro",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf -c 8192 --cache-type-k q"
+  },
+  {
+   "name": "S1 modello 4B attivo",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 53192"
+  },
+  {
+   "name": "S1 load_model(base) ritorno accettato",
+   "ok": true,
+   "extra": "{'success': True, 'loading': True}"
+  },
+  {
+   "name": "S1 base2 -> ready",
+   "ok": true,
+   "extra": "None"
+  },
+  {
+   "name": "S1 completamento base2",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S1 binario FORK dopo ritorno",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k"
+  },
+  {
+   "name": "S1 modello 1.7B attivo",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 53235"
+  },
+  {
+   "name": "S2 binario fork rinominato",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S2 generazione dopo kill del fork",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S2 fallback su UPSTREAM",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe -m C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-1.7b.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 58420"
+  },
+  {
+   "name": "S2 status.engine == upstream",
+   "ok": true,
+   "extra": "upstream"
+  },
+  {
+   "name": "S2 status.xhtoken_fallback == True (X5.3)",
+   "ok": true,
+   "extra": "True"
+  },
+  {
+   "name": "S2 message utente di ripiego presente",
+   "ok": true,
+   "extra": "motore XHToken non disponibile -> ripiego su upstream (binario xhtoken mancante: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe)"
+  },
+  {
+   "name": "S2 ripristino binario fork",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S3 spark-4b sostituito da file corrotto (size!=0 per get_downloaded_path)",
+   "ok": true,
+   "extra": "7936"
+  },
+  {
+   "name": "S3 load_model(pro) accettato (file presente, caricamento poi fallisce)",
+   "ok": true,
+   "extra": "{'success': True, 'loading': True}"
+  },
+  {
+   "name": "S3 fallback -> ready",
+   "ok": true,
+   "extra": "None"
+  },
+  {
+   "name": "S3 chiave modello == 'fallback' (X6 apply_fallback)",
+   "ok": true,
+   "extra": "fallback"
+  },
+  {
+   "name": "S3 modello fallback = MiniCPM5-2B",
+   "ok": true,
+   "extra": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"
+  },
+  {
+   "name": "S3 generazione con il fallback MiniCPM5-2B",
+   "ok": true,
+   "extra": ""
+  },
+  {
+   "name": "S3 ripristino spark-x2.6-4b.gguf (size uguale)",
+   "ok": true,
+   "extra": "3543441312"
+  }
+ ],
+ "ok": true,
+ "n_pass": 28,
+ "n_fail": 0
+}

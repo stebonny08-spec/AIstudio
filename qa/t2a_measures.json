@@ -1,0 +1,175 @@
+{
+  "status": "OK",
+  "error": null,
+  "generated_at": "2026-10-23T01:49:59+0200",
+  "model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+  "model_esiste": true,
+  "environment": {
+    "python": "3.13.14",
+    "llama_cpp_version": "0.3.35",
+    "psutil_version": "7.2.2",
+    "cpu_count": 16,
+    "rss_method": "psutil.Process().memory_info().rss (psutil)"
+  },
+  "sections": {
+    "prompt_cache": {
+      "status": "ok",
+      "classe": "core.prefix_cache.PromptPrefixCache (istanza fresca)",
+      "registrazioni_stesso_prefisso": 10,
+      "registrazioni_distinte": 10,
+      "hits": 9,
+      "misses": 11,
+      "hit_rate": 0.45,
+      "hit_rate_atteso": 0.45
+    },
+    "sidecar": {
+      "status": "ok",
+      "binario_assente": true,
+      "percorso": null,
+      "tok_s": null,
+      "metodo_tok_s": null,
+      "samples_tok_s": null,
+      "error": null
+    },
+    "model_load_sec": {
+      "status": "ok",
+      "sec": 2.01,
+      "loader": "core.local_llm_client.LocalLLMClient (caricamento adattivo, strategia: GPU + flash_attn + KV cache Q8_0; n_ctx=4096, verbose=False)",
+      "n_ctx": 4096
+    },
+    "rss_mb": {
+      "status": "ok",
+      "method": "psutil.Process().memory_info().rss (psutil)",
+      "before": 24.5,
+      "after_load": 2093.4,
+      "after_30req": 2578.2,
+      "after_30req_raggiunto": true
+    },
+    "tok_s": {
+      "status": "ok",
+      "metodo": [
+        "len(text)/4 (stima chars) / elapsed"
+      ],
+      "mediana_su": "3 misure (warmup escluso) per profilo",
+      "profili": {
+        "fast": {
+          "temperature": 0.8,
+          "n_predict": 128,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens": 110,
+              "elapsed_sec": 10.654,
+              "tok_s": 10.32,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 117,
+              "elapsed_sec": 10.506,
+              "tok_s": 11.14,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 110,
+              "elapsed_sec": 10.69,
+              "tok_s": 10.29,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            }
+          ],
+          "mediana_tok_s": 10.32
+        },
+        "think": {
+          "temperature": 0.6,
+          "n_predict": 320,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens": 244,
+              "elapsed_sec": 26.85,
+              "tok_s": 9.09,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 273,
+              "elapsed_sec": 26.576,
+              "tok_s": 10.27,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 247,
+              "elapsed_sec": 27.117,
+              "tok_s": 9.11,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            }
+          ],
+          "mediana_tok_s": 9.11
+        },
+        "tool": {
+          "temperature": 0.1,
+          "n_predict": 128,
+          "warmup": 1,
+          "n_misure": 3,
+          "samples": [
+            {
+              "n_tokens": 118,
+              "elapsed_sec": 10.501,
+              "tok_s": 11.24,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 137,
+              "elapsed_sec": 10.483,
+              "tok_s": 13.07,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            },
+            {
+              "n_tokens": 124,
+              "elapsed_sec": 10.525,
+              "tok_s": 11.78,
+              "method": "len(text)/4 (stima chars) / elapsed"
+            }
+          ],
+          "mediana_tok_s": 11.78
+        }
+      }
+    },
+    "latency_ms": {
+      "status": "ok",
+      "n": 20,
+      "prompt_chars": 117,
+      "n_predict": 48,
+      "metodo_percentili": "nearest-rank: k = ceil(p*n), valore = sorted[k-1]",
+      "samples_ms": [
+        4211.8,
+        4011.8,
+        3950.2,
+        3928.2,
+        3927.3,
+        3944.2,
+        3919.6,
+        3925.7,
+        3944.9,
+        3964.6,
+        3911.7,
+        3925.2,
+        3925.7,
+        3937.8,
+        3974.4,
+        3983.2,
+        4044.9,
+        3980.6,
+        3919.1,
+        3941.7
+      ],
+      "p50_ms": 3941.7,
+      "p95_ms": 4044.9,
+      "min_ms": 3911.7,
+      "max_ms": 4211.8,
+      "mediana_ms": 3942.95
+    }
+  },
+  "run_duration_sec": 274.3,
+  "n_request_totali": 32
+}

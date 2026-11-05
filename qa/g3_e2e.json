@@ -1,0 +1,24 @@
+{
+  "status": "OK",
+  "base": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tmp\\g3_e2e",
+  "originals": [
+    "appunti_g3_e2e.md",
+    "documento_g3_e2e.pdf",
+    "immagine_g3_e2e.png"
+  ],
+  "stage2_md": [
+    "appunti_g3_e2e.md",
+    "documento_g3_e2e.md",
+    "immagine_g3_e2e.md"
+  ],
+  "md_paths": {
+    "documento_g3_e2e.pdf": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tmp\\g3_e2e\\rag_stage2\\documento_g3_e2e.md",
+    "immagine_g3_e2e.png": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tmp\\g3_e2e\\rag_stage2\\immagine_g3_e2e.md",
+    "appunti_g3_e2e.md": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tmp\\g3_e2e\\rag_stage2\\appunti_g3_e2e.md"
+  },
+  "chunks": 7,
+  "search_hit": true,
+  "query_usata": "# Appunti G3 E2E\n\nIl colloide osmotico attraverso il tonoplasto regola il vacuolo centrale delle cellule vegetali durante la turgenza.\n",
+  "marker": "tonoplasto",
+  "ts": "2026-11-02T18:46:27"
+}

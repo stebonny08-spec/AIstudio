@@ -1,0 +1,902 @@
+[
+ {
+  "fid": "F01",
+  "i": 1,
+  "inputs": {
+   "materia": "Biologia",
+   "n": 3,
+   "testo": "La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 87813,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la fotosintesi è importante?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché bisogna sapere la clorofilla?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché il ciclo di Calvin è vitale?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 2,
+  "inputs": {
+   "materia": "Storia",
+   "n": 3,
+   "testo": "La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 86447,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la crisi fiscale portò la Rivoluzione?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Bastiglia è stata presa?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Dichiarazione dei diritti è importante?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 3,
+  "inputs": {
+   "materia": "Matematica",
+   "n": 3,
+   "testo": "La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 82555,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Come si calcola la derivata di una funzione?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Ricorda il limite.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché è importante la derivata prima azzerata?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Fai attenzione.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché le regole di derivazione semplificano i calcoli?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Usa le regole.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 4,
+  "inputs": {
+   "materia": "Biologia",
+   "n": 3,
+   "testo": "La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la fotosintesi è importante?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché bisogna sapere la clorofilla?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché il ciclo di Calvin è vitale?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 5,
+  "inputs": {
+   "materia": "Storia",
+   "n": 3,
+   "testo": "La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la crisi fiscale portò la Rivoluzione?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Bastiglia è stata presa?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Dichiarazione dei diritti è importante?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 6,
+  "inputs": {
+   "materia": "Matematica",
+   "n": 3,
+   "testo": "La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Come si calcola la derivata di una funzione?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Ricorda il limite.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché è importante la derivata prima azzerata?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Fai attenzione.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché le regole di derivazione semplificano i calcoli?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Usa le regole.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 7,
+  "inputs": {
+   "materia": "Biologia",
+   "n": 3,
+   "testo": "La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la fotosintesi è importante?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché bisogna sapere la clorofilla?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché il ciclo di Calvin è vitale?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 8,
+  "inputs": {
+   "materia": "Storia",
+   "n": 3,
+   "testo": "La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la crisi fiscale portò la Rivoluzione?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Bastiglia è stata presa?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Dichiarazione dei diritti è importante?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 9,
+  "inputs": {
+   "materia": "Matematica",
+   "n": 3,
+   "testo": "La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Come si calcola la derivata di una funzione?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Ricorda il limite.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché è importante la derivata prima azzerata?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Fai attenzione.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché le regole di derivazione semplificano i calcoli?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Usa le regole.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 10,
+  "inputs": {
+   "materia": "Biologia",
+   "n": 3,
+   "testo": "La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la fotosintesi è importante?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché bisogna sapere la clorofilla?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché il ciclo di Calvin è vitale?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 11,
+  "inputs": {
+   "materia": "Storia",
+   "n": 3,
+   "testo": "La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la crisi fiscale portò la Rivoluzione?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Bastiglia è stata presa?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Dichiarazione dei diritti è importante?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 12,
+  "inputs": {
+   "materia": "Matematica",
+   "n": 3,
+   "testo": "La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Come si calcola la derivata di una funzione?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Ricorda il limite.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché è importante la derivata prima azzerata?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Fai attenzione.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché le regole di derivazione semplificano i calcoli?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Usa le regole.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 13,
+  "inputs": {
+   "materia": "Biologia",
+   "n": 3,
+   "testo": "La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la fotosintesi è importante?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché bisogna sapere la clorofilla?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}, {\"front\": \"Perché il ciclo di Calvin è vitale?\", \"back\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica. Avviene nei cloroplasti e coinvolge la clorofilla. La fase luminosa produce ATP e NADPH. Il ciclo di Calvin fissa il CO2 in glucosio. Errori comuni: confondere fotolisi e fotofosforilazione.\", \"hint\": \"Ricorda i passi.\", \"quote\": \"La fotosintesi clorofilliana converte l'energia luminosa in energia chimica.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 14,
+  "inputs": {
+   "materia": "Storia",
+   "n": 3,
+   "testo": "La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Perché la crisi fiscale portò la Rivoluzione?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Bastiglia è stata presa?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}, {\"front\": \"Perché la Dichiarazione dei diritti è importante?\", \"back\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali. La presa della Bastiglia segna il punto di rottura. La Dichiarazione dei diritti afferma libertà e uguaglianza. Il terrore porta ghigliottina e conflitti. Errori comuni: datare al 1799 l'inizio.\", \"hint\": \"Fondamenta\", \"quote\": \"La Rivoluzione francese inizia nel 1789 per crisi fiscale e disuguaglianze sociali.\"}]}"
+ },
+ {
+  "fid": "F01",
+  "i": 15,
+  "inputs": {
+   "materia": "Matematica",
+   "n": 3,
+   "testo": "La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"cards\": [{\"front\": \"Come si calcola la derivata di una funzione?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Ricorda il limite.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché è importante la derivata prima azzerata?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Fai attenzione.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}, {\"front\": \"Perché le regole di derivazione semplificano i calcoli?\", \"back\": \"La derivata misura la velocità istantanea di variazione di una funzione. Si calcola come limite del quoziente incrementale. Le regole di derivazione semplificano i calcoli. L'applicazione agli studi di massimo dipende dalla derivata prima azzerata. Errori comuni: dimenticare la regola del prodotto.\", \"hint\": \"Usa le regole.\", \"quote\": \"La derivata misura la velocità istantanea di variazione di una funzione.\"}]}"
+ },
+ {
+  "fid": "F04",
+  "i": 1,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché l'energia della luce fa pompare protoni e riduce il NADP+.",
+   "risp": "L'energia luminosa crea un gradiente protonico che produce ATP e riduce il NADP+ a NADPH."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 11711,
+  "errors": [],
+  "output": "{\"judgment\": \"corretto\", \"feedback\": \"La risposta è corretta. Attenzione per il termine 'protoni'.\", \"followup\": \"perché è importante distinguere protoni da ioni?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 2,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché il gradiente protonico alimenta l'ATP sintasi e il NADP+ ridotto.",
+   "risp": "Perché la luce fa muovere i protoni."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 7247,
+  "errors": [],
+  "output": "{\"judgment\": \"parziale\", \"feedback\": \"L'errore è non aver menzionato il gradiente protonico.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 3,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché la clorofilla assorbe la luce.",
+   "risp": "Perché il glucosio si forma direttamente nei cloroplasti senza ciclo di Calvin."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 7937,
+  "errors": [],
+  "output": "{\"judgment\": \"errato\", \"feedback\": \"L'errore è che hai confuso la formazione di glucosio con la luce.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 4,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché l'energia della luce fa pompare protoni e riduce il NADP+.",
+   "risp": "L'energia luminosa crea un gradiente protonico che produce ATP e riduce il NADP+ a NADPH."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"corretto\", \"feedback\": \"La risposta è corretta. Attenzione per il termine 'protoni'.\", \"followup\": \"perché è importante distinguere protoni da ioni?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 5,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché il gradiente protonico alimenta l'ATP sintasi e il NADP+ ridotto.",
+   "risp": "Perché la luce fa muovere i protoni."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"parziale\", \"feedback\": \"L'errore è non aver menzionato il gradiente protonico.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 6,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché la clorofilla assorbe la luce.",
+   "risp": "Perché il glucosio si forma direttamente nei cloroplasti senza ciclo di Calvin."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"errato\", \"feedback\": \"L'errore è che hai confuso la formazione di glucosio con la luce.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 7,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché l'energia della luce fa pompare protoni e riduce il NADP+.",
+   "risp": "L'energia luminosa crea un gradiente protonico che produce ATP e riduce il NADP+ a NADPH."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"corretto\", \"feedback\": \"La risposta è corretta. Attenzione per il termine 'protoni'.\", \"followup\": \"perché è importante distinguere protoni da ioni?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 8,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché il gradiente protonico alimenta l'ATP sintasi e il NADP+ ridotto.",
+   "risp": "Perché la luce fa muovere i protoni."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"parziale\", \"feedback\": \"L'errore è non aver menzionato il gradiente protonico.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 9,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché la clorofilla assorbe la luce.",
+   "risp": "Perché il glucosio si forma direttamente nei cloroplasti senza ciclo di Calvin."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"errato\", \"feedback\": \"L'errore è che hai confuso la formazione di glucosio con la luce.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 10,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché l'energia della luce fa pompare protoni e riduce il NADP+.",
+   "risp": "L'energia luminosa crea un gradiente protonico che produce ATP e riduce il NADP+ a NADPH."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"corretto\", \"feedback\": \"La risposta è corretta. Attenzione per il termine 'protoni'.\", \"followup\": \"perché è importante distinguere protoni da ioni?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 11,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché il gradiente protonico alimenta l'ATP sintasi e il NADP+ ridotto.",
+   "risp": "Perché la luce fa muovere i protoni."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"parziale\", \"feedback\": \"L'errore è non aver menzionato il gradiente protonico.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 12,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché la clorofilla assorbe la luce.",
+   "risp": "Perché il glucosio si forma direttamente nei cloroplasti senza ciclo di Calvin."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"errato\", \"feedback\": \"L'errore è che hai confuso la formazione di glucosio con la luce.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 13,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché l'energia della luce fa pompare protoni e riduce il NADP+.",
+   "risp": "L'energia luminosa crea un gradiente protonico che produce ATP e riduce il NADP+ a NADPH."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"corretto\", \"feedback\": \"La risposta è corretta. Attenzione per il termine 'protoni'.\", \"followup\": \"perché è importante distinguere protoni da ioni?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 14,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché il gradiente protonico alimenta l'ATP sintasi e il NADP+ ridotto.",
+   "risp": "Perché la luce fa muovere i protoni."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"parziale\", \"feedback\": \"L'errore è non aver menzionato il gradiente protonico.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F04",
+  "i": 15,
+  "inputs": {
+   "front": "Perché la fase luminosa produce ATP e NADPH?",
+   "back": "Perché la clorofilla assorbe la luce.",
+   "risp": "Perché il glucosio si forma direttamente nei cloroplasti senza ciclo di Calvin."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "cache esatta",
+  "ms": 0,
+  "errors": [],
+  "output": "{\"judgment\": \"errato\", \"feedback\": \"L'errore è che hai confuso la formazione di glucosio con la luce.\", \"followup\": \"perché?\"}"
+ },
+ {
+  "fid": "F10",
+  "i": 1,
+  "inputs": {
+   "arg": "Termodinamica entropia"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 73636,
+  "errors": [],
+  "output": "{\"title\": \"Presentazione sulla Termodinamica\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Definire entropia\", \"Cercare energia\", \"Rispettare le regole\"]}, {\"title\": \"Prima Teoria\", \"bullets\": [\"Sistema chiuso\", \"Calore interno\", \"Equilibrio possibile\"]}, {\"title\": \"Prima Legge\", \"bullets\": [\"Conservazione energia\", \"Calcolo termodinamico\", \"Importanza fondamentale\"]}, {\"title\": \"Seconda Teoria\", \"bullets\": [\"Sistema aperto\", \"Fluidità termica\", \"Effetti reali\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Ricordo principale\", \"Applicazione pratica\", \"Riprogettare lavoro\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 2,
+  "inputs": {
+   "arg": "Rivoluzione francese cause"
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 29013,
+  "errors": [],
+  "output": "{\"title\": \"Rivoluzione francese\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Fai la legge\"]}, {\"title\": \"Causa\", \"bullets\": [\"Raggiungimento di lusso\"]}, {\"title\": \"Effetto\", \"bullets\": [\"Sensazione di libertà\"]}, {\"title\": \"Impatto\", \"bullets\": [\"Differenziato il mondo\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Impatto duraturo\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 3,
+  "inputs": {
+   "arg": "Derivate applicazioni"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 70159,
+  "errors": [],
+  "output": "{\"title\": \"Presentazione Derivate\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Prima\", \"Seconda\", \"Terza\"]}, {\"title\": \"Proseguire\", \"bullets\": [\"Quarto\", \"Quinto\", \"Sei\"]}, {\"title\": \"Continuare\", \"bullets\": [\"Sette\", \"Otto\", \"Nove\"]}, {\"title\": \"Terminare\", \"bullets\": [\"Dieci\", \"Undici\", \"Dodici\"]}, {\"title\": \"Finire\", \"bullets\": [\"Finali\", \"Conclusione\", \"Fine\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 4,
+  "inputs": {
+   "arg": "Mitosi e meiosi confronto"
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 46687,
+  "errors": [],
+  "output": "{\"title\": \"Mitosi e meiosi\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Definire la cellula\", \"Conoscere la forma\", \"Importanza della vita\", \"Rispettare la scienza\"]}, {\"title\": \"La Mitosi\", \"bullets\": [\"Dividere la cellula\", \"Preservare la genetica\", \"Processo cellulare\", \"Chiarezza fondamentale\"]}, {\"title\": \"La Meiosi\", \"bullets\": [\"Produzione di cellule\", \"Generazione di diversità\", \"Importanza biologica\", \"Conoscenza utile\"]}, {\"title\": \"Confronto\", \"bullets\": [\"Processi paralleli\", \"Differenza tra cellule\", \"Valore della conoscenza\", \"Apprendimento costante\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Rispettare ogni cellula\", \"Curare la vita\", \"Impatto globale\", \"Proprio io\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 5,
+  "inputs": {
+   "arg": "Impero romano strade"
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 40882,
+  "errors": [],
+  "output": "{\"title\": \"Impero romano strade\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"La strada è vita\", \"Curare il terreno\", \"Ricordare le origini\"]}, {\"title\": \"Espandere\", \"bullets\": [\"Oltre le mura\", \"Potesi diventano strada\", \"Adottare la via\"]}, {\"title\": \"Mantenere\", \"bullets\": [\"Curare il territorio\", \"Preservare la memoria\", \"Gestire l'uso\"]}, {\"title\": \"Impati\", \"bullets\": [\"L'evoluzione delle strade\", \"L'impatto storico\", \"Riconsumentire il passato\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"La strada è un ricordo\", \"Proprio come noi\", \"Non dimenticare\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 6,
+  "inputs": {
+   "arg": "Funzioni logaritmi"
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 56975,
+  "errors": [
+   "output non valido: slides: 4 slide (richieste da 5 a 8)"
+  ],
+  "output": "outline 3 slide"
+ },
+ {
+  "fid": "F10",
+  "i": 7,
+  "inputs": {
+   "arg": "Rivoluzione industriale conseguenze"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 69857,
+  "errors": [],
+  "output": "{\"title\": \"Rivoluzione industriale\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Iniziare\", \"Rifletti\", \"Affinare\", \"Rispetto\"]}, {\"title\": \"Prospettiva\", \"bullets\": [\"Prospettiva\", \"Adappamento\", \"Rifletti\", \"Rispetto\"]}, {\"title\": \"Pratica\", \"bullets\": [\"Pratica\", \"Affinamento\", \"Rifletti\", \"Rispetto\"]}, {\"title\": \"Conseguenze\", \"bullets\": [\"Conseguenze\", \"Affinamento\", \"Rifletti\", \"Rispetto\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Conclusione\", \"Rifletti\", \"Rispetto\", \"Affinamento\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 8,
+  "inputs": {
+   "arg": "Vettori nel piano"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 79084,
+  "errors": [],
+  "output": "{\"title\": \"Outline per Vettori nel piano\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Iniziare\"]}, {\"title\": \"Continuare\", \"bullets\": [\"Continuare\", \"Continuare\", \"Continuare\"]}, {\"title\": \"Terminare\", \"bullets\": [\"Terminare\", \"Terminare\", \"Terminare\", \"Terminare\"]}, {\"title\": \"Rivedere\", \"bullets\": [\"Rivedere\", \"Rivedere\", \"Rivedere\", \"Rivedere\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Conclusione\", \"Conclusione\", \"Conclusione\", \"Conclusione\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 9,
+  "inputs": {
+   "arg": "Guerra fredda blocchi"
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 42514,
+  "errors": [
+   "output non valido: slides: 1 slide (richieste da 5 a 8)"
+  ],
+  "output": "outline 3 slide"
+ },
+ {
+  "fid": "F10",
+  "i": 10,
+  "inputs": {
+   "arg": "Reazioni chimiche equilibrio"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 63917,
+  "errors": [],
+  "output": "{\"title\": \"Reazioni Chimiche\", \"slides\": [{\"title\": \"Procedere\", \"bullets\": [\"Iniziare\"]}, {\"title\": \"Continuare\", \"bullets\": [\"Procedere\"]}, {\"title\": \"Sostenere\", \"bullets\": [\"Continuare\"]}, {\"title\": \"Mantenere\", \"bullets\": [\"Sostenere\"]}, {\"title\": \"Mantenere\", \"bullets\": [\"Mantenere\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 11,
+  "inputs": {
+   "arg": "Apprendimento automatico neuroni"
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 55913,
+  "errors": [
+   "output non valido: slides: 1 slide (richieste da 5 a 8)"
+  ],
+  "output": "outline 3 slide"
+ },
+ {
+  "fid": "F10",
+  "i": 12,
+  "inputs": {
+   "arg": "Integrazioni sostituzione"
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 71806,
+  "errors": [
+   "output non valido: slides: 4 slide (richieste da 5 a 8)"
+  ],
+  "output": "outline 3 slide"
+ },
+ {
+  "fid": "F10",
+  "i": 13,
+  "inputs": {
+   "arg": "Algebra lineare matrici"
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 59883,
+  "errors": [],
+  "output": "{\"title\": \"Algebra lineare matrici\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Provare\"]}, {\"title\": \"Continuare\", \"bullets\": [\"Provare\"]}, {\"title\": \"Progredire\", \"bullets\": [\"Provare\"]}, {\"title\": \"Osservare\", \"bullets\": [\"Provare\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Provare\"]}]}"
+ },
+ {
+  "fid": "F10",
+  "i": 14,
+  "inputs": {
+   "arg": "Seconda guerra mondiale cause"
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 68462,
+  "errors": [
+   "output non valido: slides: 4 slide (richieste da 5 a 8)"
+  ],
+  "output": "outline 3 slide"
+ },
+ {
+  "fid": "F10",
+  "i": 15,
+  "inputs": {
+   "arg": "Probabilità condizionata"
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 46601,
+  "errors": [],
+  "output": "{\"title\": \"Probabilità condizionata\", \"slides\": [{\"title\": \"Iniziare\", \"bullets\": [\"Definire le condizioni\", \"Identificare le variabili\", \"Stabilire l'obiettivo\"]}, {\"title\": \"Definire\", \"bullets\": [\"Definire le condizioni\", \"Identificare le variabili\", \"Stabilire l'obiettivo\"]}, {\"title\": \"Analizzare\", \"bullets\": [\"Analizzare i dati\", \"Valutare le possibilità\", \"Cercare pattern\"]}, {\"title\": \"Implementare\", \"bullets\": [\"Implementare le strategie\", \"Monitorare il progresso\", \"Adattare le strategie\"]}, {\"title\": \"Conclusione\", \"bullets\": [\"Riconoscere il valore\", \"Mantenere la concentrazione\", \"Continuare l'impegno\"]}]}"
+ },
+ {
+  "fid": "F13",
+  "i": 1,
+  "inputs": {
+   "sec": 30,
+   "titolo": "Fotosintesi spiegata in breve",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 30309,
+  "errors": [],
+  "output": "Luce è vita. Leggere la luce aiuta la mente. Un esempio è il sole. Non dimenticare la luce. Viviamo con essa. Guardate il cielo. Rimanete consapevoli. La luce ci aiuta. Dimenticatevi? Non è facile. Mantenete la consapevolezza. La giornata inizia con la luce. Vivete come se fosse un dono. Guardate ogni momento. Non perdere. La luce è nostra. Dimenticatevi? Non è facile. Mantenete la consapevolezza. La giornata inizia con la luce."
+ },
+ {
+  "fid": "F13",
+  "i": 2,
+  "inputs": {
+   "sec": 35,
+   "titolo": "La Rivoluzione francese in 5 eventi",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 108994,
+  "errors": [
+   "output non valido: script: 157 parole, attese ~88 (tolleranza ±13)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 3,
+  "inputs": {
+   "sec": 40,
+   "titolo": "Derivate: guida rapida",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 40559,
+  "errors": [],
+  "output": "Spiegare la definizione. Usare un esempio. Evitare l'errore. Leggere con calma. Ricordare i dettagli. Controllare sempre. Mantenere la concentrazione. Studiare ogni giorno. Non dimenticare. Rivedere le idee. Praticare con cura. Aumentare la consapevolezza. Tenere la mente chiusa. Semplificare il pensiero. Ricordare sempre. Mantenere la pazienza. Adottare la costanza. Studiare con impegno. Non perdere l'idea. Ricordare le nozioni. Praticare ogni giorno. Semplificare per crescere. Mantenere la chiarezza. Ricordare costantemente. Adottare la disciplina. Studiare con passione. Non dimenticare mai. Ricordare le regole. Praticare con impegno. Semplificare per il successo. Mantenere la chiarezza. Ricordare costantemente."
+ },
+ {
+  "fid": "F13",
+  "i": 4,
+  "inputs": {
+   "sec": 45,
+   "titolo": "Il ciclo cellulare",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 64908,
+  "errors": [
+   "output non valido: script: 59 parole, attese ~112 (tolleranza ±17)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 5,
+  "inputs": {
+   "sec": 50,
+   "titolo": "Strade romane",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 127263,
+  "errors": [
+   "output non valido: script: 343 parole, attese ~125 (tolleranza ±19)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 6,
+  "inputs": {
+   "sec": 55,
+   "titolo": "Logaritmi: errori comuni",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 106781,
+  "errors": [
+   "output non valido: script: 94 parole, attese ~138 (tolleranza ±21)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 7,
+  "inputs": {
+   "sec": 60,
+   "titolo": "La macchina a vapore",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 163466,
+  "errors": [
+   "output non valido: script: 271 parole, attese ~150 (tolleranza ±22)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 8,
+  "inputs": {
+   "sec": 30,
+   "titolo": "Vettori e moduli",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": true,
+  "retried": true,
+  "badge": "generato da AI",
+  "ms": 65040,
+  "errors": [],
+  "output": "La geometria è chiaro. Un quadrato ha quattro lati. Un rettangolo ha due. Non confondere. La matematica è semplice. Ricordalo sempre. Guarda la figura. Non dimenticare. La precisione conta. Semplice è la verità. La calma. La luce. La mente. La mente. La calma. La luce. La precisione. La semplicità. La verità. La calma. La luce. La precisione. La semplicità. La verità. La calma. La luce. La precisione. La semplicità. La verità."
+ },
+ {
+  "fid": "F13",
+  "i": 9,
+  "inputs": {
+   "sec": 35,
+   "titolo": "Cortina di ferro",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 34760,
+  "errors": [],
+  "output": "La scuola inizia con la definizione. Un esempio mostra il valore. Il errore è ignorare questo concetto. Ricordiamolo sempre. La prevenzione è chiave. Non dimenticare mai la scienza. Questo aiuta. Manteniamo la consapevolezza. La mente è preziosa. Proteggetela con attenzione. La scuola inizia qui. Ricordiamola. La scienza è nostra. Proteggiamola. Vivere sapere. Questo è il potere. Ricordiamolo. La consapevolezza è vita. Manteniamola. La scuola inizia sempre. Ricordiamola. La scienza è vita. Proteggiamola. Vivere sapere. Questo è il potere. Ricordiamolo. La consapevolezza è vita."
+ },
+ {
+  "fid": "F13",
+  "i": 10,
+  "inputs": {
+   "sec": 40,
+   "titolo": "Equilibrio chimico",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 78669,
+  "errors": [
+   "output non valido: script: 157 parole, attese ~100 (tolleranza ±15)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 11,
+  "inputs": {
+   "sec": 45,
+   "titolo": "Reti neurali base",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 110736,
+  "errors": [
+   "output non valido: script: 219 parole, attese ~112 (tolleranza ±17)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 12,
+  "inputs": {
+   "sec": 50,
+   "titolo": "Integrale indefinito",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 113214,
+  "errors": [
+   "output non valido: script: 182 parole, attese ~125 (tolleranza ±19)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 13,
+  "inputs": {
+   "sec": 55,
+   "titolo": "Matrici 2x2",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 110542,
+  "errors": [
+   "output non valido: script: 266 parole, attese ~138 (tolleranza ±21)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 14,
+  "inputs": {
+   "sec": 60,
+   "titolo": "1929 il crollo",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": false,
+  "retried": false,
+  "badge": "AI non disponibile",
+  "ms": 94494,
+  "errors": [
+   "output non valido: script: 59 parole, attese ~150 (tolleranza ±22)"
+  ],
+  "output": "vuoto"
+ },
+ {
+  "fid": "F13",
+  "i": 15,
+  "inputs": {
+   "sec": 30,
+   "titolo": "Probabilità con esempi",
+   "contenuto": "Spiegazione scolastica con definizione, un esempio numerico e un errore tipico da evitare."
+  },
+  "parsed_ok": true,
+  "retried": false,
+  "badge": "generato da AI",
+  "ms": 27074,
+  "errors": [],
+  "output": "La probabilità è una grandezza. Guarda il numero. Non dimenticare l'errore. Sapere aiuta. Ricorda sempre. La chiave è l'attenzione. Usa questo pensiero. Non perdere l'opportuna. La logica è il mio compagno. Mantieni la mente chiara. Ricorda sempre questa regola. Vivere con la consapevolezza. È una semplice lezione. Proteggi la probabilità. Sii attivo. La scienza è amore. Applaudisci ogni piccolo successo. La pazienza è la forza. Non dimenticare mai. La vita è il più grande esempio."
+ }
+]

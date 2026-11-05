@@ -1,0 +1,34 @@
+{
+  "llm.backend": "sidecar",
+  "llama.server_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe",
+  "proxy_wrapped": true,
+  "target_type": "LocalLLMClient",
+  "sig_unbound_first_params": [
+    "self",
+    "query",
+    "profile"
+  ],
+  "bind_result": "FAIL",
+  "traceback_reale": "Traceback (most recent call last):\n  File \"C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\r15_g0_repro.py\", line 51, in main\n    sig.bind(\"QUERY\", **KW)          # esattamente cio' che fa il proxy\n    ~~~~~~~~^^^^^^^^^^^^^^^\n  File \"C:\\Users\\stebo\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\inspect.py\", line 3309, in bind\n    return self._bind(args, kwargs)\n           ~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\stebo\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\inspect.py\", line 3222, in _bind\n    raise TypeError(msg) from None\nTypeError: missing a required argument: 'query'\n",
+  "spy_signature_preserved": [
+    "self",
+    "query",
+    "profile"
+  ],
+  "proxy_call_result": "<IN-PROCESS-PATH>",
+  "calls": {
+    "stream_via_sidecar": 0,
+    "generate_stream": 1
+  },
+  "sidecar_raggiunto": false,
+  "caduto_in_process": true,
+  "sidecar_status_prima": {
+    "state": "down",
+    "port": null,
+    "crashes": 0,
+    "message": "",
+    "draft": false
+  },
+  "health_prima": false,
+  "verdetto": "SIDECAR-DEAD: sig.bind su funzione NON bound (self assorbe 'QUERY' -> mancanza di 'query') -> TypeError catturato in silenzio -> fallback su generate_stream in-process. Con llm.backend=sidecar llama-server NON viene mai raggiunto (state=down)."
+}

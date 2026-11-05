@@ -1,0 +1,148 @@
+{
+ "ts": "2026-10-31T15:52:46+0100",
+ "method": "core.sidecar.client.SidecarClient auto_start (stesso path dell'app) -> llama-server REALE; TTFT = primo chunk SSE; miss = prefisso unico, hit = prompt identico ripetuto",
+ "slo": {
+  "hit_p50_le": 1500.0,
+  "miss_p50_le": 4000.0
+ },
+ "config": {
+  "llama.engine": "auto",
+  "local_model_key": "",
+  "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf",
+  "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf",
+  "spec.draft_model": ""
+ },
+ "n_predict": 60,
+ "samples": [
+  {
+   "tag": "miss_1",
+   "ttft_ms": 998.5,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 191,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 5380.2
+  },
+  {
+   "tag": "miss_2",
+   "ttft_ms": 1023.6,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 196,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 5417.8
+  },
+  {
+   "tag": "miss_3",
+   "ttft_ms": 995.0,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 211,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 5486.3
+  },
+  {
+   "tag": "miss_4",
+   "ttft_ms": 977.8,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 196,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 5351.0
+  },
+  {
+   "tag": "miss_5",
+   "ttft_ms": 1040.8,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 192,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 5444.7
+  },
+  {
+   "tag": "hit_1",
+   "ttft_ms": 81.2,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 221,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 4443.3
+  },
+  {
+   "tag": "hit_2",
+   "ttft_ms": 94.8,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 199,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 4454.4
+  },
+  {
+   "tag": "hit_3",
+   "ttft_ms": 98.6,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 207,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 4454.3
+  },
+  {
+   "tag": "hit_4",
+   "ttft_ms": 76.3,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 187,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 4437.0
+  },
+  {
+   "tag": "hit_5",
+   "ttft_ms": 98.0,
+   "first_seen": true,
+   "n_chunks": 60,
+   "len": 215,
+   "complete": true,
+   "streaming_ok": true,
+   "wall_ms": 4467.5
+  }
+ ],
+ "sidecar_started": true,
+ "port": 58139,
+ "engine_status": {
+  "state": "up",
+  "port": 58139,
+  "crashes": 0,
+  "message": "",
+  "draft": false,
+  "engine": "upstream",
+  "xhtoken_fallback": false
+ },
+ "miss": {
+  "n": 5,
+  "p50_ms": 998.5,
+  "p95_ms": 1040.8
+ },
+ "hit": {
+  "n": 5,
+  "p50_ms": 94.8,
+  "p95_ms": 98.6
+ },
+ "streaming_ok_all": true,
+ "complete_ok_all": true,
+ "pass": {
+  "miss_p50": true,
+  "hit_p50": true,
+  "streaming": true,
+  "complete": true
+ },
+ "ok": true
+}

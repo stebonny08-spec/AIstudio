@@ -1,0 +1,128 @@
+{
+  "probe": "r13_ttft_phases",
+  "round": "R13",
+  "owner": "IMPLEMENTER-TTFT",
+  "updated": "2026-10-24T23:18:33+0200",
+  "load": {
+    "cpu_percent_1s": 94.9,
+    "mem_percent": 77.6,
+    "cpu_count": 16
+  },
+  "requests": [
+    {
+      "i": 0,
+      "label": "Rispondi con la sola parola: ok",
+      "mode": "solo_locale",
+      "message_id": "781eb3dd1dca4608ab6489b41da82f49",
+      "poll_log": [
+        {
+          "t": 0.014,
+          "from": 0,
+          "n": 0,
+          "total": 0,
+          "done": false,
+          "err": "None"
+        },
+        {
+          "t": 118.971,
+          "from": 0,
+          "n": 2,
+          "total": 2,
+          "done": false,
+          "err": "None"
+        }
+      ],
+      "phases_ms": {
+        "gen_thread_start_s": 0.0,
+        "pqs_first_step_ms": 2.4,
+        "rag_ms": 5192.5,
+        "py_first_token_ms": 118787.6,
+        "router_total_ms": 119107.9,
+        "send_message_ms": 12.3
+      },
+      "meta": {
+        "rag_empty": false,
+        "rag_chunks": 5,
+        "first_token_preview": "\n\n",
+        "token_events": 2,
+        "message_id": "781eb3dd1dca4608ab6489b41da82f49",
+        "conversation_id": 53
+      }
+    },
+    {
+      "i": 1,
+      "label": "Rispondi con la sola parola: ok (prova 1)",
+      "mode": "solo_locale",
+      "message_id": "524705ce16514803bf5bafe5544a4e68",
+      "poll_log": [
+        {
+          "t": 0.01,
+          "from": 0,
+          "n": 0,
+          "total": 0,
+          "done": false,
+          "err": "None"
+        },
+        {
+          "t": 92.977,
+          "from": 0,
+          "n": 3,
+          "total": 3,
+          "done": false,
+          "err": "None"
+        }
+      ],
+      "phases_ms": {
+        "gen_thread_start_s": 0.0,
+        "pqs_first_step_ms": 2.3,
+        "rag_ms": 25.0,
+        "py_first_token_ms": 92540.9,
+        "router_total_ms": 93681.5,
+        "send_message_ms": 8.4
+      },
+      "meta": {
+        "rag_empty": false,
+        "rag_chunks": 5,
+        "first_token_preview": "\n\n",
+        "token_events": 8,
+        "message_id": "524705ce16514803bf5bafe5544a4e68",
+        "conversation_id": 54
+      }
+    },
+    {
+      "i": 2,
+      "label": "Rispondi con la sola parola: ok (prova 2)",
+      "mode": "solo_locale",
+      "message_id": "479d29751d43417e89757b32fb266078",
+      "poll_log": [
+        {
+          "t": 0.011,
+          "from": 0,
+          "n": 0,
+          "total": 0,
+          "done": false,
+          "err": "None"
+        }
+      ],
+      "phases_ms": {
+        "gen_thread_start_s": 0.0,
+        "pqs_first_step_ms": 2.2,
+        "rag_ms": 26.4,
+        "send_message_ms": 9.3
+      },
+      "meta": {
+        "rag_empty": false,
+        "rag_chunks": 5,
+        "message_id": "479d29751d43417e89757b32fb266078",
+        "conversation_id": 55
+      }
+    }
+  ],
+  "queue_jobs_global": [],
+  "raw_count": {
+    "bridge": 3,
+    "gen": 3,
+    "total": 6
+  },
+  "stage": "after_measure_2"
+}

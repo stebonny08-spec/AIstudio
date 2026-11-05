@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA schemi B12 — ciclo tipi (QA-T2)</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 — QA schemi B12 (ciclo albero→mappa→lr→libero→riassunto)</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/schemaStrategies.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/schemi.js"></script>
+<script>
+/* Driver harness QA-T2:
+   - seed doc B12 (9 nodi / 6 archi, type 'albero'): albero parziale n1(n2,n3), n2(n4,n5);
+     coppia disconnessa n6—n7, n9 figlio di n7 (componente a 3), n8 isolato.
+   - seed doc vuoto (0 nodi, type 'mappa').
+   - apre l'editor sul doc B12 e fa il fit reale (pulsante "Centra vista").
+   - espone window.__qaHarness.open(id, type) per riaprire un doc dal runner.
+   NESSUNA geometria simulata: solo misure reali del browser. */
+(async function () {
+    var QA = window.__QA;
+    var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        var style = { palette: 'scura', nodeFill: '#242c40', nodeBorder: '#4a5980', edgeColor: '#8ca4ff', fontSize: 14, bold: false, shape: 'round' };
+        var N = function (id, x, y, text) { return { id: id, x: x, y: y, w: 170, h: 56, text: text }; };
+
+        /* --- doc B12: 9 nodi, 6 archi --- */
+        QA.store.items.push({
+            id: 'b12', kind: 'schema', title: 'Schema B12 (9 nodi / 6 archi)',
+            content: JSON.stringify({
+                type: 'albero',
+                nodes: [
+                    N('n1', 80, 60, 'Radice'),
+                    N('n2', 360, 40, 'Figlio A'),
+                    N('n3', 360, 170, 'Figlio B'),
+                    N('n4', 640, 20, 'Nipote A'),
+                    N('n5', 640, 150, 'Nipote B'),
+                    N('n6', 80, 340, 'Isola 1'),
+                    N('n7', 360, 340, 'Isola 2'),
+                    N('n8', 640, 340, 'Nodo isolato'),
+                    N('n9', 360, 470, 'Isola 3')
+                ],
+                edges: [
+                    { id: 'e1', from: 'n1', to: 'n2', color: '#8ca4ff' },
+                    { id: 'e2', from: 'n1', to: 'n3', color: '#8ca4ff' },
+                    { id: 'e3', from: 'n2', to: 'n4', color: '#8ca4ff' },
+                    { id: 'e4', from: 'n2', to: 'n5', color: '#8ca4ff' },
+                    { id: 'e5', from: 'n6', to: 'n7', color: '#8ca4ff' },
+                    { id: 'e6', from: 'n7', to: 'n9', color: '#8ca4ff' }
+                ],
+                view: { x: 0, y: 0, zoom: 1 }, riassunto: '', drawings: [], style: style
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+
+        /* --- doc B1-dense (QA-T2 blocco B1): 6 nodi / 5 archi, albero,
+               layout deterministico in cui 2 archi orizzontali di percorso
+               passano SOPRA un nodo intermedio non terminale:
+               - de2 r1->r3 (gomito orizzontale y=128) attraversa il bbox di r2
+               - de5 r4->r6 (gomito orizzontale y=588) attraversa il bbox di r5
+               view {0,0,1} => nessun fit: le posizioni restano quelle seminate,
+               misurabili 1:1 con le coordinate mondo. --- */
+        QA.store.items.push({
+            id: 'b1dense', kind: 'schema', title: 'Schema B1-dense (6 nodi / 5 archi, arco su nodo)',
+            content: JSON.stringify({
+                type: 'albero',
+                nodes: [
+                    N('r1', 60, 100, 'Radice'),
+                    N('r2', 400, 100, 'Attraversato'),
+                    N('r3', 760, 100, 'Destro'),
+                    N('r4', 60, 560, 'Basso SX'),
+                    N('r5', 400, 560, 'Basso ME'),
+                    N('r6', 760, 560, 'Basso DX')
+                ],
+                edges: [
+                    { id: 'de1', from: 'r1', to: 'r2', color: '#8ca4ff' },
+                    { id: 'de2', from: 'r1', to: 'r3', color: '#8ca4ff' },
+                    { id: 'de3', from: 'r1', to: 'r4', color: '#8ca4ff' },
+                    { id: 'de4', from: 'r4', to: 'r5', color: '#8ca4ff' },
+                    { id: 'de5', from: 'r4', to: 'r6', color: '#8ca4ff' }
+                ],
+                view: { x: 0, y: 0, zoom: 1 }, riassunto: '', drawings: [], style: style
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+
+        /* --- doc vuoto per il check 5(i): 0 nodi, type mappa --- */
+        QA.store.items.push({
+            id: 'b12empty', kind: 'schema', title: 'Schema vuoto (mappa)',
+            content: JSON.stringify({
+                type: 'mappa',
+                nodes: [], edges: [],
+                view: { x: 0, y: 0, zoom: 1 }, riassunto: '', drawings: [], style: style
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+
+        var main = document.getElementById('main');
+        var mod = QA.mod; /* App.registerModule di schemi.js catturato in env.js */
+        if (!mod) throw new Error('modulo schemi non registrato via App.registerModule');
+
+        /* --- apri l'editor sul doc B12 --- */
+        mod.open(main, { open: 'b12' });
+        var okOpen = await window.__qaUntil(function () {
+            return !!document.querySelector('.sc-type-sel') &&
+                document.querySelectorAll('g.sc-node[data-nid]').length === 9;
+        }, 10000);
+        if (!okOpen) throw new Error('editor non aperto: ' +
+            'sel=' + !!document.querySelector('.sc-type-sel') +
+            ' nodes=' + document.querySelectorAll('g.sc-node[data-nid]').length);
+        await sleep(250);
+
+        /* fit REALE: clic sul pulsante "Centra vista" della testata editor */
+        var btnCenter = null;
+        [].slice.call(document.querySelectorAll('.sc-editor button.tool-btn')).forEach(function (b) {
+            if (/Centra vista/.test(b.textContent)) btnCenter = b;
+        });
+        if (!btnCenter) throw new Error('pulsante "Centra vista" non trovato');
+        btnCenter.click();
+        await sleep(300);
+
+        /* helper per il runner: riapre un altro doc (check 5(i) doc vuoto) */
+        window.__qaHarness = {
+            open: function (id) {
+                return new Promise(function (res) {
+                    try { main.innerHTML = ''; mod.open(main, { open: id }); } catch (e) { res(false); return; }
+                    var t0 = Date.now();
+                    (function poll() {
+                        var sel = document.querySelector('.sc-type-sel');
+                        if (sel) return res(true);
+                        if (Date.now() - t0 > 8000) return res(false);
+                        setTimeout(poll, 60);
+                    })();
+                });
+            },
+            ready: true
+        };
+        QA.harnessReady = true;
+        QA.done = false;
+    } catch (e) {
+        QA.errors.push('harness: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA documenti</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 â€” QA documenti</strong></div></header>
+<!-- spec 1.1: l'app reale monta .mod-header (app.js header()) sopra il modulo;
+     qui assoluto (nessun impatto sul layout della harness) e dietro .doc-bar
+     (z-index 6 < 40), come nel modulo reale -->
+<div class="mod-header" id="modHeader" style="position:absolute;top:0;left:0;right:0;pointer-events:none;">
+    <div class="mod-heading"><div class="mod-title">Documenti</div></div>
+</div>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/documenti.js"></script>
+<script>
+(async function () {
+    var QA = window.__QA, sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        var id = 'd1';
+        QA.store.items.push({
+            id: id, kind: 'documento', title: 'Documento',
+            content: JSON.stringify({ html: '<p>Seleziona questo testo</p>' }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        var main = document.getElementById('main');
+        window.StudyTools.documenti.render(main, { open: id });
+        var opened = await window.__qaUntil(function () { return !!document.querySelector('.doc-pill-l'); }, 10000);
+        await sleep(400); /* rAF + setTimeout di rilayout reale */
+
+        /* (1) nessun .doc-status dentro .doc-shell dell'editor */
+        var shell = document.querySelector('.doc-shell');
+        var statusN = shell ? shell.querySelectorAll('.doc-status').length : -1;
+        window.__qaCheck('D1 nessun .doc-status in .doc-shell (editor aperto)', 'count=0', statusN === 0,
+            'editorOpened=' + opened + ' .doc-status in .doc-shell = ' + statusN);
+
+        /* (2) .doc-pill-l bottom-left dentro .doc-main + testo paroleâ€¦Pagina x/y */
+        var docMain = document.querySelector('.doc-main');
+        var pillL = document.querySelector('.doc-pill-l');
+        var mr = window.__qaRect(docMain), lr = window.__qaRect(pillL);
+        var distB = +(mr.b - lr.b).toFixed(1), distL = +(lr.l - mr.l).toFixed(1);
+        var inside = lr.l >= mr.l - 1 && lr.b <= mr.b + 1;
+        var txt = pillL.textContent.replace(/\s+/g, ' ').trim();
+        var ok2 = inside && distB <= 40 && distL <= 40 && /parole/.test(txt) && /Pagina \d+\/\d+/.test(txt);
+        window.__qaCheck('D2 .doc-pill-l bottom-left dentro .doc-main (dist<=40) + testo "paroleâ€¦Pagina x/y"',
+            'inside && distBottom<=40 && distLeft<=40 && /parole/ && /Pagina d\/d/', ok2,
+            'inside=' + inside + ' distBottom=' + distB + ' distLeft=' + distL + ' text="' + txt + '"');
+
+        /* (3) .doc-pill-r bottom-right con i 5 controlli zoom [âˆ’][%][+][Adatta][100%] */
+        var pillR = document.querySelector('.doc-pill-r');
+        var rr = window.__qaRect(pillR);
+        var distR = +(mr.r - rr.r).toFixed(1), distBR = +(mr.b - rr.b).toFixed(1);
+        var insideR = rr.r <= mr.r + 1 && rr.b <= mr.b + 1;
+        var zbtns = [].slice.call(pillR.querySelectorAll('button.doc-zbtn'));
+        var zgrp = pillR.querySelector('.doc-zoomgrp');
+        var nCtrl = zgrp ? zgrp.children.length : 0;
+        var ok3 = insideR && distR <= 40 && distBR <= 40 && zbtns.length === 4 && nCtrl === 5;
+        window.__qaCheck('D3 .doc-pill-r bottom-right con 5 controlli zoom', 'inside && dist<=40 && 4 .doc-zbtn + .doc-zoomval = 5 controlli',
+            ok3, 'inside=' + insideR + ' distRight=' + distR + ' distBottom=' + distBR +
+            ' btnZoom=' + zbtns.length + ' zgrpChildren=' + nCtrl +
+            ' titles=' + JSON.stringify(zbtns.map(function (b) { return b.title; })) +
+            ' zval="' + (document.querySelector('.doc-zoomval') || {}).textContent + '"');
+
+        /* (4) toggle B con selezione reale (Range + selection) */
+        var ed = document.querySelector('.doc-paper');
+        var p = ed.querySelector('p');
+        var boldBtn = [].slice.call(document.querySelectorAll('button')).filter(function (b) { return /^Grassetto/.test(b.title || ''); })[0];
+        function selectNode(t) {
+            var r = document.createRange(); r.selectNodeContents(t);
+            var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+            document.dispatchEvent(new Event('selectionchange'));
+        }
+        var before = p.innerHTML, selOk = false, wOn = null, afterOn = p.innerHTML;
+        if (boldBtn && p && p.firstChild) {
+            try { ed.focus({ preventScroll: true }); } catch (e) { }
+            selectNode(p.firstChild);
+            await sleep(80);
+            var s0 = window.getSelection();
+            selOk = s0.rangeCount > 0 && !s0.getRangeAt(0).collapsed;
+            boldBtn.click();
+            await sleep(150);
+        }
+        var bOn = ed.querySelector('b, strong');
+        afterOn = p.innerHTML;
+        wOn = bOn ? getComputedStyle(bOn).fontWeight : (selOk ? getComputedStyle(p).fontWeight : null);
+        var selTarget = bOn ? bOn.firstChild : p.firstChild;
+        if (selTarget) { selectNode(selTarget); await sleep(80); }
+        if (boldBtn) boldBtn.click();
+        await sleep(150);
+        var afterOff = p.innerHTML;
+        var residuals = ed.querySelectorAll('b, strong').length;
+        var weightOk = (wOn === '700' || wOn === 'bold' || wOn === '800');
+        var ok4 = !!boldBtn && selOk && !!bOn && weightOk && residuals === 0;
+        window.__qaCheck('D4 toggle B: 1Â° click applica <b> (peso 700), 2Â° click rimuove senza residui',
+            'b presente+fontWeight 700 dopo on, assente dopo off', ok4,
+            'selectionSet=' + selOk + ' before="' + before + '" afterOn="' + afterOn + '" weightOn=' + wOn +
+            ' afterOff="' + afterOff + '" residuals=' + residuals);
+
+        /* (5) Adatta: scale>1 e pagina a altezza canvas (nessuna banda) */
+        var fitBtn = [].slice.call(document.querySelectorAll('button')).filter(function (b) { return /Adatta la pagina/.test(b.title || ''); })[0];
+        var scale = NaN;
+        if (fitBtn) { fitBtn.click(); await sleep(450); }
+        var zoomEl = document.querySelector('.doc-zoom');
+        var tr = zoomEl ? getComputedStyle(zoomEl).transform : '';
+        if (tr && tr.indexOf('matrix(') === 0) scale = parseFloat(tr.slice(7));
+        else if (tr && tr.indexOf('scale(') === 0) scale = parseFloat(tr.slice(6));
+        var pageEl = document.querySelector('.doc-page');
+        var canvasEl = document.querySelector('.doc-canvas');
+        var pr = window.__qaRect(pageEl), cr = window.__qaRect(canvasEl);
+        var ch = canvasEl.clientHeight;
+        var pageH = +pr.h.toFixed(1);
+        var ok5 = scale > 1 && pageH >= (ch - 20) - 1;
+        window.__qaCheck('D5 Adatta: .doc-zoom scale>1 e altezza pagina >= altezza canvas-20 (nessuna banda)',
+            'scale>1 && pageH>=canvasClientH-20', ok5,
+            'scale=' + scale + ' pageH=' + pageH + ' canvasClientH=' + ch +
+            ' (pageH-(ch-20))=' + +(pageH - (ch - 20)).toFixed(1) +
+            ' canvasScrollSlack=' + (canvasEl.scrollHeight - canvasEl.clientHeight) +
+            ' (canvasBottom-pageBottom)=' + +(cr.b - pr.b).toFixed(1));
+
+        await window.__qaShot('documenti_pills');
+        QA.done = true;
+    } catch (e) {
+        QA.errors.push('driver: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>
+

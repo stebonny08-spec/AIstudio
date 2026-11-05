@@ -1,0 +1,447 @@
+{
+  "method": "qaR21_matrix: montatura reale per harness qa_ui, fixture iniettate, katex vendored iniettato",
+  "notes": {
+    "ctx": "notes",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "appunti",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_appunti",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nella nota",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 4.8
+  },
+  "schemi": {
+    "ctx": "schemi",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "schemi",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_schemi",
+        "ok": true
+      },
+      "resize": {
+        "w0": 276,
+        "w1": 396,
+        "persisted": "396",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nello schema",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 3.6
+  },
+  "documenti": {
+    "ctx": "documenti",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "documenti",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_documenti",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nel documento",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 3.7
+  },
+  "presentazioni": {
+    "ctx": "presentazioni",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "presentazioni",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_presentazioni",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nella diapositiva",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 4.2
+  },
+  "fogli": {
+    "ctx": "fogli",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "fogli",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_fogli",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nel foglio",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 3.7
+  },
+  "video": {
+    "ctx": "video",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "video",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_video",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nel video",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 3.6
+  },
+  "ripasso": {
+    "ctx": "ripasso",
+    "checks": {
+      "panel": true,
+      "ctxAttr": "ripasso",
+      "listed": {
+        "md": true,
+        "html": true,
+        "libro": true,
+        "libroBadge": true
+      },
+      "md": {
+        "picked": true,
+        "katex": true,
+        "h1": true,
+        "li": true,
+        "noRaw": true,
+        "fbBadge": false,
+        "ok": true
+      },
+      "htmlDoc": {
+        "picked": true,
+        "h2": true,
+        "strong": true,
+        "noScript": true,
+        "noHandler": true,
+        "noJson": true,
+        "ok": true
+      },
+      "libro": {
+        "picked": true,
+        "h1": true,
+        "ok": true
+      },
+      "search": {
+        "collapsedByDefault": true,
+        "toggled": true,
+        "persisted": "1",
+        "key": "fp21_search_ripasso",
+        "ok": true
+      },
+      "resize": {
+        "w0": 340,
+        "w1": 460,
+        "persisted": "460",
+        "resetOk": true,
+        "minmax": true,
+        "ok": true
+      },
+      "insert": {
+        "sel": true,
+        "wasDisabled": false,
+        "clicked": true,
+        "label": "Inserisci nel deck",
+        "ok": true
+      }
+    },
+    "pageerrors": [],
+    "ok": true,
+    "sec": 4
+  },
+  "space": {
+    "prima": {
+      "header_px": 34,
+      "search_px": 33,
+      "list_px": 204
+    },
+    "dopo": {
+      "header_px": 0,
+      "search_px": 0,
+      "bar_px": 28,
+      "list_px": 228
+    },
+    "chrome_prima_px": 67,
+    "chrome_dopo_px": 0,
+    "guadagno_px": 67,
+    "nota": "intestazione fissa rimossa (0px); ricerca solo su richiesta (collassata=0px); bar chip = filtro 2.3 conteggiato a parte"
+  }
+}

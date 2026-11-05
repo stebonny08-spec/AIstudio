@@ -1,0 +1,97 @@
+{
+ "ts": "2026-10-31T15:20:00+0100",
+ "bench_set": "H5 autotune: llama-bench -m <model> -p 512 -n 128 (8 thread, CPU-only, stessi identici argomenti per entrambi i motori)",
+ "engines": {
+  "upstream": {
+   "bin": "tools/llama-server.exe + tools/llama-bench.exe",
+   "build": "4231b23dc (11838)"
+  },
+  "xhtoken": {
+   "bin": "tools/llama-xhtoken/build/bin/",
+   "build": "22c0ae187 (11945)",
+   "head_date": "2026-10-30"
+  }
+ },
+ "models": {
+  "base": "tools/models/spark-x2.6-1.7b.gguf (Q4_K_M, 1768720512 B, sha MATCH)",
+  "pro": "tools/models/spark-x2.6-4b.gguf (Q4_K_M, 3543441312 B, sha MATCH R22)"
+ },
+ "matrix": {
+  "pp512_tok_s": {
+   "1.7B": {
+    "upstream": 147.43,
+    "upstream_err": 1.57,
+    "xhtoken": 153.79,
+    "xhtoken_err": 2.48,
+    "ratio_xt_up": 1.043
+   },
+   "4B": {
+    "upstream": 55.8,
+    "upstream_err": 1.07,
+    "xhtoken": 56.35,
+    "xhtoken_err": 0.64,
+    "ratio_xt_up": 1.01
+   }
+  },
+  "tg128_tok_s": {
+   "1.7B": {
+    "upstream": 15.3,
+    "upstream_err": 0.27,
+    "xhtoken": 15.82,
+    "xhtoken_err": 0.3,
+    "ratio_xt_up": 1.034
+   },
+   "4B": {
+    "upstream": 6.7,
+    "upstream_err": 0.06,
+    "xhtoken": 6.76,
+    "xhtoken_err": 0.07,
+    "ratio_xt_up": 1.009
+   }
+  },
+  "server_ctx4096_q8_tg200_tok_s_pro": {
+   "upstream_off": 6.129,
+   "upstream_draft": 7.797,
+   "xhtoken_off": 6.429,
+   "xhtoken_draft": 7.971
+  },
+  "acceptance_draft_1_7b_to_4b": {
+   "upstream": 0.8402,
+   "xhtoken": 0.8402,
+   "method": "draft_n_accepted/draft_n da timings /completion, temp 0.0, n_predict 200, --spec-type draft-simple (default none = non attivo, v1 dichiarato)"
+  },
+  "speedup_draft_pro": {
+   "upstream": 1.272,
+   "xhtoken": 1.24
+  },
+  "rss_mb_steady_ctx4096_q8_0": {
+   "pro_4B": {
+    "upstream": 4435.8,
+    "xhtoken": 4426.6
+   },
+   "base_1_7B": {
+    "upstream": 1876.8,
+    "xhtoken": 1868
+   }
+  }
+ },
+ "selection_rule_x33": {
+  "criteria": "engine default = XHToken SE draft Spark nativo acceptance >= 0.70 E speedup >= 1.30x sul pro; altrimenti upstream",
+  "acceptance_xt": 0.8402,
+  "acceptance_pass": true,
+  "speedup_xt": 1.24,
+  "speedup_pass": false,
+  "verdict": "ENGINE DEFAULT = UPSTREAM",
+  "note": "speedup xhtoken 1.240 < 1.30 (soglia non raggiunta, con numeri); upstream con draft 1.272 supera acc ma anche lui <1.30 — la regola è selettiva su XHToken, esito dichiarato"
+ },
+ "logs": [
+  "qa/_x_bench_up_17b.log",
+  "qa/_x_bench_up_4b.log",
+  "qa/_x_bench_xt_17b.log",
+  "qa/_x_bench_xt_4b.log",
+  "qa/x3_draftbench.json",
+  "qa/x3_rssbase.json",
+  "qa/x3_draftbench_v1_ctx1m_nospectype.json (dichiarato: v1 senza --spec-type -> draft non attivo, acc assente)"
+ ],
+ "manual_override_flag": "engine config: upstream|xhtoken|auto (X3.4) — implementato in core/sidecar/server.py"
+}

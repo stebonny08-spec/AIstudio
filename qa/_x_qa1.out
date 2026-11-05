@@ -1,0 +1,137 @@
+SNAPSHOT CONFIG: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "llama.server_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe"}
+Singleton sidecar fissato con istanza cfg (engine=xhtoken su disco)
+StudioIAAPI ok (backend reale, stub webview)
+--- S1a: load base con engine xhtoken ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] caricamento modello 'base' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +2193 MB)...
+PASS  S1 load_model(base) accettato | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[StudioIAAPI] Errore durante il caricamento del modello: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] RSS dopo switch base: n/d MB
+[models] fallback al modello MiniCPM5-2B: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +1936 MB)...
+[LocalLLMClient] === Modello caricato ===
+[LocalLLMClient]   Strategia: GPU + flash_attn + KV cache Q8_0
+[LocalLLMClient]   n_ctx: 8192
+[LocalLLMClient]   n_gpu_layers richiesti: -1
+[LocalLLMClient]   n_threads CPU: 15
+[LocalLLMClient]   Backend GPU disponibile: False
+[LocalLLMClient]   System info: CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |
+[LocalLLMClient] =======================
+[StudioIAAPI] Modello pronto per l'uso.
+  [state] ready (progress=1.0 err=None)
+PASS  S1 base -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[SidecarServer] pronto su 127.0.0.1:59256
+  [gen] S1_base ok=True len=119 bin=xhtoken
+PASS  S1 completamento base
+PASS  S1 binario FORK per base | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --
+--- S1b: switch al PRO (xhtoken) ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] caricamento modello 'pro' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +4393 MB)...
+PASS  S1 load_model(pro) accettato | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[StudioIAAPI] Errore durante il caricamento del modello: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] RSS dopo switch pro: n/d MB
+[models] fallback al modello MiniCPM5-2B: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +1936 MB)...
+[LocalLLMClient] === Modello caricato ===
+[LocalLLMClient]   Strategia: GPU + flash_attn + KV cache Q8_0
+[LocalLLMClient]   n_ctx: 8192
+[LocalLLMClient]   n_gpu_layers richiesti: -1
+[LocalLLMClient]   n_threads CPU: 15
+[LocalLLMClient]   Backend GPU disponibile: False
+[LocalLLMClient]   System info: CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |
+[LocalLLMClient] =======================
+[StudioIAAPI] Modello pronto per l'uso.
+  [state] ready (progress=1.0 err=None)
+PASS  S1 pro -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+  [gen] S1_pro ok=True len=129 bin=xhtoken
+PASS  S1 completamento pro
+PASS  S1 binario FORK per pro | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --
+FAIL  S1 modello 4B attivo | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 59256
+--- S1c: switch di RITORNO al base ---
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] caricamento modello 'base' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +2193 MB)...
+PASS  S1 load_model(base) ritorno accettato | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[StudioIAAPI] Errore durante il caricamento del modello: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[models] RSS dopo switch base: n/d MB
+[models] fallback al modello MiniCPM5-2B: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-1.7b.gguf
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +1936 MB)...
+[LocalLLMClient] === Modello caricato ===
+[LocalLLMClient]   Strategia: GPU + flash_attn + KV cache Q8_0
+[LocalLLMClient]   n_ctx: 8192
+[LocalLLMClient]   n_gpu_layers richiesti: -1
+[LocalLLMClient]   n_threads CPU: 15
+[LocalLLMClient]   Backend GPU disponibile: False
+[LocalLLMClient]   System info: CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |
+[LocalLLMClient] =======================
+[StudioIAAPI] Modello pronto per l'uso.
+  [state] ready (progress=1.0 err=None)
+PASS  S1 base2 -> ready
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+  [gen] S1_base2 ok=True len=98 bin=xhtoken
+PASS  S1 completamento base2
+PASS  S1 binario FORK dopo ritorno | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --
+FAIL  S1 modello 1.7B attivo | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 59256
+--- S2: kill XHToken (rename binario) -> atteso fallback upstream ---
+  [sidecar] shutdown ok, nessun llama-server: True
+PASS  S2 binario fork rinominato
+[Sidecar] engine forzato -> xhtoken (X3.4)
+[Sidecar] llama.server_path non usato: engine xhtoken forzato prevale (X3.4)
+[Sidecar] engine xhtoken KO -> upstream: binario xhtoken mancante: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe
+[Sidecar] engine xhtoken non riprovato: fallback upstream gia' attivo (X5.3)
+[SidecarServer] pronto su 127.0.0.1:57939
+  [gen] S2_dopo_kill ok=True len=91 bin=upstream
+PASS  S2 generazione dopo kill del fork
+PASS  S2 fallback su UPSTREAM | C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-server.exe -m C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --host 127.0.0.1 --port 57939
+  [s2] status={"state": "up", "port": 57939, "crashes": 0, "message": "motore XHToken non disponibile -> ripiego su upstream (binario xhtoken mancante: C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-xhtoken\\build\\bin\\llama-server.exe)", "draft": false, "engine": "upstream", "xhtoken_fallback": true}
+PASS  S2 status.engine == upstream | upstream
+PASS  S2 status.xhtoken_fallback == True (X5.3) | True
+PASS  S2 message utente di ripiego presente | motore XHToken non disponibile -> ripiego su upstream (binario xhtoken mancante: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\llama-xhtoken\build\bin\llama-server.exe)
+PASS  S2 ripristino binario fork
+--- S3: kill Spark (gguf corrotto) su load pro -> atteso MiniCPM5 ---
+  [sidecar] shutdown ok, nessun llama-server: True
+PASS  S3 spark-4b sostituito da file corrotto (size!=0 per get_downloaded_path) | 7936
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] caricamento modello 'pro' (RSS prima: n/d MB)
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +200 MB)...
+PASS  S3 load_model(pro) accettato (file presente, caricamento poi fallisce) | {'success': True, 'loading': True}
+  [state] loading (progress=0.02 err=None)
+[StudioIAAPI] Errore durante il caricamento del modello: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[models] RSS dopo switch pro: n/d MB
+[models] fallback al modello MiniCPM5-2B: Errore nel caricamento del modello: Failed to load model from file: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tools\models\spark-x2.6-4b.gguf
+[StudioIAAPI] Client pronto per il caricamento: C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[StudioIAAPI] Caricamento modello in corso (baseline RSS: 0 MB, atteso: +1936 MB)...
+[LocalLLMClient] === Modello caricato ===
+[LocalLLMClient]   Strategia: GPU + flash_attn + KV cache Q8_0
+[LocalLLMClient]   n_ctx: 8192
+[LocalLLMClient]   n_gpu_layers richiesti: -1
+[LocalLLMClient]   n_threads CPU: 15
+[LocalLLMClient]   Backend GPU disponibile: False
+[LocalLLMClient]   System info: CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 |
+[LocalLLMClient] =======================
+[StudioIAAPI] Modello pronto per l'uso.
+  [state] ready (progress=1.0 err=None)
+PASS  S3 fallback -> ready
+  [s3] local_model_key dopo fallback = fallback (api=fallback)
+PASS  S3 chiave modello == 'fallback' (X6 apply_fallback) | fallback
+PASS  S3 modello fallback = MiniCPM5-2B | C:\Users\stebo\AppData\Roaming\NovaStudio\models\MiniCPM5-2B-Q4_K_M.gguf
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:57960
+  [gen] S3_minicpm ok=True len=88 bin=upstream
+PASS  S3 generazione con il fallback MiniCPM5-2B
+PASS  S3 ripristino spark-x2.6-4b.gguf (size uguale) | 3543441312
+CONFIG finale disco: {"llama.engine": "auto", "local_model_key": "", "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.model_path": "C:\\Users\\stebo\\AppData\\Roaming/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf", "llama.server_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\llama-server.exe"}
+RISULTATO QA-1: 26 passati, 2 falliti -> FAIL

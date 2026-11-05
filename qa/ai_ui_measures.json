@@ -1,0 +1,45 @@
+{
+ "build": "2026-10-23T03:00:00+02:00",
+ "viewport": "1366x900",
+ "checks": {
+  "A1": {
+   "rect": {
+    "l": 0,
+    "t": 0,
+    "w": 1366,
+    "h": 900
+   },
+   "badge": "generato da AI",
+   "objBefore": 1,
+   "objAfter": 1,
+   "focused": true
+  },
+  "A3": {
+   "toast": true,
+   "overlayLeft": false
+  },
+  "B1": {
+   "rect": {
+    "l": 0,
+    "t": 0,
+    "w": 1366,
+    "h": 900
+   },
+   "badge": "generato da AI",
+   "opened": true
+  },
+  "B2": {
+   "formShown": true,
+   "filled": true,
+   "submitted": true,
+   "preview": true,
+   "accepted": true,
+   "cellD1": "=SUM(A1:A3)"
+  },
+  "C": {
+   "noSummaryBtn": true,
+   "consoleErrors": 0
+  }
+ },
+ "logs": []
+}

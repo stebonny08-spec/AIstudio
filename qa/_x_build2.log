@@ -1,0 +1,81 @@
+[1/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/hbm.cpp.obj
+[2/444] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.obj
+[3/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.obj
+[4/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.obj
+[5/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/traits.cpp.obj
+[6/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.obj
+[7/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.obj
+[8/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/tiled/tiled-kernel.cpp.obj
+[9/444] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.obj
+[10/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.obj
+[11/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/vec.cpp.obj
+[12/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.obj
+[13/444] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml.c.obj
+[14/444] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.obj
+[15/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.obj
+[16/444] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/quants.c.obj
+[17/444] Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-dl.cpp.obj
+[18/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/binary-ops.cpp.obj
+[19/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend-meta.cpp.obj
+[20/444] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/gguf.cpp.obj
+[21/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_10_cxx.cxx.obj
+[22/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/repack.cpp.obj
+[23/444] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.obj
+[24/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/unary-ops.cpp.obj
+[25/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_7_cxx.cxx.obj
+[26/444] Linking CXX static library ggml\src\ggml-base.a
+[27/444] Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.obj
+[28/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_8_cxx.cxx.obj
+[29/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_9_cxx.cxx.obj
+[30/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.obj
+[31/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_6_cxx.cxx.obj
+[32/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_5_cxx.cxx.obj
+[33/444] Building CXX object src/CMakeFiles/llama.dir/llama-cparams.cpp.obj
+[34/444] Building CXX object src/CMakeFiles/llama.dir/llama-arch.cpp.obj
+[35/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_2_cxx.cxx.obj
+[36/444] Building CXX object src/CMakeFiles/llama.dir/llama.cpp.obj
+[37/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_4_cxx.cxx.obj
+[38/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/repack.cpp.obj
+[39/444] Building CXX object src/CMakeFiles/llama.dir/llama-hparams.cpp.obj
+[40/444] Building CXX object src/CMakeFiles/llama.dir/llama-io.cpp.obj
+[41/444] Building CXX object src/CMakeFiles/llama.dir/llama-adapter.cpp.obj
+[42/444] Building CXX object src/CMakeFiles/llama.dir/llama-chat.cpp.obj
+[43/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_0_cxx.cxx.obj
+[44/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_3_cxx.cxx.obj
+[45/444] Building CXX object src/CMakeFiles/llama.dir/llama-impl.cpp.obj
+[46/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/tiled/tiled.cpp.obj
+[47/444] Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.obj
+FAILED: [code=1] src/CMakeFiles/llama.dir/llama-context.cpp.obj 
+C:\Users\stebo\AppData\Local\Microsoft\WinGet\Packages\MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\llvm-mingw-20261020-ucrt-x86_64\bin\clang++.exe -DGGML_USE_CPU -D_CRT_SECURE_NO_WARNINGS -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/." -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/build/src" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/../include" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/ggml/src/../include" -D_WIN32_WINNT=0x0A00 -O3 -DNDEBUG -Xclang -fno-pch-timestamp -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi -MD -MT src/CMakeFiles/llama.dir/llama-context.cpp.obj -MF src\CMakeFiles\llama.dir\llama-context.cpp.obj.d -o src/CMakeFiles/llama.dir/llama-context.cpp.obj -c "C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp"
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:2203:43: error: no member named 'all_of' in namespace 'std'; did you mean '__all_of'?
+ 2203 |             const bool all_sampled = std::all_of(res->t_sampled.begin(), res->t_sampled.end(), [](const ggml_tensor * t) { return t != nullptr; });
+      |                                           ^~~~~~
+      |                                           __all_of
+C:/Users/stebo/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20261020-ucrt-x86_64/include/c++/v1/__algorithm/simd_utils.h:135:46: note: '__all_of' declared here
+  135 | [[__nodiscard__]] _LIBCPP_HIDE_FROM_ABI bool __all_of(__simd_vector<_Tp, _Np> __vec) noexcept {
+      |                                              ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:2203:38: error: no matching function for call to '__all_of'
+ 2203 |             const bool all_sampled = std::all_of(res->t_sampled.begin(), res->t_sampled.end(), [](const ggml_tensor * t) { return t != nullptr; });
+      |                                      ^~~~~~~~~~~
+C:/Users/stebo/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20261020-ucrt-x86_64/include/c++/v1/__algorithm/simd_utils.h:135:46: note: candidate function template not viable: requires single argument '__vec', but 3 arguments were provided
+  135 | [[__nodiscard__]] _LIBCPP_HIDE_FROM_ABI bool __all_of(__simd_vector<_Tp, _Np> __vec) noexcept {
+      |                                              ^        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 errors generated.
+[48/444] Building CXX object src/CMakeFiles/llama.dir/llama-batch.cpp.obj
+[49/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-iswa.cpp.obj
+[50/444] Building CXX object src/CMakeFiles/llama.dir/Unity/unity_1_cxx.cxx.obj
+[51/444] Building CXX object src/CMakeFiles/llama.dir/llama-memory.cpp.obj
+[52/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-dsa.cpp.obj
+[53/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-dsa-iswa.cpp.obj
+[54/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-msa.cpp.obj
+[55/444] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-iswa.cpp.obj
+[56/444] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid.cpp.obj
+[57/444] Building CXX object src/CMakeFiles/llama.dir/llama-memory-recurrent.cpp.obj
+[58/444] Building CXX object src/CMakeFiles/llama.dir/llama-moe-cache.cpp.obj
+[59/444] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-idx.cpp.obj
+[60/444] Building CXX object src/CMakeFiles/llama.dir/llama-graph.cpp.obj
+[61/444] Building CXX object src/CMakeFiles/llama.dir/llama-grammar.cpp.obj
+[62/444] Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.obj
+[63/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-dsv4.cpp.obj
+[64/444] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache.cpp.obj
+ninja: build stopped: subcommand failed.

@@ -1,0 +1,86 @@
+{
+  "operazione": "books4_import_scan",
+  "comando": "python data/migrate_real.py --books4-imports",
+  "project_root": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7",
+  "files_scanned": 118,
+  "runtime_eager": [],
+  "runtime_lazy": [
+    {
+      "file": "core/rag/vector_store_chroma.py",
+      "line": 30,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "class.function",
+      "eager": false
+    },
+    {
+      "file": "core/rag/vector_store_sqlite.py",
+      "line": 647,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "function",
+      "eager": false
+    },
+    {
+      "file": "data/migrate_real.py",
+      "line": 228,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "function",
+      "eager": false
+    }
+  ],
+  "n_runtime_eager": 0,
+  "n_runtime_lazy": 3,
+  "nonruntime_sites": [
+    {
+      "file": "tests/testG3_dryrun.py",
+      "line": 64,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "module",
+      "eager": true
+    },
+    {
+      "file": "tests/testG3_dryrun.py",
+      "line": 212,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "class.function",
+      "eager": false
+    },
+    {
+      "file": "tests/testH1_parity.py",
+      "line": 63,
+      "module": "chromadb",
+      "kind": "import",
+      "scope": "module",
+      "eager": true
+    }
+  ],
+  "parse_errors": [
+    {
+      "file": "tests/testR13_telem.py",
+      "error": "invalid syntax (testR13_telem.py, line 151)"
+    }
+  ],
+  "dynamic": {
+    "eseguito": true,
+    "rc": 0,
+    "caricati": [
+      "core.rag.vector_store",
+      "core.rag.indexer",
+      "core.local_search",
+      "data.migrate_real",
+      "backend.api",
+      "main"
+    ],
+    "errore": null,
+    "chromadb_in_sys_modules": false,
+    "sqlite_vec_in_sys_modules": false,
+    "backend_default": "sqlite"
+  },
+  "status": "eseguito",
+  "ts": "2026-10-24T13:50:57",
+  "dichiarazione": "chromadb rimosso dal runtime (import default=0): nessun import eager nel percorso default; unici siti function-level (lazy) sotto RAG_BACKEND=chroma o negli strumenti di migrazione."
+}

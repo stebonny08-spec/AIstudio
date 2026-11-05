@@ -1,0 +1,2100 @@
+{
+ "round": "18",
+ "phase": "F0-forensics",
+ "ts": "2026-10-25T19:26:58+0100",
+ "method": "Router.process_query_stream (wiring api._run_generation), catena 4 domande con history_turns accumulati; spy su gate.decide_gate/semantic_decide/_iter_gen(chunk completi)/_provenance_stages/_provenance_from_hits/AnswerCache.get/AiCache.get/web_stage.escalate/web_search.search_web/LocalSearchEngine.search; prompt sidecar catturato; intent classificato offline (regole+embedding); audit indice read-only",
+ "declarations": {
+  "config_read_only": true,
+  "hf_offline": "1",
+  "network": "stadio web (allowlist) - NET_LOG per caso",
+  "answer_cache_tmp": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\f0r18_ac.jsonl",
+  "sidecar_state_pre": "up",
+  "sidecar_state_post": "down",
+  "llama_residual": 2
+ },
+ "chain": [
+  {
+   "id": "q1",
+   "query": "cos'è la fotosintesi?"
+  },
+  {
+   "id": "q2",
+   "query": "fammi un riassunto più preciso e puntuale"
+  },
+  {
+   "id": "q3",
+   "query": "parlami meglio di questa produzione di ossigeno"
+  },
+  {
+   "id": "q4",
+   "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno"
+  }
+ ],
+ "cases": [
+  {
+   "case": "q1",
+   "query": "cos'è la fotosintesi?",
+   "history_turns_n": 0,
+   "web_override": "auto",
+   "llm_calls": 1,
+   "total_ms": 41186.25,
+   "first_progress_ms": 32.67,
+   "first_token_ms": 10965.33,
+   "n_tokens": 374,
+   "text_len": 1215,
+   "source": "locale",
+   "error": null,
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 32.01,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 1.75,
+     "note": "esito=piena top=0.895"
+    },
+    {
+     "stage": "web",
+     "status": "skip",
+     "ms": 0.0,
+     "note": "modalita web=auto"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 41117.17,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "sources_events": [
+    {
+     "items_n": 1,
+     "stages": [
+      "appunti"
+     ],
+     "items": [
+      {
+       "stage": "appunti",
+       "title": "fotosintesi_clorofilliana_universitario.md",
+       "url": "",
+       "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+      }
+     ]
+    }
+   ],
+   "provenienza_emessa": [
+    "appunti"
+   ],
+   "router_decision": {
+    "semantic": [
+     {
+      "query": "cos'è la fotosintesi?",
+      "use_rag": true,
+      "sim_rag": 0.8076659440994263,
+      "sim_no_rag": 0.7974002361297607
+     }
+    ],
+    "gates": [
+     {
+      "outcome": "piena",
+      "threshold": 0.7,
+      "top_score": 0.7369,
+      "reason": "causa=copertura_piena;score=0.7369;vec=0.8949;fts=0.0987;lex=0.5000;soglia=0.7000;web=non tentato",
+      "stages_probed": [
+       "appunti"
+      ],
+      "web_attempted": false,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8949,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia\n\n## Documento Docente e Materiale di Studio Avanzato\n*"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8739,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.874,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigm"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.866,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollat"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8716,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consuma"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8636,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8778,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a fo"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8688,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8659,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8641,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Sinauer Associates / Oxford University Press.\n2. Nelson, D. L., & Cox, M. M. (2021). *Lehninger Principles of Biochemistry* (8th ed.). W. H."
+       }
+      ],
+      "near_miss": []
+     }
+    ],
+    "context_kind": [
+     "locale"
+    ],
+    "cache_branch": false
+   },
+   "stadi": {
+    "interrogati": [
+     "appunti",
+     "libri"
+    ],
+    "contribuenti": {
+     "appunti": {
+      "n": 10,
+      "sopra_soglia_gate": 10,
+      "sopra_forte_045": 10,
+      "max_sim": 0.8949
+     }
+    }
+   },
+   "cache_delta": {
+    "answer_cache_get": [
+     {
+      "key": "a1b5f9020121338b42c225e7ddd6aa06cf96e5ef",
+      "hit": false,
+      "rec_query": null,
+      "rec_text_head": ""
+     }
+    ],
+    "aicache_get_calls": 0,
+    "delta_reuse_nel_path_chat": false,
+    "branch": "pipeline"
+   },
+   "web": {
+    "circuit_breaker": {
+     "presente": false,
+     "chiavi_trovate": [],
+     "nota": "nessun circuit-breaker nel codice: lo short-circuit avviene pre-tentativo (gate piena -> escalate [] senza HTTP; WEB_STAGE_ENTRY_S=6s -> web saltato)"
+    },
+    "escalate_calls": [],
+    "search_web_calls": [],
+    "net_log_n": 0,
+    "net_log": [],
+    "ultimo_errore": null,
+    "short_circuit_pretentativo": {
+     "web_progress": [
+      {
+       "stage": "web",
+       "status": "skip",
+       "ms": 0.0,
+       "note": "modalita web=auto"
+      }
+     ],
+     "escalate_chiamato": false,
+     "search_web_chiamato_http": false,
+     "tipo": "skip-pre-tentativo",
+     "motivo": "modalita web=auto"
+    }
+   },
+   "chunk_dati_al_modello": [
+    {
+     "call": 1,
+     "context_kind": "locale",
+     "chitchat": false,
+     "local_chunks": [
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8949,
+       "text": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia\n\n## Documento Docente e Materiale di Studio Avanzato\n**Livello:** Corso di Laurea Magistrale / Universitario  \n**Settore Scientifico-Disciplinare:** BIO/04 (Fisiologia Vegetale) & BIO/10 (Biochimica)\n\n---\n\n# Capitolo 1: Introduzione Generale e Architettura Biochimico-Strutturale\n\n## 1.1 Definizione ed Equazione Generale\nLa fotosintesi clorofilliana è il processo biochimico fondamentale mediante il quale gli organismi autotrofi fotosintetici (piante superiori, alghe e cianobatteri) convertono l'energia elettromagnetica della radiazione solare in energia chimica di legame molecolare. Tale energia viene immagazzinata sotto forma di carboidrati e intermedi metabolici ad alto valore energetico, a partire da precursori inorganici a basso valore entalpico quali anidride carbonica ($\\text{CO}_2$) e acqua ($\\text{H}_2\\text{O}$). Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio) che comporta il trasferimento di elettroni guidato dalla luce contro un potenziale di riduzione favorevole."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8739,
+       "text": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio) che comporta il trasferimento di elettroni guidato dalla luce contro un potenziale di riduzione favorevole. L'equazione stechiometrica globale e bilanciata può essere espressa come:\n\n$$6\\text{CO}_2 + 12\\text{H}_2\\text{O} \\xrightarrow[clorofilla]{h\\nu} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2 + 6\\text{H}_2\\text{O}$$\n\nOppure, focalizzandosi sul trioso fosfato fondamentale prodotto (gliceraldeide-3-fosfato, G3P):\n\n$$3\\text{CO}_2 + 6\\text{H}_2\\text{O} + 9\\text{ATP} + 6\\text{NADPH} + 6\\text{H}^+ \\rightarrow \\text{Glyceraldehyde-3-Phosphate} + 9\\text{ADP} + 8\\text{P}_i + 6\\text{NADP}^+ + 3\\text{H}_2\\text{O}$$\n\n## 1.2 Ultrastruttura Plastidiale: Il Cloroplasto\nNegli eucarioti, l'intera macchina molecolare fotosintetica è compartimentata all'interno dei cloroplasti, organelli evolutisi per endosimbiosi primaria da un antenato cianobatterico.\n\n```\n+-----------------------------------------------------------------------+\n| Cloroplasto: Membrana Esterna | Spazio Intermembrana | Membrana Interna|\n|                                                                       |\n|  [STROMA] - Elevata concentrazione di RuBisCO, enzimi del ciclo C3,   |\n|            DNA plastidiale (cpDNA), ribosomi 70S, ATP sintasi (CF1)    |\n|                                                                       |\n|  +-----------------------------------------------------------------+  |\n|  | SITO DEI TILACOIDI (Sistema di Membrane Interne)               |  |\n|  |                                                                 |  |\n|  |  [Tilacoidi Granali (Appressati)]   [Tilacoidi Stromatici (Non)]|  |\n|  |  - Arricchiti in Fotosistema II     - Arricchiti in Fotosistema I|  |\n|  |  - Complesso LHCII                  - ATP Sintasi (CF0-CF1)      |  |\n|  |                                                                 |  |\n|  |  -------------------------------------------------------------  |  |\n|  |  LUME TILACOIDALE: Gradiente protonico (pH ~ 5.5 vs pH Stroma ~ 8) |  |\n|  +-----------------------------------------------------------------+  |\n+-----------------------------------------------------------------------+\n```\n\n### Struttura e Compartimentazione\n1. **Involucro Esterno e Interno:** La membrana esterna contiene porine aspecifiche, mentre la membrana interna è altamente selettiva, regolata da trasportatori di carica specifici (es. traslocatore fosfato/trioso-fosfato).\n2. **Stroma:** La matrice idrofila interna. Contiene l'intero set di enzimi solubili responsabili della fissazione del carbonio (Ciclo di Calvin-Benson), DNA circolare a doppia elica, ribosomi di tipo procariotico (70S) ed enzimi per la sintesi proteica endogena.\n3. **Sistema Tilacoidale:** Una rete complessa interconnessa di vescicole appiattite. Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a forma di moneta."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.874,
+       "text": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale Primario |\n| :--- | :--- | :--- |\n| **Clorofilla a** | $430 \\text{ nm}$ (Soret), $662 \\text{ nm}$ (Qy) | Pigmento del centro di reazione ($P_{680}, P_{700}$) e complesso antenna |\n| **Clorofilla b** | $453 \\text{ nm}$ (Soret), $642 \\text{ nm}$ (Qy) | Pigmento antenna accessorio (amplia lo spettro utile) |\n| **$\\beta$-Carotene** | $450 - 480 \\text{ nm}$ | Protezione fotodinamica, quenching di sostanze reattive ($^1\\text{O}_2$) |\n| **Luteina / Violaxantina** | $400 - 500 \\text{ nm}$ | Dissipazione termica dell'energia in eccesso (Non-Photochemical Quenching, NPQ) |\n\n```\nStruttura della Clorofilla:\nAnello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -> Pi*)\n            |\n    Catena Fitolica (C20H39) ---------> Ancoraggio Idrofobico alla Membrana Tilacoidale\n```\n\n---\n\n# Capitolo 2: La Fase Luminosa e la Catena Trasportatrice di Elettroni\n\nLa fase luminosa della fotosintesi avviene nelle membrane tilacoidali e converte la luce in potere riducente ($\\text{NADPH}$) e potenziale di fosforilazione ($\\text{ATP}$).\n\n## 2.1 Fotosistema II (PSII) e Ossidazione dell'Acqua\nIl Fotosistema II è un supercomplesso multisubunitario dimerico pigmento-proteico (peso molecolare $> 700 \\text{ kDa}$).\n\n```\n[ Luce (hν) ] ---> LHCII ---> P680 ---> P680* ---> P680+ + e-\n                                                     |\n                                            (Accettore: Pheo)\n                                                     |\n                                                    QA\n                                                     |\n                                                    QB (Plastochinone ridotto a Plastochinolo)\n```\n\n1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$ (una coppia speciale di molecole di clorofilla *a*), assorbe energia di risonanza eccitonica trasdotta dalle antenne e passa allo stato di eccitazione $P_{680}^*$.\n2. **Separazione di Carica Primaria:** $P_{680}^*$ dona un elettrone alla **Feofitina** ($\\text{Pheo}$), generando la coppia di separazione di carica $[P_{680}^+ \\text{Pheo}^-]$ entro $3 \\text{ picosecondi}$.\n3. **Flusso Elettronico Interno:** L'elettrone si sposta da $\\text{Pheo}^-$ verso un plastochinone saldamente legato ($\\text{Q}_A$) e successivamente a un plastochinone mobile ($\\text{Q}_B$). Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico.\n\n### Il Complesso di Evoluzione dell'Ossigeno (OEC)\nPer ripristinare l'elettrone perso e riportare $P_{680}^+$ al suo stato fondamentale $P_{680}$, interviene il **Complesso di Evoluzione dell'Ossigeno** ($\\text{OEC}$), contenente un cluster metallico tetranucleare di manganese e calcio ($\\text{Mn}_4\\text{CaO}_5$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.866,
+       "text": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corretto flusso di elettroni.\n\n## 1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare\nL'assorbimento dei fotoni è affidato a complessi pigmento-proteina situati nelle membrane tilacoidali. I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale Primario |\n| :--- | :--- | :--- |\n| **Clorofilla a** | $430 \\text{ nm}$ (Soret), $662 \\text{ nm}$ (Qy) | Pigmento del centro di reazione ($P_{680}, P_{700}$) e complesso antenna |\n| **Clorofilla b** | $453 \\text{ nm}$ (Soret), $642 \\text{ nm}$ (Qy) | Pigmento antenna accessorio (amplia lo spettro utile) |\n| **$\\beta$-Carotene** | $450 - 480 \\text{ nm}$ | Protezione fotodinamica, quenching di sostanze reattive ($^1\\text{O}_2$) |\n| **Luteina / Violaxantina** | $400 - 500 \\text{ nm}$ | Dissipazione termica dell'energia in eccesso (Non-Photochemical Quenching, NPQ) |\n\n```\nStruttura della Clorofilla:\nAnello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -> Pi*)\n            |\n    Catena Fitolica (C20H39) ---------> Ancoraggio Idrofobico alla Membrana Tilacoidale\n```\n\n---\n\n# Capitolo 2: La Fase Luminosa e la Catena Trasportatrice di Elettroni\n\nLa fase luminosa della fotosintesi avviene nelle membrane tilacoidali e converte la luce in potere riducente ($\\text{NADPH}$) e potenziale di fosforilazione ($\\text{ATP}$).\n\n## 2.1 Fotosistema II (PSII) e Ossidazione dell'Acqua\nIl Fotosistema II è un supercomplesso multisubunitario dimerico pigmento-proteico (peso molecolare $> 700 \\text{ kDa}$).\n\n```\n[ Luce (hν) ] ---> LHCII ---> P680 ---> P680* ---> P680+ + e-\n                                                     |\n                                            (Accettore: Pheo)\n                                                     |\n                                                    QA\n                                                     |\n                                                    QB (Plastochinone ridotto a Plastochinolo)\n```\n\n1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$ (una coppia speciale di molecole di clorofilla *a*), assorbe energia di risonanza eccitonica trasdotta dalle antenne e passa allo stato di eccitazione $P_{680}^*$.\n2. **Separazione di Carica Primaria:** $P_{680}^*$ dona un elettrone alla **Feofitina** ($\\text{Pheo}$), generando la coppia di separazione di carica $[P_{680}^+ \\text{Pheo}^-]$ entro $3 \\text{ picosecondi}$.\n3. **Flusso Elettronico Interno:** L'elettrone si sposta da $\\text{Pheo}^-$ verso un plastochinone saldamente legato ($\\text{Q}_A$) e successivamente a un plastochinone mobile ($\\text{Q}_B$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8716,
+       "text": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma.\n\n**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.\n\n## 2.3 Fotosistema I (PSI) e la Sintesi di NADPH\nLa Plastocianina ($\\text{PC}$), una metalloproteina solubile a rame situata nel lume, trasferisce l'elettrone al catione radicalico $P_{700}^+$ del **Fotosistema I** (PSI).\n\n1. Il pigmento antenna del PSI assorbe un fotone a $700 \\text{ nm}$, portando il centro di reazione a $P_{700}^*$.\n2. $P_{700}^*$ trasferisce l'elettrone attraverso una catena redox interna:\n   * **Monomero di Clorofilla $A_0$**\n   * **Fillochinone $A_1$ (Vitamina $K_1$)**\n   * **Centri Ferro-Zolfo ($F_X, F_A, F_B$)**\n3. Da $F_B$, l'elettrone passa alla **Ferredossina** ($\\text{Fd}$), una proteina idrofila contenente un cluster $[2\\text{Fe}-2\\text{S}]$ situata nello stroma.\n4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina contenente FAD, catalizza la riduzione finale di due molecole di Ferredossina per produrre $\\text{NADPH}$:\n\n$$2\\text{Fd}_{\\text{rid}} + \\text{NADP}^+ + \\text{H}^+_{\\text{stroma}} \\xrightarrow{\\text{FNR}} 2\\text{Fd}_{\\text{oss}} + \\text{NADPH}$$\n\n## 2.4 Flusso Elettronico Ciclico (CEF)\nIn condizioni di elevata irradianza o elevata richiesta di ATP rispetto al NADPH per il ciclo di Calvin, si attiva il **Flusso Elettronico Ciclico**:\n- Gli elettroni provenienti da $\\text{Fd}_{\\text{rid}}$ non vengono ceduti alla FNR, ma sono reincanalati nel pool di plastochinoni tramite due vie alternative: la via **PGR5/PGRL1** o il complesso **NDH** (NADH Deidrogenasi-like).\n- Questo ciclo ricircola gli elettroni verso il complesso $b_6f$ e il PSI, generando un gradiente protonico ($\\Delta\\text{pH}$) e producendo **solo ATP**, senza accumulare ulteriore $\\text{NADPH}$.\n\n## 2.5 Fotofosforilazione e ATP Sintasi Plastidiale ($\\text{CF}_o\\text{CF}_1$)\nL'accumulo di protoni nel lume tilacoidale dovuto all'ossidazione dell'acqua e al Ciclo-Q genera una forza protomotrice ($\\text{PMF} = \\Delta\\Psi + \\frac{2.3 RT}{F}\\Delta\\text{pH}$). Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8636,
+       "text": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina. A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differenti in cooperazione biochimica: **Cloroplasto**, **Perossisoma** e **Mitocondrio**. ``` [ CLOROPLASTO ] 2-Fosfoglicolato (2C) ---> Glicolato (2C) | (Trasportatore) v [ PEROSSISOMA ] Glicolato + O2 ----------> Gliossilato + H2O2 ---> (Catalasi) ---> H2O + 1/2 O2 Gliossilato + Glutammato -> Glicina (2C) + 2-Ossoglutarato | (Trasportatore) v [ MITOCONDRIO ] 2 Glicina (2C) + NAD+ ---> Serina (3C) + CO2 (perso!) + NH3 (perso!) + NADH | (Trasportatore) v [ PEROSSISOMA ] Serina ------------------> Idrossipiruvato ---> Glicerato (3C) | (Trasportatore) v [ CLOROPLASTO ] Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3 ``` ### Bilancio Stechiometrico e Costo Energetico Per recuperare due molecole di fosfoglicolato ($4C$), il ciclo fotorespiratorio spende energia e rilascia carbonio già fissato: * **Stechiometria:** $2 \\text{ Fosfoglicolato} (4C) \\rightarrow 1 \\text{ 3-PGA} (3C) + 1 \\text{ CO}_2 (1C) + 1 \\text{ NH}_3$. * Viene perso il **25% del carbonio** inizialmente canalizzato nella via fotosintetica. * Vengono consumati **ATP** extra (per la ri-fosforilazione del glicerato a 3-PGA e la ri-assimilazione dell'ammoniaca $\\text{NH}_3$ nel ciclo GS-GOGAT) e potere riducente. ## 4.3 Significato Fisiologico della Fotorespirazione Sebbene storicamente considerata un \"errore evolutivo\" dovuto alle origini della RuBisCO in un'atmosfera primordiale anossica ricca di $\\text{CO}_2$, la fotorespirazione assolve a funzioni vitali: 1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII. 2. **Metabolismo dell'Azoto:** È strettamente interconnessa all'assimilazione dei nitrati e alla sintesi degli amminoacidi (Glicina e Serina). --- # Capitolo 5: Adattamenti Ecofisiologici: Vie C4 e CAM Per minimizzare il costo della fotorespirazione in ambienti caldi, aridi o a bassa disponibilità di $\\text{CO}_2$, alcune angiosperme hanno evoluto meccanismi di **pompa di carbonio inorganico**. ## 5.1 La Fotosintesi C4 ### Anatomia di Kranz e Separazione Spaziale Le piante C4 (es. *Zea mays*, *Sorghum bicolor*, *Saccharum officinarum*) presentano una specializzazione anatomica nota come"
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8778,
+       "text": "Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a forma di moneta. Sono domini arricchiti nel *Fotosistema II (PSII)* e nel suo complesso antenna raccolglitore di luce (*LHCII*).\n   * **Tilacoidi Stromatici o Intergrana (Regioni Non-Appressate):** Membrane uniche a contatto diretto con lo stroma. Sono dominate dal *Fotosistema I (PSI)* e dall'*ATP Sintasi*. Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corretto flusso di elettroni.\n\n## 1.3 Pigmenti Fotosintetici e Spettroscopia Molecolare\nL'assorbimento dei fotoni è affidato a complessi pigmento-proteina situati nelle membrane tilacoidali."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8688,
+       "text": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8659,
+       "text": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**. La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}3\\text{-cheto-}D\\text{-arabinitolo-}1,5\\text{-bisfosfato}$), che viene immediatamente scisso per via idrolitica in due molecole di **3-Fosfoglicerato** ($\\text{3-PGA}$, 3C):\n\n$$\\text{RuBP} (5C) + \\text{CO}_2 + \\text{H}_2\\text{O} \\xrightarrow{\\text{RuBisCO}} 2 \\times \\text{3-Fosfoglicerato} (3C)$$\n\n## 3.2 Fase 2: Riduzione del Carbonio\nLe molecole di 3-PGA prodotte vengono convertite in triosi fosfato mediante due reazioni enzimatiche sequenziali che consumano l'ATP e il NADPH generati nella fase luminosa:\n\n1. **Chinasi:** La *3-Fosfoglicerato Chinasi* trasferisce un gruppo fosfato dall'ATP al 3-PGA, formando **1,3-Bis-fosfoglicerato** ($\\text{1,3-BPGA}$):\n\n$$\\text{3-PGA} + \\text{ATP} \\rightarrow \\text{1,3-BPGA} + \\text{ADP}$$\n\n2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)* riduce l'1,3-BPGA utilizzando NADPH, generando **Gliceraldeide-3-fosfato** ($\\text{G3P}$) e rilascio di fosfato inorganico ($\\text{P}_i$):\n\n$$\\text{1,3-BPGA} + \\text{NADPH} + \\text{H}^+ \\rightarrow \\text{G3P} + \\text{NADP}^+ + \\text{P}_i$$\n\nLa G3P si trova in equilibrio isomerico con il **Diidrossiacetone fosfato** ($\\text{DHAP}$) tramite l'enzima *Trioso Fosfato Isomerasi*.\n\n## 3.3 Fase 3: Rigenerazione dell'Accettore (RuBP)\nPer consentire al ciclo di continuare, per ogni 3 molecole di $\\text{CO}_2$ fissate (che producono 6 molecole di G3P), 5 molecole di trioso fosfato ($5 \\times 3C = 15C$) devono essere riorganizzate strutturalmente per rigenerare 3 molecole di RuBP ($3 \\times 5C = 15C$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8641,
+       "text": "Sinauer Associates / Oxford University Press.\n2. Nelson, D. L., & Cox, M. M. (2021). *Lehninger Principles of Biochemistry* (8th ed.). W. H. Freeman and Company.\n3. Blankenship, R. E. (2021). *Molecular Mechanisms of Photosynthesis* (3rd ed.). Wiley-Blackwell.\n4. Buchanan, B. B., Gruissem, W., & Jones, R. L. (2015). *Biochemistry and Molecular Biology of Plants* (2nd ed.). Wiley-Blackwell."
+      }
+     ],
+     "web_results": []
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r18_prompt_q1.txt",
+    "sidecar_len": 0,
+    "n_messages": 2,
+    "ctx_blocks_n": 4,
+    "ctx_text_len": 701
+   },
+   "output": {
+    "file": "qa/tmp/f0r18_raw_q1.txt",
+    "raw_full": "La fotosintesi è il processo in cui le piante (e alcuni altri organismi) trasformano l'energia dell'oscurità in energia calore e ossido di gassoso. Ti puoi immaginare come un **magazzino energetico** che si riempie con la luce e lo usa per crescere.\n\nEcco i punti chiave da considerare:\n\n*   **Il principio di base:** la fotosintesi prende il sole (e l'acqua) e produce glucosio (un sostanza che dà energia agli alberi) e ossigeno (che respirammo).\n*   **Il ruolo della luce:** è la fonte di energia per la reazione. Senza luce, il processo non avviene.\n*   **Il ruolo della clorofilla:** le piante usano la clorofilla, una sostanza pigemmatica che colora l'albero di verde. La clorofilla assorbe la luce nella lunghezza d'onda dei fotoni, trasformandola in energia.\n\nTi puoi pensare a questo processo come a un **bagno** che usi l'acqua per riempirti. La fotosintesi è il bagno della vita vegetale.\n\nUn piccolo dettaglio importante: la fotosintesi classica è un processo endergonica, il che significa che richiede energia esterna per avvenire.\n\n---\n*Nota: La definizione è un'immagine semplificata per aiutare a comprendere il concetto. Per approfondire, è necessario consultare le fonti scientifiche appropriate.*",
+    "words": 188
+   },
+   "intent_classificato": {
+    "intent": "chit-chat",
+    "rule": "intent0=chat",
+    "similarity": null
+   },
+   "f0_2": {
+    "classificazione": "NA (termine assente dall'output)",
+    "evidenza_per_termine": {
+     "nitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "azoto": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "nitrati": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "denitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     }
+    },
+    "termini_in_output": [],
+    "via_cache": false,
+    "notes": []
+   }
+  },
+  {
+   "case": "q2",
+   "query": "fammi un riassunto più preciso e puntuale",
+   "history_turns_n": 2,
+   "web_override": "auto",
+   "llm_calls": 2,
+   "total_ms": 25889.11,
+   "first_progress_ms": 3.01,
+   "first_token_ms": 14018.31,
+   "n_tokens": 145,
+   "text_len": 458,
+   "source": "web",
+   "error": null,
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 5.48,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.94,
+     "note": "esito=nulla top=0.830"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 1135.46,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 24737.23,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "sources_events": [
+    {
+     "items_n": 6,
+     "stages": [
+      "web"
+     ],
+     "items": [
+      {
+       "stage": "appunti",
+       "title": "fotosintesi_clorofilliana_universitario.md",
+       "url": "",
+       "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+      },
+      {
+       "stage": "web",
+       "title": "Il riassunto, per decodificare e rielaborare - Treccani",
+       "url": "https://www.treccani.it/magazine/lingua_italiana/articoli/scritto_e_parlato/riassunto.html",
+       "source": "https://www.treccani.it/magazine/lingua_italiana/articoli/scritto_e_parlato/riassunto.html"
+      },
+      {
+       "stage": "web",
+       "title": "Riassunto - Significato ed etimologia - Vocabolario - Treccani",
+       "url": "https://www.treccani.it/vocabolario/riassunto/",
+       "source": "https://www.treccani.it/vocabolario/riassunto/"
+      },
+      {
+       "stage": "web",
+       "title": "Riassunto dell'Odissea: Approfondimenti - StudiaFacile ...",
+       "url": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-greca/L-et--arcaica/a-I-Iliade--Odissea--I-e-il-corpus-omerico/Approfondimenti/a-Riassunto-dell--i-Odissea--i-.html",
+       "source": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-greca/L-et--arcaica/a-I-Iliade--Odissea--I-e-il-corpus-omerico/Approfondimenti/a-Riassunto-dell--i-Odissea--i-.html"
+      },
+      {
+       "stage": "web",
+       "title": "Seconda guerra mondiale riassunto | Sapere.it",
+       "url": "https://www.sapere.it/sapere/pillole-di-sapere/costume-e-societa/seconda-guerra-mondiale-riassunto.html",
+       "source": "https://www.sapere.it/sapere/pillole-di-sapere/costume-e-societa/seconda-guerra-mondiale-riassunto.html"
+      },
+      {
+       "stage": "web",
+       "title": "Contrarre e comprendere: l'arte del riassunto - Treccani",
+       "url": "https://www.treccani.it/magazine/lingua_italiana/speciali/scrittura/Cardinale.html",
+       "source": "https://www.treccani.it/magazine/lingua_italiana/speciali/scrittura/Cardinale.html"
+      }
+     ]
+    }
+   ],
+   "provenienza_emessa": [
+    "web"
+   ],
+   "router_decision": {
+    "semantic": [
+     {
+      "query": "fammi un riassunto più preciso e puntuale",
+      "use_rag": true,
+      "sim_rag": 0.8312828540802002,
+      "sim_no_rag": 0.8314040899276733
+     }
+    ],
+    "gates": [
+     {
+      "outcome": "nulla",
+      "threshold": 0.7,
+      "top_score": 0.4875,
+      "reason": "causa=alta_somiglianza_senza_supporto;score=0.4875;vec=0.8126;fts=0.0000;lex=0.0000;soglia=0.7000;web=non tentato",
+      "stages_probed": [
+       "appunti"
+      ],
+      "web_attempted": false,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8126,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GA"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8144,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8159,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica del"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8105,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consuma"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.814,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8303,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\tex"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.829,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8272,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.819,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a fo"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8159,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       }
+      ],
+      "near_miss": [
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       }
+      ]
+     },
+     {
+      "outcome": "nulla",
+      "threshold": 0.7,
+      "top_score": 0.4875,
+      "reason": "causa=alta_somiglianza_senza_supporto;score=0.4875;vec=0.8126;fts=0.0000;lex=0.0000;soglia=0.7000;web=tentato",
+      "stages_probed": [
+       "appunti",
+       "web"
+      ],
+      "web_attempted": true,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8126,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GA"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8144,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8159,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica del"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8105,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consuma"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.814,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8303,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\tex"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.829,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8272,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.819,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Si distinguono due regioni morfologiche e funzionali ben precise:\n   * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a fo"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8159,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       }
+      ],
+      "near_miss": [
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       }
+      ]
+     }
+    ],
+    "context_kind": [
+     "web"
+    ],
+    "cache_branch": false
+   },
+   "stadi": {
+    "interrogati": [
+     "appunti",
+     "libri",
+     "web"
+    ],
+    "contribuenti": {
+     "web": {
+      "n": 5,
+      "sopra_soglia_gate": 5,
+      "sopra_forte_045": 5,
+      "max_sim": 0.0
+     }
+    }
+   },
+   "cache_delta": {
+    "answer_cache_get": [
+     {
+      "key": "59410b8f48f0806582efd2a3171ebf1377f41c24",
+      "hit": false,
+      "rec_query": null,
+      "rec_text_head": ""
+     }
+    ],
+    "aicache_get_calls": 0,
+    "delta_reuse_nel_path_chat": false,
+    "branch": "pipeline"
+   },
+   "web": {
+    "circuit_breaker": {
+     "presente": false,
+     "chiavi_trovate": [],
+     "nota": "nessun circuit-breaker nel codice: lo short-circuit avviene pre-tentativo (gate piena -> escalate [] senza HTTP; WEB_STAGE_ENTRY_S=6s -> web saltato)"
+    },
+    "escalate_calls": [
+     {
+      "query": "fammi un riassunto più preciso e puntuale",
+      "gate_outcome": "nulla",
+      "mode": "auto",
+      "n_results": 5
+     }
+    ],
+    "search_web_calls": [
+     {
+      "query": "fammi un riassunto più preciso e puntuale",
+      "max_results": 5,
+      "n_results": 5,
+      "ms": 1135.42
+     }
+    ],
+    "net_log_n": 3,
+    "net_log": [
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fammi%20un%20riassunto%20pi%C3%B9%20preciso%20e%20puntuale&limit=5",
+      "ms": 646.6,
+      "ok": true,
+      "n": 1,
+      "note": "titoli [it]"
+     },
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=fammi un riassunto più preciso e puntuale (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.goo",
+      "ms": 978.2,
+      "ok": true,
+      "n": 5,
+      "note": "trusted batch (6 domini)"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Renato_Zero",
+      "ms": 331.3,
+      "ok": true,
+      "n": 1,
+      "note": "summary [it]"
+     }
+    ],
+    "ultimo_errore": null,
+    "short_circuit_pretentativo": {
+     "web_progress": [
+      {
+       "stage": "web",
+       "status": "start",
+       "ms": 0.0,
+       "note": "interrogo lo stadio web (W)"
+      },
+      {
+       "stage": "web",
+       "status": "done",
+       "ms": 1135.46,
+       "note": "5 risultati web fusi"
+      }
+     ],
+     "escalate_chiamato": true,
+     "search_web_chiamato_http": true,
+     "tipo": "nessuno"
+    }
+   },
+   "chunk_dati_al_modello": [
+    {
+     "call": 1,
+     "context_kind": "web",
+     "chitchat": false,
+     "local_chunks": [],
+     "web_results": [
+      {
+       "title": "Il riassunto, per decodificare e rielaborare - Treccani",
+       "url": "https://www.treccani.it/magazine/lingua_italiana/articoli/scritto_e_parlato/riassunto.html",
+       "snippet": "Nov 21, 2018 · Il riassunto, per decodificare e rielaborare di Daniele Scarampi . Leggi l'articolo del Magazine di Treccani.it, il portale del sapere."
+      },
+      {
+       "title": "Riassunto - Significato ed etimologia - Vocabolario - Treccani",
+       "url": "https://www.treccani.it/vocabolario/riassunto/",
+       "snippet": "Scopri il significato della parola riassunto. Nel Vocabolario Treccani troverai significato ed etimologia del termine che cerchi. Entra subito su Treccani.it, il portale del sapere."
+      },
+      {
+       "title": "Riassunto dell'Odissea: Approfondimenti - StudiaFacile ...",
+       "url": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-greca/L-et--arcaica/a-I-Iliade--Odissea--I-e-il-corpus-omerico/Approfondimenti/a-Riassunto-dell--i-Odissea--i-.html",
+       "snippet": "Avuta da Ermes un'erba magica, Odisseo salva i compagni e resta un anno presso Circe, che si è innamorata di lui. Quando Odisseo le esprime il desiderio di tornare in patria, la dea lo manda prima negli Inferi."
+      },
+      {
+       "title": "Seconda guerra mondiale riassunto | Sapere.it",
+       "url": "https://www.sapere.it/sapere/pillole-di-sapere/costume-e-societa/seconda-guerra-mondiale-riassunto.html",
+       "snippet": "Nel corso della guerra si sono verificati diversi accadimenti, dall’ascesa della Germania nazista all’ Olocausto, fino alla Resistenza in Italia e alle due bombe atomiche sganciate dagli Stati Uniti sul Giappone. Ecco un riassunto."
+      },
+      {
+       "title": "Contrarre e comprendere: l'arte del riassunto - Treccani",
+       "url": "https://www.treccani.it/magazine/lingua_italiana/speciali/scrittura/Cardinale.html",
+       "snippet": "Dec 19, 2015 · Non è certo questo il riassunto che può aiutare la pratica didattica. È vero che, se cerchiamo sul dizionario la definizione di riassunto, troviamo in primo luogo una formula di tipo tautologico («discorso che riassume»), che guarda il risultato e non entra nel merito del processo che sta dietro."
+      }
+     ]
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r18_prompt_q2.txt",
+    "sidecar_len": 0,
+    "n_messages": 4,
+    "ctx_blocks_n": 4,
+    "ctx_text_len": 559
+   },
+   "output": {
+    "file": "qa/tmp/f0r18_raw_q2.txt",
+    "raw_full": "Certo. Ecco un riassunto più preciso e puntuale:\n\n**La fotosintesi è la conversione dell'energia luminosa in energia chimica all'interno delle piante.**\n\nIn parole chiare, è il processo che permette alle piante di:\n*   Assorbire la luce.\n*   Assorbire l'acqua.\n*   Produire **glucosio** (molteplici molecole di zuccheri come sostenza di riserva).\n*   Emettere **ossigeno** (che respiriamo).\n\n---\n*Nota: Questo riassunto è una sintesi tecnica ma accessibile.*",
+    "words": 65
+   },
+   "intent_classificato": {
+    "intent": "sotto-domanda",
+    "rule": "ref=piu preciso",
+    "similarity": 0.8057,
+    "sim_metric": "embedding"
+   },
+   "f0_2": {
+    "classificazione": "NA (termine assente dall'output)",
+    "evidenza_per_termine": {
+     "nitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "azoto": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "nitrati": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "denitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     }
+    },
+    "termini_in_output": [],
+    "via_cache": false,
+    "notes": []
+   }
+  },
+  {
+   "case": "q3",
+   "query": "parlami meglio di questa produzione di ossigeno",
+   "history_turns_n": 4,
+   "web_override": "auto",
+   "llm_calls": 3,
+   "total_ms": 53776.08,
+   "first_progress_ms": 2.64,
+   "first_token_ms": 4618.44,
+   "n_tokens": 309,
+   "text_len": 1017,
+   "source": "locale",
+   "error": null,
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 5.16,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.1,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.51,
+     "note": "esito=parziale top=0.855"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "skip",
+     "ms": 4607.61,
+     "note": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 49155.94,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "sources_events": [
+    {
+     "items_n": 1,
+     "stages": [
+      "appunti"
+     ],
+     "items": [
+      {
+       "stage": "appunti",
+       "title": "fotosintesi_clorofilliana_universitario.md",
+       "url": "",
+       "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+      }
+     ]
+    }
+   ],
+   "provenienza_emessa": [
+    "appunti"
+   ],
+   "router_decision": {
+    "semantic": [
+     {
+      "query": "parlami meglio di questa produzione di ossigeno",
+      "use_rag": true,
+      "sim_rag": 0.8096081018447876,
+      "sim_no_rag": 0.8121569156646729
+     }
+    ],
+    "gates": [
+     {
+      "outcome": "parziale",
+      "threshold": 0.7,
+      "top_score": 0.6132,
+      "reason": "causa=sotto_soglia;score=0.6132;vec=0.8553;fts=0.2394;lex=0.2500;soglia=0.7000;web=non tentato",
+      "stages_probed": [
+       "appunti"
+      ],
+      "web_attempted": false,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8553,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.852,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\tex"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8377,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8412,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8264,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigm"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8343,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8375,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GA"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8437,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8389,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica del"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8375,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type"
+       }
+      ],
+      "near_miss": [
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       }
+      ]
+     }
+    ],
+    "context_kind": [
+     "locale"
+    ],
+    "cache_branch": false
+   },
+   "stadi": {
+    "interrogati": [
+     "appunti",
+     "libri",
+     "web"
+    ],
+    "contribuenti": {
+     "appunti": {
+      "n": 10,
+      "sopra_soglia_gate": 10,
+      "sopra_forte_045": 10,
+      "max_sim": 0.8553
+     }
+    }
+   },
+   "cache_delta": {
+    "answer_cache_get": [
+     {
+      "key": "053b1d7c26890feb9713627efe10c7d3a416bbf8",
+      "hit": false,
+      "rec_query": null,
+      "rec_text_head": ""
+     }
+    ],
+    "aicache_get_calls": 0,
+    "delta_reuse_nel_path_chat": false,
+    "branch": "pipeline"
+   },
+   "web": {
+    "circuit_breaker": {
+     "presente": false,
+     "chiavi_trovate": [],
+     "nota": "nessun circuit-breaker nel codice: lo short-circuit avviene pre-tentativo (gate piena -> escalate [] senza HTTP; WEB_STAGE_ENTRY_S=6s -> web saltato)"
+    },
+    "escalate_calls": [
+     {
+      "query": "parlami meglio di questa produzione di ossigeno",
+      "gate_outcome": "parziale",
+      "mode": "auto",
+      "n_results": 0
+     }
+    ],
+    "search_web_calls": [
+     {
+      "query": "parlami meglio di questa produzione di ossigeno",
+      "max_results": 5,
+      "n_results": 0,
+      "ms": 4607.56
+     }
+    ],
+    "net_log_n": 10,
+    "net_log": [
+     {
+      "provider": "wikipedia",
+      "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=parlami%20meglio%20di%20questa%20produzione%20di%20ossigeno&limit=5",
+      "ms": 771.5,
+      "ok": true,
+      "n": 0,
+      "note": "titoli [en]"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=parlami%20meglio%20di%20questa%20produzione%20di%20ossigeno&limit=5",
+      "ms": 595.5,
+      "ok": true,
+      "n": 0,
+      "note": "titoli [it]"
+     },
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=parlami meglio di questa produzione di ossigeno (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:schol",
+      "ms": 3487.0,
+      "ok": true,
+      "n": 0,
+      "note": "trusted batch (6 domini): nessun risultato (normale)"
+     },
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=parlami meglio di questa produzione di ossigeno",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"
+     },
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=parlami meglio di questa produzione di ossigeno",
+      "ms": 1114.2,
+      "ok": true,
+      "n": 5,
+      "note": "generico (no site:)"
+     },
+     {
+      "provider": "allowlist",
+      "url": "https://eurosider.com/portfolio/generatori-ossigeno-oxyline/",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fuori allowlist - scartato"
+     },
+     {
+      "provider": "allowlist",
+      "url": "https://www.microbiologiaitalia.it/ecologia/oceani-e-ossigeno-alla-scoperta-del-polmone-blu-del-pianeta/",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fuori allowlist - scartato"
+     },
+     {
+      "provider": "allowlist",
+      "url": "https://www.wired.it/scienza/medicina/2021/05/10/covid-19-pandemia-bombole-ossigeno/",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fuori allowlist - scartato"
+     },
+     {
+      "provider": "allowlist",
+      "url": "https://www.atlascopco.com/it-it/compressors/products/oxygen-generators",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fuori allowlist - scartato"
+     },
+     {
+      "provider": "allowlist",
+      "url": "https://guidagiardino.com/limportanza-delle-piante-ossigeno-del-pianeta/",
+      "ms": 0.0,
+      "ok": true,
+      "n": 0,
+      "note": "fuori allowlist - scartato"
+     }
+    ],
+    "ultimo_errore": null,
+    "short_circuit_pretentativo": {
+     "web_progress": [
+      {
+       "stage": "web",
+       "status": "start",
+       "ms": 0.0,
+       "note": "interrogo lo stadio web (W)"
+      },
+      {
+       "stage": "web",
+       "status": "skip",
+       "ms": 4607.61,
+       "note": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+      }
+     ],
+     "escalate_chiamato": true,
+     "search_web_chiamato_http": true,
+     "tipo": "skip-pre-tentativo",
+     "motivo": "core.rag.web_stage assente (W non atterra) o nessun risultato"
+    }
+   },
+   "chunk_dati_al_modello": [
+    {
+     "call": 1,
+     "context_kind": "locale",
+     "chitchat": false,
+     "local_chunks": [
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8553,
+       "text": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) | | v | | Malato (4C) ---------+-----\\ (Plasmodesmi) +-----------------------+ \\ v +--------------------------------+ | CELLULE DELLA GUAINA DEL FASCIO| | | | Malato (4C) | | | (Enzima Malico) | | v | | Piruvato (3C) + CO2 (ALTA CONC!) | | | | | v v | | Piruvato Ciclo C3 | | (torna al (RuBisCO senza | | mesofillo) fotorespirazione)| +--------------------------------+ ``` ### Meccanismo Biochimico C4 1. **Nel Mesofillo:** L'anidride carbonica viene convertita in bicarbonato ($\\text{HCO}_3^-$) dalla *Anidrasi Carbonica*. L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$\n\n*La PEPCase ha un'affinità altissima per $\\text{HCO}_3^-$ e **nessuna affinità per l'ossigeno** ($\\text{O}_2$), eliminando la competizione all'origine.*\n\n2. **Trasporto:** L'ossalacetato viene ridotto a **Malato** (o transaminato ad Aspartato) e diffonde attraverso i plasmodesmi verso le **cellule della guaina del fascio**.\n3. **Decarbossilazione nella Guaina:** Il malato viene decarbossilato liberando alta concentrazione di $\\text{CO}_2$ ($\\sim 10-20$ volte superiore a quella atmosferica) direttamente attorno alla RuBisCO."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.852,
+       "text": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$\n\n*La PEPCase ha un'affinità altissima per $\\text{HCO}_3^-$ e **nessuna affinità per l'ossigeno** ($\\text{O}_2$), eliminando la competizione all'origine.*\n\n2. **Trasporto:** L'ossalacetato viene ridotto a **Malato** (o transaminato ad Aspartato) e diffonde attraverso i plasmodesmi verso le **cellule della guaina del fascio**.\n3. **Decarbossilazione nella Guaina:** Il malato viene decarbossilato liberando alta concentrazione di $\\text{CO}_2$ ($\\sim 10-20$ volte superiore a quella atmosferica) direttamente attorno alla RuBisCO. La RuBisCO lavora così vicino alla sua velocità massima di saturazione ($V_{\\max}$), sopprimendo quasi del tutto l'attività ossigenasica.\n4. **Riciclo:** Il Piruvato (3C) generato torna al mesofillo, dove viene riconvertito in PEP dall'enzima *Piruvato-Fosfato Dichinasi* (PPDK), con consumo di 2 equivalenti di ATP (ATP $\\rightarrow$ AMP).\n\n## 5.2 La Fotosintesi CAM (Crassulacean Acid Metabolism)\n\n### Separazione Temporale della Fissazione del Carbonio\nLe piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estremamente aridi e risolvono il dilemma fotosintetico/idrico separando i processi temporalmente nello stesso tipo cellulare.\n\n```\n+-------------------------------------------------------------------------+\n| NOTTE: Stomi APERTI (Bassa Traspirazione)                               |\n|                                                                         |\n| CO2 Atmosferica ---> HCO3- + PEP ---> Ossalacetato ---> Malato (4C)     |\n|                                                          |              |\n|                                                          v              |\n|                                             [ Accumulo nel VACUOLO ]    |\n|                                              (Acido Malico / pH basso)  |\n+-------------------------------------------------------------------------+\n| GIORNO: Stomi CHIUSI (Conservazione Acqua)                              |\n|                                                                         |\n| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |\n|                                                  |                      |\n|                                    +-------------+-------------+        |\n|                                    |                           |        |\n|                                    v                           v        |\n|                            CO2 Intracellulare             Piruvato (3C) |\n|                                    |                           |        |\n|                                    v                           v        |\n|                              Ciclo C3 (RuBisCO)          Sintesi Amido  |\n+-------------------------------------------------------------------------+\n```\n\n### Fasi del Metabolismo CAM\n* **Fase Notturna:** Gli stomi si aprono per assorbire $\\text{CO}_2$ riducendo la perdita d'acqua per traspirazione. La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente.\n* **Fase Diurna:** Gli stomi rimangono ermeticamente chiusi. L'acido malico esce dal vacuolo verso il citosol e viene decarbossilato."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8377,
+       "text": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico.\n\n### Il Complesso di Evoluzione dell'Ossigeno (OEC)\nPer ripristinare l'elettrone perso e riportare $P_{680}^+$ al suo stato fondamentale $P_{680}$, interviene il **Complesso di Evoluzione dell'Ossigeno** ($\\text{OEC}$), contenente un cluster metallico tetranucleare di manganese e calcio ($\\text{Mn}_4\\text{CaO}_5$). Il meccanismo di ossidazione dell'acqua segue il **Ciclo di Kok** (Stati $S_0, S_1, S_2, S_3, S_4$):\n\n$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume}} + 4e^-$$\n\nUn residuo tirosinico redox-attivo ($Y_Z$, Tyrosine-161 della subunità D1) media il trasferimento sequenziale degli elettroni dal cluster $\\text{Mn}_4\\text{CaO}_5$ al catione radicalico $P_{680}^+$.\n\n## 2.2 Il Complesso del Citocromo $b_6f$ e il Ciclo-Q\nIl plastochinolo ($\\text{PQH}_2$) diffonde all'interno della membrana tilacoidale e dona i suoi elettroni al **Complesso del Citocromo $b_6f$**. Questo complesso omodimerico funge da ponte elettrochimico tra il PSII e il PSI.\n\n```\n                  STROMA (pH ~ 8)\n          +------------------------------+\n          |    (2 H+ consumati/ciclo)     |\n          |       /              \\       |\n     [Cyt b6f Complex]        [Cyt b6f]  |\n          |       \\              /       |\n          |    (4 H+ rilasciati/ciclo)   |\n          +------------------------------+\n                  LUME (pH ~ 5.5)\n```\n\n### Il Meccanismo del Ciclo-Q (Q-Cycle)\nIl trasferimento degli elettroni nel complesso $b_6f$ mediante il Ciclo-Q raddoppia l'efficienza della traslocazione protonica attraverso la membrana:\n1. Il primo $\\text{PQH}_2$ si lega al sito di ossidazione $Q_o$ rivolto verso il lume. Un elettrone va alla proteina Fe-S di Rieske e poi al **Citocromo $f$**, che lo cede alla **Plastocianina** ($\\text{PC}$). Il secondo elettrone va al **Citocromo $b_L$** e poi al **Citocromo $b_H$**, riducendo un chinone nel sito $Q_i$ a semi-chinone ($\\text{Q}^{\\bullet-}$).\n2. Un secondo $\\text{PQH}_2$ si ossida al sito $Q_o$. Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma.\n\n**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.\n\n## 2.3 Fotosistema I (PSI) e la Sintesi di NADPH\nLa Plastocianina ($\\text{PC}$), una metalloproteina solubile a rame situata nel lume, trasferisce l'elettrone al catione radicalico $P_{700}^+$ del **Fotosistema I** (PSI).\n\n1."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8412,
+       "text": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**. La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}3\\text{-cheto-}D\\text{-arabinitolo-}1,5\\text{-bisfosfato}$), che viene immediatamente scisso per via idrolitica in due molecole di **3-Fosfoglicerato** ($\\text{3-PGA}$, 3C):\n\n$$\\text{RuBP} (5C) + \\text{CO}_2 + \\text{H}_2\\text{O} \\xrightarrow{\\text{RuBisCO}} 2 \\times \\text{3-Fosfoglicerato} (3C)$$\n\n## 3.2 Fase 2: Riduzione del Carbonio\nLe molecole di 3-PGA prodotte vengono convertite in triosi fosfato mediante due reazioni enzimatiche sequenziali che consumano l'ATP e il NADPH generati nella fase luminosa:\n\n1. **Chinasi:** La *3-Fosfoglicerato Chinasi* trasferisce un gruppo fosfato dall'ATP al 3-PGA, formando **1,3-Bis-fosfoglicerato** ($\\text{1,3-BPGA}$):\n\n$$\\text{3-PGA} + \\text{ATP} \\rightarrow \\text{1,3-BPGA} + \\text{ADP}$$\n\n2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)* riduce l'1,3-BPGA utilizzando NADPH, generando **Gliceraldeide-3-fosfato** ($\\text{G3P}$) e rilascio di fosfato inorganico ($\\text{P}_i$):\n\n$$\\text{1,3-BPGA} + \\text{NADPH} + \\text{H}^+ \\rightarrow \\text{G3P} + \\text{NADP}^+ + \\text{P}_i$$\n\nLa G3P si trova in equilibrio isomerico con il **Diidrossiacetone fosfato** ($\\text{DHAP}$) tramite l'enzima *Trioso Fosfato Isomerasi*.\n\n## 3.3 Fase 3: Rigenerazione dell'Accettore (RuBP)\nPer consentire al ciclo di continuare, per ogni 3 molecole di $\\text{CO}_2$ fissate (che producono 6 molecole di G3P), 5 molecole di trioso fosfato ($5 \\times 3C = 15C$) devono essere riorganizzate strutturalmente per rigenerare 3 molecole di RuBP ($3 \\times 5C = 15C$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8264,
+       "text": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille).\n\n| Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale Primario |\n| :--- | :--- | :--- |\n| **Clorofilla a** | $430 \\text{ nm}$ (Soret), $662 \\text{ nm}$ (Qy) | Pigmento del centro di reazione ($P_{680}, P_{700}$) e complesso antenna |\n| **Clorofilla b** | $453 \\text{ nm}$ (Soret), $642 \\text{ nm}$ (Qy) | Pigmento antenna accessorio (amplia lo spettro utile) |\n| **$\\beta$-Carotene** | $450 - 480 \\text{ nm}$ | Protezione fotodinamica, quenching di sostanze reattive ($^1\\text{O}_2$) |\n| **Luteina / Violaxantina** | $400 - 500 \\text{ nm}$ | Dissipazione termica dell'energia in eccesso (Non-Photochemical Quenching, NPQ) |\n\n```\nStruttura della Clorofilla:\nAnello Porfirinico (Coordinante Mg2+) ---> Assorbimento Fotoni (Transizioni Pi -> Pi*)\n            |\n    Catena Fitolica (C20H39) ---------> Ancoraggio Idrofobico alla Membrana Tilacoidale\n```\n\n---\n\n# Capitolo 2: La Fase Luminosa e la Catena Trasportatrice di Elettroni\n\nLa fase luminosa della fotosintesi avviene nelle membrane tilacoidali e converte la luce in potere riducente ($\\text{NADPH}$) e potenziale di fosforilazione ($\\text{ATP}$).\n\n## 2.1 Fotosistema II (PSII) e Ossidazione dell'Acqua\nIl Fotosistema II è un supercomplesso multisubunitario dimerico pigmento-proteico (peso molecolare $> 700 \\text{ kDa}$).\n\n```\n[ Luce (hν) ] ---> LHCII ---> P680 ---> P680* ---> P680+ + e-\n                                                     |\n                                            (Accettore: Pheo)\n                                                     |\n                                                    QA\n                                                     |\n                                                    QB (Plastochinone ridotto a Plastochinolo)\n```\n\n1. **Eccitazione di P680:** Il centro di reazione del PSII, denominato $P_{680}$ (una coppia speciale di molecole di clorofilla *a*), assorbe energia di risonanza eccitonica trasdotta dalle antenne e passa allo stato di eccitazione $P_{680}^*$.\n2. **Separazione di Carica Primaria:** $P_{680}^*$ dona un elettrone alla **Feofitina** ($\\text{Pheo}$), generando la coppia di separazione di carica $[P_{680}^+ \\text{Pheo}^-]$ entro $3 \\text{ picosecondi}$.\n3. **Flusso Elettronico Interno:** L'elettrone si sposta da $\\text{Pheo}^-$ verso un plastochinone saldamente legato ($\\text{Q}_A$) e successivamente a un plastochinone mobile ($\\text{Q}_B$). Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico.\n\n### Il Complesso di Evoluzione dell'Ossigeno (OEC)\nPer ripristinare l'elettrone perso e riportare $P_{680}^+$ al suo stato fondamentale $P_{680}$, interviene il **Complesso di Evoluzione dell'Ossigeno** ($\\text{OEC}$), contenente un cluster metallico tetranucleare di manganese e calcio ($\\text{Mn}_4\\text{CaO}_5$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8343,
+       "text": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8375,
+       "text": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GAPDH possiedono ponti disolfuro catalitici. Alla luce, il flusso elettronico del PSI riduce la Ferredossina, la quale dona elettroni alla *Ferredossina-Tioredossina Riduttasi* (FTR). La tioredossina ridotta spezza i ponti disolfuro intramolecolari degli enzimi target, attivandoli conformazionalmente.\n* **Variazioni Microambientali dello Stroma:** La fase luminosa provoca un efflusso di protoni dallo stroma al lume (innalzando il pH stromatico da $\\sim 7.0$ a $\\sim 8.0$) controbilanciato da un flusso compensatorio di $\\text{Mg}^{2+}$ dal lume allo stroma. Gli enzimi del ciclo C3 (in particolare la RuBisCO) hanno un optimum funzionale a pH $8.0$ e richiedono alti livelli di $\\text{Mg}^{2+}$.\n\n---\n\n# Capitolo 4: La Fotorespirazione e la Chimica della RuBisCO\n\n## 4.1 La Doppia Attività della RuBisCO\nL'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in grado di catalizzare una reazione concorrente di **ossigenazione** utilizzando $\\text{O}_2$ al posto di $\\text{CO}_2$.\n\n```\n                        +--- + CO2 ---> 2 x 3-PGA (3C) -------> [Ciclo di Calvin]\n                        |\n   RuBP (5C) + RuBisCO--|\n                        |\n                        +--- + O2 ----> 1 x 3-PGA (3C) + 1 x 2-Fosfoglicolato (2C)\n                                                                      |\n                                                                      v\n                                                           [Via della Fotorespirazione]\n```\n\n### La Reazione di Ossigenazione\nQuando $\\text{O}_2$ lega il sito attivo carbamillato della RuBisCO, il RuBP viene scisso in:\n* **1 molecola di 3-Fosfoglicerato (3C)** (che entra nel Ciclo C3).\n* **1 molecola di 2-Fosfoglicolato (2C)**, un metabolita tossico che inibisce enzimi chiave come la *trioso-fosfato isomerasi* e richiede un complesso processo di riciclo energeticamente oneroso. Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8437,
+       "text": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina. A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differenti in cooperazione biochimica: **Cloroplasto**, **Perossisoma** e **Mitocondrio**. ``` [ CLOROPLASTO ] 2-Fosfoglicolato (2C) ---> Glicolato (2C) | (Trasportatore) v [ PEROSSISOMA ] Glicolato + O2 ----------> Gliossilato + H2O2 ---> (Catalasi) ---> H2O + 1/2 O2 Gliossilato + Glutammato -> Glicina (2C) + 2-Ossoglutarato | (Trasportatore) v [ MITOCONDRIO ] 2 Glicina (2C) + NAD+ ---> Serina (3C) + CO2 (perso!) + NH3 (perso!) + NADH | (Trasportatore) v [ PEROSSISOMA ] Serina ------------------> Idrossipiruvato ---> Glicerato (3C) | (Trasportatore) v [ CLOROPLASTO ] Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3 ``` ### Bilancio Stechiometrico e Costo Energetico Per recuperare due molecole di fosfoglicolato ($4C$), il ciclo fotorespiratorio spende energia e rilascia carbonio già fissato: * **Stechiometria:** $2 \\text{ Fosfoglicolato} (4C) \\rightarrow 1 \\text{ 3-PGA} (3C) + 1 \\text{ CO}_2 (1C) + 1 \\text{ NH}_3$. * Viene perso il **25% del carbonio** inizialmente canalizzato nella via fotosintetica. * Vengono consumati **ATP** extra (per la ri-fosforilazione del glicerato a 3-PGA e la ri-assimilazione dell'ammoniaca $\\text{NH}_3$ nel ciclo GS-GOGAT) e potere riducente. ## 4.3 Significato Fisiologico della Fotorespirazione Sebbene storicamente considerata un \"errore evolutivo\" dovuto alle origini della RuBisCO in un'atmosfera primordiale anossica ricca di $\\text{CO}_2$, la fotorespirazione assolve a funzioni vitali: 1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII. 2. **Metabolismo dell'Azoto:** È strettamente interconnessa all'assimilazione dei nitrati e alla sintesi degli amminoacidi (Glicina e Serina). --- # Capitolo 5: Adattamenti Ecofisiologici: Vie C4 e CAM Per minimizzare il costo della fotorespirazione in ambienti caldi, aridi o a bassa disponibilità di $\\text{CO}_2$, alcune angiosperme hanno evoluto meccanismi di **pompa di carbonio inorganico**. ## 5.1 La Fotosintesi C4 ### Anatomia di Kranz e Separazione Spaziale Le piante C4 (es. *Zea mays*, *Sorghum bicolor*, *Saccharum officinarum*) presentano una specializzazione anatomica nota come"
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8389,
+       "text": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differenti in cooperazione biochimica: **Cloroplasto**, **Perossisoma** e **Mitocondrio**. ``` [ CLOROPLASTO ] 2-Fosfoglicolato (2C) ---> Glicolato (2C) | (Trasportatore) v [ PEROSSISOMA ] Glicolato + O2 ----------> Gliossilato + H2O2 ---> (Catalasi) ---> H2O + 1/2 O2 Gliossilato + Glutammato -> Glicina (2C) + 2-Ossoglutarato | (Trasportatore) v [ MITOCONDRIO ] 2 Glicina (2C) + NAD+ ---> Serina (3C) + CO2 (perso!) + NH3 (perso!) + NADH | (Trasportatore) v [ PEROSSISOMA ] Serina ------------------> Idrossipiruvato ---> Glicerato (3C) | (Trasportatore) v [ CLOROPLASTO ] Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3 ``` ### Bilancio Stechiometrico e Costo Energetico Per recuperare due molecole di fosfoglicolato ($4C$), il ciclo fotorespiratorio spende energia e rilascia carbonio già fissato: * **Stechiometria:** $2 \\text{ Fosfoglicolato} (4C) \\rightarrow 1 \\text{ 3-PGA} (3C) + 1 \\text{ CO}_2 (1C) + 1 \\text{ NH}_3$. * Viene perso il **25% del carbonio** inizialmente canalizzato nella via fotosintetica. * Vengono consumati **ATP** extra (per la ri-fosforilazione del glicerato a 3-PGA e la ri-assimilazione dell'ammoniaca $\\text{NH}_3$ nel ciclo GS-GOGAT) e potere riducente. ## 4.3 Significato Fisiologico della Fotorespirazione Sebbene storicamente considerata un \"errore evolutivo\" dovuto alle origini della RuBisCO in un'atmosfera primordiale anossica ricca di $\\text{CO}_2$, la fotorespirazione assolve a funzioni vitali: 1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII. 2. **Metabolismo dell'Azoto:** È strettamente interconnessa all'assimilazione dei nitrati e alla sintesi degli amminoacidi (Glicina e Serina). --- # Capitolo 5: Adattamenti Ecofisiologici: Vie C4 e CAM Per minimizzare il costo della fotorespirazione in ambienti caldi, aridi o a bassa disponibilità di $\\text{CO}_2$, alcune angiosperme hanno evoluto meccanismi di **pompa di carbonio inorganico**. ## 5.1 La Fotosintesi C4 ### Anatomia di Kranz e Separazione Spaziale Le piante C4 (es. *Zea mays*, *Sorghum bicolor*, *Saccharum officinarum*) presentano una specializzazione anatomica nota come **Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) | | v | | Malato (4C) ---------+-----\\ (Plasmodesmi) +-----------------------+ \\ v +--------------------------------+ | CELLULE DELLA GUAINA DEL FASCIO| | | | Malato (4C) | | | (Enzima Malico) | | v | | Piruvato (3C) + CO2 (ALTA CONC!) | | | | | v v | | Piruvato Ciclo C3 | | (torna al (RuBisCO senza | | mesofillo) fotorespirazione)| +--------------------------------+ ``` ### Meccanismo Biochimico C4 1. **Nel Mesofillo:** L'anidride carbonica viene convertita in bicarbonato ($\\text{HCO}_3^-$) dalla *Anidrasi Carbonica*."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8375,
+       "text": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente.\n* **Fase Diurna:** Gli stomi rimangono ermeticamente chiusi. L'acido malico esce dal vacuolo verso il citosol e viene decarbossilato. L'elevata pressione parziale interna di $\\text{CO}_2$ alimenta il ciclo di Calvin catalizzato dalla RuBisCO alla luce, prevenendo sia la perdita d'acqua sia la fotorespirazione.\n\n## 5.3 Confronto Fisiologico ed Ecologico tra Vie Fotosintetiche\n\n| Parametro Fisiologico | Piante C3 | Piante C4 | Piante CAM |\n| :--- | :--- | :--- | :--- |\n| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Temporale (Notte / Giorno) |\n| **Primo accettore di $\\text{CO}_2$** | RuBP (5C) | PEP (3C) | PEP (3C) |\n| **Primo prodotto stabile** | 3-PGA (3C) | Ossalacetato (4C) | Ossalacetato (4C) |\n| **Enzima di prima fissazione** | RuBisCO | PEP-Carbossilasi | PEP-Carbossilasi |\n| **Anatomia della foglia** | Mesofillo a palizzata/spugnoso | Anatomia di Kranz | Parenchima succulento |\n| **Fotorespirazione** | Fino al 25-30% del fissato | Trascurabile / Assente | Molto ridotta |\n| **Efficienza dell'Uso dell'Acqua (WUE)** | Bassa ($1-3 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) | Media ($4-8 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) | Altissima ($10-50 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) |\n| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ | $30 - 40^\\circ\\text{C}$ (Notte fredda) |\n| **Costo Energetico ($\\text{ATP}:\\text{NADPH}$ per $\\text{CO}_2$)** | $3 : 2$ | $5 : 2$ | $5.5 - 6.5 : 2$ |\n| **Esempi Rappresentativi** | Grano, Riso, Soia, Betulla | Mais, Canna da Zucchero, Sorgo | Ananas, Cactus, Orchidee, Agave |\n\n---\n\n# Bibliografia e Fonti Consultate\n1. Taiz, L., Zeiger, E., Møller, I. M., & Murphy, A. (2018). *Plant Physiology and Development* (6th ed.). Sinauer Associates / Oxford University Press.\n2. Nelson, D. L., & Cox, M. M. (2021). *Lehninger Principles of Biochemistry* (8th ed.). W. H. Freeman and Company.\n3. Blankenship, R. E. (2021). *Molecular Mechanisms of Photosynthesis* (3rd ed.). Wiley-Blackwell.\n4. Buchanan, B. B., Gruissem, W., & Jones, R. L."
+      }
+     ],
+     "web_results": []
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r18_prompt_q3.txt",
+    "sidecar_len": 0,
+    "n_messages": 6,
+    "ctx_blocks_n": 4,
+    "ctx_text_len": 706
+   },
+   "output": {
+    "file": "qa/tmp/f0r18_raw_q3.txt",
+    "raw_full": "Dai tuoi materiali emerge solo questo: La fotosintesi è spesso paragonata a un **fotolubrizzo** che produce ossigeno e glucosio, ma in realtà il meccanismo è molto più complesso. Puoi pensare alla fotosintesi come a un **progettaio energetico** che:\n1.  Usa la luce come risorsa primaria.\n2.  Usa l'acqua come risorsa secondaria.\n3.  Produce sia una nuova energia (glucosio) che un rifiuto (ossigeno).\n\nSe parliamo della produzione di ossigeno, il punto è che le piante **emettono** ossigeno come effetto collaterali, non come obiettivo primario. Questo è un fatto importante per la vita a livello di pianeta, non solo per l'albero.\n\nUn'altra prospettiva è **puntuale**: la fotosintesi è la base della vita fotosintitica. Senza di essa, l'ossigeno che respirammo sarebbe molto meno disponibile.\n\nUn'affermazione tecnica che può aiutare a comprendere meglio la prospettiva è: *la fotosintesi è un processo endergono che richiede energia luminosa, producendo ossigeno e energia chimica per il metabolismo della pianta*.",
+    "words": 152
+   },
+   "intent_classificato": {
+    "intent": "sotto-domanda",
+    "rule": "ref=questa,parlami meglio,meglio di",
+    "similarity": 0.8471,
+    "sim_metric": "embedding"
+   },
+   "f0_2": {
+    "classificazione": "NA (termine assente dall'output)",
+    "evidenza_per_termine": {
+     "nitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "azoto": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "nitrati": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "denitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     }
+    },
+    "termini_in_output": [],
+    "via_cache": false,
+    "notes": []
+   }
+  },
+  {
+   "case": "q4",
+   "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+   "history_turns_n": 6,
+   "web_override": "auto",
+   "llm_calls": 4,
+   "total_ms": 48512.15,
+   "first_progress_ms": 2.64,
+   "first_token_ms": 2532.43,
+   "n_tokens": 405,
+   "text_len": 1343,
+   "source": "locale",
+   "error": null,
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 5.87,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.11,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 2.8,
+     "note": "esito=parziale top=0.861"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 2516.97,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 45977.94,
+     "note": "1 chiamata generate_stream"
+    }
+   ],
+   "sources_events": [
+    {
+     "items_n": 6,
+     "stages": [
+      "appunti"
+     ],
+     "items": [
+      {
+       "stage": "appunti",
+       "title": "fotosintesi_clorofilliana_universitario.md",
+       "url": "",
+       "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+      },
+      {
+       "stage": "web",
+       "title": "Ossigeno - Enciclopedia - Treccani",
+       "url": "https://www.treccani.it/enciclopedia/ossigeno_(Enciclopedia-dei-ragazzi)/",
+       "source": "https://www.treccani.it/enciclopedia/ossigeno_(Enciclopedia-dei-ragazzi)/"
+      },
+      {
+       "stage": "web",
+       "title": "Ossigeno - Enciclopedia - Treccani",
+       "url": "https://www.treccani.it/enciclopedia/ossigeno_(Universo-del-Corpo)/",
+       "source": "https://www.treccani.it/enciclopedia/ossigeno_(Universo-del-Corpo)/"
+      },
+      {
+       "stage": "web",
+       "title": "L'apparato respiratorio nell'uomo: Circolazione e ... - Sapere.it",
+       "url": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/Organizzazione-e-funzioni-degli-organismi/Circolazione-e-respirazione/L-apparato-respiratorio-nell-uomo.html",
+       "source": "https://www.sapere.it/sapere/strumenti/studiafacile/biologia/Organizzazione-e-funzioni-degli-organismi/Circolazione-e-respirazione/L-apparato-respiratorio-nell-uomo.html"
+      },
+      {
+       "stage": "web",
+       "title": "Ossigeno - Enciclopedia - Treccani",
+       "url": "https://www.treccani.it/enciclopedia/ossigeno/",
+       "source": "https://www.treccani.it/enciclopedia/ossigeno/"
+      },
+      {
+       "stage": "web",
+       "title": "Respirazione - Enciclopedia - Treccani",
+       "url": "https://www.treccani.it/enciclopedia/respirazione/",
+       "source": "https://www.treccani.it/enciclopedia/respirazione/"
+      }
+     ]
+    }
+   ],
+   "provenienza_emessa": [
+    "appunti"
+   ],
+   "router_decision": {
+    "semantic": [
+     {
+      "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+      "use_rag": true,
+      "sim_rag": 0.8154866099357605,
+      "sim_no_rag": 0.7955244183540344
+     }
+    ],
+    "gates": [
+     {
+      "outcome": "parziale",
+      "threshold": 0.7,
+      "top_score": 0.6502,
+      "reason": "causa=sotto_soglia;score=0.6502;vec=0.8615;fts=0.2302;lex=0.3333;soglia=0.7000;web=non tentato",
+      "stages_probed": [
+       "appunti"
+      ],
+      "web_attempted": false,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8615,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8587,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\tex"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8489,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.855,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8406,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GA"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8516,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica del"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8439,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8528,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8412,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8382,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consuma"
+       }
+      ],
+      "near_miss": [
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       }
+      ]
+     },
+     {
+      "outcome": "parziale",
+      "threshold": 0.7,
+      "top_score": 0.6502,
+      "reason": "causa=sotto_soglia;score=0.6502;vec=0.8615;fts=0.2302;lex=0.3333;soglia=0.7000;web=tentato",
+      "stages_probed": [
+       "appunti",
+       "web"
+      ],
+      "web_attempted": true,
+      "fused_n": 10,
+      "fused": [
+       {
+        "stage": "appunti",
+        "score": 0.8615,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8587,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\tex"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8489,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito "
+       },
+       {
+        "stage": "appunti",
+        "score": 0.855,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8406,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GA"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8516,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica del"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8439,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8528,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma pe"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8412,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\t"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.8382,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+        "text_head": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consuma"
+       }
+      ],
+      "near_miss": [
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       },
+       {
+        "stage": "appunti",
+        "score": 0.4,
+        "source": "rogetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+       }
+      ]
+     }
+    ],
+    "context_kind": [
+     "locale"
+    ],
+    "cache_branch": false
+   },
+   "stadi": {
+    "interrogati": [
+     "appunti",
+     "libri",
+     "web"
+    ],
+    "contribuenti": {
+     "appunti": {
+      "n": 10,
+      "sopra_soglia_gate": 10,
+      "sopra_forte_045": 10,
+      "max_sim": 0.8615
+     }
+    }
+   },
+   "cache_delta": {
+    "answer_cache_get": [
+     {
+      "key": "430d3edca7769a253f5350a03b814ab729a62cbc",
+      "hit": false,
+      "rec_query": null,
+      "rec_text_head": ""
+     }
+    ],
+    "aicache_get_calls": 0,
+    "delta_reuse_nel_path_chat": false,
+    "branch": "pipeline"
+   },
+   "web": {
+    "circuit_breaker": {
+     "presente": false,
+     "chiavi_trovate": [],
+     "nota": "nessun circuit-breaker nel codice: lo short-circuit avviene pre-tentativo (gate piena -> escalate [] senza HTTP; WEB_STAGE_ENTRY_S=6s -> web saltato)"
+    },
+    "escalate_calls": [
+     {
+      "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+      "gate_outcome": "parziale",
+      "mode": "auto",
+      "n_results": 5
+     }
+    ],
+    "search_web_calls": [
+     {
+      "query": "voglio approfondire la parte di come viene rilasciato l'ossigeno",
+      "max_results": 5,
+      "n_results": 5,
+      "ms": 2516.92
+     }
+    ],
+    "net_log_n": 6,
+    "net_log": [
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=voglio%20approfondire%20la%20parte%20di%20come%20viene%20rilasciato%20l%27ossigeno&limit=5",
+      "ms": 787.3,
+      "ok": true,
+      "n": 4,
+      "note": "titoli [it]"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Episodi_di_Criminal_Minds_%28sedicesima_stagione%29",
+      "ms": 416.1,
+      "ok": true,
+      "n": 1,
+      "note": "summary [it]"
+     },
+     {
+      "provider": "ddgs",
+      "url": "ddgs://text?q=voglio approfondire la parte di come viene rilasciato l'ossigeno (site:treccani.it OR site:sapere.it OR site:britannica.",
+      "ms": 1301.1,
+      "ok": true,
+      "n": 5,
+      "note": "trusted batch (6 domini)"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Stella",
+      "ms": 443.4,
+      "ok": true,
+      "n": 1,
+      "note": "summary [it]"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Clima_di_Marte",
+      "ms": 409.3,
+      "ok": true,
+      "n": 1,
+      "note": "summary [it]"
+     },
+     {
+      "provider": "wikipedia",
+      "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Albi_di_PK_-_Paperinik_New_Adventures",
+      "ms": 450.6,
+      "ok": true,
+      "n": 1,
+      "note": "summary [it]"
+     }
+    ],
+    "ultimo_errore": null,
+    "short_circuit_pretentativo": {
+     "web_progress": [
+      {
+       "stage": "web",
+       "status": "start",
+       "ms": 0.0,
+       "note": "interrogo lo stadio web (W)"
+      },
+      {
+       "stage": "web",
+       "status": "done",
+       "ms": 2516.97,
+       "note": "5 risultati web fusi"
+      }
+     ],
+     "escalate_chiamato": true,
+     "search_web_chiamato_http": true,
+     "tipo": "nessuno"
+    }
+   },
+   "chunk_dati_al_modello": [
+    {
+     "call": 1,
+     "context_kind": "locale",
+     "chitchat": false,
+     "local_chunks": [
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8615,
+       "text": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) | | v | | Malato (4C) ---------+-----\\ (Plasmodesmi) +-----------------------+ \\ v +--------------------------------+ | CELLULE DELLA GUAINA DEL FASCIO| | | | Malato (4C) | | | (Enzima Malico) | | v | | Piruvato (3C) + CO2 (ALTA CONC!) | | | | | v v | | Piruvato Ciclo C3 | | (torna al (RuBisCO senza | | mesofillo) fotorespirazione)| +--------------------------------+ ``` ### Meccanismo Biochimico C4 1. **Nel Mesofillo:** L'anidride carbonica viene convertita in bicarbonato ($\\text{HCO}_3^-$) dalla *Anidrasi Carbonica*. L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$\n\n*La PEPCase ha un'affinità altissima per $\\text{HCO}_3^-$ e **nessuna affinità per l'ossigeno** ($\\text{O}_2$), eliminando la competizione all'origine.*\n\n2. **Trasporto:** L'ossalacetato viene ridotto a **Malato** (o transaminato ad Aspartato) e diffonde attraverso i plasmodesmi verso le **cellule della guaina del fascio**.\n3. **Decarbossilazione nella Guaina:** Il malato viene decarbossilato liberando alta concentrazione di $\\text{CO}_2$ ($\\sim 10-20$ volte superiore a quella atmosferica) direttamente attorno alla RuBisCO."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8587,
+       "text": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C):\n\n$$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (4C) + \\text{P}_i$$\n\n*La PEPCase ha un'affinità altissima per $\\text{HCO}_3^-$ e **nessuna affinità per l'ossigeno** ($\\text{O}_2$), eliminando la competizione all'origine.*\n\n2. **Trasporto:** L'ossalacetato viene ridotto a **Malato** (o transaminato ad Aspartato) e diffonde attraverso i plasmodesmi verso le **cellule della guaina del fascio**.\n3. **Decarbossilazione nella Guaina:** Il malato viene decarbossilato liberando alta concentrazione di $\\text{CO}_2$ ($\\sim 10-20$ volte superiore a quella atmosferica) direttamente attorno alla RuBisCO. La RuBisCO lavora così vicino alla sua velocità massima di saturazione ($V_{\\max}$), sopprimendo quasi del tutto l'attività ossigenasica.\n4. **Riciclo:** Il Piruvato (3C) generato torna al mesofillo, dove viene riconvertito in PEP dall'enzima *Piruvato-Fosfato Dichinasi* (PPDK), con consumo di 2 equivalenti di ATP (ATP $\\rightarrow$ AMP).\n\n## 5.2 La Fotosintesi CAM (Crassulacean Acid Metabolism)\n\n### Separazione Temporale della Fissazione del Carbonio\nLe piante CAM (es. *Ananas comosus*, *Agave*, Cactaceae) vivono in ambienti estremamente aridi e risolvono il dilemma fotosintetico/idrico separando i processi temporalmente nello stesso tipo cellulare.\n\n```\n+-------------------------------------------------------------------------+\n| NOTTE: Stomi APERTI (Bassa Traspirazione)                               |\n|                                                                         |\n| CO2 Atmosferica ---> HCO3- + PEP ---> Ossalacetato ---> Malato (4C)     |\n|                                                          |              |\n|                                                          v              |\n|                                             [ Accumulo nel VACUOLO ]    |\n|                                              (Acido Malico / pH basso)  |\n+-------------------------------------------------------------------------+\n| GIORNO: Stomi CHIUSI (Conservazione Acqua)                              |\n|                                                                         |\n| [ Vacuolo ] ---> Rilascio Malato ---> Decarbossilazione Citosolica     |\n|                                                  |                      |\n|                                    +-------------+-------------+        |\n|                                    |                           |        |\n|                                    v                           v        |\n|                            CO2 Intracellulare             Piruvato (3C) |\n|                                    |                           |        |\n|                                    v                           v        |\n|                              Ciclo C3 (RuBisCO)          Sintesi Amido  |\n+-------------------------------------------------------------------------+\n```\n\n### Fasi del Metabolismo CAM\n* **Fase Notturna:** Gli stomi si aprono per assorbire $\\text{CO}_2$ riducendo la perdita d'acqua per traspirazione. La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente.\n* **Fase Diurna:** Gli stomi rimangono ermeticamente chiusi. L'acido malico esce dal vacuolo verso il citosol e viene decarbossilato."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8489,
+       "text": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico.\n\n### Il Complesso di Evoluzione dell'Ossigeno (OEC)\nPer ripristinare l'elettrone perso e riportare $P_{680}^+$ al suo stato fondamentale $P_{680}$, interviene il **Complesso di Evoluzione dell'Ossigeno** ($\\text{OEC}$), contenente un cluster metallico tetranucleare di manganese e calcio ($\\text{Mn}_4\\text{CaO}_5$). Il meccanismo di ossidazione dell'acqua segue il **Ciclo di Kok** (Stati $S_0, S_1, S_2, S_3, S_4$):\n\n$$2\\text{H}_2\\text{O} \\xrightarrow{4\\,h\\nu} \\text{O}_2 + 4\\text{H}^+_{\\text{lume}} + 4e^-$$\n\nUn residuo tirosinico redox-attivo ($Y_Z$, Tyrosine-161 della subunità D1) media il trasferimento sequenziale degli elettroni dal cluster $\\text{Mn}_4\\text{CaO}_5$ al catione radicalico $P_{680}^+$.\n\n## 2.2 Il Complesso del Citocromo $b_6f$ e il Ciclo-Q\nIl plastochinolo ($\\text{PQH}_2$) diffonde all'interno della membrana tilacoidale e dona i suoi elettroni al **Complesso del Citocromo $b_6f$**. Questo complesso omodimerico funge da ponte elettrochimico tra il PSII e il PSI.\n\n```\n                  STROMA (pH ~ 8)\n          +------------------------------+\n          |    (2 H+ consumati/ciclo)     |\n          |       /              \\       |\n     [Cyt b6f Complex]        [Cyt b6f]  |\n          |       \\              /       |\n          |    (4 H+ rilasciati/ciclo)   |\n          +------------------------------+\n                  LUME (pH ~ 5.5)\n```\n\n### Il Meccanismo del Ciclo-Q (Q-Cycle)\nIl trasferimento degli elettroni nel complesso $b_6f$ mediante il Ciclo-Q raddoppia l'efficienza della traslocazione protonica attraverso la membrana:\n1. Il primo $\\text{PQH}_2$ si lega al sito di ossidazione $Q_o$ rivolto verso il lume. Un elettrone va alla proteina Fe-S di Rieske e poi al **Citocromo $f$**, che lo cede alla **Plastocianina** ($\\text{PC}$). Il secondo elettrone va al **Citocromo $b_L$** e poi al **Citocromo $b_H$**, riducendo un chinone nel sito $Q_i$ a semi-chinone ($\\text{Q}^{\\bullet-}$).\n2. Un secondo $\\text{PQH}_2$ si ossida al sito $Q_o$. Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma.\n\n**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.\n\n## 2.3 Fotosistema I (PSI) e la Sintesi di NADPH\nLa Plastocianina ($\\text{PC}$), una metalloproteina solubile a rame situata nel lume, trasferisce l'elettrone al catione radicalico $P_{700}^+$ del **Fotosistema I** (PSI).\n\n1."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.855,
+       "text": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina. A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differenti in cooperazione biochimica: **Cloroplasto**, **Perossisoma** e **Mitocondrio**. ``` [ CLOROPLASTO ] 2-Fosfoglicolato (2C) ---> Glicolato (2C) | (Trasportatore) v [ PEROSSISOMA ] Glicolato + O2 ----------> Gliossilato + H2O2 ---> (Catalasi) ---> H2O + 1/2 O2 Gliossilato + Glutammato -> Glicina (2C) + 2-Ossoglutarato | (Trasportatore) v [ MITOCONDRIO ] 2 Glicina (2C) + NAD+ ---> Serina (3C) + CO2 (perso!) + NH3 (perso!) + NADH | (Trasportatore) v [ PEROSSISOMA ] Serina ------------------> Idrossipiruvato ---> Glicerato (3C) | (Trasportatore) v [ CLOROPLASTO ] Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3 ``` ### Bilancio Stechiometrico e Costo Energetico Per recuperare due molecole di fosfoglicolato ($4C$), il ciclo fotorespiratorio spende energia e rilascia carbonio già fissato: * **Stechiometria:** $2 \\text{ Fosfoglicolato} (4C) \\rightarrow 1 \\text{ 3-PGA} (3C) + 1 \\text{ CO}_2 (1C) + 1 \\text{ NH}_3$. * Viene perso il **25% del carbonio** inizialmente canalizzato nella via fotosintetica. * Vengono consumati **ATP** extra (per la ri-fosforilazione del glicerato a 3-PGA e la ri-assimilazione dell'ammoniaca $\\text{NH}_3$ nel ciclo GS-GOGAT) e potere riducente. ## 4.3 Significato Fisiologico della Fotorespirazione Sebbene storicamente considerata un \"errore evolutivo\" dovuto alle origini della RuBisCO in un'atmosfera primordiale anossica ricca di $\\text{CO}_2$, la fotorespirazione assolve a funzioni vitali: 1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII. 2. **Metabolismo dell'Azoto:** È strettamente interconnessa all'assimilazione dei nitrati e alla sintesi degli amminoacidi (Glicina e Serina). --- # Capitolo 5: Adattamenti Ecofisiologici: Vie C4 e CAM Per minimizzare il costo della fotorespirazione in ambienti caldi, aridi o a bassa disponibilità di $\\text{CO}_2$, alcune angiosperme hanno evoluto meccanismi di **pompa di carbonio inorganico**. ## 5.1 La Fotosintesi C4 ### Anatomia di Kranz e Separazione Spaziale Le piante C4 (es. *Zea mays*, *Sorghum bicolor*, *Saccharum officinarum*) presentano una specializzazione anatomica nota come"
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8406,
+       "text": "La sua attività è finemente regolata nel contesto cellulare da:\n* **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GAPDH possiedono ponti disolfuro catalitici. Alla luce, il flusso elettronico del PSI riduce la Ferredossina, la quale dona elettroni alla *Ferredossina-Tioredossina Riduttasi* (FTR). La tioredossina ridotta spezza i ponti disolfuro intramolecolari degli enzimi target, attivandoli conformazionalmente.\n* **Variazioni Microambientali dello Stroma:** La fase luminosa provoca un efflusso di protoni dallo stroma al lume (innalzando il pH stromatico da $\\sim 7.0$ a $\\sim 8.0$) controbilanciato da un flusso compensatorio di $\\text{Mg}^{2+}$ dal lume allo stroma. Gli enzimi del ciclo C3 (in particolare la RuBisCO) hanno un optimum funzionale a pH $8.0$ e richiedono alti livelli di $\\text{Mg}^{2+}$.\n\n---\n\n# Capitolo 4: La Fotorespirazione e la Chimica della RuBisCO\n\n## 4.1 La Doppia Attività della RuBisCO\nL'enzima RuBisCO è bifunzionale. Oltre alla reazione di carbossilazione, è in grado di catalizzare una reazione concorrente di **ossigenazione** utilizzando $\\text{O}_2$ al posto di $\\text{CO}_2$.\n\n```\n                        +--- + CO2 ---> 2 x 3-PGA (3C) -------> [Ciclo di Calvin]\n                        |\n   RuBP (5C) + RuBisCO--|\n                        |\n                        +--- + O2 ----> 1 x 3-PGA (3C) + 1 x 2-Fosfoglicolato (2C)\n                                                                      |\n                                                                      v\n                                                           [Via della Fotorespirazione]\n```\n\n### La Reazione di Ossigenazione\nQuando $\\text{O}_2$ lega il sito attivo carbamillato della RuBisCO, il RuBP viene scisso in:\n* **1 molecola di 3-Fosfoglicerato (3C)** (che entra nel Ciclo C3).\n* **1 molecola di 2-Fosfoglicolato (2C)**, un metabolita tossico che inibisce enzimi chiave come la *trioso-fosfato isomerasi* e richiede un complesso processo di riciclo energeticamente oneroso. Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da:\n\n$$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$\n\nDove $\\Omega$ è la **selettività della RuBisCO**, un parametro cinetico intrinseco della proteina."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8516,
+       "text": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfoglicolato in 3-PGA impegna tre compartimenti cellulari differenti in cooperazione biochimica: **Cloroplasto**, **Perossisoma** e **Mitocondrio**. ``` [ CLOROPLASTO ] 2-Fosfoglicolato (2C) ---> Glicolato (2C) | (Trasportatore) v [ PEROSSISOMA ] Glicolato + O2 ----------> Gliossilato + H2O2 ---> (Catalasi) ---> H2O + 1/2 O2 Gliossilato + Glutammato -> Glicina (2C) + 2-Ossoglutarato | (Trasportatore) v [ MITOCONDRIO ] 2 Glicina (2C) + NAD+ ---> Serina (3C) + CO2 (perso!) + NH3 (perso!) + NADH | (Trasportatore) v [ PEROSSISOMA ] Serina ------------------> Idrossipiruvato ---> Glicerato (3C) | (Trasportatore) v [ CLOROPLASTO ] Glicerato + ATP ---------> 3-PGA (3C) ---> Re-immesso nel Ciclo C3 ``` ### Bilancio Stechiometrico e Costo Energetico Per recuperare due molecole di fosfoglicolato ($4C$), il ciclo fotorespiratorio spende energia e rilascia carbonio già fissato: * **Stechiometria:** $2 \\text{ Fosfoglicolato} (4C) \\rightarrow 1 \\text{ 3-PGA} (3C) + 1 \\text{ CO}_2 (1C) + 1 \\text{ NH}_3$. * Viene perso il **25% del carbonio** inizialmente canalizzato nella via fotosintetica. * Vengono consumati **ATP** extra (per la ri-fosforilazione del glicerato a 3-PGA e la ri-assimilazione dell'ammoniaca $\\text{NH}_3$ nel ciclo GS-GOGAT) e potere riducente. ## 4.3 Significato Fisiologico della Fotorespirazione Sebbene storicamente considerata un \"errore evolutivo\" dovuto alle origini della RuBisCO in un'atmosfera primordiale anossica ricca di $\\text{CO}_2$, la fotorespirazione assolve a funzioni vitali: 1. **Fotoprotezione:** In condizioni di elevata irradianza e chiusura stomatica (es. stress idrico), funge da \"valvola di sfogo\" per dissipare l'eccesso di ATP e NADPH, prevenendo la fotoinibizione del PSII. 2. **Metabolismo dell'Azoto:** È strettamente interconnessa all'assimilazione dei nitrati e alla sintesi degli amminoacidi (Glicina e Serina). --- # Capitolo 5: Adattamenti Ecofisiologici: Vie C4 e CAM Per minimizzare il costo della fotorespirazione in ambienti caldi, aridi o a bassa disponibilità di $\\text{CO}_2$, alcune angiosperme hanno evoluto meccanismi di **pompa di carbonio inorganico**. ## 5.1 La Fotosintesi C4 ### Anatomia di Kranz e Separazione Spaziale Le piante C4 (es. *Zea mays*, *Sorghum bicolor*, *Saccharum officinarum*) presentano una specializzazione anatomica nota come **Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) | | v | | Malato (4C) ---------+-----\\ (Plasmodesmi) +-----------------------+ \\ v +--------------------------------+ | CELLULE DELLA GUAINA DEL FASCIO| | | | Malato (4C) | | | (Enzima Malico) | | v | | Piruvato (3C) + CO2 (ALTA CONC!) | | | | | v v | | Piruvato Ciclo C3 | | (torna al (RuBisCO senza | | mesofillo) fotorespirazione)| +--------------------------------+ ``` ### Meccanismo Biochimico C4 1. **Nel Mesofillo:** L'anidride carbonica viene convertita in bicarbonato ($\\text{HCO}_3^-$) dalla *Anidrasi Carbonica*."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8439,
+       "text": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente.\n* **Fase Diurna:** Gli stomi rimangono ermeticamente chiusi. L'acido malico esce dal vacuolo verso il citosol e viene decarbossilato. L'elevata pressione parziale interna di $\\text{CO}_2$ alimenta il ciclo di Calvin catalizzato dalla RuBisCO alla luce, prevenendo sia la perdita d'acqua sia la fotorespirazione.\n\n## 5.3 Confronto Fisiologico ed Ecologico tra Vie Fotosintetiche\n\n| Parametro Fisiologico | Piante C3 | Piante C4 | Piante CAM |\n| :--- | :--- | :--- | :--- |\n| **Separazione delle fasi** | Nessuna | Spaziale (Mesofillo / Guaina) | Temporale (Notte / Giorno) |\n| **Primo accettore di $\\text{CO}_2$** | RuBP (5C) | PEP (3C) | PEP (3C) |\n| **Primo prodotto stabile** | 3-PGA (3C) | Ossalacetato (4C) | Ossalacetato (4C) |\n| **Enzima di prima fissazione** | RuBisCO | PEP-Carbossilasi | PEP-Carbossilasi |\n| **Anatomia della foglia** | Mesofillo a palizzata/spugnoso | Anatomia di Kranz | Parenchima succulento |\n| **Fotorespirazione** | Fino al 25-30% del fissato | Trascurabile / Assente | Molto ridotta |\n| **Efficienza dell'Uso dell'Acqua (WUE)** | Bassa ($1-3 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) | Media ($4-8 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) | Altissima ($10-50 \\text{ g } \\text{H}_2\\text{O}/\\text{g CO}_2$) |\n| **Temperatura Ottimale** | $15 - 25^\\circ\\text{C}$ | $30 - 45^\\circ\\text{C}$ | $30 - 40^\\circ\\text{C}$ (Notte fredda) |\n| **Costo Energetico ($\\text{ATP}:\\text{NADPH}$ per $\\text{CO}_2$)** | $3 : 2$ | $5 : 2$ | $5.5 - 6.5 : 2$ |\n| **Esempi Rappresentativi** | Grano, Riso, Soia, Betulla | Mais, Canna da Zucchero, Sorgo | Ananas, Cactus, Orchidee, Agave |\n\n---\n\n# Bibliografia e Fonti Consultate\n1. Taiz, L., Zeiger, E., Møller, I. M., & Murphy, A. (2018). *Plant Physiology and Development* (6th ed.). Sinauer Associates / Oxford University Press.\n2. Nelson, D. L., & Cox, M. M. (2021). *Lehninger Principles of Biochemistry* (8th ed.). W. H. Freeman and Company.\n3. Blankenship, R. E. (2021). *Molecular Mechanisms of Photosynthesis* (3rd ed.). Wiley-Blackwell.\n4. Buchanan, B. B., Gruissem, W., & Jones, R. L."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8528,
+       "text": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**. La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}3\\text{-cheto-}D\\text{-arabinitolo-}1,5\\text{-bisfosfato}$), che viene immediatamente scisso per via idrolitica in due molecole di **3-Fosfoglicerato** ($\\text{3-PGA}$, 3C):\n\n$$\\text{RuBP} (5C) + \\text{CO}_2 + \\text{H}_2\\text{O} \\xrightarrow{\\text{RuBisCO}} 2 \\times \\text{3-Fosfoglicerato} (3C)$$\n\n## 3.2 Fase 2: Riduzione del Carbonio\nLe molecole di 3-PGA prodotte vengono convertite in triosi fosfato mediante due reazioni enzimatiche sequenziali che consumano l'ATP e il NADPH generati nella fase luminosa:\n\n1. **Chinasi:** La *3-Fosfoglicerato Chinasi* trasferisce un gruppo fosfato dall'ATP al 3-PGA, formando **1,3-Bis-fosfoglicerato** ($\\text{1,3-BPGA}$):\n\n$$\\text{3-PGA} + \\text{ATP} \\rightarrow \\text{1,3-BPGA} + \\text{ADP}$$\n\n2. **Deidrogenasi:** La *Gliceraldeide-3-fosfato Deidrogenasi (NADP-dipendente)* riduce l'1,3-BPGA utilizzando NADPH, generando **Gliceraldeide-3-fosfato** ($\\text{G3P}$) e rilascio di fosfato inorganico ($\\text{P}_i$):\n\n$$\\text{1,3-BPGA} + \\text{NADPH} + \\text{H}^+ \\rightarrow \\text{G3P} + \\text{NADP}^+ + \\text{P}_i$$\n\nLa G3P si trova in equilibrio isomerico con il **Diidrossiacetone fosfato** ($\\text{DHAP}$) tramite l'enzima *Trioso Fosfato Isomerasi*.\n\n## 3.3 Fase 3: Rigenerazione dell'Accettore (RuBP)\nPer consentire al ciclo di continuare, per ogni 3 molecole di $\\text{CO}_2$ fissate (che producono 6 molecole di G3P), 5 molecole di trioso fosfato ($5 \\times 3C = 15C$) devono essere riorganizzate strutturalmente per rigenerare 3 molecole di RuBP ($3 \\times 5C = 15C$)."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8412,
+       "text": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP:\n\n$$\\text{ADP} + \\text{P}_i + n\\text{H}^+_{\\text{lume}} \\rightleftharpoons \\text{ATP} + \\text{H}_2\\text{O} + n\\text{H}^+_{\\text{stroma}}$$\n\nNegli organismi vegetali, il rapporto stechiometrico del rotore $c$ di $\\text{CF}_o$ richiede il passaggio di circa $4.67\\text{H}^+$ (ovvero 14 protoni per un giro completo di $360^\\circ$ della testa $\\text{CF}_1$, producendo $3 \\text{ ATP}$).\n\n---\n\n# Capitolo 3: La Fase Oscura (Ciclo di Calvin-Benson-Bassham)\n\nLa fase metabolica di assimilazione e riduzione del carbonio inorganico avviene interamente nello stroma ed è coordinata dal ciclo di **Calvin-Benson-Bassham (CBB)**.\n\n```\n                 3 x CO2 (1 Carbonio)\n                    |\n                    v  <--- RuBisCO (Carbossilazione)\n             3 x RuBP (5 Carboni)\n                    |\n                    v\n             6 x 3-PGA (3 Carboni)\n                    |\n                    +--- 6 ATP ---> 6 ADP\n                    |\n                    +--- 6 NADPH ---> 6 NADP+ + 6 Pi\n                    v\n             6 x G3P (3 Carboni)\n              /               \\\n             /                 \\\n  1 x G3P (Uscita)        5 x G3P (Rigenerazione)\n (Sintesi di Sucrosio      |  <--- 3 ATP ---> 3 ADP\n   o Amido)                v\n                          3 x RuBP (5 Carboni)\n```\n\n## 3.1 Fase 1: Carbossilazione Enzimatica\nIl punto di ingresso del carbonio è catalizzato dall'enzima **Ribulosio-1,5-bisfosfato Carbossilasi/Ossigenasi (RuBisCO)**."
+      },
+      {
+       "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+       "location_hint": "",
+       "similarity": 0.8382,
+       "text": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma.\n\n**Risultato Netto del Ciclo-Q:** Per ogni coppia di elettroni trasferita al Fotosistema I, **$4\\text{H}^+$ vengono pompati dallo stroma al lume tilacoidale**.\n\n## 2.3 Fotosistema I (PSI) e la Sintesi di NADPH\nLa Plastocianina ($\\text{PC}$), una metalloproteina solubile a rame situata nel lume, trasferisce l'elettrone al catione radicalico $P_{700}^+$ del **Fotosistema I** (PSI).\n\n1. Il pigmento antenna del PSI assorbe un fotone a $700 \\text{ nm}$, portando il centro di reazione a $P_{700}^*$.\n2. $P_{700}^*$ trasferisce l'elettrone attraverso una catena redox interna:\n   * **Monomero di Clorofilla $A_0$**\n   * **Fillochinone $A_1$ (Vitamina $K_1$)**\n   * **Centri Ferro-Zolfo ($F_X, F_A, F_B$)**\n3. Da $F_B$, l'elettrone passa alla **Ferredossina** ($\\text{Fd}$), una proteina idrofila contenente un cluster $[2\\text{Fe}-2\\text{S}]$ situata nello stroma.\n4. L'enzima **Ferredossina-NADP+ Riduttasi** ($\\text{FNR}$), una flavoproteina contenente FAD, catalizza la riduzione finale di due molecole di Ferredossina per produrre $\\text{NADPH}$:\n\n$$2\\text{Fd}_{\\text{rid}} + \\text{NADP}^+ + \\text{H}^+_{\\text{stroma}} \\xrightarrow{\\text{FNR}} 2\\text{Fd}_{\\text{oss}} + \\text{NADPH}$$\n\n## 2.4 Flusso Elettronico Ciclico (CEF)\nIn condizioni di elevata irradianza o elevata richiesta di ATP rispetto al NADPH per il ciclo di Calvin, si attiva il **Flusso Elettronico Ciclico**:\n- Gli elettroni provenienti da $\\text{Fd}_{\\text{rid}}$ non vengono ceduti alla FNR, ma sono reincanalati nel pool di plastochinoni tramite due vie alternative: la via **PGR5/PGRL1** o il complesso **NDH** (NADH Deidrogenasi-like).\n- Questo ciclo ricircola gli elettroni verso il complesso $b_6f$ e il PSI, generando un gradiente protonico ($\\Delta\\text{pH}$) e producendo **solo ATP**, senza accumulare ulteriore $\\text{NADPH}$.\n\n## 2.5 Fotofosforilazione e ATP Sintasi Plastidiale ($\\text{CF}_o\\text{CF}_1$)\nL'accumulo di protoni nel lume tilacoidale dovuto all'ossidazione dell'acqua e al Ciclo-Q genera una forza protomotrice ($\\text{PMF} = \\Delta\\Psi + \\frac{2.3 RT}{F}\\Delta\\text{pH}$). Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$)."
+      }
+     ],
+     "web_results": []
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r18_prompt_q4.txt",
+    "sidecar_len": 0,
+    "n_messages": 8,
+    "ctx_blocks_n": 4,
+    "ctx_text_len": 706
+   },
+   "output": {
+    "file": "qa/tmp/f0r18_raw_q4.txt",
+    "raw_full": "Dai tuoi materiali emerge solo questo: Per approfondire la parte di come viene rilasciato l'ossigeno, ecco i dettagli principali estratti dai materiali:\n\n**Il processo di rilascio dell'ossigeno**\n\nLa fotosintesi avviene in due fasi principali, che interagiscono nel processo di fotosintesi:\n\n1.  **La fase luminosa (anidra):** Il primo passo è la catena di trasformazioni che porta alla produzione di ossalacetato. Questo primo passaggio è fondamentale per la catena successiva.\n2.  **La fase non luminosa (dark):** In questa fase si avviene la riduzione dell'ossalacetato per ottenere il glucosio e l'ossigeno.\n\n**Il ruolo del complesso di legame**\n\nIl rilascio dell'ossigeno non avviene da un punto fisso. È legato alla **catena di legame** che si allunga e si riassolve. Questo meccanismo garantisce che il metabolismo sia continuo.\n\n**Il ruolo del sito di legame**\n\nIl sito di legame è il punto dove avviene la riduzione. L'ossigeno viene rilasciato direttamente da questo sito.\n\n**Il ruolo del bilatero lipidico**\n\nL'ossigeno viene rilasciato per integrarsi nel **bilatero lipidico** della cellula. Questo significa che l'ossigeno viene rilasciato a livello cellulare e poi accumulato nella membrana cellulare.\n\n---\n*Nota: La definizione è una sintesi tecnica. Per approfondire, è necessario consultare le fonti scientifiche appropriate.*",
+    "words": 194
+   },
+   "intent_classificato": {
+    "intent": "sotto-domanda",
+    "rule": "ref=di come,approfond,la parte",
+    "similarity": 0.8967,
+    "sim_metric": "embedding"
+   },
+   "f0_2": {
+    "classificazione": "NA (termine assente dall'output)",
+    "evidenza_per_termine": {
+     "nitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "azoto": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "nitrati": {
+      "in_output": false,
+      "in_chunk_dati": true,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     },
+     "denitrificazion": {
+      "in_output": false,
+      "in_chunk_dati": false,
+      "in_ctx_blocco": false,
+      "in_storia": false
+     }
+    },
+    "termini_in_output": [],
+    "via_cache": false,
+    "notes": []
+   }
+  }
+ ],
+ "f0_3_indice": {
+  "stores": {
+   "attivo_sqlite": {
+    "db": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db",
+    "rows": 17,
+    "unique_doc_hash": 17,
+    "dup_groups": [],
+    "per_document": [
+     {
+      "store": "vector_index",
+      "doc": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "righe": 17,
+      "hash_unici": 17,
+      "hash_ripetuti": {}
+     }
+    ],
+    "doc_versions": [
+     [
+      "vector_index",
+      "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+      2,
+      "2026-10-24T13:32:49.773008"
+     ],
+     [
+      "vector_index",
+      "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      43,
+      "2026-10-24T22:39:59.399545"
+     ],
+     [
+      "vector_index_books",
+      "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      20,
+      "2026-10-24T22:33:41.564173"
+     ]
+    ]
+   },
+   "chroma_locale": {
+    "presente": true,
+    "attivo": false,
+    "note": "backend attivo = sqlite; chroma = legacy migrato",
+    "embeddings": 34,
+    "hash_unici": 17,
+    "dup_hashes": {
+     "968015cb2d2f36cf": 2,
+     "c551cdc2b3cb4405": 2,
+     "646a742fa84f2901": 2,
+     "51ee0809ae7f9b72": 2,
+     "8aeb2718ffbf838e": 2,
+     "4ae6035c92f44c8c": 2,
+     "4a820651733c35f5": 2,
+     "833867f70e464a97": 2,
+     "911afa4c5710b5de": 2,
+     "9d975765ab0d5a5b": 2,
+     "df1593cfa9eeaac0": 2,
+     "073ca3e5be6cfdff": 2,
+     "7137aa71e7dd898b": 2,
+     "018b45ed49b4f797": 2,
+     "30fd2ad384512fb3": 2,
+     "af38c0dccae726e6": 2,
+     "84854d6efd810c94": 2
+    },
+    "source_files": [
+     "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\fotosintesi_clorofilliana_universitario.md",
+     "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    ]
+   },
+   "chroma_books": {
+    "presente": true,
+    "attivo": false,
+    "note": "backend attivo = sqlite; chroma = legacy migrato",
+    "embeddings": 0,
+    "hash_unici": 0,
+    "dup_hashes": {},
+    "source_files": []
+   }
+  },
+  "disco_copie_fotosintesi": [
+   "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\originals\\fotosintesi_clorofilliana_universitario.md",
+   "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+  ],
+  "fotosintesi_presenze_totali": 5
+ },
+ "f0_4_sintomi": [
+  {
+   "id": "S1",
+   "sintomo": "web non sempre tentato (short-circuit pre-tentativo gate piena/stadi lenti) + '[Web: non disponibile]' senza tentativo + provenienza da chunk sub-soglia",
+   "causa_radice": "want_web = auto solo se gate!=piena; skip R18 'stadi lenti'; informativa che usava _provenance_from_hits(near-miss)",
+   "fix": "B1.1 want_web=(web_mode!=mai) + rimossi skip libri/web; B1.2 circuit-breaker web_stage TTL60s con last_error {url,status,error,ts} SOLO da errore HTTP reale; B1.3 _provenance_contributing + informativa stages=[] -> 'nessuna fonte trovata' (FE)",
+   "sonda": "tests/testR18_pipeline.py::TestB1TreStadi (4 test) + testR15_pipe.test_05/testR15_web.test_auto_piena + QA-1 'web tentato' 9/9 + P8 'giu' solo post-errore 4/4"
+  },
+  {
+   "id": "S2",
+   "sintomo": "risposta fotosintesi con claim inesistente (azoto/nitrificazione), nessun vincolo di grounding",
+   "causa_radice": "nessun check tra generazione e consegna + modello2B che inventa + ereditarieta' dalla storia (F0.2 iii)",
+   "fix": "B2.1 grounding.run_check (profilo think, grammatica JSON {ok,violations[]},1 rigenerazione vincolata, persistenza -> limit_statement); B2.2 istruzione conflitto locale/web nel prompt; B2.3 sonde GT deterministiche",
+   "sonda": "tests/testR18_pipeline.py::TestGrounding (4 test) + QA-1 GT catena no-nitro 4/4 + dante/petrarca/boccaccio date3/3 PASS; RESIDUA: P1 GT co2 (1/88, BLOCKED 6/6)"
+  },
+  {
+   "id": "S3",
+   "sintomo": "cache/delta riusate senza intent + follow-up con query letterale + 'cos'è la fotosintesi?' classificata chat dal router 0-LLM (F0 tentativo1)",
+   "causa_radice": "nessun classificatore intent; AnswerCache.get senza gate; retrieval con frase letterale del follow-up; chit-chat decisa solo da regole H9",
+   "fix": "B3.1 core/rag/intent.py (4 classi, regole+embedding); B3.2 gate cache: riuso SOLO stessa-domanda-riformulata sim>=0.92 (basis=storia o chiave cache), ogni decisione in log_risposta.cache_decision; B3.3 expand_query per sotto-domanda; saluto-iniziale per il chit-chat",
+   "sonda": "tests/testR18_intent.py 12/12 + testR18_pipeline::TestCacheIntentAware (hit ammesso/bloccato/espanso) + QA-1: P3/P4 intent=sotto 2/2 con retrieval espanso 2/2; P9 chit-chat 0 retrieval"
+  },
+  {
+   "id": "S4",
+   "sintomo": "file fotosintesi presente3+ volte negli storage (attivo+chroma2path+disco2+doc_versions3 =5 presenze); nessun vincolo di unicita' su hash",
+   "causa_radice": "add_chunks inseriva anche per path diversi senza content_hash; top-k poteva contenere hash duplicati",
+   "fix": "B4 content_hash sha1 + indice ux_chunks_hash_doc + sweep idempotente in _ensure_schema + migrazione one-shot data/migrate_dedup.py + _dedup_hash_rows su query/fts (B4.5) + parity H1 confrontata su hash (migrate_real)",
+   "sonda": "tests/testR18_pipeline::TestIndiceDedup (2) + qa/r18_dedup_migration.json (prima17/dopo17,0 duplicati attivi, vincolo presente) + F0.3 audit (5 presenze complessive, chroma legacy17hashx2 non attivo) + testR13_rag 7/7 (parity sha OK)"
+  },
+  {
+   "id": "S5",
+   "sintomo": "risposte fattuali di poche parole (38-72 misurate in F0/QA tentativi1-2) + informativa con path/score/soglia/'Perche':'/badge in UI (msg123)",
+   "causa_radice": "nessun minimo di profondita' per intent; build_informativa stampava i dettagli del gate",
+   "fix": "B5.1 depth_check per intent (nuova>=120 o3 punti; sotto/riformulata>=80) con 1 rigenerazione vincolata; B5.2 build_informativa = frase onesta +3 suggerimenti (dettagli solo nei log) + FE 'nessuna fonte trovata'",
+   "sonda": "tests/testR18_pipeline::TestProfonditaEUm (3) + testR15_gate/testR16_gate/testR15_integration aggiornati al contratto umano + QA-1 profondita' 9/9 + P8/P informativa senza tecnicismi 4/4"
+  }
+ ],
+ "f0_2_chunk_vs_risposta": {
+  "metodo": "confronto tra (a) testo INTEGRALE dei chunk dell'indice (audit sqlite: solo2 chunk contengono 'azoto', entrambi in contesto di fotorespirazione/nitrati - NESSUNO afferma che la fotosintesi converte l'azoto), (b) testo integrale dei messaggi reali della catena (studioia.db messages id116-123 = screenshot), (c) decisioni cache (risposte.jsonl esito + AnswerCache chiave esatta + AiCache.get=0 nel path chat, misurato F0.1)",
+  "risposte": [
+   {
+    "n": 1,
+    "msg_id": 117,
+    "query": "cos'è la fotosintesi?",
+    "esito": "piena",
+    "source": "locale",
+    "stadi": [
+     "appunti"
+    ],
+    "errore": "converte l'azoto (nitrico) e l'ossigeno in ossigeno ... nitrizzione (N) convertito in nitrato dalla fotosintesi",
+    "classificazione": "(ii) distorsione del modello rispetto al chunk",
+    "evidenza": "i chunk top (definizione a pos0-950: 'anidride carbonica (CO2) e acqua') e i2 chunk con 'azoto' (fotorespirazione: NH3/nitrati, pos980+) NON contengono l'affermazione; termine-in-output con assenza nei chunk dati al modello"
+   },
+   {
+    "n": 2,
+    "msg_id": 119,
+    "query": "fammi un riassunto più preciso...",
+    "esito": "nulla(+web)",
+    "source": "web",
+    "errore": "ripete quasi verbatim 'convertire l'azoto (nitrato) e l'ossigeno in ossigeno'",
+    "classificazione": "(iii) ereditato - MECCANISMO: storia conversazionale (NON delta-reuse)",
+    "evidenza": "chiave answer_cache diversa (esito=pipeline, nessun HIT); AiCache.get=0 chiamate nel path chat (F0.1: delta_reuse=false); il claim arriva dal messaggio AI precedente incluso in history_turns del prompt"
+   },
+   {
+    "n": 3,
+    "msg_id": 121,
+    "query": "parlami meglio di questa...",
+    "esito": "chitchat (runA) / parziale (runB)",
+    "source": "nessuna",
+    "stadi": [],
+    "errore": "'nitrizzione (conversione di azoto in nitrato)' ancora presente",
+    "classificazione": "(iii) ereditato - storia conversazionale, con ZERO chunk freschi (sotto-domanda classificata chat dal router 0-LLM)",
+    "evidenza": "risposte.jsonl: esito=chitchat stadi=[] -> nessun retrieval; l'errore persiste solo per ereditarieta'"
+   },
+   {
+    "n": 4,
+    "msg_id": 123,
+    "query": "voglio approfondire la parte di come...",
+    "esito": "informativa",
+    "errore": "assente (termine non presente)",
+    "classificazione": "NA - errore non riprodotto",
+    "evidenza": "la risposta e' l'informativa tecnica pre-R18 (path/score/Perche'/[Web: non disponibile]) -> sintomi S5 e S1, nessun claim fattuale"
+   }
+  ],
+  "riproduzione_R18": "catena rieseguita in F0 (qa/f0_round18.json cases) e in QA-1 (qa/r18_qa1.json): su6 riproduzioni complete il claim nitrificazione/azoto-input NON e' mai ricomparso (0/4 per ripresa) - GT B2.3 no-nitro: PASS in tutti i run QA-1"
+ }
+}

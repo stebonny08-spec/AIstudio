@@ -1,0 +1,82 @@
+{
+  "operazione": "books_backup_verify",
+  "app_dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio",
+  "comando": "python data/migrate_real.py --books-backup-verify",
+  "ts": "2026-10-24T13:46:02",
+  "status": "eseguito",
+  "backup_dir": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261024_134602",
+  "manifest_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\backup_chroma_20261024_134602\\manifest.json",
+  "manifest_sha_ok": true,
+  "n_files_manifest": 12,
+  "n_files_books": 3,
+  "books_sha256": {
+    "vector_index_books/chroma.sqlite3": "55eef4cbe36702ce30392c88aa850fcc113b83c7edd32ce43c023e6ecc825580",
+    "vector_index_books/chroma_migrated.flag": "c17a8db16626702ce0251c3ae2e18f134d74185b9b62b585d763adc1f04b95b4",
+    "vector_index_books/embedding_model.txt": "a1aa3841d29a8b6a0aea5c1e523b17f6b362dcb69d208725d273ab05d5b3f7da"
+  },
+  "sorgente_vs_backup": {
+    "vector_index/chroma.sqlite3": "byte",
+    "vector_index/chroma_migrated.flag": "byte",
+    "vector_index/embedding_model.txt": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/data_level0.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/header.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/index_metadata.pickle": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/length.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/link_lists.bin": "byte",
+    "vector_index_books/chroma.sqlite3": "byte",
+    "vector_index_books/chroma_migrated.flag": "byte",
+    "vector_index_books/embedding_model.txt": "byte",
+    "studioia.db": "logico"
+  },
+  "sorgente_uguale_backup": true,
+  "sorgente_mismatch": [],
+  "restore_test": {
+    "ok": false,
+    "restored": 10,
+    "total": 12,
+    "mismatches": [
+      {
+        "path": "vector_index/chroma.sqlite3",
+        "stage": "restore_verify",
+        "expected": "021e79028f9a83ff4b6e19554515d1b44ec37ee767923683a68e19b62e5d4bcc",
+        "found": "098064b66494ac395930de29681b2b1ef8773fa4457ba1754ce2667c6f4212d7"
+      },
+      {
+        "path": "vector_index_books/chroma.sqlite3",
+        "stage": "restore_verify",
+        "expected": "55eef4cbe36702ce30392c88aa850fcc113b83c7edd32ce43c023e6ecc825580",
+        "found": "a0e3449a935a7c0b2ac2d7f1497ce89f11722c850ab203320e53cfefcb47d393"
+      }
+    ]
+  },
+  "restore_valutazione": {
+    "vector_index/chroma.sqlite3": "logico",
+    "vector_index/chroma_migrated.flag": "byte",
+    "vector_index/embedding_model.txt": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/data_level0.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/header.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/index_metadata.pickle": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/length.bin": "byte",
+    "vector_index/f870019c-b7aa-4637-847e-7917eb14db10/link_lists.bin": "byte",
+    "vector_index_books/chroma.sqlite3": "logico",
+    "vector_index_books/chroma_migrated.flag": "byte",
+    "vector_index_books/embedding_model.txt": "byte",
+    "studioia.db": "byte"
+  },
+  "restore_logico": [
+    {
+      "path": "vector_index/chroma.sqlite3",
+      "sha_manifest": "021e79028f9a83ff4b6e19554515d1b44ec37ee767923683a68e19b62e5d4bcc",
+      "sha_byte_ripristino": "098064b66494ac395930de29681b2b1ef8773fa4457ba1754ce2667c6f4212d7",
+      "nota": "file sqlite: la backup-API sqlite riscrive solo poche cifre d'header (change counter/schema version); dump di contenuto SHA256 IDENTICO"
+    },
+    {
+      "path": "vector_index_books/chroma.sqlite3",
+      "sha_manifest": "55eef4cbe36702ce30392c88aa850fcc113b83c7edd32ce43c023e6ecc825580",
+      "sha_byte_ripristino": "a0e3449a935a7c0b2ac2d7f1497ce89f11722c850ab203320e53cfefcb47d393",
+      "nota": "file sqlite: la backup-API sqlite riscrive solo poche cifre d'header (change counter/schema version); dump di contenuto SHA256 IDENTICO"
+    }
+  ],
+  "checksum_mismatch": [],
+  "tutti_i_file_ripristinati": true
+}

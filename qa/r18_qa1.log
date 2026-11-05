@@ -1,0 +1,110 @@
+[19:32:19] === QA-1 R18 (sonde reali) ===
+[19:32:31] warmup ok in 11943ms backend=sidecar
+[19:32:31] --- P1_catena: cos'è la fotosintesi?
+[19:34:41] --- P2_catena: fammi un riassunto più preciso e puntuale
+[19:36:21] --- P3_catena: parlami meglio di questa produzione di ossigeno
+[19:38:11] --- P4_catena: voglio approfondire la parte di come viene rilasciato l'ossigeno
+[19:40:21] --- P5-P7 verticali web
+[19:44:56] --- P8 solo-web con rete giu'
+[19:44:56] --- P9 chit-chat
+[19:45:07] ASSERT P1_catena (cos'è la fotosintesi?)
+[19:45:07]   PASS P1_catena nessun errore
+[19:45:07]   PASS P1_catena generazione avvenuta
+[19:45:07]   PASS P1_catena web tentato (B1.1)
+[19:45:07]   PASS P1_catena provenienza da contributor
+[19:45:07]   PASS P1_catena top-k senza hash duplicati (B4.5)
+[19:45:07]   PASS P1_catena niente marker/troncamenti
+[19:45:07]   PASS P1_catena testo risposta
+[19:45:07]   PASS P1_catena profondita' minima (nuova-domanda)
+[19:45:07]   PASS P1_catena log con intent+cache_decision
+[19:45:07] ASSERT P2_catena (fammi un riassunto più preciso e puntuale)
+[19:45:07]   PASS P2_catena nessun errore
+[19:45:07]   PASS P2_catena generazione avvenuta
+[19:45:07]   PASS P2_catena web tentato (B1.1)
+[19:45:07]   PASS P2_catena provenienza da contributor
+[19:45:07]   PASS P2_catena top-k senza hash duplicati (B4.5)
+[19:45:07]   PASS P2_catena niente marker/troncamenti
+[19:45:07]   PASS P2_catena testo risposta
+[19:45:07]   PASS P2_catena profondita' minima (sotto-domanda)
+[19:45:07]   PASS P2_catena log con intent+cache_decision
+[19:45:07] ASSERT P3_catena (parlami meglio di questa produzione di ossigeno)
+[19:45:07]   PASS P3_catena nessun errore
+[19:45:07]   PASS P3_catena generazione avvenuta
+[19:45:07]   PASS P3_catena web tentato (B1.1)
+[19:45:07]   PASS P3_catena provenienza da contributor
+[19:45:07]   PASS P3_catena top-k senza hash duplicati (B4.5)
+[19:45:07]   PASS P3_catena niente marker/troncamenti
+[19:45:07]   PASS P3_catena testo risposta
+[19:45:07]   PASS P3_catena profondita' minima (sotto-domanda)
+[19:45:07]   PASS P3_catena log con intent+cache_decision
+[19:45:07] ASSERT P4_catena (voglio approfondire la parte di come viene rilasci)
+[19:45:07]   PASS P4_catena nessun errore
+[19:45:07]   PASS P4_catena generazione avvenuta
+[19:45:07]   PASS P4_catena web tentato (B1.1)
+[19:45:07]   PASS P4_catena provenienza da contributor
+[19:45:07]   PASS P4_catena top-k senza hash duplicati (B4.5)
+[19:45:07]   PASS P4_catena niente marker/troncamenti
+[19:45:07]   PASS P4_catena testo risposta
+[19:45:07]   PASS P4_catena profondita' minima (sotto-domanda)
+[19:45:07]   PASS P4_catena log con intent+cache_decision
+[19:45:07]   FAIL P1 GT fotosintesi:co2 | La fotosintesi è il processo biochimico che permette agli organismi autotrofi fotosintetici (piante, alghe, alcuni batteri) di trasformare l'energia solare in energia chimica. In pratica, convertono l'energia elettromagnetica della luce in molecole di carboidrati e intermedi metabolici, immagazzinando così un valore energetico ad alto livello.
+
+Il processo avviene all'interno delle cellule vegetal
+[19:45:07]   PASS P1 GT fotosintesi:glucosio
+[19:45:07]   PASS P1 GT fotosintesi:ossigeno
+[19:45:07]   PASS P1 GT fotosintesi:no_nitrificazione
+[19:45:07]   PASS P1 GT fotosintesi:no_azoto_input
+[19:45:07]   PASS P1_catena GT: nessun nitrificazione/azoto-input (B2.3)
+[19:45:07]   PASS P2_catena GT: nessun nitrificazione/azoto-input (B2.3)
+[19:45:07]   PASS P3_catena GT: nessun nitrificazione/azoto-input (B2.3)
+[19:45:07]   PASS P4_catena GT: nessun nitrificazione/azoto-input (B2.3)
+[19:45:07]   PASS P3_catena intent=sotto-domanda (B3.1)
+[19:45:07]   PASS P3_catena retrieval espanso col topic (B3.3)
+[19:45:07]   PASS P4_catena intent=sotto-domanda (B3.1)
+[19:45:07]   PASS P4_catena retrieval espanso col topic (B3.3)
+[19:45:07] ASSERT P5_dante GT dante 1265-1321
+[19:45:07]   PASS P5_dante nessun errore
+[19:45:07]   PASS P5_dante web tentato
+[19:45:07]   PASS P5_dante GT dante 1265-1321:y1265
+[19:45:07]   PASS P5_dante GT dante 1265-1321:y1321
+[19:45:07]   PASS P5_dante profondita'
+[19:45:07]   PASS P5_dante no hash dup
+[19:45:07]   PASS P5_dante no marker
+[19:45:07] ASSERT P6_petrarca GT petrarca Francesco 1304-1374
+[19:45:07]   PASS P6_petrarca nessun errore
+[19:45:07]   PASS P6_petrarca web tentato
+[19:45:07]   PASS P6_petrarca GT petrarca Francesco 1304-1374:francesco
+[19:45:07]   PASS P6_petrarca GT petrarca Francesco 1304-1374:y1304
+[19:45:07]   PASS P6_petrarca GT petrarca Francesco 1304-1374:y1374
+[19:45:07]   PASS P6_petrarca profondita'
+[19:45:07]   PASS P6_petrarca no hash dup
+[19:45:07]   PASS P6_petrarca no marker
+[19:45:07] ASSERT P7_boccaccio GT boccaccio 1313-1375
+[19:45:07]   PASS P7_boccaccio nessun errore
+[19:45:07]   PASS P7_boccaccio web tentato
+[19:45:07]   PASS P7_boccaccio GT boccaccio 1313-1375:y1313
+[19:45:07]   PASS P7_boccaccio GT boccaccio 1313-1375:y1375
+[19:45:07]   PASS P7_boccaccio profondita'
+[19:45:07]   PASS P7_boccaccio no hash dup
+[19:45:07]   PASS P7_boccaccio no marker
+[19:45:07] ASSERT P8 rete giu
+[19:45:07]   PASS P8 nessun errore
+[19:45:07]   PASS P8 frase onesta rete giu
+[19:45:07]   PASS P8 messaggio umano (no path/score/Perche')
+[19:45:07]   PASS P8 zero LLM sull'informativa
+[19:45:07] ASSERT P9 chit-chat
+[19:45:07]   PASS P9 nessun errore
+[19:45:07]   PASS P9 nessun retrieval
+[19:45:07]   PASS P9 nessun web
+[19:45:07]   PASS P9 risposta
+[19:45:07]   PASS P1_catena no marker/troncamento
+[19:45:07]   PASS P2_catena no marker/troncamento
+[19:45:07]   PASS P3_catena no marker/troncamento
+[19:45:07]   PASS P4_catena no marker/troncamento
+[19:45:07]   PASS P5_dante no marker/troncamento
+[19:45:07]   PASS P6_petrarca no marker/troncamento
+[19:45:07]   PASS P7_boccaccio no marker/troncamento
+[19:45:07]   PASS P8_rete_giu no marker/troncamento
+[19:45:07]   PASS P9_chitchat no marker/troncamento
+[19:45:07] QA-1: fails=1 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r18_qa1.json
+[19:45:07]   FAIL: P1 GT fotosintesi:co2 :: La fotosintesi è il processo biochimico che permette agli organismi autotrofi fotosintetici (piante, alghe, alcuni batteri) di trasformare l'energia solare in energia chimica. In pratica, convertono l'energia elettromagnetica della luce in molecole di carboidrati e intermedi metabolici, immagazzinan

@@ -1,0 +1,140 @@
+ACCEL {"usearch.enabled": true, "spec.ngram_longform": true, "spec.ngram_variant": "ngram-map-k", "rag.hyde": null, "rag.decompose": null, "rag.crag_lite": null, "rerank.enabled": null, "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"}
+[22:48:18] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\tools\\models\\spark-x2.6-4b.gguf"}
+[22:48:18] boot store 39.2ms chunk=17/0
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5078.53it/s]
+[Embedder] warmup completato (modello caricato in background)
+[SemanticRouter] warmup esempi completato (background)
+[22:48:35] ready: embedder.warm=True semantic.ready=True (16342.87ms)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] MISS profile=default hit_rate=0.00 (hits=0, misses=1)
+[usearch] Index.load ok: n=17 ndim=384 (hnsw_vector_index.usearch, 9.4ms cumulati)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=Rispondi%20in%20una%20sola%20frase%3A%20qual%20e%27%20la%20capitale%20d%27Italia%3F&limit=5 | 776ms | ok=True n=5 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Voltaire | 477ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Glossario_delle_frasi_fatte | 375ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=Rispondi in una sola frase: qual e' la capitale d'Italia? (site:treccani.it OR site:sapere.it OR site:britannica.com OR  | 1580ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Scuola_militare_%22Nunziatella%22 | 533ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Gallipoli_%28Italia%29 | 494ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Divina_Commedia | 484ms | ok=True n=1 | summary [it]
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:65326
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:56872
+[Router] rigenerazione vincolata (B2/B5): Risposta troppo breve: servono almeno 120 parole ben articolate (o almeno 3 punti strutturati) SOLO sul contesto fornito. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il da
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:59719
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:54760
+[Router] validazione R18: {'depth': {'ok': False, 'words': 59, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 59 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': False, 'words': 19, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 19 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violatio
+[22:51:11] QA warmup_ttft: total=155498 tok=31867.94 n=107 llm=2 guard=True len_ok=True blocks=3 resets=2 src=web weburls=5 net=7 ok=False err=None
+WARMUP tok=31867.94 total=155498.13
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.50 (hits=1, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=Qual%20e%27%20il%20primo%20accettore%20di%20CO2%20nelle%20piante%20C4%3F&limit=5 | 702ms | ok=True n=0 | titoli [it]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=Qual%20e%27%20il%20primo%20accettore%20di%20CO2%20nelle%20piante%20C4%3F&limit=5 | 1669ms | ok=True n=0 | titoli [en]
+[web_search][RETE] ddgs | ddgs://text?q=Qual e' il primo accettore di CO2 nelle piante C4? (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:sc | 2833ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
+[web_search][RETE] ddgs | ddgs://text?q=Qual e' il primo accettore di CO2 nelle piante C4? | 0ms | ok=True n=0 | fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico
+[web_search][RETE] ddgs | ddgs://text?q=Qual e' il primo accettore di CO2 nelle piante C4? | 1528ms | ok=True n=5 | generico (no site:)
+[web_search][RETE] allowlist | https://didattica-2000.archived.uniroma2.it/FIS_VEG/deposito/7bispianteC4CAM.pdf | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://studylibit.com/doc/1043512/lezione-5--piante-c4-e-cam | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://it.gauthmath.com/solution/1987121530825220/7-Nelle-piante-C4-l-anidride-carbonica-viene-trasformata-in-un-comrto | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://moodle2.units.it/pluginfile.php/460465/mod_resource/content/4/Martellos_class4.pdf | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://www.climatemonitor.it/?p=55068 | 0ms | ok=True n=0 | fuori allowlist - scartato
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:56311
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:56035
+[Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): Il primo accettore di CO₂ nelle piante C4 è il PEP (3C). Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase 
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:64311
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:50692
+[Router] validazione R18: {'depth': {'ok': False, 'words': 16, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 16 parole (min 120) / 0 punti"}, 'grounding': {'ok': False, 'violations': ['Il primo accettore di CO₂ nelle piante C4 è il PEP'], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 221, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violatio
+[22:56:06] QA t1: total=295129 tok=52439.29 n=25 llm=2 guard=True len_ok=True blocks=4 resets=3 src=locale weburls=0 net=10 ok=False err=None
+CASE t1 {"id": "t1", "query": "Qual e' il primo accettore di CO2 nelle piante C4?", "first_token_ms": 52439.29, "total_ms": 295129.32, "ok_core": false, "n_tokens": 25, "text_len": 1546}
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.67 (hits=2, misses=1)
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=Spiega%20il%20ciclo%20di%20Krebs%20in%20modo%20sintetico%20ma%20completo.&limit=5 | 765ms | ok=True n=0 | titoli [en]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=Spiega%20il%20ciclo%20di%20Krebs%20in%20modo%20sintetico%20ma%20completo.&limit=5 | 511ms | ok=False n=0 | titoli HTTP 500 [it]
+[web_search][RETE] ddgs | ddgs://text?q=Spiega il ciclo di Krebs in modo sintetico ma completo. (site:treccani.it OR site:sapere.it OR site:britannica.com OR si | 3115ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
+[web_search][RETE] ddgs | ddgs://text?q=Spiega il ciclo di Krebs in modo sintetico ma completo. | 0ms | ok=True n=0 | fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico
+[web_search][RETE] ddgs | ddgs://text?q=Spiega il ciclo di Krebs in modo sintetico ma completo. | 1993ms | ok=True n=5 | generico (no site:)
+[web_search][RETE] allowlist | https://www.youtube.com/watch?v=ZWTO4_V6cuo | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://www.studysmarter.it/spiegazioni/biologia/bioenergetica/ciclo-di-krebs/ | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://library.weschool.com/lezione/ciclo-di-krebs-e-respirazione-cellulare-aerobica-spiegazione-e-schema-4306.html | 0ms | ok=True n=0 | fuori allowlist - scartato
+[web_search][RETE] allowlist | https://futura.study/blog/materie/biologia/ciclo-krebs-metabolismo-cellulare/ | 0ms | ok=True n=0 | fuori allowlist - scartato
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:51538
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:62681
+[SidecarClient] chat endpoint KO (timed out): fallback /completion legacy
+[Router] validazione R18: {'depth': {'ok': True, 'words': 252, 'bullets': 3, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 1, 'check_ms': 125254.2}
+[23:00:41] QA t2: total=275268 tok=5157.09 n=468 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=1 net=9 ok=False err=None
+CASE t2 {"id": "t2", "query": "Spiega il ciclo di Krebs in modo sintetico ma completo.", "first_token_ms": 5157.09, "total_ms": 275267.69, "ok_core": false, "n_tokens": 468, "text_len": 1644}
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.75 (hits=3, misses=1)
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=chi%20e%27%20dante%20alighieri&limit=5 | 892ms | ok=True n=5 | titoli [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Inferno_%28Dante%29 | 408ms | ok=True n=1 | summary [en]
+[web_search][RETE] ddgs | ddgs://text?q=chi e' dante alighieri (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:jst | 1729ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Maurizio_Lastrico | 492ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Towers_of_Bologna | 352ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Guido_Cavalcanti | 463ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/api/rest_v1/page/summary/Dharma_Mangia_Woods | 500ms | ok=True n=1 | summary [en]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&explaintext=1&exintro=1&redirects=1&titles=Inferno_%28Dante%29 | 707ms | ok=True n=1 | lead [en] 762 char
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:64166
+[Router] anni biografici mancanti: ['2006', '1321']
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:55994
+[Router] rigenerazione vincolata (B2/B5): Anni di nascita/morte presenti nel CONTESTO ma MANCANTI nella risposta: 2006, 1321 -> inseriscili nella biografia. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il dato dive
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:56023
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:58125
+[Router] validazione R18: {'depth': {'ok': False, 'words': 46, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 46 parole (min 120) / 0 punti"}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 420, 'bullets': 3, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}}, 'check_ms': 743
+[23:05:31] QA t3: total=289636 tok=34699.04 n=95 llm=2 guard=True len_ok=True blocks=2 resets=1 src=web weburls=5 net=8 ok=False err=None
+CASE t3 {"id": "t3", "query": "chi e' dante alighieri", "first_token_ms": 34699.04, "total_ms": 289636.27, "ok_core": false, "n_tokens": 95, "text_len": 287}
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.80 (hits=4, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=chi%20e%27%20petrarca%20e%20perche%27%20e%27%20importante&limit=5 | 775ms | ok=True n=5 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Francesco_Petrarca | 504ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=chi e' petrarca e perche' e' importante (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.googl | 1714ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Giovanni_Boccaccio | 590ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Per_fare_una_leggiadra_sua_vendetta | 665ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Umanesimo | 581ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Era_il_giorno_ch%27al_sol_si_scoloraro | 576ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&explaintext=1&exintro=1&redirects=1&titles=Francesco_Petrarca | 2213ms | ok=True n=1 | lead [it] 701 char
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:63135
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:52351
+[Router] validazione R18: {'depth': {'ok': True, 'words': 244, 'bullets': 2, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 1, 'check_ms': 26312.4}
+[23:07:57] QA t4: total=146916 tok=40339.27 n=454 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=8 ok=False err=None
+CASE t4 {"id": "t4", "query": "chi e' petrarca e perche' e' importante", "first_token_ms": 40339.27, "total_ms": 146915.58, "ok_core": false, "n_tokens": 454, "text_len": 1522}
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[PrefixCache] HIT profile=default hit_rate=0.83 (hits=5, misses=1)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=Descrivi%20la%20struttura%20della%20Divina%20Commedia%20secondo%20i%20materiali.&limit=5 | 883ms | ok=True n=5 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Divina_Commedia | 316ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Giovanni_Boccaccio | 288ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Purgatorio | 464ms | ok=True n=1 | summary [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Strage_di_Bologna | 328ms | ok=True n=1 | summary [it]
+[web_search][RETE] ddgs | ddgs://text?q=Descrivi la struttura della Divina Commedia secondo i materiali. (site:treccani.it OR site:sapere.it OR site:britannica. | 2330ms | ok=True n=5 | trusted batch (6 domini)
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Francesco_d%27Assisi | 440ms | ok=True n=1 | summary [it]
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:52387
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:59121
+[Router] validazione R18: {'depth': {'ok': True, 'words': 409, 'bullets': 10, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': [], 'backend': 'sidecar:think'}, 'attempts': 1, 'check_ms': 28880.5}
+[23:11:15] QA t5: total=197257 tok=24378.88 n=837 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=7 ok=False err=None
+CASE t5 {"id": "t5", "query": "Descrivi la struttura della Divina Commedia secondo i materiali.", "first_token_ms": 24378.88, "total_ms": 197256.95, "ok_core": false, "n_tokens": 837, "text_len": 2727}
+SUMMARY {"n": 5, "p50": 34699.0, "p95": 52439.3, "max": 52439.3} SLO_P50_OK= False

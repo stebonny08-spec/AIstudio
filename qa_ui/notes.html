@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA Appunti A (notes.js) â€” QA-T2</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body class=view-module>
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 â€” QA Appunti A1/A2/A3 (notes.js, Chromium reale)</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/modules/fonti_panel.js"></script>
+<script src="../web_frontend/html/js/modules/notes.js"></script>
+<script>
+/* Driver harness QA-T2 BLOCCO A (Appunti):
+   - seed doc nota 'nt1' (mode quaderno, pages[0].objects con 2 oggetti testo)
+   - seed fonti: nf2 (note), rf1 (riassunto), df1 (documento) oltre alla nota aperta
+   - apre l'editor notes su nt1 (mod.open con params.open) e aspetta canvas pronto
+   - espone window.__qaHarnessNotes per il runner
+   NESSUNA geometria simulata: le misure le fa il runner con getBoundingClientRect /
+   computed style / elementFromPoint del browser reale. */
+(async function () {
+    var QA = window.__QA;
+    try {
+        var txt = function (s) { return { t: 'text', x: 120, y: 120, w: 520, h: 40, text: s, size: 16, color: '#141414', bold: false, italic: false, underline: false }; };
+
+        /* --- nota aperta (doc valido per normalizeDoc: pages + page) --- */
+        QA.store.items.push({
+            id: 'nt1', kind: 'note', title: 'Nota QA-A',
+            content: JSON.stringify({
+                mode: 'quaderno', sheet: 'quadretti', w: 1600, h: 1100, page: 0,
+                pages: [{ objects: [
+                    txt('Testo iniziale nota QA'),
+                    { t: 'text', x: 120, y: 200, w: 520, h: 40, text: 'Secondo paragrafo di prova', size: 16, color: '#141414', bold: false, italic: false, underline: false }
+                ] }]
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+
+        /* --- fonti per il pannello Fonti (A3): 3 voci oltre alla nota --- */
+        QA.store.items.push({
+            id: 'nf2', kind: 'note', title: 'Appunti Fisica Cinetica',
+            content: JSON.stringify({
+                mode: 'quaderno', sheet: 'quadretti', w: 1600, h: 1100, page: 0,
+                pages: [{ objects: [txt('Lezione di fisica: cinematica del punto materiale, velocita media e accelerazione.')] }]
+            }),
+            materia: 'FISICA', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        QA.store.items.push({
+            id: 'rf1', kind: 'riassunto', title: 'Riassunto Storia Romana',
+            content: JSON.stringify({ riassunto: 'Riassunto di storia romana: dalla fondazione della citta alla repubblica, con le principali riforme.' }),
+            materia: 'STORIA', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        QA.store.items.push({
+            id: 'df1', kind: 'documento', title: 'Dispensa Geologia',
+            content: 'Dispensa di geologia: le rocce magmatiche si formano dal raffreddamento e dalla cristallizzazione del magma.',
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+
+        var main = document.getElementById('main');
+        var mod = QA.mod;
+        if (!mod) throw new Error('modulo notes non registrato via App.registerModule');
+        mod.open(main, { open: 'nt1' });
+        var ok = await window.__qaUntil(function () {
+            var c = document.querySelector('.nt-stage canvas');
+            return !!(c && c.width > 0 && c.height > 0 &&
+                document.querySelector('.fn-pill-right') &&
+                document.querySelector('.fn-pill-left') &&
+                (document.querySelector('.fp21-root') || document.querySelector('.fn-side')));
+        }, 10000);
+        if (!ok) throw new Error('editor appunti non aperto (canvas/pill mancanti)');
+        await new Promise(function (r) { setTimeout(r, 300); });
+        window.__qaHarnessNotes = { ready: true };
+        QA.harnessReady = true;
+        QA.done = false;
+    } catch (e) {
+        QA.errors.push('harness notes: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>

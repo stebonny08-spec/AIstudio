@@ -10,28 +10,16 @@ proprietario, la cifratura (es. tramite 'keyring') introdurrebbe una
 dipendenza dal sistema operativo che può fallire in modi poco chiari e non
 è giustificata dal rischio reale in questo contesto.
 
-Nota su 'local_model_path': questa chiave viene impostata automaticamente
-dalla UI quando l'utente seleziona un modello dal menu "Seleziona modelli"
-(vedi backend/api.py -> load_model). Il valore iniziale è vuoto; l'utente
-esperto può comunque sovrascriverlo a mano in config.json per puntare a
-un GGUF locale diverso da quelli del catalogo.
-
-I parametri tecnici del modello (n_ctx, n_gpu_layers, n_threads) NON sono
-esposti nella UI: vanno impostati a mano in config.json.
-
-Valori di default calibrati su MiniCPM5-2B (modello di riferimento):
-- n_ctx = 8192 (il modello supporta nativamente fino a 128K, ma 8K è un
-  buon compromesso tra contesto disponibile e uso di RAM su macchine
-  consumer; aumentare solo se si ha RAM sufficiente)
-- n_gpu_layers = -1 (tutte le layer su GPU se disponibile, altrimenti CPU)
-- n_threads = None (auto: usa os.cpu_count() - 1)
+Su 'local_model_n_ctx': il valore di default è None, che significa
+"rileva automaticamente in base alla RAM del PC" (vedi core/system_info.py).
+L'utente esperto può forzarlo a un intero specifico in config.json.
 """
 
 import json
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 
 APP_NAME = "NovaStudio"
@@ -39,11 +27,62 @@ APP_NAME = "NovaStudio"
 DEFAULT_CONFIG: Dict[str, Any] = {
     "ocr_enabled": True,
     "rag_top_k": 5,
-    # Configurazione per modello locale GGUF (MiniCPM5-2B di riferimento)
+    # Configurazione modello locale (auto-rilevata se None)
     "local_model_path": "",
-    "local_model_n_ctx": 8192,
+# R22: chiave del modello attivo (pro/base) - selezione persistita
+"local_model_key": "",
+    "local_model_n_ctx": None,          # None = rileva dalla RAM
     "local_model_n_gpu_layers": -1,
     "local_model_n_threads": None,
+    # --- Sidecar / llama-server (T1) ---
+    "llm.backend": "sidecar",            # 'sidecar' | 'inprocess' (rollback)
+    "llama.server_path": "",             # llama-server.exe ('' = non configurato)
+    "llama.engine": "auto",              # R23 X5: upstream | xhtoken | auto
+    # P1b.1 - n-gram speculative draftless LONG-FORM (esito A/B qa/p1b_ngram.json:
+    # ngram-map-k d5 = 3.073x pro / 2.343x base, acceptance 1.0, output identici
+    # al greedy baseline; micro/standard restano OFF per regola)
+    "spec.ngram_longform": True,
+    "spec.ngram_variant": "ngram-map-k",
+    "spec.ngram_draft_max": 5,
+    "llama.model_path": os.path.expanduser(os.path.expandvars(
+        "%APPDATA%/NovaStudio/models/MiniCPM5-2B-Q4_K_M.gguf")),
+    "llama.idle_unload_sec": 300,        # scarico automatico dopo inattivita'
+    "llama.n_ctx": 4096,                 # contesto llama-server (clamp 4096-8192)
+    # --- H5: motore / autotune / speculazione (OPT-IN tranne prompt_lookup) ---
+    "llm.engine": "llama.cpp",           # 'llama.cpp' | 'ik_llama.cpp'
+    "llama.bench_path": "",              # percorso llama-bench ('' = assente)
+    "autotune.done": False,              # autotune tok/s una tantum
+    "autotune.result": {},               # {'pp_tok_s': .., 'tg_tok_s': ..}
+    "spec.prompt_lookup": True,          # prompt lookup: ON di default
+    "spec.draft_model": "",              # modello draft per speculazione
+    "spec.eagle3": False,                # eAGLE-3 (OPT-IN)
+    # --- R15b: gate precoce + stadio web (CHIAVI DI CONTRATTO, owner coordinator;
+    # i blocchi G/W le LEGGONO, non le definiscono: vedi core/rag/contract.py) ---
+    # R15b G: TARATURA su qa/gt_set_r15.json (18 casi reali, vec+FTS5/bm25 misurati):
+    #   sweep (tp/fp/fn/tn): 0.30-0.60 -> 9/0/0/5 ma 0/4 parziali corretti;
+    #   0.65 -> 9/0/0/5 con 3/4;  0.70 -> 9/0/0/5 con 4/4 (recall 1.0, prec 1.0);
+    #   0.75 -> 9/0/0/5 con 4/4 (margine solo 0.024 sul positivo piu' debole);
+    #   0.80 -> 8/0/1/5 (perde p4). SCELTA 0.70. Dettagli: qa/qa_r15_g_report.md
+    "gate.threshold": 0.70,          # soglia gate (score fuso top-k); tarata da G su GT R15b
+    "web.mode": "auto",             # escalation web: "auto" | "sempre" | "mai"
+    "web.weight_appunti": 1.0,      # pesi fusione RRF a 3 stadi (W3)
+    "web.weight_libri": 1.0,
+    "web.weight_web": 0.8,
+    "web.cache_ttl_days": 7,        # TTL cache URL persistente (W2)
+    "web.searxng_url": "",          # SearXNG self-hosted opzionale (W1; "" = disattivo)
+    "web.wikipedia": True,          # Wikipedia API opzionale per fattuale (W1)
+    "rag.progress_events": True,    # eventi {"type":"progress"} per stadio (P3)
+    # --- R13: draft SOLO long-form (F10/F13, classe/profile think, W2) ---
+    # Policy: se spec.draft_model e' impostato, il draft viene caricato SOLO
+    # per le richieste long-form; micro/standard partono SENZA draft.
+    # Non rompe nulla: con spec.draft_model vuoto (default) nessun draft.
+    # R13 S4 (qa/r13_spec_measures.json): misure reali draft ON vs OFF ->
+    #   OFF motivato per TUTTI i profili (acceptance<0.70 o speedup<1.30x;
+    #   think: acc 0.811 ok ma speedup 1.169x < 1.30x) e RAM con draft
+    #   3.4-3.9GB > 2.9GB -> enforcement globale = spec.draft_model vuoto
+    #   (immutato). Questa chiave resta il gate "solo long-form" per un
+    #   eventuale re-attivazione esplicita dopo nuove misure.
+    "spec.draft_longform": True,
 }
 
 
@@ -79,9 +118,6 @@ class ConfigManager:
             try:
                 with open(self.path, "r", encoding="utf-8") as f:
                     saved = json.load(f)
-                # Merge: eventuali chiavi mancanti nel file vecchio vengono
-                # riempite con i default, così un aggiornamento dell'app
-                # non rompe mai la configurazione esistente dell'utente.
                 self._data = {**DEFAULT_CONFIG, **saved}
             except (json.JSONDecodeError, OSError):
                 self._data = dict(DEFAULT_CONFIG)
@@ -113,7 +149,5 @@ class ConfigManager:
         self.update(**settings)
 
     def is_configured(self) -> bool:
-        """True se esiste un percorso modello configurato (indipendentemente
-        dal fatto che il file esista davvero: di quello si occupa
-        StudioIAAPI._load_llm_client_from_config)."""
+        """True se esiste un percorso modello configurato."""
         return bool(self._data.get("local_model_path", "").strip())

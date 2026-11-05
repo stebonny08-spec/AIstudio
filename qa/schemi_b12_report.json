@@ -1,0 +1,992 @@
+{
+ "meta": {
+  "buildTs": "2026-10-23T19:50:00+02:00",
+  "viewport": "1366x900",
+  "stepsTotal": 16,
+  "cambiTotali": 15,
+  "zoomMin": 76,
+  "zoomMax": 127,
+  "marginMin": 49,
+  "marginMax": 57,
+  "errori": [],
+  "tentativiMaxUsati": 2
+ },
+ "agg": {
+  "4": {
+   "total": 1,
+   "pass": 1,
+   "fail": []
+  },
+  "3a": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "3b": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "3c": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "3d": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "3e": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "3f": {
+   "total": 16,
+   "pass": 16,
+   "fail": []
+  },
+  "5i": {
+   "total": 1,
+   "pass": 1,
+   "fail": []
+  },
+  "5ii": {
+   "total": 1,
+   "pass": 1,
+   "fail": []
+  },
+  "5iii": {
+   "total": 1,
+   "pass": 1,
+   "fail": []
+  }
+ },
+ "checks": [
+  {
+   "cid": "3a",
+   "id": "B12 g1/albero (inizio) — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/albero (inizio) — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=albero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/albero (inizio) — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/albero (inizio) — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-54.60,14.62) scale(1.2688)\" badge=\"127%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/albero (inizio) — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"127%\" parsed=127"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/albero (inizio) — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice albero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/albero (inizio) — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=albero",
+   "evidence": "type=albero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/albero (inizio) — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g1/mappa — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/mappa — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=mappa"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/mappa — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/mappa — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(445.72,340.20) scale(0.7562)\" badge=\"76%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/mappa — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"76%\" parsed=76"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/mappa — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice mappa: [\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/mappa — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=mappa",
+   "evidence": "type=mappa"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/mappa — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g1/lr — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/lr — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=lr"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/lr — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/lr — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/lr — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/lr — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice lr: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/lr — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=lr",
+   "evidence": "type=lr"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/lr — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g1/libero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/libero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=libero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/libero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/libero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/libero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/libero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice libero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=1 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Auto-layout\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/libero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=libero",
+   "evidence": "type=libero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/libero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g1/riassunto — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/riassunto — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=riassunto"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/riassunto — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/riassunto — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(382.13,-30.55) scale(0.8819)\" badge=\"88%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/riassunto — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"88%\" parsed=88"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/riassunto — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice riassunto: [\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/riassunto — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=riassunto",
+   "evidence": "type=riassunto"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/riassunto — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g1/albero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g1/albero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=albero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g1/albero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=55.2px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g1/albero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-25.58,-19.37) scale(1.0930)\" badge=\"109%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g1/albero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"109%\" parsed=109"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g1/albero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice albero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g1/albero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=albero",
+   "evidence": "type=albero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g1/albero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g2/mappa — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g2/mappa — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=mappa"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g2/mappa — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g2/mappa — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(445.72,340.20) scale(0.7562)\" badge=\"76%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g2/mappa — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"76%\" parsed=76"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g2/mappa — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice mappa: [\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g2/mappa — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=mappa",
+   "evidence": "type=mappa"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g2/mappa — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g2/lr — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g2/lr — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=lr"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g2/lr — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g2/lr — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g2/lr — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g2/lr — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice lr: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g2/lr — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=lr",
+   "evidence": "type=lr"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g2/lr — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g2/libero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g2/libero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=libero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g2/libero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g2/libero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g2/libero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g2/libero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice libero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=1 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Auto-layout\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g2/libero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=libero",
+   "evidence": "type=libero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g2/libero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g2/riassunto — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g2/riassunto — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=riassunto"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g2/riassunto — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g2/riassunto — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(382.13,-30.55) scale(0.8819)\" badge=\"88%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g2/riassunto — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"88%\" parsed=88"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g2/riassunto — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice riassunto: [\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g2/riassunto — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=riassunto",
+   "evidence": "type=riassunto"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g2/riassunto — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g2/albero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g2/albero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=albero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g2/albero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=55.2px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g2/albero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-25.58,-19.37) scale(1.0930)\" badge=\"109%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g2/albero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"109%\" parsed=109"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g2/albero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice albero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g2/albero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=albero",
+   "evidence": "type=albero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g2/albero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g3/mappa — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g3/mappa — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=mappa"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g3/mappa — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g3/mappa — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(445.72,340.20) scale(0.7562)\" badge=\"76%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g3/mappa — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"76%\" parsed=76"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g3/mappa — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice mappa: [\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g3/mappa — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=mappa",
+   "evidence": "type=mappa"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g3/mappa — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g3/lr — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g3/lr — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=lr"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g3/lr — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g3/lr — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g3/lr — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g3/lr — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice lr: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g3/lr — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=lr",
+   "evidence": "type=lr"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g3/lr — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g3/libero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g3/libero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=libero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g3/libero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=57px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g3/libero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-19.37,333.29) scale(0.9895)\" badge=\"99%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g3/libero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"99%\" parsed=99"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g3/libero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice libero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=1 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Auto-layout\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g3/libero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=libero",
+   "evidence": "type=libero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g3/libero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g3/riassunto — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g3/riassunto — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=riassunto"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g3/riassunto — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=49px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g3/riassunto — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(382.13,-30.55) scale(0.8819)\" badge=\"88%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g3/riassunto — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"88%\" parsed=88"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g3/riassunto — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice riassunto: [\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Figlio\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g3/riassunto — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=riassunto",
+   "evidence": "type=riassunto"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g3/riassunto — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "3a",
+   "id": "B12 g3/albero — nodi renderizzati === nodi doc (9)",
+   "ok": true,
+   "expected": "render=9 doc=9",
+   "evidence": "render=9 doc=9"
+  },
+  {
+   "cid": "3b",
+   "id": "B12 g3/albero — archi renderizzati === doc.edges con data-eid identici (6)",
+   "ok": true,
+   "expected": "render=6 doc=6 set eid identico",
+   "evidence": "render=6 doc=6 dom=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] doc=[\"e1\",\"e2\",\"e3\",\"e4\",\"e5\",\"e6\"] docType=albero"
+  },
+  {
+   "cid": "3c",
+   "id": "B12 g3/albero — tutti i rect nodi dentro viewport (rect reali)",
+   "ok": true,
+   "expected": "fuori=0 nonFinite=0 su 9 nodi",
+   "evidence": "fuori=0 nonFinite=0 minMargin=55.2px viewport=1366x900 worst=[]"
+  },
+  {
+   "cid": "3d",
+   "id": "B12 g3/albero — zero NaN (coord doc, attr nodi, transform mondo, badge)",
+   "ok": true,
+   "expected": "coordsOk=true nanNodi=0 worldFinite=true badge senza NaN",
+   "evidence": "coordsOk=true nanNodi=[] world=\"translate(-25.58,-19.37) scale(1.0930)\" badge=\"109%\" nodeTranslateAttr=0/9 (modulo usa coordinate assolute, non transform nodo)"
+  },
+  {
+   "cid": "3e",
+   "id": "B12 g3/albero — badge zoom parseFloat ∈ [25,200] ±0.1",
+   "ok": true,
+   "expected": "25 ≤ zoom ≤ 200",
+   "evidence": "badge=\"109%\" parsed=109"
+  },
+  {
+   "cid": "3f",
+   "id": "B12 g3/albero — matrice pulsanti del tipo corrente",
+   "ok": true,
+   "expected": "matrice albero: [\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]",
+   "evidence": "labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] atteso=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] selects=0 taskOk=true fullOk=true visOk=true disabled=[\"+ Figlio\",\"+ Fratello\",\"Cancella\"]"
+  },
+  {
+   "cid": "sync",
+   "id": "B12 g3/albero — store b12.type === tipo corrente (salvataggio avvenuto)",
+   "ok": true,
+   "expected": "type=albero",
+   "evidence": "type=albero"
+  },
+  {
+   "cid": "texts",
+   "id": "B12 g3/albero — testi doc invariati vs baseline",
+   "ok": true,
+   "expected": "set di 9 testi identico",
+   "evidence": "identico"
+  },
+  {
+   "cid": "5ii",
+   "id": "B12 — 5(ii) testi DOM nodi invariati (albero iniziale vs albero fine ciclo)",
+   "ok": true,
+   "expected": "stesso set di 9 testi (nid→testo)",
+   "evidence": "identico (9 nodi)"
+  },
+  {
+   "cid": "5i",
+   "id": "B12 — 5(i) doc vuoto mappa: \"+ Nodo\" visibile e crea 1 nodo",
+   "ok": true,
+   "expected": "tipo=mappa nodi=0 → btn visibile → 1 nodo dopo click",
+   "evidence": "prima: tipo=mappa nodi=0 btn+ Nodo=true vis=true labels=[\"+ Nodo\",\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"] | click=true dopo: nodi=1 labels=[\"+ Figlio\",\"+ Fratello\",\"Cancella\",\"Collega\",\"Auto-layout\"]"
+  },
+  {
+   "cid": "5iii",
+   "id": "B12 — 5(iii) zero QA.errors / console.error durante il giro",
+   "ok": true,
+   "expected": "0 errori",
+   "evidence": "0 errori"
+  },
+  {
+   "cid": "4",
+   "id": "B12 — 4 screenshot giro1 (5 tipi) + albero giro3",
+   "ok": true,
+   "expected": "6 PNG in qa/",
+   "evidence": "6/6 presenti: schemi_b12_albero_giro1, schemi_b12_mappa_giro1, schemi_b12_lr_giro1, schemi_b12_libero_giro1, schemi_b12_riassunto_giro1, schemi_b12_albero_giro3"
+  }
+ ]
+}

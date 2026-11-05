@@ -1,0 +1,18 @@
+{
+ "round": "18",
+ "block": "B4",
+ "ts": "2026-10-25T19:53:38+0100",
+ "db": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db",
+ "before": {
+  "chunks": 17
+ },
+ "after": {
+  "chunks": 17,
+  "unique_doc_hash": 17,
+  "unique_index": true
+ },
+ "duplicati_rimossi": [],
+ "n_rimossi": 0,
+ "vincolo": "ux_chunks_hash_doc (store_key, source_file, content_hash)",
+ "notes": "chroma legacy (vector_index/chroma.sqlite3, 17 hash x2) e' archivio non attivo: NON toccato (backend attivo = sqlite); le copie su disco originals/ e rag_stage2/ restano, originals/ e' escluso dal retrieval (C4)"
+}

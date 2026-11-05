@@ -1,0 +1,21 @@
+{
+  "when": "BEFORE live wiring (R13)",
+  "tables": 1,
+  "cols": 5,
+  "rows": 23,
+  "header_texts": [
+    "Metrica",
+    "Round 11 (prima)",
+    "Round 12 (dopo)",
+    "Target R12",
+    "Δ"
+  ],
+  "first_data_row": [
+    "RSS a riposo (MB)",
+    "24,5",
+    "39,5",
+    "—",
+    "+15"
+  ],
+  "has_live_block": true
+}

@@ -1,0 +1,26 @@
+== hyde ==
+  run RAG_TECH=none in 22.0s -> p1b_rag_hyde_off.json
+  [p1b_recall] tech=none state=off recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=33.0 ms_p95=52.6 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_hyde_off.json
+  run RAG_TECH=hyde in 21.0s -> p1b_rag_hyde_on.json
+  [p1b_recall] tech=hyde state=on recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=45.1 ms_p95=61.3 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_hyde_on.json
+  -> recall 1.0->1.0 mrr 0.9259->0.9259 added p50/p95 9.9/14.8ms DECISION OFF (nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio)
+== decompose ==
+  run RAG_TECH=none in 21.8s -> p1b_rag_decompose_off.json
+  [p1b_recall] tech=none state=off recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=44.3 ms_p95=60.8 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_decompose_off.json
+  run RAG_TECH=decompose in 22.4s -> p1b_rag_decompose_on.json
+  [p1b_recall] tech=decompose state=on recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=43.8 ms_p95=64.9 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_decompose_on.json
+  -> recall 1.0->1.0 mrr 0.9259->0.9259 added p50/p95 -1.8/3.6ms DECISION OFF (nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio)
+== crag ==
+  run RAG_TECH=none in 19.0s -> p1b_rag_crag_off.json
+  [p1b_recall] tech=none state=off recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=32.5 ms_p95=40.5 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_crag_off.json
+  run RAG_TECH=crag in 19.7s -> p1b_rag_crag_on.json
+  [p1b_recall] tech=crag state=on recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=36.8 ms_p95=54.0 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_crag_on.json
+  -> recall 1.0->1.0 mrr 0.9259->0.9259 added p50/p95 3.1/26.7ms DECISION OFF (nessun miglioramento >= 0.03 su recall@5 (delta +0.0000) o MRR (delta +0.0000): 0 query su 9 recuperate meglio)
+== rerank ==
+  run RAG_TECH=none in 21.3s -> p1b_rag_rerank_off.json
+  [p1b_recall] tech=none state=off recall@5=1.0000 mrr=0.9259 neg_no_answer=5/5 ms_p50=34.3 ms_p95=57.9 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_rerank_off.json
+  run RAG_TECH=rerank in 356.4s -> p1b_rag_rerank_on.json
+  [p1b_recall] tech=rerank state=on recall@5=1.0000 mrr=0.8611 neg_no_answer=4/5 ms_p50=23378.3 ms_p95=25898.0 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag_rerank_on.json
+
+[verdict] attive: nessuna
+[p1b_rag_bench] -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\p1b_rag.json

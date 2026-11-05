@@ -1,0 +1,99 @@
+
+== PUNTO 1 — chooser "Nuovo schema" ==
+  PASS  P1 pulsante "Nuovo schema" presente in elenco
+    DOM .choice [5]: ["Albero","Mappa concettuale","Sinistra → destra","Schema libero","Riassunto visuale"]
+  PASS  P1 esattamente 5 bottoni .choice
+  PASS  P1 etichette nell'ordine esatto (Albero, Mappa concettuale, Sinistra → destra, Schema libero, Riassunto visuale)
+  PASS  P1 ZERO opzione "Alto → basso" nella griglia
+    TYPES(sorgiente): ["albero","mappa","lr","libero","riassunto"]
+  PASS  P1 TYPES sorgente = 5 id ordinati
+
+== PUNTO 2 — select.sc-type-sel ==
+  PASS  P2 selettore .sc-type-sel montato
+    DOM option values: ["albero","mappa","lr","libero","riassunto"]
+    DOM option labels : ["Albero","Mappa concettuale","Sinistra → destra","Schema libero","Riassunto visuale"]
+  PASS  P2 values esattamente i 5 id (albero, mappa, lr, libero, riassunto)
+  PASS  P2 nessun value "tb"/"alto-basso"
+  PASS  P2 nessuna label contenente "Alto"
+
+== PUNTO 3 — doc legacy "alto-basso" (alias difensivo) ==
+  PASS  [alto-basso] editor montato (polling <60ms dal render)
+  PASS  [alto-basso] selType.value==='albero' al PRIMO caricamento (prima dell'auto-layout)
+    [alto-basso] y PRIMA auto-layout: {"a":600,"b":100,"c":150,"d":50,"e":300,"f":450}
+  PASS  [alto-basso] posizioni PRIMA = SCRAMBLE non toccate dal parse (a y=600 > b y=100)
+    [alto-basso] y DOPO  auto-layout: {"a":60,"b":190,"c":190,"d":320,"e":320,"f":320}
+  PASS  [alto-basso] y gerarchiche dopo >=550ms: y(root)<y(figli)<y(nipoti)
+  PASS  [alto-basso] nessuna guida (albero guide=null)
+  PASS  [alto-basso] DOM .sc-edge == 5 (archi invariati)
+  PASS  [alto-basso] DOM nodi == 6 (nodi invariati)
+  PASS  [alto-basso] dopo flush: content.type === 'albero'
+  PASS  [alto-basso] dopo flush: 6 nodi / 5 archi invariati
+  PASS  [alto-basso] flag pendingLegacyLayout/legacyTb MAI nel content salvato (grep=0)
+
+== PUNTO 4 — rollback sicuro / casi limite ==
+  PASS  P4a doc legacy vuoto aperto come albero, nessun errore (autoLayout ritorna in silenzio: !nodes.length)
+  PASS  P4c content JSON vuoto: grep pendingLegacyLayout|legacyTb = 0
+  PASS  P4b zero eccezioni/log errati non-filtrati durante aperture legacy
+    log catturati totali=0 reali=0 (filtrati noise css/notImplemented=0)
+  PASS  P4 difesa: getStrategy('tb') -> fallback libero
+  PASS  P4 difesa: getStrategy('alto-basso') -> fallback libero
+  PASS  P4 SCHEMA_STRATEGIES = 5 tipi (registro ripulito)
+
+== PUNTO 5 — sweep citazioni residue ==
+  PASS  P5 MODULI.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 NOTE.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 PIANO_INTERFACCIA.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 README.md: zero citazioni ATTIVE del tipo rimosso
+  PASS  P5 MODULI.md riporta 5 tipi (albero, mappa concettuale, sinistra→destra, schema libero, riassunto visuale)
+    MODULI.md: - Tipi (5): **albero · mappa concettuale · sinistra→destra · schema libero · riassunto visuale**.
+  PASS  P5 MODIFICHE.md storico preesistente: voce round 2 presente e prima della ROUND 3
+  PASS  P5 MODIFICHE.md storico: voce ROUND 3 presente
+  PASS  P5 MODIFICHE.md storico: voce Round 4 presente
+  PASS  P5 MODIFICHE.md: sezione "Round 5" appendita
+    ## Round 5 — Schemi: linee spurie, transizione mappa, rimozione tipo Alto→basso
+  PASS  P5 MODIFICHE.md: residui AMMESSI confermati nello storico preesistente (round 2/3)
+    MODIFICHE.md residui storici (AMMESSI): L87,L160 | residui dentro Round 5 (testuale/dichiarativo): L253,L259,L260
+    schemi.js hit sweep:
+      L101: // BLOCCO 3.3: doc legacy "Alto -> basso" (id reale 'tb', alias 'alto-basso') appena
+      L230: // BLOCCO 3.3: migrazione dati schema legacy "Alto -> basso" (id reale 'tb' e alias
+      L231: // 'alto-basso') verso il tipo 'albero'. Mapping NON distruttivo: nodes, edges e
+      L234: if (d.type === 'tb' || d.type === 'alto-basso') {
+  PASS  P5 schemi.js: nessuna citazione ATTIVA (solo commenti/id migrazione 'tb'/'alto-basso' ammessi)
+  PASS  P5 schemi.js testi UTENTE (hint/title/toast/placeholder/aria): zero citazioni
+    schemaStrategies.js hit sweep: 0
+  PASS  P5 schemaStrategies.js: residui solo commento/parametro direzione 'tb' (ammesso: NON è il tipo)
+    [residui AMMESSI confermati]: storico MODIFICHE round2/3 (L87,L160); commenti migrazione schemi.js L101,L230,L231,L234; direzione 'tb' schemaStrategies (parametro tidyTreeTargets); test/patch.
+
+== PUNTO 6 — regressioni complete ==
+  PASS  P6 editorWiring.test.js → 49/49
+    editorWiring.test.js: 49 passati, 0 falliti
+  PASS  P6 schemaStrategies.test.js → 198/198
+    schemaStrategies.test.js: 198 passati, 0 falliti
+  PASS  P6 uiHarness.test.js → 197/197
+    uiHarness.test.js: 197 passati, 0 falliti
+    [citazione uiHarness scenarioLegacyTb/caso tb]:
+      PASS  3.3 legacy tb si apre come albero (selettore tipo)
+      PASS  3.3 auto-layout al primo caricamento: y(a)<y(b)<y(d)
+      PASS  3.3 auto-layout al primo caricamento: y(a)<y(c)<y(f)
+      PASS  3.3 fratelli stessa riga (tidy tree)
+      PASS  3.3 nodi della riga affiancati in x
+      PASS  3.3 albero: nessuna guida riga (guide=null)
+      PASS  3.3 toolbar albero: pulsanti +Figlio / +Fratello
+      PASS  3.3 nessuna perdita: DOM .sc-edge == 5
+      PASS  3.3 nessuna perdita: doc nodi=6 / archi=5
+      PASS  3.3 salvataggio: type === albero
+  PASS  P6 scenarioLegacyTb (type tb) in uiHarness: tutti PASS, zero FAIL
+  PASS  P6 qa1_block1.js → 65/65
+    qa1_block1.js: 65 passati, 0 falliti
+  PASS  P6 qa2_block2.js → 79/79
+    qa2_block2.js: 79 passati, 0 falliti
+  PASS  P6 node --check schemi.js
+  PASS  P6 node --check schemaStrategies.js
+  PASS  P6 grep: animateLayout(targets, 200) esattamente 2 in schemi.js
+  PASS  P6 grep: migrateSchema(ed.doc, nuovo) esattamente 1
+  PASS  P6 grep: changeType(selType.value) esattamente 1
+  PASS  P6 grep: zero doc.type === 'mappa' (schemi.js + schemaStrategies.js)
+  PASS  P6 grep: albero usa ancora tidyTreeTargets(nodes, edges, 'tb') come DIREZIONE (parametro intatto)
+
+================================================
+RISULTATI QA3: 51 passati, 0 falliti

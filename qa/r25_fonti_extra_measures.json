@@ -1,0 +1,35 @@
+{
+ "ts": "2026-11-02T16:24:50.221Z",
+ "viewport": "1440x900",
+ "st0": {
+  "collapsed": false,
+  "listH": 122,
+  "searchVisible": false,
+  "hasChev": true,
+  "lsTop": "0"
+ },
+ "gained": {
+  "before": 122,
+  "after": 148,
+  "px": 26
+ },
+ "st1": {
+  "collapsed": true,
+  "listH": 148,
+  "searchHidden": true,
+  "lsTop": "1"
+ },
+ "st2_reload": {
+  "collapsed": true,
+  "listH": 148,
+  "lsTop": "1",
+  "dead": 5
+ },
+ "checks": {
+  "pass": 7,
+  "fail": 0,
+  "failures": []
+ },
+ "ok": true,
+ "pageErrors": []
+}

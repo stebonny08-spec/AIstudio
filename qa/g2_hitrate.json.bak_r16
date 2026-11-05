@@ -1,0 +1,174 @@
+{
+ "hit_rate": 0.7767,
+ "conversations": 20,
+ "turns_total": 103,
+ "hits": 80,
+ "misses": 23,
+ "definizione_hit": "HIT (KV-prefix, semantica llama.cpp) = system+rag_header IDENTICI a un turno precedente della stessa conversazione E la stringa renderizzata system+rag+storia(M) PREFISSO di system+rag+storia(N) (storia append-only, nessun trimming). Trimming della storia o cambio dell'header -> MISS. Turno 1 = MISS. Query esclusa (non fa parte del prefisso).",
+ "target": 0.7,
+ "esito": "RAGGIUNTO",
+ "metodo": "build_prompt_segments + trim_history (percorso REALE del flusso) con controllo prefisso KV system+rag+storia",
+ "comando": "python tests/g2_hitrate.py",
+ "per_conversation": [
+  {
+   "conv": 0,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 1,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 2,
+   "turns": 4,
+   "rag": false,
+   "trimmed": false,
+   "hits": 3,
+   "misses": 1
+  },
+  {
+   "conv": 3,
+   "turns": 7,
+   "rag": false,
+   "trimmed": false,
+   "hits": 6,
+   "misses": 1
+  },
+  {
+   "conv": 4,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 5,
+   "turns": 4,
+   "rag": false,
+   "trimmed": false,
+   "hits": 3,
+   "misses": 1
+  },
+  {
+   "conv": 6,
+   "turns": 7,
+   "rag": false,
+   "trimmed": false,
+   "hits": 6,
+   "misses": 1
+  },
+  {
+   "conv": 7,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 8,
+   "turns": 3,
+   "rag": false,
+   "trimmed": false,
+   "hits": 2,
+   "misses": 1
+  },
+  {
+   "conv": 9,
+   "turns": 6,
+   "rag": false,
+   "trimmed": false,
+   "hits": 5,
+   "misses": 1
+  },
+  {
+   "conv": 10,
+   "turns": 3,
+   "rag": false,
+   "trimmed": false,
+   "hits": 2,
+   "misses": 1
+  },
+  {
+   "conv": 11,
+   "turns": 6,
+   "rag": false,
+   "trimmed": false,
+   "hits": 5,
+   "misses": 1
+  },
+  {
+   "conv": 12,
+   "turns": 4,
+   "rag": false,
+   "trimmed": false,
+   "hits": 3,
+   "misses": 1
+  },
+  {
+   "conv": 13,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 14,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 15,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 16,
+   "turns": 7,
+   "rag": false,
+   "trimmed": false,
+   "hits": 6,
+   "misses": 1
+  },
+  {
+   "conv": 17,
+   "turns": 5,
+   "rag": false,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 1
+  },
+  {
+   "conv": 18,
+   "turns": 7,
+   "rag": true,
+   "trimmed": false,
+   "hits": 4,
+   "misses": 3
+  },
+  {
+   "conv": 19,
+   "turns": 5,
+   "rag": true,
+   "trimmed": false,
+   "hits": 3,
+   "misses": 2
+  }
+ ]
+}

@@ -1,0 +1,380 @@
+{
+  "shaping": {
+    "prima": {
+      "c_aperta": {
+        "r": {
+          "n": 111,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke (NO snap)",
+        "obtained": {
+          "count": 3,
+          "t": "shape",
+          "kind": "ellipse",
+          "arrow": false,
+          "ptsN": 0
+        },
+        "ok": false
+      },
+      "cerchio_chiuso": {
+        "r": {
+          "n": 131,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/circle",
+        "obtained": {
+          "count": 4,
+          "t": "shape",
+          "kind": "circle",
+          "arrow": false,
+          "ptsN": 0
+        },
+        "ok": true
+      },
+      "coloring": {
+        "r": {
+          "n": 221,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke (NO snap)",
+        "obtained": {
+          "count": 5,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 221
+        },
+        "ok": true
+      },
+      "rettangolo_impreciso": {
+        "r": {
+          "n": 121,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/rectangle",
+        "obtained": {
+          "count": 6,
+          "t": "shape",
+          "kind": "rectangle",
+          "arrow": false,
+          "ptsN": 4
+        },
+        "ok": true
+      },
+      "quadrato": {
+        "r": {
+          "n": 97,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/square",
+        "obtained": {
+          "count": 7,
+          "t": "shape",
+          "kind": "square",
+          "arrow": false,
+          "ptsN": 4
+        },
+        "ok": true
+      },
+      "arco_flick": {
+        "r": {
+          "n": 43,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape + arrow=true",
+        "obtained": {
+          "count": 8,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 43
+        },
+        "ok": false,
+        "no_raw_residual": false
+      },
+      "curva_tremolante": {
+        "r": {
+          "n": 167,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke + residuo<=2.5px",
+        "obtained": {
+          "count": 9,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 167
+        },
+        "ok": true,
+        "residual_px": 1.88
+      },
+      "undo2": {
+        "expected": "1° undo -> stroke grezzo (count invariato), 2° undo -> rimosso",
+        "shape_before": true,
+        "u1": {
+          "count": 10,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 75
+        },
+        "u2": {
+          "count": 9,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 167
+        },
+        "ok": true
+      }
+    },
+    "dopo": {
+      "c_aperta": {
+        "r": {
+          "n": 111,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke (NO snap)",
+        "obtained": {
+          "count": 3,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 105
+        },
+        "ok": true
+      },
+      "cerchio_chiuso": {
+        "r": {
+          "n": 131,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/circle",
+        "obtained": {
+          "count": 4,
+          "t": "shape",
+          "kind": "circle",
+          "arrow": false,
+          "ptsN": 0
+        },
+        "ok": true
+      },
+      "coloring": {
+        "r": {
+          "n": 221,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke (NO snap)",
+        "obtained": {
+          "count": 5,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 221
+        },
+        "ok": true
+      },
+      "rettangolo_impreciso": {
+        "r": {
+          "n": 121,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/rectangle",
+        "obtained": {
+          "count": 6,
+          "t": "shape",
+          "kind": "rectangle",
+          "arrow": false,
+          "ptsN": 4
+        },
+        "ok": true
+      },
+      "quadrato": {
+        "r": {
+          "n": 97,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape/square",
+        "obtained": {
+          "count": 7,
+          "t": "shape",
+          "kind": "square",
+          "arrow": false,
+          "ptsN": 4
+        },
+        "ok": true
+      },
+      "arco_flick": {
+        "r": {
+          "n": 43,
+          "scale": 1.171303074670571
+        },
+        "expected": "shape + arrow=true",
+        "obtained": {
+          "count": 8,
+          "t": "shape",
+          "kind": "curve",
+          "arrow": true,
+          "ptsN": 36
+        },
+        "ok": true,
+        "no_raw_residual": true
+      },
+      "curva_tremolante": {
+        "r": {
+          "n": 167,
+          "scale": 1.171303074670571
+        },
+        "expected": "stroke + residuo<=2.5px",
+        "obtained": {
+          "count": 9,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 167
+        },
+        "ok": true,
+        "residual_px": 1.88
+      },
+      "undo2": {
+        "expected": "1° undo -> stroke grezzo (count invariato), 2° undo -> rimosso",
+        "shape_before": true,
+        "u1": {
+          "count": 10,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 75
+        },
+        "u2": {
+          "count": 9,
+          "t": "stroke",
+          "arrow": false,
+          "ptsN": 167
+        },
+        "ok": true
+      }
+    }
+  },
+  "ui": {
+    "prima": {
+      "toolbar": {
+        "n": 8,
+        "labels": [
+          "Annulla (Ctrl+Z): su una forma riconosciuta, il 1° annulla riporta al tratto grezzo, il 2° lo rimuove",
+          "Ripeti (Ctrl+Y)",
+          "Immagine",
+          "Documento",
+          "File PPT/PPTX",
+          "Fonti",
+          "Flashcard dalla selezione (AI: F01)",
+          "Migliora testo (AI: F05) - chiaro / conciso / formale"
+        ],
+        "hasAI": true,
+        "hasMigliora": true,
+        "hasFlashcard": false,
+        "shaping": 2,
+        "order_ok": false
+      },
+      "single_tool": 1,
+      "single_tool_ok": true,
+      "popover": {
+        "open": true,
+        "closed_outside": true,
+        "ok": true
+      },
+      "fonti": {
+        "chips": [],
+        "n_items": 6,
+        "items": [
+          "AppuntiNota QA-A",
+          "Appunti · FISICAAppunti Fisica Cinetica",
+          "Riassunto · STORIARiassunto Storia Romana",
+          "DocumentoDispensa Geologia",
+          "LibroLibro Gamma",
+          "Materialeriassunto-md.md"
+        ],
+        "has_chips": false,
+        "md": {
+          "clicked": true,
+          "has_h1": false,
+          "has_strong": false,
+          "has_li": false,
+          "has_badge": false,
+          "has_path": true,
+          "has_rawpath": true,
+          "preview_len": 166
+        },
+        "insert": {
+          "ok": true,
+          "validJson": true,
+          "selected": true
+        }
+      },
+      "expected": {
+        "toolbar": "ordine=undo,redo,immagine,Documento,ppt,fonti,Flashcard; AI/Migliora assenti; nessun [data-shaping]",
+        "fonti": "chips Tutti|Appunti|Materiali|Libri; md renderizzato (h1/strong/li); NESSUN metadato/path; insert funzionante",
+        "single_tool": "1 sollo tool attivo",
+        "popover": "aperto + chiuso da click fuori"
+      },
+      "ok_dopo": false
+    },
+    "dopo": {
+      "toolbar": {
+        "n": 7,
+        "labels": [
+          "Annulla (Ctrl+Z): su una forma riconosciuta, il 1° annulla riporta al tratto grezzo, il 2° lo rimuove",
+          "Ripeti (Ctrl+Y)",
+          "Immagine",
+          "Documento",
+          "File PPT/PPTX",
+          "Fonti",
+          "Genera flashcard dalla nota/selezione (AI: F01)"
+        ],
+        "hasAI": false,
+        "hasMigliora": false,
+        "hasFlashcard": true,
+        "shaping": 0,
+        "order_ok": true
+      },
+      "single_tool": 1,
+      "single_tool_ok": true,
+      "popover": {
+        "open": true,
+        "closed_outside": true,
+        "ok": true
+      },
+      "fonti": {
+        "chips": [
+          "Tutti",
+          "Appunti",
+          "Materiali",
+          "Libri"
+        ],
+        "n_items": 6,
+        "items": [
+          "AppuntiNota QA-A",
+          "Appunti · FISICAAppunti Fisica Cinetica",
+          "Riassunto · STORIARiassunto Storia Romana",
+          "DocumentoDispensa Geologia",
+          "LibroLibro Gamma",
+          "Materialeriassunto-md.md"
+        ],
+        "has_chips": true,
+        "md": {
+          "clicked": true,
+          "has_h1": true,
+          "has_strong": true,
+          "has_li": true,
+          "has_badge": true,
+          "has_path": false,
+          "has_rawpath": false,
+          "preview_len": 88
+        },
+        "insert": {
+          "ok": true,
+          "validJson": true,
+          "selected": true
+        }
+      },
+      "expected": {
+        "toolbar": "ordine=undo,redo,immagine,Documento,ppt,fonti,Flashcard; AI/Migliora assenti; nessun [data-shaping]",
+        "fonti": "chips Tutti|Appunti|Materiali|Libri; md renderizzato (h1/strong/li); NESSUN metadato/path; insert funzionante",
+        "single_tool": "1 sollo tool attivo",
+        "popover": "aperto + chiuso da click fuori"
+      },
+      "ok_dopo": true
+    }
+  }
+}

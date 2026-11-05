@@ -1,0 +1,25 @@
+[19:23:52] === FASE0 R18 FORENSICS (start) ===
+[19:23:52] config (sola lettura): {"rag.progress_events": true, "gate.threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "web.wikipedia": true, "web.searxng_url": "", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf", "llama.n_ctx": 8192}
+[19:23:52] spy installati: gate/semantic/_iter_gen/provenienza/cache/AiCache/web/search/prompt-sidecar
+[19:23:52] boot store/engine: 25.69ms; chunk local=17 books=0
+[19:23:52] client setup: 147.61ms backend=sidecar
+[19:23:52] answer cache rediretta a C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\tmp\f0r18_ac.jsonl
+[19:23:52] sidecar state pre: down
+[19:24:09] warmup atteso: semantic.ready=True embedder.warm=True (16222.79ms)
+[19:24:09] intent[q1] = {'intent': 'chit-chat', 'rule': 'intent0=chat', 'similarity': None}
+[19:24:50] CASE q1: total=41186ms tok=374 words=188 cache=False prov=['appunti'] err=None
+[19:24:50] F0.2[q1] = NA (termine assente dall'output) termini=[]
+[19:24:50] intent[q2] = {'intent': 'sotto-domanda', 'rule': 'ref=piu preciso', 'similarity': 0.8057, 'sim_metric': 'embedding'}
+[19:25:16] CASE q2: total=25889ms tok=145 words=65 cache=False prov=['web'] err=None
+[19:25:16] F0.2[q2] = NA (termine assente dall'output) termini=[]
+[19:25:16] intent[q3] = {'intent': 'sotto-domanda', 'rule': 'ref=questa,parlami meglio,meglio di', 'similarity': 0.8471, 'sim_metric': 'embedding'}
+[19:26:10] CASE q3: total=53776ms tok=309 words=152 cache=False prov=['appunti'] err=None
+[19:26:10] F0.2[q3] = NA (termine assente dall'output) termini=[]
+[19:26:10] intent[q4] = {'intent': 'sotto-domanda', 'rule': 'ref=di come,approfond,la parte', 'similarity': 0.8967, 'sim_metric': 'embedding'}
+[19:26:58] CASE q4: total=48512ms tok=405 words=194 cache=False prov=['appunti'] err=None
+[19:26:58] F0.2[q4] = NA (termine assente dall'output) termini=[]
+[19:26:58] audit indice (F0.3)...
+[19:26:58] presenze totali file fotosintesi: 5
+[19:26:58] sidecar state post: down
+[19:26:58] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\f0_round18.json
+[19:26:59] processi residui llama-server: 2

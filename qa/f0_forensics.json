@@ -1,0 +1,1375 @@
+{
+  "round": "R15b",
+  "agent": "ANALYST-FORENSICS F0",
+  "ts": "2026-10-24 21:36:03",
+  "method_legend": {
+    "e2e-reale": "flusso completo con LLM locale reale (sidecar llama-server), strumentato",
+    "retrieval-level+code-path": "misura reale di retrieval+gate+router; generazione dedotta da lettura code-path (marcato)"
+  },
+  "env": {
+    "appdata": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio",
+    "db_snapshot": {
+      "tables": [
+        "calendar_events",
+        "chats",
+        "chunks",
+        "chunks_fts",
+        "chunks_fts_config",
+        "chunks_fts_data",
+        "chunks_fts_docsize",
+        "chunks_fts_idx",
+        "doc_versions",
+        "folders",
+        "indexed_files",
+        "messages",
+        "sqlite_sequence",
+        "study_items",
+        "subjects",
+        "vec_vector_index",
+        "vec_vector_index_chunks",
+        "vec_vector_index_info",
+        "vec_vector_index_rowids",
+        "vec_vector_index_vector_chunks00",
+        "vecnb_vector_index"
+      ],
+      "chunks_columns": [
+        "id",
+        "doc_id",
+        "parent_id",
+        "source_file",
+        "store_key",
+        "testo",
+        "meta",
+        "dim"
+      ],
+      "embedding_model_id_column_in_chunks": false,
+      "chunks_per_store": [
+        {
+          "store_key": "vector_index",
+          "n": 17
+        }
+      ],
+      "sources": [
+        {
+          "store_key": "vector_index",
+          "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+          "n": 17
+        }
+      ],
+      "indexed_files_rows": 0,
+      "marker_chunk_counts": {
+        "q1": {
+          "2870": 2
+        },
+        "q2": {
+          "2870": 2
+        },
+        "q3": {
+          "PEP (3C)": 3,
+          "5.5 - 6.5": 1
+        },
+        "q4": {
+          "mitosi": 0,
+          "meiosi": 0
+        },
+        "q5": {
+          "25%": 3
+        }
+      }
+    },
+    "files_snapshot": {
+      "vector_index/embedding_model.txt": "intfloat/multilingual-e5-small",
+      "vector_index_books/embedding_model.txt": "intfloat/multilingual-e5-small"
+    },
+    "embedder_runtime": "intfloat/multilingual-e5-small",
+    "embedder_index": "intfloat/multilingual-e5-small",
+    "boot_store_ms": 46.86,
+    "reindex_measured": {
+      "ms": 3171.08,
+      "chunks_before": 17,
+      "chunks_after": 17,
+      "indexed_files_rows_after": 1,
+      "error": null
+    },
+    "sidecar_shutdown": {
+      "attempted": true,
+      "state_before": "down",
+      "port": null,
+      "state_after": "down"
+    },
+    "network_declared": "SOLO caso q4: ddgs → DuckDuckGo (via core/web_search.search_web); HF offline forzato",
+    "sidecar_diagnostics": {
+      "note": "micro-test reale eseguito in postprocess",
+      "llm.backend": "sidecar",
+      "proxy_wrapped": true,
+      "router_style_bind": "FAIL: missing a required argument: 'query'",
+      "conclusion": "SidecarLLMProxy.generate_stream fa sig.bind su metodo NON bound: 'self' assorbe il primo argomento → TypeError 'missing query' → fallback SILENZIOSO su generate_stream in-process. Con llm.backend=sidecar il sidecar (llama-server) NON viene MAI raggiunto dalle chiamate di Router (stesso identico percorso in produzione). E2E F0 eseguito in-process."
+    }
+  },
+  "cases": [
+    {
+      "id": "q1",
+      "query": "Nella fotosintesi clorofilliana qual è il valore di ΔG°' in kJ/mol della reazione che produce glucosio?",
+      "method": "e2e-reale",
+      "stages_dump": {
+        "semantic_router": {
+          "use_rag": true,
+          "sim_rag": 0.7935,
+          "sim_no_rag": 0.7803
+        },
+        "semantic_router_ms": 43631.07,
+        "embed_query_ms": 0.01,
+        "vec_ms": 41.02,
+        "fts_ms": 6.89,
+        "fts_scores": [
+          -15.4257,
+          -5.898,
+          -0.9276,
+          -1.0182,
+          -0.8981,
+          -0.6192,
+          -0.4585,
+          -0.4712,
+          -0.6939,
+          -0.6222
+        ],
+        "vec_scores": [
+          0.9125,
+          0.8943,
+          0.8796,
+          0.8754,
+          0.8734,
+          0.8721,
+          0.8714,
+          0.8706
+        ],
+        "rrf_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "top10": [
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia ## Documento Docente e Materiale di Studio Avanzato **Livello:** Corso di Laurea Magistrale / Universitario **Sett…",
+            "fts": -15.4257,
+            "vec": 0.9125,
+            "rrf": 1,
+            "rrf_score": 0.032787
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazione fortemente endergonica ($\\Delta G^\\circ' = +2870 \\text{ kJ/mol}$ di glucosio) che comporta il trasferimento di elett…",
+            "fts": -5.898,
+            "vec": 0.8943,
+            "rrf": 2,
+            "rrf_score": 0.032258
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da: $$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$ Dove $\\Omega$ è la **selettività del…",
+            "fts": -0.9276,
+            "vec": 0.8796,
+            "rrf": 3,
+            "rrf_score": 0.031498
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C): $$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (…",
+            "fts": -1.0182,
+            "vec": 0.8754,
+            "rrf": 4,
+            "rrf_score": 0.031498
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfog…",
+            "fts": -0.8981,
+            "vec": 0.8734,
+            "rrf": 5,
+            "rrf_score": 0.030769
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}…",
+            "fts": -0.6192,
+            "vec": 0.8721,
+            "rrf": 6,
+            "rrf_score": 0.029857
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille). | Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale …",
+            "fts": -0.4585,
+            "vec": 0.8714,
+            "rrf": 7,
+            "rrf_score": 0.029211
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corrett…",
+            "fts": -0.4712,
+            "vec": 0.8706,
+            "rrf": 8,
+            "rrf_score": 0.029199
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) |…",
+            "fts": -0.6939,
+            "vec": null,
+            "rrf": 9,
+            "rrf_score": 0.015152
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP: $$\\text{ADP} + \\text{P}_i +…",
+            "fts": -0.6222,
+            "vec": null,
+            "rrf": 10,
+            "rrf_score": 0.014925
+          }
+        ],
+        "gate": {
+          "sims": [
+            0.9125,
+            0.8943,
+            0.8796,
+            0.8754,
+            0.8734
+          ],
+          "confidence": "alta",
+          "should_answer": true,
+          "thresholds": {
+            "strong": 0.45,
+            "weak": 0.35
+          },
+          "n_selected": 5,
+          "is_empty": false,
+          "recomputed": {
+            "confidence": "alta",
+            "should_answer": true
+          }
+        },
+        "marker_check": {
+          "marker_chunk_counts": {
+            "2870": 2
+          },
+          "markers_in_vec_top10": [
+            "2870"
+          ],
+          "markers_in_any_top10": [
+            "2870"
+          ],
+          "markers_in_gate_selected": [
+            "2870"
+          ],
+          "gate_sims": [
+            0.9125,
+            0.8943,
+            0.8796,
+            0.8754,
+            0.8734
+          ],
+          "semantic_router": {
+            "use_rag": true,
+            "sim_rag": 0.7935,
+            "sim_no_rag": 0.7803
+          },
+          "outcome_oggi": "risposta-locale (source=locale)"
+        }
+      },
+      "outcome_oggi": "E2E-OSSERVATO: source=locale, llm_calls=1, total_ms=85351, web_results=None",
+      "outcome_path": "code-path: local non vuoto → _emit_level(locale)",
+      "coverage": {
+        "chunk_exists": true,
+        "marker_counts": {
+          "2870": 2
+        },
+        "stage": "appunti",
+        "originals_vs_rag_stage2": {
+          "originals/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "rag_stage2/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "indexed_sources": [
+            "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+          ],
+          "originals_indicizzato": false
+        },
+        "embedding_model_id_index": "intfloat/multilingual-e5-small",
+        "embedding_model_id_runtime": "intfloat/multilingual-e5-small",
+        "embedding_model_id_persist": {
+          "file_vector_index": "intfloat/multilingual-e5-small",
+          "file_vector_index_books": "intfloat/multilingual-e5-small",
+          "colonna_db_chunks": "ABSENTE",
+          "verdetto": "PRESENTE come file per-store (embedding_model.txt); ABSENTE come colonna nei metadati DB"
+        }
+      },
+      "cost": {
+        "stages_ms": {
+          "semantic_router": 43631.07,
+          "embed_query": 0.01,
+          "vec": 41.02,
+          "fts": 6.89,
+          "local_search_total": 4.26,
+          "books_search": 0.15,
+          "web": 0.0,
+          "llm_gen_total": 84917.16
+        },
+        "llm_calls": 1,
+        "llm_calls_note": "misurato reale (contatore su generate_stream)",
+        "total_ms": 85350.56,
+        "method_cost": "misurato E2E",
+        "first_token_ms": 81306.43
+      },
+      "root_cause": "OK",
+      "evidenza": "marker in vec top-10 con sim=0.9125 >= 0.45 → risposta locale; sim top-10 vettoriali: [0.9125, 0.8943, 0.8796, 0.8754, 0.8734, 0.8721, 0.8714, 0.8706]",
+      "e2e": {
+        "total_ms": 85350.56,
+        "first_token_ms": 81306.43,
+        "n_tokens": 35,
+        "source_osservato": "locale",
+        "llm_calls": {
+          "n": 1,
+          "ms": [
+            84917.16
+          ]
+        },
+        "stages_ms": {
+          "semantic_router": 428.04,
+          "local_search": 4.99
+        },
+        "web_ms": 0.0,
+        "web_batches": [],
+        "web_results": null,
+        "queue_events": [],
+        "response_head": "Il valore di ΔG°' per la fotosintesi che produce glucosio è **+2870 kJ/mol** (ereditarymente endergonica).",
+        "error": null
+      },
+      "outcome_oggi_codepath_derivato": "risposta-locale (source=locale)"
+    },
+    {
+      "id": "q2",
+      "query": "Quanta energia libera serve alle piante per trasformare anidride carbonica e acqua in zucchero usando la luce?",
+      "method": "retrieval-level+code-path",
+      "stages_dump": {
+        "semantic_router": {
+          "use_rag": true,
+          "sim_rag": 0.7887,
+          "sim_no_rag": 0.7732
+        },
+        "semantic_router_ms": 32.75,
+        "embed_query_ms": 0.01,
+        "vec_ms": 4.32,
+        "fts_ms": 3.03,
+        "fts_scores": [
+          -6.1726,
+          -6.1897,
+          -4.1791,
+          -3.2397,
+          -3.9552,
+          -1.2835,
+          -1.2045,
+          -1.3481
+        ],
+        "vec_scores": [
+          0.8604,
+          0.8451,
+          0.8489,
+          0.8485,
+          0.8389,
+          0.8415,
+          0.8382,
+          0.8561,
+          0.8537
+        ],
+        "rrf_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "top10": [
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia ## Documento Docente e Materiale di Studio Avanzato **Livello:** Corso di Laurea Magistrale / Universitario **Sett…",
+            "fts": -6.1726,
+            "vec": 0.8604,
+            "rrf": 1,
+            "rrf_score": 0.032522
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfog…",
+            "fts": -6.1897,
+            "vec": 0.8451,
+            "rrf": 2,
+            "rrf_score": 0.031545
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente. * **Fase Diurna:** G…",
+            "fts": -4.1791,
+            "vec": 0.8489,
+            "rrf": 3,
+            "rrf_score": 0.031498
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da: $$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$ Dove $\\Omega$ è la **selettività del…",
+            "fts": -3.2397,
+            "vec": 0.8485,
+            "rrf": 4,
+            "rrf_score": 0.030769
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) |…",
+            "fts": -3.9552,
+            "vec": 0.8389,
+            "rrf": 5,
+            "rrf_score": 0.030118
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C): $$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (…",
+            "fts": -1.2835,
+            "vec": 0.8415,
+            "rrf": 6,
+            "rrf_score": 0.029631
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille). | Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale …",
+            "fts": -1.2045,
+            "vec": 0.8382,
+            "rrf": 7,
+            "rrf_score": 0.028992
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP: $$\\text{ADP} + \\text{P}_i +…",
+            "fts": null,
+            "vec": 0.8561,
+            "rrf": 8,
+            "rrf_score": 0.016129
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_…",
+            "fts": null,
+            "vec": 0.8537,
+            "rrf": 9,
+            "rrf_score": 0.015873
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corrett…",
+            "fts": -1.3481,
+            "vec": null,
+            "rrf": 10,
+            "rrf_score": 0.015152
+          }
+        ],
+        "gate": {
+          "sims": [
+            0.8604,
+            0.8561,
+            0.8537,
+            0.8489,
+            0.8485
+          ],
+          "confidence": "alta",
+          "should_answer": true,
+          "thresholds": {
+            "strong": 0.45,
+            "weak": 0.35
+          },
+          "n_selected": 5,
+          "is_empty": false,
+          "recomputed": {
+            "confidence": "alta",
+            "should_answer": true
+          }
+        },
+        "marker_check": {
+          "marker_chunk_counts": {
+            "2870": 2
+          },
+          "markers_in_vec_top10": [
+            "2870"
+          ],
+          "markers_in_any_top10": [
+            "2870"
+          ],
+          "markers_in_gate_selected": [
+            "2870"
+          ],
+          "gate_sims": [
+            0.8604,
+            0.8561,
+            0.8537,
+            0.8489,
+            0.8485
+          ],
+          "semantic_router": {
+            "use_rag": true,
+            "sim_rag": 0.7887,
+            "sim_no_rag": 0.7732
+          },
+          "outcome_oggi": "risposta-locale (source=locale)"
+        }
+      },
+      "outcome_oggi": "risposta-locale (source=locale)",
+      "outcome_path": "code-path: local non vuoto → _emit_level(locale)",
+      "coverage": {
+        "chunk_exists": true,
+        "marker_counts": {
+          "2870": 2
+        },
+        "stage": "appunti",
+        "originals_vs_rag_stage2": {
+          "originals/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "rag_stage2/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "indexed_sources": [
+            "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+          ],
+          "originals_indicizzato": false
+        },
+        "embedding_model_id_index": "intfloat/multilingual-e5-small",
+        "embedding_model_id_runtime": "intfloat/multilingual-e5-small",
+        "embedding_model_id_persist": {
+          "file_vector_index": "intfloat/multilingual-e5-small",
+          "file_vector_index_books": "intfloat/multilingual-e5-small",
+          "colonna_db_chunks": "ABSENTE",
+          "verdetto": "PRESENTE come file per-store (embedding_model.txt); ABSENTE come colonna nei metadati DB"
+        }
+      },
+      "cost": {
+        "stages_ms": {
+          "semantic_router": 32.75,
+          "embed_query": 0.01,
+          "vec": 4.32,
+          "fts": 3.03,
+          "local_search_total": 4.27,
+          "books_search": 0.11
+        },
+        "llm_calls": 1,
+        "llm_calls_note": "DEDOTTO code-path: 1 generate_stream per risposta (router.py; q1/q4 E2E confermano il pattern)",
+        "total_ms": null,
+        "method_cost": "retrieval misurato; generazione NON misurata (null)"
+      },
+      "root_cause": "OK",
+      "evidenza": "marker in vec top-10 con sim=0.8604 >= 0.45 → risposta locale; sim top-10 vettoriali: [0.8604, 0.8561, 0.8537, 0.8489, 0.8485, 0.8451, 0.8415, 0.8389, 0.8382]",
+      "e2e": null
+    },
+    {
+      "id": "q3",
+      "query": "Confronta le vie C4 e CAM: qual è il primo accettore di CO2 in ciascuna e il rapporto ATP:NADPH consumato per CO2?",
+      "method": "retrieval-level+code-path",
+      "stages_dump": {
+        "semantic_router": {
+          "use_rag": true,
+          "sim_rag": 0.799,
+          "sim_no_rag": 0.789
+        },
+        "semantic_router_ms": 33.38,
+        "embed_query_ms": 0.0,
+        "vec_ms": 3.55,
+        "fts_ms": 2.83,
+        "fts_scores": [
+          -5.9423,
+          -5.3593,
+          -2.8045,
+          -1.9572,
+          -4.7839,
+          -2.2077,
+          -2.5255,
+          -2.307,
+          -1.7868
+        ],
+        "vec_scores": [
+          0.8596,
+          0.8603,
+          0.8637,
+          0.8661,
+          0.8586,
+          0.8593,
+          0.8564,
+          0.8532,
+          0.8451,
+          0.8525
+        ],
+        "rrf_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "top10": [
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente. * **Fase Diurna:** G…",
+            "fts": -5.9423,
+            "vec": 0.8596,
+            "rrf": 1,
+            "rrf_score": 0.032018
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da: $$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$ Dove $\\Omega$ è la **selettività del…",
+            "fts": -5.3593,
+            "vec": 0.8603,
+            "rrf": 2,
+            "rrf_score": 0.032002
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C): $$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (…",
+            "fts": -2.8045,
+            "vec": 0.8637,
+            "rrf": 3,
+            "rrf_score": 0.031754
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_…",
+            "fts": -1.9572,
+            "vec": 0.8661,
+            "rrf": 4,
+            "rrf_score": 0.031099
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfog…",
+            "fts": -4.7839,
+            "vec": 0.8586,
+            "rrf": 5,
+            "rrf_score": 0.031025
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP: $$\\text{ADP} + \\text{P}_i +…",
+            "fts": -2.2077,
+            "vec": 0.8593,
+            "rrf": 6,
+            "rrf_score": 0.03031
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) |…",
+            "fts": -2.5255,
+            "vec": 0.8564,
+            "rrf": 7,
+            "rrf_score": 0.03031
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma. **Risultato Netto del Ciclo-…",
+            "fts": -2.307,
+            "vec": 0.8532,
+            "rrf": 8,
+            "rrf_score": 0.029857
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico. ### Il Comple…",
+            "fts": -1.7868,
+            "vec": 0.8451,
+            "rrf": 9,
+            "rrf_score": 0.028571
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La RuBisCO addiziona una molecola di $\\text{CO}_2$ al pentoso attivato **Ribulosio-1,5-bisfosfato** ($\\text{RuBP}$, 5C), forming un intermedio a 6 carboni transitorio ed instabile ($2\\text{-carbossi-}…",
+            "fts": null,
+            "vec": 0.8525,
+            "rrf": 10,
+            "rrf_score": 0.014493
+          }
+        ],
+        "gate": {
+          "sims": [
+            0.8661,
+            0.8637,
+            0.8603,
+            0.8596,
+            0.8593
+          ],
+          "confidence": "alta",
+          "should_answer": true,
+          "thresholds": {
+            "strong": 0.45,
+            "weak": 0.35
+          },
+          "n_selected": 5,
+          "is_empty": false,
+          "recomputed": {
+            "confidence": "alta",
+            "should_answer": true
+          }
+        },
+        "marker_check": {
+          "marker_chunk_counts": {
+            "PEP (3C)": 3,
+            "5.5 - 6.5": 1
+          },
+          "markers_in_vec_top10": [
+            "PEP (3C)",
+            "5.5 - 6.5"
+          ],
+          "markers_in_any_top10": [
+            "PEP (3C)",
+            "5.5 - 6.5"
+          ],
+          "markers_in_gate_selected": [
+            "PEP (3C)",
+            "5.5 - 6.5"
+          ],
+          "gate_sims": [
+            0.8661,
+            0.8637,
+            0.8603,
+            0.8596,
+            0.8593
+          ],
+          "semantic_router": {
+            "use_rag": true,
+            "sim_rag": 0.799,
+            "sim_no_rag": 0.789
+          },
+          "outcome_oggi": "risposta-locale (source=locale)"
+        }
+      },
+      "outcome_oggi": "risposta-locale (source=locale)",
+      "outcome_path": "code-path: local non vuoto → _emit_level(locale)",
+      "coverage": {
+        "chunk_exists": true,
+        "marker_counts": {
+          "PEP (3C)": 3,
+          "5.5 - 6.5": 1
+        },
+        "stage": "appunti",
+        "originals_vs_rag_stage2": {
+          "originals/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "rag_stage2/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "indexed_sources": [
+            "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+          ],
+          "originals_indicizzato": false
+        },
+        "embedding_model_id_index": "intfloat/multilingual-e5-small",
+        "embedding_model_id_runtime": "intfloat/multilingual-e5-small",
+        "embedding_model_id_persist": {
+          "file_vector_index": "intfloat/multilingual-e5-small",
+          "file_vector_index_books": "intfloat/multilingual-e5-small",
+          "colonna_db_chunks": "ABSENTE",
+          "verdetto": "PRESENTE come file per-store (embedding_model.txt); ABSENTE come colonna nei metadati DB"
+        }
+      },
+      "cost": {
+        "stages_ms": {
+          "semantic_router": 33.38,
+          "embed_query": 0.0,
+          "vec": 3.55,
+          "fts": 2.83,
+          "local_search_total": 4.39,
+          "books_search": 0.11
+        },
+        "llm_calls": 1,
+        "llm_calls_note": "DEDOTTO code-path: 1 generate_stream per risposta (router.py; q1/q4 E2E confermano il pattern)",
+        "total_ms": null,
+        "method_cost": "retrieval misurato; generazione NON misurata (null)"
+      },
+      "root_cause": "OK",
+      "evidenza": "marker in vec top-10 con sim=0.8596 >= 0.45 → risposta locale; sim top-10 vettoriali: [0.8661, 0.8637, 0.8603, 0.8596, 0.8593, 0.8586, 0.8564, 0.8532, 0.8525, 0.8451]",
+      "e2e": null
+    },
+    {
+      "id": "q4",
+      "query": "Qual è la differenza tra mitosi e meiosi nelle cellule?",
+      "method": "e2e-reale",
+      "stages_dump": {
+        "semantic_router": {
+          "use_rag": true,
+          "sim_rag": 0.7857,
+          "sim_no_rag": 0.7681
+        },
+        "semantic_router_ms": 26.91,
+        "embed_query_ms": 0.0,
+        "vec_ms": 4.72,
+        "fts_ms": 1.53,
+        "fts_scores": [
+          -2.4629,
+          -2.5139,
+          -1.1134,
+          -1.7488,
+          -1.1064,
+          -1.4213,
+          -1.0727,
+          -1.0965
+        ],
+        "vec_scores": [
+          0.82,
+          0.8059,
+          0.8121,
+          0.8113,
+          0.8119,
+          0.8045,
+          0.8093,
+          0.8032,
+          0.8024
+        ],
+        "rrf_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "top10": [
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) |…",
+            "fts": -2.4629,
+            "vec": 0.82,
+            "rrf": 1,
+            "rrf_score": 0.032522
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfog…",
+            "fts": -2.5139,
+            "vec": 0.8059,
+            "rrf": 2,
+            "rrf_score": 0.031545
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La sua attività è finemente regolata nel contesto cellulare da: * **Sistema Ferredossina-Tioredossina:** Gli enzimi FBPasi, SBPasi, PRK e GAPDH possiedono ponti disolfuro catalitici. Alla luce, il flu…",
+            "fts": -1.1134,
+            "vec": 0.8121,
+            "rrf": 3,
+            "rrf_score": 0.031514
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da: $$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$ Dove $\\Omega$ è la **selettività del…",
+            "fts": -1.7488,
+            "vec": 0.8113,
+            "rrf": 4,
+            "rrf_score": 0.031498
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Si distinguono due regioni morfologiche e funzionali ben precise: * **Tilacoidi dei Grana (Regioni Appressate):** Strati sovrapposti a forma di moneta. Sono domini arricchiti nel *Fotosistema II (PSII…",
+            "fts": -1.1064,
+            "vec": 0.8119,
+            "rrf": 5,
+            "rrf_score": 0.031025
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C): $$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (…",
+            "fts": -1.4213,
+            "vec": 0.8045,
+            "rrf": 6,
+            "rrf_score": 0.03055
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente. * **Fase Diurna:** G…",
+            "fts": -1.0727,
+            "vec": 0.8093,
+            "rrf": 7,
+            "rrf_score": 0.03009
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Questa segregazione spaziale previene il fenomeno dello **short-circuiting** (o *spillover*), ovvero il trasferimento diretto e incontrollato di energia di eccitazione dal PSII al PSI senza il corrett…",
+            "fts": -1.0965,
+            "vec": null,
+            "rrf": 8,
+            "rrf_score": 0.014925
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il primo elettrone riduce una seconda Plastocianina; il secondo elettrone va al sito $Q_i$ e completa la riduzione del semi-chinone, consumando $2\\text{H}^+$ dallo stroma. **Risultato Netto del Ciclo-…",
+            "fts": null,
+            "vec": 0.8032,
+            "rrf": 9,
+            "rrf_score": 0.014706
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP: $$\\text{ADP} + \\text{P}_i +…",
+            "fts": null,
+            "vec": 0.8024,
+            "rrf": 10,
+            "rrf_score": 0.014493
+          }
+        ],
+        "gate": {
+          "sims": [
+            0.82,
+            0.8121,
+            0.8119,
+            0.8113,
+            0.8093
+          ],
+          "confidence": "alta",
+          "should_answer": true,
+          "thresholds": {
+            "strong": 0.45,
+            "weak": 0.35
+          },
+          "n_selected": 5,
+          "is_empty": false,
+          "recomputed": {
+            "confidence": "alta",
+            "should_answer": true
+          }
+        },
+        "marker_check": {
+          "marker_chunk_counts": {
+            "mitosi": 0,
+            "meiosi": 0
+          },
+          "markers_in_vec_top10": [],
+          "markers_in_any_top10": [],
+          "markers_in_gate_selected": [],
+          "gate_sims": [
+            0.82,
+            0.8121,
+            0.8119,
+            0.8113,
+            0.8093
+          ],
+          "semantic_router": {
+            "use_rag": true,
+            "sim_rag": 0.7857,
+            "sim_no_rag": 0.7681
+          },
+          "outcome_oggi": "risposta-locale (source=locale)"
+        }
+      },
+      "outcome_oggi": "E2E-OSSERVATO: source=web, llm_calls=2, total_ms=132636, web_results=5 — 1a chiamata: contesto LOCALE con chunk irrilevanti (sim 0.82) → modello ha emesso [[NESSUNA_INFORMAZIONE_LOCALE]] → escalation libri(vuoto) → web; la 2a chiamata genera la risposta web",
+      "outcome_path": "code-path: local non vuoto → _emit_level(locale)",
+      "coverage": {
+        "chunk_exists": false,
+        "marker_counts": {
+          "mitosi": 0,
+          "meiosi": 0
+        },
+        "stage": "none",
+        "originals_vs_rag_stage2": {
+          "originals/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "rag_stage2/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "indexed_sources": [
+            "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+          ],
+          "originals_indicizzato": false
+        },
+        "embedding_model_id_index": "intfloat/multilingual-e5-small",
+        "embedding_model_id_runtime": "intfloat/multilingual-e5-small",
+        "embedding_model_id_persist": {
+          "file_vector_index": "intfloat/multilingual-e5-small",
+          "file_vector_index_books": "intfloat/multilingual-e5-small",
+          "colonna_db_chunks": "ABSENTE",
+          "verdetto": "PRESENTE come file per-store (embedding_model.txt); ABSENTE come colonna nei metadati DB"
+        }
+      },
+      "cost": {
+        "stages_ms": {
+          "semantic_router": 26.91,
+          "embed_query": 0.0,
+          "vec": 4.72,
+          "fts": 1.53,
+          "local_search_total": 4.15,
+          "books_search": 0.12,
+          "web": 1832.48,
+          "llm_gen_total": 130799.95999999999,
+          "reindex_background_ms": 3171.08
+        },
+        "llm_calls": 2,
+        "llm_calls_note": "misurato reale (contatore su generate_stream)",
+        "total_ms": 132635.96,
+        "method_cost": "misurato E2E",
+        "first_token_ms": 74983.14,
+        "reindex_note": "reindex è BACKGROUND (api ogni 300s), NON nel path di query; misurato 1x reale qui"
+      },
+      "root_cause": "NO-WEB",
+      "evidenza": "q4: nessun chunk con mitosi/meiosi in indice (COVERAGE assente su appunti/libri); dipende tutto da web; se ddgs vuoto → generazione context=none; E2E reale: source=web, 5 risultati, web_ms=1832.48, llm_calls=2",
+      "e2e": {
+        "total_ms": 132635.96,
+        "first_token_ms": 74983.14,
+        "n_tokens": 321,
+        "source_osservato": "web",
+        "llm_calls": {
+          "n": 2,
+          "ms": [
+            76617.08,
+            54182.88
+          ]
+        },
+        "stages_ms": {
+          "semantic_router": 0.12,
+          "local_search": 2.71,
+          "books_search": 0.25
+        },
+        "web_ms": 1832.48,
+        "web_batches": [
+          {
+            "ms": 1829.57,
+            "n": 5,
+            "q": "Qual è la differenza tra mitosi e meiosi nelle cellule? (site:treccani.it OR sit…"
+          }
+        ],
+        "web_results": 5,
+        "queue_events": [],
+        "response_head": "[[NESSUNA_INFORMAZIONE_LOCALE]] ## La differenza tra mitosi e meiosi Le due vie di divisione cellulare hanno scopi diversi e comportamenti cromosomici variabili. - **Scopo**: la *mitosi* serve al crescita cellulare sana delle cellule somatiche, mentre la *meiosi* prepara i gameti per l'ovulazione o il riproduzione. - **Numero di cromosomi**: nella mitosi il conto rimane *ploido (2n)*; nella meiosi…",
+        "error": null
+      },
+      "outcome_oggi_codepath_derivato": "risposta-locale (source=locale)"
+    },
+    {
+      "id": "q5",
+      "query": "Quando un vegetale spreca una parte di quello che ha già fissato perché il suo enzima prende l'ossigeno invece del gas giusto, quanto perde in percentuale?",
+      "method": "retrieval-level+code-path",
+      "stages_dump": {
+        "semantic_router": {
+          "use_rag": true,
+          "sim_rag": 0.8104,
+          "sim_no_rag": 0.8019
+        },
+        "semantic_router_ms": 34.27,
+        "embed_query_ms": 0.01,
+        "vec_ms": 4.44,
+        "fts_ms": 3.01,
+        "fts_scores": [
+          -3.5551,
+          -3.0342,
+          -4.0811,
+          -2.9571,
+          -1.4965,
+          -2.8629,
+          -3.9803,
+          -3.1542
+        ],
+        "vec_scores": [
+          0.8638,
+          0.8693,
+          0.8396,
+          0.8502,
+          0.8601,
+          0.8489,
+          0.8539,
+          0.8498
+        ],
+        "rrf_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "top10": [
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "**Anatomia di Kranz** (\"a corona\"). ``` [ ARIA ESTERNA ] | v (Stomi) +-----------------------+ | CELLULE DEL MESOFILLO | | | | CO2 -> HCO3- | | + PEP (3C) | | | (PEPCase) | | v | | Ossalacetato (4C) |…",
+            "fts": -3.5551,
+            "vec": 0.8638,
+            "rrf": 1,
+            "rrf_score": 0.032002
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfoenolpiruvato** ($\\text{PEP}$, 3C): $$\\text{PEP} (3C) + \\text{HCO}_3^- \\xrightarrow{\\text{PEPCase}} \\text{Ossalacetato} (…",
+            "fts": -3.0342,
+            "vec": 0.8693,
+            "rrf": 2,
+            "rrf_score": 0.031778
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "I principali pigmenti negli organismi vegetali superiori sono le **clorofille** (a e b) e i **carotenoidi** (caroteni e xantofille). | Pigmento | Picchi di Assorbimento ($\\lambda$) | Ruolo Funzionale …",
+            "fts": -4.0811,
+            "vec": 0.8396,
+            "rrf": 3,
+            "rrf_score": 0.030679
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il rapporto tra la velocità di carbossilazione ($v_c$) e ossigenazione ($v_o$) è espresso da: $$\\frac{v_c}{v_o} = \\Omega \\cdot \\frac{[\\text{CO}_2]}{[\\text{O}_2]}$$ Dove $\\Omega$ è la **selettività del…",
+            "fts": -2.9571,
+            "vec": 0.8502,
+            "rrf": 4,
+            "rrf_score": 0.030536
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "La PEPCase fissa la $\\text{CO}_2$ sotto forma di acido malico, che viene trasportato attivamente nel vacuolo tramite pompe protoniche V-type. La cellula si acidifica notevolmente. * **Fase Diurna:** G…",
+            "fts": -1.4965,
+            "vec": 0.8601,
+            "rrf": 5,
+            "rrf_score": 0.030159
+          },
+          {
+            "stage": "vec+fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "A $25^\\circ\\text{C}$, nelle piante $C_3$, circa 1 reazione su 4-5 catalizzate dalla RuBisCO è un'ossigenazione. ## 4.2 La Via Metabolica della Fotorespirazione (Ciclo C2) La rigenerazione del 2-fosfog…",
+            "fts": -2.8629,
+            "vec": 0.8489,
+            "rrf": 6,
+            "rrf_score": 0.029851
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Quando $\\text{Q}_B$ acquisisce due elettroni e due protoni dallo stroma, si riduce a **Plastochinolo** ($\\text{PQH}_2$) e abbandona il sito di legame per integrarsi nel bilayer lipidico. ### Il Comple…",
+            "fts": -3.9803,
+            "vec": null,
+            "rrf": 7,
+            "rrf_score": 0.016129
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Il complesso **ATP Sintasi ($\\text{CF}_o\\text{CF}_1$)** sfrutta questo flusso esoergonico di rientro dei protoni dal lume verso lo stroma per catalizzare la sintesi di ATP: $$\\text{ADP} + \\text{P}_i +…",
+            "fts": null,
+            "vec": 0.8539,
+            "rrf": 8,
+            "rrf_score": 0.015625
+          },
+          {
+            "stage": "fts",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisiologia ## Documento Docente e Materiale di Studio Avanzato **Livello:** Corso di Laurea Magistrale / Universitario **Sett…",
+            "fts": -3.1542,
+            "vec": null,
+            "rrf": 9,
+            "rrf_score": 0.015625
+          },
+          {
+            "stage": "vec",
+            "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+            "txt": "Nei cloroplasti, il componente prevalente della $\\text{PMF}$ è il gradiente di concentrazione chimica ($\\Delta\\text{pH} \\approx 2.5 - 3.0 \\text{ unità di pH}$). Il complesso **ATP Sintasi ($\\text{CF}_…",
+            "fts": null,
+            "vec": 0.8498,
+            "rrf": 10,
+            "rrf_score": 0.015152
+          }
+        ],
+        "gate": {
+          "sims": [
+            0.8693,
+            0.8638,
+            0.8601,
+            0.8539,
+            0.8502
+          ],
+          "confidence": "alta",
+          "should_answer": true,
+          "thresholds": {
+            "strong": 0.45,
+            "weak": 0.35
+          },
+          "n_selected": 5,
+          "is_empty": false,
+          "recomputed": {
+            "confidence": "alta",
+            "should_answer": true
+          }
+        },
+        "marker_check": {
+          "marker_chunk_counts": {
+            "25%": 3
+          },
+          "markers_in_vec_top10": [
+            "25%"
+          ],
+          "markers_in_any_top10": [
+            "25%"
+          ],
+          "markers_in_gate_selected": [
+            "25%"
+          ],
+          "gate_sims": [
+            0.8693,
+            0.8638,
+            0.8601,
+            0.8539,
+            0.8502
+          ],
+          "semantic_router": {
+            "use_rag": true,
+            "sim_rag": 0.8104,
+            "sim_no_rag": 0.8019
+          },
+          "outcome_oggi": "risposta-locale (source=locale)"
+        }
+      },
+      "outcome_oggi": "risposta-locale (source=locale)",
+      "outcome_path": "code-path: local non vuoto → _emit_level(locale)",
+      "coverage": {
+        "chunk_exists": true,
+        "marker_counts": {
+          "25%": 3
+        },
+        "stage": "appunti",
+        "originals_vs_rag_stage2": {
+          "originals/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "rag_stage2/": [
+            "fotosintesi_clorofilliana_universitario.md"
+          ],
+          "indexed_sources": [
+            "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+          ],
+          "originals_indicizzato": false
+        },
+        "embedding_model_id_index": "intfloat/multilingual-e5-small",
+        "embedding_model_id_runtime": "intfloat/multilingual-e5-small",
+        "embedding_model_id_persist": {
+          "file_vector_index": "intfloat/multilingual-e5-small",
+          "file_vector_index_books": "intfloat/multilingual-e5-small",
+          "colonna_db_chunks": "ABSENTE",
+          "verdetto": "PRESENTE come file per-store (embedding_model.txt); ABSENTE come colonna nei metadati DB"
+        }
+      },
+      "cost": {
+        "stages_ms": {
+          "semantic_router": 34.27,
+          "embed_query": 0.01,
+          "vec": 4.44,
+          "fts": 3.01,
+          "local_search_total": 4.34,
+          "books_search": 0.14
+        },
+        "llm_calls": 1,
+        "llm_calls_note": "DEDOTTO code-path: 1 generate_stream per risposta (router.py; q1/q4 E2E confermano il pattern)",
+        "total_ms": null,
+        "method_cost": "retrieval misurato; generazione NON misurata (null)"
+      },
+      "root_cause": "OK",
+      "evidenza": "marker in vec top-10 con sim=0.8502 >= 0.45 → risposta locale; sim top-10 vettoriali: [0.8693, 0.8638, 0.8601, 0.8539, 0.8502, 0.8498, 0.8489, 0.8396]",
+      "e2e": null
+    }
+  ],
+  "summary": {
+    "per_root_cause": {
+      "OK": 4,
+      "NO-WEB": 1
+    },
+    "blocking_findings": [
+      "indexed_files VUOTO (0 righe) con 17 chunk presenti → ogni reindex background (300s) rifull re-parse+re-embed del file (reindex misurato: 3171.08 ms)",
+      "Il gate H8 (confidence/should_answer) NON è letto da router.py/api.py (grep: consumatori solo core/local_search.py + core/models.py) → oggi l'astensione non decide nulla nel percorso generativo",
+      "Percorso produzione search(hybrid=False): FTS5/BM25 e fusione RRF mai consultati in query (grep hybrid=True: solo definizioni/commenti in local_search.py) → dump FTS/RRF di F0.1 è diagnostico",
+      "SIDECAR-DEAD: bind TypeError silenzioso in SidecarLLMProxy.generate_stream (misurato: FAIL: missing a required argument: 'query') → con llm.backend=sidecar la generazione resta in-process e llama-server non parte mai (sidecar state=down misurato); prod affetto identicamente",
+      "SOGLIE NON DISCRIMINANTI su questo corpus: tutte le sim top-10 >= 0.80 (q4 IRRILEVANTE a 0.82 >= 0.45) → gate H8 non blocca nulla; il meccanismo reale di astensione osservato E2E è il marker [[NESSUNA_INFORMAZIONE_LOCALE]] emesso dal modello, non il gate",
+      "LATENZA DOMINATA DA PROMPT-EVAL: E2E caldo q4 call1 prima risposta token a ~75s (prompt ~2.4-2.8k token, pp implicita ≈32-37 tok/s (stima prompt 2.4-2.8k tok / 75s, derivata non strumentata)) vs gen ~10 tok/s; q1 tot 85.3s (include caricamento modello in-process ~ parte dei 81.3s a first token)",
+      "Caso 'non ho abbastanza informazioni' (context=none): code-path dedotto — se web vuoto, q4 avrebbe 2 generate_stream (1a locale-fallback + 2a context=none); NON misurato (web-off non simulato per veto); il messaggio è generato SENZA contesto",
+      "embedding_model_id: PRESENTE come file per-store (vector_index/embedding_model.txt = intfloat/multilingual-e5-small, = runtime); ABSENTE come colonna/champ nei metadati DB (chunks: id, doc_id, parent_id, source_file, store_key, testo, meta, dim)"
+    ],
+    "e2e_llm_calls": {
+      "q1": 1,
+      "q4": 2
+    },
+    "e2e_total_ms": {
+      "q1": 85350.56,
+      "q4": 132635.96
+    },
+    "near_miss_probe_q5": "q5 (parafrasi aggressiva) misurata a sim top1=0.8502 (>=0.45): NESSUN near-miss sotto soglia ottenibile su questo corpus unitario — THRESHOLD non osservato",
+    "network_actual": "Rete usata: SOLO stadio web di q4 E2E (1 batch ddgs, 1829.57ms, 5 risultati, query site: su 6 domini trusted su 4 batch possibili — break a 5 risultati). q1: 0 chiamate web. HF forzato offline."
+  }
+}

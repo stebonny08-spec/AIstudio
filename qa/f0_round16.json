@@ -1,0 +1,727 @@
+{
+ "round": "16",
+ "phase": "F0-forensics",
+ "ts": "2026-10-25T13:04:26+0100",
+ "method": "Router.process_query_stream (wiring api._run_generation), webview stub, web_override=config web.mode; prompt: stringa esatta body['prompt'] del sidecar (captured) + messages JSON; output = join token event; marker/repetition su testo reale; tempi perf_counter; rete solo stadio web (NET_LOG drenato)",
+ "declarations": {
+  "config_read_only": true,
+  "hf_offline": "1",
+  "network": "stadio web ddgs/wikipedia (NET_LOG per caso)",
+  "answer_cache_tmp": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\qa\\tmp\\f0r16_ac.jsonl",
+  "sidecar_state_pre": "up",
+  "sidecar_state_post": "down"
+ },
+ "astensioni_queries": [
+  "Perche' lo scilinguanno zqqpr blorp non esiste?",
+  "Spiega il funzionamento del kvbnm wplko itruy phptx",
+  "Quando avviene il flurble grozznik wobbled silenziosamente?",
+  "Qual e' lo zqxwv?",
+  "Che cos'e' l'utrpo mnlkj?",
+  "Zqxwv utrpo mnlkj gbvcd?",
+  "chi è dante alighieri",
+  "chi è petrarca?"
+ ],
+ "code_scan_phrase": {
+  "La risposta è data da": [],
+  "utente di questo tipo": [],
+  "La risposta è data": []
+ },
+ "cases": [
+  {
+   "case": "q1_dante",
+   "query": "chi è dante alighieri",
+   "web_override": "auto",
+   "backend_used": "sidecar",
+   "llm_calls": 1,
+   "total_ms": 57224.29,
+   "first_progress_ms": null,
+   "first_token_ms": 6964.33,
+   "n_tokens": 600,
+   "text_len": 1873,
+   "source": "nessuna",
+   "sources_items": null,
+   "progress": [],
+   "prompt": {
+    "file": "qa/tmp/f0r16_prompt_q1_dante.txt",
+    "sidecar_string_len": 1066,
+    "n_messages": 2,
+    "roles": [
+     "system",
+     "user"
+    ],
+    "msg_lens": [
+     998,
+     42
+    ],
+    "head": "System: Sei l'assistente AI di NovaStudio, un'applicazione desktop di studio che gira interamente sul PC dell'utente, senza servizi cloud.\n\nCosa fai in NovaStudio:\n- Consulti i materiali di studio dell'utente: appunti, PDF, Word, PowerPoint, file di testo e Markdown.\n- Se i materiali non bastano, cerchi nella libreria di libri dell'utente.\n- Se neanche la libreria basta, cerchi sul web su fonti affidabili.\n- L'utente può scegliere una modalità di studio (Ripasso, Esercizio, Riassunto, Chiarimento).\n- L'utente può attivare \"Pensiero profondo\" per farti riflettere più a lungo.\n\nCosa NON fai:\n- Non vedi le immagini: usi solo il testo estratto via OCR.\n- Non ricordi conversazioni precedenti: ogni chat è isolata.\n\nPer domande fuori dallo studio (saluti, chiacchiere) rispondi breve e cordiale, poi proponi di aiutare con lo studio.\n\nRispondi SEMPRE in italiano, anche quando il CONTESTO fornito ...[+166 char]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 1,
+     "Assistant:": 1,
+     "System:": 1,
+     "DOMANDA DELL'UTENTE": 1,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "raw_role_lines_in_sidecar_string": true
+   },
+   "output": {
+    "file": "qa/tmp/f0r16_raw_q1_dante.txt",
+    "raw_full": " Sei l'assistente AI di NovaStudio, un'applicazione desktop di studio che gira interamente sul PC dell'utente, senza servizi cloud.\n\nCosa fai in NovaStudio:\n- Consulti i materiali di studio dell'utente: appunti, PDF, Word, PowerPoint, file di testo e Markdown.\n- Se i materiali non bastano, cerchi nella libreria di libri dell'utente.\n- Se neanche la libreria basta, cerchi sul web su fonti affidabili.\n- L'utente può scegliere una modalità di studio (Ripasso, Esercizio, Riassunto, Chiarimento).\n- L'utente può attivare \"Pensiero profondo\" per farti riflettere più a lungo.\n\nCosa NON fai:\n- Non vedi le immagini: usi solo il testo estratto via OCR.\n- Non ricordi conversazioni precedenti: ogni chat è isolata.\n\nPer domande fuori dello studio (saluti, chiacchiere) rispondi breve e cordiale, poi proponi di aiutare con lo studio.\n\nRispondi SEMPRE in italiano, anche quando il CONTESTO fornito è in un'altra lingua (es. inglese): traduci mentalmente le informazioni e formula la risposta in italiano.\nUser: DOMANDA DELL'UTENTE:\nchi è dante alighieri\nAssistant: Sei l'assistente AI di NovaStudio, un'applicazione desktop di studio che gira interamente sul PC dell'utente, senza servizi cloud.\n\nCosa fai in NovaStudio:\n- Consulti i materiali di studio dell'utente: appunti, PDF, Word, PowerPoint, file di testo e Markdown.\n- Se i materiali non bastano, cerchi nella libreria di libri dell'utente.\n- Se neanche la libreria basta, cerchi sul web su fonti affidabili.\n- L'utente può scegliere una modalità di studio (Ripasso, Esercizio, Riassunto, Chiarimento).\n- L'utente può attivare \"Pensiero profondo\" per farti riflettere più a lungo.\n\nCosa NON fai:\n- Non vedi le immagini: usi solo il testo estratto via OCR.\n- Non ricordi conversazioni precedenti: ogni chat è isolata.\n\nPer domande fuori dello studio (saluti, chiacchiere) rispondi breve e cordiale, poi proponi di aiutare",
+    "head": " Sei l'assistente AI di NovaStudio, un'applicazione desktop di studio che gira interamente sul PC dell'utente, senza servizi cloud.\n\nCosa fai in NovaStudio:\n- Consulti i materiali di studio dell'utente: appunti, PDF, Word, PowerPoint, file di testo e Markdown.\n- Se i materiali non bastano, cerchi nella libreria di libri dell'utente.\n- Se neanche la libreria basta, cerchi sul web su fonti affidabili.\n- L'utente può scegliere una modalità di studio (Ripasso, Esercizio, Riassunto, Chiarimento).\n- L'utente può attivare \"Pensiero profondo\" per farti riflettere più a lungo.\n\nCosa NON fai:\n- Non vedi le immagini: usi solo il testo estratto via OCR.\n- Non ricordi conversazioni precedenti: ogni chat ...[+1173 char]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 1,
+     "Assistant:": 1,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 1,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "repetition": {
+     "n_char": 1872,
+     "dup80": 0,
+     "line_dup": 8,
+     "head_dup": 2
+    },
+    "canned": {
+     "in_output": [],
+     "in_output_any": false,
+     "in_prompt_any": false
+    }
+   },
+   "error": null,
+   "net_log": [],
+   "net_n": 0,
+   "root_cause": "TEMPLATE-LEAK (+ chitchat-cold + decode-cap)",
+   "evidenza_a_template": "sidecar body['prompt'] = stringa grezza 'System: ... / User: DOMANDA DELL'UTENTE: chi e' dante alighieri / Assistant:' (raw_role_lines=True; core/sidecar/client.py::_messages_to_prompt); llama-server avviato SENZA --jinja e POST su /completion = NESSUN chat-template applicato (core/sidecar/server.py args) -> il modello rigenera lo scambio: output CONTIENE 'User:'x1, 'Assistant:'x1, \"DOMANDA DELL'UTENTE\"x1 e riecheggia l'intero system prompt",
+   "evidenza_b_canned": "frase 'La risposta e' data da un utente di questo tipo.' ASSENTE nel codice (code_scan_phrase: 0 hit su .py/.js/.html/.json/.md) e assente in questi output -> generata dal modello sul prompt senza template; entra nei marker della guardia (B1)",
+   "evidenza_c_duplicati": "blocco ripetuto DENTRO l'unico bubble: head_dup=2, line_dup=8 su 1872 char (system prompt x2 + scambio User/Assistant x2); lo screenshot '3 volte' = stessa meccanica; FE: 1 bubble per query (sendMessage crea UNA streaming bubble; poll_stream delta da from_index) + race secondario openConversation-durante-stream (fix B4 dedupe+reset)",
+   "f0_3_tempi": {
+    "total_ms": 57224.29,
+    "first_token_ms": 6964.33,
+    "dove_si_spende": "1.4s avvio llama-server + ~5.5s prompt-eval (pp) + ~50s decode 600 token @ ~11-12 tok/s (cap standard=600); progress=NESSUNO sul path chitchat (semantic cold: sim_rag=0.000 -> RAG=False -> chitchat, contesto nullo)",
+    "stadi_ms": {
+     "chitchat_routing": "nessun evento progress",
+     "llm_pp_stima_ms": 5500,
+     "llm_decode_ms": 50300
+    }
+   },
+   "fix_attesi": [
+    "B1 chat-template sidecar (/v1/chat/completions) + guardia output + fallback estrattivo",
+    "B2 budget decode deadline 20s + progress anche in chitchat",
+    "B4 reset/dedupe UI"
+   ]
+  },
+  {
+   "case": "q2",
+   "query": "Che cos'e' l'utrpo mnlkj?",
+   "web_override": "auto",
+   "backend_used": "in-process",
+   "llm_calls": 0,
+   "total_ms": 31704.85,
+   "first_progress_ms": 2.1,
+   "first_token_ms": 31704.76,
+   "n_tokens": 18,
+   "text_len": 1129,
+   "source": "nessuna",
+   "sources_items": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Cos è o cosa è - Significato ed etimologia - Ricerca - Treccani",
+     "url": "https://www.treccani.it/vocabolario/ricerca/cos-è-o-cosa-è/",
+     "source": "https://www.treccani.it/vocabolario/ricerca/cos-è-o-cosa-è/"
+    },
+    {
+     "stage": "web",
+     "title": "Treccani",
+     "url": "https://www.treccani.it/vocabolario\n/",
+     "source": "https://www.treccani.it/vocabolario\n/"
+    },
+    {
+     "stage": "web",
+     "title": "CHE, COSA O CHE COSA? - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/cosa-o-che-cosa-che_(La-grammatica-italiana)/",
+     "source": "https://www.treccani.it/enciclopedia/cosa-o-che-cosa-che_(La-grammatica-italiana)/"
+    },
+    {
+     "stage": "web",
+     "title": "Vocabolàrio - Significato ed etimologia - Vocabolario - Treccani",
+     "url": "https://www.treccani.it/vocabolario/vocabolario/",
+     "source": "https://www.treccani.it/vocabolario/vocabolario/"
+    },
+    {
+     "stage": "web",
+     "title": "Treccani",
+     "url": "https://www.treccani.it/enciclopedia/",
+     "source": "https://www.treccani.it/enciclopedia/"
+    }
+   ],
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 30173.19,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.21,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 4.7,
+     "note": "esito=nulla top=0.811"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 1517.96,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 0.11,
+     "note": "informativa gate (zero LLM)"
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r16_prompt_q2.txt",
+    "sidecar_string_len": 0,
+    "n_messages": 0,
+    "roles": [],
+    "msg_lens": [],
+    "head": "[]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "raw_role_lines_in_sidecar_string": false
+   },
+   "output": {
+    "file": "qa/tmp/f0r16_raw_q2.txt",
+    "raw_full": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"Che cos'e' l'utrpo mnlkj?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.492 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    2. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    3. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del programma;\n  * aggiungi alla biblioteca il documento che contiene l'argomento e riprova.\n\n[Web: tentato] Nessuna fonte web utilizzabile per questa query.",
+    "head": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"Che cos'e' l'utrpo mnlkj?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.492 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    2. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    3. C:\\Users\\stebo\\Desktop\\progett...[+429 char]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "repetition": {
+     "n_char": 1129,
+     "dup80": 0,
+     "line_dup": 0,
+     "head_dup": 1
+    },
+    "canned": {
+     "in_output": [],
+     "in_output_any": false,
+     "in_prompt_any": false
+    }
+   },
+   "error": null,
+   "net_log": [
+    {
+     "provider": "ddgs",
+     "url": "ddgs://text?q=Che cos'e' l'utrpo mnlkj? (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:",
+     "ms": 1254.2,
+     "ok": true,
+     "n": 5,
+     "note": "trusted batch (6 domini)"
+    }
+   ],
+   "net_n": 1,
+   "root_cause": "TEMPO-FREDDO (retrieve 30.2s) + WEB-NON-USATO",
+   "evidenza_a_template": "nessun marker in output (informativa, 0 LLM)",
+   "evidenza_b_canned": "frase canned assente (output = informativa gate)",
+   "evidenza_c_duplicati": "dup80=0 line_dup=0 (nessuna ripetizione)",
+   "f0_3_tempi": {
+    "total_ms": 31704.85,
+    "first_token_ms": 31704.76,
+    "stadi_ms": {
+     "appunti_cold": 30173.19,
+     "libri": 0.21,
+     "gate": 4.7,
+     "web": 1517.96,
+     "synth_informativa": 0.09
+    },
+    "dove_si_spende": "embedder+semantic COLD al primo giro (time-box SOFT 30174ms>1000 loggato)"
+   },
+   "fix_attesi": [
+    "B2 warmup residente prima della prima query + informativa solo se web vuoto",
+    "B3 esito (c) con risposta web quando ci sono 5 risultati"
+   ]
+  },
+  {
+   "case": "q3",
+   "query": "Zqxwv utrpo mnlkj gbvcd?",
+   "web_override": "auto",
+   "backend_used": "in-process",
+   "llm_calls": 0,
+   "total_ms": 1236.0,
+   "first_progress_ms": 43.88,
+   "first_token_ms": 1235.94,
+   "n_tokens": 14,
+   "text_len": 850,
+   "source": "nessuna",
+   "sources_items": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Google Scholar",
+     "url": "https://scholar.google.com/",
+     "source": "https://scholar.google.com/"
+    },
+    {
+     "stage": "web",
+     "title": "Encyclopedia Britannica | Britannica",
+     "url": "https://www.britannica.com/",
+     "source": "https://www.britannica.com/"
+    },
+    {
+     "stage": "web",
+     "title": "JSTOR Home",
+     "url": "https://www.jstor.org/",
+     "source": "https://www.jstor.org/"
+    },
+    {
+     "stage": "web",
+     "title": "Molecule | Definition, Examples, Structures, & Facts | Britannica",
+     "url": "https://www.britannica.com/science/molecule",
+     "source": "https://www.britannica.com/science/molecule"
+    },
+    {
+     "stage": "web",
+     "title": "Google Scholar",
+     "url": "https://scholar.google.com/advanced_scholar_search?hl=en",
+     "source": "https://scholar.google.com/advanced_scholar_search?hl=en"
+    }
+   ],
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 6.77,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.14,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 3.15,
+     "note": "esito=nulla top=0.809"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 1178.81,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 0.09,
+     "note": "informativa gate (zero LLM)"
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r16_prompt_q3.txt",
+    "sidecar_string_len": 0,
+    "n_messages": 0,
+    "roles": [],
+    "msg_lens": [],
+    "head": "[]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "raw_role_lines_in_sidecar_string": false
+   },
+   "output": {
+    "file": "qa/tmp/f0r16_raw_q3.txt",
+    "raw_full": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"Zqxwv utrpo mnlkj gbvcd?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.485 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. https://scholar.google.com/ [web] — score 0.400\n    2. https://www.britannica.com/ [web] — score 0.400\n    3. https://www.jstor.org/ [web] — score 0.400\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del programma;\n  * aggiungi alla biblioteca il documento che contiene l'argomento e riprova.\n\n[Web: tentato] Nessuna fonte web utilizzabile per questa query.",
+    "head": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"Zqxwv utrpo mnlkj gbvcd?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.485 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. https://scholar.google.com/ [web] — score 0.400\n    2. https://www.britannica.com/ [web] — score 0.400\n    3. https://www.jstor.org/ [web] — score 0.400\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del pro...[+150 char]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "repetition": {
+     "n_char": 850,
+     "dup80": 0,
+     "line_dup": 0,
+     "head_dup": 1
+    },
+    "canned": {
+     "in_output": [],
+     "in_output_any": false,
+     "in_prompt_any": false
+    }
+   },
+   "error": null,
+   "net_log": [
+    {
+     "provider": "ddgs",
+     "url": "ddgs://text?q=Zqxwv utrpo mnlkj gbvcd? (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:j",
+     "ms": 1177.6,
+     "ok": true,
+     "n": 5,
+     "note": "trusted batch (6 domini)"
+    }
+   ],
+   "net_n": 1,
+   "root_cause": "WEB-NON-USATO (5 risultati web fusi ma informativa zero-LLM)",
+   "evidenza_a_template": "output = informativa gate, 0 marker",
+   "evidenza_b_canned": "assente",
+   "evidenza_c_duplicati": "dup80=0",
+   "f0_3_tempi": {
+    "total_ms": 1236.0,
+    "first_token_ms": 1235.94,
+    "stadi_ms": {
+     "appunti": 6.77,
+     "libri": 0.14,
+     "gate": 3.15,
+     "web": 1178.81,
+     "synth": 0.09
+    },
+    "dove_si_spende": "tutto nei 1.18s del fetch web (ok); nessun LLM"
+   },
+   "fix_attesi": [
+    "B2/B3: gate finale resta nulla su score floor web 0.4 < 0.70 -> routing deve generare da web (context_kind='web') con citazioni url invece di informativa",
+    "B3 informativa SOLO se web vuoto/giu"
+   ]
+  },
+  {
+   "case": "q4",
+   "query": "chi è petrarca?",
+   "web_override": "auto",
+   "backend_used": "in-process",
+   "llm_calls": 0,
+   "total_ms": 1208.59,
+   "first_progress_ms": 35.28,
+   "first_token_ms": 1208.51,
+   "n_tokens": 18,
+   "text_len": 1119,
+   "source": "nessuna",
+   "sources_items": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarca, Francesco - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/francesco-petrarca/",
+     "source": "https://www.treccani.it/enciclopedia/francesco-petrarca/"
+    },
+    {
+     "stage": "web",
+     "title": "PETRARCA, Francesco - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/",
+     "source": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/"
+    },
+    {
+     "stage": "web",
+     "title": "Francesco Petrarca, vita e opere | Sapere.it",
+     "url": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html",
+     "source": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarca, Francésco su Enciclopedia | Sapere.it",
+     "url": "https://www.sapere.it/enciclopedia/Petrarca,+Francésco.html",
+     "source": "https://www.sapere.it/enciclopedia/Petrarca,+Francésco.html"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarch - Humanism, Poetry, Letters | Britannica",
+     "url": "https://www.britannica.com/biography/Petrarch/Moral-and-literary-evolution-1340-46",
+     "source": "https://www.britannica.com/biography/Petrarch/Moral-and-literary-evolution-1340-46"
+    }
+   ],
+   "progress": [
+    {
+     "stage": "gate",
+     "status": "start",
+     "ms": 0.0,
+     "note": "gate precoce: deciso subito dopo il retrieval"
+    },
+    {
+     "stage": "appunti",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido appunti (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "appunti",
+     "status": "done",
+     "ms": 41.73,
+     "note": "5 chunk"
+    },
+    {
+     "stage": "libri",
+     "status": "start",
+     "ms": 0.0,
+     "note": "recupero ibrido libri (FTS5 + vettori, RRF)"
+    },
+    {
+     "stage": "libri",
+     "status": "done",
+     "ms": 0.16,
+     "note": "0 chunk"
+    },
+    {
+     "stage": "gate",
+     "status": "done",
+     "ms": 3.86,
+     "note": "esito=nulla top=0.797"
+    },
+    {
+     "stage": "web",
+     "status": "start",
+     "ms": 0.0,
+     "note": "interrogo lo stadio web (W)"
+    },
+    {
+     "stage": "web",
+     "status": "done",
+     "ms": 1122.6,
+     "note": "5 risultati web fusi"
+    },
+    {
+     "stage": "synth",
+     "status": "start",
+     "ms": 0.0,
+     "note": "generazione con contesto finale"
+    },
+    {
+     "stage": "synth",
+     "status": "done",
+     "ms": 0.09,
+     "note": "informativa gate (zero LLM)"
+    }
+   ],
+   "prompt": {
+    "file": "qa/tmp/f0r16_prompt_q4.txt",
+    "sidecar_string_len": 0,
+    "n_messages": 0,
+    "roles": [],
+    "msg_lens": [],
+    "head": "[]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "raw_role_lines_in_sidecar_string": false
+   },
+   "output": {
+    "file": "qa/tmp/f0r16_raw_q4.txt",
+    "raw_full": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"chi è petrarca?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.477 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    2. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    3. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del programma;\n  * aggiungi alla biblioteca il documento che contiene l'argomento e riprova.\n\n[Web: tentato] Nessuna fonte web utilizzabile per questa query.",
+    "head": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"chi è petrarca?\"\n- Stadi interrogati: appunti, web\n- Miglior score di recupero: 0.477 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    2. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [appunti] — score 0.400\n    3. C:\\Users\\stebo\\Desktop\\progetti app\\Stud...[+419 char]",
+    "marker_counts": {
+     "[Fonte": 0,
+     "User:": 0,
+     "Assistant:": 0,
+     "System:": 0,
+     "DOMANDA DELL'UTENTE": 0,
+     "</contesto>": 0,
+     "<contesto>": 0,
+     "La risposta è data da": 0,
+     "utente di questo tipo": 0,
+     "La risposta è data": 0
+    },
+    "repetition": {
+     "n_char": 1119,
+     "dup80": 0,
+     "line_dup": 0,
+     "head_dup": 1
+    },
+    "canned": {
+     "in_output": [],
+     "in_output_any": false,
+     "in_prompt_any": false
+    }
+   },
+   "error": null,
+   "net_log": [
+    {
+     "provider": "ddgs",
+     "url": "ddgs://text?q=chi è petrarca? (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:jstor.org ",
+     "ms": 1122.2,
+     "ok": true,
+     "n": 5,
+     "note": "trusted batch (6 domini)"
+    }
+   ],
+   "net_n": 1,
+   "root_cause": "WEB-NON-USATO (stesso identico flusso di q3 su query reale 'chi e' petrarca?')",
+   "evidenza_a_template": "output = informativa gate, 0 marker",
+   "evidenza_b_canned": "assente",
+   "evidenza_c_duplicati": "dup80=0",
+   "f0_3_tempi": {
+    "total_ms": 1208.59,
+    "first_token_ms": 1208.51,
+    "stadi_ms": {
+     "appunti": 41.73,
+     "libri": 0.16,
+     "gate": 3.86,
+     "web": 1122.6,
+     "synth": 0.09
+    },
+    "dove_si_spende": "fetch web 1.12s; ddgs ha tornato 5 url ma nessuna generazione"
+   },
+   "fix_attesi": [
+    "come q3: risposta basata sul web con citazioni url"
+   ]
+  }
+ ],
+ "summary": {
+  "per_root_cause": {
+   "q1_dante": "TEMPLATE-LEAK (+ chitchat-cold + decode-cap)",
+   "q2": "TEMPO-FREDDO (retrieve 30.2s) + WEB-NON-USATO",
+   "q3": "WEB-NON-USATO (5 risultati web fusi ma informativa zero-LLM)",
+   "q4": "WEB-NON-USATO (stesso identico flusso di q3 su query reale 'chi e' petrarca?')"
+  },
+  "cause_globali": {
+   "TEMPLATE-LEAK": "core/sidecar/client.py::_messages_to_prompt formatta i messages come 'System:/User:/Assistant:' grezzi e li POSTa a /completion; llama-server (core/sidecar/server.py) e' avviato senza --jinja -> nessun chat-template del GGUF -> il modello parla come se scrivesse lo scambio (leak + ripetizioni). Path in-process usa create_chat_completion (jinja ok).",
+   "CANNED": "frase screenshot non presente in nessun file sorgente (scan 0 hit): generata dal modello sullo stesso prompt malformato; vietata come marker nella guardia (R16 3.1)",
+   "DUPLICATI": "ripetizione INTERNA del blocco (q1 head_dup=2/line_dup=8) per assenza di chat-template; il FE renderizza 1 bubble per query (codice) con race openConversation-durante-stream come secondario",
+   "WEB-NON-USATO": "dopo escalation il gate ridecide nulla (score floor web 0.400 < soglia 0.700) e router.py emette build_informativa (zero LLM) PRIMA della generazione context_kind='web' -> i 5 risultati finiscono solo nei near-miss",
+   "TEMPO": "prima query = embedder+semantic cold (retrieve 30.2s, time-box SOFT); path chitchat 57.2s = pp 5.5s + decode 600 token @11 tok/s"
+  },
+  "slo_prima": {
+   "q1_total_ms": 57224.29,
+   "q1_first_token_ms": 6964.33,
+   "q2_total_ms": 31704.85,
+   "q3_total_ms": 1236.0,
+   "q4_total_ms": 1208.59,
+   "screenshot_gt_30s_confermato": true
+  }
+ }
+}

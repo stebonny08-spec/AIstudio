@@ -42,6 +42,11 @@ class Chunk:
     is_image: bool = False
     image_path: str = ""
     mime_type: str = ""
+    # R15b (W3, contratto core/rag/contract.py): metadati OPZIONALI, nessun
+    # campo obbligatorio nuovo -> backward-compat con tutti i costruttori
+    # esistenti (indexer, test, store). Per lo stadio web:
+    #   meta = {"stage": "web", "url": ..., "title": ..., "date": ...}
+    meta: dict | None = None
 
 
 # ======================================================================

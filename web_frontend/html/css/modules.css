@@ -1,0 +1,333 @@
+/* ============================================================
+   modules.css — Home e nuovi moduli della suite studio.
+   Riusa il design system esistente (variabili --bg --panel --card
+   --border --accent, classi btn-*, modal) definito in index.html.
+   ============================================================ */
+
+.view-page {
+    height: calc(100vh - 67px);
+    overflow-y: auto;
+    padding: 4px 28px 40px;
+}
+.view-page::-webkit-scrollbar { width: 8px; }
+.view-page::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ---------- Header dei moduli ---------- */
+.mod-header {
+    position: sticky; top: 0; z-index: 6;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0 14px;
+    background: linear-gradient(to bottom, var(--bg) 78%, transparent);
+}
+.mod-back {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 10px; padding: 8px 14px; font-size: 13.5px; font-weight: 700;
+    font-family: inherit; cursor: pointer; transition: border-color .15s;
+}
+.mod-back:hover { border-color: var(--accent); }
+.mod-back svg { width: 16px; height: 16px; }
+.mod-heading { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mod-title { font-size: 21px; font-weight: 800; }
+.mod-sub { font-size: 12.5px; color: var(--muted); }
+.mod-actions { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* ---------- HOME ---------- */
+.home-wrap { max-width: 1120px; margin: 0 auto; padding-top: 34px; }
+.home-hero { text-align: center; margin-bottom: 6px; }
+.home-hero .home-star { width: 52px; height: 52px; margin-bottom: 8px; }
+.home-hero h1 { font-size: 30px; font-weight: 800; letter-spacing: .4px; }
+.home-hero p { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+.home-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 16px; margin-top: 30px;
+}
+.home-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px; cursor: pointer; text-align: left; color: var(--text);
+    font-family: inherit; display: flex; flex-direction: column; gap: 9px;
+    min-height: 158px; transition: border-color .15s, transform .15s, background-color .15s;
+}
+.home-card:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--panel-2); }
+.home-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.home-card h3 { font-size: 17px; font-weight: 700; }
+.home-card .home-desc { font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; }
+.home-card .home-last {
+    font-size: 12px; color: var(--blue);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ---------- Componenti condivisi ---------- */
+.icon-tile {
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(249, 151, 74, .14); color: var(--accent);
+}
+.icon-tile svg { width: 24px; height: 24px; }
+.icon-tile.blue { background: rgba(140, 164, 255, .14); color: var(--blue); }
+.icon-tile.green { background: rgba(127, 200, 169, .14); color: #7fc8a9; }
+.icon-tile.pink { background: rgba(224, 82, 82, .14); color: #ef8f8f; }
+
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(245px, 1fr)); gap: 14px; }
+.card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px; min-width: 0;
+}
+.card.clickable { cursor: pointer; transition: border-color .15s, transform .12s; }
+.card.clickable:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card h4 { font-size: 15.5px; font-weight: 700; margin-bottom: 6px; word-break: break-word; }
+.card .meta { font-size: 12px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.card .preview {
+    font-size: 13px; color: #c7cdd8; line-height: 1.5; margin-top: 8px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    word-break: break-word;
+}
+.card-actions { display: flex; gap: 6px; margin-top: 12px; justify-content: flex-end; flex-wrap: wrap; }
+.card-actions button {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+    border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: color .15s, border-color .15s;
+}
+.card-actions button:hover { color: var(--text); border-color: var(--accent); }
+.card-actions button.danger:hover { color: var(--red); border-color: var(--red); }
+
+.chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+    max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+.empty-state { text-align: center; color: var(--muted); padding: 64px 20px; }
+.empty-state svg { width: 48px; height: 48px; opacity: .45; margin-bottom: 14px; }
+.empty-state p { font-size: 14.5px; margin-bottom: 18px; line-height: 1.6; }
+
+/* ---------- Form ---------- */
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.field > label {
+    font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+    color: var(--muted);
+}
+.field input[type="text"], .field input[type="date"], .field input[type="number"],
+.field input[type="time"], .field select, .field textarea {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; color: var(--text); font-size: 14px; font-family: inherit; outline: none;
+    transition: border-color .15s; width: 100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+.field textarea { resize: vertical; min-height: 70px; }
+.field .hint { font-size: 12px; color: var(--muted); }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.form-row .field { flex: 1; min-width: 180px; }
+
+.choice-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.choice {
+    padding: 8px 15px; border-radius: 999px; background: var(--panel-2);
+    border: 1px solid var(--border); color: var(--muted); font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.choice:hover { border-color: var(--accent); color: var(--text); }
+.choice.active { background: var(--accent); border-color: var(--accent); color: #141824; }
+
+.check-line { display: flex; align-items: center; gap: 9px; font-size: 14px; color: #c7cdd8; margin-bottom: 10px; cursor: pointer; }
+.check-line input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+/* ---------- Toolbar / strumenti ---------- */
+.toolbar {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--border); margin-bottom: 12px;
+}
+.toolbar.plain { border-bottom: none; padding-top: 0; }
+.tool-btn {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 9px; padding: 7px 12px; font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: inherit; display: inline-flex; gap: 6px; align-items: center;
+    transition: border-color .15s, background-color .15s;
+}
+.tool-btn:hover { border-color: var(--accent); }
+.tool-btn.active { background: var(--accent); color: #141824; border-color: var(--accent); }
+.tool-btn:disabled { opacity: .45; cursor: default; }
+.tool-btn svg { width: 15px; height: 15px; }
+.tool-sep { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
+.search-input {
+    background: var(--dark); border: 1px solid var(--border); border-radius: 10px;
+    padding: 9px 14px; color: var(--text); font-size: 14px; min-width: 210px; outline: none;
+    font-family: inherit; transition: border-color .15s;
+}
+.search-input:focus { border-color: var(--accent); }
+select.mini, .tool-btn select {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 9px; padding: 7px 8px; font-size: 13px; font-family: inherit; outline: none;
+}
+input[type="color"].color-swatch {
+    width: 32px; height: 32px; padding: 2px; border: 1px solid var(--border);
+    border-radius: 8px; background: var(--panel-2); cursor: pointer;
+}
+input[type="range"].range-mini { width: 110px; accent-color: var(--accent); }
+
+/* ---------- Layout split (lista + editor) ---------- */
+.split {
+    display: grid; grid-template-columns: 295px 1fr; gap: 16px;
+    height: calc(100vh - 150px); min-height: 380px;
+}
+.split .pane {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    overflow-y: auto; padding: 12px; min-height: 0;
+}
+.split .pane::-webkit-scrollbar { width: 7px; }
+.split .pane::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.split .pane.main { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.pane-list-item {
+    padding: 11px 12px; border-radius: 10px; cursor: pointer; border: 1px solid transparent;
+    margin-bottom: 6px; transition: background-color .12s;
+}
+.pane-list-item:hover { background: var(--panel-2); }
+.pane-list-item.active { background: var(--dark); border-color: var(--accent); }
+.pane-list-item .pli-title { font-size: 13.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pane-list-item .pli-meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+
+@media (max-width: 880px) {
+    .split { grid-template-columns: 1fr; height: auto; }
+    .split .pane { max-height: 240px; }
+}
+
+/* ---------- Calendario ---------- */
+.cal-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cal-toolbar .cal-month { font-size: 17px; font-weight: 800; min-width: 190px; text-align: center; text-transform: capitalize; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-head { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); text-align: center; padding: 6px 0; }
+.cal-day {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    min-height: 94px; padding: 6px; font-size: 12.5px; cursor: pointer;
+    transition: border-color .12s; overflow: hidden;
+}
+.cal-day:hover { border-color: var(--accent); }
+.cal-day.other { opacity: .35; }
+.cal-day.today { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.cal-day .dnum { font-weight: 700; font-size: 11.5px; color: var(--muted); margin-bottom: 3px; }
+.cal-day.today .dnum { color: var(--accent); }
+.cal-ev {
+    font-size: 10.5px; font-weight: 700; border-radius: 6px; padding: 2px 5px;
+    margin-top: 3px; color: #141824; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+/* ---------- Modal specifico moduli ---------- */
+.modal-sm { max-width: 440px; }
+.form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+
+/* ---------- Header: nuovo logo + titolo + sottotitolo ---------- */
+.logo-text-wrap { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+.logo-text { font-size: 18px; font-weight: 800; letter-spacing: .3px; }
+.logo-sub {
+    display: none;
+    font-size: 11.5px; font-weight: 500; color: var(--muted);
+    letter-spacing: .2px; white-space: nowrap;
+}
+body.view-home .logo-sub { display: block; }
+#brandLockup { cursor: pointer; border-radius: 10px; padding: 4px 8px; margin-left: -8px; transition: background-color .15s; }
+#brandLockup:hover { background: var(--panel-2); }
+#brandLockup:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* --- Pulizia UI globale ---
+   "Seleziona modelli" e "Aggiungi materiale" vivono SOLO dentro le chat
+   vere (body.view-chat). Logo/nome app vivono SOLO in home. */
+body:not(.view-chat) .models-btn-wrapper,
+body:not(.view-chat) .header-sep,
+body:not(.view-chat) #addMaterialBtn { display: none !important; }
+body:not(.view-home) #brandLockup { display: none !important; }
+
+/* Ritorno dalla conversazione aperta alla lista chatbot */
+#chatBackBtn { display: none; }
+body.view-chat #chatBackBtn { display: inline-flex; }
+
+/* Dentro i moduli il header globale sparisce: lo schermo resta alle
+   funzioni della sezione (ogni modulo ha il suo header interno). */
+body.view-module .header { display: none !important; }
+body.view-module .view-page { height: 100vh; }
+
+/* Impostazioni: SOLO nella schermata principale, in basso a sinistra. */
+body:not(.view-home) #headerSettingsBtn { display: none !important; }
+#headerSettingsBtn {
+    position: fixed; left: 18px; bottom: 18px; z-index: 70;
+    width: 48px; height: 48px; border-radius: 14px;
+    background: var(--card); border: 1px solid var(--border);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
+}
+#headerSettingsBtn:hover { border-color: var(--accent); background: var(--panel-2); }
+#headerSettingsBtn svg { width: 22px; height: 22px; }
+
+body.view-home .view-page { height: calc(100vh - 84px); }
+body.view-home .home-wrap { padding-top: 42px; }
+body.view-home .home-grid { margin-top: 0; }
+
+/* ---------- Cartelle (componente globale) ---------- */
+.folder-bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.folder-crumb { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.folder-crumb-item {
+    background: none; border: none; color: var(--blue);
+    font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    padding: 5px 8px; border-radius: 7px; transition: background-color .12s, color .12s;
+}
+.folder-crumb-item:hover { background: var(--panel-2); color: var(--text); }
+.folder-crumb-item.current { color: var(--text); cursor: default; }
+.folder-crumb-item.current:hover { background: none; }
+.folder-crumb-sep { color: var(--muted); opacity: .55; font-size: 12px; }
+.folder-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 12px; margin-bottom: 16px;
+}
+.folder-card {
+    background: var(--panel); border: 1px dashed var(--border);
+    border-radius: 12px; padding: 12px 14px;
+    transition: border-color .15s, background-color .15s;
+}
+.folder-card:hover { border-color: var(--accent); background: var(--panel-2); }
+.folder-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.folder-card-head { display: flex; align-items: center; gap: 10px; cursor: pointer; min-width: 0; }
+.folder-card-head svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+.folder-card-name {
+    font-size: 14px; font-weight: 700; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.folder-card .card-actions { margin-top: 8px; }
+select.folder-move {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+    border-radius: 8px; padding: 5px 8px; font-size: 12px; font-family: inherit;
+    max-width: 150px; outline: none;
+}
+select.folder-move:hover, select.folder-move:focus { border-color: var(--accent); color: var(--text); }
+
+/* ---------- Materia (componente globale) ---------- */
+.subject-input { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.subject-input > label,
+.subject-input > .field-label {
+    font-size: 12px; font-weight: 700; letter-spacing: .6px;
+    text-transform: uppercase; color: var(--muted);
+}
+.subject-field {
+    width: 100%; background: var(--dark); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 12px; color: var(--text);
+    font-size: 14px; font-family: inherit; outline: none;
+    text-transform: uppercase; letter-spacing: .5px; font-weight: 600;
+    transition: border-color .15s;
+}
+.subject-field:focus { border-color: var(--accent); }
+.subject-field::placeholder { text-transform: none; font-weight: 400; letter-spacing: 0; color: #6b7280; }
+
+/* ---------- Flashcard / ripasso ---------- */
+.study-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 24px 0; }
+.flashcard {
+    width: min(640px, 92%); min-height: 300px; border-radius: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 34px; font-size: 21px; line-height: 1.55; cursor: pointer;
+    transition: transform .18s, border-color .18s; user-select: none;
+}
+.flashcard:hover { border-color: var(--accent); }
+.flashcard .fc-label {
+    position: absolute; top: 14px; left: 18px; font-size: 11px; letter-spacing: 1.4px;
+    text-transform: uppercase; color: var(--muted); font-weight: 700;
+}
+.study-progress { font-size: 13.5px; color: var(--muted); font-weight: 600; }

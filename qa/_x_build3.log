@@ -1,0 +1,50 @@
+[1/381] Linking CXX static library ggml\src\ggml-cpu.a
+[2/381] Linking CXX static library ggml\src\ggml.a
+[3/381] Building C object vendor/hash/CMakeFiles/vendor-hash.dir/sha256/sha256.c.obj
+[4/381] Building CXX object vendor/hash/CMakeFiles/vendor-hash.dir/sha1/sha1.c.obj
+[5/381] Building CXX object common/CMakeFiles/llama-common-base.dir/build-info.cpp.obj
+[6/381] Building CXX object vendor/hash/CMakeFiles/vendor-hash.dir/hash.cpp.obj
+[7/381] Building C object vendor/hash/CMakeFiles/vendor-hash.dir/xxhash/xxhash.c.obj
+[8/381] Linking CXX static library common\libllama-common-base.a
+[9/381] Linking CXX static library vendor\hash\libvendor-hash.a
+[10/381] Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.obj
+FAILED: [code=1] src/CMakeFiles/llama.dir/llama-context.cpp.obj 
+C:\Users\stebo\AppData\Local\Microsoft\WinGet\Packages\MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\llvm-mingw-20261020-ucrt-x86_64\bin\clang++.exe -DGGML_USE_CPU -D_CRT_SECURE_NO_WARNINGS -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/." -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/build/src" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/../include" -I"C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/ggml/src/../include" -D_WIN32_WINNT=0x0A00 -O3 -DNDEBUG -Xclang -fno-pch-timestamp -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi -MD -MT src/CMakeFiles/llama.dir/llama-context.cpp.obj -MF src\CMakeFiles\llama.dir\llama-context.cpp.obj.d -o src/CMakeFiles/llama.dir/llama-context.cpp.obj -c "C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp"
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:17:21: warning: extra tokens at end of #include directive [-Wextra-tokens]
+   17 | #include <algorithm>`r`n#include <cinttypes
+      |                     ^
+      |                     //
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:717:70: error: expected ')'
+  717 |             LLAMA_LOG_DEBUG("%s: input tensor '%32s' [%s, ne = { %5" PRId64 ", %5" PRId64 ", %5" PRId64 ", %5" PRId64 " }] is used by node '%s' (%s)\n",
+      |                                                                      ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:717:13: note: to match this '('
+  717 |             LLAMA_LOG_DEBUG("%s: input tensor '%32s' [%s, ne = { %5" PRId64 ", %5" PRId64 ", %5" PRId64 ", %5" PRId64 " }] is used by node '%s' (%s)\n",
+      |             ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-impl.h:31:48: note: expanded from macro 'LLAMA_LOG_DEBUG'
+   31 | #define LLAMA_LOG_DEBUG(...) llama_log_internal(GGML_LOG_LEVEL_DEBUG, __VA_ARGS__)
+      |                                                ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:1062:70: error: expected ')'
+ 1062 |         throw std::runtime_error(format("corrupt output buffer (j=%" PRId64 ", n_outputs=%d)", j, n_outputs));
+      |                                                                      ^
+C:/Users/stebo/Desktop/progetti app/StudioIA_7/tools/llama-xhtoken/src/llama-context.cpp:1062:40: note: to match this '('
+ 1062 |         throw std::runtime_error(format("corrupt output buffer (j=%" PRId64 ", n_outputs=%d)", j, n_outputs));
+      |                                        ^
+1 warning and 2 errors generated.
+[11/381] Building CXX object src/CMakeFiles/llama.dir/llama-mmap.cpp.obj
+[12/381] Building CXX object src/CMakeFiles/llama.dir/llama-model-saver.cpp.obj
+[13/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/parsers.cpp.obj
+[14/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/functionary-v3-2.cpp.obj
+[15/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/cohere2moe.cpp.obj
+[16/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/gigachat-v3.cpp.obj
+[17/381] Building CXX object src/CMakeFiles/llama.dir/unicode-data.cpp.obj
+[18/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/gemma4.cpp.obj
+[19/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/gpt-oss.cpp.obj
+[20/381] Building CXX object common/CMakeFiles/llama-common.dir/parsers/deepseek.cpp.obj
+[21/381] Building CXX object src/CMakeFiles/llama.dir/llama-quant.cpp.obj
+[22/381] Building CXX object src/CMakeFiles/llama.dir/llama-sampler.cpp.obj
+[23/381] Building CXX object src/CMakeFiles/llama.dir/llama-model-loader.cpp.obj
+[24/381] Building CXX object src/CMakeFiles/llama.dir/llama-vocab.cpp.obj
+[25/381] Building CXX object src/CMakeFiles/llama.dir/unicode.cpp.obj
+[26/381] Building CXX object src/CMakeFiles/llama.dir/llama-model.cpp.obj
+[27/381] Building CXX object vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj
+ninja: build stopped: subcommand failed.

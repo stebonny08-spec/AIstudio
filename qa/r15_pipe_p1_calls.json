@@ -1,0 +1,16 @@
+{
+ "metric": "conteggio REALE di LocalLLMClient.generate_stream sul percorso reale di Router.process_query_stream (client contatore; web stubbato, zero rete)",
+ "target": "1 chiamata per query di default; 0 solo informativa gate; HIT di cache = rielaborazione (R16 follow-up, >=1 chiamata)",
+ "calls": {
+  "locale_forte_mai": 1,
+  "auto_escalation_web": 1,
+  "locale_vuoto_escalation_web": 1,
+  "sempre_locale_web_fuso": 1,
+  "nulla_informativa_zero_llm": 0,
+  "chitchat": 1,
+  "cache_hit_reelabora": 1,
+  "decompose_una_sola_generazione": 1
+ },
+ "gate_ok": true,
+ "ts": "2026-11-02T18:47:20+0100"
+}

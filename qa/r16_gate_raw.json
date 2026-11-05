@@ -1,0 +1,370 @@
+{
+ "ts": "2026-10-25T14:51:48+0100",
+ "method": "r16_qa1.setup + testo COMPLETO",
+ "cases": [
+  {
+   "case": "i1",
+   "query": "Nella fotosintesi clorofilliana qual è il valore di ΔG in kJ/mol della reazione che produce glucosio?",
+   "total_ms": 19105.1,
+   "first_token_ms": 2367.2,
+   "first_progress_ms": 73.0,
+   "text_full": "Per rispondere alla tua domanda, è importante distingere due concetti: la fotosintesi *classica* (ossigena) e la fotosintesi *di conservazione energia* (anidra). La fotosintesi che produce glucosio, inoltre, non è una singola reazione, ma un processo complesso.\n\nEcco i punti chiave:\n\n*   **Reazione classica (ossigena):** Il contesto fornito parla di una reazione \"endergonica\", con un valore di ΔG°' di +2870 kJ/mol per glucosio. Questo è il calore calcolato per la fotosintesi a livello di reazione pura, ma non è la reazione che produce glucosio direttamente.\n*   **Fotosintesi che produce glucosio:** Il processo che genera glucosio è la fotosintesi di Calvin-Benson (o Calvin), che è un\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 742,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "locale",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    }
+   ],
+   "web_urls": [],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "i4",
+   "query": "Che ruolo svolge la plastocianina nella catena di trasporto degli elettroni?",
+   "total_ms": 19075.4,
+   "first_token_ms": 5410.2,
+   "first_progress_ms": 27.4,
+   "text_full": "La plastocianina svolge un ruolo chiave nella catena di trasporto degli elettroni durante la fotosintesi.\n\nIl primo elettrone emesso dalla luminosità è trasportato lungo la catena di plastocianina. Tuttavia, la plastocianina non è il composto più importante: il secondo elettrone è direttamente redistribuito verso il sito $Q_i$.\n\nPer comprendere meglio questa funzione, è utile ricordare che la plastocianina opera come una **trampa elettrica** all'inizio della catena.\n\nEcco una semplice analogia:\nImmagina una catena di rintocchi. La prima corda (la plastocian\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 613,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "locale",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    }
+   ],
+   "web_urls": [],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "i5",
+   "query": "Come funziona l'ATP sintasi plastidiale durante il flusso di protoni?",
+   "total_ms": 19094.2,
+   "first_token_ms": 3779.2,
+   "first_progress_ms": 34.1,
+   "text_full": "Per rispondere alla tua domanda, dobbiamo guardare a come il flusso di protoni nel citoplasma accoppiato con un processo che sintetizza ATP. Questo processo è chiamato ATP sintasi plastidiale (o ATP synthase in generale, ma nella chiave della fotosintesi).\n\nLa idea semplice è questa: i protoni (H+) che si espandono dal lume verso lo stroma del cloroplasto (o del mitocondrio, nella fotosintesi mitocondriale) sono una fonte di energia. La ATP sintasi usa questi protoni per far sì che l'ATP si formi dal ADP.\n\nEcco come funziona in termini di reazioni:\n- Il flusso di protoni dal lume al stroma è generato dal processo di ossidazione dell'ATP (\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 696,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "locale",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    }
+   ],
+   "web_urls": [],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "i9",
+   "query": "Quanta energia libera serve alle piante per trasformare anidride carbonica e acqua in zucchero usando la luce?",
+   "total_ms": 19034.8,
+   "first_token_ms": 4120.2,
+   "first_progress_ms": 30.0,
+   "text_full": "Per rispondere a questa domanda, è importante considerare che la fotosintesi non è un processo puramente termodinamico, ma un'adozione energetica di risorse specifiche.\n\nLa domanda riguarda la quantità di energia libera necessaria per la trasformazione di anidride carbonica (CO₂) e acqua (H₂O) in zucchero, catalizzata dalla luce. Il punto chiave è che la fotosintesi non produce energia libera direttamente; essa utilizza l'energia luminosa per accelerare una reazione che è già legata energeticamente.\n\nSe la domanda è interpretata in senso stretto come \"quanta energia libera viene prodotta dal processo\", la risposta è nessuna. La fotosintesi non genera energia libera in\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 726,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "locale",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    }
+   ],
+   "web_urls": [],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "i10",
+   "query": "Qual e' il valore di delta G della reazione che produce glucosio nella fotosintesi?",
+   "total_ms": 19039.9,
+   "first_token_ms": 5445.5,
+   "first_progress_ms": 24.8,
+   "text_full": "Per rispondere a questa domanda, è importante distinguere due concetti fondamentali nella fotosintesi olandese: la fotosintesi ossigenica classica (o reazione di Calvin) e il processo di fotosintesi che produce ossigeno.\n\nEcco una breve spiegazione:\n\n- La **fotosintesi ossigenica classica**, che produce glucosio come alcol, è una reazione **endergonica**. Il valore ΔG°' è positivo, indicando che la reazione richiede energia esterna.\n- Il valore menzionato in appunti è **+2870 kJ/mol di glucosio**. Questa è l'energia totale necessaria per la reazione.\n- La fotosintesi che produce ossigen\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 643,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "locale",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    }
+   ],
+   "web_urls": [],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "ii1",
+   "query": "chi è dante alighieri",
+   "total_ms": 19066.1,
+   "first_token_ms": 13737.7,
+   "first_progress_ms": 23.5,
+   "text_full": "Dante Alighieri è riuscito a diventare una figura di grande importanza non solo come poeta, ma anche come scrittore e come politico italiano. [F1] È nato nel 1265 e visse attraverso i secoli, la sua influenza rimane oggi r\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 272,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "web",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Dante Alighieri",
+     "url": "https://it.wikipedia.org/wiki/Dante_Alighieri",
+     "source": "https://it.wikipedia.org/wiki/Dante_Alighieri"
+    },
+    {
+     "stage": "web",
+     "title": "Divina Commedia",
+     "url": "https://it.wikipedia.org/wiki/Divina_Commedia",
+     "source": "https://it.wikipedia.org/wiki/Divina_Commedia"
+    },
+    {
+     "stage": "web",
+     "title": "Inferno (Divina Commedia)",
+     "url": "https://it.wikipedia.org/wiki/Inferno_(Divina_Commedia)",
+     "source": "https://it.wikipedia.org/wiki/Inferno_(Divina_Commedia)"
+    },
+    {
+     "stage": "web",
+     "title": "Società Dante Alighieri",
+     "url": "https://it.wikipedia.org/wiki/Societ%C3%A0_Dante_Alighieri",
+     "source": "https://it.wikipedia.org/wiki/Societ%C3%A0_Dante_Alighieri"
+    },
+    {
+     "stage": "web",
+     "title": "Teatro Dante Alighieri",
+     "url": "https://it.wikipedia.org/wiki/Teatro_Dante_Alighieri",
+     "source": "https://it.wikipedia.org/wiki/Teatro_Dante_Alighieri"
+    }
+   ],
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Dante_Alighieri",
+    "https://it.wikipedia.org/wiki/Divina_Commedia",
+    "https://it.wikipedia.org/wiki/Inferno_(Divina_Commedia)",
+    "https://it.wikipedia.org/wiki/Societ%C3%A0_Dante_Alighieri",
+    "https://it.wikipedia.org/wiki/Teatro_Dante_Alighieri"
+   ],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "ii2",
+   "query": "chi è petrarca?",
+   "total_ms": 19070.0,
+   "first_token_ms": 7333.3,
+   "first_progress_ms": 24.5,
+   "text_full": "Petrarca è un nome che appartiene a una letteratura profondamente legata alla riflessione personale e alla poetica dell'amore.\n\n**Il primo passo per capirlo è riconoscere il suo legame con l'amore.** [W3] Non è una figura semplicemente antica, ma un'immagine della felicità che può essere coltivata anche oggi.\n\n**Petrarca è anche un'influenza su tutte le scienze.** [W3] Le sue opere non sono solo parole; il loro messaggio è una sorta di ispirazione che può essere applicata a o\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 530,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "web",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarca, Francesco - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/francesco-petrarca/",
+     "source": "https://www.treccani.it/enciclopedia/francesco-petrarca/"
+    },
+    {
+     "stage": "web",
+     "title": "PETRARCA, Francesco - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/",
+     "source": "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/"
+    },
+    {
+     "stage": "web",
+     "title": "Francesco Petrarca, vita e opere | Sapere.it",
+     "url": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html",
+     "source": "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarca, Francésco su Enciclopedia | Sapere.it",
+     "url": "https://www.sapere.it/enciclopedia/Petrarca,+Francésco.html",
+     "source": "https://www.sapere.it/enciclopedia/Petrarca,+Francésco.html"
+    },
+    {
+     "stage": "web",
+     "title": "Petrarch | Biography, Renaissance, Humanism, Sonnets, Poems ...Petrarch - Humanism, Poetry, Letters | BritannicaFrancesc",
+     "url": "https://www.britannica.com/biography/Petrarch",
+     "source": "https://www.britannica.com/biography/Petrarch"
+    }
+   ],
+   "web_urls": [
+    "https://www.treccani.it/enciclopedia/francesco-petrarca/",
+    "https://www.treccani.it/enciclopedia/francesco-petrarca_(Dizionario-Biografico)/",
+    "https://www.sapere.it/sapere/strumenti/studiafacile/letteratura-italiana/il-trecento-italiano/francesco-petrarca.html",
+    "https://www.sapere.it/enciclopedia/Petrarca,+Francésco.html",
+    "https://www.britannica.com/biography/Petrarch"
+   ],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "ii3",
+   "query": "Chi ha scritto il Decameron?",
+   "total_ms": 10150.6,
+   "first_token_ms": 6081.3,
+   "first_progress_ms": 22.4,
+   "text_full": "Il Decameron è stato scritto da **Giovanni Boccaccio** [W1]. \n\nQuesta informazione deriva da fonti storiche che citano il suo lavoro come un'opera importante del XIV secolo.",
+   "text_len": 173,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "web",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Decameron - Wikipedia",
+     "url": "https://it.wikipedia.org/wiki/Decameron",
+     "source": "https://it.wikipedia.org/wiki/Decameron"
+    }
+   ],
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Decameron"
+   ],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "ii4",
+   "query": "Come si calcola l'IVA sulla fattura elettronica in Italia?",
+   "total_ms": 19056.0,
+   "first_token_ms": 7623.5,
+   "first_progress_ms": 25.6,
+   "text_full": "Per rispondere alla tua domanda su come calcolare l'IVA sulla fattura elettronica in Italia, dobbiamo distinguere due aspetti fondamentali: il fatto che la fattura elettronica sia un documento obbligatorio [W1], e il principio che l'IVA deve essere applicata nel momento in cui le operazioni si verificano, come definito per l'IVA [W2].\n\n### 1. La fattura elettronica è un documento obbligatorio\nLa fattura elettronica è essenziale per documentare l'esecuzione di un contratto\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 526,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "web",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "La fattura: Gli strumenti degli scambi economici ... - Sapere.it",
+     "url": "https://www.sapere.it/sapere/strumenti/studiafacile/economia-aziendale/L-azienda/Gli-strumenti-degli-scambi-economici/La-fattura.html",
+     "source": "https://www.sapere.it/sapere/strumenti/studiafacile/economia-aziendale/L-azienda/Gli-strumenti-degli-scambi-economici/La-fattura.html"
+    },
+    {
+     "stage": "web",
+     "title": "Iva - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/iva/",
+     "source": "https://www.treccani.it/enciclopedia/iva/"
+    },
+    {
+     "stage": "web",
+     "title": "Imposta sul valore aggiunto - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/imposta-sul-valore-aggiunto_(Diritto-on-line)/",
+     "source": "https://www.treccani.it/enciclopedia/imposta-sul-valore-aggiunto_(Diritto-on-line)/"
+    },
+    {
+     "stage": "web",
+     "title": "Fattura - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/fattura/",
+     "source": "https://www.treccani.it/enciclopedia/fattura/"
+    },
+    {
+     "stage": "web",
+     "title": "Riforma della territorialità iva - Enciclopedia - Treccani",
+     "url": "https://www.treccani.it/enciclopedia/riforma-della-territorialita-iva_(Il-Libro-dell'anno-del-Diritto)/",
+     "source": "https://www.treccani.it/enciclopedia/riforma-della-territorialita-iva_(Il-Libro-dell'anno-del-Diritto)/"
+    }
+   ],
+   "web_urls": [
+    "https://www.sapere.it/sapere/strumenti/studiafacile/economia-aziendale/L-azienda/Gli-strumenti-degli-scambi-economici/La-fattura.html",
+    "https://www.treccani.it/enciclopedia/iva/",
+    "https://www.treccani.it/enciclopedia/imposta-sul-valore-aggiunto_(Diritto-on-line)/",
+    "https://www.treccani.it/enciclopedia/fattura/",
+    "https://www.treccani.it/enciclopedia/riforma-della-territorialita-iva_(Il-Libro-dell'anno-del-Diritto)/"
+   ],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  },
+  {
+   "case": "ii5",
+   "query": "Quali sono le regole del calcio riguardo al fuorigioco?",
+   "total_ms": 19041.7,
+   "first_token_ms": 7448.7,
+   "first_progress_ms": 25.0,
+   "text_full": "Il fuorigioco (o offside in inglese) è una regola fondamentale nel calcio per evitare che i giocatori appartengono a un lato sbagliato di una rete. Ecco come si applica:\n\n**Sei giocatori** devono essere allineati per il gioco.\n\n**Regola base:**\n- Se un giocatore è **fuorigioco** quando si passa il palla a un secondo giocatore, **è fuorigioco** anche il passante.\n- Se il giocatore fuorigioco **al momento della passata**, è fuorigioco.\n- Se il giocatore fuorig\n\n_[risposta abbreviata: tempo massimo raggiunto]_",
+   "text_len": 512,
+   "guard_ok": true,
+   "guard_markers": [],
+   "source": "web",
+   "sources": [
+    {
+     "stage": "appunti",
+     "title": "fotosintesi_clorofilliana_universitario.md",
+     "url": "",
+     "source": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+    },
+    {
+     "stage": "web",
+     "title": "Fuorigioco (calcio) - Wikipedia",
+     "url": "https://it.wikipedia.org/wiki/Fuorigioco_(calcio)",
+     "source": "https://it.wikipedia.org/wiki/Fuorigioco_(calcio)"
+    }
+   ],
+   "web_urls": [
+    "https://it.wikipedia.org/wiki/Fuorigioco_(calcio)"
+   ],
+   "web_allow_ok": true,
+   "resets": 0,
+   "emission_blocks": 1
+  }
+ ]
+}

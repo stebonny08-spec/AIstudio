@@ -1,0 +1,135 @@
+[
+ {
+  "page": "documenti.html",
+  "id": "D1 nessun .doc-status in .doc-shell (editor aperto)",
+  "expected": "count=0",
+  "ok": true,
+  "evidence": "editorOpened=true .doc-status in .doc-shell = 0"
+ },
+ {
+  "page": "documenti.html",
+  "id": "D2 .doc-pill-l bottom-left dentro .doc-main (dist<=40) + testo \"paroleâ€¦Pagina x/y\"",
+  "expected": "inside && distBottom<=40 && distLeft<=40 && /parole/ && /Pagina d/d/",
+  "ok": true,
+  "evidence": "inside=true distBottom=10 distLeft=12 text=\"3 parole · 22 caratteri · Pagina 1/1\""
+ },
+ {
+  "page": "documenti.html",
+  "id": "D3 .doc-pill-r bottom-right con 5 controlli zoom",
+  "expected": "inside && dist<=40 && 4 .doc-zbtn + .doc-zoomval = 5 controlli",
+  "ok": true,
+  "evidence": "inside=true distRight=12 distBottom=10 btnZoom=4 zgrpChildren=5 titles=[\"Riduci zoom (−)\",\"Aumenta zoom (+)\",\"Adatta la pagina allo spazio disponibile\",\"Zoom al 100%\"] zval=\"127%\""
+ },
+ {
+  "page": "documenti.html",
+  "id": "D4 toggle B: 1Â° click applica <b> (peso 700), 2Â° click rimuove senza residui",
+  "expected": "b presente+fontWeight 700 dopo on, assente dopo off",
+  "ok": true,
+  "evidence": "selectionSet=true before=\"Seleziona questo testo\" afterOn=\"<b>Seleziona questo testo</b>\" weightOn=700 afterOff=\"Seleziona questo testo\" residuals=0"
+ },
+ {
+  "page": "documenti.html",
+  "id": "D5 Adatta: .doc-zoom scale>1 e altezza pagina >= altezza canvas-20 (nessuna banda)",
+  "expected": "scale>1 && pageH>=canvasClientH-20",
+  "ok": true,
+  "evidence": "scale=1.26803 pageH=1430.3 canvasClientH=1444 (pageH-(ch-20))=6.3 canvasScrollSlack=6 (canvasBottom-pageBottom)=4.7"
+ },
+ {
+  "page": "fogli.html",
+  "id": "F1a .fg-fill angolo basso-destro di td K13 entro 14px",
+  "expected": "|fill.right-td.right|<=14 && |fill.bottom-td.bottom|<=14",
+  "ok": true,
+  "evidence": "editorOpened=true {\"dR\":1,\"dB\":1,\"tdRight\":1115,\"tdBottom\":423,\"fillRight\":1116,\"fillBottom\":424,\"fillW\":8,\"fillH\":8}"
+ },
+ {
+  "page": "fogli.html",
+  "id": "F1b fill resta sull'angolo dopo scroll .fg-wrap (+100px)",
+  "expected": "scrollTop delta=100 e |delta|<=14 su entrambi gli assi",
+  "ok": true,
+  "evidence": "scrollTopDelta=100 {\"dR\":1,\"dB\":1,\"tdRight\":1115,\"tdBottom\":323,\"fillRight\":1116,\"fillBottom\":324,\"fillW\":8,\"fillH\":8}"
+ },
+ {
+  "page": "fogli.html",
+  "id": "F2 .fg-side offsetWidth in [180,220]",
+  "expected": "180<=w<=220",
+  "ok": true,
+  "evidence": "offsetWidth=200"
+ },
+ {
+  "page": "fogli.html",
+  "id": "F3 dblclick td K13 -> .fg-editor allineata alla td (dl/dt/dw<=6, h>=tdh-4)",
+  "expected": "rect editor == rect td",
+  "ok": true,
+  "evidence": "dL=0.0 dT=0.0 dW=0.0 editorH=26.0 tdH=26.0"
+ },
+ {
+  "page": "fogli.html",
+  "id": "F4 .fg-wrap scrollbarColor con primo colore scuro",
+  "expected": "rgb scuro (canali <120/120/150)",
+  "ok": true,
+  "evidence": "scrollbarColor=\"rgb(58, 64, 84) rgba(0, 0, 0, 0)\""
+ },
+ {
+  "page": "video.html",
+  "id": "V1a document non scrolla (scrollHeight<=innerHeight+2)",
+  "expected": "documentElement.scrollHeight <= innerHeight+2",
+  "ok": true,
+  "evidence": "editorOpened=true scrollHeight=800 innerHeight=800 delta=0 (editorContentOverflow=0px)"
+ },
+ {
+  "page": "video.html",
+  "id": "V1b .vv-editor overflow hidden",
+  "expected": "overflow-x/y = hidden",
+  "ok": true,
+  "evidence": "overflow=hidden (x=hidden, y=hidden) class=\"view-page vv-editor\""
+ },
+ {
+  "page": "video.html",
+  "id": "V2 nessun .vv-props nel DOM",
+  "expected": "count=0",
+  "ok": true,
+  "evidence": "count=0"
+ },
+ {
+  "page": "video.html",
+  "id": "V3 ogni .vv-lab allineata alla .vv-track i-esima (|dt top|<=6)",
+  "expected": "nLab==nTrack && maxDelta<=6",
+  "ok": true,
+  "evidence": "nLab=4 nTrack=4 maxDelta=0 deltas=[0,0,0,0]"
+ },
+ {
+  "page": "video.html",
+  "id": "V4 1 solo .vv-stage con aspetto w/h in [1.7,1.78] (~16:9)",
+  "expected": "count==1 && 1.7<=w/h<=1.78",
+  "ok": true,
+  "evidence": "stages=1 w=480 h=270 ratio=1.778"
+ },
+ {
+  "page": "video.html",
+  "id": "V5 nessuno spazio morto: vv-body.bottom - vv-tlwrap.bottom <= 4",
+  "expected": "delta<=4",
+  "ok": true,
+  "evidence": "delta=0.0px"
+ },
+ {
+  "page": "index.html",
+  "id": "F0.4 badge BUILD",
+  "expected": "BUILD 2026-10-25T11:30:00+01:00",
+  "ok": true,
+  "evidence": "BUILD 2026-10-25T11:30:00+01:00"
+ },
+ {
+  "page": "index.html",
+  "id": "F0.4 ?v sui 5 moduli",
+  "expected": "?v=2026-10-25T11:30:00+01:00 su 5 script",
+  "ok": true,
+  "evidence": "[\"js/modules/schemaStrategies.js?v=2026-10-25T11:30:00+01:00\",\"js/modules/schemi.js?v=2026-10-25T11:30:00+01:00\",\"js/modules/documenti.js?v=2026-10-25T11:30:00+01:00\",\"js/modules/fogli.js?v=2026-10-25T11:30:00+01:00\",\"js/modules/video.js?v=2026-10-25T11:30:00+01:00\"]"
+ },
+ {
+  "page": "index.html",
+  "id": "F0.4 moduli caricati con ?v",
+  "expected": "StudyTools+SchemaStrategies definiti",
+  "ok": true,
+  "evidence": "doc=true strat=true"
+ }
+]

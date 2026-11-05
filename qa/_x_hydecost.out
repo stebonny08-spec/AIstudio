@@ -1,0 +1,5 @@
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:59721
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[HyDE] budget 8.0s superato -> fallback query normale
+HYDE_COST {"ts": "2026-11-02T22:50:00+0100", "cold_start_ms": 6887.9, "hyde_ms_total": 8010.2, "hyde_info": {"ok": false, "reason": "timeout", "ms": 8010.1, "text_len": 0}, "hyp_len": 0, "hyp_head": "", "rule_ms_p95": 150, "verdict_note": "costo reale del ramo LLM HyDE vs soglia150ms p95 aggiunti al retrieval"}

@@ -2,8 +2,23 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<script>
+    // Diagnostica: cattura gli errori JS runtime (visibili da window.__jsErrors)
+    window.__jsErrors = [];
+    window.addEventListener('error', function (e) {
+        try {
+            window.__jsErrors.push(String(e.message || e) + ' @ ' + String(e.filename || '').split('/').pop() + ':' + e.lineno);
+            if (window.__jsErrors.length > 50) window.__jsErrors.shift();
+        } catch (x) { /* ok */ }
+    }, true);
+    window.addEventListener('unhandledrejection', function (e) {
+        try { window.__jsErrors.push('promise: ' + String(e.reason && e.reason.message || e.reason)); } catch (x) { /* ok */ }
+    });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NovaStudio</title>
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/modules.css?v=2026-10-27T20:03:00+01:00">
 <style>
     :root {
         --bg: #1a1f2e; --panel: #1a2030; --panel-2: #202637; --card: #1e2433;
@@ -13,13 +28,14 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                     'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji',
+                     sans-serif;
         background-color: var(--bg); color: var(--text);
         height: 100vh; overflow: hidden;
     }
     .hidden { display: none !important; }
 
-    /* ---------- Bottoni ---------- */
     .icon-btn { background: none; border: none; color: var(--text); cursor: pointer; padding: 6px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; transition: background-color 0.2s, color 0.2s; }
     .icon-btn.active { color: var(--accent); background-color: rgba(249,151,74,0.15); }
     .icon-btn.active:hover { background-color: rgba(249,151,74,0.25); }
@@ -36,99 +52,46 @@
     .btn-outline:disabled { opacity: .5; cursor: default; }
     .btn-outline:disabled:hover { border-color: var(--border); }
 
-    /* ---------- Header ---------- */
     .header { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; }
     .header-left { display: flex; align-items: center; gap: 12px; }
     .header-right { display: flex; align-items: center; gap: 14px; }
     .header-sep { width: 2px; height: 24px; background: var(--accent); border-radius: 1px; flex-shrink: 0; }
     .logo-container { display: flex; align-items: center; gap: 10px; }
-    .logo-star { width: 26px; height: 26px; }
+    .logo-star { width: 38px; height: 38px; flex-shrink: 0; }
     .logo-text { font-size: 18px; font-weight: 700; }
 
-    /* ---------- Menu "Seleziona modelli" ---------- */
     .models-btn-wrapper { position: relative; }
     .models-menu {
-        position: absolute;
-        top: calc(100% + 10px);
-        left: 0;
-        min-width: 300px;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 8px;
+        position: absolute; top: calc(100% + 10px); left: 0;
+        min-width: 300px; background: var(--panel);
+        border: 1px solid var(--border); border-radius: 12px; padding: 8px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.45);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-6px);
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        z-index: 60;
+        opacity: 0; pointer-events: none; transform: translateY(-6px);
+        transition: opacity 0.2s ease, transform 0.2s ease; z-index: 60;
     }
     .models-menu.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .models-menu-header {
-        font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
-        color: var(--muted); padding: 8px 10px 6px;
-    }
+    .models-menu-header { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); padding: 8px 10px 6px; }
     .models-list { display: flex; flex-direction: column; gap: 4px; }
-    .models-empty {
-        padding: 12px 14px;
-        color: var(--muted);
-        font-size: 13px;
-        font-style: italic;
-    }
-    .model-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 10px;
-        border-radius: 10px;
-        transition: background-color 0.2s;
-    }
+    .models-empty { padding: 12px 14px; color: var(--muted); font-size: 13px; font-style: italic; }
+    .model-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px; transition: background-color 0.2s; }
     .model-item:hover { background: var(--panel-2); }
-    .model-name {
-        flex: 1;
-        text-align: left;
-        background: none;
-        border: none;
-        color: var(--text);
-        font-size: 14px;
-        font-weight: 600;
-        font-family: inherit;
-        cursor: pointer;
-        padding: 4px 0;
-        transition: color 0.2s;
-    }
+    .model-name { flex: 1; text-align: left; background: none; border: none; color: var(--text); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 4px 0; transition: color 0.2s; }
     .model-name:disabled { cursor: default; color: var(--muted); }
     .model-name:not(:disabled):hover { color: var(--accent); }
-    .model-action {
-        flex-shrink: 0;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-    }
+    .model-action { flex-shrink: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
     .model-action svg { width: 18px; height: 18px; }
-    .model-action.is-download {
-        background: none;
-        border: none;
-        color: var(--accent);
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
+    .model-action.is-download { background: none; border: none; color: var(--accent); cursor: pointer; transition: background-color 0.2s; }
     .model-action.is-download:hover { background: rgba(249,151,74,0.15); }
     .model-action.is-check { color: var(--accent); }
-    .model-action.is-progress {
-        color: var(--accent);
-        font-size: 11.5px;
-        font-weight: 700;
-        letter-spacing: 0.3px;
-        width: auto;
-        padding: 0 6px;
-    }
+    .model-action.is-progress { color: var(--accent); font-size: 11.5px; font-weight: 700; width: auto; padding: 0 6px; }
+/* R22: etichetta testuale "Scarica… (~3.3 GB)" per le voci non scaricate */
+.model-action.is-dl-label { display: flex; align-items: center; gap: 5px; width: auto; padding: 0 8px; font-size: 11.5px; font-weight: 700; white-space: nowrap; background: none; border: none; color: var(--accent); cursor: pointer; transition: background-color 0.2s; }
+.model-action.is-dl-label:hover { background: rgba(249,151,74,0.15); }
+.model-action.is-dl-label svg { width: 14px; height: 14px; }
+/* R22: stato "caricamento modello pro…" nel menu */
+.model-action.is-load { width: auto; max-width: 150px; padding: 0 6px; font-size: 11px; font-weight: 700; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* ---------- Sidebar ---------- */
-    .sidebar-overlay { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 40; }
+    .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 40; }
     .sidebar-overlay.show { opacity: 1; pointer-events: auto; }
     .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 320px; max-width: 85vw; background: var(--panel); border-right: 1px solid var(--border); border-radius: 0 16px 16px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; padding: 20px; transform: translateX(-105%); transition: transform 0.3s ease; z-index: 50; }
     .sidebar.open { transform: translateX(0); }
@@ -149,84 +112,276 @@
     .gear-btn { color: #c9b8e8; }
     .gear-btn:hover { color: #ffffff; }
 
-    /* ---------- Vista welcome: stella-sfondo + testo sovrapposto ---------- */
-    .main-content {
-        display: flex; align-items: center; justify-content: center;
-        height: calc(100vh - 210px); padding: 20px;
-    }
-    .hero-container {
-        position: relative;
-        width: min(520px, 80vw, calc(100vh - 260px));
-        aspect-ratio: 1 / 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-    .star-bg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        color: #0e1320;
-        pointer-events: none;
-    }
-    .hero-text {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 0 32px;
-        max-width: 100%;
-    }
-    .star-title {
-        font-size: 42px;
-        font-weight: 800;
-        letter-spacing: 0.5px;
-        color: var(--text);
-        line-height: 1.1;
-        margin-bottom: 10px;
-    }
-    .star-subtitle {
-        font-size: 15px;
-        font-weight: 500;
-        color: var(--muted);
-        letter-spacing: 0.3px;
-        line-height: 1.5;
-    }
+    .main-content { display: flex; align-items: center; justify-content: center; height: calc(100vh - 210px); padding: 20px; }
+    .hero-container { position: relative; width: min(520px, 80vw, calc(100vh - 260px)); aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .star-bg { position: absolute; inset: 0; width: 100%; height: 100%; color: #0e1320; pointer-events: none; }
+    .hero-text { position: relative; z-index: 1; text-align: center; padding: 0 32px; max-width: 100%; }
+    .star-title { font-size: 42px; font-weight: 800; letter-spacing: 0.5px; color: var(--text); line-height: 1.1; margin-bottom: 10px; }
+    .star-subtitle { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0.3px; line-height: 1.5; }
 
-    /* ---------- Vista chat ---------- */
-    .chat-view { height: calc(100vh - 210px); overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .chat-view { height: calc(100vh - 210px); overflow-y: auto; padding: 20px 24px 30px; display: flex; flex-direction: column; gap: 20px; }
     .chat-view::-webkit-scrollbar { width: 6px; }
     .chat-view::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     .msg-row { display: flex; }
     .msg-row.user { justify-content: flex-end; }
     .msg-row.ai { justify-content: flex-start; }
-    .bubble-user { max-width: 75%; background: var(--user-bubble); color: #fff; padding: 12px 16px; border-radius: 14px 14px 4px 14px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
-    .bubble-ai { max-width: 80%; background: var(--card); border: 1px solid var(--border); padding: 14px 16px; border-radius: 4px 12px 12px 12px; font-size: 14px; line-height: 1.6; color: #dfe4ec; white-space: pre-wrap; }
-    .ai-source { margin-top: 10px; font-size: 12px; color: var(--muted); }
-    .typing span { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); margin: 0 2px; animation: blink 1.2s infinite; }
-    .typing span:nth-child(2) { animation-delay: 0.2s; }
-    .typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes blink { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
 
-    /* ---------- Barra input ---------- */
-    .input-container { position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 24px 18px; }
-
-    /* ---------- Isole "modalità di studio" ---------- */
-    .study-modes {
-        display: flex; gap: 8px; justify-content: center;
-        flex-wrap: wrap; margin-bottom: 12px;
+    .bubble-user {
+        max-width: 75%; background: var(--user-bubble); color: #fff;
+        padding: 12px 16px; border-radius: 14px 14px 4px 14px;
+        font-size: 14px; line-height: 1.5; white-space: pre-wrap;
+        word-wrap: break-word;
     }
+    .bubble-ai {
+        max-width: 100%;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 14.5px;
+        line-height: 1.7;
+        color: #dfe4ec;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .bubble-ai p { margin: 0 0 12px; }
+    .bubble-ai p:last-child { margin-bottom: 0; }
+    .bubble-ai strong { color: #ffffff; font-weight: 700; }
+    .bubble-ai em { font-style: italic; color: #dfe4ec; }
+    .bubble-ai code {
+        background: rgba(255,255,255,0.08);
+        padding: 2px 6px; border-radius: 4px;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.92em; color: #ffad66;
+    }
+    .bubble-ai pre {
+        background: var(--dark);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin: 10px 0;
+        overflow-x: auto;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .bubble-ai pre code { background: none; padding: 0; color: #dfe4ec; font-size: inherit; }
+    .bubble-ai ul, .bubble-ai ol { margin: 8px 0; padding-left: 24px; }
+    .bubble-ai li { margin: 4px 0; }
+    .bubble-ai h1, .bubble-ai h2, .bubble-ai h3 { margin: 14px 0 8px; color: #fff; font-weight: 700; }
+    .bubble-ai h1 { font-size: 19px; }
+    .bubble-ai h2 { font-size: 17px; }
+    .bubble-ai h3 { font-size: 15px; }
+    .bubble-ai a { color: var(--blue); text-decoration: underline; }
+    .bubble-ai blockquote {
+        border-left: 3px solid var(--border);
+        padding-left: 12px; margin: 10px 0;
+        color: var(--muted);
+    }
+    .bubble-ai hr {
+        border: none; border-top: 1px solid var(--border);
+        margin: 14px 0;
+    }
+    .ai-source { margin-top: 14px; font-size: 12px; color: var(--muted); font-style: italic; }
+
+    .bubble-ai .katex { font-size: 1.05em; color: #dfe4ec; }
+    .bubble-ai .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px 0;
+        margin: 14px 0;
+        text-align: center;
+        background: var(--dark);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+    }
+    .bubble-ai .katex-display > .katex { font-size: 1.15em; }
+    .bubble-ai .katex-error {
+        color: #ffad66;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.9em;
+        background: rgba(255, 173, 102, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    .streaming-spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(249, 151, 74, 0.25);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-bottom: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* R15b W5 â€” avanzamento per stadio: elemento COMPATIBILE con
+       .streaming-spinner (stessa classe, override minimo: niente cerchio). */
+    .streaming-spinner.stage-progress {
+        display: block; width: auto; height: auto;
+        border: none; border-radius: 0; animation: none;
+        font-size: 12.5px; color: var(--muted); font-style: italic;
+        margin-bottom: 6px; font-weight: 500;
+    }
+
+    /* R15b W5 â€” badge fonti con stadio (locale/libri/web) + link. */
+    .ai-sources { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .source-badge {
+        display: inline-flex; align-items: center; gap: 5px; max-width: 340px;
+        padding: 3px 9px; border-radius: 12px; font-size: 11.5px;
+        border: 1px solid var(--border); background: var(--panel-2);
+        color: var(--text); text-decoration: none; overflow: hidden;
+    }
+    .source-badge:hover { border-color: var(--accent); }
+    .source-badge-label { font-weight: 800; flex-shrink: 0; }
+    .source-badge-title {
+        color: var(--muted); white-space: nowrap; overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .source-badge.stage-web .source-badge-label { color: var(--accent); }
+    .source-badge.stage-libri .source-badge-label { color: var(--blue); }
+    .source-badge.stage-appunti .source-badge-label { color: var(--muted); }
+
+    /* R15b W5 â€” controlli Impostazioni (stile minimo, nessun restyling). */
+    .settings-select, .settings-number, .settings-text-input {
+        background: var(--panel-2); border: 1px solid var(--border);
+        color: var(--text); border-radius: 8px; padding: 8px 10px;
+        font-size: 13px; font-family: inherit;
+    }
+    .settings-select:focus, .settings-number:focus, .settings-text-input:focus {
+        outline: none; border-color: var(--accent);
+    }
+    .settings-number { width: 78px; }
+    .settings-text-input { width: 220px; }
+    .settings-range { width: 150px; accent-color: var(--accent); }
+    .settings-item .settings-desc.web-privacy {
+        font-size: 12.5px; line-height: 1.5; max-width: 660px;
+    }
+
+    /* R15b W5 â€” toggle web per query (chip accanto all'input). */
+    .web-toggle-chip {
+        flex-shrink: 0; height: 36px; padding: 0 12px; border-radius: 18px;
+        background: var(--panel-2); border: 1px solid var(--border);
+        color: var(--muted); font-size: 12.5px; font-weight: 700;
+        cursor: pointer; font-family: inherit;
+        transition: background-color .2s, color .2s, border-color .2s;
+    }
+    .web-toggle-chip:hover { border-color: var(--accent); color: var(--text); }
+    .web-toggle-chip.active {
+        background: rgba(249, 151, 74, .15); border-color: var(--accent);
+        color: var(--accent);
+    }
+    .web-toggle-chip.is-off { opacity: .65; }
+
+    .scroll-bottom-btn {
+        position: fixed;
+        bottom: 220px;
+        right: 32px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #141824;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.2s, transform 0.2s;
+        z-index: 30;
+    }
+    .scroll-bottom-btn.show { display: flex; }
+    .scroll-bottom-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+    .scroll-bottom-btn svg { width: 20px; height: 20px; }
+
+    .continue-btn {
+        position: fixed;
+        bottom: 272px;
+        right: 32px;
+        padding: 10px 18px;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+        transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+        z-index: 30;
+    }
+    .continue-btn.show { display: inline-flex; }
+    .continue-btn:hover { border-color: var(--accent); background: var(--panel); transform: translateY(-1px); }
+    .continue-btn svg { width: 16px; height: 16px; }
+    .continue-btn .continue-part {
+        font-size: 11.5px;
+        color: var(--muted);
+        font-weight: 500;
+        margin-left: 2px;
+    }
+
+    /* Isola di caricamento del modello: appare centrata orizzontalmente,
+       sotto la barra di input, mentre il modello viene caricato in RAM. */
+    .model-loading-island {
+        position: fixed;
+        bottom: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 22px;
+        min-width: 300px;
+        max-width: 80vw;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 45;
+    }
+    .model-loading-island.show { display: flex; }
+    .model-loading-text {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--text);
+        text-align: center;
+        letter-spacing: 0.2px;
+    }
+    .model-loading-text.error { color: var(--red); }
+    .model-loading-bar {
+        height: 4px;
+        background: var(--dark);
+        border-radius: 2px;
+        overflow: hidden;
+        width: 100%;
+    }
+    .model-loading-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width 0.35s ease-out;
+    }
+    .model-loading-bar-fill.error {
+        background: var(--red);
+        transition: none;
+    }
+
+    .input-container { position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 24px 18px; background: linear-gradient(to top, var(--bg) 60%, transparent); }
+    .study-modes { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
     .study-mode-island {
         display: inline-flex; align-items: center; gap: 8px;
         padding: 8px 16px;
-        background: var(--panel-2);
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        color: var(--muted);
+        background: var(--panel-2); border: 1px solid var(--border);
+        border-radius: 999px; color: var(--muted);
         font-size: 13px; font-weight: 600; font-family: inherit;
-        cursor: pointer;
-        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         white-space: nowrap;
     }
     .study-mode-island svg { width: 15px; height: 15px; flex-shrink: 0; }
@@ -236,13 +391,11 @@
 
     .input-row { display: flex; align-items: center; gap: 10px; }
     .input-wrapper { flex: 1; display: flex; align-items: center; gap: 12px; background-color: var(--panel-2); border: 1px solid var(--border); border-radius: 14px; padding: 10px 12px 10px 18px; }
-
     .thinking-toggle {
         position: relative; flex-shrink: 0;
         width: 44px; height: 44px; border-radius: 50%;
         border: 1.5px solid var(--accent); background: transparent; color: var(--accent);
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
         transition: background-color 0.2s, color 0.2s;
     }
     .thinking-toggle svg { width: 22px; height: 22px; }
@@ -264,15 +417,23 @@
     }
     .thinking-toggle:hover::after { opacity: 1; transform: translateY(0); }
 
-    .input-field { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 15px; }
+    .input-field { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 15px; font-family: inherit; }
     .input-field::placeholder { color: #6b7280; }
     .send-button { width: 40px; height: 40px; flex-shrink: 0; background-color: var(--accent); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; }
     .send-button:hover { background-color: var(--accent-hover); }
     .send-button:disabled { opacity: .5; cursor: default; }
     .send-button svg { width: 18px; height: 18px; fill: #141824; }
 
-    /* ---------- Modali ---------- */
-    .modal-overlay { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; }
+    .send-button.is-stop { background-color: var(--accent); }
+    .send-button.is-stop:hover { background-color: var(--accent-hover); }
+    .send-button.is-stop svg { fill: #141824; }
+    .send-button.is-stopping {
+        background-color: var(--accent-hover) !important;
+        opacity: 0.7;
+        cursor: wait !important;
+    }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 100; }
     .modal-overlay.show { opacity: 1; pointer-events: auto; }
     .modal { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; width: 90%; max-width: 520px; max-height: 85vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
     .modal-wide { max-width: 760px; }
@@ -310,85 +471,43 @@
     .material-status.success { color: #7fc8a9; }
     .material-status.error { color: var(--red); }
 
-    /* ---------- Modale Licenze ---------- */
     .licenses-body { padding: 24px 32px 32px; }
-    .licenses-body h2 {
-        font-size: 20px; font-weight: 700; color: var(--text);
-        margin-bottom: 6px; margin-top: 0;
-    }
-    .licenses-body .licenses-intro {
-        color: var(--muted); font-size: 13px; line-height: 1.6;
-        margin-bottom: 24px; padding-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-    }
-    .licenses-body h3 {
-        font-size: 15px; font-weight: 700; color: var(--accent);
-        margin-top: 28px; margin-bottom: 14px;
-        padding-bottom: 6px; border-bottom: 1px solid var(--border);
-    }
+    .licenses-body h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .licenses-body .licenses-intro { color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .licenses-body h3 { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 28px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
     .licenses-body h3:first-of-type { margin-top: 0; }
-    .licenses-body h4 {
-        font-size: 14px; font-weight: 700; color: var(--text);
-        margin-top: 18px; margin-bottom: 6px;
-    }
-    .licenses-body p {
-        font-size: 13.5px; line-height: 1.65; color: #c7cdd8;
-        margin-bottom: 8px;
-    }
-    .licenses-body ul {
-        list-style: none; padding-left: 0; margin-bottom: 12px;
-    }
-    .licenses-body ul li {
-        font-size: 13px; line-height: 1.55; color: #c7cdd8;
-        padding: 3px 0;
-    }
-    .licenses-body ul li strong {
-        color: var(--text); font-weight: 600;
-    }
-    .licenses-body a {
-        color: var(--blue);
-        text-decoration: none;
-        word-break: break-all;
-        transition: color 0.2s;
-    }
-    .licenses-body a:hover {
-        color: var(--accent);
-        text-decoration: underline;
-    }
-    .licenses-body .licenses-section-note {
-        background: var(--card);
-        border-left: 3px solid var(--accent);
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin: 14px 0;
-        font-size: 13px;
-        color: var(--muted);
-        line-height: 1.6;
-    }
-    .licenses-body .licenses-timestamp {
-        margin-top: 32px;
-        padding-top: 20px;
-        border-top: 1px solid var(--border);
-        font-size: 12px;
-        color: var(--muted);
-        font-style: italic;
-        text-align: center;
-    }
+    .licenses-body h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-top: 18px; margin-bottom: 6px; }
+    .licenses-body p { font-size: 13.5px; line-height: 1.65; color: #c7cdd8; margin-bottom: 8px; }
+    .licenses-body ul { list-style: none; padding-left: 0; margin-bottom: 12px; }
+    .licenses-body ul li { font-size: 13px; line-height: 1.55; color: #c7cdd8; padding: 3px 0; }
+    .licenses-body ul li strong { color: var(--text); font-weight: 600; }
+    .licenses-body a { color: var(--blue); text-decoration: none; word-break: break-all; transition: color 0.2s; }
+    .licenses-body a:hover { color: var(--accent); text-decoration: underline; }
+    .licenses-body .licenses-section-note { background: var(--card); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 8px; margin: 14px 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .licenses-body .licenses-timestamp { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); font-style: italic; text-align: center; }
 </style>
 </head>
 <body>
+    <div id="buildMark" style="position:fixed;top:0;right:0;z-index:99999;background:#000;color:#0f0;font:11px monospace;padding:2px 6px;pointer-events:none"></div>
+    <script>
+    (function(){ var QA_TS = "2026-10-27T20:03:00+01:00"; var m = document.getElementById("buildMark"); if(m) m.textContent = "BUILD " + QA_TS; document.title = "BUILD " + QA_TS + " | " + document.title; })();
+    </script>
 
     <header class="header">
         <div class="header-left">
-            <button class="icon-btn" id="menuBtn" aria-label="Apri menu">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <button class="mod-back" id="chatBackBtn" aria-label="Torna alle conversazioni">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                Conversazioni
             </button>
-            <div class="logo-container">
-                <svg class="logo-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <div class="logo-container" id="brandLockup" role="link" tabindex="0" title="Torna alla home">
+                <svg class="logo-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs><linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#f9974a"/></linearGradient></defs>
                     <polygon fill="url(#starGrad)" points="50,2 53.4,41.7 68.4,31.6 58.3,46.6 98,50 58.3,53.4 68.4,68.4 53.4,58.3 50,98 46.6,58.3 31.6,68.4 41.7,53.4 2,50 41.7,46.6 31.6,31.6 46.6,41.7"/>
                 </svg>
-                <span class="logo-text">NovaStudio</span>
+                <div class="logo-text-wrap">
+                    <span class="logo-text">Nova Studio</span>
+                    <span class="logo-sub">La tua suite locale per lo studio</span>
+                </div>
             </div>
         </div>
         <div class="header-right">
@@ -401,6 +520,9 @@
             </div>
             <span class="header-sep"></span>
             <button class="btn-accent" id="addMaterialBtn">Aggiungi materiale</button>
+            <button class="icon-btn" id="headerSettingsBtn" aria-label="Impostazioni">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </button>
         </div>
     </header>
 
@@ -428,7 +550,7 @@
         </div>
     </aside>
 
-    <main class="main-content" id="welcomeView">
+    <main class="main-content hidden" id="welcomeView">
         <div class="hero-container" id="heroCard">
             <svg class="star-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linejoin="round">
@@ -453,8 +575,31 @@
 
     <section class="chat-view hidden" id="chatView"></section>
 
-    <div class="input-container">
-        <div class="study-modes" id="studyModes" role="radiogroup" aria-label="Modalità di studio">
+    <button class="scroll-bottom-btn" id="scrollBottomBtn" aria-label="Scorri in fondo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+        </svg>
+    </button>
+
+    <button class="continue-btn" id="continueBtn" aria-label="Continua la risposta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Continua
+        <span class="continue-part" id="continuePartLabel"></span>
+    </button>
+
+    <!-- Isola di caricamento del modello (centrata sotto la barra di input) -->
+    <div class="model-loading-island" id="modelLoadingIsland">
+        <div class="model-loading-text" id="modelLoadingText">Caricamento del modello...</div>
+        <div class="model-loading-bar">
+            <div class="model-loading-bar-fill" id="modelLoadingBarFill"></div>
+        </div>
+    </div>
+
+    <div class="input-container hidden">
+        <div class="study-modes" id="studyModes" role="radiogroup" aria-label="ModalitÃƒÂ  di studio">
             <button type="button" class="study-mode-island" data-mode="ripasso" role="radio" aria-checked="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="23 4 23 10 17 10"/>
@@ -502,18 +647,17 @@
             <div class="input-wrapper">
                 <input type="text" class="input-field" id="chatInput" placeholder="Scrivi una domanda...">
                 <button class="send-button" id="sendBtn" aria-label="Invia">
-                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    <svg viewBox="0 0 24 24" id="sendIcon"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Modal Impostazioni -->
     <div class="modal-overlay" id="settingsModal">
         <div class="modal">
             <div class="modal-header">
                 <h2 class="modal-title">Impostazioni</h2>
-                <button class="icon-btn" id="closeSettingsBtn" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                <button class="icon-btn" id="closeSettingsBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
             </div>
             <div class="modal-body">
                 <div class="settings-item" id="openNovaStudioBtn">
@@ -530,7 +674,17 @@
                     <div class="settings-text"><div class="settings-label">Scopri le librerie</div><div class="settings-desc" id="libraryDesc">Librerie e componenti usati</div></div>
                     <button class="btn-outline" id="openLibraryBtn">Librerie</button>
                 </div>
-                <!-- RIQUADRO LICENZE (ultimo in fondo) -->
+                <!-- ===== R15b W5 â€” Ricerca web (UI di W; semantica gate = G) ===== -->
+                <div class="settings-item static" id="gateThresholdItem">
+                    <div class="settings-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+                    <div class="settings-text"><div class="settings-label">Soglia gate</div><div class="settings-desc" id="gateThresholdDesc">Soglia di accettazione: 0.45</div></div>
+                    <input type="range" id="gateThresholdRange" class="settings-range" min="0.05" max="0.90" step="0.05" value="0.45" aria-label="Soglia gate (slider)">
+                    <input type="number" id="gateThresholdInput" class="settings-number" min="0.05" max="0.90" step="0.05" value="0.45" aria-label="Soglia gate (valore)">
+                </div>
+                <div class="settings-item static" id="privacyWebNote">
+                    <div class="settings-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <div class="settings-text"><div class="settings-label">Nota privacy</div><div class="settings-desc web-privacy" id="privacyWebDesc">Il web resta attivo in automatico come ultimo livello della ricerca: solo le query di ricerca vengono inviate a DuckDuckGo/Wikipedia (siti in allowlist), nessun LLM cloud, i documenti tornano qui e il modello locale risponde. Nessun controllo web in UI: si attiva o disattiva solo dal file di configurazione (web.mode).</div></div>
+                </div>
                 <div class="settings-item" id="openLicensesBtn">
                     <div class="settings-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -549,241 +703,208 @@
         </div>
     </div>
 
-    <!-- Modal Scopri NovaStudio -->
     <div class="modal-overlay" id="novastudioModal">
         <div class="modal">
             <div class="modal-header">
                 <h2 class="modal-title">Scopri NovaStudio</h2>
-                <button class="icon-btn" id="closeNovaStudioBtn" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                <button class="icon-btn" id="closeNovaStudioBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
             </div>
             <div class="modal-body">
-                <p>Ciao! Sono <strong>NovaStudio</strong> 👋</p>
-                <p>Il tuo tutor personale per lo studio. Giro interamente sul tuo computer: i tuoi appunti, i tuoi libri e le tue conversazioni restano sempre lì, al sicuro.</p>
+                <p>Ciao! Sono <strong>NovaStudio</strong> Ã°Å¸â€˜â€¹</p>
+                <p>Il tuo tutor personale per lo studio. Giro interamente sul tuo computer: i tuoi materiali, le tue librerie e le tue conversazioni restano sempre lÃƒÂ¬, al sicuro.</p>
                 <p><strong>Come funziono, in breve:</strong></p>
                 <ol>
                     <li>Scarichi un modello dal menu "Seleziona modelli" in alto a sinistra</li>
-                    <li>Carichi i tuoi appunti (foto, PDF, Word) dal pannello "Aggiungi materiale"</li>
-                    <li>Mi fai una domanda e, se vuoi, scegli una modalità di studio (ripasso, esercizio, riassunto o chiarimento)</li>
-                    <li>Cerco prima nei tuoi appunti. Se non basta, guardo nella tua libreria di libri. Se non basta ancora, faccio una ricerca online — ma solo su fonti affidabili</li>
+                    <li>Carichi i tuoi materiali di studio (foto, PDF, Word, PowerPoint, testo, Markdown) dal pannello "Aggiungi materiale"</li>
+                    <li>Mi fai una domanda e, se vuoi, scegli una modalitÃƒÂ  di studio</li>
+                    <li>Cerco prima nei tuoi materiali di studio, poi nella tua libreria, poi online su fonti affidabili</li>
+                    <li>Se il materiale ÃƒÂ¨ molto lungo, ti offro un pulsante "Continua" per leggere il resto</li>
                 </ol>
                 <p>Buono studio!</p>
             </div>
         </div>
     </div>
 
-    <!-- Modal Licenze -->
     <div class="modal-overlay" id="licensesModal">
         <div class="modal modal-wide">
             <div class="modal-header">
                 <h2 class="modal-title">Licenze di terze parti</h2>
-                <button class="icon-btn" id="closeLicensesBtn" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                <button class="icon-btn" id="closeLicensesBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
             </div>
             <div class="licenses-body">
-
                 <p class="licenses-intro">
                     Questo progetto utilizza librerie, programmi e modelli di terze parti.
                     Di seguito sono elencate tutte le componenti, con la rispettiva licenza e
-                    il link al testo completo. Questa lista è aggiornata alla data di ultima
-                    modifica del file.
+                    il link al testo completo.
                 </p>
 
-                <!-- ============ 1 ============ -->
-                <h3>1. Librerie Python — licenze permissive</h3>
-                <p>Le seguenti librerie sono distribuite sotto licenze permissive (MIT, BSD, ISC). Consentono uso commerciale, modifica e ridistribuzione, a condizione di includere il testo della licenza originale nella distribuzione.</p>
+                <h3>1. Librerie Python Ã¢â‚¬â€ licenze permissive</h3>
+                <p>Distribuite sotto licenze permissive (MIT, BSD, ISC). Consentono uso commerciale, modifica e ridistribuzione, a condizione di includere il testo della licenza originale.</p>
 
                 <h4>pywebview</h4>
                 <ul>
                     <li><strong>Licenza</strong>: BSD 3-Clause</li>
-                    <li><strong>Uso nel progetto</strong>: finestra desktop nativa dell'applicazione</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/r0x0r/pywebview/blob/master/LICENSE" target="_blank" rel="noopener">github.com/r0x0r/pywebview/blob/master/LICENSE</a></li>
+                    <li><strong>Uso</strong>: finestra desktop nativa</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/r0x0r/pywebview/blob/master/LICENSE" target="_blank">github.com/r0x0r/pywebview</a></li>
                 </ul>
-
                 <h4>llama-cpp-python</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: esecuzione del modello LLM locale in formato GGUF</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/abetlen/llama-cpp-python/blob/main/LICENSE.md" target="_blank" rel="noopener">github.com/abetlen/llama-cpp-python/blob/main/LICENSE.md</a></li>
+                    <li><strong>Uso</strong>: esecuzione del modello LLM locale</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/abetlen/llama-cpp-python/blob/main/LICENSE.md" target="_blank">github.com/abetlen/llama-cpp-python</a></li>
                 </ul>
-
                 <h4>llama.cpp</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: backend C++ per l'inferenza (incluso in llama-cpp-python)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/ggerganov/llama.cpp/blob/master/LICENSE" target="_blank" rel="noopener">github.com/ggerganov/llama.cpp/blob/master/LICENSE</a></li>
+                    <li><strong>Uso</strong>: backend C++ per l'inferenza</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/ggerganov/llama.cpp/blob/master/LICENSE" target="_blank">github.com/ggerganov/llama.cpp</a></li>
                 </ul>
-
                 <h4>ddgs (ex duckduckgo-search)</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: ricerca web ristretta a fonti affidabili (livello 3 del RAG)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/deedy5/ddgs/blob/main/LICENSE" target="_blank" rel="noopener">github.com/deedy5/ddgs/blob/main/LICENSE</a></li>
+                    <li><strong>Uso</strong>: ricerca web ristretta</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/deedy5/ddgs/blob/main/LICENSE" target="_blank">github.com/deedy5/ddgs</a></li>
                 </ul>
-
                 <h4>python-docx</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: parsing di documenti Word (.docx)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/python-openxml/python-docx/blob/master/LICENSE" target="_blank" rel="noopener">github.com/python-openxml/python-docx/blob/master/LICENSE</a></li>
+                    <li><strong>Uso</strong>: parsing Word</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/python-openxml/python-docx/blob/master/LICENSE" target="_blank">github.com/python-openxml/python-docx</a></li>
                 </ul>
-
                 <h4>python-pptx</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: parsing di presentazioni PowerPoint (.pptx)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/scanny/python-pptx/blob/master/LICENSE" target="_blank" rel="noopener">github.com/scanny/python-pptx/blob/master/LICENSE</a></li>
+                    <li><strong>Uso</strong>: parsing PowerPoint</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/scanny/python-pptx/blob/master/LICENSE" target="_blank">github.com/scanny/python-pptx</a></li>
                 </ul>
-
                 <h4>openpyxl</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: parsing di file Excel (.xlsx)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://foss.heptapod.net/openpyxl/openpyxl/-/blob/branch/default/LICENCE.rst" target="_blank" rel="noopener">foss.heptapod.net/openpyxl/openpyxl</a></li>
+                    <li><strong>Uso</strong>: parsing Excel</li>
+                    <li><strong>Testo</strong>: <a href="https://foss.heptapod.net/openpyxl/openpyxl" target="_blank">foss.heptapod.net/openpyxl</a></li>
                 </ul>
-
                 <h4>pdfplumber</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: parsing di file PDF</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt" target="_blank" rel="noopener">github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt</a></li>
+                    <li><strong>Uso</strong>: parsing PDF</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt" target="_blank">github.com/jsvine/pdfplumber</a></li>
                 </ul>
-
-                <h4>pypdf</h4>
-                <ul>
-                    <li><strong>Licenza</strong>: BSD 3-Clause</li>
-                    <li><strong>Uso nel progetto</strong>: estrazione testo da PDF</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/py-pdf/pypdf/blob/main/LICENSE" target="_blank" rel="noopener">github.com/py-pdf/pypdf/blob/main/LICENSE</a></li>
-                </ul>
-
                 <h4>Pillow</h4>
                 <ul>
-                    <li><strong>Licenza</strong>: MIT-CMU (Historical Permission Notice and Disclaimer)</li>
-                    <li><strong>Uso nel progetto</strong>: gestione e riconoscimento dei formati immagine</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/python-pillow/Pillow/blob/main/LICENSE" target="_blank" rel="noopener">github.com/python-pillow/Pillow/blob/main/LICENSE</a></li>
+                    <li><strong>Licenza</strong>: MIT-CMU</li>
+                    <li><strong>Uso</strong>: gestione immagini</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/python-pillow/Pillow/blob/main/LICENSE" target="_blank">github.com/python-pillow/Pillow</a></li>
                 </ul>
-
                 <h4>numpy</h4>
                 <ul>
                     <li><strong>Licenza</strong>: BSD 3-Clause</li>
-                    <li><strong>Uso nel progetto</strong>: calcolo numerico e gestione array</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://numpy.org/doc/stable/license.html" target="_blank" rel="noopener">numpy.org/doc/stable/license.html</a></li>
+                    <li><strong>Uso</strong>: calcolo numerico</li>
+                    <li><strong>Testo</strong>: <a href="https://numpy.org/doc/stable/license.html" target="_blank">numpy.org</a></li>
                 </ul>
-
-                <h4>requests</h4>
-                <ul>
-                    <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: chiamate HTTP (controllo aggiornamenti, download modelli)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/psf/requests/blob/main/LICENSE" target="_blank" rel="noopener">github.com/psf/requests/blob/main/LICENSE</a></li>
-                    <li><strong>NOTICE</strong>: <a href="https://github.com/psf/requests/blob/main/NOTICE" target="_blank" rel="noopener">github.com/psf/requests/blob/main/NOTICE</a></li>
-                </ul>
-
                 <h4>torch (PyTorch)</h4>
                 <ul>
                     <li><strong>Licenza</strong>: BSD 3-Clause</li>
-                    <li><strong>Uso nel progetto</strong>: backend di calcolo per sentence-transformers (dipendenza indiretta)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE" target="_blank" rel="noopener">github.com/pytorch/pytorch/blob/main/LICENSE</a></li>
+                    <li><strong>Uso</strong>: backend di calcolo</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE" target="_blank">github.com/pytorch/pytorch</a></li>
+                </ul>
+                <h4>KaTeX</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: MIT</li>
+                    <li><strong>Uso</strong>: rendering di formule matematiche LaTeX</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/KaTeX/KaTeX/blob/main/LICENSE" target="_blank">github.com/KaTeX/KaTeX</a></li>
                 </ul>
 
-                <!-- ============ 2 ============ -->
-                <h3>2. Librerie Python — licenze Apache 2.0</h3>
-                <p>Apache 2.0 è una licenza permissiva ma con obblighi aggiuntivi rispetto a MIT/BSD: oltre a includere una copia della licenza, è richiesto di includere il file NOTICE (se presente) e di indicare esplicitamente eventuali modifiche apportate al codice della libreria. Include inoltre una clausola sui brevetti.</p>
+                <h3>2. Librerie Python Ã¢â‚¬â€ Apache 2.0</h3>
+                <p>Apache 2.0 ÃƒÂ¨ permissiva ma richiede di includere una copia della licenza, il file NOTICE (se presente) e indicare eventuali modifiche. Include una clausola sui brevetti.</p>
 
                 <h4>opencv-python</h4>
                 <ul>
                     <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: pre-processing delle immagini per l'OCR</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/opencv/opencv-python/blob/master/LICENSE.txt" target="_blank" rel="noopener">github.com/opencv/opencv-python/blob/master/LICENSE.txt</a></li>
-                    <li><strong>NOTICE</strong>: <a href="https://github.com/opencv/opencv/blob/4.x/NOTICE" target="_blank" rel="noopener">github.com/opencv/opencv/blob/4.x/NOTICE</a></li>
+                    <li><strong>Uso</strong>: pre-processing immagini</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/opencv/opencv-python/blob/master/LICENSE.txt" target="_blank">github.com/opencv/opencv-python</a></li>
+                    <li><strong>NOTICE</strong>: <a href="https://github.com/opencv/opencv/blob/4.x/NOTICE" target="_blank">github.com/opencv/opencv</a></li>
                 </ul>
-
                 <h4>sentence-transformers</h4>
                 <ul>
                     <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: calcolo degli embedding per la ricerca semantica</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/UKPLab/sentence-transformers/blob/master/LICENSE" target="_blank" rel="noopener">github.com/UKPLab/sentence-transformers/blob/master/LICENSE</a></li>
-                    <li><strong>NOTICE</strong>: <a href="https://github.com/UKPLab/sentence-transformers/blob/master/NOTICE" target="_blank" rel="noopener">github.com/UKPLab/sentence-transformers/blob/master/NOTICE</a></li>
+                    <li><strong>Uso</strong>: embedding per RAG</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/UKPLab/sentence-transformers/blob/master/LICENSE" target="_blank">github.com/UKPLab/sentence-transformers</a></li>
                 </ul>
-
                 <h4>transformers</h4>
                 <ul>
                     <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: dipendenza di sentence-transformers</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/huggingface/transformers/blob/main/LICENSE" target="_blank" rel="noopener">github.com/huggingface/transformers/blob/main/LICENSE</a></li>
+                    <li><strong>Uso</strong>: dipendenza di sentence-transformers</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/huggingface/transformers/blob/main/LICENSE" target="_blank">github.com/huggingface/transformers</a></li>
                 </ul>
-
                 <h4>chromadb</h4>
                 <ul>
                     <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: indice vettoriale locale per il RAG</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/chroma-core/chroma/blob/main/LICENSE" target="_blank" rel="noopener">github.com/chroma-core/chroma/blob/main/LICENSE</a></li>
+                    <li><strong>Uso</strong>: indice vettoriale locale</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/chroma-core/chroma/blob/main/LICENSE" target="_blank">github.com/chroma-core/chroma</a></li>
+                </ul>
+                <h4>requests</h4>
+                <ul>
+                    <li><strong>Licenza</strong>: Apache 2.0</li>
+                    <li><strong>Uso</strong>: chiamate HTTP</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/psf/requests/blob/main/LICENSE" target="_blank">github.com/psf/requests</a></li>
                 </ul>
 
-                <!-- ============ 3 ============ -->
-                <h3>3. Librerie Python — licenze copyleft</h3>
+                <h3>3. Librerie Python Ã¢â‚¬â€ copyleft</h3>
                 <div class="licenses-section-note">
-                    Le seguenti librerie sono distribuite sotto licenze copyleft. Questo significa che l'applicazione che le utilizza deve essere distribuita sotto una licenza compatibile (GPL o AGPL) e il codice sorgente deve essere reso disponibile agli utenti finali.
+                    Le seguenti librerie sono distribuite sotto licenze copyleft. Se il progetto le mantiene, la licenza complessiva dell'app deve essere compatibile (GPL o AGPL).
                 </div>
 
                 <h4>PyMuPDF</h4>
                 <ul>
-                    <li><strong>Licenza</strong>: GNU Affero General Public License v3.0 (AGPL-3.0) oppure licenza commerciale Artifex</li>
-                    <li><strong>Uso nel progetto</strong>: parsing di file PDF (se presente)</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">gnu.org/licenses/agpl-3.0.html</a></li>
-                    <li><strong>Licenza commerciale</strong>: <a href="https://artifex.com/licensing/" target="_blank" rel="noopener">artifex.com/licensing</a></li>
+                    <li><strong>Licenza</strong>: AGPL-3.0 oppure licenza commerciale Artifex</li>
+                    <li><strong>Uso</strong>: parsing PDF</li>
+                    <li><strong>Testo</strong>: <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">gnu.org/licenses/agpl-3.0</a></li>
+                    <li><strong>Commerciale</strong>: <a href="https://artifex.com/licensing/" target="_blank">artifex.com/licensing</a></li>
                 </ul>
-
                 <h4>pytesseract</h4>
                 <ul>
-                    <li><strong>Licenza</strong>: GNU General Public License v3.0 (GPL-3.0)</li>
-                    <li><strong>Uso nel progetto</strong>: wrapper Python per Tesseract OCR</li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/madmaze/pytesseract/blob/master/LICENSE" target="_blank" rel="noopener">github.com/madmaze/pytesseract/blob/master/LICENSE</a></li>
+                    <li><strong>Licenza</strong>: GPL-3.0</li>
+                    <li><strong>Uso</strong>: wrapper Python per Tesseract</li>
+                    <li><strong>Testo</strong>: <a href="https://github.com/madmaze/pytesseract/blob/master/LICENSE" target="_blank">github.com/madmaze/pytesseract</a></li>
                 </ul>
 
-                <!-- ============ 4 ============ -->
                 <h3>4. Programmi esterni</h3>
-
                 <h4>Tesseract OCR</h4>
                 <ul>
                     <li><strong>Licenza</strong>: Apache 2.0</li>
-                    <li><strong>Uso nel progetto</strong>: riconoscimento ottico dei caratteri (OCR) sulle immagini</li>
-                    <li><strong>Sito ufficiale</strong>: <a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">github.com/tesseract-ocr/tesseract</a></li>
-                    <li><strong>Testo licenza</strong>: <a href="https://github.com/tesseract-ocr/tesseract/blob/main/LICENSE" target="_blank" rel="noopener">github.com/tesseract-ocr/tesseract/blob/main/LICENSE</a></li>
+                    <li><strong>Uso</strong>: OCR locale</li>
+                    <li><strong>Fonte</strong>: <a href="https://github.com/tesseract-ocr/tesseract" target="_blank">github.com/tesseract-ocr/tesseract</a></li>
                 </ul>
 
-                <!-- ============ 5 ============ -->
                 <h3>5. Modelli</h3>
-
                 <h4>MiniCPM5-2B</h4>
                 <ul>
-                    <li><strong>Licenza</strong>: Apache 2.0 (verificare sulla pagina Hugging Face ufficiale)</li>
-                    <li><strong>Uso nel progetto</strong>: modello LLM locale per la generazione delle risposte</li>
-                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/openbmb/MiniCPM5-2B-GGUF" target="_blank" rel="noopener">huggingface.co/openbmb/MiniCPM5-2B-GGUF</a></li>
+                    <li><strong>Licenza</strong>: vedere la pagina ufficiale</li>
+                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/openbmb/MiniCPM5-2B-GGUF" target="_blank">huggingface.co/openbmb/MiniCPM5-2B-GGUF</a></li>
                 </ul>
-
                 <h4>multilingual-e5-small</h4>
                 <ul>
                     <li><strong>Licenza</strong>: MIT</li>
-                    <li><strong>Uso nel progetto</strong>: modello di embedding per la ricerca semantica multilingua</li>
-                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/intfloat/multilingual-e5-small" target="_blank" rel="noopener">huggingface.co/intfloat/multilingual-e5-small</a></li>
+                    <li><strong>Fonte</strong>: <a href="https://huggingface.co/intfloat/multilingual-e5-small" target="_blank">huggingface.co/intfloat/multilingual-e5-small</a></li>
                 </ul>
 
                 <div class="licenses-timestamp">
-                    Ultimo aggiornamento: <span id="licensesDate">—</span>
+                    Ultimo aggiornamento: <span id="licensesDate">Ã¢â‚¬â€</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Aggiungi materiale -->
     <div class="modal-overlay" id="materialModal">
         <div class="modal">
             <div class="modal-header">
                 <h2 class="modal-title">Aggiungi materiale</h2>
-                <button class="icon-btn" id="closeMaterialBtn" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                <button class="icon-btn" id="closeMaterialBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
             </div>
             <div class="modal-body">
                 <div class="tabs">
-                    <button class="tab active" data-tab="notes">📄 Appunti personali</button>
-                    <button class="tab" data-tab="books">📚 Libri (PDF)</button>
+                    <button class="tab active" data-tab="notes">Ã°Å¸â€œâ€ž Materiali di studio</button>
+                    <button class="tab" data-tab="books">Ã°Å¸â€œÅ¡ Librerie</button>
                 </div>
                 <div class="tab-info" id="tabInfo"></div>
                 <div class="file-row">
@@ -797,7 +918,11 @@
         </div>
     </div>
 
+<script src="vendor/katex/katex.min.js"></script>
 <script>
+    // ================================================================
+    // RIFERIMENTI
+    // ================================================================
     const $ = id => document.getElementById(id);
     const sidebar = $('sidebar'), sidebarOverlay = $('sidebarOverlay');
     const settingsModal = $('settingsModal'), materialModal = $('materialModal');
@@ -806,14 +931,114 @@
     const chatInput = $('chatInput'), historyList = $('historyList');
     const fileNameBox = $('fileName'), addFileBtn = $('addFileBtn');
     const materialStatus = $('materialStatus');
+    const sendBtn = $('sendBtn');
+    const continueBtn = $('continueBtn');
+    const continuePartLabel = $('continuePartLabel');
 
     const SOURCE_LABELS = {
-        locale: '📁 Fonte: i tuoi appunti',
-        libri_preselezionati: '📚 Fonte: libreria',
-        web: '🌐 Fonte: ricerca online',
+        locale: 'Ã°Å¸â€œÂ Fonte: i tuoi materiali di studio',
+        libri_preselezionati: 'Ã°Å¸â€œÅ¡ Fonte: libreria',
+        web: 'Ã°Å¸Å’Â Fonte: ricerca online',
         nessuna: '',
     };
 
+    // ================================================================
+    // MINI-PARSER MARKDOWN + LATEX
+    // ================================================================
+    function escapeHtml(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function renderMath(formula, displayMode) {
+        const src = formula.trim();
+        if (typeof katex === 'undefined') {
+            const esc = escapeHtml(displayMode ? `$$${src}$$` : `$${src}$`);
+            return displayMode
+                ? `<div class="katex-error">${esc}</div>`
+                : `<code class="katex-error">${esc}</code>`;
+        }
+        try {
+            return katex.renderToString(src, {
+                displayMode: displayMode,
+                throwOnError: false,
+                output: 'html',
+                strict: false,
+                trust: false,
+            });
+        } catch (e) {
+            const esc = escapeHtml(src);
+            return displayMode
+                ? `<div class="katex-error">${esc}</div>`
+                : `<code class="katex-error">${esc}</code>`;
+        }
+    }
+
+    function renderMarkdown(text) {
+        if (!text) return '';
+
+        text = text.replace(/\r\n/g, '\n');
+
+        const codeBlocks = [];
+        text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (m, lang, code) => {
+            const idx = codeBlocks.length;
+            codeBlocks.push(`<pre><code class="lang-${lang}">${escapeHtml(code.replace(/\n$/, ''))}</code></pre>`);
+            return `\u0000CODEBLOCK${idx}\u0000`;
+        });
+
+        const mathBlocks = [];
+        text = text.replace(/\$\$([\s\S]+?)\$\$/g, (m, formula) => {
+            const idx = mathBlocks.length;
+            mathBlocks.push({ type: 'display', formula: formula });
+            return `\u0000MATHBLOCK${idx}\u0000`;
+        });
+
+        text = text.replace(/(^|[^\\$])\$([^$\n]+?)\$(?!\$)/g, (m, prefix, formula) => {
+            const idx = mathBlocks.length;
+            mathBlocks.push({ type: 'inline', formula: formula });
+            return prefix + `\u0000MATHBLOCK${idx}\u0000`;
+        });
+
+        text = escapeHtml(text);
+
+        text = text.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+        text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/(^|[^*])\*([^*\n]+?)\*(?!\*)/g, '$1<em>$2</em>');
+        text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,
+            '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+        text = text.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+        text = text.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+        text = text.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+        text = text.replace(/^[ \t]*[-*] (.+)$/gm, '<li>$1</li>');
+        text = text.replace(/(<li>[\s\S]*?<\/li>)(?:\n(?!<li>)|$)/g, '<ul>$1</ul>\n');
+        text = text.replace(/^[ \t]*\d+\. (.+)$/gm, '<li>$1</li>');
+
+        text = text.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+        text = text.replace(/^---$/gm, '<hr>');
+
+        const parts = text.split(/\n{2,}/);
+        const result = parts.map(p => {
+            p = p.trim();
+            if (!p) return '';
+            if (/^<(h[1-6]|ul|ol|pre|blockquote|hr)/.test(p)) return p;
+            if (/^\u0000(CODEBLOCK|MATHBLOCK)\d+\u0000$/.test(p)) return p;
+            return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+        }).join('\n');
+
+        let out = result.replace(/\u0000CODEBLOCK(\d+)\u0000/g, (m, i) => codeBlocks[parseInt(i)]);
+
+        out = out.replace(/\u0000MATHBLOCK(\d+)\u0000/g, (m, i) => {
+            const math = mathBlocks[parseInt(i)];
+            return renderMath(math.formula, math.type === 'display');
+        });
+
+        return out;
+    }
+
+    // ================================================================
+    // UTILITÃƒâ‚¬
+    // ================================================================
     function waitForApi() {
         return new Promise(resolve => {
             if (window.pywebview && window.pywebview.api) { resolve(); return; }
@@ -822,14 +1047,69 @@
         });
     }
 
-    // ---------- Sidebar ----------
+    // ================================================================
+    // SCROLL INTELLIGENTE
+    // ================================================================
+    const SCROLL_THRESHOLD_PX = 80;
+    let userIsAtBottom = true;
+
+    function isNearBottom() {
+        return (chatView.scrollHeight - chatView.scrollTop - chatView.clientHeight) < SCROLL_THRESHOLD_PX;
+    }
+
+    function updateScrollButton() {
+        const btn = document.getElementById('scrollBottomBtn');
+        if (!btn) return;
+        if (userIsAtBottom) btn.classList.remove('show');
+        else btn.classList.add('show');
+    }
+
+    function scrollChatIfAtBottom() {
+        if (userIsAtBottom) {
+            chatView.scrollTop = chatView.scrollHeight;
+        }
+    }
+
+    function scrollChatForced() {
+        chatView.scrollTop = chatView.scrollHeight;
+        userIsAtBottom = true;
+        updateScrollButton();
+    }
+
+    chatView.addEventListener('scroll', () => {
+        userIsAtBottom = isNearBottom();
+        updateScrollButton();
+    });
+
+    document.getElementById('scrollBottomBtn').addEventListener('click', scrollChatForced);
+
+    // ================================================================
+    // BOTTONE CONTINUA
+    // ================================================================
+    function showContinueButton(currentPart, totalParts) {
+        if (totalParts > 0) {
+            continuePartLabel.textContent = `(${currentPart}/${totalParts})`;
+        } else {
+            continuePartLabel.textContent = '';
+        }
+        continueBtn.classList.add('show');
+    }
+    function hideContinueButton() {
+        continueBtn.classList.remove('show');
+        continuePartLabel.textContent = '';
+    }
+
+    // ================================================================
+    // SIDEBAR
+    // ================================================================
     const openSidebar = () => { sidebar.classList.add('open'); sidebarOverlay.classList.add('show'); loadConversations(); };
     const closeSidebar = () => { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('show'); };
-    $('menuBtn').addEventListener('click', openSidebar);
     $('sidebarCloseBtn').addEventListener('click', closeSidebar);
     sidebarOverlay.addEventListener('click', closeSidebar);
 
-    // ---------- Thinking mode (MiniCPM5) ----------
+    // ================================================================
+    // THINKING TOGGLE
+    // ================================================================
     let thinkingMode = false;
     const thinkingBtn = $('thinkingBtn');
     thinkingBtn.addEventListener('click', () => {
@@ -838,31 +1118,33 @@
         thinkingBtn.setAttribute('aria-pressed', String(thinkingMode));
     });
 
-    // ---------- Modalità di studio ----------
+    // ================================================================
+    // MODALITÃƒâ‚¬ DI STUDIO
+    // ================================================================
     let studyMode = null;
     const studyModesContainer = $('studyModes');
     studyModesContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('.study-mode-island');
         if (!btn) return;
-        const clickedMode = btn.dataset.mode;
-
-        if (studyMode === clickedMode) {
+        const clicked = btn.dataset.mode;
+        if (studyMode === clicked) {
             studyMode = null;
             btn.classList.remove('active');
             btn.setAttribute('aria-checked', 'false');
             return;
         }
-
         studyModesContainer.querySelectorAll('.study-mode-island').forEach(b => {
             b.classList.remove('active');
             b.setAttribute('aria-checked', 'false');
         });
         btn.classList.add('active');
         btn.setAttribute('aria-checked', 'true');
-        studyMode = clickedMode;
+        studyMode = clicked;
     });
 
-    // ---------- Menu "Seleziona modelli" ----------
+    // ================================================================
+    // MODELLI
+    // ================================================================
     const modelsBtn = $('modelsBtn');
     const modelsMenu = $('modelsMenu');
     const modelsList = $('modelsList');
@@ -871,18 +1153,12 @@
     const SVG_DOWNLOAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
     const SVG_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
-    function openModelsMenu() {
-        modelsMenu.classList.add('show');
-        refreshModelsList();
-    }
-    function closeModelsMenu() {
-        modelsMenu.classList.remove('show');
-    }
+    function openModelsMenu() { modelsMenu.classList.add('show'); refreshModelsList(); }
+    function closeModelsMenu() { modelsMenu.classList.remove('show'); }
     function toggleModelsMenu() {
         if (modelsMenu.classList.contains('show')) closeModelsMenu();
         else openModelsMenu();
     }
-
     modelsBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleModelsMenu(); });
     modelsMenu.addEventListener('click', (e) => e.stopPropagation());
     document.addEventListener('click', () => closeModelsMenu());
@@ -890,26 +1166,24 @@
     async function refreshModelsList() {
         try {
             const models = await window.pywebview.api.list_models();
-            console.log('[modelli] Ricevuti dal backend:', models);
-            renderModelsList(models || []);
+            let status = null;
+            try { status = await window.pywebview.api.get_model_status(); }
+            catch (e) { status = null; }
+            renderModelsList(models || [], null, status);
         } catch (err) {
             console.error('Errore caricamento modelli:', err);
-            modelsList.innerHTML =
-                '<div class="models-empty">Errore nel caricamento dei modelli.</div>';
         }
     }
 
-    function renderModelsList(models, progressOverride) {
+    function renderModelsList(models, progressOverride, status) {
         modelsList.innerHTML = '';
-
         if (!models || models.length === 0) {
-            const empty = document.createElement('div');
-            empty.className = 'models-empty';
-            empty.textContent = 'Nessun modello disponibile.';
-            modelsList.appendChild(empty);
+            const e = document.createElement('div');
+            e.className = 'models-empty';
+            e.textContent = 'Nessun modello disponibile.';
+            modelsList.appendChild(e);
             return;
         }
-
         models.forEach(m => {
             const item = document.createElement('div');
             item.className = 'model-item';
@@ -917,42 +1191,71 @@
             const nameBtn = document.createElement('button');
             nameBtn.className = 'model-name';
             nameBtn.textContent = m.display_name;
-
             if (!m.downloaded || m.active) {
                 nameBtn.disabled = true;
             } else {
                 nameBtn.addEventListener('click', () => loadModel(m.key));
             }
-
-            item.appendChild(nameBtn);
+            // R23 X4.4: colonna info (nome + flag draft sotto)
+            const info = document.createElement('div');
+            info.style.cssText = 'display:flex;flex-direction:column;flex:1;min-width:0;';
+            info.appendChild(nameBtn);
+            if (m.draft) {
+                const flag = document.createElement('span');
+                flag.className = 'model-draft-flag';
+                flag.style.cssText = 'font-size:11px;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+                flag.textContent = m.draft_enabled
+                    ? ('draft ' + m.draft + ': ATTIVO')
+                    : ('draft ' + m.draft + ': OFF (speedup 1,24x < 1,30)');
+                flag.title = 'Draft ' + m.draft + ' disponibile; stato: ' +
+                    (m.draft_enabled ? 'attivo (spec.draft_model configurato)'
+                        : 'OFF di default - regola R23 X4.2 (speedup 1.240 < 1.30; acceptance 0.8402 ok), qa/x3_compare.json');
+                info.appendChild(flag);
+            }
+            item.appendChild(info);
 
             const action = document.createElement('div');
             action.className = 'model-action';
 
-            const isDownloading = progressOverride
-                && progressOverride.active
+            const isDownloading = progressOverride && progressOverride.active
                 && progressOverride.model_key === m.key;
 
-            if (isDownloading) {
+            // R22: voce in caricamento -> "caricamento modello pro… N%"
+            const isLoading = status && status.state === 'loading'
+                && status.model_key === m.key;
+
+            if (isLoading) {
+                const pct = Math.round((status.progress || 0) * 100);
+                const shortName = (m.display_name || 'modello')
+                    .replace(/\s*\(.*\)\s*/, '').toLowerCase();
+                action.classList.add('is-load');
+                action.textContent = 'caricamento ' + shortName + '… ' + pct + '%';
+                action.title = 'caricamento ' + shortName + '… ' + pct + '%';
+                nameBtn.disabled = true;
+            } else if (isDownloading) {
                 const total = progressOverride.total_bytes || 0;
                 const done = progressOverride.downloaded_bytes || 0;
                 let label = '...';
-                if (total > 0) {
-                    label = Math.min(100, Math.round(100 * done / total)) + '%';
-                } else if (done > 0) {
-                    label = (done / (1024 * 1024)).toFixed(0) + ' MB';
-                }
+                if (total > 0) label = Math.min(100, Math.round(100 * done / total)) + '%';
+                else if (done > 0) label = (done / (1024 * 1024)).toFixed(0) + ' MB';
                 action.classList.add('is-progress');
                 action.textContent = label;
             } else if (m.active) {
                 action.classList.add('is-check');
                 action.innerHTML = SVG_CHECK;
             } else if (!m.downloaded) {
-                action.classList.add('is-download');
-                action.innerHTML = SVG_DOWNLOAD;
+                // R22: etichetta testuale con dimensione dichiarata
+                // (~3.3 GB per il pro, nota da size_bytes di catalogo)
+                const gb = m.size_bytes ? (m.size_bytes / Math.pow(1024, 3)) : 0;
+                const label = gb > 0
+                    ? 'Scarica… (~' + gb.toFixed(1) + ' GB)'
+                    : 'Scarica…';
+                action.classList.add('is-dl-label');
+                action.innerHTML = SVG_DOWNLOAD + '<span></span>';
+                action.querySelector('span').textContent = label;
+                action.title = label;
                 action.addEventListener('click', () => startDownload(m.key));
             }
-
             item.appendChild(action);
             modelsList.appendChild(item);
         });
@@ -960,12 +1263,9 @@
 
     async function startDownload(modelKey) {
         if (downloadPoller) return;
-        try {
-            await window.pywebview.api.download_model(modelKey);
-        } catch (err) {
-            console.error('Errore avvio download:', err);
-            return;
-        }
+        try { await window.pywebview.api.download_model(modelKey); }
+        catch (err) { console.error('Errore avvio download:', err); return; }
+
         downloadPoller = setInterval(async () => {
             try {
                 const p = await window.pywebview.api.get_download_progress();
@@ -975,9 +1275,7 @@
                     clearInterval(downloadPoller);
                     downloadPoller = null;
                     refreshModelsList();
-                    if (p.error) {
-                        console.error('Download fallito:', p.error);
-                    }
+                    if (p.error) console.error('Download fallito:', p.error);
                 }
             } catch (err) {
                 console.error('Errore polling download:', err);
@@ -990,39 +1288,47 @@
     async function loadModel(modelKey) {
         try {
             const res = await window.pywebview.api.load_model(modelKey);
-            if (res && res.success === false) {
-                console.error('Caricamento modello fallito:', res.error);
-            }
+            if (res && res.success === false) console.error('Caricamento fallito:', res.error);
+            // Il polling dello stato modello mostrerÃƒÂ  la barra di caricamento
             await refreshModelsList();
-        } catch (err) {
-            console.error('Errore caricamento modello:', err);
-        }
+        } catch (err) { console.error('Errore caricamento:', err); }
     }
 
-    // ---------- Modali ----------
+    // ================================================================
+    // MODALI
+    // ================================================================
     const openModal = m => m.classList.add('show');
     const closeModal = m => m.classList.remove('show');
-    $('gearBtn').addEventListener('click', () => { closeSidebar(); setTimeout(() => { openModal(settingsModal); refreshUpdateStatus(); }, 150); });
+
+    $('gearBtn').addEventListener('click', () => {
+        closeSidebar();
+        setTimeout(() => { openModal(settingsModal); refreshUpdateStatus(); loadWebSettings(); }, 150);
+    });
     $('closeSettingsBtn').addEventListener('click', () => closeModal(settingsModal));
     $('addMaterialBtn').addEventListener('click', () => openModal(materialModal));
-    $('closeMaterialBtn').addEventListener('click', () => closeModal(materialModal));
 
+    // 8a card della home: riusa lo stesso dialogo materiali (pipeline upload unica).
+    window.Materiali = {
+        open: function () {
+            try { if (typeof resetFile === 'function') resetFile(); } catch (e) { /* ok */ }
+            openModal(materialModal);
+        }
+    };
+    $('closeMaterialBtn').addEventListener('click', () => closeModal(materialModal));
     $('openNovaStudioBtn').addEventListener('click', () => { closeModal(settingsModal); openModal(novastudioModal); });
     $('closeNovaStudioBtn').addEventListener('click', () => closeModal(novastudioModal));
 
-    // ---------- Licenze ----------
     $('openLicensesBtn').addEventListener('click', () => {
         closeModal(settingsModal);
         const now = new Date();
-        const formatted = now.toLocaleDateString('it-IT', {
-            year: 'numeric', month: 'long', day: 'numeric'
-        });
+        const formatted = now.toLocaleDateString('it-IT', { year: 'numeric', month: 'long', day: 'numeric' });
         $('licensesDate').textContent = formatted;
         openModal(licensesModal);
     });
     $('closeLicensesBtn').addEventListener('click', () => closeModal(licensesModal));
 
-    [settingsModal, materialModal, novastudioModal, licensesModal].forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m); }));
+    [settingsModal, materialModal, novastudioModal, licensesModal].forEach(m =>
+        m.addEventListener('click', e => { if (e.target === m) closeModal(m); }));
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             closeSidebar();
@@ -1031,7 +1337,241 @@
         }
     });
 
-    // ---------- Impostazioni ----------
+    // ================================================================
+    // R15b W5 â€” RICERCA WEB: impostazioni, toggle per query, avanzamento
+    // per stadio e badge fonti. (UI di W; SEMANTICA gate = G; pesi RRF =
+    // P; queste funzioni sono AUTO-CONTENUTE: solo document/window/api.)
+    // ================================================================
+    // R16 follow-up: NESSUN controllo/badge web in UI (lo stadio web
+    // resta attivo come ultimo livello, invisibile; modalita' solo da
+    // file config) - funzioni web rimosse.
+
+    function wireWebSettingsControls() {
+        var sel = document.getElementById('webModeSelect');
+        if (sel && !sel._wiredR15) {
+            sel._wiredR15 = true;
+            sel.addEventListener('change', function () {
+                saveWebSetting('web.mode', sel.value);
+            });
+        }
+        var range = document.getElementById('gateThresholdRange');
+        var inp = document.getElementById('gateThresholdInput');
+        function onThreshold(raw, mirror) {
+            var num = parseFloat(raw);
+            if (isNaN(num)) return;
+            if (num < 0.05) num = 0.05;
+            if (num > 0.90) num = 0.90;
+            if (mirror === 'range' && inp) inp.value = String(num);
+            if (mirror === 'input' && range) range.value = String(num);
+            var desc = document.getElementById('gateThresholdDesc');
+            if (desc) desc.textContent = 'Soglia di accettazione: ' + num.toFixed(2);
+            saveWebSetting('gate.threshold', num);
+        }
+        if (range && !range._wiredR15) {
+            range._wiredR15 = true;
+            range.addEventListener('change', function () { onThreshold(range.value, 'range'); });
+        }
+        if (inp && !inp._wiredR15) {
+            inp._wiredR15 = true;
+            inp.addEventListener('change', function () { onThreshold(inp.value, 'input'); });
+        }
+        var se = document.getElementById('searxngUrlInput');
+        if (se && !se._wiredR15) {
+            se._wiredR15 = true;
+            se.addEventListener('change', function () {
+                saveWebSetting('web.searxng_url', String(se.value || '').trim());
+            });
+        }
+        var wk = document.getElementById('wikipediaToggle');
+        if (wk && !wk._wiredR15) {
+            wk._wiredR15 = true;
+            wk.addEventListener('change', function () {
+                saveWebSetting('web.wikipedia', !!wk.checked);
+            });
+        }
+    }
+
+    function applyWebSettingsToUI(settings) {
+        var s = settings || {};
+        var sel = document.getElementById('webModeSelect');
+        if (sel && s['web.mode'] !== undefined) sel.value = String(s['web.mode']);
+        var thr = s['gate.threshold'];
+        if (thr !== undefined && thr !== null && thr !== '') {
+            var num = typeof thr === 'number' ? thr : parseFloat(thr);
+            if (!isNaN(num)) {
+                if (num < 0.05) num = 0.05;
+                if (num > 0.90) num = 0.90;
+                var range = document.getElementById('gateThresholdRange');
+                var inp = document.getElementById('gateThresholdInput');
+                var desc = document.getElementById('gateThresholdDesc');
+                if (range) range.value = String(num);
+                if (inp) inp.value = String(num);
+                if (desc) desc.textContent = 'Soglia di accettazione: ' + num.toFixed(2);
+            }
+        }
+        if (s['web.searxng_url'] !== undefined) {
+            var se = document.getElementById('searxngUrlInput');
+            if (se) se.value = String(s['web.searxng_url'] || '');
+        }
+        if (s['web.wikipedia'] !== undefined) {
+            var wk = document.getElementById('wikipediaToggle');
+            if (wk) wk.checked = !!s['web.wikipedia'];
+        }
+        wireWebSettingsControls();
+    }
+
+    async function loadWebSettings() {
+        try {
+            if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.app_settings_get) {
+                return false;
+            }
+            var keys = ['gate.threshold', 'web.mode', 'web.searxng_url', 'web.wikipedia'];
+            var res = await window.pywebview.api.app_settings_get(JSON.stringify({ keys: keys }));
+            if (res && res.ok && res.settings) applyWebSettingsToUI(res.settings);
+            return !!(res && res.ok);
+        } catch (e) {
+            console.error('loadWebSettings:', e);
+            return false;
+        }
+    }
+
+    async function saveWebSetting(key, value) {
+        try {
+            if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.app_settings_set) {
+                return false;
+            }
+            var payload = { settings: {} };
+            payload.settings[key] = value;
+            var res = await window.pywebview.api.app_settings_set(JSON.stringify(payload));
+            return !!(res && res.ok);
+        } catch (e) {
+            console.error('saveWebSetting:', e);
+            return false;
+        }
+    }
+
+    function renderStreamProgress(refs, progress) {
+        if (!refs || !refs.bubble || !Array.isArray(progress)) return false;
+        // dedup per LUNGHEZZA CRESCIENTE: ricalcola solo se arriva roba nuova
+        if (progress.length <= (refs._progLen || 0)) return false;
+        refs._progLen = progress.length;
+        var LABEL = { appunti: 'appunti', libri: 'libri', web: 'web', gate: 'gate', synth: 'sintesi' };
+        var seen = [], parts = [];
+        for (var i = 0; i < progress.length; i++) {
+            var p = progress[i] || {};
+            var st = String(p.stage || '?');
+            if (seen.indexOf(st) >= 0) continue;
+            seen.push(st);
+            var lbl = LABEL[st] || st;
+            parts.push(lbl + (p.status === 'done' ? '... ok' : '...'));
+        }
+        var el = refs._stageEl;
+        if (!el) {
+            el = document.createElement('div');
+            el.className = 'streaming-spinner stage-progress';
+            el.setAttribute('data-qa', 'stage-progress');
+            refs._stageEl = el;
+            if (refs.content && refs.content.parentElement) {
+                refs.content.parentElement.insertBefore(el, refs.content);
+            } else if (refs.bubble) {
+                refs.bubble.appendChild(el);
+            } else {
+                return false;
+            }
+        }
+        el.textContent = parts.join('  .  ');
+        return true;
+    }
+
+    function provenienzaStadi(stages, sources) {
+        // R18: stadi che hanno REALMENTE contribuito (ordine fisso)
+        var order = ['appunti', 'libri', 'web'];
+        var uniq = [];
+        var src = (Array.isArray(stages) && stages.length)
+            ? stages
+            : (sources || []).map(function (s) { return (s || {}).stage; });
+        src.forEach(function (s) {
+            s = String(s || '');
+            if (order.indexOf(s) >= 0 && uniq.indexOf(s) < 0) uniq.push(s);
+        });
+        uniq.sort(function (a, b) { return order.indexOf(a) - order.indexOf(b); });
+        return uniq;
+    }
+
+    function provenienzaFromFonte(fonte) {
+        // reload da DB: best-effort dal campo fonte (stages live solo in stream)
+        var m = { locale: ['appunti'],
+                  libri_preselezionati: ['libri'],
+                  web: ['web'] };
+        return m[String(fonte || '')] || null;
+    }
+
+    function renderProvenienza(container, stages, sources) {
+        // R18: UNA riga finale in carattere piccolo, UTF-8 pulito,
+        // solo nomi stadio ascii (appunti/libri/web): niente URL/codici.
+        // R18 B1.3: provenienza = stadi CONTRIBUENTI; se l'evento c'e'
+        // ma nessuno stadio contribuisce -> "nessuna fonte trovata".
+        if (!container) return null;
+        var gotStages = Array.isArray(stages);
+        var uniq = provenienzaStadi(stages, sources);
+        var el = document.createElement('div');
+        el.className = 'ai-provenienza';
+        el.setAttribute('data-qa', 'provenienza');
+        el.style.cssText = 'margin-top:10px;font-size:11px;opacity:.72;' +
+            'letter-spacing:.02em;';
+        if (!uniq.length) {
+            if (!gotStages) return null;   // niente evento: nessuna riga
+            el.textContent = 'nessuna fonte trovata';
+            container.appendChild(el);
+            return el;
+        }
+        el.textContent = (uniq.length === 1 ? 'Fonte: ' : 'Fonti: ') +
+            uniq.join(' e ');
+        container.appendChild(el);
+        return el;
+    }
+
+    function renderSourceBadges(container, sources) {
+        if (!container || !sources || !sources.length) return null;
+        var BADGE = { appunti: 'locale', libri: 'libri', web: 'web' };
+        var wrap = document.createElement('div');
+        wrap.className = 'ai-sources';
+        wrap.setAttribute('data-qa', 'source-badges');
+        for (var i = 0; i < sources.length; i++) {
+            var s = sources[i] || {};
+            var stage = String(s.stage || '');
+            if (!stage) {
+                if (s.source === 'web') stage = 'web';
+                else if (s.source === 'libri_preselezionati') stage = 'libri';
+                else stage = 'appunti';
+            }
+            var a = document.createElement('a');
+            a.className = 'source-badge stage-' + stage;
+            a.setAttribute('data-stage', stage);
+            if (s.url) {
+                a.href = s.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+            } else {
+                a.href = '#';
+            }
+            var lab = document.createElement('span');
+            lab.className = 'source-badge-label';
+            lab.textContent = BADGE[stage] || stage;
+            a.appendChild(lab);
+            var ttl = document.createElement('span');
+            ttl.className = 'source-badge-title';
+            ttl.textContent = ' ' + (s.title || s.url || '');
+            a.appendChild(ttl);
+            wrap.appendChild(a);
+        }
+        container.appendChild(wrap);
+        return wrap;
+    }
+
+    // ================================================================
+    // IMPOSTAZIONI
+    // ================================================================
     let updateDownloadUrl = null;
     async function refreshUpdateStatus() {
         const label = $('updateLabel'), desc = $('updateDesc'), btn = $('downloadUpdateBtn');
@@ -1044,7 +1584,7 @@
                 desc.textContent = 'Non ancora attivo';
             } else if (info.error) {
                 label.textContent = 'Controllo aggiornamenti';
-                desc.textContent = 'Impossibile verificare (nessuna connessione?)';
+                desc.textContent = 'Impossibile verificare';
             } else if (info.update_available) {
                 label.textContent = 'Aggiornamento disponibile';
                 desc.textContent = `Versione ${info.latest_version}`;
@@ -1056,46 +1596,46 @@
                 label.textContent = 'Sei aggiornato';
                 desc.textContent = `Versione ${info.current_version}`;
             }
-        } catch (err) {
-            console.error('Errore controllo aggiornamenti:', err);
-        }
+        } catch (err) { console.error('Errore update check:', err); }
     }
     $('downloadUpdateBtn').addEventListener('click', async () => {
         if (!updateDownloadUrl) return;
         try { await window.pywebview.api.download_update(updateDownloadUrl); }
-        catch (err) { console.error('Errore download aggiornamento:', err); }
+        catch (err) { console.error('Errore download update:', err); }
     });
     $('openLibraryBtn').addEventListener('click', async () => {
         const desc = $('libraryDesc');
         const original = desc.textContent;
         try {
-            const result = await window.pywebview.api.open_library_website();
-            if (result && result.success === false) {
-                desc.textContent = result.error || 'Non disponibile al momento.';
+            const r = await window.pywebview.api.open_library_website();
+            if (r && r.success === false) {
+                desc.textContent = r.error || 'Non disponibile.';
                 setTimeout(() => { desc.textContent = original; }, 3000);
             }
         } catch (err) {
-            console.error('Errore apertura sito librerie:', err);
-            desc.textContent = 'Non disponibile al momento.';
+            desc.textContent = 'Non disponibile.';
             setTimeout(() => { desc.textContent = original; }, 3000);
         }
     });
 
-    // ---------- Modal materiale ----------
+    // ================================================================
+    // MATERIALE
+    // ================================================================
     const tabsData = {
         notes: {
-            info: "Carica una foto di appunti, un PDF o un documento Word: verrà elaborato automaticamente e reso disponibile all'AI, senza passaggi manuali aggiuntivi (livello 1 del RAG).",
-            formats: "Formati supportati: JPG, PNG, PDF, DOCX",
-            button: "Aggiungi ai miei appunti"
+            info: "Carica una foto di appunti, un PDF, un documento Word, una presentazione PowerPoint, un file di testo o un file Markdown: verrÃƒÂ  elaborato automaticamente e reso disponibile all'AI come materiale di studio personale.",
+            formats: "Formati supportati: JPG, PNG, PDF, DOCX, PPTX, TXT, MD",
+            button: "Aggiungi ai miei materiali"
         },
         books: {
-            info: "Carica un PDF (es. un libro scaricato dalla tua app web): verrà convertito automaticamente in Markdown e reso disponibile all'AI come fonte di riferimento nelle risposte (livello 2 del RAG).",
+            info: "Carica un PDF da usare come fonte di riferimento (manuale, libro di testo, dispensa): verrÃƒÂ  convertito automaticamente in Markdown e reso disponibile come libreria.",
             formats: "Formato supportato: PDF",
-            button: "Aggiungi ai miei libri"
+            button: "Aggiungi alla libreria"
         }
     };
     let currentTab = 'notes';
     let selectedFilePath = null;
+
     const resetFile = () => {
         selectedFilePath = null;
         fileNameBox.textContent = 'Nessun file selezionato';
@@ -1126,9 +1666,7 @@
             fileNameBox.classList.remove('error');
             materialStatus.textContent = '';
             materialStatus.className = 'material-status';
-        } catch (err) {
-            console.error('Errore selezione file:', err);
-        }
+        } catch (err) { console.error('Errore selezione file:', err); }
     });
 
     addFileBtn.addEventListener('click', async () => {
@@ -1147,15 +1685,11 @@
             const result = currentTab === 'books'
                 ? await window.pywebview.api.add_library_material(selectedFilePath)
                 : await window.pywebview.api.add_notes_material(selectedFilePath);
-
-            if (result && result.success === false) {
-                throw new Error(result.error || 'Operazione fallita.');
-            }
-
-            addFileBtn.textContent = '✓ Aggiunto!';
+            if (result && result.success === false) throw new Error(result.error || 'Operazione fallita.');
+            addFileBtn.textContent = 'Ã¢Å“â€œ Aggiunto!';
             materialStatus.textContent = currentTab === 'books'
-                ? 'Libro aggiunto alla libreria di studio.'
-                : 'Appunti aggiunti ed elaborati.';
+                ? 'Risorsa aggiunta alla libreria.'
+                : 'Materiale di studio aggiunto ed elaborato.';
             materialStatus.className = 'material-status success';
             setTimeout(() => { addFileBtn.textContent = label; addFileBtn.disabled = false; resetFile(); }, 1200);
         } catch (err) {
@@ -1166,32 +1700,135 @@
         }
     });
 
-    // ---------- Chat ----------
+    // ================================================================
+    // CHAT Ã¢â‚¬â€ STREAMING + STOP + CONTINUA + FIX CHAT SEPARATE
+    // ================================================================
     let currentConversationId = null;
-    let isSending = false;
+    let isBusy = false;
+    let currentMessageId = null;
+    let currentStreamConvId = null;
+    let streamPollTimer = null;
+    let streamIndex = 0;
+    let streamingRefs = null;
+    let streamingText = { value: '' };
 
-    const scrollChat = () => { chatView.scrollTop = chatView.scrollHeight; };
-
-    function addMessage(msg) {
+    function addMessageRow(role, htmlContent, source) {
         const row = document.createElement('div');
-        row.className = 'msg-row ' + (msg.role === 'user' ? 'user' : 'ai');
+        row.className = 'msg-row ' + (role === 'user' ? 'user' : 'ai');
         const bubble = document.createElement('div');
-        bubble.className = msg.role === 'user' ? 'bubble-user' : 'bubble-ai';
-        bubble.textContent = msg.text;
-        if (msg.role !== 'user' && msg.source && SOURCE_LABELS[msg.source]) {
-            const src = document.createElement('div');
-            src.className = 'ai-source';
-            src.textContent = SOURCE_LABELS[msg.source];
-            bubble.appendChild(src);
+        bubble.className = role === 'user' ? 'bubble-user' : 'bubble-ai';
+
+        if (role === 'user') {
+            bubble.textContent = htmlContent;
+        } else {
+            // R18: nessuna label/citazione nel testo - la provenienza e'
+            // la riga piccola renderizzata al finalize dai metadati
+            bubble.innerHTML = htmlContent;
         }
         row.appendChild(bubble);
         chatView.appendChild(row);
-        scrollChat();
-        return row;
+        if (role === 'user') scrollChatForced();
+        else scrollChatIfAtBottom();
+        return { row, bubble };
     }
 
-    const showChat = () => { welcomeView.classList.add('hidden'); chatView.classList.remove('hidden'); scrollChat(); };
-    const showWelcome = () => { chatView.classList.add('hidden'); welcomeView.classList.remove('hidden'); };
+    function createStreamingBubble() {
+        const row = document.createElement('div');
+        row.className = 'msg-row ai';
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble-ai';
+
+        const spinner = document.createElement('div');
+        spinner.className = 'streaming-spinner';
+        bubble.appendChild(spinner);
+
+        const content = document.createElement('div');
+        content.className = 'ai-content';
+        bubble.appendChild(content);
+
+        row.appendChild(bubble);
+        chatView.appendChild(row);
+        scrollChatForced();
+        return { row, bubble, content, spinner };
+    }
+
+    function updateStreamingBubble(refs, text) {
+        // R16 4.2: nodo staccato (race openConversation) -> nessun
+        // aggiornamento su riferimenti orfani
+        if (!refs || !refs.content || refs.content.isConnected === false) {
+            return;
+        }
+        refs.content.innerHTML = renderMarkdown(text);
+        scrollChatIfAtBottom();
+    }
+
+    function finalizeStreamingBubble(refs, text, source, sources, stages) {
+        // R16 4.2 - dedupe su data-msg-id + race openConversation:
+        // se la riga di streaming e' staccata dal DOM, reassocia UNA
+        // sola riga finale (mai duplicati); se esiste gia' una riga
+        // con lo stesso id o con lo stesso testo, non se ne aggiunge.
+        var _row0 = refs.row || (refs.bubble && refs.bubble.parentElement);
+        var _connected = _row0 && _row0.isConnected !== false &&
+            document.body && document.body.contains(_row0);
+        if (!_connected) {
+            var _mid = refs._msgId || '';
+            var _existing = _mid ?
+                chatView.querySelector('[data-msg-id="' + _mid + '"]') : null;
+            if (_existing) {
+                return;   // riga finale gia' presente: niente duplicati
+            }
+            var _rows = chatView.querySelectorAll('.msg-row.ai');
+            var _head = String(text || '').trim().slice(0, 80);
+            for (var _i = 0; _i < _rows.length; _i++) {
+                if (_head && (_rows[_i].textContent || '').indexOf(_head) >= 0) {
+                    return;   // testo identico gia' renderizzato
+                }
+            }
+            var _fr = document.createElement('div');
+            _fr.className = 'msg-row ai';
+            if (_mid) _fr.setAttribute('data-msg-id', _mid);
+            var _fb = document.createElement('div');
+            _fb.className = 'bubble-ai';
+            var _fc = document.createElement('div');
+            _fc.className = 'ai-content';
+            _fb.appendChild(_fc);
+            _fr.appendChild(_fb);
+            chatView.appendChild(_fr);
+            refs.row = _fr;
+            refs.bubble = _fb;
+            refs.content = _fc;
+            refs.spinner = null;
+            refs._stageEl = null;
+        } else if (refs._msgId) {
+            var _dups = chatView.querySelectorAll(
+                '[data-msg-id="' + refs._msgId + '"]');
+            for (var _d = 1; _d < _dups.length; _d++) {
+                _dups[_d].remove();   // tenere UNA sola riga per id
+            }
+        }
+        if (refs.spinner && refs.spinner.parentElement) {
+            refs.spinner.remove();
+        }
+        if (refs._stageEl && refs._stageEl.parentElement) {
+            refs._stageEl.remove();
+            refs._stageEl = null;
+        }
+        refs.content.innerHTML = renderMarkdown(text);
+        // R18: niente label, niente chip, niente codici [F#] - SOLO la
+        // riga piccola di provenienza (stadi dai metadati)
+        renderProvenienza(refs.content, stages, sources);
+        scrollChatIfAtBottom();
+    }
+
+    const showChat = () => {
+        welcomeView.classList.add('hidden');
+        chatView.classList.remove('hidden');
+        scrollChatForced();
+    };
+    const showWelcome = () => {
+        chatView.classList.add('hidden');
+        welcomeView.classList.remove('hidden');
+    };
 
     function setActiveHistory(id) {
         document.querySelectorAll('.history-item.active').forEach(el => el.classList.remove('active'));
@@ -1203,9 +1840,7 @@
         try {
             const conversations = await window.pywebview.api.get_conversations();
             renderHistoryList(conversations || []);
-        } catch (err) {
-            console.error('Errore caricamento conversazioni:', err);
-        }
+        } catch (err) { console.error('Errore caricamento conversazioni:', err); }
     }
 
     function renderHistoryList(conversations) {
@@ -1225,91 +1860,428 @@
 
     async function openConversation(id) {
         currentConversationId = id;
+        if (window.Chatbot && Chatbot.onConversationOpened) Chatbot.onConversationOpened(id);
         try {
             const messages = await window.pywebview.api.get_messages(id);
             chatView.innerHTML = '';
-            (messages || []).forEach(m => addMessage({ role: m.role, text: m.content, source: m.source }));
+            (messages || []).forEach(m => {
+                const row = document.createElement('div');
+                row.className = 'msg-row ' + (m.role === 'user' ? 'user' : 'ai');
+                const bubble = document.createElement('div');
+                bubble.className = m.role === 'user' ? 'bubble-user' : 'bubble-ai';
+                if (m.role === 'user') bubble.textContent = m.content;
+                else bubble.innerHTML = renderMarkdown(m.content);
+                if (m.role !== 'user') {
+                    // R18: riga provenienza al reload (best-effort fonte)
+                    renderProvenienza(bubble, provenienzaFromFonte(m.source));
+                }
+                row.appendChild(bubble);
+                chatView.appendChild(row);
+            });
             setActiveHistory(id);
             showChat();
-        } catch (err) {
-            console.error('Errore caricamento messaggi:', err);
-        }
+            scrollChatForced();
+        } catch (err) { console.error('Errore caricamento messaggi:', err); }
     }
 
     historyList.addEventListener('click', e => {
         const item = e.target.closest('.history-item[data-id]');
         if (!item) return;
+        if (window.App) App.go('chat-session');
         openConversation(Number(item.dataset.id));
         closeSidebar();
     });
 
     $('newChatBtn').addEventListener('click', () => {
+        closeSidebar();
+        if (window.App) { App.newConversationFlow(); return; }
         currentConversationId = null;
         chatView.innerHTML = '';
         document.querySelectorAll('.history-item.active').forEach(el => el.classList.remove('active'));
         showWelcome();
-        closeSidebar();
+        hideContinueButton();
         chatInput.focus();
     });
 
     $('heroCard').addEventListener('click', () => chatInput.focus());
 
-    function appendTyping() {
-        const row = document.createElement('div');
-        row.className = 'msg-row ai';
-        row.innerHTML = '<div class="bubble-ai typing"><span></span><span></span><span></span></div>';
-        chatView.appendChild(row);
-        scrollChat();
-        return row;
+    // ================================================================
+    // STOP BUTTON
+    // ================================================================
+    const SVG_SEND = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+    const SVG_STOP = '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>';
+
+    let stopRequested = false;
+
+    function enterStopMode() {
+        stopRequested = false;
+        sendBtn.classList.remove('is-stopping');
+        sendBtn.classList.add('is-stop');
+        sendBtn.innerHTML = SVG_STOP;
+        sendBtn.setAttribute('aria-label', 'Ferma');
+        sendBtn.disabled = false;
+    }
+    function exitStopMode() {
+        stopRequested = false;
+        sendBtn.classList.remove('is-stop', 'is-stopping');
+        sendBtn.innerHTML = SVG_SEND;
+        sendBtn.setAttribute('aria-label', 'Invia');
+        sendBtn.disabled = false;
     }
 
+    async function handleSendOrStop() {
+        if (isBusy) {
+            if (currentMessageId && !stopRequested) {
+                stopRequested = true;
+                sendBtn.classList.add('is-stopping');
+                sendBtn.disabled = true;
+                try {
+                    await window.pywebview.api.stop_generation(currentMessageId);
+                } catch (err) {
+                    console.error('Errore stop:', err);
+                }
+            }
+            return;
+        }
+        await sendMessage();
+    }
+
+    // ================================================================
+    // POLLING (riusabile per prima generazione e continuazioni)
+    // ================================================================
+    function startPolling(messageId) {
+        if (!streamingRefs || !streamingText) {
+            console.error('startPolling chiamato senza bubble attiva');
+            return;
+        }
+        if (streamPollTimer) {
+            clearInterval(streamPollTimer);
+            streamPollTimer = null;
+        }
+        if (streamingRefs) streamingRefs._progLen = 0;
+        var lastResetCount = 0;
+
+        streamPollTimer = setInterval(async () => {
+            try {
+                const p = await window.pywebview.api.poll_stream(messageId, streamIndex);
+                streamIndex = p.total || 0;
+
+                const onSameChat = (currentConversationId === currentStreamConvId);
+
+                // R16 4.2: reset del backend (retry guardia output) ->
+                // il retry SOSTITUISCE il testo, non si appende
+                if (typeof p.reset_count === 'number' &&
+                        p.reset_count > lastResetCount) {
+                    lastResetCount = p.reset_count;
+                    streamingText.value = '';
+                    if (streamingRefs) {
+                        streamingRefs._firstBlock = false;
+                        streamingRefs._tokCount = 0;
+                        streamingRefs._dispLen = 0;
+                    }
+                    if (onSameChat) {
+                        updateStreamingBubble(streamingRefs, '');
+                    }
+                }
+
+                if (p.tokens && p.tokens.length) {
+                    streamingText.value += p.tokens.join('');
+                    if (onSameChat && streamingRefs) {
+                        // R16 follow-up: primi ~40 token in UN blocco
+                        // (niente gocciolamento), poi a piccoli passi
+                        // (~token per token: max ~48 char per poll)
+                        var _refs = streamingRefs;
+                        _refs._dispLen = _refs._dispLen || 0;
+                        _refs._tokCount = _refs._tokCount || 0;
+                        var _total = streamingText.value.length;
+                        if (!_refs._firstBlock) {
+                            _refs._tokCount += p.tokens.length;
+                            if (_refs._tokCount >= 40) {
+                                _refs._firstBlock = true;
+                                _refs._dispLen = Math.min(_total, 300);
+                                updateStreamingBubble(
+                                    _refs,
+                                    streamingText.value.slice(0, _refs._dispLen));
+                            }
+                        } else if (_total > _refs._dispLen) {
+                            var _step = Math.min(_total - _refs._dispLen, 48);
+                            _refs._dispLen += _step;
+                            updateStreamingBubble(
+                                _refs,
+                                streamingText.value.slice(0, _refs._dispLen));
+                        }
+                    }
+                }
+
+                // R15b W5/contratto P: avanzamento per stadio (progress)
+                if (onSameChat && p.progress && p.progress.length) {
+                    renderStreamProgress(streamingRefs, p.progress);
+                }
+
+                if (p.error) {
+                    clearInterval(streamPollTimer);
+                    streamPollTimer = null;
+                    isBusy = false;
+                    hideContinueButton();
+                    exitStopMode();
+                    if (onSameChat) {
+                        finalizeStreamingBubble(streamingRefs,
+                            streamingText.value + '\n\nErrore: ' + p.error,
+                            p.source, p.sources, p.source_stages);
+                    }
+                    try { await window.pywebview.api.cleanup_stream(messageId); } catch (e) {}
+                    currentMessageId = null;
+                    currentStreamConvId = null;
+                    return;
+                }
+
+                if (p.waiting_continue) {
+                    clearInterval(streamPollTimer);
+                    streamPollTimer = null;
+                    isBusy = false;
+                    exitStopMode();
+                    if (onSameChat) {
+                        showContinueButton(p.part_current, p.part_total);
+                    }
+                    return;
+                }
+
+                if (p.done) {
+                    clearInterval(streamPollTimer);
+                    streamPollTimer = null;
+                    isBusy = false;
+                    hideContinueButton();
+                    exitStopMode();
+
+                    if (onSameChat) {
+                        let finalText = streamingText.value;
+                        if (p.stopped) {
+                            finalText += '\n\n_[Generazione interrotta]_';
+                        }
+                        finalizeStreamingBubble(streamingRefs, finalText, p.source, p.sources,
+                                            p.source_stages);
+                    } else {
+                        const row = streamingRefs.bubble.parentElement;
+                        if (row) row.remove();
+                    }
+
+                    try { await window.pywebview.api.cleanup_stream(messageId); } catch (e) {}
+                    currentMessageId = null;
+                    currentStreamConvId = null;
+                    return;
+                }
+            } catch (err) {
+                console.error('Errore polling stream:', err);
+                clearInterval(streamPollTimer);
+                streamPollTimer = null;
+                isBusy = false;
+                hideContinueButton();
+                exitStopMode();
+            }
+        }, 80);
+    }
+
+    // ================================================================
+    // INVIA MESSAGGIO
+    // ================================================================
     async function sendMessage() {
-        if (isSending) return;
+        if (isBusy) return;
+
         const text = chatInput.value.trim();
         if (!text) return;
         chatInput.value = '';
-        isSending = true;
-        $('sendBtn').disabled = true;
+
+        isBusy = true;
+        sendBtn.disabled = true;
+        hideContinueButton();
 
         showChat();
-        addMessage({ role: 'user', text });
+        addMessageRow('user', text);
 
-        const typingRow = appendTyping();
+        const convIdAtStart = currentConversationId;
+        currentStreamConvId = convIdAtStart;
+
+        streamingRefs = createStreamingBubble();
+        streamingText = { value: '' };
+        streamIndex = 0;
 
         try {
-            const result = await window.pywebview.api.send_message(
-                text,
-                currentConversationId,
-                'automatica',
-                thinkingMode,
-                studyMode
+            // R16 4.1: nessun argomento web per query (web SEMPRE attivo;
+            // il backend risolve web.mode dalla config)
+            const res = await window.pywebview.api.send_message(
+                text, convIdAtStart, 'automatica', thinkingMode, studyMode,
+                (window.Chatbot && Chatbot.getTopic) ? Chatbot.getTopic() : ''
             );
-            typingRow.remove();
-
-            if (result && result.conversation_id) {
-                const isNew = currentConversationId === null;
-                currentConversationId = result.conversation_id;
-                if (isNew) loadConversations();
+            if (res && res.error) {
+                finalizeStreamingBubble(streamingRefs, 'Errore: ' + res.error, 'nessuna');
+                isBusy = false;
+                exitStopMode();
+                return;
             }
+            currentMessageId = res.message_id;
+            if (streamingRefs) {
+                // R16 4.2: UN messaggio per query (dedupe su id)
+                streamingRefs._msgId = res.message_id;
+                if (streamingRefs.row) {
+                    streamingRefs.row.setAttribute('data-msg-id', res.message_id);
+                }
+            }
+            if (res.conversation_id) {
+                const wasNew = currentConversationId === null;
+                currentConversationId = res.conversation_id;
+                currentStreamConvId = res.conversation_id;
+                if (wasNew) loadConversations();
+                if (window.Chatbot && Chatbot.onConversationCreated) Chatbot.onConversationCreated(res.conversation_id);
+            }
+            enterStopMode();
+            startPolling(currentMessageId);
 
-            addMessage({ role: 'ai', text: (result && result.response) || 'Nessuna risposta ricevuta.', source: result && result.source });
         } catch (err) {
-            console.error('Errore invio messaggio:', err);
-            typingRow.remove();
-            addMessage({ role: 'ai', text: 'Si è verificato un errore imprevisto. Riprova.' });
-        } finally {
-            isSending = false;
-            $('sendBtn').disabled = false;
+            console.error('Errore invio:', err);
+            finalizeStreamingBubble(streamingRefs, 'Si ÃƒÂ¨ verificato un errore imprevisto.', 'nessuna');
+            isBusy = false;
+            exitStopMode();
         }
     }
-    $('sendBtn').addEventListener('click', sendMessage);
-    chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
 
-    // ---------- Avvio ----------
+    // ================================================================
+    // CONTINUA
+    // ================================================================
+    async function continueGeneration() {
+        if (isBusy) return;
+        if (!currentMessageId) return;
+        if (!streamingRefs || !streamingText) return;
+
+        hideContinueButton();
+        isBusy = true;
+
+        streamingText.value += '\n\n---\n\n';
+        if (currentConversationId === currentStreamConvId) {
+            updateStreamingBubble(streamingRefs, streamingText.value);
+        }
+
+        try {
+            const res = await window.pywebview.api.continue_generation(currentMessageId, studyMode);
+            if (res && res.success === false) {
+                streamingText.value += `_[Impossibile continuare: ${res.error || 'errore'}]_`;
+                if (currentConversationId === currentStreamConvId) {
+                    updateStreamingBubble(streamingRefs, streamingText.value);
+                }
+                isBusy = false;
+                return;
+            }
+            enterStopMode();
+            startPolling(currentMessageId);
+        } catch (err) {
+            console.error('Errore continuazione:', err);
+            isBusy = false;
+        }
+    }
+
+    continueBtn.addEventListener('click', continueGeneration);
+
+    sendBtn.addEventListener('click', handleSendOrStop);
+    chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !isBusy) sendMessage();
+    });
+
+        // ================================================================
+    // CARICAMENTO DEL MODELLO Ã¢â‚¬â€ barra di progresso REALE
+    // ================================================================
+    // Il progresso ÃƒÂ¨ calcolato dal backend leggendo il Working Set del
+    // processo e confrontandolo con la dimensione attesa in RAM.
+    // Qui aggiorniamo solo la barra con il valore ricevuto.
+    const modelLoadingIsland = $('modelLoadingIsland');
+    const modelLoadingText = $('modelLoadingText');
+    const modelLoadingBarFill = $('modelLoadingBarFill');
+
+    let modelReady = false;
+
+    function updateModelBar(progress) {
+        const pct = Math.max(0, Math.min(100, Math.round(progress * 100)));
+        modelLoadingBarFill.style.width = pct + '%';
+    }
+
+    async function pollModelStatus() {
+        try {
+            const st = await window.pywebview.api.get_model_status();
+            if (!st) return;
+
+            if (st.state === 'loading') {
+                if (!modelLoadingIsland.classList.contains('show')) {
+                    modelLoadingIsland.classList.add('show');
+                    modelLoadingText.classList.remove('error');
+                    modelLoadingText.textContent = 'Caricamento del modello...';
+                    modelLoadingBarFill.classList.remove('error');
+                }
+                updateModelBar(st.progress || 0);
+                modelReady = false;
+            } else if (st.state === 'ready') {
+                if (!modelReady) {
+                    modelReady = true;
+                    updateModelBar(1.0);
+                    modelLoadingText.textContent = 'Modello pronto';
+                    setTimeout(() => {
+                        modelLoadingIsland.classList.remove('show');
+                    }, 400);
+                }
+            } else if (st.state === 'error') {
+                modelLoadingText.classList.add('error');
+                modelLoadingText.textContent = 'Errore: ' + (st.error || 'sconosciuto');
+                modelLoadingBarFill.classList.add('error');
+                updateModelBar(1.0);
+                modelReady = false;
+            }
+            // "not_configured": nessuna isola
+        } catch (err) {
+            console.error('Errore polling stato modello:', err);
+        }
+    }
+
+    // Polling: rapido durante il caricamento, poi rallenta.
+    // Continua finchÃƒÂ© non siamo ready, poi passa a 5s per intercettare
+    // eventuali cambi modello dal menu.
+    let modelPollInterval = setInterval(async () => {
+        await pollModelStatus();
+        if (modelReady) {
+            clearInterval(modelPollInterval);
+            modelPollInterval = setInterval(pollModelStatus, 5000);
+        }
+    }, 500);
+
+    pollModelStatus();
+
+    // ================================================================
+    // AVVIO
+    // ================================================================
     (async function init() {
         await waitForApi();
+        try { await loadWebSettings(); } catch (e) { /* W5: settings web opzionali */ }
         await loadConversations();
     })();
 </script>
+
+<!-- ============================================================
+     NUOVA SUITE STUDIO Ã¢â‚¬â€ home, router e moduli.
+     Nessuna dipendenza esterna: solo file locali.
+     ============================================================ -->
+<script src="js/store.js"></script>
+<script src="js/app.js?v=2026-10-27T20:03:00+01:00"></script>
+<script src="js/components/folders.js"></script>
+<script src="js/components/subject.js"></script>
+<script src="js/modules/chatbot.js"></script>
+<script src="js/modules/fonti_panel.js?v=2026-10-30T15:49:23+01:00"></script>
+    <script src="js/modules/notes.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/schemaStrategies.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/schemi.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/produttivita.js"></script>
+<script src="js/modules/presentazioni.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/documenti.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/fogli.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/video.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/ripasso.js?v=2026-10-30T15:49:23+01:00"></script>
+<script src="js/modules/biblioteca.js"></script>
+<script src="js/modules/calendario.js"></script>
+<script src="js/modules/statistiche.js?v=2026-10-27T20:03:00+01:00"></script>
 </body>
 </html>

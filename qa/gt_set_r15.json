@@ -1,0 +1,225 @@
+{
+  "round": "R15b",
+  "creato": "2026-10-24",
+  "autore": "blocco G (20261024_12)",
+  "corpus": {
+    "db": "%APPDATA%/NovaStudio/studioia.db",
+    "store_key": "vector_index",
+    "source_file": "fotosintesi_clorofilliana_universitario.md",
+    "percorso": "file_AIstudio/rag_stage2/fotosintesi_clorofilliana_universitario.md",
+    "n_chunks": 17,
+    "embedder": "intfloat/multilingual-e5-small",
+    "note": "casi costruiti dai pattern di qa/f0_forensics.json (q1-q5); anchor verificati sui 17 chunk reali indicizzati; parziali SELEZIONATI per misura (vec+FTS5/bm25 reali: supporto presente MA score fuso < soglia tarata 0.70)"
+  },
+  "legenda": {
+    "positivo": "risposta INTEGRALMENTE nel corpus -> atteso esito piena",
+    "negativo": "FUORI corpus (stile q4 mitosi/meiosi) -> atteso esito nulla",
+    "parziale": "argomento topico ma risposta NON nel corpus / evidenza debole -> atteso esito parziale (mai piena)"
+  },
+  "misure": {
+    "metodo": "primitive in lettura: FTS5 MATCH+bm25 su chunks_fts, coseno su sqlite-vec; embedding query E5 reale",
+    "n_positivi": 9,
+    "n_negativi": 5,
+    "n_parziali": 4,
+    "soglia_scelta": 0.7
+  },
+  "casi": [
+    {
+      "id": "p1",
+      "tipo": "positivo",
+      "nota": "q1 forensics",
+      "query": "Nella fotosintesi clorofilliana qual è il valore di ΔG in kJ/mol della reazione che produce glucosio?",
+      "query_norm": "valore delta g kJ fotosintesi reazione glucosio",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "+2870"
+      }
+    },
+    {
+      "id": "p2",
+      "tipo": "positivo",
+      "nota": "sezione 1.1 equazione generale",
+      "query": "Perché la fotosintesi ossigenica è una reazione fortemente endergonica?",
+      "query_norm": "fotosintesi ossigenica reazione fortemente endergonica",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "endergonica"
+      }
+    },
+    {
+      "id": "p3",
+      "tipo": "positivo",
+      "nota": "sezione 5.1 C4",
+      "query": "Qual è il primo accettore di CO2 nelle piante C4?",
+      "query_norm": "primo accettore CO2 piante C4 fosfoenolpiruvato",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "Fosfoenolpiruvato"
+      }
+    },
+    {
+      "id": "p4",
+      "tipo": "positivo",
+      "nota": "sezione 2.3 PSI/PC",
+      "query": "Che ruolo svolge la plastocianina nella catena di trasporto degli elettroni?",
+      "query_norm": "ruolo plastocianina catena trasporto elettroni",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "Plastocianina"
+      }
+    },
+    {
+      "id": "p5",
+      "tipo": "positivo",
+      "nota": "sezione 2.5 ATP sintasi",
+      "query": "Come funziona l'ATP sintasi plastidiale durante il flusso di protoni?",
+      "query_norm": "ATP sintasi plastidiale flusso protoni CFo CF1",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "ATP Sintasi"
+      }
+    },
+    {
+      "id": "p6",
+      "tipo": "positivo",
+      "nota": "sezione 4.2 fotorespirazione",
+      "query": "Quante reazioni su 4-5 catalizzate dalla RuBisCO sono ossigenazioni nelle piante C3 a 25 gradi?",
+      "query_norm": "reazioni su 4-5 RuBisCO ossigenazioni piante C3 25 gradi",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "1 reazione su 4-5"
+      }
+    },
+    {
+      "id": "p7",
+      "tipo": "positivo",
+      "nota": "tabella confronto 5.3",
+      "query": "Qual è il costo energetico in ATP:NADPH per CO2 confrontando le vie C3, C4 e CAM?",
+      "query_norm": "costo energetico ATP NADPH per CO2 confronto C3 C4 CAM",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "Costo Energetico"
+      }
+    },
+    {
+      "id": "p8",
+      "tipo": "positivo",
+      "nota": "sezione 5.2 CAM fase notturna",
+      "query": "Come fanno le piante CAM a fissare l'anidride carbonica durante la fase notturna?",
+      "query_norm": "piante CAM fissare anidride carbonica fase notturna",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "Fase Notturna"
+      }
+    },
+    {
+      "id": "p9",
+      "tipo": "positivo",
+      "nota": "q2 forensics (parafrasi)",
+      "query": "Quanta energia libera serve alle piante per trasformare anidride carbonica e acqua in zucchero usando la luce?",
+      "query_norm": "energia libera piante trasformare anidride carbonica acqua zucchero luce",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor": "+2870"
+      }
+    },
+    {
+      "id": "n1",
+      "tipo": "negativo",
+      "nota": "q4 forensics (caso critico: sim 0.82 misurata)",
+      "query": "Qual è la differenza tra mitosi e meiosi nelle cellule?",
+      "query_norm": "differenza mitosi meiosi cellule",
+      "atteso": {
+        "fuori_corpus": true
+      }
+    },
+    {
+      "id": "n2",
+      "tipo": "negativo",
+      "nota": "fiscale, fuori corpus",
+      "query": "Come si calcola l'IVA sulla fattura elettronica in Italia?",
+      "query_norm": "calcolo IVA fattura elettronica Italia",
+      "atteso": {
+        "fuori_corpus": true
+      }
+    },
+    {
+      "id": "n3",
+      "tipo": "negativo",
+      "nota": "sport, fuori corpus (attenzione: 'calcio' omonimo presente nel corpus)",
+      "query": "Quali sono le regole del calcio riguardo al fuorigioco?",
+      "query_norm": "regole calcio fuorigioco",
+      "atteso": {
+        "fuori_corpus": true
+      }
+    },
+    {
+      "id": "n4",
+      "tipo": "negativo",
+      "nota": "cucina, fuori corpus",
+      "query": "Ricetta tradizionale della carbonara romana",
+      "query_norm": "ricetta carbonara romana",
+      "atteso": {
+        "fuori_corpus": true
+      }
+    },
+    {
+      "id": "n5",
+      "tipo": "negativo",
+      "nota": "storia, fuori corpus",
+      "query": "Spiegami le cause della guerra dei Trent'anni",
+      "query_norm": "cause guerra trentanni",
+      "atteso": {
+        "fuori_corpus": true
+      }
+    },
+    {
+      "id": "x1",
+      "tipo": "parziale",
+      "nota": "storico della scoperta ASSENTE dal corpus (misura: score 0.650, supporto lex 0.333)",
+      "query": "Chi ha scoperto la fotosintesi e in che anno è avvenuta?",
+      "query_norm": "scoperto fotosintesi anno",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor_topico": "fotosintesi",
+        "risposta_assente": true
+      }
+    },
+    {
+      "id": "x2",
+      "tipo": "parziale",
+      "nota": "ormoni ASSENTI dal corpus (misura: score 0.627, supporto lex 0.333)",
+      "query": "Che differenza c'è tra un enzima e un ormone?",
+      "query_norm": "differenza enzima ormone",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor_topico": "fotosintesi",
+        "risposta_assente": true
+      }
+    },
+    {
+      "id": "x3",
+      "tipo": "parziale",
+      "nota": "digestione ASSENTE dal corpus (misura: score 0.640, supporto lex 0.333)",
+      "query": "Qual è la funzione di un enzima digestivo?",
+      "query_norm": "funzione enzima digestivo",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor_topico": "fotosintesi",
+        "risposta_assente": true
+      }
+    },
+    {
+      "id": "x4",
+      "tipo": "parziale",
+      "nota": "fotosintesi artificiale ASSENTE dal corpus (misura: score 0.649, supporto lex 0.333)",
+      "query": "Come funziona la fotosintesi artificiale in un laboratorio?",
+      "query_norm": "fotosintesi artificiale laboratorio",
+      "atteso": {
+        "source_file": "fotosintesi_clorofilliana_universitario.md",
+        "anchor_topico": "fotosintesi",
+        "risposta_assente": true
+      }
+    }
+  ]
+}

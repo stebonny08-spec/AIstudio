@@ -1,0 +1,24 @@
+0.00.005.363 I srv  llama_server: initializing ...
+0.00.040.022 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.040.598 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.058.898 I srv    load_model: loading model 'tools\models\spark-x2.6-4b.gguf'
+0.03.059.329 I cmn          init: llama threadpool init, n_threads = 8
+0.03.518.025 I common_speculative_init_result: loading draft model 'tools\models\spark-x2.6-1.7b.gguf'
+0.05.251.727 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'
+0.05.522.632 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.05.522.681 I srv  llama_server: model loaded
+0.05.522.686 I srv  llama_server: listening on http://127.0.0.1:62512
+0.05.542.939 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.05.542.986 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.12.565.186 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    270, progress = 0.99, t =   5.35 s / 50.45 tokens per second
+0.27.156.032 I slot print_timing: id  0 | task 0 | n_gen =    102, tg =   7.06 t/s, tg_3s =   7.13 t/s
+0.30.315.628 I slot print_timing: id  0 | task 0 | n_gen =    130, tg =   7.39 t/s, tg_3s =   8.86 t/s
+0.33.501.750 I slot print_timing: id  0 | task 0 | n_gen =    158, tg =   7.60 t/s, tg_3s =   8.79 t/s
+0.36.690.624 I slot print_timing: id  0 | task 0 | n_gen =    186, tg =   7.76 t/s, tg_3s =   8.78 t/s
+0.38.379.939 I slot print_timing: id  0 | task 0 | prompt eval time =    7314.71 ms /   274 tokens (   26.70 ms per token,    37.46 tokens per second)
+0.38.379.951 I slot print_timing: id  0 | task 0 |        eval time =   25523.02 ms /   200 tokens (  128.26 ms per token,     7.80 tokens per second)
+0.38.379.961 I slot print_timing: id  0 | task 0 |       total time =   32837.74 ms /   474 tokens
+0.38.379.963 I slot print_timing: id  0 | task 0 |    graphs reused =         56
+0.38.379.964 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.38.379.974 I slot print_timing: id  0 | task 0 | draft acceptance = 0.84024 (  142 accepted /   169 generated), mean len =  3.49
+0.38.380.062 I slot      release: id  0 | task 0 | stop processing: n_tokens = 473, truncated = 0

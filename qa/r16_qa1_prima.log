@@ -1,0 +1,30 @@
+[14:11:10] === R16 QA-1 matrice 20 query (start) ===
+[14:11:10] config: {"progress_events": true, "threshold": 0.7, "web.mode": "auto", "llm.backend": "sidecar", "rag_top_k": 5, "local_model_path": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\models\\MiniCPM5-2B-Q4_K_M.gguf"}
+[14:11:10] boot store 25.96ms chunk=17/0
+[14:11:26] ready: embedder.warm=True semantic.ready=True (16210.16ms)
+[14:12:08] QA warmup_scartata: total=41416 tok=13664.13 n=340 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:12:08] warmup scartata: total=41416.08ms first_tok=13664.13
+[14:12:08] matrice: 20 query
+[14:13:00] QA i1: total=52156 tok=3545.65 n=583 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:13:40] QA i2: total=39653 tok=3613.66 n=442 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:14:08] QA i3: total=28398 tok=8160.54 n=243 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:14:50] QA i4: total=41529 tok=8041.47 n=404 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:15:02] QA i5: total=11695 tok=5883.49 n=73 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:15:15] QA i6: total=13187 tok=8208.56 n=63 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:16:06] QA i7: total=50392 tok=8390.13 n=452 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:16:49] QA i8: total=42902 tok=8268.9 n=406 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:17:22] QA i9: total=32865 tok=5828.51 n=322 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:18:20] QA i10: total=57650 tok=7659.56 n=585 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:18:27] QA ii1: total=6751 tok=6749.32 n=18 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=5 ok=False err=None
+[14:18:59] QA ii2: total=31997 tok=11261.28 n=253 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=1 ok=False err=None
+[14:19:06] QA ii3: total=6926 tok=6923.83 n=18 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=5 ok=False err=None
+[14:19:42] QA ii4: total=35331 tok=12191.01 n=286 llm=1 guard=True len_ok=True blocks=1 resets=0 src=web weburls=5 net=4 ok=False err=None
+[14:19:47] QA ii5: total=5082 tok=5080.27 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=4 ok=False err=None
+[14:19:47] QA iii1: total=63 tok=61.54 n=18 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=False err=None
+[14:19:47] QA iii2: total=52 tok=51.2 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=False err=None
+[14:20:23] QA iii3: total=35272 tok=44.76 n=235 llm=1 guard=True len_ok=True blocks=1 resets=0 src=locale weburls=0 net=0 ok=False err=None
+[14:20:23] QA iii4: total=56 tok=54.76 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=False err=None
+[14:20:23] QA iii5: total=56 tok=55.35 n=19 llm=0 guard=True len_ok=True blocks=1 resets=0 src=nessuna weburls=0 net=0 ok=False err=None
+[14:20:24] scritto C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r16_qa1.json
+[14:20:24] RIEPILOGO ok=0/20 total_p95=52155.89 tok_p95=11261.28 slo20=False slo2=False guard_fail=[]
+[14:20:24] sidecar state post: down

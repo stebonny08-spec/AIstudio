@@ -1,0 +1,20 @@
+0.00.004.362 I srv  llama_server: initializing ...
+0.00.038.058 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.038.627 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.057.345 I srv    load_model: loading model 'tools\models\spark-x2.6-4b.gguf'
+0.03.203.698 I cmn          init: llama threadpool init, n_threads = 8
+0.03.939.662 I srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'true'
+0.03.978.514 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.03.978.566 I srv  llama_server: model loaded
+0.03.978.572 I srv  llama_server: listening on http://127.0.0.1:62738
+0.04.033.857 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.04.033.910 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.23.568.594 I slot print_timing: id  0 | task 0 | n_gen =    103, tg =   5.66 t/s, tg_3s =   5.71 t/s
+0.26.716.647 I slot print_timing: id  0 | task 0 | n_gen =    187, tg =   8.78 t/s, tg_3s =  26.68 t/s
+0.27.346.504 I slot print_timing: id  0 | task 0 | prompt eval time =    1503.76 ms /    61 tokens (   24.65 ms per token,    40.57 tokens per second)
+0.27.346.512 I slot print_timing: id  0 | task 0 |        eval time =   21809.06 ms /   200 tokens (  109.59 ms per token,     9.12 tokens per second)
+0.27.346.526 I slot print_timing: id  0 | task 0 |       total time =   23312.82 ms /   261 tokens
+0.27.346.527 I slot print_timing: id  0 | task 0 |    graphs reused =        111
+0.27.346.528 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.27.346.539 I slot print_timing: id  0 | task 0 | draft acceptance = 1.00000 (   85 accepted /    85 generated), mean len =  6.00
+0.27.346.600 I slot      release: id  0 | task 0 | stop processing: n_tokens = 260, truncated = 0

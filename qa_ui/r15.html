@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA R15 web (W) — stadio web: settings, progress, badge fonti, toggle</title>
+<link rel="stylesheet" href="base.css">
+<style>
+/* Spazio per lo stile PRODUZIONE estratto da index.html (iniettato sotto).
+   Nessuna geometria simulata: le righe/composer/badge sono gli elementi
+   reali di produzione montati qui con il loro CSS. */
+#qaMount { padding: 12px 24px; }
+#qaMount .modal-overlay { position: static; display: none; }
+#qaMount .modal-overlay.show { display: block; }
+#qaComposerWrap { margin-top: 10px; }
+#qaComposerWrap .qa-label {
+    font-size: 11px; color: var(--muted, #8b95a5); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: .05em;
+}
+#chatView { display: block; padding: 16px 24px; min-height: 220px; }
+</style>
+</head>
+<body class="view-module">
+<header class="header" id="topBar">
+    <div class="header-left"><strong>StudioIA_7 — QA R15 (W): stadio web</strong></div>
+</header>
+<!-- Ancore per boot condiviso (mai usate da app.js qui) -->
+<div id="welcomeView" class="hidden"></div>
+<main id="main" class="view-page hidden"></main>
+
+<!-- Mount per markup PRODUZIONE estratto (settings modal + composer) -->
+<div id="qaMount"><div id="qaComposerWrap" class="qa-label">COMPOSER (estratto da index.html)</div></div>
+
+<!-- Bubble streaming: struttura identica a createStreamingBubble (estratta) -->
+<section id="chatView" class="chat-view"></section>
+
+<script>
+/* ============================================================
+   STUB SOLO DICHIARATO di window.pywebview.api (T2 consentito).
+   - app_settings_get/set: store in-memory con le CHIAVI del contratto;
+   - send_message: registra il parametro web_override (7°) passato dalla
+     produzione;
+   - poll_stream: payload REALISTICI coerenti col contratto P:
+     progress = [{stage,status,ms,note}] (crescente, 3 stadi),
+     sources  = [{stage,title,url,source}].
+   Nessuna geometria simulata.
+   ============================================================ */
+window.__qaR15 = {
+    settings: {
+        "gate.threshold": 0.45,
+        "web.mode": "auto",
+        "web.searxng_url": "",
+        "web.wikipedia": true
+    },
+    saves: [],
+    sendCalls: [],
+    pollTick: 0,
+    errors: []
+};
+(function () {
+    var S = window.__qaR15;
+    var PROGRESS_TICKS = [
+        [{ stage: "appunti", status: "start", ms: 12, note: "ricerca locale" }],
+        [{ stage: "appunti", status: "done", ms: 48, note: "8 chunk" },
+         { stage: "libri", status: "start", ms: 2, note: "" }],
+        [{ stage: "appunti", status: "done", ms: 48, note: "8 chunk" },
+         { stage: "libri", status: "done", ms: 26, note: "3 chunk" },
+         { stage: "web", status: "start", ms: 1, note: "gate parziale" }],
+        [{ stage: "appunti", status: "done", ms: 48, note: "8 chunk" },
+         { stage: "libri", status: "done", ms: 26, note: "3 chunk" },
+         { stage: "web", status: "done", ms: 940, note: "2 documenti" }]
+    ];
+    var SOURCES = [
+        { stage: "appunti", title: "Appunti — fotosintesi.md",
+          url: "appunti/fotosintesi.md", source: "locale" },
+        { stage: "libri", title: "Libro di biologia — cap. 4",
+          url: "libri/biologia_cap4.pdf", source: "libri_preselezionati" },
+        { stage: "web", title: "Fotosintesi clorofilliana — Treccani",
+          url: "https://www.treccani.it/enciclopedia/fotosintesi/",
+          source: "web" }
+    ];
+    window.pywebview = {
+        api: {
+            app_settings_get: function (keysJson) {
+                var req = {};
+                try { req = JSON.parse(keysJson || "{}"); } catch (e) {}
+                var keys = req.keys || Object.keys(S.settings);
+                var out = {};
+                keys.forEach(function (k) {
+                    if (Object.prototype.hasOwnProperty.call(S.settings, k)) out[k] = S.settings[k];
+                });
+                return Promise.resolve({ ok: true, settings: out });
+            },
+            app_settings_set: function (json) {
+                var data = {};
+                try { data = JSON.parse(json || "{}"); } catch (e) {}
+                var saved = [];
+                Object.keys(data.settings || {}).forEach(function (k) {
+                    if (Object.prototype.hasOwnProperty.call(S.settings, k)) {
+                        S.settings[k] = data.settings[k];
+                        saved.push(k);
+                    }
+                });
+                S.saves.push({ settings: data.settings || {}, saved: saved });
+                return Promise.resolve({ ok: true, saved: saved });
+            },
+            send_message: function (message, conversation_id, mode, thinking,
+                                    study_mode, topic, web_override) {
+                S.sendCalls.push({
+                    message: message, mode: mode, topic: topic || "",
+                    web_override: web_override === undefined ? "(assente)" : web_override
+                });
+                return Promise.resolve({ message_id: "msg_stub_1",
+                                         conversation_id: conversation_id || 1 });
+            },
+            poll_stream: function (message_id, from_index) {
+                var tick = S.pollTick;
+                S.pollTick += 1;
+                var progress = PROGRESS_TICKS[Math.min(tick, PROGRESS_TICKS.length - 1)];
+                var done = tick >= PROGRESS_TICKS.length - 1;
+                return Promise.resolve({
+                    tokens: ["Risposta " + tick + " "],
+                    done: done,
+                    source: done ? "web" : "nessuna",
+                    error: null,
+                    total: (from_index || 0) + 1,
+                    conversation_id: 1,
+                    stopped: false,
+                    generation_active: !done,
+                    waiting_continue: false,
+                    part_current: 0,
+                    part_total: 0,
+                    progress: progress,
+                    sources: done ? SOURCES : []
+                });
+            },
+            /* minime: altri estratti/test possono chiamarle senza errori */
+            get_conversations: function () { return Promise.resolve([]); },
+            cleanup_stream: function () { return Promise.resolve({}); }
+        }
+    };
+    window.__qaR15.PROGRESS_TICKS = PROGRESS_TICKS;
+    window.__qaR15.SOURCES = SOURCES;
+})();
+</script>
+
+<script>
+/* ============================================================
+   EXTRACTOR (T2): legge il VERO web_frontend/html/index.html (file://,
+   dichiarato) ed estrae:
+     1) tutti i blocchi <style> (CSS produzione -> geometria reale);
+     2) markup #settingsModal e .input-row (profondita' <div>);
+     3) il CORPO delle funzioni nominate (identico alla produzione,
+        "inline stream SOI-estratto") e lo eval'ga in scope globale.
+   Poi imposta __QA.harnessReady. Se l'estrazione fallisce -> errore
+   dichiarato (i check risulteranno FAIL con evidenza).
+   ============================================================ */
+(function () {
+    var QA = window.__QA = {
+        harnessReady: false, done: false, needShot: null,
+        errors: [], checks: [], extracted: {}
+    };
+    var INDEX_URL = new URL('../web_frontend/html/index.html', location.href).href;
+
+    function extractDivBlock(src, startMarker) {
+        var i = src.indexOf(startMarker);
+        if (i < 0) return null;
+        var re = /<\/?div\b[^>]*>/gi;
+        re.lastIndex = i;
+        var depth = 0, m;
+        while ((m = re.exec(src))) {
+            if (m[0].indexOf("</") === 0) {
+                depth -= 1;
+                if (depth === 0) return src.slice(i, re.lastIndex);
+            } else if (!/\/>$/.test(m[0])) {
+                depth += 1;
+            }
+        }
+        return null;
+    }
+
+    function extractFunction(src, name) {
+        // 'async function' PRIMA: altrimenti il match 'function name(' cadrebbe
+        // dentro 'async function name(' e si perderebbe la keyword async.
+        var sigs = ['async function ' + name + '(', 'function ' + name + '('];
+        var start = -1;
+        for (var s = 0; s < sigs.length; s++) {
+            start = src.indexOf(sigs[s]);
+            if (start >= 0) break;
+        }
+        if (start < 0) return null;
+        // il PRIMO '{' dopo la keyword e' la parentesi di apertura del corpo
+        // (nome/parametri delle funzioni estratte non contengono graffe);
+        // brace scan ignorando stringhe, template e commenti (nessun regex
+        // literal nelle funzioni estratte: dichiarato)
+        var i = src.indexOf('{', start);
+        if (i < 0) return null;
+        var depth = 0, mode = 'code', quote = '';
+        for (; i < src.length; i++) {
+            var ch = src[i], nx = src[i + 1];
+            if (mode === 'line') { if (ch === '\n') mode = 'code'; continue; }
+            if (mode === 'block') { if (ch === '*' && nx === '/') { mode = 'code'; i++; } continue; }
+            if (mode === 'str') {
+                if (ch === '\\') { i++; continue; }
+                if (ch === quote) mode = 'code';
+                continue;
+            }
+            if (ch === '/' && nx === '/') { mode = 'line'; i++; continue; }
+            if (ch === '/' && nx === '*') { mode = 'block'; i++; continue; }
+            if (ch === '"' || ch === "'" || ch === '`') { mode = 'str'; quote = ch; continue; }
+            if (ch === '{') depth += 1;
+            else if (ch === '}') { depth -= 1; if (depth === 0) return src.slice(start, i + 1); }
+        }
+        return null;
+    }
+
+    var FNS = ['createStreamingBubble', 'renderStreamProgress', 'renderSourceBadges',
+               'setWebOverrideChip', 'syncWebToggleChip', 'cycleWebOverride',
+               'getWebOverride', 'wireWebSettingsControls', 'applyWebSettingsToUI',
+               'loadWebSettings', 'saveWebSetting'];
+
+    fetch(INDEX_URL).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' su index.html');
+        return r.text();
+    }).then(function (src) {
+        QA.extracted.build = (src.match(/var QA_TS = "([^"]+)"/) || [])[1] || 'MISSING';
+
+        // 1) stili produzione
+        var styleRe = /<style>([\s\S]*?)<\/style>/g, sm, nStyles = 0;
+        while ((sm = styleRe.exec(src))) {
+            var st = document.createElement('style');
+            st.textContent = sm[1];
+            document.head.appendChild(st);
+            nStyles += 1;
+        }
+        QA.extracted.styles = nStyles;
+
+        // 2) markup settings modal + input-row
+        var modal = extractDivBlock(src, '<div class="modal-overlay" id="settingsModal">');
+        if (!modal) throw new Error('settingsModal non estratto');
+        var row = extractDivBlock(src, '<div class="input-row">');
+        if (!row) throw new Error('input-row non estratto');
+        document.getElementById('qaMount').insertAdjacentHTML('beforeend', modal);
+        document.getElementById('qaComposerWrap').insertAdjacentHTML('beforeend', row);
+        QA.extracted.markup = { settingsModal: modal.length, inputRow: row.length };
+
+        // 3) funzioni produzione (corpo identico) -> eval globale
+        var parts = [
+            'var chatView = document.getElementById("chatView");',
+            'function scrollChatForced() {}',
+            'function scrollChatIfAtBottom() {}',
+            'var webOverrideValue = "";',
+            'var webOverrideTouched = false;'
+        ];
+        FNS.forEach(function (name) {
+            var fn = extractFunction(src, name);
+            if (!fn) throw new Error('funzione non estratta: ' + name);
+            parts.push(fn);
+        });
+        QA.extracted.functions = FNS.slice();
+        (0, eval)(parts.join('\n'));
+
+        // marca gli elementi estratti
+        document.getElementById('settingsModal').setAttribute('data-qa', 'settingsModal');
+        var chip = document.getElementById('webToggleChip');
+        if (chip) chip.setAttribute('data-qa', 'webToggleChip');
+
+        QA.harnessReady = true;
+    }).catch(function (e) {
+        QA.errors.push('extract: ' + (e && e.message ? e.message : String(e)));
+        QA.harnessReady = false;
+    });
+
+    /* ============================================================
+       __qaCheck — check nominati ( handshake dichiarato per il runner
+       qa_browser/qaR15_web.js; nessuna geometria simulata: solo rect
+       reali degli elementi di produzione ).
+       ============================================================ */
+    window.__qaCheck = function (name) {
+        var QA = window.__QA;
+        function rect(id) {
+            var el = document.getElementById(id);
+            if (!el) return null;
+            var r = el.getBoundingClientRect();
+            return { w: +r.width.toFixed(1), h: +r.height.toFixed(1) };
+        }
+        function fire(el, type) {
+            el.dispatchEvent(new Event(type, { bubbles: true }));
+        }
+        function tick(ms) { return new Promise(function (r) { setTimeout(r, ms || 30); }); }
+
+        if (name === 'rows') {
+            try {
+                var ids = ['webModeSelect', 'gateThresholdRange', 'gateThresholdInput',
+                           'searxngUrlInput', 'wikipediaToggle', 'privacyWebDesc',
+                           'settingsModal'];
+                var missing = [], rects = {};
+                ids.forEach(function (id) {
+                    var r = rect(id);
+                    if (!r || r.w <= 0 || r.h <= 0) missing.push(id);
+                    rects[id] = r;
+                });
+                var priv = (document.getElementById('privacyWebDesc') || {}).textContent || '';
+                var privOk = priv.indexOf('DuckDuckGo') >= 0 &&
+                             priv.indexOf('nessun LLM cloud') >= 0 &&
+                             priv.indexOf('Disattiva con Mai') >= 0;
+                var opts = [].slice.call(
+                    document.querySelectorAll('#webModeSelect option'))
+                    .map(function (o) { return o.value; });
+                var ok = missing.length === 0 && privOk &&
+                    opts.join(',') === 'auto,sempre,mai';
+                return {
+                    ok: ok,
+                    evidence: 'mancanti=' + JSON.stringify(missing) +
+                        ' privacy=' + privOk + ' options=' + JSON.stringify(opts),
+                    m: { rects: rects, privacy: priv.slice(0, 120) }
+                };
+            } catch (e) { return { ok: false, evidence: 'eccezione: ' + e.message }; }
+        }
+
+        if (name === 'settings') {
+            return (async function () {
+                try {
+                    if (!window.loadWebSettings) return { ok: false, evidence: 'loadWebSettings non estratta' };
+                    var loaded = await window.loadWebSettings();
+                    var sel = document.getElementById('webModeSelect');
+                    var thr = document.getElementById('gateThresholdInput');
+                    var rng = document.getElementById('gateThresholdRange');
+                    var se = document.getElementById('searxngUrlInput');
+                    var wk = document.getElementById('wikipediaToggle');
+                    var chip = document.getElementById('webToggleChip');
+                    var pre = {
+                        loaded: loaded, mode: sel.value, thr: +thr.value,
+                        rng: +rng.value, se: se.value, wiki: wk.checked,
+                        chip: chip.textContent.trim(),
+                        override: window.getWebOverride()
+                    };
+                    // default chip = web.mode (auto dallo stub)
+                    var defOk = pre.chip === 'Web: Auto' && pre.override === 'auto';
+
+                    // 1) cambio modalita' -> save via stub (app_settings_set)
+                    sel.value = 'sempre';
+                    fire(sel, 'change');
+                    await tick();
+                    // 2) soglia gate 0.60 (number + range mirror)
+                    thr.value = '0.60';
+                    fire(thr, 'change');
+                    await tick();
+                    // 3) searxng url
+                    se.value = 'http://localhost:8888';
+                    fire(se, 'change');
+                    await tick();
+                    // 4) wikipedia off
+                    wk.checked = false;
+                    fire(wk, 'change');
+                    await tick();
+
+                    var S = window.__qaR15;
+                    var flat = {};
+                    S.saves.forEach(function (s) {
+                        Object.keys(s.settings).forEach(function (k) { flat[k] = s.settings[k]; });
+                    });
+                    var savesOk = flat['web.mode'] === 'sempre' &&
+                        flat['gate.threshold'] === 0.60 &&
+                        flat['web.searxng_url'] === 'http://localhost:8888' &&
+                        flat['web.wikipedia'] === false;
+                    // mirror range + chip aggiornato a SEMPRE dal salvataggio
+                    var mirrorOk = Math.abs(+rng.value - 0.60) < 1e-9;
+                    var chipAfter = chip.textContent.trim();
+                    var overrideAfter = window.getWebOverride();
+                    var sub = { defOk: defOk, savesOk: savesOk, mirrorOk: mirrorOk,
+                                chipOk: chipAfter === 'Web: Sempre',
+                                overrideOk: overrideAfter === 'sempre',
+                                rngVal: rng.value, chipAfter: chipAfter,
+                                overrideAfter: overrideAfter };
+                    var ok = defOk && savesOk && mirrorOk && sub.chipOk && sub.overrideOk;
+                    return {
+                        ok: ok,
+                        evidence: 'sub=' + JSON.stringify(sub) +
+                            ' pre=' + JSON.stringify(pre) +
+                            ' saves=' + JSON.stringify(flat),
+                        m: { pre: pre, saves: flat, savesCount: S.saves.length, sub: sub }
+                    };
+                } catch (e) { return { ok: false, evidence: 'eccezione: ' + e.message }; }
+            })();
+        }
+
+        if (name === 'progress') {
+            return (async function () {
+                try {
+                    if (!window.createStreamingBubble || !window.renderStreamProgress)
+                        return { ok: false, evidence: 'funzioni render non estratte' };
+                    var refs = window.createStreamingBubble();
+                    var ticks = window.__qaR15.PROGRESS_TICKS;
+                    // Specchio del loop di produzione: ad ogni poll si passa
+                    // p.progress (lista COMPLETA crescente) a renderStreamProgress
+                    for (var t = 0; t < ticks.length; t++) {
+                        window.renderStreamProgress(refs, ticks[t]);
+                        await tick(15);
+                    }
+                    var el = refs._stageEl;
+                    var text1 = el ? el.textContent : '';
+                    var rect1 = el ? el.getBoundingClientRect() : null;
+                    var has3 = ['appunti', 'libri', 'web'].every(function (s) {
+                        return text1.indexOf(s) >= 0;
+                    });
+                    // dedup per lunghezza crescente: stesso payload -> no-op
+                    window.renderStreamProgress(refs, ticks[ticks.length - 1]);
+                    var text2 = el ? el.textContent : '';
+                    var stable = text1 === text2;
+                    // spinner originale ancora presente (compatibilita')
+                    var spinnerOk = !!(refs.spinner &&
+                        refs.spinner.parentElement &&
+                        refs.spinner.classList.contains('streaming-spinner'));
+                    var ok = !!el && has3 && stable && spinnerOk &&
+                        rect1 && rect1.width > 0;
+                    return {
+                        ok: ok,
+                        evidence: 'text="' + text1 + '" dedup=' + stable +
+                            ' spinnerCompat=' + spinnerOk +
+                            ' rect=' + (rect1 ? rect1.width.toFixed(0) + 'x' +
+                                rect1.height.toFixed(0) : 'null'),
+                        m: { text: text1, rect: rect1 ? { w: +rect1.width.toFixed(1), h: +rect1.height.toFixed(1) } : null }
+                    };
+                } catch (e) { return { ok: false, evidence: 'eccezione: ' + e.message }; }
+            })();
+        }
+
+        if (name === 'sources') {
+            return (async function () {
+                try {
+                    if (!window.renderSourceBadges)
+                        return { ok: false, evidence: 'renderSourceBadges non estratta' };
+                    // payload finale REALISTICO dallo stub poll_stream
+                    var p = null, guard = 0;
+                    do { p = await window.pywebview.api.poll_stream('m1', 0); guard++; }
+                    while (!p.done && guard < 10);
+                    var refs = window.createStreamingBubble();
+                    var wrap = window.renderSourceBadges(refs.content, p.sources);
+                    if (!wrap) return { ok: false, evidence: 'wrap non creato' };
+                    var badges = [].slice.call(wrap.querySelectorAll('.source-badge'));
+                    var labels = badges.map(function (b) {
+                        return (b.querySelector('.source-badge-label') || {}).textContent || '';
+                    });
+                    var webBadge = wrap.querySelector('.source-badge.stage-web');
+                    var a = webBadge || badges[badges.length - 1];
+                    var href = a ? a.getAttribute('href') : '';
+                    var target = a ? a.getAttribute('target') : '';
+                    var rects = badges.map(function (b) {
+                        var r = b.getBoundingClientRect();
+                        return { w: +r.width.toFixed(1), h: +r.height.toFixed(1) };
+                    });
+                    var ok = badges.length === 3 &&
+                        labels.join(',') === 'locale,libri,web' &&
+                        /^https:\/\//.test(href) && target === '_blank' &&
+                        rects.every(function (r) { return r.w > 0 && r.h > 0; });
+                    return {
+                        ok: ok,
+                        evidence: 'n=' + badges.length + ' labels=' + JSON.stringify(labels) +
+                            ' webHref=' + href + ' target=' + target,
+                        m: { labels: labels, href: href, rects: rects }
+                    };
+                } catch (e) { return { ok: false, evidence: 'eccezione: ' + e.message }; }
+            })();
+        }
+
+        if (name === 'toggle') {
+            return (async function () {
+                try {
+                    var chip = document.getElementById('webToggleChip');
+                    if (!chip || !window.getWebOverride)
+                        return { ok: false, evidence: 'chip/fn assenti' };
+                    // default = web.mode (stub: 'sempre' salvato nel check settings)
+                    window.webOverrideTouched = false;
+                    window.syncWebToggleChip(window.__qaR15.settings['web.mode']);
+                    var v0 = window.getWebOverride();
+                    var t0 = chip.textContent.trim();
+                    // ciclo auto -> sempre -> mai -> auto (la produzione lo fa
+                    // via listener click sul chip: wiring verificato dal runner
+                    // sull'source di index.html; qui il ciclo della fn estratta)
+                    var v1 = window.cycleWebOverride();
+                    var v2 = window.cycleWebOverride();
+                    var v3 = window.cycleWebOverride();
+                    // send_message con web_override = getWebOverride() (stessa
+                    // espressione che la produzione passa come 7o argomento)
+                    await window.pywebview.api.send_message('domanda di prova', 1,
+                        'automatica', false, null, '', window.getWebOverride());
+                    var sent = window.__qaR15.sendCalls[window.__qaR15.sendCalls.length - 1];
+                    var r = chip.getBoundingClientRect();
+                    var ok = v0 === 'sempre' && t0 === 'Web: Sempre' &&
+                        v1 === 'mai' && v2 === 'auto' && v3 === 'sempre' &&
+                        sent && sent.web_override === 'sempre' &&
+                        r.width > 0 && r.height > 0;
+                    return {
+                        ok: ok,
+                        evidence: 'default=' + v0 + ' ("' + t0 + '") ciclo=' +
+                            v1 + '>' + v2 + '>' + v3 + ' sent=' +
+                            (sent ? sent.web_override : 'null') +
+                            ' rect=' + r.width.toFixed(0) + 'x' + r.height.toFixed(0),
+                        m: { v0: v0, v1: v1, v2: v2, v3: v3, sent: sent, rect: { w: +r.width.toFixed(1), h: +r.height.toFixed(1) } }
+                    };
+                } catch (e) { return { ok: false, evidence: 'eccezione: ' + e.message }; }
+            })();
+        }
+
+        return { ok: false, evidence: 'check ignoto: ' + name };
+    };
+})();
+</script>
+</body>
+</html>

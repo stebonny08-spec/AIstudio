@@ -1,0 +1,100 @@
+  PASS  0.0 editor Appunti aperto (baseline)
+  PASS  0.1 listener outside-click registrato all'apertura
+== QA-A-1: popover outside-click / Esc / trigger ==
+  PASS  1.0 elementi base presenti
+  PASS  1.1 click trigger apre popColor
+  PASS  1.2 outside-click (canvas) chiude popColor
+  PASS  1.3 popColor riaperto
+  PASS  1.4 Esc (window) chiude popColor
+  PASS  1.5 toggle Migliora scrittura apre popHelp
+  PASS  1.6 outside-click chiude popHelp
+  PASS  1.7 popHelp chiuso ma toggle resta acceso (mode)
+  PASS  1.8 toggle OFF rimuove .mode e chiude
+  PASS  1.9 trigger riapre (nessun incastramento outside-click)
+  PASS  1.10 secondo click sul trigger richiude
+  PASS  1.11 mutual exclusion: trigger popMeta apre meta e chiude color
+  PASS  1.12 popMeta contiene input
+  PASS  1.13 Esc da input del popover chiude (funziona dai popover)
+  PASS  1.14 Esc senza popover non altera lo strumento
+  PASS  1.15 ESATTAMENTE 1 listener document click-capture
+== QA-A-2: stato strumento (esattamente 1 attivo) ==
+  PASS  2.0 stato iniziale: solo penna attiva
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "penna" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "penna": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "evidenziatore" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "evidenziatore": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "gomma" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "gomma": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "testo" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "testo": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "lazo" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "lazo": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.1 preset matita: SOLO il preset acceso (penna NON accesa)
+  PASS  2.2 tool "selezione" dopo preset matita: esattamente 1 attivo
+  PASS  2.3 tool "selezione": esattamente 1 .fn-tb.active in TUTTI i gruppi
+  PASS  2.4 preset markR: solo preset acceso
+  PASS  2.5 gomma con preset markR attivo: solo gomma
+  PASS  2.6 penna di default: solo penna
+  PASS  2.7 penType=pencil via popover: SOLO preset matita (penna spenta)
+  PASS  2.8 penType=marker via popover: SOLO preset markR
+  PASS  2.9 penType=pen via popover: solo penna, preset spenti
+  PASS  2.10 click penna con penType pencil -> reset a penna default
+== QA-A-3: toggle Migliora scrittura (.mode, non tool) ==
+  PASS  3.0 precondizione: preset matita attivo
+  PASS  3.1 toggle acceso -> classe .mode
+  PASS  3.2 toggle acceso -> SENZA .active (no riempimento pieno)
+  PASS  3.3 toggle fuori dallo sweep data-tool
+  PASS  3.4 toggle NON conta come tool attivo (invariato)
+  PASS  3.5 esattamente 1 .fn-tb.active anche con toggle acceso
+  PASS  3.6 CSS .fn-tb.mode: bordo 1.5px
+  PASS  3.7 CSS .fn-tb.mode: background trasparente
+  PASS  3.8 CSS .fn-tb.mode: NESSUN riempimento pieno
+  PASS  3.9 toggle spento -> .mode rimossa
+  PASS  3.10 tool invariato dopo toggle OFF
+== QA-A-4: pannello Fonti ==
+  PASS  4.0 pillL presente
+  PASS  4.1 bottone "Fonti" presente in pillL
+  PASS  4.2 title="Fonti"
+  PASS  4.3 pannello chiuso inizialmente
+  PASS  4.4 click Fonti apre il pannello
+  PASS  4.5 bottone Fonti in stato .mode (aperto)
+  PASS  4.6 elenco fonti (study note/riassunto/documento + mat) con >=1 voce
+  PASS  4.7 fonte study "Riassunto Alfa" elencata
+  PASS  4.8 fonte study "Documento Beta" elencata
+  PASS  4.9 materiale "Libro Gamma" elencato
+  PASS  4.10 input di ricerca presente
+  PASS  4.11 ricerca senza risultati -> 0 voci
+  PASS  4.12 ricerca senza risultati -> hint
+  PASS  4.13 ricerca "alfa" filtra a 1 voce
+  PASS  4.14 ricerca "gamma" filtra al materiale mat
+  PASS  4.15 ricerca svuotata -> elenco completo
+  PASS  4.16 voce Riassunto Alfa cliccabile
+  PASS  4.17 inserisci DISABILITATO prima della selezione
+  PASS  4.18 anteprima testo della fonte
+  PASS  4.19 inserisci ABILITATO dopo selezione
+  PASS  4.20 voce selezionata evidenziata (.active)
+  PASS  4.21 riferimento "Fonte: ..." inserito e SALVATO nel doc
+  PASS  4.22 riferimento contiene titolo + id
+  PASS  4.23 riferimento e un oggetto canonico t:text (misurato)
+  PASS  4.24 bottone Annulla presente
+  PASS  4.25 undo rimuove il riferimento (reversibile)
+  PASS  4.26 anteprima materiale mostra il percorso
+  PASS  4.27 oggetto t:file con path inserito e salvato
+  PASS  4.28 content della nota resta JSON valido dopo inserimento
+  PASS  4.29 bottone chiusura pannello presente
+  PASS  4.30 pannello chiuso dal suo bottone
+  PASS  4.31 bottone Fonti torna senza .mode
+  PASS  4.32 bottone Fonti riapre il pannello
+  PASS  4.33 secondo click richiude (toggle esplicito)
+== QA-A-5: teardown listener + console pulita ==
+  PASS  5.1 dopo close: ZERO listener document click-capture (nessun fantasma)
+  PASS  5.2 nessun listener riesumato da click residui
+  PASS  5.3 zero eccezioni console (error + jsdomError)
+
+================================================
+RISULTATI qaA_appunti: 92 passati, 0 falliti

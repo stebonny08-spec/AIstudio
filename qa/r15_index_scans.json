@@ -1,0 +1,195 @@
+{
+  "round": "R15b",
+  "agent": "IMPLEMENTER-INDEX (blocco I)",
+  "ensure_notes": {
+    "first": "ok",
+    "second": "ok",
+    "meta_embedding_model_id": "intfloat/multilingual-e5-small",
+    "meta_updated": "2026-10-24T22:29:52.464462",
+    "count": 17
+  },
+  "db_index_meta": [
+    {
+      "store_key": "vector_index",
+      "key": "embedding_model_id",
+      "value": "intfloat/multilingual-e5-small",
+      "updated": "2026-10-24T22:29:36.603862"
+    },
+    {
+      "store_key": "vector_index",
+      "key": "probe",
+      "value": "done",
+      "updated": "2026-10-24T22:32:41.953679"
+    },
+    {
+      "store_key": "vector_index",
+      "key": "updated",
+      "value": "2026-10-24T22:29:52.464462",
+      "updated": "2026-10-24T22:29:52.464471"
+    },
+    {
+      "store_key": "vector_index_books",
+      "key": "embedding_model_id",
+      "value": "intfloat/multilingual-e5-small",
+      "updated": "2026-10-24T22:29:53.277690"
+    },
+    {
+      "store_key": "vector_index_books",
+      "key": "probe",
+      "value": "r15",
+      "updated": "2026-10-24T22:29:53.279952"
+    }
+  ],
+  "db_indexed_files_rows_before": 0,
+  "row_before": null,
+  "scan1_full_reprocess": {
+    "stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 1,
+      "removed": 0,
+      "errors": 0,
+      "ms": 1550.44
+    },
+    "embed_calls_cumulative": 0,
+    "row_written": {
+      "id": 166,
+      "percorso_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "dimensione": 28817,
+      "data_modifica": 1790095502.3612547,
+      "data_ultima_indicizzazione": "2026-10-24T22:36:37.304797",
+      "num_chunk": 17
+    },
+    "note": "riga rimossa (stato f0) + chunk legacy senza firma → re-process completo"
+  },
+  "scan2_idempotent": {
+    "stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 0,
+      "removed": 0,
+      "errors": 0,
+      "ms": 47.04
+    },
+    "embed_calls_cumulative": 0,
+    "reembed_delta": 0,
+    "row_present": true,
+    "note": "2° scan = 0 file re-processati (contatore invariato)"
+  },
+  "scan3_reconcile": {
+    "stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 1,
+      "removed": 0,
+      "errors": 0,
+      "ms": 51.65
+    },
+    "embed_calls_delta": 0,
+    "row_restored": true,
+    "row": {
+      "id": 167,
+      "percorso_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+      "dimensione": 28817,
+      "data_modifica": 1790095502.3612547,
+      "data_ultima_indicizzazione": "2026-10-24T22:36:38.909723",
+      "num_chunk": 17
+    },
+    "note": "riga persa ma firma file_* nei meta → riga riscritta SENZA re-embed"
+  },
+  "books_scan_crosswipe_check": {
+    "books_stage2": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\preselected_books\\rag_stage2",
+    "books_scan_stats": {
+      "found": 0,
+      "changed": 0,
+      "reconciled": 0,
+      "removed": 0,
+      "errors": 0,
+      "ms": 42.77
+    },
+    "notes_row_survived_books_scan": true,
+    "books_scan_reembed_delta": 0,
+    "scan_after_books_stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 0,
+      "removed": 0,
+      "errors": 0,
+      "ms": 44.41
+    },
+    "final_reembed_delta": 0,
+    "note": "prima del fix lo scan libri (found=0) cancellava la riga delle note via get_all_indexed_paths() globale → ogni ciclo 300s = full re-parse+re-embed (forensics f0)"
+  },
+  "chunk_signature": {
+    "file_size": 28817,
+    "file_mtime": 1790095502.3612547,
+    "file_hash": "0025cb2f225bcc024763ab66dff462f6cfd97b9e61a7e58c7565366e461e1f6a"
+  },
+  "chunk_meta_sample": {
+    "file_size": 28817,
+    "file_mtime": 1790095502.3612547,
+    "file_hash": "0025cb2f225bcc024763ab66dff462f6cfd97b9e61a7e58c7565366e461e1f6a",
+    "source_file": "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md",
+    "location_hint": "",
+    "is_image": false,
+    "image_path": "",
+    "mime_type": "",
+    "emb_id": "intfloat/multilingual-e5-small"
+  },
+  "indexed_files_rows_after": 1,
+  "fts_real": {
+    "hits": 3,
+    "top": [
+      {
+        "text": "# La Fotosintesi Clorofilliana: Meccanismi Molecolari, Bioenergetica ed Ecofisio",
+        "bm25": -4.428689203746839
+      },
+      {
+        "text": "L'enzima **PEP-Carbossilasi (PEPCase)** catalizza la carbossilazione del **Fosfo",
+        "bm25": -0.3364457730743629
+      },
+      {
+        "text": "Dal punto di vista termodinamico, la fotosintesi ossigenica classica è una reazi",
+        "bm25": -0.3289683698362194
+      }
+    ]
+  },
+  "chunks_count": 17,
+  "forced_scan1_stale_full_process": {
+    "stats": {
+      "found": 1,
+      "changed": 1,
+      "reconciled": 0,
+      "removed": 0,
+      "errors": 0,
+      "ms": 135032.05
+    },
+    "embed_calls": 1,
+    "note": "file reso stale (mtime) → 1° scan = full re-parse+re-embed con modello prima rilasciato (include reload del modello)"
+  },
+  "forced_scan2_idempotent": {
+    "stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 0,
+      "removed": 0,
+      "errors": 0,
+      "ms": 971.69
+    },
+    "embed_calls_delta": 0,
+    "note": "2° scan: 0 file re-processati, 0 re-embed"
+  },
+  "forced_scan3_reconcile": {
+    "stats": {
+      "found": 1,
+      "changed": 0,
+      "reconciled": 1,
+      "removed": 0,
+      "errors": 0,
+      "ms": 660.05
+    },
+    "embed_calls_delta": 0,
+    "row_restored": true,
+    "note": "riga rimossa → reconcile da meta (firma) senza re-embed"
+  }
+}

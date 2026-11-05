@@ -1,0 +1,35 @@
+{
+  "ts": "2026-10-30T19:06:28.602Z",
+  "menu_visible": true,
+  "order": [
+    "Modello pro (Spark-X2.6-4B)",
+    "Modello base (MiniCPM5-2B)"
+  ],
+  "ok_order": true,
+  "pro_is_check": false,
+  "base_is_check": true,
+  "items": [
+    {
+      "name": "Modello pro (Spark-X2.6-4B)",
+      "action": "",
+      "actionClass": "model-action",
+      "disabled": false
+    },
+    {
+      "name": "Modello base (MiniCPM5-2B)",
+      "action": "",
+      "actionClass": "model-action is-check",
+      "disabled": true
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "screenshot": "qa/r22_models_dropdown.png",
+  "screenshot_download_state": "qa/r22_models_dropdown_download.png",
+  "download_label_item": {
+    "name": "Modello pro (Spark-X2.6-4B)",
+    "action": "Scarica… (~3.3 GB)",
+    "actionClass": "model-action is-dl-label"
+  },
+  "download_label_ok": true
+}

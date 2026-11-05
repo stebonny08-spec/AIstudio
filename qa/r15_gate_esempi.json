@@ -1,0 +1,67 @@
+{
+  "soglia": 0.7,
+  "backend": "sqlite-vec",
+  "esempi": [
+    {
+      "atteso": "piena",
+      "query": "Nella fotosintesi clorofilliana qual è il valore di ΔG in kJ/mol della reazione che produce glucosio?",
+      "outcome": "piena",
+      "top_score": 0.9461,
+      "reason": "causa=copertura_piena;score=0.9461;vec=0.9102;fts=1.0000*;lex=0.7500;soglia=0.7000;web=non tentato",
+      "vec_top1": 0.9102,
+      "fts_bm25_top3": [
+        -15.426,
+        -5.898,
+        -1.018
+      ],
+      "elapsed_ms": 41690.61,
+      "decide_gate_ms": 0.786,
+      "near_miss": [],
+      "informativa": null
+    },
+    {
+      "atteso": "parziale",
+      "query": "Che differenza c'è tra un enzima e un ormone?",
+      "outcome": "parziale",
+      "top_score": 0.6273,
+      "reason": "causa=sotto_soglia;score=0.6273;vec=0.8232;fts=0.2891;lex=0.3333;soglia=0.7000;web=non tentato",
+      "vec_top1": 0.8232,
+      "fts_bm25_top3": [
+        -1.735,
+        -1.703,
+        -1.548
+      ],
+      "elapsed_ms": 73.94,
+      "decide_gate_ms": 3.668,
+      "near_miss": [
+        {
+          "source": "tosintesi_clorofilliana_universitario.md",
+          "score": 0.8232
+        }
+      ],
+      "informativa": null
+    },
+    {
+      "atteso": "nulla",
+      "query": "Qual è la differenza tra mitosi e meiosi nelle cellule?",
+      "outcome": "nulla",
+      "top_score": 0.6596,
+      "reason": "causa=alta_somiglianza_senza_supporto;score=0.6596;vec=0.8200;fts=0.4190;lex=0.2000;soglia=0.7000;web=tentato",
+      "vec_top1": 0.82,
+      "fts_bm25_top3": [
+        -2.514,
+        -2.463,
+        -1.749
+      ],
+      "elapsed_ms": 74.23,
+      "decide_gate_ms": 3.893,
+      "near_miss": [
+        {
+          "source": "tosintesi_clorofilliana_universitario.md",
+          "score": 0.82
+        }
+      ],
+      "informativa": "Non ho trovato nei materiali locali una risposta completa a questa domanda.\n\n- Cercato: \"Qual è la differenza tra mitosi e meiosi nelle cellule?\"\n- Stadi interrogati: libri, appunti\n- Miglior score di recupero: 0.660 (soglia 0.700)\n- Perche': le corrispondenze sono solo semanticamente vicine ma non contengono i termini della domanda (probabilmente fuori corpus)\n- Quasi corrispondenze (sotto soglia):\n    1. C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md [libri] — score 0.820\n\nCosa puoi provare:\n  * riformula la domanda usando i termini esatti usati nei tuoi materiali (titoli, concetti, sigle);\n  * restringi il tema a una parte precisa del programma;\n  * aggiungi alla biblioteca il documento che contiene l'argomento e riprova.\n\n[Web: tentato] Nessuna fonte web utilizzabile per questa query."
+    }
+  ]
+}

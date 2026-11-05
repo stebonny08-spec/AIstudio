@@ -1,0 +1,27 @@
+{
+  "operazione": "dedupe_legacy_c3",
+  "store_key": "vector_index",
+  "db": "C:\\Users\\stebo\\AppData\\Roaming\\NovaStudio\\studioia.db",
+  "apply": true,
+  "comando": "python data/migrate_real.py --dedupe-legacy",
+  "comando_apply": "python data/migrate_real.py --dedupe-legacy --apply",
+  "ts": "2026-10-24T13:33:15",
+  "status": "NIENTE_DA_FARE",
+  "n_total": 17,
+  "n_legacy": 0,
+  "n_stage2": 17,
+  "n_originals": 0,
+  "legacy": [],
+  "stage2_sources": [
+    "C:\\Users\\stebo\\Desktop\\progetti app\\StudioIA_7\\file_AIstudio\\rag_stage2\\fotosintesi_clorofilliana_universitario.md"
+  ],
+  "originals_sources": [],
+  "deleted": 0,
+  "post_check": {
+    "n_legacy": 0,
+    "n_originals": 0,
+    "n_stage2": 17,
+    "n_total": 17
+  },
+  "nota": "idempotente: nessun chunk legacy da rimuovere (2° run = 0 da fare)"
+}

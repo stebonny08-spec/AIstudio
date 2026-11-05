@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>QA AI UI (H10/H11)</title>
+<link rel="stylesheet" href="../web_frontend/html/css/modules.css">
+<link rel="stylesheet" href="base.css">
+<script>
+/* PONTE BACKEND (dichiarato): stub pywebview.api.ai_run_function con payload
+   coerenti al contratto H4. Soltanto il ponte e' finto: geometrie, DOM e
+   interazioni sono REALI del browser. */
+window.pywebview = { api: {
+    ai_run_function: async function (fid, jsonIn) {
+        var data = null, approval = false;
+        if (fid === 'F01') { data = { cards: [{ front: 'DOMANDA QA', back: 'RISPOSTA QA', hint: '', quote: 'frase letterale' }] }; approval = true; }
+        else if (fid === 'F05') { data = { testo: 'Testo migliorato in modo chiaro.' }; approval = true; }
+        else if (fid === 'F07') { data = { bullets: ['punto uno della formula', 'punto due'] }; }
+        else if (fid === 'F08') { data = { formula: '=SUM(A1:A3)' }; approval = true; }
+        else if (fid === 'F04') { data = { judgment: 'parziale', feedback: 'manca il dettaglio', followup: 'Perché manca?' }; }
+        else if (fid === 'F10') { data = { title: 'Outline QA', slides: [{ title: 'S1', bullets: ['b'] }, { title: 'S2', bullets: ['b'] }, { title: 'S3', bullets: ['b'] }] }; approval = true; }
+        else { data = { ok: true }; }
+        return { ok: true, badge: 'generato da AI', approval_required: approval, data: data };
+    }
+} };
+</script>
+</head>
+<body class="view-module">
+<header class="header" id="topBar"><div style="height:39px;display:flex;align-items:center"><strong>StudioIA_7 — QA AI UI (H10/H11, Chromium reale)</strong></div></header>
+<main id="main" class="view-page"></main>
+<script src="env.js"></script>
+<script src="../web_frontend/html/js/app.js"></script>
+<script>
+/* cattura moduli registrati indipendentemente da App (env o reale) */
+window.__MODS = {};
+(function () {
+    var orig = window.App && window.App.registerModule;
+    if (orig) window.App.registerModule = function (d) { window.__MODS[d && d.id] = d; return orig.call(window.App, d); };
+})();
+</script>
+<script src="../web_frontend/html/js/modules/notes.js"></script>
+<script src="../web_frontend/html/js/modules/fogli.js"></script>
+<script>
+(async function () {
+    var QA = window.__QA, sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    try {
+        if (document.readyState === 'loading') {
+            await new Promise(function (r) { document.addEventListener('DOMContentLoaded', r, { once: true }); });
+        }
+        await sleep(120); /* lascia finire l'eventuale boot home di app.js */
+        var txt = function (s) { return { t: 'text', x: 120, y: 120, w: 560, h: 44, text: s, size: 16, color: '#141414', bold: false, italic: false, underline: false }; };
+        QA.store.items.push({
+            id: 'nt1', kind: 'note', title: 'Nota QA-AI',
+            content: JSON.stringify({
+                mode: 'quaderno', sheet: 'quadretti', w: 1600, h: 1100, page: 0,
+                pages: [{ objects: [txt('Testo selezione fotosintesi clorofilliana per la nota QA')] }]
+            }),
+            materia: 'BIOLOGIA', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        QA.store.items.push({
+            id: 'f1', kind: 'foglio', title: 'Foglio QA-AI',
+            content: JSON.stringify({
+                sheets: [{ cells: {
+                    'A1': { v: '10' }, 'A2': { v: '20' }, 'A3': { v: '30' },
+                    'D1': { v: '=1+1' }
+                } }], current: 0
+            }),
+            materia: '', tags: '', description: '', thumbnail: '', folder_id: ''
+        });
+        var main = document.getElementById('main');
+        main.innerHTML = '';
+        var notesMod = window.__MODS['notes'];
+        if (!notesMod) throw new Error('modulo notes non registrato');
+        notesMod.open(main, { open: 'nt1' });
+        var ok = await window.__qaUntil(function () {
+            return !!(document.querySelector('.nt-stage canvas') &&
+                document.querySelector('.fn-pill-left') &&
+                document.querySelector('.fn-pill-right'));
+        }, 10000);
+        if (!ok) throw new Error('editor notes non aperto');
+        await sleep(300);
+        window.__qaOpenFoglio = async function () {
+            var m = document.getElementById('main');
+            m.innerHTML = '';
+            if (window.StudyTools && window.StudyTools.fogli) {
+                window.StudyTools.fogli.render(m, { open: 'f1' });
+            } else { throw new Error('StudyTools.fogli assente'); }
+            var o = await window.__qaUntil(function () {
+                return !!document.querySelector('td[data-ref="D1"]') && !!document.querySelector('.fg-fill');
+            }, 10000);
+            if (!o) throw new Error('editor fogli non aperto');
+            await sleep(400);
+            return true;
+        };
+        window.__qaSelectCell = function (ref) {
+            var td = document.querySelector('td[data-ref="' + ref + '"]');
+            if (!td) return false;
+            td.dispatchEvent(new PointerEvent('pointerdown', {
+                bubbles: true, cancelable: true, pointerId: 7, pointerType: 'mouse',
+                isPrimary: true, button: 0, buttons: 1, clientX: td.getBoundingClientRect().left + 4,
+                clientY: td.getBoundingClientRect().top + 4
+            }));
+            return true;
+        };
+        /* textarea harness per il ramo 'ta' di aiSelectedText (stato UI reale:
+           un utente selezionerebbe del testo in una textarea) */
+        var ta = document.createElement('textarea');
+        ta.id = 'qaSelTa';
+        ta.value = 'La fotosintesi clorofilliana converte luce in energia chimica nei cloroplasti.';
+        ta.style.cssText = 'position:fixed;left:-9999px;top:0;width:300px;height:40px;';
+        document.body.appendChild(ta);
+        /* il click REALE su un button sposterebbe il focus dalla textarea
+           (aiSelectedText legge document.activeElement): si previene solo il
+           cambio di focus, il click viene comunque generato (tecnica standard). */
+        document.addEventListener('mousedown', function (e) {
+            var b = e.target && e.target.closest && e.target.closest('.fn-pill-left button');
+            if (b) e.preventDefault();
+        }, true);
+        window.__qaFocusSel = function () {
+            ta.focus();
+            ta.setSelectionRange(0, 40);
+            return document.activeElement === ta && ta.selectionEnd > ta.selectionStart;
+        };
+        QA.harnessReady = true;
+        QA.done = false;
+    } catch (e) {
+        QA.errors.push('driver ai: ' + (e && e.stack ? e.stack : e));
+        QA.done = true;
+    }
+})();
+</script>
+</body>
+</html>

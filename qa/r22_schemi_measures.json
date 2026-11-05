@@ -1,0 +1,210 @@
+{
+  "method": "qaR22_schemi: montatura reale su qa_ui/schemi.html; PRIMA = interception r22_schemi_baseline.js; SIM_CSS = cascade index.html (notes/documenti/presentazioni) copiata identica",
+  "viewport": {
+    "w": 1440,
+    "h": 950
+  },
+  "prima": {
+    "baseline": true,
+    "checks": {},
+    "harness": {
+      "roots": 1,
+      "inSide": true,
+      "position": "static",
+      "positionInline": "",
+      "panel": {
+        "x": 1136,
+        "y": 230,
+        "w": 340,
+        "h": 570,
+        "left": 1136,
+        "top": 230,
+        "right": 1476,
+        "bottom": 800
+      },
+      "side": {
+        "x": 1124,
+        "y": 168,
+        "w": 300,
+        "h": 774,
+        "left": 1124,
+        "top": 168,
+        "right": 1424,
+        "bottom": 942
+      },
+      "stage": {
+        "x": 16,
+        "y": 168,
+        "w": 1096,
+        "h": 774,
+        "left": 16,
+        "top": 168,
+        "right": 1112,
+        "bottom": 942
+      },
+      "overlap_canvas_px2": 0,
+      "panel_x_ge_side_x": true,
+      "insert_label": "Inserisci nello schema"
+    },
+    "sim": {
+      "roots": 1,
+      "inSide": true,
+      "position": "fixed",
+      "positionInline": "",
+      "panel": {
+        "x": 12,
+        "y": 58,
+        "w": 340,
+        "h": 570,
+        "left": 12,
+        "top": 58,
+        "right": 352,
+        "bottom": 628
+      },
+      "side": {
+        "x": 1124,
+        "y": 168,
+        "w": 300,
+        "h": 774,
+        "left": 1124,
+        "top": 168,
+        "right": 1424,
+        "bottom": 942
+      },
+      "stage": {
+        "x": 16,
+        "y": 168,
+        "w": 1096,
+        "h": 774,
+        "left": 16,
+        "top": 168,
+        "right": 1112,
+        "bottom": 942
+      },
+      "overlap_canvas_px2": 154560,
+      "panel_x_ge_side_x": false,
+      "insert_label": "Inserisci nello schema"
+    },
+    "math52": {
+      "katex": 2,
+      "fallback": false,
+      "dollar_rendered": true,
+      "paren_rendered": true,
+      "no_raw_tokens": true,
+      "raw_sample": null
+    },
+    "pageerrors": []
+  },
+  "dopo": {
+    "baseline": false,
+    "checks": {},
+    "harness": {
+      "roots": 1,
+      "inSide": true,
+      "position": "relative",
+      "positionInline": "",
+      "panel": {
+        "x": 1136,
+        "y": 230,
+        "w": 276,
+        "h": 570,
+        "left": 1136,
+        "top": 230,
+        "right": 1412,
+        "bottom": 800
+      },
+      "side": {
+        "x": 1124,
+        "y": 168,
+        "w": 300,
+        "h": 774,
+        "left": 1124,
+        "top": 168,
+        "right": 1424,
+        "bottom": 942
+      },
+      "stage": {
+        "x": 16,
+        "y": 168,
+        "w": 1096,
+        "h": 774,
+        "left": 16,
+        "top": 168,
+        "right": 1112,
+        "bottom": 942
+      },
+      "overlap_canvas_px2": 0,
+      "panel_x_ge_side_x": true,
+      "insert_label": "Inserisci nello schema"
+    },
+    "sim": {
+      "roots": 1,
+      "inSide": true,
+      "position": "relative",
+      "positionInline": "",
+      "panel": {
+        "x": 1136,
+        "y": 230,
+        "w": 276,
+        "h": 570,
+        "left": 1136,
+        "top": 230,
+        "right": 1412,
+        "bottom": 800
+      },
+      "side": {
+        "x": 1124,
+        "y": 168,
+        "w": 300,
+        "h": 774,
+        "left": 1124,
+        "top": 168,
+        "right": 1424,
+        "bottom": 942
+      },
+      "stage": {
+        "x": 16,
+        "y": 168,
+        "w": 1096,
+        "h": 774,
+        "left": 16,
+        "top": 168,
+        "right": 1112,
+        "bottom": 942
+      },
+      "overlap_canvas_px2": 0,
+      "panel_x_ge_side_x": true,
+      "insert_label": "Inserisci nello schema"
+    },
+    "math52": {
+      "katex": 2,
+      "fallback": false,
+      "dollar_rendered": true,
+      "paren_rendered": true,
+      "no_raw_tokens": true,
+      "raw_sample": null
+    },
+    "pageerrors": []
+  },
+  "checks": {
+    "single_mount": true,
+    "in_side": true,
+    "not_floating_sim": true,
+    "not_floating_harness": true,
+    "panel_x_ge_side_x": true,
+    "zero_overlap_canvas": true,
+    "insert_label": true,
+    "no_pageerrors": true,
+    "evidence_prima_floating": true
+  },
+  "math52": {
+    "dollar_rendered": true,
+    "paren_rendered": true,
+    "no_raw_tokens": true,
+    "katex": 2,
+    "fallback": false,
+    "raw_sample": null,
+    "status": "PASS"
+  },
+  "verdict_layout": "OK"
+}
