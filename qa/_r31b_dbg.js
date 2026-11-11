@@ -1,0 +1,31 @@
+'use strict';
+const env0 = require('../tests/_ink_env');
+const sleep = env0.sleep;
+(async () => {
+    const env = env0.makeEnv();
+    await env0.openNote(env, 'n1');
+    const IC = env.win.InkCommit;
+    console.log('shadowPlan export:', typeof IC.shadowPlan);
+    const pts = [];
+    for (let x = 150; x <= 450; x += 5) pts.push([x, 250 + 4 * Math.sin(2 * Math.PI * x / 24)]);
+    const p = IC.shadowPlan(pts, { ts: null, size: 3, noSnap: false });
+    console.log('shadowPlan(direct) ->', p ? p.cls : null);
+    // disegno reale + sosta
+    const canvas = env0.canvasOf(env);
+    const b = env0.wc(env, pts);
+    env0.ptr(env, canvas, 'pointerdown', b[0][0], b[0][1]);
+    for (let i = 1; i < b.length; i++) env0.ptr(env, canvas, 'pointermove', b[i][0], b[i][1]);
+    console.log('subito dopo down:', JSON.stringify(env.win.__ink.shadow()));
+    await sleep(120);
+    console.log('a 120ms:', JSON.stringify(env.win.__ink.shadow()));
+    await sleep(200);
+    console.log('a 320ms:', JSON.stringify(env.win.__ink.shadow()));
+    await sleep(250);
+    console.log('a 570ms:', JSON.stringify(env.win.__ink.shadow()));
+    const rel = env.win.__ink.trace.filter(e => e.k === 'release').length;
+    console.log('release tracce:', rel, 'paint:', env.win.__ink.trace.filter(e => e.k === 'paint').length);
+    env0.ptr(env, canvas, 'pointerup', b[b.length - 1][0], b[b.length - 1][1]);
+    console.log('dopo up:', JSON.stringify(env.win.__ink.shadow()));
+    console.log('consoleErrors:', env.consoleErrors.slice(0, 5));
+    process.exit(0);
+})();

@@ -1,39 +1,39 @@
 {
  "round": "13",
- "timestamp": "2026-11-02T18:47:39+0100",
- "build": "2026-10-27T20:03:00+01:00",
+ "timestamp": "2026-11-11T16:35:02+0100",
+ "build": "2026-11-09T19:30:00+01:00",
  "js": {
-  "suites": 39,
-  "pass": 2777,
+  "suites": 41,
+  "pass": 3014,
   "fail": 0,
   "items": [
    {
     "file": "a14_shaping.test.js",
-    "pass": 42,
+    "pass": 86,
     "fail": 0,
     "exit": 0,
-    "sec": 13.3
+    "sec": 14.9
    },
    {
     "file": "a19_fonti.test.js",
     "pass": 46,
     "fail": 0,
     "exit": 0,
-    "sec": 6.0
+    "sec": 4.7
    },
    {
     "file": "aiUi_smoke.test.js",
     "pass": 86,
     "fail": 0,
     "exit": 0,
-    "sec": 16.5
+    "sec": 13.0
    },
    {
     "file": "documentiUi.test.js",
     "pass": 94,
     "fail": 0,
     "exit": 0,
-    "sec": 8.1
+    "sec": 7.2
    },
    {
     "file": "editorWiring.test.js",
@@ -47,126 +47,126 @@
     "pass": 48,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 1.8
    },
    {
     "file": "f22_fonti_collapse.test.js",
     "pass": 25,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 1.7
    },
    {
     "file": "f22_fonti_dock.test.js",
     "pass": 34,
     "fail": 0,
     "exit": 0,
-    "sec": 2.9
+    "sec": 2.2
    },
    {
     "file": "f22_fonti_math.test.js",
     "pass": 11,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 2.1
    },
    {
     "file": "f22_fonti_preview.test.js",
     "pass": 22,
     "fail": 0,
     "exit": 0,
-    "sec": 2.5
+    "sec": 1.9
    },
    {
     "file": "f22_fonti_resize.test.js",
     "pass": 22,
     "fail": 0,
     "exit": 0,
-    "sec": 2.2
+    "sec": 2.1
    },
    {
     "file": "fogliUi.test.js",
     "pass": 142,
     "fail": 0,
     "exit": 0,
-    "sec": 126.8
+    "sec": 138.0
    },
    {
     "file": "implBlock12.test.js",
     "pass": 74,
     "fail": 0,
     "exit": 0,
-    "sec": 6.9
+    "sec": 7.8
    },
    {
     "file": "l14_appunti.test.js",
     "pass": 10,
     "fail": 0,
     "exit": 0,
-    "sec": 5.9
+    "sec": 4.4
    },
    {
     "file": "presentazioniUi.test.js",
     "pass": 44,
     "fail": 0,
     "exit": 0,
-    "sec": 6.7
+    "sec": 5.7
    },
    {
     "file": "qa1_block1.js",
     "pass": 65,
     "fail": 0,
     "exit": 0,
-    "sec": 11.0
+    "sec": 9.7
    },
    {
     "file": "qa2_block2.js",
     "pass": 79,
     "fail": 0,
     "exit": 0,
-    "sec": 15.4
+    "sec": 14.1
    },
    {
     "file": "qa3_block3.js",
     "pass": 51,
     "fail": 0,
     "exit": 0,
-    "sec": 65.0
+    "sec": 60.5
    },
    {
     "file": "qa4_matrix.js",
     "pass": 92,
     "fail": 0,
     "exit": 0,
-    "sec": 13.9
+    "sec": 12.7
    },
    {
     "file": "qa4_relayout.js",
     "pass": 205,
     "fail": 0,
     "exit": 0,
-    "sec": 25.4
+    "sec": 24.3
    },
    {
     "file": "qaA_appunti.js",
     "pass": 102,
     "fail": 0,
     "exit": 0,
-    "sec": 8.3
+    "sec": 7.1
    },
    {
     "file": "qaB_schemi.js",
     "pass": 125,
     "fail": 0,
     "exit": 0,
-    "sec": 12.8
+    "sec": 11.4
    },
    {
     "file": "qaC2_viewer.js",
-    "pass": 46,
+    "pass": 47,
     "fail": 0,
     "exit": 0,
-    "sec": 8.1
+    "sec": 6.4
    },
    {
     "file": "qaD_home.js",
@@ -180,35 +180,49 @@
     "pass": 28,
     "fail": 0,
     "exit": 0,
-    "sec": 3.3
+    "sec": 1.9
    },
    {
     "file": "r16_chat_ui.test.js",
     "pass": 36,
     "fail": 0,
     "exit": 0,
-    "sec": 3.8
+    "sec": 2.7
+   },
+   {
+    "file": "r27_fonti_toggle.test.js",
+    "pass": 32,
+    "fail": 0,
+    "exit": 0,
+    "sec": 3.0
+   },
+   {
+    "file": "r28_fonti_viewer.test.js",
+    "pass": 41,
+    "fail": 0,
+    "exit": 0,
+    "sec": 1.4
    },
    {
     "file": "s14_schemi_routing.test.js",
     "pass": 14,
     "fail": 0,
     "exit": 0,
-    "sec": 5.2
+    "sec": 5.1
    },
    {
     "file": "s19_routing.test.js",
     "pass": 265,
     "fail": 0,
     "exit": 0,
-    "sec": 21.5
+    "sec": 19.7
    },
    {
     "file": "s22_fonti_mount.test.js",
     "pass": 55,
     "fail": 0,
     "exit": 0,
-    "sec": 5.3
+    "sec": 4.1
    },
    {
     "file": "schemaStrategies.test.js",
@@ -222,63 +236,63 @@
     "pass": 54,
     "fail": 0,
     "exit": 0,
-    "sec": 10.0
+    "sec": 8.6
    },
    {
     "file": "telemStatsR13.test.js",
     "pass": 19,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 1.3
    },
    {
     "file": "testG7_fe.test.js",
     "pass": 25,
     "fail": 0,
     "exit": 0,
-    "sec": 2.5
+    "sec": 1.3
    },
    {
     "file": "u20_shaping.test.js",
-    "pass": 80,
+    "pass": 142,
     "fail": 0,
     "exit": 0,
-    "sec": 14.8
+    "sec": 28.3
    },
    {
     "file": "u22_reshape_r22.test.js",
-    "pass": 26,
+    "pass": 36,
     "fail": 0,
     "exit": 0,
-    "sec": 6.0
+    "sec": 5.2
    },
    {
     "file": "u24_release_refine.test.js",
-    "pass": 33,
+    "pass": 56,
     "fail": 0,
     "exit": 0,
-    "sec": 7.1
+    "sec": 13.6
    },
    {
     "file": "uiHarness.test.js",
     "pass": 197,
     "fail": 0,
     "exit": 0,
-    "sec": 34.5
+    "sec": 33.1
    },
    {
     "file": "v1_release_swap.test.js",
-    "pass": 71,
+    "pass": 95,
     "fail": 0,
     "exit": 0,
-    "sec": 8.4
+    "sec": 14.5
    },
    {
     "file": "videoUi.test.js",
     "pass": 121,
     "fail": 0,
     "exit": 0,
-    "sec": 8.9
+    "sec": 7.9
    }
   ]
  },
@@ -293,34 +307,34 @@
     "pass": 142,
     "fail": 1,
     "exit": 1,
-    "sec": 148.5
+    "sec": 168.3
    },
    {
     "file": "qaD_blockD.js",
     "pass": 10,
     "fail": 0,
     "exit": 0,
-    "sec": 13.2
+    "sec": 11.7
    },
    {
     "file": "qaF_block.js",
     "pass": 95,
     "fail": 4,
     "exit": 1,
-    "sec": 48.2
+    "sec": 50.6
    },
    {
     "file": "qaV_blockv.js",
     "pass": 121,
     "fail": 1,
     "exit": 1,
-    "sec": 12.6
+    "sec": 10.8
    }
   ]
  },
  "py": {
-  "files": 40,
-  "pass": 531,
+  "files": 44,
+  "pass": 567,
   "fail": 0,
   "items": [
    {
@@ -335,277 +349,305 @@
     "tests": 21,
     "fail": 0,
     "exit": 0,
-    "sec": 4.5
+    "sec": 5.9
    },
    {
     "file": "testG1_sidecar.py",
     "tests": 3,
     "fail": 0,
     "exit": 0,
-    "sec": 57.0
+    "sec": 84.1
    },
    {
     "file": "testG2_wiring.py",
     "tests": 5,
     "fail": 0,
     "exit": 0,
-    "sec": 0.9
+    "sec": 0.6
    },
    {
     "file": "testG3_dryrun.py",
     "tests": 8,
     "fail": 0,
     "exit": 0,
-    "sec": 10.2
+    "sec": 10.7
    },
    {
     "file": "testG4_stream.py",
     "tests": 4,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 1.8
    },
    {
     "file": "testG5_fix.py",
     "tests": 18,
     "fail": 0,
     "exit": 0,
-    "sec": 0.2
+    "sec": 0.1
    },
    {
     "file": "testG6_hygiene.py",
     "tests": 7,
     "fail": 0,
     "exit": 0,
-    "sec": 0.4
+    "sec": 4.4
    },
    {
     "file": "testG7_stats.py",
     "tests": 12,
     "fail": 0,
     "exit": 0,
-    "sec": 0.4
+    "sec": 0.3
    },
    {
     "file": "testG8_metrics.py",
     "tests": 8,
     "fail": 0,
     "exit": 0,
-    "sec": 0.2
+    "sec": 0.3
    },
    {
     "file": "testH12_workers.py",
     "tests": 17,
     "fail": 0,
     "exit": 0,
-    "sec": 0.6
+    "sec": 0.3
    },
    {
     "file": "testH13_tutor.py",
     "tests": 14,
     "fail": 0,
     "exit": 0,
-    "sec": 0.4
+    "sec": 0.2
    },
    {
     "file": "testH1_parity.py",
     "tests": 10,
     "fail": 0,
     "exit": 0,
-    "sec": 7.9
+    "sec": 4.7
    },
    {
     "file": "testH2_queue.py",
     "tests": 5,
     "fail": 0,
     "exit": 0,
-    "sec": 0.4
+    "sec": 0.3
    },
    {
     "file": "testH2_server.py",
     "tests": 11,
     "fail": 0,
     "exit": 0,
-    "sec": 4.4
+    "sec": 4.3
    },
    {
     "file": "testH3_prefix.py",
     "tests": 5,
     "fail": 0,
     "exit": 0,
-    "sec": 0.5
+    "sec": 0.3
    },
    {
     "file": "testH4_registry.py",
     "tests": 8,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.2
    },
    {
     "file": "testH4_validators.py",
     "tests": 38,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.1
    },
    {
     "file": "testH5_flags.py",
     "tests": 4,
     "fail": 0,
     "exit": 0,
-    "sec": 0.2
+    "sec": 0.1
    },
    {
     "file": "testH7_cache.py",
     "tests": 12,
     "fail": 0,
     "exit": 0,
-    "sec": 1.3
+    "sec": 0.8
    },
    {
     "file": "testH8_retrieval.py",
     "tests": 20,
     "fail": 0,
     "exit": 0,
-    "sec": 5.6
+    "sec": 3.3
    },
    {
     "file": "testH9_router.py",
     "tests": 13,
     "fail": 0,
     "exit": 0,
-    "sec": 1.3
+    "sec": 0.7
+   },
+   {
+    "file": "testP1b_ngram_flags.py",
+    "tests": 7,
+    "fail": 0,
+    "exit": 0,
+    "sec": 0.2
+   },
+   {
+    "file": "testP1b_rag.py",
+    "tests": 11,
+    "fail": 0,
+    "exit": 0,
+    "sec": 3.6
+   },
+   {
+    "file": "testP1b_usearch.py",
+    "tests": 7,
+    "fail": 0,
+    "exit": 0,
+    "sec": 0.4
    },
    {
     "file": "testR13_f67.py",
     "tests": 4,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.2
    },
    {
     "file": "testR13_rag.py",
     "tests": 7,
     "fail": 0,
     "exit": 0,
-    "sec": 7.0
+    "sec": 7.6
    },
    {
     "file": "testR13_spec_draft.py",
     "tests": 16,
     "fail": 0,
     "exit": 0,
-    "sec": 1.4
+    "sec": 2.3
    },
    {
     "file": "testR13_telem.py",
     "tests": 9,
     "fail": 0,
     "exit": 0,
-    "sec": 2.2
+    "sec": 1.2
    },
    {
     "file": "testR15_gate.py",
     "tests": 23,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.1
    },
    {
     "file": "testR15_index.py",
     "tests": 16,
     "fail": 0,
     "exit": 0,
-    "sec": 8.3
+    "sec": 5.3
    },
    {
     "file": "testR15_integration.py",
     "tests": 16,
     "fail": 0,
     "exit": 0,
-    "sec": 2.0
+    "sec": 1.5
    },
    {
     "file": "testR15_pipe.py",
     "tests": 30,
     "fail": 0,
     "exit": 0,
-    "sec": 4.7
+    "sec": 3.7
    },
    {
     "file": "testR15_web.py",
     "tests": 15,
     "fail": 0,
     "exit": 0,
-    "sec": 8.7
+    "sec": 9.4
    },
    {
     "file": "testR16_gate.py",
     "tests": 10,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.1
    },
    {
     "file": "testR16_pipe.py",
     "tests": 14,
     "fail": 0,
     "exit": 0,
-    "sec": 2.7
+    "sec": 1.5
    },
    {
     "file": "testR16_prompt.py",
     "tests": 16,
     "fail": 0,
     "exit": 0,
-    "sec": 0.2
+    "sec": 0.1
    },
    {
     "file": "testR18_intent.py",
     "tests": 12,
     "fail": 0,
     "exit": 0,
-    "sec": 0.2
+    "sec": 0.1
    },
    {
     "file": "testR18_pipeline.py",
     "tests": 20,
     "fail": 0,
     "exit": 0,
-    "sec": 2.9
+    "sec": 1.7
    },
    {
     "file": "testR22_models.py",
     "tests": 28,
     "fail": 0,
     "exit": 0,
-    "sec": 0.6
+    "sec": 0.4
    },
    {
     "file": "testR23_draftflag.py",
     "tests": 4,
     "fail": 0,
     "exit": 0,
-    "sec": 2.1
+    "sec": 1.2
    },
    {
     "file": "testR23_engine.py",
     "tests": 16,
     "fail": 0,
     "exit": 0,
-    "sec": 0.4
+    "sec": 0.2
    },
    {
     "file": "testR24_church.py",
     "tests": 19,
     "fail": 0,
     "exit": 0,
-    "sec": 0.3
+    "sec": 0.2
+   },
+   {
+    "file": "testR28_preview.py",
+    "tests": 11,
+    "fail": 0,
+    "exit": 0,
+    "sec": 2.1
    }
   ]
  },
- "total_pass": 3308,
+ "total_pass": 3581,
  "total_fail": 0,
  "target": ">=2062/0",
  "ok": true

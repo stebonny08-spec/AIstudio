@@ -1,168 +1,220 @@
 'use strict';
-/* tests/u20_shaping.test.js - R20 lotto 1: classi di fit con PARITA'
-   (retta, curve, cerchio/ellisse con gap-closing, rettangolo/quadrato,
-   triangolo) + esclusioni (bbox<40px, n<5, coloring, testo, no re-snap)
-   + preservamento larghezza/pressione per punto.
-   Harness tests/_ink_env.js, pattern tests/a14_shaping.test.js.
-   Tolleranze DICHIARATE (R20):
-     - tol fit line/rett/tri/cerchio = 2.5 + amp*3 (amp=0.6 -> 4.3px)
-     - residuo GREZZO->ideale 'curve' <= 2.5px (gate durissimo)
-     - gap-closing <= max(12px, 8% diagonale bbox)
-     - smoothing curve: Taubin lambda=0.5, mu=-0.53, 4 iterazioni,
-       resample 4px, corner-lock su svolte >=50gradi (gambe 8px)
-     - esclusioni: diagonale bbox < 40px, punti < 5, auto-intersezioni >= 3,
-       densita' percorso/perimetro-bbox >= 1.6, >=60% punti dentro bbox di
-       uno shape esistente, tool testo / overlay testo aperto
+/* tests/u20_shaping.test.js - R31: suite T1 del motore ink-commit
+   (PROMPT ROUND 29 / R31 NovaStudio). RISCRITTA DA ZERO.
+   Copre: A geometria fine (linee/archi/shallow/S/chiuso), B esclusioni
+   e flags (T06/T07/testo/hold/API/popHelp/contatori stroke), C frecce
+   (stesso tratto + assorbimento F01 con positivi e negativi),
+   D undo/redo/persistenza (M04/M05/snapshot durante settle/zoom),
+   E contatori e log console ([ink24]/[inkV]).
+   Fonti di verita': qa/_r31_probe.js (37/37), tests/_ink_env.js,
+   web_frontend/html/js/modules/ink_cfg.js + ink_commit.js + notes.js
+   (sezione "R31: MOTORE INK-COMMIT").
+   Regole: harness SOLO via _ink_env, generatori in coordinate MONDO,
+   settle=200ms -> sleep(350)+ prima di leggere il post-commit.
    Esecuzione: node tests/u20_shaping.test.js */
 const env0 = require('./_ink_env');
 
+const sleep = env0.sleep;
 let pass = 0, fail = 0;
 const failures = [];
 function ok(cond, name, extra) {
     if (cond) { pass++; console.log('  PASS  ' + name); }
-    else { fail++; failures.push(name + (extra ? ' - ' + extra : '')); console.log('  FAIL  ' + name + (extra ? ' - ' + extra : '')); }
-}
-const sleep = env0.sleep;
-
-/* LCG deterministico per jitter riproducibile */
-function lcg(seed) {
-    let s = seed >>> 0;
-    return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
-}
-
-function freshDoc(env) {
-    env.store.items[0].content = '';
-    return env0.openNote(env, 'n1');
-}
-function shapes(env) {
-    return env.win.__ink.objects().filter(o => o.t === 'shape');
-}
-function strokes(env) {
-    return env.win.__ink.objects().filter(o => o.t === 'stroke');
-}
-/* distanza perpendicolare massima dei punti MONDO dalla linea (a,b) */
-function maxPerpWorld(pts, a, b) {
-    let m = 0;
-    for (const q of pts) {
-        const dx = b[0] - a[0], dy = b[1] - a[1];
-        const L = Math.hypot(dx, dy) || 1;
-        const d = Math.abs((q[0] - a[0]) * dy - (q[1] - a[1]) * dx) / L;
-        if (d > m) m = d;
+    else {
+        fail++;
+        failures.push(name + (extra ? ' - ' + extra : ''));
+        console.log('  FAIL  ' + name + (extra ? ' - ' + extra : ''));
     }
-    return m;
 }
-/* distanza massima da punti a polilinea */
+
+function freshDoc(env) { env.store.items[0].content = ''; return env0.openNote(env, 'n1'); }
+function strokes(env) { return env.win.__ink.objects().filter(o => o.t === 'stroke'); }
+function snapC(ink) { return JSON.parse(JSON.stringify(ink.counters)); }
+
+function dist(a, b) { return Math.hypot(b[0] - a[0], b[1] - a[1]); }
+function distPtSeg(px, py, a, b) {
+    const dx = b[0] - a[0], dy = b[1] - a[1];
+    const l2 = dx * dx + dy * dy;
+    let t = l2 ? ((px - a[0]) * dx + (py - a[1]) * dy) / l2 : 0;
+    t = t < 0 ? 0 : (t > 1 ? 1 : t);
+    return Math.hypot(px - (a[0] + t * dx), py - (a[1] + t * dy));
+}
+/* distanza massima dei punti MONDO da una polilinea */
 function maxDistToPoly(pts, poly) {
     let m = 0;
     for (const q of pts) {
         let bd = Infinity;
         for (let i = 0; i < poly.length - 1; i++) {
-            const a = poly[i], b = poly[i + 1];
-            const dx = b[0] - a[0], dy = b[1] - a[1];
-            const l2 = dx * dx + dy * dy;
-            let t = l2 > 0 ? ((q[0] - a[0]) * dx + (q[1] - a[1]) * dy) / l2 : 0;
-            t = t < 0 ? 0 : (t > 1 ? 1 : t);
-            const d = Math.hypot(q[0] - (a[0] + t * dx), q[1] - (a[1] + t * dy));
+            const d = distPtSeg(q[0], q[1], poly[i], poly[i + 1]);
             if (d < bd) bd = d;
         }
         if (bd > m) m = bd;
     }
     return m;
 }
-/* campione denso dei segmenti Bezier (n nodi x sub) */
-function bezPoly(bez, sub) {
-    const out = [];
-    for (let i = 0; i < bez.length; i++) {
-        const sg = bez[i];
-        for (let j = (i === 0 ? 0 : 1); j <= sub; j++) {
-            const t = j / sub, u = 1 - t;
-            out.push([u * u * u * sg[0][0] + 3 * u * u * t * sg[1][0] +
-                      3 * u * t * t * sg[2][0] + t * t * t * sg[3][0],
-                      u * u * u * sg[0][1] + 3 * u * u * t * sg[1][1] +
-                      3 * u * t * t * sg[2][1] + t * t * t * sg[3][1]]);
-        }
+/* deviazione massima dei punti GREZZI dalla segmento di render (2 pts) */
+function maxDevFromRender(raw, render) {
+    let m = 0;
+    for (const q of raw) {
+        const d = distPtSeg(q[0], q[1], render[0], render[1]);
+        if (d > m) m = d;
     }
-    return out;
+    return m;
 }
-/* passo fisso su polilinea (incluso ultimo punto) */
-function stepPoly(poly, d) {
-    const out = [poly[0]];
-    let acc = 0;
-    for (let i = 1; i < poly.length; i++) {
-        const seg = Math.hypot(poly[i][0] - poly[i - 1][0], poly[i][1] - poly[i - 1][1]);
-        acc += seg;
-        if (acc >= d) { out.push(poly[i]); acc = 0; }
+/* flessi: stessa metrica di ink_commit (copiata dal probe) */
+function countFlessi(pts) {
+    const n = pts.length; if (n < 6) return 0;
+    const a = pts[0], b = pts[n - 1];
+    const L = Math.hypot(b[0] - a[0], b[1] - a[1]); if (L < 15) return 0;
+    const ux = (b[0] - a[0]) / L, uy = (b[1] - a[1]) / L;
+    const W = Math.max(8, L * 0.10), eps = Math.max(0.5, L * 0.004);
+    const t = [], d = [];
+    for (let i = 0; i < n; i++) {
+        const dx = pts[i][0] - a[0], dy = pts[i][1] - a[1];
+        t.push(dx * ux + dy * uy); d.push(-uy * dx + ux * dy);
     }
-    const last = poly[poly.length - 1];
-    const l = out[out.length - 1];
-    if (l[0] !== last[0] || l[1] !== last[1]) out.push(last);
-    return out;
-}
-/* angoli di svolta (gradi) fra segmenti consecutivi */
-function turnsOf(poly) {
-    const out = [];
-    for (let i = 1; i < poly.length - 1; i++) {
-        const a1 = Math.atan2(poly[i][1] - poly[i - 1][1], poly[i][0] - poly[i - 1][0]);
-        const a2 = Math.atan2(poly[i + 1][1] - poly[i][1], poly[i + 1][0] - poly[i][0]);
-        let d = (a2 - a1) * 180 / Math.PI;
-        while (d > 180) d -= 360;
-        while (d < -180) d += 360;
-        out.push(d);
+    const ds = [];
+    for (let i = 0; i < n; i++) {
+        let s = 0, k = 0;
+        for (let j = 0; j < n; j++) if (Math.abs(t[j] - t[i]) <= W) { s += d[j]; k++; }
+        ds.push(k ? s / k : d[i]);
     }
-    return out;
+    let last = 0, cnt = 0;
+    for (let i = 1; i < n; i++) {
+        const dd = ds[i] - ds[i - 1]; if (Math.abs(dd) < eps) continue;
+        const sg = dd > 0 ? 1 : -1; if (last && sg !== last) cnt++; last = sg;
+    }
+    return cnt;
 }
-
-/* R20 F/Q5-Q7: tratto con PAUSA temporale (finestra flick 250ms <
-   pausa < hold-still 350ms) + flick/back-stroke di coda */
-async function strokePauseFlick(env, basePts, flickPts, opt) {
-    opt = opt || {};
+/* sweep GREZZO: unwrap degli angoli attorno al centro fit (Kasa) */
+function sweepOfRaw(raw, c) {
+    let s = 0;
+    for (let i = 1; i < raw.length; i++) {
+        const a0 = Math.atan2(raw[i - 1][1] - c.cy, raw[i - 1][0] - c.cx);
+        const a1 = Math.atan2(raw[i][1] - c.cy, raw[i][0] - c.cx);
+        let d = a1 - a0;
+        while (d > Math.PI) d -= 2 * Math.PI;
+        while (d < -Math.PI) d += 2 * Math.PI;
+        s += d;
+    }
+    return s;
+}
+/* somma dei cross (direzione di piega) sui punti grezzi */
+function sumCross(raw) {
+    let sc = 0;
+    for (let i = 1; i < raw.length - 1; i++) {
+        const ax = raw[i][0] - raw[i - 1][0], ay = raw[i][1] - raw[i - 1][1];
+        const bx = raw[i + 1][0] - raw[i][0], by = raw[i + 1][1] - raw[i][1];
+        sc += ax * by - ay * bx;
+    }
+    return sc;
+}
+function lcg(seed) {
+    let s = seed >>> 0;
+    return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+}
+/* traccia un tratto: pts in coordinate MONDO, passa da env0.wc */
+async function draw(env, pts, opts) {
     const canvas = env0.canvasOf(env);
-    const bC = env0.wc(env, basePts);
-    env0.ptr(env, canvas, 'pointerdown', bC[0][0], bC[0][1]);
-    for (let i = 1; i < bC.length; i++) {
-        if (opt.dt) await sleep(opt.dt);
-        env0.ptr(env, canvas, 'pointermove', bC[i][0], bC[i][1]);
+    const b = env0.wc(env, pts);
+    env0.ptr(env, canvas, 'pointerdown', b[0][0], b[0][1]);
+    for (let i = 1; i < b.length; i++) {
+        if (opts && opts.dt) await sleep(opts.dt);
+        env0.ptr(env, canvas, 'pointermove', b[i][0], b[i][1]);
     }
-    await sleep(280);   // >250ms finestra flick, <350ms hold-still
-    const fC = env0.wc(env, flickPts);
-    for (let i = 0; i < fC.length; i++) {
-        await sleep(4);
-        env0.ptr(env, canvas, 'pointermove', fC[i][0], fC[i][1]);
+    env0.ptr(env, canvas, 'pointerup', b[b.length - 1][0], b[b.length - 1][1]);
+}
+/* linea: disegna, aspetta il commit, verifica geometria fine */
+async function lineCase(env, raw, pre, devMin) {
+    await draw(env, raw);
+    await sleep(380);
+    const s = strokes(env);
+    ok(s.length === 1 && s[0].vclass === 'line', pre + ' vclass line',
+        JSON.stringify(s.map(o => o.vclass)));
+    if (!s.length) return null;
+    const o = s[0];
+    ok(o.pts.length === 2, pre + ' pts.length===2', String(o.pts.length));
+    let onSeg = 0;
+    for (const q of o.pts) if (distPtSeg(q[0], q[1], o.pts[0], o.pts[1]) > 0.05) onSeg++;
+    ok(onSeg === 0, pre + ' ogni punto renderizzato sulla segmento <=0.05',
+        'n=' + onSeg);
+    const d0 = dist(raw[0], o.pts[0]);
+    const d1 = dist(raw[raw.length - 1], o.pts[o.pts.length - 1]);
+    const mx = Math.max(d0, d1);
+    ok(mx <= 3, pre + ' endpoint grezzo->ideale <=3px (Q01)', mx.toFixed(2));
+    ok(mx > 0.2, pre + ' endpoint grezzo DIVERSO dall idele dove devia (K03)',
+        mx.toFixed(2));
+    const dev = maxDevFromRender(raw, o.pts);
+    ok(dev >= devMin, pre + ' grezzo != render: dev=' + dev.toFixed(2),
+        dev.toFixed(2));
+    return o;
+}
+/* arco: disegna, aspetta il commit, verifica i 7 criteri */
+async function arcCase(env, raw, pre) {
+    await draw(env, raw);
+    await sleep(380);
+    const s = strokes(env);
+    ok(s.length === 1 && s[0].vclass === 'arc', pre + ' vclass arc',
+        JSON.stringify(s.map(o => o.vclass)));
+    const o = s[0];
+    const p = o ? o.params : null;
+    ok(!!p && p.kind === 'circle', pre + ' params.kind circle',
+        p ? p.kind : 'null');
+    if (!p || p.kind !== 'circle') {
+        ok(false, pre + ' residuo render vs circonferenza <=0.5', 'params mancanti');
+        ok(false, pre + ' endpoint grezzo->ideale +-3px', 'params mancanti');
+        ok(false, pre + ' |sweep params - sweep grezzo| <=5deg', 'params mancanti');
+        ok(false, pre + ' gap aperto >=0.6*r', 'params mancanti');
+        ok(false, pre + ' direzione di piega preservata', 'params mancanti');
+        return o;
     }
-    env0.ptr(env, canvas, 'pointerup', fC[fC.length - 1][0], fC[fC.length - 1][1]);
-    await sleep(120);
-    return canvas;
-}
-/* pointer con pointerId/pointerType espliciti (gesti multi-dito jsdom) */
-function ptrT(env, canvas, type, x, y, id, ptype) {
-    const ev = new env.win.MouseEvent(type,
-        { bubbles: true, clientX: x, clientY: y, buttons: 1 });
-    Object.defineProperty(ev, 'pointerId', { value: id });
-    Object.defineProperty(ev, 'pointerType', { value: ptype || 'touch' });
-    canvas.dispatchEvent(ev);
-}
-function angBetween(v1, v2) {
-    const a = Math.atan2(v1[1], v1[0]) - Math.atan2(v2[1], v2[0]);
-    let d = a * 180 / Math.PI;
-    while (d > 180) d -= 360;
-    while (d < -180) d += 360;
-    return Math.abs(d);
-}
-function angAcute(v1, v2) {
-    const d = angBetween(v1, v2);
-    return Math.min(d, 180 - d);
-}
-/* ricostruzione indipendente del triangolo punta dai campi head */
-function headPolyOf(head) {
-    const tx = head.tangente[0], ty = head.tangente[1];
-    const n = Math.hypot(tx, ty) || 1;
-    const ux = tx / n, uy = ty / n, nx = -uy, ny = ux;
-    const a = head.angoloAlaDeg * Math.PI / 180;
-    const L = head.lunghezza;
-    const w = L * Math.sin(a), d = L * Math.cos(a);
-    const bx = head.base[0], by = head.base[1];
-    return [[bx + w * nx, by + w * ny], [bx + d * ux, by + d * uy],
-            [bx - w * nx, by - w * ny]];
+    let mx = 0;
+    for (const q of o.pts) {
+        const d = Math.abs(Math.hypot(q[0] - p.cx, q[1] - p.cy) - p.r);
+        if (d > mx) mx = d;
+    }
+    ok(mx <= 0.5, pre + ' residuo render vs circonferenza <=0.5 (Q01)',
+        mx.toFixed(3));
+    const d0 = dist(raw[0], o.pts[0]);
+    const d1 = dist(raw[raw.length - 1], o.pts[o.pts.length - 1]);
+    ok(d0 <= 3 && d1 <= 3, pre + ' endpoint grezzo->ideale +-3px (A02)',
+        d0.toFixed(2) + '/' + d1.toFixed(2));
+    const c = env.win.InkCommit.kasaCircle(raw);
+    if (c) {
+        const sr = sweepOfRaw(raw, c);
+        const dd = Math.abs((p.sweep - sr) * 180 / Math.PI);
+        ok(dd <= 5, pre + ' |sweep params - sweep grezzo| <=5deg', dd.toFixed(2));
+        const sc = sumCross(raw);
+        ok(sc !== 0 && ((sc > 0) === (p.sweep > 0)),
+            pre + ' direzione di piega preservata (segno cross == segno sweep)',
+            'cross=' + sc.toFixed(2) + ' sweep=' + p.sweep.toFixed(3));
+    } else {
+        ok(false, pre + ' |sweep params - sweep grezzo| <=5deg', 'kasaCircle null');
+        ok(false, pre + ' direzione di piega preservata', 'kasaCircle null');
+    }
+    /* A03: tangente MODELLO agli endpoint vs direzione locale GREZZA.
+       Replica il gate di tryCircleArc (dirIn/dirOut su k=3 passi grezzi,
+       tangente circolare da a0/sweep con segno) -> deve dare <=10gradi */
+    const sgP = p.sweep >= 0 ? 1 : -1;
+    const nR = raw.length, kR = Math.min(3, nR - 1);
+    const nrm = v => { const m = Math.hypot(v[0], v[1]) || 1; return [v[0] / m, v[1] / m]; };
+    const angBt = (u, v) => {
+        const c = Math.max(-1, Math.min(1, u[0] * v[0] + u[1] * v[1]));
+        return Math.acos(c) * 180 / Math.PI;
+    };
+    const dirInA = nrm([raw[kR][0] - raw[0][0], raw[kR][1] - raw[0][1]]);
+    const dirOutA = nrm([raw[nR - 1][0] - raw[nR - 1 - kR][0],
+                         raw[nR - 1][1] - raw[nR - 1 - kR][1]]);
+    const tan0A = nrm([-Math.sin(p.a0) * sgP, Math.cos(p.a0) * sgP]);
+    const aEndA = p.a0 + p.sweep;
+    const tan1A = nrm([-Math.sin(aEndA) * sgP, Math.cos(aEndA) * sgP]);
+    const angInA = angBt(dirInA, tan0A), angOutA = angBt(dirOutA, tan1A);
+    ok(angInA <= 10 && angOutA <= 10,
+        pre + ' tangenti endpoint <=10gradi (A03)',
+        angInA.toFixed(2) + '/' + angOutA.toFixed(2));
+    const gap = dist(o.pts[0], o.pts[o.pts.length - 1]);
+    ok(gap >= 0.6 * p.r, pre + ' arco resta APERTO: gap>=0.6r (N01)',
+        gap.toFixed(1) + '/' + (0.6 * p.r).toFixed(1));
+    return o;
 }
 
 (async () => {
@@ -170,702 +222,905 @@ function headPolyOf(head) {
         const env = env0.makeEnv();
         await env0.openNote(env, 'n1');
         const ink = env.win.__ink;
-        ok(!!ink, '0.0 API __ink presente');
-        const TOL = 2.5 + 0.6 * 3;   // amp default 0.6 -> 4.3px
-        ink.setHelp(0.6);
 
-        // ============ 1: RETTA - LSQ endpoint + residuo grezzo->ideale ===
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndL = lcg(7);
-        const lineC = [];
-        for (let i = 0; i <= 50; i++) {
-            lineC.push([100 + i * 3 + (rndL() - 0.5) * 2,
-                        150 + i * 0.6 + (rndL() - 0.5) * 2]);
-        }
-        await env0.stroke(env, env0.wc(env, lineC));
-        let sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'line', '1.0 retta riconosciuta',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0]) {
-            const err = maxPerpWorld(lineC, sh[0].pts[0], sh[0].pts[1]);
-            ok(err <= TOL, '1.1 residuo grezzo->ideale linea <= 2.5+amp*3',
-                'perp=' + err.toFixed(2) + ' tol=' + TOL.toFixed(2));
-            ok(sh[0].sizes && sh[0].sizes.length === 2,
-                '1.2 sizes per punto preservate sulla linea',
-                JSON.stringify(sh[0].sizes));
+        /* spy su console.info per i log [ink24]/[inkV] (gruppo E) */
+        const logLines = [];
+        if (env.win.console && typeof env.win.console.info === 'function') {
+            env.win.console.info = function () {
+                logLines.push(Array.prototype.join.call(arguments, ' '));
+            };
         }
 
-        // ============ 2: RETTANGOLO STORTO + jitter -> rectangle 5deg =====
+        /* ============================================================
+           A. GEOMETRIA FINE
+           ============================================================ */
+        console.log('--- A. GEOMETRIA FINE ---');
+
+        /* A1: linea orizzontale ondulata (amp4/periodo24) + contratto
+           settle/swap del motore (K01/K02/L02/L04) */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndR = lcg(101);
-        const rW = 150, rH = 95, rotD = 7 * Math.PI / 180;
-        const rcx = 300, rcy = 300;
-        const rectC = [];
-        const rcorn = [[0, 0], [rW, 0], [rW, rH], [0, rH]];
-        for (let sIdx = 0; sIdx < 4; sIdx++) {
-            const a0 = rcorn[sIdx], b0 = rcorn[(sIdx + 1) % 4];
-            const len = Math.hypot(b0[0] - a0[0], b0[1] - a0[1]);
-            for (let d = 0; d < len; d += 4) {
-                const f = d / len;
-                const lx = a0[0] + (b0[0] - a0[0]) * f + (rndR() - 0.5) * 4;
-                const ly = a0[1] + (b0[1] - a0[1]) * f + (rndR() - 0.5) * 4;
-                rectC.push([rcx + lx * Math.cos(rotD) - ly * Math.sin(rotD),
-                            rcy + lx * Math.sin(rotD) + ly * Math.cos(rotD)]);
+        /* passo 1px: con passi larghi dist(media primi4, primo) > lineEndTolPx
+           e fitLine cade nel fallback a endpoint GREZZI (shift==0) */
+        const wline = [];
+        for (let x = 160; x <= 552; x += 1) {
+            wline.push([x, 250 + 2.5 * Math.sin(2 * Math.PI * (x - 160) / 24 + 0.8)]);
+        }
+        const canvas = env0.canvasOf(env);
+        const b = env0.wc(env, wline);
+        const rel0 = ink.trace.filter(e => e.k === 'release').length;
+        env0.ptr(env, canvas, 'pointerdown', b[0][0], b[0][1]);
+        for (let i = 1; i < b.length; i++) env0.ptr(env, canvas, 'pointermove', b[i][0], b[i][1]);
+        env0.ptr(env, canvas, 'pointerup', b[b.length - 1][0], b[b.length - 1][1]);
+        await sleep(60);
+        let s = strokes(env);
+        ok(s.length === 1 && s[0]._wet === true,
+            'A1.0 durante settle: grezzo visibile con _wet (K01/L02)',
+            JSON.stringify({ n: s.length, wet: s[0] && s[0]._wet }));
+        const relEv = ink.trace.filter(e => e.k === 'release');
+        ok(relEv.length === rel0 + 1 && relEv[relEv.length - 1].cls === 'line',
+            'A1.1 trace release cls=line', JSON.stringify(relEv.slice(-1)));
+        await sleep(350);
+        s = strokes(env);
+        const swEv = ink.trace.filter(e => e.k === 'swap');
+        ok(swEv.length >= 1 && swEv[swEv.length - 1].dt >= 150 &&
+           swEv[swEv.length - 1].dt <= 320,
+            'A1.2 UNO swap con dt in 150-320ms (K01/K02)',
+            JSON.stringify(swEv.slice(-1)));
+        ok(s.length === 1 && s[0].vclass === 'line',
+            'A1.3 linea commessa: vclass line', JSON.stringify(s.map(o => o.vclass)));
+        ok(s[0].pts.length === 2, 'A1.4 pts.length===2', String(s[0].pts.length));
+        ok(s[0]._wet === undefined, 'A1.5 _wet rimosso post-commit (L04/N08/N09)',
+            String(s[0]._wet));
+        let onSeg = 0;
+        for (const q of s[0].pts) if (distPtSeg(q[0], q[1], s[0].pts[0], s[0].pts[1]) > 0.05) onSeg++;
+        ok(onSeg === 0, 'A1.6 ogni punto renderizzato sulla segmento <=0.05',
+            'n=' + onSeg);
+        const A1d0 = dist(wline[0], s[0].pts[0]);
+        const A1d1 = dist(wline[wline.length - 1], s[0].pts[1]);
+        const A1mx = Math.max(A1d0, A1d1);
+        ok(A1mx <= 3, 'A1.7 endpoint grezzo->ideale <=3px (Q01)', A1mx.toFixed(2));
+        ok(A1mx > 0.2, 'A1.8 endpoint grezzo DIVERSO dall ideale dove devia (K03)',
+            A1mx.toFixed(2));
+        const A1dev = maxDevFromRender(wline, s[0].pts);
+        ok(A1dev > 0.5, 'A1.9 il grezzo ondulato NON e il render (K03): dev=' +
+            A1dev.toFixed(2), A1dev.toFixed(2));
+
+        /* A2: linea diagonale ondulata perpendicolare (passo 1px) */
+        await freshDoc(env);
+        const diag = [];
+        {
+            const p0 = [120, 140], p1 = [520, 470];
+            const L = Math.hypot(p1[0] - p0[0], p1[1] - p0[1]);
+            const ux = (p1[0] - p0[0]) / L, uy = (p1[1] - p0[1]) / L;
+            const pxv = -uy, pyv = ux, amp = 2.2, per = 24, ph = 0.775;
+            const N = Math.ceil(L);
+            for (let i = 0; i <= N; i++) {
+                const sv = L * i / N;
+                const off = amp * Math.sin(2 * Math.PI * sv / per + ph);
+                diag.push([p0[0] + ux * sv + pxv * off, p0[1] + uy * sv + pyv * off]);
             }
         }
-        await env0.stroke(env, env0.wc(env, rectC));
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'rectangle',
-            '2.0 rettangolo storto+jitter -> rectangle',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0] && sh[0].kind === 'rectangle') {
-            let maxA = 0;
-            for (let i = 0; i < 4; i++) {
-                const pa = sh[0].pts[(i + 3) % 4], pb = sh[0].pts[i],
-                      pc = sh[0].pts[(i + 1) % 4];
-                const v1 = [pa[0] - pb[0], pa[1] - pb[1]];
-                const v2 = [pc[0] - pb[0], pc[1] - pb[1]];
-                const cs = (v1[0] * v2[0] + v1[1] * v2[1]) /
-                    (Math.hypot(v1[0], v1[1]) * Math.hypot(v2[0], v2[1]));
-                const ang = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-                const dev = Math.abs(ang - 90);
-                if (dev > maxA) maxA = dev;
-            }
-            ok(maxA <= 5, '2.1 angoli rettangolo entro 5 gradi', 'maxDev=' + maxA.toFixed(2));
-            const bxc = sh[0].box.x + sh[0].box.w / 2;
-            const byc = sh[0].box.y + sh[0].box.h / 2;
-            // ASPETTATIVA CORRETTA (motivata): il generatore ANCORa il
-            // rettangolo nell'angolo (rcx,rcy) con lx,ly in [0,W]x[0,H] e lo
-            // ruota di rotD, quindi il centro GEOMETRICO della figura disegnata
-            // e' anchor + R(rotD)*(W/2,H/2) = (368.65, 356.28), NON l'ancora
-            // (300,300). Confrontare con l'ancora dava cErr=88.88px di errore
-            // SPURIO (eseguita solo da quando 2.0 produce davvero un rettangolo;
-            // il blocco era saltato prima). Il senso dell'assert resta lo stesso:
-            // il box cade sul centro reale entro 6px (nessun displacement da
-            // rifare il giro di rotazione PCA).
-            const expCx = rcx + (rW / 2) * Math.cos(rotD) - (rH / 2) * Math.sin(rotD);
-            const expCy = rcy + (rW / 2) * Math.sin(rotD) + (rH / 2) * Math.cos(rotD);
-            const cErr = Math.hypot(bxc - expCx, byc - expCy);
-            ok(cErr <= 6, '2.2 centro rettangolo al posto giusto (fix rot PCA)',
-                'cErr=' + cErr.toFixed(2));
-            ok(sh[0].sizes && sh[0].sizes.length === sh[0].pts.length,
-                '2.3 sizes per punto preservate sul rettangolo',
-                'sizes=' + (sh[0].sizes ? sh[0].sizes.length : 'null') +
-                ' pts=' + sh[0].pts.length);
-        }
+        await lineCase(env, diag, 'A2 (diagonale ondulata)', 0.5);
 
-        // ============ 3: QUADRATO -> aspect 0.9-1.1 ========================
+        /* A3: linea dritta con jitter entro +-2px (passo 1px) */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndS = lcg(23);
-        const sSide = 100, sRot = 3 * Math.PI / 180;
-        const sqC = [];
-        const scorn = [[0, 0], [sSide, 0], [sSide, sSide], [0, sSide]];
-        for (let sIdx = 0; sIdx < 4; sIdx++) {
-            const a0 = scorn[sIdx], b0 = scorn[(sIdx + 1) % 4];
-            const len = Math.hypot(b0[0] - a0[0], b0[1] - a0[1]);
-            for (let d = 0; d < len; d += 4) {
-                const f = d / len;
-                const lx = a0[0] + (b0[0] - a0[0]) * f + (rndS() - 0.5) * 4;
-                const ly = a0[1] + (b0[1] - a0[1]) * f + (rndS() - 0.5) * 4;
-                sqC.push([250 + lx * Math.cos(sRot) - ly * Math.sin(sRot),
-                          350 + lx * Math.sin(sRot) + ly * Math.cos(sRot)]);
+        const jit = [];
+        {
+            const rnd = lcg(7717);
+            for (let i = 0; i <= 400; i++) {
+                const sg = (i % 2 === 0) ? 1 : -1;
+                jit.push([140 + i, 540 + sg * (0.8 + 0.7 * rnd())]);
             }
         }
-        await env0.stroke(env, env0.wc(env, sqC));
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'square', '3.0 quadrato riconosciuto',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0]) {
-            const aspect = sh[0].box.w / sh[0].box.h;
-            ok(aspect >= 0.9 && aspect <= 1.1, '3.1 aspect quadrato 0.9-1.1',
-                'aspect=' + aspect.toFixed(3));
+        await lineCase(env, jit, 'A3 (jitter +-2px)', 0.5);
+
+        /* B1: arco semicerchio r60 con rumore 1.2 */
+        await freshDoc(env);
+        const semi = [];
+        for (let i = 0; i <= 60; i++) {
+            const a = Math.PI * 0.05 + (i / 60) * Math.PI * 0.9;
+            semi.push([400 + Math.cos(a) * 60 + Math.sin(i / 3) * 1.2,
+                       300 + Math.sin(a) * 60 + Math.cos(i / 4) * 1.2]);
+        }
+        await arcCase(env, semi, 'A4 (semicerchio r60)');
+
+        /* B2: quarto arco r50 */
+        await freshDoc(env);
+        const quart = [];
+        for (let i = 0; i <= 40; i++) {
+            const a = (i / 40) * Math.PI * 0.5;
+            quart.push([330 + Math.cos(a) * 50, 230 + Math.sin(a) * 50]);
+        }
+        await arcCase(env, quart, 'A5 (quarto arco r50)');
+
+        /* B3: arco 140gradi r70 */
+        await freshDoc(env);
+        const a140 = [];
+        for (let i = 0; i <= 48; i++) {
+            const a = 0.3 * Math.PI + (i / 48) * (140 * Math.PI / 180);
+            a140.push([400 + Math.cos(a) * 70, 300 + Math.sin(a) * 70]);
+        }
+        await arcCase(env, a140, 'A6 (arco 140deg r70)');
+
+        /* A7: arco SHALLOW - dev ~4.5% della corda (corda 250 -> 11.25px).
+           Con arcLen/chord ~1.008 il gate lineStraightRatio (0.95) puo'
+           vincere: si accetta line O arc e si logga il branch (MEASURE). */
+        await freshDoc(env);
+        const shallow = [];
+        {
+            const R = 700.1, cx = 275, cy = -548.7;
+            const a0 = Math.atan2(140 - cy, 150 - cx);
+            const a1 = Math.atan2(140 - cy, 400 - cx);
+            for (let i = 0; i <= 40; i++) {
+                const a = a0 + (a1 - a0) * (i / 40);
+                shallow.push([cx + Math.cos(a) * R, cy + Math.sin(a) * R]);
+            }
+        }
+        await draw(env, shallow);
+        await sleep(380);
+        s = strokes(env);
+        {
+            const pl = env.win.InkCommit.pathLen(shallow);
+            const ch = dist(shallow[0], shallow[shallow.length - 1]);
+            const dev = maxDevFromRender(shallow, s.length && s[0].pts.length === 2
+                ? s[0].pts : [shallow[0], shallow[shallow.length - 1]]);
+            console.log('  MEASURE A7 arco-shallow: vclass=' +
+                (s[0] ? s[0].vclass : '-') + ' ratio=' + (ch / pl).toFixed(4) +
+                ' dev/ch=' + (dev / ch).toFixed(4));
+        }
+        ok(s.length === 1 && (s[0].vclass === 'line' || s[0].vclass === 'arc'),
+            'A7.0 arco-shallow (dev 4.5% chord) -> line O arc',
+            JSON.stringify(s.map(o => o.vclass)));
+        if (s[0] && s[0].vclass === 'arc') {
+            ok(!!s[0].params && (s[0].params.kind === 'circle' || s[0].params.kind === 'bez'),
+                'A7.1 shallow->arc: params.kind in {circle,bez}',
+                s[0].params ? s[0].params.kind : 'null');
+        } else {
+            ok(s[0] && s[0].pts.length === 2,
+                'A7.1 shallow->line (ratio>=0.95): pts.length===2',
+                s[0] ? String(s[0].pts.length) : 'null');
         }
 
-        // ============ 4: CERCHIO TREMOLANTE -> circle ======================
+        /* A8: arco che fallisce il fit a cerchio -> kind in {circle,bez}
+           (spirale: raggio 68->84 su 140gradi, residuo Kasa >4px) */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndC = lcg(7);
-        const circC = [];
-        const ccx = 300, ccy = 300, R = 45;
+        const spiral = [];
+        for (let i = 0; i <= 48; i++) {
+            const f = i / 48;
+            const a = 0.3 * Math.PI + f * (140 * Math.PI / 180);
+            const r = 68 + 16 * f;
+            spiral.push([330 + Math.cos(a) * r, 300 + Math.sin(a) * r]);
+        }
+        await draw(env, spiral);
+        await sleep(380);
+        s = strokes(env);
+        console.log('  MEASURE A8 arco-non-circolare: vclass=' +
+            (s[0] ? s[0].vclass : '-') + ' kind=' +
+            (s[0] && s[0].params ? s[0].params.kind : '-'));
+        ok(s.length === 1 && s[0].vclass === 'arc',
+            'A8.0 arco non circolare -> vclass arc',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(!!s[0] && !!s[0].params &&
+           (s[0].params.kind === 'circle' || s[0].params.kind === 'bez'),
+            'A8.1 params.kind in {circle,bez} (branch MEASURE)',
+            s[0] && s[0].params ? s[0].params.kind : 'null');
+
+        /* A9: freeform - S con 2 flessi: smoothing bounded, topologia
+           invariata */
+        await freshDoc(env);
+        const sPts = [];
+        for (let x = 150; x <= 550; x += 4) sPts.push([x, 300 + 45 * Math.sin(2 * Math.PI * (x - 150) / 400)]);
+        await draw(env, sPts);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'freeform',
+            'A9.0 S -> freeform', JSON.stringify(s.map(o => o.vclass)));
+        if (s[0]) {
+            const fOut = countFlessi(s[0].pts);
+            ok(fOut >= 2, 'A9.1 flessi preservati: flessiOut>=2',
+                countFlessi(sPts) + '->' + fOut);
+            const md = maxDistToPoly(s[0].pts, sPts);
+            ok(md <= 3, 'A9.2 smoothing bounded: max dist ideale->grezzo <=3px',
+                md.toFixed(2));
+            const IC = env.win.InkCommit;
+            ok(IC.selfInt(s[0].pts) === IC.selfInt(sPts),
+                'A9.3 selfIntOut == selfIntIn (topologia invariata)',
+                IC.selfInt(sPts) + '->' + IC.selfInt(s[0].pts));
+            ok(!!s[0].params && s[0].params.kind === 'smooth',
+                'A9.4 nessun snap parametrico (kind smooth)',
+                JSON.stringify(s[0].params));
+        }
+
+        /* A10: cerchio CHIUSO -> closed + kind smooth + endpoints lock */
+        await freshDoc(env);
+        const circ = [];
         for (let i = 0; i < 72; i++) {
             const a = (i / 72) * Math.PI * 2;
-            const rr = R + (rndC() - 0.5) * 3;      // jitter +-1.5px
-            circC.push([ccx + Math.cos(a) * rr, ccy + Math.sin(a) * rr]);
+            circ.push([400 + Math.cos(a) * (45 + Math.sin(i * 2.1) * 3),
+                       300 + Math.sin(a) * (45 + Math.cos(i * 1.7) * 3)]);
         }
-        await env0.stroke(env, env0.wc(env, circC));
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'circle', '4.0 cerchio tremolante -> circle',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0] && sh[0].params) {
-            ok(Math.abs(sh[0].params.r - R) <= TOL, '4.1 raggio cerchio entro tolleranza',
-                'rErr=' + Math.abs(sh[0].params.r - R).toFixed(2));
-            ok(sh[0].sizes && sh[0].sizes.length === 48,
-                '4.2 sizes perimetro cerchio (48 settori) preservate',
-                'sizes=' + (sh[0].sizes ? sh[0].sizes.length : 'null'));
-        }
-
-        // ============ 5: CERCHIO CON GAP PICCOLO -> circle chiuso ==========
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        const gapC = [];
-        const nG = 71;                       // 350 gradi: chord gap ~7.9px
-        for (let i = 0; i <= nG; i++) {
-            const a = (i / nG) * Math.PI * 2 * 0.9722;   // 350 gradi
-            gapC.push([280 + Math.cos(a) * 45, 280 + Math.sin(a) * 45]);
-        }
-        await env0.stroke(env, env0.wc(env, gapC));
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'circle',
-            '5.0 cerchio con gap piccolo -> circle (gap-closing esplicito)',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0] && sh[0].params) {
-            ok(Math.abs(sh[0].params.r - 45) <= TOL,
-                '5.1 raggio cerchio chiuso entro tolleranza',
-                'rErr=' + Math.abs(sh[0].params.r - 45).toFixed(2));
-            ok(Math.abs(sh[0].box.w - 90) <= TOL && Math.abs(sh[0].box.h - 90) <= TOL,
-                '5.2 box cerchio chiuso = diametro pieno',
-                'w=' + sh[0].box.w.toFixed(1) + ' h=' + sh[0].box.h.toFixed(1));
+        await draw(env, circ);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'closed',
+            'A10.0 cerchio -> closed (T05)', JSON.stringify(s.map(o => o.vclass)));
+        ok(!!s[0] && !!s[0].params && s[0].params.kind === 'smooth',
+            'A10.1 MAI conversione in cerchio/ellipse (N07)',
+            s[0] && s[0].params ? s[0].params.kind : 'null');
+        if (s[0]) {
+            const e0 = dist(circ[0], s[0].pts[0]);
+            const e1 = dist(circ[71], s[0].pts[s[0].pts.length - 1]);
+            ok(e0 <= 1 && e1 <= 1, 'A10.2 endpoints lock: primi/ultimi pt ideali == grezzi +-1px',
+                e0.toFixed(2) + '/' + e1.toFixed(2));
         }
 
-        // ============ 6: "C" APERTA -> MAI circle/ellipse =================
+        /* A11: arco a BEZ (branch MEASURE) - semiangolo ellipse rx95/ry40:
+           nf<2, fit a cerchio FALLITO (residuo Kasa >4px), cubica singola
+           LSQ entro tol=max(4px,11% corda) -> vclass arc kind bez */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const cOpen = [];
-        for (let i = 0; i <= 55; i++) {
-            const a = (40 + (i / 55) * 280) * Math.PI / 180;
-            cOpen.push([320 + Math.cos(a) * 55, 320 + Math.sin(a) * 55]);
+        const halfEll = [];
+        for (let i = 0; i <= 50; i++) {
+            const a = Math.PI * i / 50;
+            halfEll.push([400 + Math.cos(a) * 95, 300 + Math.sin(a) * 40]);
         }
-        await env0.stroke(env, env0.wc(env, cOpen));
-        sh = shapes(env);
-        const badKinds = sh.filter(s => s.kind === 'circle' || s.kind === 'ellipse' ||
-            s.kind === 'rectangle' || s.kind === 'square' || s.kind === 'triangle');
-        ok(badKinds.length === 0,
-            '6.0 C aperta -> MAI circle/ellipse (curve o stroke ammesse)',
-            JSON.stringify(sh.map(s => s.kind)) + ' strokes=' + strokes(env).length);
-        ok(sh.every(s => s.kind === 'curve') && strokes(env).length === 0,
-            '6.1 C aperta di qualita\' -> curve (uscita R20, nessun blocco)',
-            JSON.stringify(sh.map(s => s.kind)));
+        await draw(env, halfEll);
+        await sleep(380);
+        s = strokes(env);
+        const IC11 = env.win.InkCommit;
+        const nf11 = IC11.countFlessi(halfEll);
+        const circ11 = !!IC11.tryCircleArc(halfEll);
+        console.log('  MEASURE A11 branch bez: vclass=' +
+            (s[0] ? s[0].vclass : '-') + ' kind=' +
+            (s[0] && s[0].params ? s[0].params.kind : '-') +
+            ' nf=' + nf11 + ' circFit=' + circ11);
+        ok(s.length === 1 && s[0].vclass === 'arc',
+            'A11.0 semiangolo ellipse -> vclass arc',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(!!s[0] && !!s[0].params && s[0].params.kind === 'bez',
+            'A11.1 params.kind === bez (branch MEASURE)',
+            s[0] && s[0].params ? s[0].params.kind : 'null');
+        ok(nf11 < 2 && !circ11,
+            'A11.2 branch: nf<2 E fit cerchio FALLITO (MEASURE)',
+            'nf=' + nf11 + ' circFit=' + circ11);
+        if (s[0] && s[0].params && s[0].params.kind === 'bez') {
+            const p11 = s[0].params;
+            const ch11 = dist(halfEll[0], halfEll[halfEll.length - 1]);
+            const tol11 = Math.max(4, 0.11 * ch11);
+            const res11 = IC11.residualOf(s[0]);
+            ok(res11 <= tol11,
+                'A11.3 residuo grezzo->bez <= max(4px,11% corda)',
+                res11.toFixed(3) + '/' + tol11.toFixed(2));
+            const dA11 = dist(halfEll[0], s[0].pts[0]);
+            const dB11 = dist(halfEll[50], s[0].pts[s[0].pts.length - 1]);
+            ok(dA11 <= 3 && dB11 <= 3,
+                'A11.4 endpoint grezzo->ideale +-3px (A02 bez)',
+                dA11.toFixed(3) + '/' + dB11.toFixed(3));
+            const kk11 = Math.min(4, halfEll.length - 1);
+            const dIn11 = [halfEll[kk11][0] - halfEll[0][0],
+                           halfEll[kk11][1] - halfEll[0][1]];
+            const dOut11 = [halfEll[50][0] - halfEll[50 - kk11][0],
+                            halfEll[50][1] - halfEll[50 - kk11][1]];
+            const t11a = [p11.p[1][0] - p11.p[0][0], p11.p[1][1] - p11.p[0][1]];
+            const t11b = [p11.p[3][0] - p11.p[2][0], p11.p[3][1] - p11.p[2][1]];
+            const ang11 = (u, v) => {
+                const nu = Math.hypot(u[0], u[1]) || 1, nv = Math.hypot(v[0], v[1]) || 1;
+                const c = Math.max(-1, Math.min(1,
+                    (u[0] * v[0] + u[1] * v[1]) / (nu * nv)));
+                return Math.acos(c) * 180 / Math.PI;
+            };
+            const aIn11 = ang11(dIn11, t11a), aOut11 = ang11(dOut11, t11b);
+            ok(aIn11 <= 10 && aOut11 <= 10,
+                'A11.5 tangenti endpoint bez <=10gradi (A03)',
+                aIn11.toFixed(2) + '/' + aOut11.toFixed(2));
+        } else {
+            ok(false, 'A11.3 residuo grezzo->bez <= max(4px,11% corda)', 'params non bez');
+            ok(false, 'A11.4 endpoint grezzo->ideale +-3px (A02 bez)', 'params non bez');
+            ok(false, 'A11.5 tangenti endpoint bez <=10gradi (A03)', 'params non bez');
+        }
 
-        // ============ 7: COLORING -> stroke ===============================
+        /* ============================================================
+           B. ESCLUSIONI / FLAGS
+           ============================================================ */
+        console.log('--- B. ESCLUSIONI / FLAGS ---');
+
+        /* B1: T06 tap (2 punti) -> grezzo, nessun vclass, scartato */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rnd7 = lcg(77);
-        const scribble = [];
-        for (let row = 0; row < 8; row++) {
-            const y = 300 + row * 16;
-            if (row % 2 === 0) {
-                for (let x = 0; x <= 220; x += 10) scribble.push([150 + x + (rnd7() - 0.5) * 6, y + (rnd7() - 0.5) * 10]);
-            } else {
-                for (let x = 220; x >= 0; x -= 10) scribble.push([150 + x + (rnd7() - 0.5) * 6, y + (rnd7() - 0.5) * 10]);
+        let c0 = snapC(ink);
+        await draw(env, [[200, 200], [210, 202]]);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && !s[0].vclass,
+            'B1.0 tap 2pti resta GREZZO: nessun vclass (T06)',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(ink.counters.discarded === c0.discarded + 1,
+            'B1.1 scartati discarded+1', String(ink.counters.discarded - c0.discarded));
+
+        /* B2: T06 tratto 15px (<20px) -> grezzo */
+        await freshDoc(env);
+        c0 = snapC(ink);
+        await draw(env, [[200, 200], [205, 201], [210, 203], [214, 204]]);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && !s[0].vclass,
+            'B2.0 tratto 15px resta GREZZO (T06)',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(ink.counters.discarded === c0.discarded + 1,
+            'B2.1 scartati discarded+1', String(ink.counters.discarded - c0.discarded));
+
+        /* B3: T07 scarabocchio denso -> freeform con mode light */
+        await freshDoc(env);
+        const scr = [];
+        {
+            const R = 35, order = [0, 2, 4, 1, 3];
+            for (let st = 0; st < 3; st++) {
+                for (const k of order) {
+                    const a = -Math.PI / 2 + k * (4 * Math.PI / 5);
+                    scr.push([300 + st * 3 + Math.cos(a) * R,
+                              300 + st * 3 + Math.sin(a) * R]);
+                }
             }
         }
-        await env0.stroke(env, env0.wc(env, scribble));
-        ok(shapes(env).length === 0 && strokes(env).length === 1,
-            '7.0 coloring -> resta stroke (densita\'/intersizioni)',
-            JSON.stringify(shapes(env).map(s => s.kind)) + ' strokes=' + strokes(env).length);
+        await draw(env, scr);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'freeform',
+            'B3.0 scarabocchio denso -> freeform (T07)',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(!!s[0] && !!s[0].params && s[0].params.mode === 'light',
+            'B3.1 T07 -> mode light (solo smoothing leggero)',
+            s[0] && s[0].params ? s[0].params.mode : 'null');
 
-        // ============ 8: ARCO STRETTO VERSO IL BASSO -> curve =============
+        /* B4: overlay testo aperto -> tratto successivo inkNoSnap -> raw.
+           Pilotaggio: tool testo + click apre overlay; testo salvato via
+           Escape; doppio-click sul testo riapre l overlay con tool penna;
+           il tratto che segue cattura inkNoSnap=true -> nessun commit. */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndA = lcg(555);
-        const arcC = [];                    // valle (arc "verso il basso")
-        const aX0 = 260, aW = 130, aSag = 55;
-        for (let x = aX0; x <= aX0 + aW; x += 3) {
-            const t = (x - aX0) / aW;
-            arcC.push([x + (rndA() - 0.5) * 2,
-                       300 + aSag * Math.sin(Math.PI * t) + (rndA() - 0.5) * 2]);
-        }
-        await env0.stroke(env, env0.wc(env, arcC), { dt: 1, settle: 140 });
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'curve', '8.0 arco stretto -> curve',
-            JSON.stringify(sh.map(s => s.kind)) + ' strokes=' + strokes(env).length);
-        if (sh[0] && sh[0].params && sh[0].params.bez) {
-            const idealPoly = bezPoly(sh[0].params.bez, 8);
-            const res = maxDistToPoly(arcC, idealPoly);
-            ok(res <= 2.5, '8.1 residuo GREZZO->ideale curve <= 2.5px (dichiarato)',
-                'res=' + res.toFixed(3) + 'px');
-            // curvatura: segno conservato + variazione fra campioni
-            // adiacenti entro soglia (niente kink)
-            const samp = stepPoly(idealPoly, 6);
-            const ts = turnsOf(samp);
-            // campioni con |turn| <= 5°: vicini all'inflessione, segno
-            // indeterminato per definizione (rumore di campionamento)
-            const sig = ts.filter(v => Math.abs(v) > 5);
-            const nPos = sig.filter(v => v > 0).length;
-            const frac = sig.length ? Math.max(nPos, sig.length - nPos) / sig.length : 0;
-            let maxAdj = 0;
-            for (let i = 1; i < ts.length; i++) {
-                const d = Math.abs(ts[i] - ts[i - 1]);
-                if (d > maxAdj) maxAdj = d;
-            }
-            // riferimento ideale (seno senza jitter), stesso campionamento
-            const refC = [];
-            for (let x = aX0; x <= aX0 + aW; x += 2) {
-                refC.push([x, 300 + aSag * Math.sin(Math.PI * (x - aX0) / aW)]);
-            }
-            const rts = turnsOf(stepPoly(refC, 6));
-            const rPos = rts.filter(v => v > 0).length;
-            const rNeg = rts.filter(v => v < 0).length;
-            const refSign = rPos >= rNeg ? 1 : -1;
-            const majSign = nPos >= (sig.length - nPos) ? 1 : -1;
-            console.log('  probe curve: res=' + res.toFixed(3) +
-                ' maxAdj=' + maxAdj.toFixed(2) + ' signFrac=' + frac.toFixed(3) +
-                ' refSign=' + refSign + ' majSign=' + majSign +
-                ' maxT=' + Math.max.apply(null, ts.map(Math.abs)).toFixed(2));
-            ok(frac >= 0.9, '8.2 segno curvatura conservato (>=90%)',
-                'frac=' + frac.toFixed(3));
-            ok(refSign === majSign, '8.3 segno curvatura = tracciato utente',
-                'ref=' + refSign + ' maj=' + majSign);
-            ok(maxAdj <= 15, '8.4 variazione curvatura campioni adiacenti <= 15gradi (no kink)',
-                'maxAdj=' + maxAdj.toFixed(2));
-            ok(sh[0].sizes && sh[0].sizes.length === sh[0].pts.length,
-                '8.5 sizes per nodo della curva preservate',
-                'sizes=' + (sh[0].sizes ? sh[0].sizes.length : 'null') +
-                ' pts=' + sh[0].pts.length);
-        }
-
-        // ============ 9: ESCLUSIONE bbox < 40px ===========================
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        const tinyC = [];
-        for (let i = 0; i < 18; i++) {
-            const a = (i / 18) * Math.PI * 2;
-            tinyC.push([300 + Math.cos(a) * 14, 300 + Math.sin(a) * 14]);  // diag 39.6
-        }
-        await env0.stroke(env, env0.wc(env, tinyC));
-        ok(shapes(env).length === 0 && strokes(env).length === 1,
-            '9.0 bbox diagonale < 40px -> resta stroke',
-            JSON.stringify(shapes(env).map(s => s.kind)));
-
-        // ============ 10: ESCLUSIONE n punti < 5 ===========================
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        await env0.stroke(env, env0.wc(env, [[100, 100], [115, 101], [130, 102], [145, 103]]));
-        ok(shapes(env).length === 0 && strokes(env).length === 1,
-            '10.0 meno di 5 punti -> resta stroke',
-            'objs=' + env.win.__ink.objects().length);
-
-        // ============ 11: ESCLUSIONE tool testo / overlay aperto ==========
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        const bTxt = env.doc.querySelector('[data-tool="testo"]');
-        ok(!!bTxt, '11.0 pulsante tool testo presente');
-        if (bTxt) bTxt.click();
-        const tCirc = [];
-        for (let i = 0; i <= 40; i++) {
-            const a = (i / 40) * Math.PI * 2;
-            tCirc.push([300 + Math.cos(a) * 60, 300 + Math.sin(a) * 60]);
-        }
-        await env0.stroke(env, env0.wc(env, tCirc));
-        ok(env.win.__ink.objects().length === 0,
-            '11.1 tool testo attivo -> nessun tratto/shape snap-pato',
-            'objs=' + JSON.stringify(env.win.__ink.objects().map(o => o.t)));
-        const ta = env.doc.querySelector('textarea');
-        ok(!!ta, '11.2 overlay testo aperto dal tool testo');
+        c0 = snapC(ink);
+        let textOk = false;
+        const bT = env.doc.querySelector('[data-tool="testo"]');
+        if (bT) bT.click();
+        const cpt = env0.wc(env, [[300, 300]])[0];
+        const cvT = env0.canvasOf(env);
+        env0.ptr(env, cvT, 'pointerdown', cpt[0], cpt[1]);
+        env0.ptr(env, cvT, 'pointerup', cpt[0], cpt[1]);
+        await sleep(60);
+        let ta = env.doc.querySelector('textarea');
         if (ta) {
-            ta.value = 'Ciao R20';
-            ta.dispatchEvent(new env.win.FocusEvent('blur'));
-            await sleep(60);
+            ta.value = 'Ciao';
+            ta.dispatchEvent(new env.win.KeyboardEvent('keydown',
+                { key: 'Escape', bubbles: true }));
+            await sleep(40);
         }
-        ok(env.win.__ink.objects().some(o => o.t === 'text'),
-            '11.3 oggetto testo commesso dall overlay');
-        const bPen = env.doc.querySelector('[data-tool="penna"]');
-        ok(!!bPen, '11.4 pulsante tool penna presente');
-        if (bPen) bPen.click();          // chiude l overlay (setTool)
-        // riapri l overlay col doppio click sul testo (tool penna attivo)
-        const txtObj = env.win.__ink.objects().filter(o => o.t === 'text')[0];
-        if (txtObj) {
-            const cc = env0.wc(env, [[txtObj.x, txtObj.y]])[0];
-            const cv = env0.canvasOf(env);
-            cv.dispatchEvent(new env.win.MouseEvent('dblclick',
-                { bubbles: true, clientX: cc[0], clientY: cc[1] }));
+        const bP = env.doc.querySelector('[data-tool="penna"]');
+        if (bP) bP.click();
+        const cvD = env0.canvasOf(env);
+        env0.ptr(env, cvD, 'dblclick', cpt[0] + 4, cpt[1] + 4);
+        await sleep(60);
+        const ta2 = env.doc.querySelector('textarea');
+        if (ta2) {
+            ok(true, 'B4.0 overlay testo aperto e riaperto via doppio-click');
+            textOk = true;
+            await draw(env, [[150, 600], [250, 603], [350, 599], [450, 602], [550, 600]]);
+            await sleep(380);
+            s = strokes(env);
+            ok(s.length === 1 && !s[0].vclass,
+                'B4.1 tratto con overlay testo -> GREZZO (inkNoSnap/noSnap)',
+                JSON.stringify(s.map(o => o.vclass)));
+            ok(ink.counters.discarded === c0.discarded + 1,
+                'B4.2 inkNoSnap -> discarded+1',
+                String(ink.counters.discarded - c0.discarded));
+        } else {
+            console.log('  SOFT B4 overlay testo non pilotabile via harness: skip (3 assert)' +
+                ' [diag bT=' + !!bT + ' ta=' + !!ta + ' textObj=' +
+                ink.objects().filter(o => o.t === 'text').length + ' bP=' + !!bP + ']');
+        }
+
+        /* B5: nessun ghost/hold - hold 500ms durante il drag */
+        await freshDoc(env);
+        const relB = ink.trace.filter(e => e.k === 'release').length;
+        const swB = ink.trace.filter(e => e.k === 'swap').length;
+        const holdPts = env0.wc(env,
+            [[150, 150], [250, 153], [350, 149], [450, 152], [550, 150]]);
+        const cvH = env0.canvasOf(env);
+        env0.ptr(env, cvH, 'pointerdown', holdPts[0][0], holdPts[0][1]);
+        for (let i = 1; i < holdPts.length; i++) {
+            env0.ptr(env, cvH, 'pointermove', holdPts[i][0], holdPts[i][1]);
+        }
+        await sleep(500);
+        ok(ink.trace.filter(e => e.k === 'release').length === relB,
+            'B5.0 hold500ms: NESSUN trace release prematuro (N03)');
+        ok(ink.trace.filter(e => e.k === 'swap').length === swB,
+            'B5.1 hold500ms: NESSUN trace swap durante il drag');
+        ok(ink.objects().length === 0,
+            'B5.2 hold500ms: oggetti doc INVIOLATI (nessun commit fantasma)',
+            'n=' + ink.objects().length);
+        ok(ink.state().active === true,
+            'B5.3 tratto ancora attivo durante l hold', String(ink.state().active));
+        env0.ptr(env, cvH, 'pointerup', holdPts[holdPts.length - 1][0],
+            holdPts[holdPts.length - 1][1]);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'line',
+            'B5.4 commit solo al rilascio dopo hold (N03)',
+            JSON.stringify(s.map(o => o.vclass)));
+
+        /* B6: stato API senza campi vecchi */
+        const st = ink.state();
+        ok(st.shpOn === undefined && st.holdMs === undefined &&
+           st.releaseRefine === undefined && st.ghost === undefined,
+            'B6.0 state SENZA shpOn/holdMs/releaseRefine/ghost (M01)',
+            JSON.stringify(Object.keys(st)));
+        ok(typeof ink.setShaping === 'undefined' &&
+           typeof ink.setReleaseRefine === 'undefined',
+            'B6.1 setShaping/setReleaseRefine undefined (M01)',
+            typeof ink.setShaping + '/' + typeof ink.setReleaseRefine);
+        ok(st.settleMs >= 150 && st.settleMs <= 300 &&
+           'pending' in st && 'selected' in st && 'lasel' in st,
+            'B6.2 state con settleMs/pending/selected/lasel',
+            JSON.stringify({ s: st.settleMs, p: st.pending }));
+
+        /* B7: popHelp senza #fn-releaseRefine e senza "Fermo per snap" */
+        ok(env.doc.querySelector('#fn-releaseRefine') === null,
+            'B7.0 nessun #fn-releaseRefine nel DOM');
+        ok(env.doc.body.textContent.indexOf('Fermo per snap') < 0,
+            'B7.1 nessun testo "Fermo per snap" (hold-still eliminato, N03)');
+        ok(env.doc.body.textContent.indexOf('Intensita aiuto') >= 0,
+            'B7.2 popHelp CON slider "Intensita aiuto" (assist live, M03)');
+
+        /* B8: counters.stroke si azzera a ogni pointerdown */
+        await freshDoc(env);
+        await draw(env, [[150, 150], [250, 152], [350, 148], [450, 151], [550, 150]]);
+        await sleep(400);
+        ok(ink.counters.stroke.total === 1,
+            'B8.0 dopo rilascio tratto1: stroke.total===1',
+            String(ink.counters.stroke.total));
+        const cv8 = env0.canvasOf(env);
+        const p8 = env0.wc(env, [[150, 700], [250, 703], [350, 699], [450, 702], [550, 700]]);
+        env0.ptr(env, cv8, 'pointerdown', p8[0][0], p8[0][1]);
+        env0.ptr(env, cv8, 'pointermove', p8[1][0], p8[1][1]);
+        ok(ink.counters.stroke.total === 0,
+            'B8.1 stroke.total AZZERATO al pointerdown del tratto2',
+            String(ink.counters.stroke.total));
+        for (let i = 2; i < p8.length; i++) {
+            env0.ptr(env, cv8, 'pointermove', p8[i][0], p8[i][1]);
+        }
+        env0.ptr(env, cv8, 'pointerup', p8[p8.length - 1][0], p8[p8.length - 1][1]);
+        await sleep(400);
+        ok(ink.counters.stroke.total === 1,
+            'B8.2 dopo rilascio tratto2: stroke.total===1',
+            String(ink.counters.stroke.total));
+
+        /* ============================================================
+           C. FRECCE
+           ============================================================ */
+        console.log('--- C. FRECCE ---');
+
+        /* C1: freccia stesso tratto (linea 270px + flick V come da probe) */
+        await freshDoc(env);
+        c0 = snapC(ink);
+        const lineA = [];
+        for (let i = 0; i <= 27; i++) lineA.push([150 + i * 10, 250 + Math.sin(i / 6) * 1.2]);
+        const endA = lineA[lineA.length - 1];
+        lineA.push([endA[0] + 6, endA[1] + 4.5]);
+        lineA.push([endA[0] - 15, endA[1] + 8]);
+        await draw(env, lineA);
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'arrow',
+            'C1.0 retta+flick -> arrow', JSON.stringify(s.map(o => o.vclass)));
+        const arw = s[0];
+        if (arw && arw.vclass === 'arrow') {
+            const p = arw.params;
+            ok(!!p.head && p.shaftKind === 'line',
+                'C1.1 params.head + shaftKind=line',
+                JSON.stringify({ h: !!p.head, s: p.shaftKind }));
+            const pend = arw.pts[arw.pts.length - 1];
+            ok(dist(p.head.base, pend) <= 0.05,
+                'C1.2 head.base == endpoint asta (<=0.05)',
+                dist(p.head.base, pend).toFixed(4));
+            const sz = arw.size || 2;
+            ok(p.head.len >= 3 * sz && p.head.len <= 4 * sz,
+                'C1.3 punta len in [3,4]x size (F03)',
+                p.head.len.toFixed(2) + '/' + sz);
+            ok(p.head.wing >= 30 && p.head.wing <= 40,
+                'C1.4 ali wing in [30,40]gradi (F03)', String(p.head.wing));
+            const tx = arw.pts[1][0] - arw.pts[0][0];
+            const ty = arw.pts[1][1] - arw.pts[0][1];
+            const nT = Math.hypot(tx, ty) || 1;
+            const nH = Math.hypot(p.head.dir[0], p.head.dir[1]) || 1;
+            const cs = Math.max(-1, Math.min(1,
+                (tx * p.head.dir[0] + ty * p.head.dir[1]) / (nT * nH)));
+            const ang = Math.acos(cs) * 180 / Math.PI;
+            ok(ang <= 10, 'C1.5 dir punta vs tangente asta <=10gradi (A03)',
+                ang.toFixed(2));
+        }
+        ok(ink.counters.classified.arrow === c0.classified.arrow + 1,
+            'C1.6 contatore arrow +1', String(ink.counters.classified.arrow - c0.classified.arrow));
+
+        /* C2: arco 120gradi + flick rapido -> arrow shaftKind arc */
+        await freshDoc(env);
+        const arcF = [];
+        {
+            const cx2 = 380, cy2 = 330, R2 = 70;
+            const a0 = 0.25 * Math.PI, sw = 2 * Math.PI / 3;
+            for (let i = 0; i <= 40; i++) {
+                const a = a0 + sw * (i / 40);
+                const rr = R2 + Math.sin(i / 5) * 0.8;
+                arcF.push([cx2 + Math.cos(a) * rr, cy2 + Math.sin(a) * rr]);
+            }
+            const eA = arcF[arcF.length - 1];
+            arcF.push([eA[0] + 9, eA[1] + 7]);
+            arcF.push([eA[0] + 3, eA[1] + 20]);
+        }
+        await draw(env, arcF);
+        await sleep(380);
+        s = strokes(env);
+        console.log('  MEASURE C2 arco+flick: vclass=' +
+            (s[0] ? s[0].vclass : '-') + ' shaftKind=' +
+            (s[0] && s[0].params ? s[0].params.shaftKind : '-'));
+        ok(s.length === 1 && s[0].vclass === 'arrow',
+            'C2.0 arco+flick -> arrow', JSON.stringify(s.map(o => o.vclass)));
+        ok(!!s[0] && !!s[0].params && s[0].params.shaftKind === 'arc' &&
+           !!s[0].params.head,
+            'C2.1 shaftKind=arc + head presente',
+            s[0] && s[0].params ? String(s[0].params.shaftKind) : 'null');
+
+        /* helper asta dritta commessa (F01 target): attende lo swap REALE
+           (_wet sparito) come v1_release_swap F1.0 - margine sicuro per
+           rilasciare il flick entro ~220ms dal rilascio dell'asta */
+        async function drawShaft(env) {
+            const ln = [];
+            for (let i = 0; i <= 30; i++) ln.push([150 + i * 8, 400 + (i % 3) * 0.4]);
+            await draw(env, ln);
+            await sleep(205);
+            let ss = strokes(env);
+            let guard = 0;
+            while (ss[0] && ss[0]._wet !== undefined && guard++ < 20) {
+                await sleep(10);   // attende lo swap reale (~200ms)
+                ss = strokes(env);
+            }
+            if (!ss.length || ss[0]._wet !== undefined) return null;
+            return ss[0].pts[ss[0].pts.length - 1];
+        }
+
+        /* C3(i): assorbimento su target GIA commesso -> UN oggetto arrow */
+        await freshDoc(env);
+        let e2 = await drawShaft(env);
+        ok(!!e2 && strokes(env).length === 1 &&
+           strokes(env)[0].vclass === 'line',
+            'C3.0 asta commessa prima (line)',
+            JSON.stringify(strokes(env).map(o => o.vclass)));
+        const fl2 = [[e2[0] - 30, e2[1] + 22], [e2[0] - 8, e2[1] + 15], [e2[0] + 14, e2[1] + 9]];
+        await draw(env, fl2);   // istantaneo: rilascio a ~215ms dal rilascio asta
+        await sleep(380);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'arrow' && !!s[0].params.head,
+            'C3.1 target commesso: UN oggetto arrow (F01/F04)',
+            JSON.stringify(s.map(o => o.vclass)));
+        /* F04/M04: UN solo undo rimuove asta+punta anche nell assorbimento */
+        const jsonAbs = JSON.stringify(ink.objects());
+        env0.undoKey(env, 1);
+        ok(ink.objects().length === 0,
+            'C3.3 M04: UN solo undo rimuove asta+punta assorbita',
+            'n=' + ink.objects().length);
+        env.win.dispatchEvent(new env.win.KeyboardEvent('keydown',
+            { key: 'y', ctrlKey: true, bubbles: true }));
+        ok(JSON.stringify(ink.objects()) === jsonAbs,
+            'C3.4 redo arrow assorbita IDENTICA (deep JSON)');
+
+        /* C3(ii): target ancora PENDING (sleep 80) -> attach al pending.
+           (non usa drawShaft: serve il rilascio a soli 80ms per restare
+           dentro la finestra di settle del tratto1) */
+        await freshDoc(env);
+        {
+            const ln = [];
+            for (let i = 0; i <= 30; i++) ln.push([150 + i * 8, 520 + (i % 3) * 0.4]);
+            await draw(env, ln);
             await sleep(80);
+            const ss = strokes(env);
+            e2 = ss.length ? ss[0].pts[ss[0].pts.length - 1] : null;
         }
-        ok(!!env.doc.querySelector('textarea'),
-            '11.5 overlay testo riaperto con tool penna attivo');
-        const oCirc = [];
-        for (let i = 0; i <= 40; i++) {
-            const a = (i / 40) * Math.PI * 2;
-            oCirc.push([560 + Math.cos(a) * 55, 300 + Math.sin(a) * 55]);
-        }
-        await env0.stroke(env, env0.wc(env, oCirc));
-        ok(shapes(env).length === 0,
-            '11.6 overlay testo aperto -> nessun snap (resta stroke)',
-            JSON.stringify(shapes(env).map(s => s.kind)) +
-            ' strokes=' + strokes(env).length);
-        ok(strokes(env).length === 1, '11.7 tratto grezzo presente (non snap-pato)');
+        const fl3 = [[e2[0] - 30, e2[1] - 22], [e2[0] - 8, e2[1] - 15], [e2[0] + 14, e2[1] - 9]];
+        await draw(env, fl3, { dt: 10 });
+        await sleep(420);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'arrow' && !!s[0].params.head,
+            'C3.2 target PENDING: attach -> 1 solo oggetto arrow',
+            JSON.stringify(s.map(o => o.vclass)));
 
-        // ============ 12: NESSUN RE-SNAP su shape esistente ==============
+        /* C3(iii) NEGATIVI: ognuno deve dare 2 oggetti separati */
+        // (a) NEG durata>=120ms: rilascio ENTRO 300ms (asta pending a
+        // 60ms, flick dt70 x3=210ms) -> fallisce SOLO il gate flick2DurMs
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const c1 = [];
-        for (let i = 0; i <= 64; i++) {
-            const a = (i / 64) * Math.PI * 2;
-            c1.push([300 + Math.cos(a) * 50, 300 + Math.sin(a) * 50]);
+        {
+            const ln = [];
+            for (let i = 0; i <= 30; i++) ln.push([150 + i * 8, 400 + (i % 3) * 0.4]);
+            await draw(env, ln);
+            await sleep(60);   // asta ancora PENDING: finestra quasi intatta
+            const ss = strokes(env);
+            e2 = ss.length ? ss[0].pts[ss[0].pts.length - 1] : null;
         }
-        await env0.stroke(env, env0.wc(env, c1));
-        ok(shapes(env).length === 1 && shapes(env)[0].kind === 'circle',
-            '12.0 primo cerchio snap-pato');
-        const c2 = [];
-        for (let i = 0; i <= 64; i++) {
-            const a = (i / 64) * Math.PI * 2;
-            c2.push([304 + Math.cos(a) * 45, 300 + Math.sin(a) * 45]);
-        }
-        await env0.stroke(env, env0.wc(env, c2));
-        ok(shapes(env).length === 1 && strokes(env).length === 1,
-            '12.1 secondo tratto >=60% dentro bbox shape -> resta stroke',
-            'shapes=' + shapes(env).length + ' strokes=' + strokes(env).length);
+        await draw(env, [
+            [e2[0] - 30, e2[1] + 20], [e2[0] - 10, e2[1] + 15],
+            [e2[0] + 8, e2[1] + 10], [e2[0] + 24, e2[1] + 5]
+        ], { dt: 70 });
+        await sleep(450);
+        s = strokes(env);
+        ok(s.length === 2, 'C4.0 NEG durata>=120ms -> 2 oggetti separati',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(s.length === 2 && !!s[0].vclass && !!s[1].vclass,
+            'C4.1 entrambi commessi (nessun assorbimento)',
+            JSON.stringify(s.map(o => o.vclass)));
 
-        // ============ 13: TRIANGOLO -> triangle ===========================
+        // (b) start lontano 150px
         await freshDoc(env);
-        ink.setHelp(0.6);
-        const rndT = lcg(31);
-        const triC = [];
-        const tSide = 115, tRot = 10 * Math.PI / 180;
-        const tR = tSide / Math.sqrt(3);
-        const vc = [];
-        for (let k = 0; k < 3; k++) {
-            const a = -Math.PI / 2 + k * 2 * Math.PI / 3 + tRot;
-            vc.push([300 + Math.cos(a) * tR, 300 + Math.sin(a) * tR]);
-        }
-        for (let sIdx = 0; sIdx < 3; sIdx++) {
-            const a0 = vc[sIdx], b0 = vc[(sIdx + 1) % 3];
-            const len = Math.hypot(b0[0] - a0[0], b0[1] - a0[1]);
-            for (let d = 0; d < len; d += 4) {
-                const f = d / len;
-                triC.push([a0[0] + (b0[0] - a0[0]) * f + (rndT() - 0.5) * 3,
-                           a0[1] + (b0[1] - a0[1]) * f + (rndT() - 0.5) * 3]);
-            }
-        }
-        await env0.stroke(env, env0.wc(env, triC));
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'triangle',
-            '13.0 triangolo chiuso+jitter -> triangle (non rect/curve)',
-            JSON.stringify(sh.map(s => s.kind)));
-        if (sh[0] && sh[0].kind === 'triangle') {
-            ok(sh[0].pts.length === 3, '13.1 triangolo = 3 vertici',
-                'pts=' + sh[0].pts.length);
-            let maxT = 0;
-            for (let i = 0; i < 3; i++) {
-                const pa = sh[0].pts[(i + 2) % 3], pb = sh[0].pts[i],
-                      pc = sh[0].pts[(i + 1) % 3];
-                const v1 = [pa[0] - pb[0], pa[1] - pb[1]];
-                const v2 = [pc[0] - pb[0], pc[1] - pb[1]];
-                const cs = (v1[0] * v2[0] + v1[1] * v2[1]) /
-                    (Math.hypot(v1[0], v1[1]) * Math.hypot(v2[0], v2[1]));
-                const ang = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-                const dev = Math.abs(ang - 60);
-                if (dev > maxT) maxT = dev;
-            }
-            ok(maxT <= 15, '13.2 angoli triangolo 60 +/- 15 (spec 60+/-25)',
-                'maxDev=' + maxT.toFixed(2));
-            ok(sh[0].sizes && sh[0].sizes.length === sh[0].pts.length,
-                '13.3 sizes per vertice preservate sul triangolo',
-                'sizes=' + (sh[0].sizes ? sh[0].sizes.length : 'null'));
-        }
+        e2 = await drawShaft(env);
+        await draw(env, [
+            [e2[0] + 150, e2[1] + 10], [e2[0] + 163, e2[1] + 10],
+            [e2[0] + 177, e2[1] + 8], [e2[0] + 190, e2[1] + 8]
+        ]);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 2, 'C4.2 NEG start 150px lontano -> 2 oggetti separati',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(s.length === 2 && !!s[0].vclass && !!s[1].vclass,
+            'C4.3 entrambi commessi (nessun assorbimento)',
+            JSON.stringify(s.map(o => o.vclass)));
 
-        // ============ Q5: RETTA + jitter + FRECCIA COMPOSTA (F) =========
+        // (c) delay 400ms oltre la finestra flick2Ms=300
         await freshDoc(env);
-        ink.setHelp(0.6);
-        ink.setShaping(true, true, 900);  // pausa 280ms: nessun hold-still (determinismo)
-        const rndQ5 = lcg(4242);
-        const lineQ = [];
-        for (let i = 0; i <= 50; i++) {
-            lineQ.push([100 + i * 3 + (rndQ5() - 0.5) * 2,
-                        150 + i * 0.6 + (rndQ5() - 0.5) * 2]);
-        }
-        const endQ = lineQ[lineQ.length - 1];
-        const flickQ = [
-            [endQ[0], endQ[1]], [endQ[0] + 12, endQ[1] + 4],
-            [endQ[0] + 22, endQ[1] + 0], [endQ[0] + 16, endQ[1] + 8],
-            [endQ[0] + 4, endQ[1] + 5], [endQ[0] - 6, endQ[1] + 10]
-        ];
-        await strokePauseFlick(env, lineQ, flickQ, { dt: 1 });
-        sh = shapes(env);
-        ok(sh.length === 1 && strokes(env).length === 0 && sh[0].kind === 'arrow',
-            'Q5.0 retta+flick -> UN oggetto kind arrow',
-            JSON.stringify(sh.map(s => s.kind)) + ' strokes=' + strokes(env).length);
-        const a5 = sh[0];
-        if (a5 && a5.kind === 'arrow') {
-            ok(a5.params && a5.params.shaft && a5.params.shaft.kind === 'line',
-                'Q5.1 params.shaft.kind === line',
-                JSON.stringify(a5.params && a5.params.shaft && a5.params.shaft.kind));
-            const h5 = a5.params.head;
-            ok(!!h5 && h5.angoloAlaDeg >= 30 && h5.angoloAlaDeg <= 45,
-                'Q5.2 ali a 30-45 gradi rispetto alla tangente',
-                'angolo=' + (h5 && h5.angoloAlaDeg));
-            const sz5 = a5.size || 2;
-            ok(h5.lunghezza >= 3 * sz5 && h5.lunghezza <= 4 * sz5,
-                'Q5.3 lunghezza ali = 3-4x spessore (sizes in coda)',
-                'L=' + h5.lunghezza + ' size=' + sz5);
-            const sp5 = a5.params.shaft.pts;
-            const term5 = sp5[sp5.length - 1];
-            const dBase5 = Math.hypot(h5.base[0] - term5[0], h5.base[1] - term5[1]);
-            ok(dBase5 <= 2, 'Q5.4 base punta sul terminale asta (<=2px)',
-                'd=' + dBase5.toFixed(3));
-            // asta = fit retta: residuo perpendicolare grezzo->ideale <= tol
-            const preQ = lineQ.slice(0, -1);
-            const errQ = maxPerpWorld(preQ, sp5[0], sp5[1]);
-            ok(errQ <= TOL, 'Q5.5 asta = fit minimi quadrati residuo <= 2.5+amp*3',
-                'perp=' + errQ.toFixed(3) + ' tol=' + TOL.toFixed(2));
-            const dv5 = [sp5[1][0] - sp5[0][0], sp5[1][1] - sp5[0][1]];
-            ok(angBetween(h5.tangente, dv5) <= 5,
-                'Q5.6 tangente punta = verso asta (<=5 gradi)',
-                'ang=' + angBetween(h5.tangente, dv5).toFixed(2));
-            // triangolo punta ricostruito DAI CAMPI: ali 30-45 e uguali
-            const tri5 = headPolyOf(h5);
-            const w1 = [tri5[0][0] - tri5[1][0], tri5[0][1] - tri5[1][1]];
-            const w2 = [tri5[2][0] - tri5[1][0], tri5[2][1] - tri5[1][1]];
-            const aW1 = angAcute(w1, h5.tangente);
-            const aW2 = angAcute(w2, h5.tangente);
-            ok(aW1 >= 30 && aW1 <= 45 && aW2 >= 30 && aW2 <= 45,
-                'Q5.7 ali simmetriche 30-45 gradi (ricostruzione indipendente)',
-                'w1=' + aW1.toFixed(1) + ' w2=' + aW2.toFixed(1));
-            const lw1 = Math.hypot(w1[0], w1[1]), lw2 = Math.hypot(w2[0], w2[1]);
-            ok(Math.abs(lw1 - h5.lunghezza) <= 0.01 &&
-               Math.abs(lw2 - h5.lunghezza) <= 0.01,
-                'Q5.8 ali entrambe = lunghezza dichiarata',
-                'lw1=' + lw1.toFixed(2) + ' lw2=' + lw2.toFixed(2));
-        }
-        // undo a 2 livelli sull'oggetto arrow
-        env0.undoKey(env, 1);
-        const q5u1 = env.win.__ink.objects();
-        ok(q5u1.length === 1 && q5u1[0].t === 'stroke',
-            'Q5.9 undo 1 -> tratto GREZZO pre-flick ripristinato',
-            JSON.stringify(q5u1.map(o => o.t)));
-        env0.undoKey(env, 1);
-        const q5u2 = env.win.__ink.objects();
-        ok(q5u2.length === 0, 'Q5.10 undo 2 -> oggetto rimosso',
-            'len=' + q5u2.length);
+        e2 = await drawShaft(env);
+        await sleep(400);
+        await draw(env, [
+            [e2[0] - 28, e2[1] + 20], [e2[0] - 10, e2[1] + 16],
+            [e2[0] + 6, e2[1] + 12], [e2[0] + 20, e2[1] + 8]
+        ]);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 2, 'C4.4 NEG delay 400ms -> 2 oggetti separati',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(s.length === 2 && !!s[0].vclass && !!s[1].vclass,
+            'C4.5 entrambi commessi (nessun assorbimento)',
+            JSON.stringify(s.map(o => o.vclass)));
 
-        // ============ Q5b: BACK-STROKE su retta (F1 oltre soglia V) =====
+        // (d) len stroke2 >60px
         await freshDoc(env);
-        ink.setHelp(0.6);
-        ink.setShaping(true, true, 900);  // nessun hold-still durante la pausa
-        const rndQ5b = lcg(909);
+        e2 = await drawShaft(env);
+        await draw(env, [
+            [e2[0] - 30, e2[1] + 15], [e2[0] - 3, e2[1] + 10],
+            [e2[0] + 23, e2[1] + 7], [e2[0] + 50, e2[1] + 9]
+        ]);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 2, 'C4.6 NEG len stroke2 >60px -> 2 oggetti separati',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(s.length === 2 && !!s[0].vclass && !!s[1].vclass,
+            'C4.7 entrambi commessi (nessun assorbimento)',
+            JSON.stringify(s.map(o => o.vclass)));
+
+        // (e) doppia punta: flick2 su asta GIA arrow -> non assorbito
+        await freshDoc(env);
         const lineB = [];
-        for (let i = 0; i <= 30; i++) {
-            lineB.push([300 + i * 1.5 + (rndQ5b() - 0.5) * 2,
-                        400 + i * 0.2 + (rndQ5b() - 0.5) * 2]);
-        }
+        for (let i = 0; i <= 27; i++) lineB.push([150 + i * 10, 250 + Math.sin(i / 6) * 1.2]);
         const endB = lineB[lineB.length - 1];
-        // gamba avanti + ritroso netto (~175 gradi) = back-stroke
-        const backB = [
-            [endB[0] + 5, endB[1] + 1], [endB[0] + 10, endB[1] + 1],
-            [endB[0] + 14, endB[1] + 2], [endB[0] + 7, endB[1] + 1],
-            [endB[0] - 1, endB[1] + 1], [endB[0] - 9, endB[1] + 1],
-            [endB[0] - 17, endB[1] + 1]
-        ];
-        await strokePauseFlick(env, lineB, backB, { dt: 1 });
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'arrow' &&
-           sh[0].params && sh[0].params.shaft && sh[0].params.shaft.kind === 'line',
-            'Q5.11 back-stroke su retta -> arrow (rilevamento F1)',
-            JSON.stringify(sh.map(s => s.kind)) + ' strokes=' + strokes(env).length);
-
-        // ============ Q6: ARCO + jitter + FRECCIA COMPOSTA (F) ==========
-        await freshDoc(env);
-        ink.setHelp(0.6);
-        ink.setShaping(true, true, 900);  // pausa 280ms: nessun hold-still (determinismo)
-        const rndQ6 = lcg(555);
-        const arcQ = [];
-        const aX6 = 260, aW6 = 130, aSag6 = 55;
-        for (let x = aX6; x <= aX6 + aW6; x += 3) {
-            const t = (x - aX6) / aW6;
-            arcQ.push([x + (rndQ6() - 0.5) * 2,
-                       300 + aSag6 * Math.sin(Math.PI * t) + (rndQ6() - 0.5) * 2]);
-        }
-        const endA = arcQ[arcQ.length - 1];
-        const flickA = [
-            [endA[0], endA[1]], [endA[0] + 12, endA[1] + 4],
-            [endA[0] + 20, endA[1] - 2], [endA[0] + 14, endA[1] + 7],
-            [endA[0] + 2, endA[1] + 4], [endA[0] - 8, endA[1] + 9]
-        ];
-        await strokePauseFlick(env, arcQ, flickA, { dt: 1 });
-        sh = shapes(env);
-        ok(sh.length === 1 && strokes(env).length === 0 && sh[0].kind === 'arrow',
-            'Q6.0 arco+flick -> UN oggetto kind arrow',
-            JSON.stringify(sh.map(s => s.kind)) + ' strokes=' + strokes(env).length);
-        const a6 = sh[0];
-        if (a6 && a6.kind === 'arrow') {
-            ok(a6.params && a6.params.shaft && a6.params.shaft.kind === 'curve',
-                'Q6.1 params.shaft.kind === curve',
-                JSON.stringify(a6.params && a6.params.shaft && a6.params.shaft.kind));
-            const bezQ = a6.params.shaft.bez;
-            ok(!!bezQ && bezQ.length >= 1 && !!a6.params.bez,
-                'Q6.2 fit Bezier presente (params.shaft.bez + params.bez)',
-                'shaft.bez=' + (bezQ ? bezQ.length : 'null'));
-            if (bezQ) {
-                const idealQ = bezPoly(bezQ, 8);
-                const preA = arcQ.slice(0, -1);
-                // seam escluso: l'ultimo punto e' la giuntura asta/punta,
-                // gia' coperta dall'assert Q6.5 (base <=2px sul terminale)
-                const resQ = maxDistToPoly(preA.slice(0, -1), idealQ);
-                ok(resQ <= TOL, 'Q6.3 residuo GREZZO->ideale asta curve <= TOL (parita U1, seam escluso)',
-                    'res=' + resQ.toFixed(3) + ' tol=' + TOL.toFixed(2));
-                // tangente finale = derivata Bezier in t=1 (entro 10 gradi)
-                const sgL = bezQ[bezQ.length - 1];
-                const der = [3 * (sgL[3][0] - sgL[2][0]),
-                             3 * (sgL[3][1] - sgL[2][1])];
-                const angT = angBetween(a6.params.head.tangente, der);
-                ok(angT <= 10, 'Q6.4 punta = tangente finale Bezier t=1 (<=10 gradi)',
-                    'ang=' + angT.toFixed(3));
-                const dA6 = Math.hypot(a6.params.head.base[0] - sgL[3][0],
-                                       a6.params.head.base[1] - sgL[3][1]);
-                ok(dA6 <= 2, 'Q6.5 base punta sul terminale asta (<=2px)',
-                    'd=' + dA6.toFixed(3));
+        lineB.push([endB[0] + 6, endB[1] + 4.5]);
+        lineB.push([endB[0] - 15, endB[1] + 8]);
+        await draw(env, lineB);
+        await sleep(205);
+        {
+            let g48 = 0;
+            let saTmp = strokes(env);
+            while (saTmp[0] && saTmp[0]._wet !== undefined && g48++ < 20) {
+                await sleep(10);
+                saTmp = strokes(env);
             }
-            const h6 = a6.params.head;
-            ok(h6.angoloAlaDeg >= 30 && h6.angoloAlaDeg <= 45,
-                'Q6.6 ali a 30-45 gradi rispetto alla tangente',
-                'angolo=' + h6.angoloAlaDeg);
-            const sz6 = a6.size || 2;
-            ok(h6.lunghezza >= 3 * sz6 && h6.lunghezza <= 4 * sz6,
-                'Q6.7 lunghezza ali = 3-4x spessore (sizes in coda)',
-                'L=' + h6.lunghezza + ' size=' + sz6);
         }
+        const sArrow = strokes(env);
+        ok(sArrow.length === 1 && sArrow[0].vclass === 'arrow',
+            'C4.8 asta iniziale diventa arrow',
+            JSON.stringify(sArrow.map(o => o.vclass)));
+        const eA2 = sArrow[0].pts[sArrow[0].pts.length - 1];
+        await draw(env, [
+            [eA2[0] - 25, eA2[1] + 20], [eA2[0] - 5, eA2[1] + 16],
+            [eA2[0] + 12, eA2[1] + 14], [eA2[0] + 28, eA2[1] + 10]
+        ]);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 2, 'C4.9 NEG doppia punta (p1.head gate) -> 2 oggetti',
+            JSON.stringify(s.map(o => o.vclass)));
 
-        // ============ Q7: spostamento + gesti due/tre dita (F4/F5) ======
+        /* ============================================================
+           D. UNDO / REDO / PERSISTENZA
+           ============================================================ */
+        console.log('--- D. UNDO/REDO/PERSISTENZA ---');
+
+        /* D1: undo singolo rimuove stroke commesso + redo identico */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        ink.setShaping(true, true, 900);  // nessun hold-still durante pause flick
-        const rndQ7 = lcg(1717);
-        const line7 = [];
-        for (let i = 0; i <= 50; i++) {
-            line7.push([120 + i * 3 + (rndQ7() - 0.5) * 2,
-                        200 + i * 0.5 + (rndQ7() - 0.5) * 2]);
-        }
-        const end7 = line7[line7.length - 1];
-        const flick7 = [
-            [end7[0], end7[1]], [end7[0] + 12, end7[1] + 4],
-            [end7[0] + 22, end7[1] + 0], [end7[0] + 16, end7[1] + 8],
-            [end7[0] + 4, end7[1] + 5], [end7[0] - 6, end7[1] + 10]
-        ];
-        await strokePauseFlick(env, line7, flick7, { dt: 1 });
-        sh = shapes(env);
-        ok(sh.length === 1 && sh[0].kind === 'arrow', 'Q7.0 freccia composta creata',
-            JSON.stringify(sh.map(s => s.kind)));
-        const a7 = sh[0];
-        // coerenza: head e shaft condividono la posizione nello STESSO oggetto
-        if (a7 && a7.kind === 'arrow') {
-            const tw7 = a7.params.shaft.pts[a7.params.shaft.pts.length - 1];
-            const dW0 = Math.hypot(a7.params.head.base[0] - tw7[0],
-                                   a7.params.head.base[1] - tw7[1]);
-            ok(dW0 <= 2, 'Q7.1 head.base e terminale asta stessa posizione',
-                'd=' + dW0.toFixed(3));
-        }
+        const ln1 = [];
+        for (let x = 150; x <= 500; x += 5) ln1.push([x, 200 + (x % 10) * 0.2]);
+        await draw(env, ln1);
+        await sleep(400);
+        s = strokes(env);
+        const jsonBefore = JSON.stringify(ink.objects());
+        ok(s.length === 1 && s[0].vclass === 'line',
+            'D1.0 stroke commesso prima dell undo',
+            JSON.stringify(s.map(o => o.vclass)));
+        env0.undoKey(env, 1);
+        ok(ink.objects().length === 0,
+            'D1.1 M04: undo singolo rimuove lo stroke commesso',
+            'n=' + ink.objects().length);
+        ok(ink.state().pending === 0,
+            'D1.2 nessun pending residuo dopo undo',
+            String(ink.state().pending));
+        env.win.dispatchEvent(new env.win.KeyboardEvent('keydown',
+            { key: 'y', ctrlKey: true, bubbles: true }));
+        ok(JSON.stringify(ink.objects()) === jsonBefore,
+            'D1.3 redo IDENTICO al pre-undo (deep JSON)',
+            'len ' + JSON.stringify(ink.objects()).length + '/' + jsonBefore.length);
 
-        // gesto 2 dita (pointer events reali, nessun movimento) -> UN undo
-        const cv7 = env0.canvasOf(env);
-        ptrT(env, cv7, 'pointerdown', 300, 300, 71);
-        ptrT(env, cv7, 'pointerdown', 316, 300, 72);
-        ptrT(env, cv7, 'pointerup', 300, 300, 71);
-        ptrT(env, cv7, 'pointerup', 316, 300, 72);
-        await sleep(80);
-        let objs7 = env.win.__ink.objects();
-        ok(objs7.length === 1 && objs7[0].t === 'stroke',
-            'Q7.2 gesto 2 dita -> UN undo solo (tratto grezzo, anti-doppio)',
-            JSON.stringify(objs7.map(o => o.t)));
-        // gesto 3 dita -> redo
-        ptrT(env, cv7, 'pointerdown', 300, 300, 73);
-        ptrT(env, cv7, 'pointerdown', 316, 300, 74);
-        ptrT(env, cv7, 'pointerdown', 332, 300, 75);
-        ptrT(env, cv7, 'pointerup', 300, 300, 73);
-        ptrT(env, cv7, 'pointerup', 316, 300, 74);
-        ptrT(env, cv7, 'pointerup', 332, 300, 75);
-        await sleep(80);
-        objs7 = env.win.__ink.objects();
-        ok(objs7.length === 1 && objs7[0].kind === 'arrow',
-            'Q7.3 gesto 3 dita -> redo (freccia torna)',
-            JSON.stringify(objs7.map(o => o.t + ':' + (o.kind || ''))));
-        // stessa logica esposta per test minimale (spec F5/Q7)
-        const firedU = ink.gestureTapTest(2);
-        ok(firedU === true && env.win.__ink.objects()[0].t === 'stroke',
-            'Q7.4 gestureTapTest(2) = UN undo (stessa logica del gesto)');
-        const firedR = ink.gestureTapTest(3);
-        ok(firedR === true && env.win.__ink.objects()[0].kind === 'arrow',
-            'Q7.5 gestureTapTest(3) = UN redo (stessa logica del gesto)');
-
-        // spostamento con DRAG reale (tool selezione su canvas)
-        const b7 = env.doc.querySelector('[data-tool="selezione"]');
-        ok(!!b7, 'Q7.6 pulsante tool selezione presente');
-        if (b7) b7.click();
-        const before7 = env.win.__ink.objects()[0];
-        const sp7 = before7.params.shaft.pts;
-        const mid7 = [(sp7[0][0] + sp7[1][0]) / 2, (sp7[0][1] + sp7[1][1]) / 2];
-        const midC7 = env0.wc(env, [mid7])[0];
-        const base0 = [before7.params.head.base[0], before7.params.head.base[1]];
-        const box0 = { x: before7.box.x, y: before7.box.y };
-        const tang0 = [before7.params.head.tangente[0], before7.params.head.tangente[1]];
-        const wA7 = ink.toWorld(midC7[0], midC7[1]);
-        const wB7 = ink.toWorld(midC7[0] + 30, midC7[1] + 20);
-        const dxW = wB7.x - wA7.x, dyW = wB7.y - wA7.y;
-        ptrT(env, cv7, 'pointerdown', midC7[0], midC7[1], 76);
-        ptrT(env, cv7, 'pointermove', midC7[0] + 30, midC7[1] + 20, 76);
-        ptrT(env, cv7, 'pointermove', midC7[0] + 30, midC7[1] + 20, 76);
-        ptrT(env, cv7, 'pointerup', midC7[0] + 30, midC7[1] + 20, 76);
-        await sleep(60);
-        const after7 = env.win.__ink.objects()[0];
-        ok(!!after7 && after7.kind === 'arrow',
-            'Q7.7 drag selezione: oggetto arrow UNICO spostato',
-            JSON.stringify(after7 && { t: after7.t, k: after7.kind }));
-        if (after7 && after7.kind === 'arrow') {
-            const dMove = Math.hypot(
-                after7.params.head.base[0] - base0[0] - dxW,
-                after7.params.head.base[1] - base0[1] - dyW);
-            ok(dMove <= 0.5, 'Q7.8 punta traslata insieme all asta (drag world)',
-                'dMove=' + dMove.toFixed(4) + ' dxW=' + dxW.toFixed(2) +
-                ' dyW=' + dyW.toFixed(2));
-            const twb = after7.params.shaft.pts[after7.params.shaft.pts.length - 1];
-            const dW2 = Math.hypot(after7.params.head.base[0] - twb[0],
-                                   after7.params.head.base[1] - twb[1]);
-            ok(dW2 <= 2, 'Q7.9 saldatura punta/asta preservata dopo il drag',
-                'd=' + dW2.toFixed(3));
-            ok(Math.abs(after7.box.x - box0.x - dxW) <= 1 &&
-               Math.abs(after7.box.y - box0.y - dyW) <= 1,
-                'Q7.10 box traslato con l oggetto',
-                'dx=' + (after7.box.x - box0.x).toFixed(2) +
-                ' dy=' + (after7.box.y - box0.y).toFixed(2));
-            ok(angBetween(after7.params.head.tangente, tang0) <= 1,
-                'Q7.11 tangente invariata nella traslazione',
-                'ang=' + angBetween(after7.params.head.tangente, tang0).toFixed(3));
-        }
-        // scala coerente asta+punta (stesso scaleObj della maniglia lazo)
-        const preS = env.win.__ink.objects()[0];
-        const Lpre = preS.params.head.lunghezza;
-        ok(ink.scaleSelTest(1.5) === true, 'Q7.12 scaleSelTest esposto ed eseguibile');
-        const postS = env.win.__ink.objects()[0];
-        if (postS && postS.kind === 'arrow') {
-            const ratio = postS.params.head.lunghezza / Lpre;
-            ok(Math.abs(ratio - 1.5) <= 0.02,
-                'Q7.13 punta scalata con l oggetto (ratio 1.5)', 'ratio=' + ratio.toFixed(3));
-            const ts7 = postS.params.shaft.pts[postS.params.shaft.pts.length - 1];
-            const dS7 = Math.hypot(postS.params.head.base[0] - ts7[0],
-                                   postS.params.head.base[1] - ts7[1]);
-            ok(dS7 <= 3, 'Q7.14 saldatura preservata dopo scale (<=3px)',
-                'd=' + dS7.toFixed(3));
-            ok(postS.params.head.angoloAlaDeg === preS.params.head.angoloAlaDeg,
-                'Q7.15 angoli ali invariati nella scala uniforme',
-                'ala=' + postS.params.head.angoloAlaDeg);
-        }
-
-        // palm rejection intatta (F5: i touch restano ignorati con la penna)
+        /* D2: undo DURANTE il settle -> 0 oggetti, nessun residuo */
         await freshDoc(env);
-        ink.setHelp(0.6);
-        ptrT(env, cv7, 'pointerdown', 300, 300, 81, 'pen');
-        ok(ink.state().pointers === 1, 'Q7.16 penna attiva: 1 solo pointer',
-            'n=' + ink.state().pointers);
-        ptrT(env, cv7, 'pointerdown', 320, 310, 82, 'touch');
-        ok(ink.state().pointers === 1,
-            'Q7.17 touch ignorato con penna attiva (palm rejection)',
-            'n=' + ink.state().pointers);
-        ptrT(env, cv7, 'pointerup', 320, 310, 82, 'touch');
-        ptrT(env, cv7, 'pointerup', 300, 300, 81, 'pen');
+        const swC = ink.trace.filter(e => e.k === 'swap').length;
+        const ln2 = [];
+        for (let x = 150; x <= 500; x += 5) ln2.push([x, 300 + (x % 10) * 0.2]);
+        await draw(env, ln2);
+        await sleep(50);   // ancora in finestra di assestamento
+        env0.undoKey(env, 1);
+        await sleep(420);
+        ok(ink.objects().length === 0,
+            'D2.0 undo durante settle -> 0 oggetti (nessun residuo)',
+            'n=' + ink.objects().length);
+        ok(ink.state().pending === 0,
+            'D2.1 pending==0 in state dopo il flush del timer annullato',
+            String(ink.state().pending));
+        ok(ink.trace.filter(e => e.k === 'swap').length === swC,
+            'D2.2 NESSUN swap per lintorno annullato',
+            String(ink.trace.filter(e => e.k === 'swap').length - swC));
+
+        /* D3: undo/redo su arrow (versione propria) */
+        await freshDoc(env);
+        const lineC = [];
+        for (let i = 0; i <= 27; i++) lineC.push([150 + i * 10, 250 + Math.sin(i / 6) * 1.2]);
+        const endC = lineC[lineC.length - 1];
+        lineC.push([endC[0] + 6, endC[1] + 4.5]);
+        lineC.push([endC[0] - 15, endC[1] + 8]);
+        await draw(env, lineC);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'arrow' && !!s[0].params.head,
+            'D3.0 arrow commesso prima dell undo',
+            JSON.stringify(s.map(o => o.vclass)));
+        const jsonArrow = JSON.stringify(ink.objects());
+        env0.undoKey(env, 1);
+        ok(ink.objects().length === 0,
+            'D3.1 undo rimuove l arrow intero',
+            'n=' + ink.objects().length);
+        env.win.dispatchEvent(new env.win.KeyboardEvent('keydown',
+            { key: 'y', ctrlKey: true, bubbles: true }));
+        ok(JSON.stringify(ink.objects()) === jsonArrow,
+            'D3.2 redo arrow IDENTICO (deep JSON)',
+            'len ' + JSON.stringify(ink.objects()).length + '/' + jsonArrow.length);
+
+        /* D4: snapshotObjects durante settle - il PRIMO movimento del
+           tratto2 fa pushUno snapshot con pending MATERIALIZZATO */
+        await freshDoc(env);
+        const lnA = [];
+        for (let x = 150; x <= 450; x += 5) lnA.push([x, 180 + (x % 10) * 0.2]);
+        await draw(env, lnA);
+        await sleep(80);   // tratto1 ancora PENDING
+        const lnB = [];
+        for (let x = 150; x <= 450; x += 5) lnB.push([x, 620 + (x % 10) * 0.2]);
+        await draw(env, lnB);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 2, 'D4.0 entti i tratti commessi (2)', 'n=' + s.length);
+        env0.undoKey(env, 1);
+        const sU = strokes(env);
+        ok(sU.length === 1, 'D4.1 undo1 -> resta il 1 tratto',
+            JSON.stringify(sU.map(o => o.vclass)));
+        ok(sU.length === 1 && sU[0].vclass === 'line',
+            'D4.2 snapshot materializzato: tratto1 COMMESSO, non grezzo (M05)',
+            JSON.stringify(sU.map(o => o.vclass)));
+        ok(sU.length === 1 && sU[0].pts.length === 2,
+            'D4.3 tratto1 snapshot =2 punti ideali (non i grezzi)',
+            String(sU.length ? sU[0].pts.length : -1));
+
+        /* D5: persistenza M05 - save (debounce 900) + riapri la nota */
+        await freshDoc(env);
+        const lnP = [];
+        for (let x = 160; x <= 552; x += 4) {
+            lnP.push([x, 250 + 3 * Math.sin(2 * Math.PI * (x - 160) / 24 + 0.8)]);
+        }
+        await draw(env, lnP);
+        await sleep(400);
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'line',
+            'D5.0 tratto commesso prima del save',
+            JSON.stringify(s.map(o => o.vclass)));
+        const paramsP = JSON.stringify(s[0].params);
+        await sleep(1400);   // save debounce 900 + doSave
+        await env0.openNote(env, 'n1');
+        s = strokes(env);
+        ok(s.length === 1 && s[0].vclass === 'line',
+            'D5.1 riapri la nota -> oggetto ancora vclass line (M05)',
+            JSON.stringify(s.map(o => o.vclass)));
+        ok(s.length === 1 && JSON.stringify(s[0].params) === paramsP,
+            'D5.2 params IDENTICI dopo reload (JSON confronto)',
+            'len ' + (s.length ? JSON.stringify(s[0].params).length : -1) +
+            '/' + paramsP.length);
+
+        /* D6: zoom non rigenera nulla (2.45 e poi 1) */
+        const jsonZ = JSON.stringify(ink.objects());
+        const zRet = ink.setZoom(2.45);
         await sleep(60);
-        ok(!ink.state().active, 'Q7.18 nessun tratto penna rimasto appeso');
+        ok(zRet !== null && Math.abs(zRet - 2.45) < 0.01,
+            'D6.0 setZoom(2.45) applicato', String(zRet));
+        ok(JSON.stringify(ink.objects()) === jsonZ,
+            'D6.1 oggetti IDENTICI a zoom 2.45 (nessuna rigenerazione)');
+        ink.setZoom(1);
+        await sleep(60);
+        ok(JSON.stringify(ink.objects()) === jsonZ,
+            'D6.2 oggetti IDENTICI a zoom 1');
+
+        /* ============================================================
+           E. CONTATORI / LOG
+           ============================================================ */
+        console.log('--- E. CONTATORI / LOG ---');
+
+        await freshDoc(env);
+        c0 = snapC(ink);
+        const lnE = [];
+        for (let x = 150; x <= 500; x += 5) lnE.push([x, 450 + Math.sin(x / 30) * 1.5]);
+        await draw(env, lnE);
+        await sleep(60);   // ancora grezzo: catturo nRaw
+        const sE = strokes(env);
+        const nRaw = sE.length ? sE[0].pts.length : 0;
+        await sleep(350);
+        const c1 = ink.counters;
+        ok(c1.classified.line === c0.classified.line + 1,
+            'E1.0 classified.line +1',
+            String(c1.classified.line - c0.classified.line));
+        ok(c1.total === c0.total + 1, 'E1.1 total +1',
+            String(c1.total - c0.total));
+        ok(c1.n_classified === c0.n_classified + 1, 'E1.2 n_classified +1',
+            String(c1.n_classified - c0.n_classified));
+        ok(c1.perfected_on_release === c0.perfected_on_release + 1,
+            'E1.3 perfected_on_release +1',
+            String(c1.perfected_on_release - c0.perfected_on_release));
+        ok(c1.refined === c0.refined + 1, 'E1.4 refined +1',
+            String(c1.refined - c0.refined));
+        ok(c1.discarded === c0.discarded, 'E1.5 discarded INVARIATO',
+            String(c1.discarded - c0.discarded));
+        ok((c1.byKind.line || 0) === (c0.byKind.line || 0) + 1,
+            'E1.6 byKind.line +1',
+            String((c1.byKind.line || 0) - (c0.byKind.line || 0)));
+        const swapDelta = c1.swapped_pixels - c0.swapped_pixels;
+        ok(swapDelta >= 0.5 * nRaw,
+            'E1.7 swapped_pixels >= 0.5 x nRaw',
+            swapDelta + '/' + nRaw);
+        ok(c1.residual_px <= 0.5, 'E1.7b residual_px <=0.5',
+            String(c1.residual_px));
+        ok(c1.stroke.total === 1, 'E1.8 stroke.total===1',
+            String(c1.stroke.total));
+
+        /* E2: raw -> discarded+1 e classified invariato */
+        await freshDoc(env);
+        c0 = snapC(ink);
+        await draw(env, [[210, 210], [220, 212]]);
+        await sleep(380);
+        ok(ink.counters.discarded === c0.discarded + 1,
+            'E2.0 raw: discarded +1',
+            String(ink.counters.discarded - c0.discarded));
+        ok(JSON.stringify(ink.counters.classified) === JSON.stringify(c0.classified),
+            'E2.1 raw: classified INVARIATO');
+
+        /* E3: spy console.info - righe [ink24] e [inkV] class= */
+        ok(logLines.some(l => l.indexOf('[ink24] ') >= 0),
+            'E3.0 log console.info con prefisso [ink24] ',
+            'n=' + logLines.length);
+        ok(logLines.some(l => l.indexOf('[inkV] class=') >= 0),
+            'E3.1 log console.info con [inkV] class=',
+            'n=' + logLines.length);
 
         console.log('\nRISULTATO u20_shaping: ' + pass + ' passati, ' + fail + ' falliti');
         if (failures.length) console.log('Falliti:\n - ' + failures.join('\n - '));

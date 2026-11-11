@@ -403,7 +403,11 @@ function p5_sweep() {
     /* Round 9+: le nuove voci si appendono IN CIMA allo storico, quindi la voce
        round 2 non e' piu' in riga 1 ma deve restare presente e prima di ROUND 3. */
     const r2line = modLines.findIndex(l => /# MODIFICHE.*round 2/i.test(l));
-    ok(r2line >= 0 && r2line < modLines.findIndex(l => /# ROUND 3/i.test(l)),
+    /* ALLINEAMENTO R31: regex ANCORATA a inizio riga — la versione
+       senza ^ combaciava "## Round 30" (voce R30 prependuta il 04/11 DOPO
+       l'ultimo T1 del 02/11) e falliva il confronto con la voce round 2.
+       L'intento documentato (riga 404) e' il TITOLO "# ROUND 3". */
+    ok(r2line >= 0 && r2line < modLines.findIndex(l => /^# ROUND 3/i.test(l)),
         'P5 MODIFICHE.md storico preesistente: voce round 2 presente e prima della ROUND 3',
         'linea ' + (r2line + 1) + ': ' + (modLines[r2line] || ''));
     ok(modLines.some(l => /^# ROUND 3/i.test(l)), 'P5 MODIFICHE.md storico: voce ROUND 3 presente');

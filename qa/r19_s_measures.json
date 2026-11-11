@@ -2,7 +2,7 @@
  "method": "node qa_browser/qaS19_routing.js [prima|dopo|all] — Chromium headless (puppeteer) su file://qa_ui/schemi.html; fase PRIMA con request interception su modules/schemi.js (servita la copia baseline qa/r19_schemi_baseline.js); ancore: tabella C1-C11 (4 lati, centri, +2px EDGE_OUT); intersezioni: Liang-Barsky esatto sui segmenti L (eps interiore 0.01, nodi endpoint esclusi) + getPointAtLength(step 1px) per le Q; punta: translate(<polygon>) <= 2px dall'ancora target; ortogonalità: |dx|<=0.6 o |dy|<=0.6 per segmento (Q esentate); struttura: data-caso == caso atteso; C8 bus: orizzontali identici; C11: coppie gapX<32 E gapY<48. Screenshot qa/r19_s_prima_<caso>.png / qa/r19_s_dopo_<caso>.png",
  "prima": {
   "command": "node qa_browser/qaS19_routing.js prima",
-  "timestamp": "2026-11-04T18:59:54.377Z",
+  "timestamp": "2026-11-11T15:26:06.517Z",
   "viewport": "1366x900",
   "totale": {
    "casi": 13,
@@ -811,7 +811,7 @@
  },
  "dopo": {
   "command": "node qa_browser/qaS19_routing.js dopo",
-  "timestamp": "2026-11-04T19:00:04.678Z",
+  "timestamp": "2026-11-11T15:26:15.750Z",
   "viewport": "1366x900",
   "totale": {
    "casi": 13,

@@ -1,51 +1,103 @@
-T1 run 2026-11-02T18:33:12 build=2026-10-27T20:03:00+01:00
+T1 run 2026-11-11T16:19:48 build=2026-11-09T19:30:00+01:00
 
 ===== a14_shaping.test.js (exit=0) =====
-  PASS  0.0 API __ink presente
-  PASS  0.1 default shaping (forme/frecce ON, 350ms)
-  PASS  1.0 linea riconosciuta
-  PASS  1.1 errore geometrico linea <= tolleranza
-  PASS  2.0 cerchio riconosciuto
-  PASS  2.1 raggio cerchio entro tolleranza
-  PASS  2.2 centro cerchio entro tolleranza
-  PASS  3.0 ellisse riconosciuta
-  PASS  3.1 aspect-ratio ellisse corretto (70/30)
-  PASS  4.0 rettangolo riconosciuto
-  PASS  4.1 aspect rettangolo (non scambiato con quadrato)
-  PASS  5.0 quadrato riconosciuto
-  PASS  6.1 primo undo -> tratto GREZZO ripristinato
-  PASS  6.2 secondo undo -> tratto RIMOSSO
-  PASS  6.3 tooltip undo dichiara i due livelli
-  PASS  7.0 linea di riferimento snap
-  PASS  7.1 flick a V -> UN oggetto arrow (asta line + params.head)
-  PASS  7.1b punta saldata sulla fine della linea (base <=2px)
-  PASS  7.1c ali 30-45 gradi, lunghezza 3-4x spessore
-  PASS  7.2 stroke del flick NON aggiunto come oggetto separato
-  PASS  7.3 undo -> torna la linea senza frecce (attach rimosso)
-  PASS  8.0 toggle forme OFF
-  PASS  8.1 toggle OFF: nessun snap, resta stroke
-  PASS  9.0 hold-still >=350ms -> GHOST candidato, nessun commit (R20 U8)
-  PASS  9.1 pointerup conferma il ghost: 1 circle, nessun duplicato
-  PASS  10.0 settings persistiti in localStorage
-  PASS  10.1 settings sopravvivono alla riapertura editor
-  PASS  11.0 pulsante [data-shaping="forme"] ASSENTE in toolbar (A1)
-  PASS  11.1 pulsante [data-shaping="frecce"] ASSENTE in toolbar (A1)
-  PASS  11.2 setShaping(funzione) ancora stabile dopo rimozione pulsanti
-  PASS  11.3 setShaping(false,false) spegne comunque forme/frecce
-  PASS  11.4 snap attivo di default senza alcun pulsante in toolbar
-  PASS  11.5 slider "Fermo per snap" 200-800ms nel popover
-  PASS  12.0 C aperta (280gradi) -> MAI circle/ellipse (curve o stroke)
-  PASS  13.0 coloring/scarabocchio -> NESSUN snap a nessuna forma
-  PASS  14.0 flick su tratto CURVO -> UN oggetto arrow (shaft curve + head)
-PRB14 [{"k":"dbgF","d":{"n":51,"tsN":51,"start":0,"bw":150,"bh":30.6,"r":-1,"bsl":{"s":39,"arc":34.6,"ang":2.5},"r2":-1}},{"k":"dbgf","fi":-1,"n":51,"tsN":51},{"k":"dbgF","d":{"n":64,"tsN":64,"start":0,"bw":90.6,"bh":91.3,"r":-1,"bsl":{"s":56,"arc":31.3,"ang":33.9},"r2":-1}},{"k":"dbgf","fi":-1,"n":64,"tsN":64},{"k":"dbgF","d":{"n":72,"tsN":72,"start":0,"bw":140.4,"bh":60.7,"r":-1,"bsl":{"s":62,"arc":33.8,"ang":27.4},"r2":-1}},{"k":"dbgf","fi":-1,"n":72,"tsN":72},{"k":"dbgF","d":{"n":121,"tsN":121,"start":0,"bw":152,"bh":91.7,"r":-1,"bsl":{"s":112,"arc":34.1,"ang":2.5},"r2":-1}},{"k":"dbgf","fi":-1,"n":121,"tsN":121},{"k":"dbgF","d":{"n":97,"tsN":97,"start":0,"bw":97.9,"bh":97.8,"r":-1,"bsl":{"s":88,"arc":33.5,"ang":6.3},"r2":-1}},{"k":"dbgf","fi":-1,"n":97,"tsN":97},{"k":"dbgF","d":{"n":31,"tsN":31,"start":0,"bw":90,"bh":0,"r":-1,"bsl":{"s":19,"arc":33,"ang":0},"r2":-1}},{"k":"dbgf","fi":-1,"n":31,"tsN":31},{"k":"dbgF","d":{"n":6,"tsN":6,"start":0,"bw":26,"bh":9,"mid":3,"dm":150.7,"r":0,"r2":0}},{"k":"dbgf","fi":0,"n":6,"tsN":6},{"k":"dbgF","d":{"n":51,"tsN":51,"start":0,"bw":150.7,"bh":0,"r":-1,"bsl":{"s":39,"arc":34,"ang":0},"r2":-1}},{"k":"dbgf","fi":-1,"n":51,"tsN":51},{"k":"dbgF","d":{"n":40,"tsN":40,"start":0,"bw":120,"bh":16,"r":-1,"bsl":{"s":28,"arc":34.9,"ang":0},"r2":-1}},{"k":"dbgf","fi":-1,"n":40,"tsN":40},{"k":"dbgF","d":{"n":55,"tsN":55,"start":0,"bw":96.5,"bh":108.6,"r":-1,"bsl":{"s":48,"arc":32.4,"ang":31.1},"r2":-1}},{"k":"dbgf","fi":-1,"n":55,"tsN":55},{"k":"dbgF","d":{"n":184,"tsN":184,"start":0,"bw":224.5,"bh":121.6,"r":-1,"bsl":{"s":181,"arc":26.2,"ang":17.7},"r2":-1}},{"k":"dbgf","fi":-1,"n":184,"tsN":184},{"k":"dbgF","d":{"n":32,"tsN":32,"start":26,"bw":23.4,"bh":28.2,"mid":3,"dm":115.9,"r":26,"r2":26}},{"k":"dbgf","fi":26,"n":32,"tsN":32},{"k":"dbgC","g":"fit","n":26,"m":58},{"k":"dbgC","g":"ok","r":0.5,"n":26,"raw":1,"m":60,"rp":0.3,"wi":13,"arc":0,"e0":[180,480],"e1":[368.9,468],"r0":[180,480],"r1":[368.9,468]},{"k":"dbgfS","out":"curve","n":26,"hasRaw":true},{"k":"dbgf2","fi":26,"pre":26,"fit":"curve"}]
-  PASS  14.0b asta = fit Bezier (params.shaft.bez, residuo <=2.5px)
-  PASS  14.1 nessun tratto grezzo residuo dopo ricostruzione
-  PASS  14.2 primo undo -> tratto GREZZO (pre-flick) ripristinato
-  PASS  14.3 secondo undo -> tratto RIMOSSO
-  PASS  15.0 curva lunga -> shape curve (classe R20)
-  PASS  15.1 residuo curva->ideale <= 2.5px (R20 dichiarato)
+  PASS  A0.1 InkCommit + CFG caricati
+  PASS  A0.2 settleMs in 150-300
+  PASS  A0.3 wetTailPx in 20-40
+  PASS  A0.4 headLenMul in 3-4
+  PASS  A0.5 headWingDeg in 30-40
+  PASS  A0.6 flick2Ms === 300
+  PASS  A0.7 flick2DistPx === 60
+  PASS  A0.8 flick2DurMs === 120
+  PASS  A0.9 lineDevRatio 0.025+-
+  PASS  A0.10 gapClosedRatio 0.08+-
+  PASS  A0.11 scratchDenseRatio 1.6+-
+  PASS  B1 flag vecchi assenti da state() (M01)
+  PASS  B2 setShaping undefined
+  PASS  B3 setReleaseRefine undefined
+  PASS  B4 state() completa (settleMs/assist/...)
+  PASS  B5 API setHelp/setZoom/toWorld
+  PASS  B6 API trace/counters/objects
+  PASS  B7 objects() ritorna copia JSON
+  PASS  C1 slider "Intensita aiuto" PRESENTE
+  PASS  C2 slider "Smussamento righe" PRESENTE
+  PASS  C3 due input range nel popover aiuto
+  PASS  C4 #fn-releaseRefine ASSENTE
+  PASS  C5 testo "Fermo per snap" ASSENTE dal DOM
+  PASS  D1.0 durante settle: raw visibile con _wet (K01/L02)
+  PASS  D1.1 trace release cls=line
+  PASS  D1.2 UNO swap con dt in 150-320 (K01/K02)
+  PASS  D1.3 commesso: vclass line + esattamente 2 pts
+  PASS  D1.4 endpoint entro 3px dai grezzi (Q01/T01)
+  PASS  D1.5 nessun _wet post-commit (N08)
+  PASS  D1.6 sizes===null dopo commit (N09)
+  PASS  D1.7 size===base dopo commit (N09)
+  PASS  D1.8 contatori line/perfected +1
+  PASS  D2.0 diagonale ondulata -> line + 2 pts
+  PASS  D2.1 endpoint diagonale entro 3px
+  PASS  D2.2 contatore line +1
+  PASS  D3.0 jitter leggero -> line + 2 pts
+  PASS  D3.1 endpoint jitter entro 3px
+      MEASURE D3.2 residuo render vs segmento = 0.000px
+  PASS  D3.2 residuo render vs segmento <=0.5px
+  PASS  E1.0 semicerchio -> arc (kind circle)
+  PASS  E1.1 arco resta APERTO (gap>=50, N01)
+      MEASURE E1.2 residuo render vs cerchio = 0.000px
+  PASS  E1.2 residuo render vs circonferenza <=0.5px (Q01)
+  PASS  E1.3 ampiezza |sweep| >=80 gradi
+  PASS  E1.4 contatore arc +1
+      MEASURE E2 dev grezzo/corda = 18.2%
+  PASS  E2.0 generatore con dev >2.5% corda (precondizione)
+  PASS  E2.1 arco shallow -> arc (nonostante dev>2.5%)
+  PASS  E3.0 arco 90 rumoroso -> arc
+      MEASURE E3.1 sweep = 92.3 gradi
+  PASS  E3.1 |sweep| >=80 gradi preservato
+  PASS  F0 S -> freeform
+      MEASURE F1 flessi grezzi=2 render=2
+  PASS  F1 flessi PRESERVATI (>=2, T03/V05)
+  PASS  F2 nessun snap parametrico (kind smooth, senza p/circle)
+  PASS  F3 contatore freeform +1
+  PASS  G0 loop con auto-intersezione -> freeform (T04)
+      MEASURE G1 selfInt grezzo=8 render=8
+  PASS  G1 selfInt >=1 (oracle del probe)
+  PASS  G2 selfInt INVARIATO dopo smoothing (T04)
+  PASS  H0 cerchio deformato -> closed (T05)
+  PASS  H1 MAI conversione circle/ellipse/rect (N07): kind smooth
+  PASS  H2 contatore closed +1
+  PASS  H3 C aperta MAI closed (N01)
+      MEASURE H4 gap pre=122.2 post=122.2
+  PASS  H4 gap post == gap pre +-4px (N01 aperto preservato)
+  PASS  I0 tap corto resta GREZZO: nessun vclass (T06)
+  PASS  I1 discarded +1 (T06)
+  PASS  I2 release cls=raw e NESSUN swap (T06)
+  PASS  J0 scarabocchio -> freeform (T07)
+      MEASURE J1 params={"kind":"smooth","mode":"light"}
+  PASS  J1 params.mode===light (T07 smoothing leggero)
+  PASS  J2 nessun params p/circle: MAI snap (T07)
+  PASS  K0 N03: commit al rilascio SENZA pause comunque avviene
+  PASS  K1 N03: swap con dt in 150-320 (finestra K01 rispettata)
+  PASS  L0 tratto FUORI dal doc durante il drag (entra al rilascio)
+  PASS  L1 N06: oggetti INVARIATI durante 500ms di hold
+  PASS  L2 N06: NESSUN trace release/swap durante l hold
+  PASS  L3 commit normale al rilascio dopo l hold (N03/N06: nessun ghost)
+  PASS  M0 state().selected===false dopo commit
+  PASS  M1 state().lasel===false dopo commit
+  PASS  M2 nessun nodo con id/classe che contiene "releaseRefine"
+  PASS  N05 disegnare un altro tratto NON cambia i JSON dei primi
+  PASS  O0 retta+micro-V/back-stroke -> arrow (F01 stesso tratto)
+  PASS  O1 params.head presente + shaftKind=line
+  PASS  O2 punta len in 3-4x spessore (F03)
+  PASS  O3 ali in 30-40 gradi (F03)
+  PASS  O4 contatore arrow +1
+  PASS  P0 asta commessa prima del trattino
+      MEASURE P gap rilascio1->rilascio2 = 294.8ms (flick2Ms=300) | sleep+P0=247.1 draw2=47.7
+  PASS  P1 secondo tratto BREVE assorbito: UN solo oggetto arrow (mai 2)
+  PASS  P2 trace absorb registrato
+  PASS  P3 M04: un SOLO undo rimuove asta+punta insieme
+  PASS  P4 redo ripristina identico (M04)
+  PASS  Q0 trace contiene solo chiavi release/swap/absorb/raw/evt/paint/stop
 
-RISULTATO a14_shaping: 42 passati, 0 falliti
+RISULTATO a14_shaping: 86 passati, 0 falliti
 
 
 ===== a19_fonti.test.js (exit=0) =====
@@ -63,10 +115,10 @@ RISULTATO a14_shaping: 42 passati, 0 falliti
   PASS  2.0 bottone Fonti presente
   PASS  2.1 pannello Fonti aperto (classe .show su .fp21-root)
   PASS  2.1b componente montato con contesto appunti
-  PASS  2.2 chip Tutti|Appunti|Materiali|Libri in testa
+  PASS  2.2 chip R28: Tutti|Appunti|Documenti|Presentazioni|Fogli|Video|Chat|Materiali|Libri
   PASS  2.3 chip "Tutti" attivo di default
   PASS  2.4 elenco completo (3 study + 2 mat) = 5 voci
-  PASS  2.5 filtro Appunti -> solo study (3 voci)
+  PASS  2.5 filtro Appunti -> solo le note (1 voce, R28)
   PASS  2.6 persistenza localStorage filtro appunti (fp21_filter)
   PASS  2.7 filtro Libri -> solo Libro Gamma
   PASS  2.8 persistenza filtro libri
@@ -408,7 +460,7 @@ RISULTATI: 49 passati, 0 falliti
   PASS  T6.1 resize larghezza nei limiti 240..60%vw
   PASS  T6.2 larghezza persistita
   PASS  T6.3 doppio click = reset persistito
-  PASS  T7.1 4 chip compatti
+  PASS  T7.1 9 chip (R28: categorie complete)
   PASS  T7.2 chip persistito
   PASS  T7.3 chip attivo evidenziato
   PASS  T7.4 filtro Libri -> solo il libro
@@ -1171,7 +1223,7 @@ RISULTATI QA2: 79 passati, 0 falliti
   PASS  P5 MODIFICHE.md: sezione "Round 5" appendita
     ## Round 5 — Schemi: linee spurie, transizione mappa, rimozione tipo Alto→basso
   PASS  P5 MODIFICHE.md: residui AMMESSI confermati nello storico preesistente (round 2/3)
-    MODIFICHE.md residui storici (AMMESSI): L218,L1030,L1103 | residui dentro Round 5 (testuale/dichiarativo): L1196,L1202,L1203
+    MODIFICHE.md residui storici (AMMESSI): L621,L1433,L1506 | residui dentro Round 5 (testuale/dichiarativo): L1599,L1605,L1606
     schemi.js hit sweep:
       L160: // BLOCCO 3.3: doc legacy "Alto -> basso" (id reale 'tb', alias 'alto-basso') appena
       L289: // BLOCCO 3.3: migrazione dati schema legacy "Alto -> basso" (id reale 'tb' e alias
@@ -1181,7 +1233,7 @@ RISULTATI QA2: 79 passati, 0 falliti
   PASS  P5 schemi.js testi UTENTE (hint/title/toast/placeholder/aria): zero citazioni
     schemaStrategies.js hit sweep: 0
   PASS  P5 schemaStrategies.js: residui solo commento/parametro direzione 'tb' (ammesso: NON è il tipo)
-    [residui AMMESSI confermati]: storico MODIFICHE round2/3 (L218,L1030,L1103); commenti migrazione schemi.js L160,L289,L290,L293; direzione 'tb' schemaStrategies (parametro tidyTreeTargets); test/patch.
+    [residui AMMESSI confermati]: storico MODIFICHE round2/3 (L621,L1433,L1506); commenti migrazione schemi.js L160,L289,L290,L293; direzione 'tb' schemaStrategies (parametro tidyTreeTargets); test/patch.
 
 == PUNTO 6 — regressioni complete ==
   PASS  P6 editorWiring.test.js → 49/49
@@ -1828,9 +1880,10 @@ RISULTATI qaB_schemi: 125 passati, 0 falliti
   PASS  ii.0 bottone Fonti presente
   PASS  ii.1 voce materiale elencata anche senza backend
   PASS  ii.2 fallback SENZA percorso
-  PASS  ii.3 fallback msg "Nessun testo raggiungibile"
+  PASS  ii.3 fallback msg "Nessuna anteprima raggiungibile" (contratto R28/R30)
   PASS  ii.4 nessun "Caricamento" residuo (promise risolta)
-  PASS  ii.5 NESSUN pulsante "testo completo" senza contenuto
+  PASS  ii.5 NESSUN pulsante "testo completo" senza contenuto (solo riga apri-file ammessa)
+  PASS  ii.5b riga "apri file" presente (viewer mat R28)
   PASS  ii.6 zero eccezioni console (nessuna eccezione)
   PASS  ii.7 insertFontiRef invariato: oggetto t:file salvato (quaderno: pages[].objects)
   PASS  ii.8 doc.fpSources con provenienza della fonte inserita
@@ -1852,7 +1905,7 @@ RISULTATI qaB_schemi: 125 passati, 0 falliti
   PASS  b.2 opzione placeholder presente
   PASS  b.3 zero eccezioni console
 ================================================
-RISULTATI qaC2_viewer: 46 passati, 0 falliti
+RISULTATI qaC2_viewer: 47 passati, 0 falliti
 
 
 ===== qaD_home.js (exit=0) =====
@@ -1991,6 +2044,89 @@ RISULTATI F67 (jsdom): 28 passati, 0 falliti
   PASS  (e) nessuna riga senza evento stadi
 
 == RISULTATO: 36 passati, 0 falliti ==
+
+
+===== r27_fonti_toggle.test.js (exit=0) =====
+  PASS  B7.1a fullContent: study_get chiamato (root cause fix)
+  PASS  B7.1b TUTTE le pagine renderizzate (pages prima di objects)
+  PASS  B7.1c snapshot canvas dei tratti presente (bug silenzioso fissato)
+  PASS  B7.2a foglio: tabella HTML dalla griglia
+  PASS  B7.2b celle reali renderizzate (niente "Foglio non leggibile")
+  PASS  B7.2c numeri a destra (fp21-num)
+  PASS  B7.2d prima riga intestazione grassetto (fp21-hrow)
+  PASS  B7.3a documento html renderizzato
+  PASS  B7.3b html vuoto -> messaggio di vuoto (mai JSON grezzo)
+  PASS  B7.3c nessun JSON grezzo in DOM
+  PASS  B7.8 oggetto non riconosciuto -> vuoto+log, MAI JSON grezzo
+  PASS  B8.1a ZERO nodi katex-error (niente LaTeX rosso)
+  PASS  B8.1b formula comunque renderizzata (variante prime)
+  PASS  B8.1c nessun errore rosso nemmeno con formula rotta
+  PASS  B8.1d/e resa con variante invece del fallback
+  PASS  B2a CSS: collassata la LISTA sparisce
+  PASS  B2b CSS: chevron ruotato di 180°
+  PASS  B2c CSS numeri/ intestazione fogli presente
+  PASS  B2d default espansa
+  PASS  B2e chevron collassa (chip+lista)
+  PASS  B2f stato collasso persistito fp21_top_appunti=1
+  PASS  B3a jsdom (box 0): nessun pin spurio, altezza invariata
+  PASS  B2g secondo click espande + ripersiste 0
+  PASS  B4a click apri registra fp21_open_appunti=1
+  PASS  B4b click chiudi registra fp21_open_appunti=0
+  PASS  B1a chiuso = pannello non visibile
+  PASS  B1b pre-condizione chiuso
+  PASS  B4c reload-state: pass applicativi riaprono il pannello (click bottone)
+  PASS  B4d nessun loop di riapertura (stato stabile)
+  PASS  B1c Esc chiude il pannello visibile
+  PASS  B1d Esc ha registrato lo stato chiuso
+  PASS  X zero eccezioni jsdom
+
+RISULTATO r27_fonti_toggle: 32 passati, 0 falliti
+
+
+===== r28_fonti_viewer.test.js (exit=0) =====
+  PASS  1.note presente nelle fonti
+  PASS  1.documento presente nelle fonti
+  PASS  1.presentazione presente nelle fonti
+  PASS  1.foglio presente nelle fonti
+  PASS  1.video presente nelle fonti
+  PASS  1.schema presente nelle fonti
+  PASS  1.riassunto presente nelle fonti
+  PASS  1.conv presente nelle fonti
+  PASS  1.mat presente nelle fonti
+  PASS  1. flashcard (mazzo) ESCLUSE dalle fonti
+  PASS  1.chat titolo dal backend
+  PASS  2.presentazione: card diapositiva
+  PASS  2.presentazione: titolo + bullet renderizzati
+  PASS  2.presentazione badge
+  PASS  2.foglio: tabella reale
+  PASS  2.foglio: celle renderizzate
+  PASS  2.foglio: intestazioni colonna A
+  PASS  2.video: righe clip
+  PASS  2.video: testo clip
+  PASS  2.video: thumb immagine con URL file locale
+  PASS  2.chat: bolla utente
+  PASS  2.chat: bolla assistente
+  PASS  2.chat badge
+  PASS  2.schema: mappa SVG con nodi
+  PASS  2.schema: etichette nodi
+  PASS  2.schema: archi come linee
+  PASS  2.documento: {"html"} renderizzato
+  PASS  2.nota: testo renderizzato
+  PASS  2.riassunto: testo renderizzato
+  PASS  2.pdf: iframe (viewer nativo dentro la preview)
+  PASS  2.pdf: testo di riserva nei dettagli
+  PASS  2.pdf: collegamento "apri file"
+  PASS  2.docx: documento impaginato (titolo+paragrafo)
+  PASS  3.nota con file: collegamento cliccabile renderizzato
+  PASS  4.chip 9 categorie (R28)
+  PASS  4.lista contiene la CHAT
+  PASS  4.lista contiene la presentazione
+  PASS  4.lista contiene il foglio
+  PASS  4.lista contiene il video
+  PASS  4.lista SENZA mazzo flashcard
+  PASS  4.zero eccezioni jsdom
+==================================================
+RISULTATO r28_fonti_viewer: 41 passati, 0 falliti
 
 
 ===== s14_schemi_routing.test.js (exit=0) =====
@@ -2709,165 +2845,267 @@ RISULTATI G7_FE: 25 passati, 0 falliti
 
 
 ===== u20_shaping.test.js (exit=0) =====
-  PASS  0.0 API __ink presente
-  PASS  1.0 retta riconosciuta
-  PASS  1.1 residuo grezzo->ideale linea <= 2.5+amp*3
-  PASS  1.2 sizes per punto preservate sulla linea
-  PASS  2.0 rettangolo storto+jitter -> rectangle
-  PASS  2.1 angoli rettangolo entro 5 gradi
-  PASS  2.2 centro rettangolo al posto giusto (fix rot PCA)
-  PASS  2.3 sizes per punto preservate sul rettangolo
-  PASS  3.0 quadrato riconosciuto
-  PASS  3.1 aspect quadrato 0.9-1.1
-  PASS  4.0 cerchio tremolante -> circle
-  PASS  4.1 raggio cerchio entro tolleranza
-  PASS  4.2 sizes perimetro cerchio (48 settori) preservate
-  PASS  5.0 cerchio con gap piccolo -> circle (gap-closing esplicito)
-  PASS  5.1 raggio cerchio chiuso entro tolleranza
-  PASS  5.2 box cerchio chiuso = diametro pieno
-  PASS  6.0 C aperta -> MAI circle/ellipse (curve o stroke ammesse)
-  PASS  6.1 C aperta di qualita' -> curve (uscita R20, nessun blocco)
-  PASS  7.0 coloring -> resta stroke (densita'/intersizioni)
-  PASS  8.0 arco stretto -> curve
-  PASS  8.1 residuo GREZZO->ideale curve <= 2.5px (dichiarato)
-  probe curve: res=1.763 maxAdj=3.84 signFrac=1.000 refSign=-1 majSign=-1 maxT=16.89
-  PASS  8.2 segno curvatura conservato (>=90%)
-  PASS  8.3 segno curvatura = tracciato utente
-  PASS  8.4 variazione curvatura campioni adiacenti <= 15gradi (no kink)
-  PASS  8.5 sizes per nodo della curva preservate
-  PASS  9.0 bbox diagonale < 40px -> resta stroke
-  PASS  10.0 meno di 5 punti -> resta stroke
-  PASS  11.0 pulsante tool testo presente
-  PASS  11.1 tool testo attivo -> nessun tratto/shape snap-pato
-  PASS  11.2 overlay testo aperto dal tool testo
-  PASS  11.3 oggetto testo commesso dall overlay
-  PASS  11.4 pulsante tool penna presente
-  PASS  11.5 overlay testo riaperto con tool penna attivo
-  PASS  11.6 overlay testo aperto -> nessun snap (resta stroke)
-  PASS  11.7 tratto grezzo presente (non snap-pato)
-  PASS  12.0 primo cerchio snap-pato
-  PASS  12.1 secondo tratto >=60% dentro bbox shape -> resta stroke
-  PASS  13.0 triangolo chiuso+jitter -> triangle (non rect/curve)
-  PASS  13.1 triangolo = 3 vertici
-  PASS  13.2 angoli triangolo 60 +/- 15 (spec 60+/-25)
-  PASS  13.3 sizes per vertice preservate sul triangolo
-  PASS  Q5.0 retta+flick -> UN oggetto kind arrow
-  PASS  Q5.1 params.shaft.kind === line
-  PASS  Q5.2 ali a 30-45 gradi rispetto alla tangente
-  PASS  Q5.3 lunghezza ali = 3-4x spessore (sizes in coda)
-  PASS  Q5.4 base punta sul terminale asta (<=2px)
-  PASS  Q5.5 asta = fit minimi quadrati residuo <= 2.5+amp*3
-  PASS  Q5.6 tangente punta = verso asta (<=5 gradi)
-  PASS  Q5.7 ali simmetriche 30-45 gradi (ricostruzione indipendente)
-  PASS  Q5.8 ali entrambe = lunghezza dichiarata
-  PASS  Q5.9 undo 1 -> tratto GREZZO pre-flick ripristinato
-  PASS  Q5.10 undo 2 -> oggetto rimosso
-  PASS  Q5.11 back-stroke su retta -> arrow (rilevamento F1)
-  PASS  Q6.0 arco+flick -> UN oggetto kind arrow
-  PASS  Q6.1 params.shaft.kind === curve
-  PASS  Q6.2 fit Bezier presente (params.shaft.bez + params.bez)
-  PASS  Q6.3 residuo GREZZO->ideale asta curve <= TOL (parita U1, seam escluso)
-  PASS  Q6.4 punta = tangente finale Bezier t=1 (<=10 gradi)
-  PASS  Q6.5 base punta sul terminale asta (<=2px)
-  PASS  Q6.6 ali a 30-45 gradi rispetto alla tangente
-  PASS  Q6.7 lunghezza ali = 3-4x spessore (sizes in coda)
-  PASS  Q7.0 freccia composta creata
-  PASS  Q7.1 head.base e terminale asta stessa posizione
-  PASS  Q7.2 gesto 2 dita -> UN undo solo (tratto grezzo, anti-doppio)
-  PASS  Q7.3 gesto 3 dita -> redo (freccia torna)
-  PASS  Q7.4 gestureTapTest(2) = UN undo (stessa logica del gesto)
-  PASS  Q7.5 gestureTapTest(3) = UN redo (stessa logica del gesto)
-  PASS  Q7.6 pulsante tool selezione presente
-  PASS  Q7.7 drag selezione: oggetto arrow UNICO spostato
-  PASS  Q7.8 punta traslata insieme all asta (drag world)
-  PASS  Q7.9 saldatura punta/asta preservata dopo il drag
-  PASS  Q7.10 box traslato con l oggetto
-  PASS  Q7.11 tangente invariata nella traslazione
-  PASS  Q7.12 scaleSelTest esposto ed eseguibile
-  PASS  Q7.13 punta scalata con l oggetto (ratio 1.5)
-  PASS  Q7.14 saldatura preservata dopo scale (<=3px)
-  PASS  Q7.15 angoli ali invariati nella scala uniforme
-  PASS  Q7.16 penna attiva: 1 solo pointer
-  PASS  Q7.17 touch ignorato con penna attiva (palm rejection)
-  PASS  Q7.18 nessun tratto penna rimasto appeso
+--- A. GEOMETRIA FINE ---
+  PASS  A1.0 durante settle: grezzo visibile con _wet (K01/L02)
+  PASS  A1.1 trace release cls=line
+  PASS  A1.2 UNO swap con dt in 150-320ms (K01/K02)
+  PASS  A1.3 linea commessa: vclass line
+  PASS  A1.4 pts.length===2
+  PASS  A1.5 _wet rimosso post-commit (L04/N08/N09)
+  PASS  A1.6 ogni punto renderizzato sulla segmento <=0.05
+  PASS  A1.7 endpoint grezzo->ideale <=3px (Q01)
+  PASS  A1.8 endpoint grezzo DIVERSO dall ideale dove devia (K03)
+  PASS  A1.9 il grezzo ondulato NON e il render (K03): dev=2.67
+  PASS  A2 (diagonale ondulata) vclass line
+  PASS  A2 (diagonale ondulata) pts.length===2
+  PASS  A2 (diagonale ondulata) ogni punto renderizzato sulla segmento <=0.05
+  PASS  A2 (diagonale ondulata) endpoint grezzo->ideale <=3px (Q01)
+  PASS  A2 (diagonale ondulata) endpoint grezzo DIVERSO dall idele dove devia (K03)
+  PASS  A2 (diagonale ondulata) grezzo != render: dev=2.94
+  PASS  A3 (jitter +-2px) vclass line
+  PASS  A3 (jitter +-2px) pts.length===2
+  PASS  A3 (jitter +-2px) ogni punto renderizzato sulla segmento <=0.05
+  PASS  A3 (jitter +-2px) endpoint grezzo->ideale <=3px (Q01)
+  PASS  A3 (jitter +-2px) endpoint grezzo DIVERSO dall idele dove devia (K03)
+  PASS  A3 (jitter +-2px) grezzo != render: dev=2.22
+  PASS  A4 (semicerchio r60) vclass arc
+  PASS  A4 (semicerchio r60) params.kind circle
+  PASS  A4 (semicerchio r60) residuo render vs circonferenza <=0.5 (Q01)
+  PASS  A4 (semicerchio r60) endpoint grezzo->ideale +-3px (A02)
+  PASS  A4 (semicerchio r60) |sweep params - sweep grezzo| <=5deg
+  PASS  A4 (semicerchio r60) direzione di piega preservata (segno cross == segno sweep)
+  PASS  A4 (semicerchio r60) tangenti endpoint <=10gradi (A03)
+  PASS  A4 (semicerchio r60) arco resta APERTO: gap>=0.6r (N01)
+  PASS  A5 (quarto arco r50) vclass arc
+  PASS  A5 (quarto arco r50) params.kind circle
+  PASS  A5 (quarto arco r50) residuo render vs circonferenza <=0.5 (Q01)
+  PASS  A5 (quarto arco r50) endpoint grezzo->ideale +-3px (A02)
+  PASS  A5 (quarto arco r50) |sweep params - sweep grezzo| <=5deg
+  PASS  A5 (quarto arco r50) direzione di piega preservata (segno cross == segno sweep)
+  PASS  A5 (quarto arco r50) tangenti endpoint <=10gradi (A03)
+  PASS  A5 (quarto arco r50) arco resta APERTO: gap>=0.6r (N01)
+  PASS  A6 (arco 140deg r70) vclass arc
+  PASS  A6 (arco 140deg r70) params.kind circle
+  PASS  A6 (arco 140deg r70) residuo render vs circonferenza <=0.5 (Q01)
+  PASS  A6 (arco 140deg r70) endpoint grezzo->ideale +-3px (A02)
+  PASS  A6 (arco 140deg r70) |sweep params - sweep grezzo| <=5deg
+  PASS  A6 (arco 140deg r70) direzione di piega preservata (segno cross == segno sweep)
+  PASS  A6 (arco 140deg r70) tangenti endpoint <=10gradi (A03)
+  PASS  A6 (arco 140deg r70) arco resta APERTO: gap>=0.6r (N01)
+  MEASURE A7 arco-shallow: vclass=line ratio=0.9946 dev/ch=0.0450
+  PASS  A7.0 arco-shallow (dev 4.5% chord) -> line O arc
+  PASS  A7.1 shallow->line (ratio>=0.95): pts.length===2
+  MEASURE A8 arco-non-circolare: vclass=arc kind=circle
+  PASS  A8.0 arco non circolare -> vclass arc
+  PASS  A8.1 params.kind in {circle,bez} (branch MEASURE)
+  PASS  A9.0 S -> freeform
+  PASS  A9.1 flessi preservati: flessiOut>=2
+  PASS  A9.2 smoothing bounded: max dist ideale->grezzo <=3px
+  PASS  A9.3 selfIntOut == selfIntIn (topologia invariata)
+  PASS  A9.4 nessun snap parametrico (kind smooth)
+  PASS  A10.0 cerchio -> closed (T05)
+  PASS  A10.1 MAI conversione in cerchio/ellipse (N07)
+  PASS  A10.2 endpoints lock: primi/ultimi pt ideali == grezzi +-1px
+  MEASURE A11 branch bez: vclass=arc kind=bez nf=1 circFit=false
+  PASS  A11.0 semiangolo ellipse -> vclass arc
+  PASS  A11.1 params.kind === bez (branch MEASURE)
+  PASS  A11.2 branch: nf<2 E fit cerchio FALLITO (MEASURE)
+  PASS  A11.3 residuo grezzo->bez <= max(4px,11% corda)
+  PASS  A11.4 endpoint grezzo->ideale +-3px (A02 bez)
+  PASS  A11.5 tangenti endpoint bez <=10gradi (A03)
+--- B. ESCLUSIONI / FLAGS ---
+  PASS  B1.0 tap 2pti resta GREZZO: nessun vclass (T06)
+  PASS  B1.1 scartati discarded+1
+  PASS  B2.0 tratto 15px resta GREZZO (T06)
+  PASS  B2.1 scartati discarded+1
+  PASS  B3.0 scarabocchio denso -> freeform (T07)
+  PASS  B3.1 T07 -> mode light (solo smoothing leggero)
+  SOFT B4 overlay testo non pilotabile via harness: skip (3 assert) [diag bT=true ta=true textObj=1 bP=true]
+  PASS  B5.0 hold500ms: NESSUN trace release prematuro (N03)
+  PASS  B5.1 hold500ms: NESSUN trace swap durante il drag
+  PASS  B5.2 hold500ms: oggetti doc INVIOLATI (nessun commit fantasma)
+  PASS  B5.3 tratto ancora attivo durante l hold
+  PASS  B5.4 commit solo al rilascio dopo hold (N03)
+  PASS  B6.0 state SENZA shpOn/holdMs/releaseRefine/ghost (M01)
+  PASS  B6.1 setShaping/setReleaseRefine undefined (M01)
+  PASS  B6.2 state con settleMs/pending/selected/lasel
+  PASS  B7.0 nessun #fn-releaseRefine nel DOM
+  PASS  B7.1 nessun testo "Fermo per snap" (hold-still eliminato, N03)
+  PASS  B7.2 popHelp CON slider "Intensita aiuto" (assist live, M03)
+  PASS  B8.0 dopo rilascio tratto1: stroke.total===1
+  PASS  B8.1 stroke.total AZZERATO al pointerdown del tratto2
+  PASS  B8.2 dopo rilascio tratto2: stroke.total===1
+--- C. FRECCE ---
+  PASS  C1.0 retta+flick -> arrow
+  PASS  C1.1 params.head + shaftKind=line
+  PASS  C1.2 head.base == endpoint asta (<=0.05)
+  PASS  C1.3 punta len in [3,4]x size (F03)
+  PASS  C1.4 ali wing in [30,40]gradi (F03)
+  PASS  C1.5 dir punta vs tangente asta <=10gradi (A03)
+  PASS  C1.6 contatore arrow +1
+  MEASURE C2 arco+flick: vclass=arrow shaftKind=arc
+  PASS  C2.0 arco+flick -> arrow
+  PASS  C2.1 shaftKind=arc + head presente
+  PASS  C3.0 asta commessa prima (line)
+  PASS  C3.1 target commesso: UN oggetto arrow (F01/F04)
+  PASS  C3.3 M04: UN solo undo rimuove asta+punta assorbita
+  PASS  C3.4 redo arrow assorbita IDENTICA (deep JSON)
+  PASS  C3.2 target PENDING: attach -> 1 solo oggetto arrow
+  PASS  C4.0 NEG durata>=120ms -> 2 oggetti separati
+  PASS  C4.1 entrambi commessi (nessun assorbimento)
+  PASS  C4.2 NEG start 150px lontano -> 2 oggetti separati
+  PASS  C4.3 entrambi commessi (nessun assorbimento)
+  PASS  C4.4 NEG delay 400ms -> 2 oggetti separati
+  PASS  C4.5 entrambi commessi (nessun assorbimento)
+  PASS  C4.6 NEG len stroke2 >60px -> 2 oggetti separati
+  PASS  C4.7 entrambi commessi (nessun assorbimento)
+  PASS  C4.8 asta iniziale diventa arrow
+  PASS  C4.9 NEG doppia punta (p1.head gate) -> 2 oggetti
+--- D. UNDO/REDO/PERSISTENZA ---
+  PASS  D1.0 stroke commesso prima dell undo
+  PASS  D1.1 M04: undo singolo rimuove lo stroke commesso
+  PASS  D1.2 nessun pending residuo dopo undo
+  PASS  D1.3 redo IDENTICO al pre-undo (deep JSON)
+  PASS  D2.0 undo durante settle -> 0 oggetti (nessun residuo)
+  PASS  D2.1 pending==0 in state dopo il flush del timer annullato
+  PASS  D2.2 NESSUN swap per lintorno annullato
+  PASS  D3.0 arrow commesso prima dell undo
+  PASS  D3.1 undo rimuove l arrow intero
+  PASS  D3.2 redo arrow IDENTICO (deep JSON)
+  PASS  D4.0 entti i tratti commessi (2)
+  PASS  D4.1 undo1 -> resta il 1 tratto
+  PASS  D4.2 snapshot materializzato: tratto1 COMMESSO, non grezzo (M05)
+  PASS  D4.3 tratto1 snapshot =2 punti ideali (non i grezzi)
+  PASS  D5.0 tratto commesso prima del save
+  PASS  D5.1 riapri la nota -> oggetto ancora vclass line (M05)
+  PASS  D5.2 params IDENTICI dopo reload (JSON confronto)
+  PASS  D6.0 setZoom(2.45) applicato
+  PASS  D6.1 oggetti IDENTICI a zoom 2.45 (nessuna rigenerazione)
+  PASS  D6.2 oggetti IDENTICI a zoom 1
+--- E. CONTATORI / LOG ---
+  PASS  E1.0 classified.line +1
+  PASS  E1.1 total +1
+  PASS  E1.2 n_classified +1
+  PASS  E1.3 perfected_on_release +1
+  PASS  E1.4 refined +1
+  PASS  E1.5 discarded INVARIATO
+  PASS  E1.6 byKind.line +1
+  PASS  E1.7 swapped_pixels >= 0.5 x nRaw
+  PASS  E1.7b residual_px <=0.5
+  PASS  E1.8 stroke.total===1
+  PASS  E2.0 raw: discarded +1
+  PASS  E2.1 raw: classified INVARIATO
+  PASS  E3.0 log console.info con prefisso [ink24] 
+  PASS  E3.1 log console.info con [inkV] class=
 
-RISULTATO u20_shaping: 80 passati, 0 falliti
+RISULTATO u20_shaping: 142 passati, 0 falliti
 
 
 ===== u22_reshape_r22.test.js (exit=0) =====
-  PASS  0.0 API __ink presente
-  PASS  0.1 setShaping holdMs 900 -> clamp 800
-  PASS  a.0 retta jitterata +-2px -> UNA shape line, 0 stroke
-      MEASURE a.1 deviazione angolare pts renderizzati = 0.144gradi (soglia 1)
-  PASS  a.1 deviazione angolare pts renderizzati <=1gradi vs direzione vera
-  PASS  a.2 pts renderizzati = segmento IDEALE esatto (2 endpoints)
-  PASS  a.3 residuo grezzo -> linea renderizzata <= 2.5+amp*3
-  PASS  a.4 sizes per punto preservate sulla linea
-  PASS  b.0 arco irregolare -> UNA shape curve, 0 stroke
-  PASS  b.1 curva riconosciuta (freeform V1 oppure arc/bez ricostruibili)
-      MEASURE b.2free (informativo, nessun assert per freeform) residuo vs GENERATORE VERO = 1.9088px (grezzo=1.9307px, delta=-0.022px)
-      MEASURE b.3 distanza media pts renderizzati vs grezzi (NN) = 2.263px; residuo grezzo-vs-renderizzato = 2.178px; residuo render-vs-riferimento = 1.909px
-  PASS  b.4 distanza media pts renderizzati vs grezzi > 0.4px (NON coincidono)
-      MEASURE b.5free (informativo, nessun assert per freeform) rawRes=2.178 refRes=1.909
-      MEASURE b.6 (report) residuo pts vs generatore vero = 1.909px (fit vs verita)
-  PASS  c.0 arco stretto+flick -> UN oggetto kind arrow
-  PASS  c.1 params.shaft.kind === curve (arco non linea)
-  PASS  c.2 fit Bezier asta presente (params.shaft.bez)
-  PASS  c.3 ali a 30-45gradi rispetto alla tangente
-  PASS  c.4 lunghezza ali = 3-4x spessore
-      MEASURE c.5 angolo tangente vs derivata Bezier t=1 = 0.000gradi (toll. R20 <=10)
-  PASS  c.5 tangente punta = derivata finale Bezier <=10gradi (R20)
-  PASS  c.6 base punta sul terminale asta (<=2px)
-  PASS  c.7 residuo GREZZO->ideale asta curve <= 2.5+amp*3
-  PASS  c.8 ali simmetriche 30-45gradi (ricos. indipendente dai campi)
-      MEASURE d.1 C aperta irregolare -> shapes=["curve"] strokes=0
-  PASS  d.0 C aperta irregolare MAI riconosciuta come forma chiusa/linea
-  PASS  d.1 C aperta irregolare -> UNA shape curva APERTA (V1), mai forma chiusa
-  PASS  d.2 scarabocchio/coloring -> resta stroke
-  PASS  e.0 smoke: rettangolo jitter -> rectangle (non-regressione u20)
-  PASS  e.1 angoli rettangolo entro 5gradi (u20 2.1)
-  PASS  e.2 smoke: cerchio jitter -> circle (non-regressione u20)
-  PASS  e.3 raggio cerchio entro tolleranza (u20 2.1)
+  PASS  0.0 API __ink + InkCommit presenti
+  PASS  0.1 settleMs in finestra 150-300ms
+  PASS  a1. retta jitter -> vclass line
+  PASS  a2. esattamente2 pts renderizzati
+      MEASURE a3 angolo retta vs asse x = 0.388gradi
+  PASS  a3. angolo renderizzato vs generatore <=1gradi (R22a)
+  PASS  a4. endpoint grezzo->ideale +-3px
+  PASS  a5. pts perfettamente sulla retta (collinearita <=0.05)
+  PASS  a6. contatore line +1 e residual_px <=0.5
+  PASS  b1. arco rumoroso -> arc + kind circle
+  PASS  b2. residuo render vs circonferenza params <=0.5px (Q01)
+  PASS  b3. grezzo entro tolleranza fit cerchio (<=4px MEASURE)
+      MEASURE b4 render-vs-grezzo max=0.85 mean=0.30
+  PASS  b4. i renderizzati NON sono i grezzi (max dist >=0.8px)
+  PASS  b5. endpoint arco +-3px (A02)
+  PASS  b6. arco resta APERTO (gap 180>=100)
+      MEASURE b7 sweep params=180.5 grezzo=180.5
+  PASS  b7. ampiezza angolare |params-grezzo| <=5gradi (A02)
+  PASS  b8. contatore arc +1 e residual_px <=0.5
+      MEASURE c1 tangenti in=7.4 out=6.9gradi
+  PASS  c1. tangente iniziale modello vs grezzo <=10gradi (A03)
+  PASS  c2. tangente finale modello vs grezzo <=10gradi (A03)
+  PASS  d1. arco+flick -> UN oggetto arrow
+  PASS  d2. params.head + shaftKind=arc (asta=arco perfezionato)
+  PASS  d3. punta 3-4x spessore (F03)
+  PASS  d4. ali 30-40gradi (F03)
+  PASS  d5. base punta saldata all end asta <=0.05px
+  PASS  d6. dir punta vs tangente fine arco <=10gradi (A06/F03)
+  PASS  d7. contatore arrow +1
+  PASS  e1. C irregolare resta della famiglia APERTA (mai closed)
+  PASS  e2. gap post entro +6px di gap pre (C resta C, N01)
+  PASS  f1. scarabocchio denso -> freeform (T07)
+  PASS  f2. smoothing LEGGERO (mode light)
+  PASS  f3. MAI snap parametrico (no p/cx)
+  PASS  g1. angolo raccordato -> vclass arc (T02: curvatura a segno costante)
+      MEASURE g2 branch bez: kind=bez nf=1
+  PASS  g2. branch CUBICA SINGOLA (kind bez: cerchio >4px, tol=11% corda)
+  PASS  g3. residuo render vs modello bez <=0.5px
+  PASS  g4. endpoint +-3px su gomito (A02, cubica con endpoint fissi)
+  PASS  g5. params.p = UNA sola cubica (4 controlli)
+  PASS  z1. nessun t=shape prodotto in tutta la sessione (N04)
 
-RISULTATO u22_reshape_r22: 26 passati, 0 falliti
+RISULTATO u22_reshape_r22: 36 passati, 0 falliti
 
 
 ===== u24_release_refine.test.js (exit=0) =====
-  PASS  0.0 API __ink presente
-  PASS  1.0 default releaseRefine ON
-  PASS  1.1 toggle #fn-releaseRefine presente nel popover Aiuto
-  PASS  1.2 toggle ON di default (aria-pressed)
-  PASS  1.3 riga "Perfeziona al rilascio" ACCANTO a "Fermo per snap"
-  PASS  2.0 click toggle -> OFF
-  PASS  2.1 persistito localStorage nt24_releaseRefine {on:false}
-  PASS  2.2 nt14_shaping INVIOLATO (chiave r24 separata)
-  PASS  2.3 OFF sopravvive alla riapertura
-  PASS  2.4 toggle mostra OFF dopo riapertura
-  PASS  3.0 precondizioni OFF + holdMs 900 -> clamp 800
-  PASS  3.1 OFF: tratto APERTO in hold -> GHOST (hold-still storico)
-  PASS  3.2 ghost consumata al rilascio
-  PASS  3.3 OFF: rilascio commetta segmento ideale (line)
-  PASS  3.4 contatori TRATTO: classificati=1 perfezionati=1 scartati=0
-  PASS  3.5 contatori SESSIONE +1 (cumulati; .total ex .classified)
-  PASS  3.6 console.info [ink24] emesso al rilascio
-  PASS  4.0 ON ristabilito (e persistito)
-  PASS  4.1 ON: tratto APERTO in hold -> NESSUN ghost (perfeziona al rilascio)
-  PASS  4.2 ON: al RILASCIO -> segmento ideale (line)
-  PASS  4.3 residuo punti renderizzati vs segmento ideale <=0.5px
-  PASS  4.4 ON: contatori tratto perfezionati=1
-  PASS  4.5 ON: sessione refined +1
-  PASS  4.6 console.info [ink24] anche con ON
-  PASS  5.0 ON: forma CHIUSA in hold -> ghost (R20 invariato)
-  PASS  5.1 ON: rilascio commetta circle dal ghost
-  PASS  6.0 scarabocchio resta stroke
-  PASS  6.1 contatori tratto: scartati=1 perfezionati=0
-  PASS  6.2 sessione discarded +1
-  PASS  6.3 console.info [ink24] con scartati=1
-  PASS  7.0 contatori sessione cumulati (>=3 classificati, >=1 scartato)
-  PASS  7.1 byKind per esito classificazione (line>=2, circle>=1)
-  PASS  7.2 tutti i log catturati hanno prefisso [ink24] o [inkV]
+  PASS  K01.0 rilascio: UN oggetto nel doc
+  PASS  K01.1 _wet true al rilascio (L02)
+  PASS  K01.2 grezzo: nessuna classe e nessun params
+  PASS  K01.3 trace release presente
+  PASS  K01.4 NESSUNO swap durante settle
+  PASS  K01.5 state().pending===1
+  PASS  K01.6 campione 40ms: pts IDENTICI allo snapshot (nessun morphing)
+  PASS  K01.7 campione 90ms: ancora IDENTICO (tutti i campioni uguali)
+  PASS  K02.0 a 150ms: ancora GREZZO (n==nRaw)
+  PASS  K02.1 a 190ms: ancora GREZZO (entro settleMs=200)
+  PASS  K02.2 stati SOLO {grezzo,ideale}, mai ibrido (n==nRaw OR n==2)
+  PASS  K02.3 a 260ms: swap avvenuto (ideale)
+  PASS  K02.4 ESATTAMENTE 1 swap con dt in 150-320
+  PASS  K02.5 _wet rimosso dopo lo swap
+  PASS  K02.6 pending torna a 0
+  PASS  K02.7 swap cls=line
+  PASS  K03.0 linea commessa: vclass line + 2 pts
+  PASS  K03.1 (params.p0, params.p1) == pts (deep)
+  PASS  K03.2 ogni pt renderizzato sulla segmento <=0.05
+  PASS  K03.3 il grezzo NON e piu renderizzato (dev raw->render >1px su onda 4px)
+  PASS  K03.4 semicerchio -> arc (kind circle)
+  PASS  K03.5 circle: radial punti render vs modello <=0.5
+  PASS  K04.0 5 rilasci a 25ms: 5 pendings SOVRAPPOSTI
+  PASS  K04.1 5 oggetti commessi
+  PASS  K04.2 5 trace release
+  PASS  K04.3 ESATTAMENTE 5 trace swap
+  PASS  K04.4 ordine swap == ordine rilascio (t crescente)
+  PASS  K04.5 cls swap == cls release (seq identica)
+  PASS  K04.6 tutti commessi (vclass line, nessun _wet)
+  PASS  K04.7 pending 0 al termine
+  PASS  K04.8 3 classi indipendenti (line,freeform,closed)
+  PASS  K04.9 swap seq == classi attese
+  PASS  K04.10 release seq == classi attese
+  PASS  N03.0 rilascio istantaneo: swap comunque con dt>=150
+  PASS  N03.1 dt entro 320ms
+  PASS  N03.2 tratto istantaneo COMMESSO (nessun _wet)
+  PASS  N06.0 hold 500ms: oggetti doc VUOTI
+  PASS  N06.1 NESSUN trace release/swap durante l hold
+  PASS  N06.2 state().ghost undefined
+  PASS  N06.3 tratto ancora attivo durante l hold
+  PASS  N06.4 dopo l hold: swap normale (dt 150-320)
+  PASS  N06.5 tratto commesso dopo l hold
+  PASS  MOM.0 setHelp(0) -> state().assist===0
+  PASS  MOM.1 setHelp(1) -> state().assist===1
+  PASS  MOM.2 assist 0 e 1 -> swap IDENTICO, stessa classe (line)
+  PASS  MOM.3 live trace raw/evt/paint presenti durante il drag
+  PASS  BON.0 durante settle: pending 1 + _wet presente
+  PASS  BON.1 undo durante settle -> 0 oggetti
+  PASS  BON.2 pending 0 dopo 400ms (commit annullato)
+  PASS  BON.3 redo ripristina il tratto COMMESSO (deep)
+  PASS  BON.4 rilascio+80ms: pendente ancora attivo
+  PASS  BON.5 oggetto gia COMMITTITO nel salvato (M05 buildPayload/flush)
+  PASS  BON.6 riapertura nota: oggetto commesso caricato dal salvato
+  PASS  BON.7 state().settleMs in 150-300
+  PASS  BON.8 coda bagnata presente al rilascio (L02)
+  PASS  BON.9 coda bagnata sparita allo swap (L04)
 
-RISULTATO u24_release_refine: 33 passati, 0 falliti
+RISULTATO u24_release_refine: 56 passati, 0 falliti
 
 
 ===== uiHarness.test.js (exit=0) =====
@@ -3107,82 +3345,103 @@ RISULTATI UI: 197 passati, 0 falliti
 
 
 ===== v1_release_swap.test.js (exit=0) =====
-  PASS  0.0 API __ink presente
-  PASS  1.0 counters.classified e un OGGETTO (transizione dichiarata)
-  PASS  1.1 classified chiavi ESATTE {line,arc,freeform,closed,arrow}
-  PASS  1.2 scalare cumulato in .total / .n_classified (ex .classified)
-  PASS  1.3 strokes_live numerico e 0 a riposo
-  PASS  1.4 perfected_on_release presente
-  PASS  1.5 swapped_pixels presente
-  PASS  1.6 residual_px presente
-  PASS  1.7 campi R24 mantenuti (refined/discarded/byKind)
-  PASS  1.8 stroke.classified oggetto per classe + stroke.total
-  PASS  1.9 default releaseRefine ON
-  PASS  1.10 API zoom/setZoom su __ink (V1.4)
-  PASS  2.0 strokes_live=1 mentre il tratto e attivo
-  PASS  2.1 strokes_live=0 dopo il commit (rilascio SENZA pausa)
-  PASS  2.2 retta ondulata rilasciata -> UNA shape line, 0 stroke
-  PASS  2.3 vclass=line + segmento ideale esatto (2 endpoints)
-      MEASURE 2.4 dev grezzo->linea = 5.50px su corda 400.0px (1.38%, gate 3%)
-  PASS  2.4 deviazione grezzo <=3% della lunghezza (gate linea lasso)
-  PASS  2.5 classified.line +1 e totale +1 (oggetto + scalare)
-  PASS  2.6 perfected_on_release +1 (retta rilasciata SENZA pausa)
-  PASS  2.7 swapped_pixels += max(n_grezzi, n_ideali) (>=80% dei grezzi)
-  PASS  2.8 residual_px (render vs modello ideale) <=0.5px
-  PASS  2.9 refined +1, discarded invariato (backward-compat R24)
-  PASS  2.10 byKind.line +1 (backward-compat)
-  PASS  2.11 contatori TRATTO: total=1 line=1 perf=1
-  PASS  2.12 log [ink24] (compat) + [inkV] class=... perf= swapPx= residuo=
-  PASS  2b.0 retta con arco singolo (dev 8px > tol) -> line (gate 3%)
-  PASS  2b.1 classified.line +1 e residuo <=0.5px
-  PASS  3.0 semicerchio -> vclass arc (kind curve compat R20)
-  PASS  3.1 params.arc (fit cerchio Kasa ex novo)
-  PASS  3.2 arco resta APERTO (gap >=100px, mai chiuso)
-  PASS  3.3 classified.arc +1
-  PASS  3.4 l arco NON e contato come closed
-  PASS  3.5 residual_px arc <=1.5px (punti render vs cerchio ideale)
-  PASS  4.0 S a 2 flessi -> vclass freeform (kind curve compat)
-  PASS  4.1 params.freeform=true e NESSUN bez/arc (nessun snap)
-      MEASURE 4.2 flessi grezzi=2 render=2 | auto-inters grezzi=0 render=0
-  PASS  4.2 >=2 flessi PRESERVATI (grezzi=2, render=2)
-  PASS  4.3 topologia invariata (auto-intersezioni non aumentate)
-  PASS  4.4 classified.freeform +1 (le altre classi invariate)
-  PASS  4.5 residual_px freeform = 0 dichiarato
-  PASS  4.6 swapped_pixels incrementato sul freeform
-  PASS  5.0 cerchio -> kind circle
-  PASS  5.1 classified.closed +1
-  PASS  5.2 perfected_on_release +1 (swap chiuso al rilascio)
-  PASS  6.0 retta+ flick rapido senza pausa -> UN oggetto arrow
-  PASS  6.1 rilevato dal FALLBACK back-stroke (core -1, r2>=0; V0 mancava)
-  PASS  6.2 vclass=arrow
-  PASS  6.3 params.shaft + params.head (oggetto UNICO)
-  PASS  6.4 ali 30-45gradi
-  PASS  6.5 lunghezza ali 3-4x spessore
-  PASS  6.6 classified.arrow +1 e totale +1
-  PASS  6.7 perfected_on_release +1 (arrow al rilascio)
-  PASS  6.8 strokes_live tornato a 0
-  PASS  7.0 una shape dopo il rilascio
-  PASS  7.1 UNDO 1 -> tratto GREZZO (stroke originale) ripristinato
-  PASS  7.2 UNDO 2 -> oggetto rimosso
-  PASS  8.0 releaseRefine OFF
-  PASS  8.1 OFF: tratto APERTO in hold -> GHOST (hold-still storico R20)
-  PASS  8.2 OFF: rilascio commetta segmento ideale (line), ghost consumata
-  PASS  8.3 OFF: contatori tratto total=1 line=1
-  PASS  8.4 releaseRefine ristabilito ON
-  PASS  9.0 setZoom(1) -> zoom 100% leggibile da state()/zoom()
-  PASS  9.1 zoom 100%: onda -> line, residuo <=0.5px
-  PASS  9.2 zoom 100%: arco singolo -> line (gate 3% MONDO) [2a shape]
-  PASS  9.3 setZoom(2.45) -> zoom 245% (clamp 0.15..5)
-  PASS  9.4 zoom 245%: stessa onda -> line, residuo <=0.5px (soglie MONDO)
-  PASS  9.5 zoom 245%: arco singolo -> line [2a shape]
-  PASS  9.6 zoom 245%: S -> freeform con >=2 flessi (soglie MONDO)
-  PASS  10.0 tutte le 5 classi contate nella sessione
-  PASS  10.1 total/perf/swapPx/residuo popolati
-  PASS  10.2 strokes_live==0 a fine sessione
-  PASS  10.3 tutti i log hanno prefisso [ink24] o [inkV]
-      FINALI {"classified":{"line":8,"arc":1,"freeform":2,"closed":1,"arrow":1},"total":13,"refined":13,"discarded":0,"strokes_live":0,"perf":13,"swapPx":934,"residuo":0}
+  PASS  C1.0 counters e un oggetto
+  PASS  C1.1 classified: chiavi ESATTE sort (arc,arrow,closed,freeform,line)
+  PASS  C1.2 classified ha ESATTAMENTE 5 chiavi
+  PASS  C1.3 total numerico
+  PASS  C1.4 n_classified numerico
+  PASS  C1.5 strokes_live===0 a riposo
+  PASS  C1.6 perfected_on_release numerico
+  PASS  C1.7 swapped_pixels numerico
+  PASS  C1.8 residual_px numerico
+  PASS  C1.9 refined / discarded / byKind presenti
+  PASS  C1.10 stroke sotto-oggetto con stesse chiavi classe
+  PASS  C1.11 strokes_live===1 durante un tratto attivo
+  PASS  C1.12 a pointerdown stroke.total torna 0
+  PASS  C1.13 stroke.total===1 dopo commit linea
+  PASS  C1.14 stroke.classified.line===1
+  PASS  C1.15 stroke.refined===1
+  PASS  C1.16 stroke.perfected===1 (perfected_on_release)
+  PASS  C1.17 sessione: classified.line===1 e perfected===1
+  PASS  C1.18 byKind.line===1
+  PASS  C1.19 stroke.total azzerato al nuovo pointerdown
+  PASS  G1.0 line: classified.line +1
+  PASS  G1.1 line: total +1
+  PASS  G1.2 line: n_classified +1
+  PASS  G1.3 line: refined +1
+  PASS  G1.4 line: discarded invariato
+  PASS  G1.5 line: byKind.line +1
+  PASS  G1.6 line: perfected +1
+  PASS  G1.7 line: swapped_pixels >= 0.5*nRaw
+  PASS  G1.8 line: residual_px <=0.5
+  PASS  G2.0 arc: classified.arc +1
+  PASS  G2.1 arc: closed invariato
+  PASS  G2.2 arc: residual_px <=0.5
+  PASS  G3.0 S: classified.freeform +1
+  PASS  G3.1 S: residual_px===0 dichiarato
+  PASS  G4.0 cerchio: classified.closed +1
+  PASS  G4.1 cerchio: vclass closed
+  PASS  G5.0 arrow: classified.arrow +1
+  PASS  G5.1 arrow: total +1
+  PASS  G5.2 arrow: vclass arrow
+  PASS  G6.0 tratto corto: discarded +1
+  PASS  G6.1 tratto corto: classified INVARIATO
+  PASS  G6.2 tratto corto resta GREZZO (T06)
+  PASS  L1.0 log [ink24] presente dopo il commit
+  PASS  L1.1 log [inkV] class=line:1
+  PASS  L1.2 log con perf=
+  PASS  L1.3 log con swapPx=
+  PASS  L1.4 log con residuo=
+  PASS  Z1.0 setZoom(1)
+  PASS  Z1.1 zoom1: onda -> line (kind line)
+  PASS  Z1.2 zoom1: S -> freeform (kind smooth)
+  PASS  Z2.0 setZoom(2.45)
+  PASS  Z2.1 zoom2.45: STESSO esito onda -> line (vclass+kind)
+  PASS  Z2.2 zoom2.45: STESSO esito S -> freeform (vclass+kind)
+  PASS  Z3.0 ritorno setZoom(1)
+  PASS  Z3.1 setZoom(1) dopo swap: oggetti DEEP-UGUALI (immutati)
+  PASS  Z4.0 zoom1 di nuovo: onda -> line
+  PASS  Z4.1 zoom1 di nuovo: S -> freeform
+  PASS  A1.0 arrow: vclass arrow
+  PASS  A1.1 params.shaftKind presente
+  PASS  A1.2 params.head presente
+  PASS  A1.3 head.len in [3,4]x size
+  PASS  A1.4 head.wing in 30-40
+  PASS  A1.5 head.base == fine asta (<=0.05px)
+  PASS  A1.6 classified.arrow +1
+  PASS  A1.7 M04: 1 undo -> 0 oggetti
+  PASS  A1.8 M04: redo -> arrow IDENTICO (deep JSON)
+  PASS  F1.0 asta COMMessa prima dello swap (line, nessun _wet)
+  PASS  F1.1 secondo tratto assorbito: UN oggetto arrow (F01/F02/F04)
+  PASS  F1.2 classified.arrow +1 (absorb)
+  PASS  F1.3 undo -> 0 oggetti (M04 asta+punta)
+  PASS  F1.4 redo -> arrow con punta
+  PASS  F2.0 negativo durata>=120ms: 2 oggetti
+  PASS  F2.1 secondo tratto: classified.line +1
+  PASS  F2.2 arrow invariato (nessun absorb)
+  PASS  F2.3 secondo oggetto: vclass line
+  PASS  F3.0 asta ancora pendente a 80ms
+  PASS  F3.1 pending-attach: alla fine 1 arrow
+  PASS  F3.2 classified.arrow +1 (attach al pendente)
+  PASS  S7.0 rilasci rapidi: pendings attivi sovrapposti
+  PASS  S7.1 10 oggetti
+  PASS  S7.2 swap trace === 10
+  PASS  S7.3 release trace === 10
+  PASS  S7.4 ordine swap == ordine rilascio (t crescente)
+  PASS  S7.5 cls swap in sequenza attesa (5 line, 3 freeform, 2 closed)
+  PASS  S7.6 contatori cumulati: line +5
+  PASS  S7.7 contatori cumulati: freeform +3
+  PASS  S7.8 contatori cumulati: closed +2
+  PASS  S7.9 contatori cumulati: arc invariato
+  PASS  S7.10 strokes_live===0 al riposo
+  PASS  S7.11 pending===0 al termine
+  PASS  E1.0 classified.total == somma delle classi
+  PASS  E1.1 state() campi nuovi presenti
+  PASS  E1.2 state() vecchi campi assenti (shpOn/ghost/...)
+  PASS  E1.3 setShaping/setReleaseRefine undefined (M01)
+  PASS  E1.4 ink.trace contiene release e swap
 
-RISULTATO v1_release_swap: 71 passati, 0 falliti
+RISULTATO v1_release_swap: 95 passati, 0 falliti
 
 
 ===== videoUi.test.js (exit=0) =====
@@ -3693,7 +3952,7 @@ ECCEZIONE: TypeError: statC.toISOString is not a function
 
 .............
 ----------------------------------------------------------------------
-Ran 13 tests in 0.060s
+Ran 13 tests in 0.041s
 
 OK
 
@@ -3724,26 +3983,35 @@ test_search_excludes_originals_chunks (__main__.TestSearchExcludesOriginals.test
 test_topic_fallback_also_excludes_originals (__main__.TestSearchExcludesOriginals.test_topic_fallback_also_excludes_originals) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 3.636s
+Ran 21 tests in 5.113s
 
 OK
 
 
 ===== testG1_sidecar.py (exit=0) =====
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[SidecarServer] pronto su 127.0.0.1:49168
-[G1] fallback in-process ok: 2 char in 5.93s
+[SidecarServer] pronto su 127.0.0.1:49197
+[G1] fallback in-process ok: 2 char in 9.36s
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[SidecarServer] pronto su 127.0.0.1:49189
-[G1] cold load reale: 2.00s (target <=3.0s)
+[SidecarServer] pronto su 127.0.0.1:49222
+[G1] cold load reale: 1.79s (target <=3.0s)
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[G1] completion 1/3 (fast): 959 char in 16.12s
+[G1] completion 1/3 (fast): 607 char in 16.72s
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[G1] completion 2/3 (tool): 1 char in 0.22s
+[G1] completion 2/3 (tool): 120 char in 2.79s
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[G1] completion 3/3 (fast): 617 char in 18.03s
+[flake-retry] test=test_a_avvio_reale_e_3_completion attempt=1/2 motivo=completion 3 vuota (flaky prevalente in run di batch: qa/r22_models_report.md sezioni 9 e 10.1) | errore: '' is not true : completion 3 vuota
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
-[SidecarServer] pronto su 127.0.0.1:63671
+[SidecarServer] pronto su 127.0.0.1:49245
+[G1] cold load reale: 1.79s (target <=3.0s)
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[G1] completion 1/3 (fast): 771 char in 16.73s
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[G1] completion 2/3 (tool): 115 char in 2.51s
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[G1] completion 3/3 (fast): 713 char in 17.38s
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] pronto su 127.0.0.1:59513
 [Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
 [SidecarServer] scaricato per inattivita'
 [G1] idle-unload con 8s: verificato in 8.41s
@@ -3753,7 +4021,7 @@ test_a_avvio_reale_e_3_completion (__main__.TestSidecarReale.test_a_avvio_reale_
 test_b_idle_unload_8s (__main__.TestSidecarReale.test_b_idle_unload_8s) ... ok
 
 ----------------------------------------------------------------------
-Ran 3 tests in 56.678s
+Ran 3 tests in 83.863s
 
 OK
 
@@ -3767,24 +4035,26 @@ test_d_no_rag_no_crash (__main__.TestOrderProduction.test_d_no_rag_no_crash) ...
 test_b_storia_sotto_budget (__main__.TestRollingShift.test_b_storia_sotto_budget) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.436s
+Ran 5 tests in 0.263s
 
 OK
 
 
 ===== testG3_dryrun.py (exit=0) =====
 
-[G3] sha256 vector_index/chroma.sqlite3 = 44aaa5ba0129ff015fe3bc550ceebafb9f6f3b2f971bdb6fd6c0d280f3a03645
-[G3] sha256 studioia.db = 3b7836ebe679aca16da2f3af0a85acd288133c912ab6b2161b4c1d3c8c327af9
-[G3][CUTOVER] STATUS=eseguito chunks=20 parity=1.000000 recall5=1.000000 backup=C:\Users\stebo\AppData\Local\Temp\g3_commit_allcx2hu\app\backup_chroma_20261102_184621 sha_ok=True -> C:\Users\stebo\AppData\Local\Temp\g3_commit_allcx2hu\g3_migration.json
+[G3] sha256 vector_index/chroma.sqlite3 = 83336d5df84efd7d06e478736260daa5ed41bf40fde77e66f4dd7ae0ec6608a4
+[G3] sha256 studioia.db = 69d55e9d8793ed8a33cd712cb7b715dc28d19a8099f372ed9d32f18256fd80a2
+[G3][CUTOVER] STATUS=eseguito chunks=20 parity=1.000000 recall5=1.000000 backup=C:\Users\stebo\AppData\Local\Temp\g3_commit_x79rk4ti\app\backup_chroma_20261111_163349 sha_ok=True -> C:\Users\stebo\AppData\Local\Temp\g3_commit_x79rk4ti\g3_migration.json
 
 ][G3][TMP CUTOVER] status=eseguito chunks=20 backup_sha_ok=True
-[G3][CUTOVER] STATUS=BLOCKED (gate non superati (parity_top10=0.500000, recall5=0.900000; servono entrambi >= 1.000)) -> C:\Users\stebo\AppData\Local\Temp\g3_commit_s536lqf9\g3_migration.json
-[G3][CUTOVER] STATUS=BLOCKED (dry-run assente (C:\Users\stebo\AppData\Local\Temp\g3_commit_6dkuojou\assente.json): eseguire prima 'python data/migrate_real.py') -> C:\Users\stebo\AppData\Local\Temp\g3_commit_6dkuojou\g3_migration.json
-[G3][DRY-RUN] STATUS=OK parity_top10=1.000000 recall5=1.000000 n_chunks=20 chroma_count=20 dim=64 queries=24 -> C:\Users\stebo\AppData\Local\Temp\g3_dryrun_ajjyjstu\g3_migration_dryrun.json
+[G3][CUTOVER] STATUS=BLOCKED (gate non superati (parity_top10=0.500000, recall5=0.900000; servono entrambi >= 1.000)) -> C:\Users\stebo\AppData\Local\Temp\g3_commit_43dnmgdn\g3_migration.json
+[G3][CUTOVER] STATUS=BLOCKED (dry-run assente (C:\Users\stebo\AppData\Local\Temp\g3_commit_sswf_0re\assente.json): eseguire prima 'python data/migrate_real.py') -> C:\Users\stebo\AppData\Local\Temp\g3_commit_sswf_0re\g3_migration.json
+[usearch] REBUILD da sqlite: n=20 dim=64 in 65.3ms -> hnsw_vector_index.usearch
+[G3][DRY-RUN] STATUS=OK parity_top10=1.000000 recall5=1.000000 n_chunks=20 chroma_count=20 dim=64 queries=24 -> C:\Users\stebo\AppData\Local\Temp\g3_dryrun_ranc3j40\g3_migration_dryrun.json
 
 [G3][TMP DRY-RUN] parity=1.0 recall5=1.0 n_chunks=20 queries=24
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+[usearch] REBUILD da sqlite: n=7 dim=64 in 4.4ms -> hnsw_e2e_g3.usearch
 
 [G3][E2E] originals=['appunti_g3_e2e.md', 'documento_g3_e2e.pdf', 'immagine_g3_e2e.png'] md=['appunti_g3_e2e.md', 'documento_g3_e2e.md', 'immagine_g3_e2e.md'] chunks=7 search_hit=True -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\g3_e2e.json
 [VectorStore] rag.migrate_first_run attivo, nessuna migrazione registrata in qa/g3_migration.json -> eseguire: python data/migrate_real.py
@@ -3799,7 +4069,7 @@ INFO:core.markdown_converter:Tesseract OCR inizializzato per MarkdownConverter
 INFO:core.markdown_converter:Sidecar immagini salvato: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tmp\g3_e2e\rag_stage2\immagine_g3_e2e.images.json (1 immagini)
 INFO:core.ocr_processor:Tesseract trovato in: C:\Users\stebo\Desktop\progetti app\StudioIA_7\tesseract\tesseract.exe
 INFO:core.ocr_processor:Tesseract OCR inizializzato con successo
-C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001BDC914F4C0>
+C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x0000022880029E40>
   gc.collect()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -3807,7 +4077,7 @@ test_env_flag_and_done_logic (__main__.TestMigrateFirstRunFlag.test_env_flag_and
 test_no_auto_migration_when_flag_active (__main__.TestMigrateFirstRunFlag.test_no_auto_migration_when_flag_active) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 7.365s
+Ran 8 tests in 8.047s
 
 OK
 
@@ -3815,11 +4085,11 @@ OK
 ===== testG4_stream.py (exit=0) =====
 [models_manager] Catalogo caricato: 3 modelli -> ['pro', 'base', 'fallback']
 [StudioIAAPI] Primo token dopo 0.00s
-[StudioIAAPI] Generazione: 3 eventi, totale 0.00s, ~62914.6 ev/s
+[StudioIAAPI] Generazione: 3 eventi, totale 0.00s, ~85598.0 ev/s
 [StudioIAAPI] Primo token dopo 0.00s
-[StudioIAAPI] Generazione: 3 eventi, totale 0.00s, ~117597.3 ev/s
+[StudioIAAPI] Generazione: 3 eventi, totale 0.00s, ~314572.8 ev/s
 [StudioIAAPI] Primo token dopo 0.00s
-[StudioIAAPI] Generazione: 1 eventi, totale 0.00s, ~110376.4 ev/s
+[StudioIAAPI] Generazione: 1 eventi, totale 0.00s, ~182361.0 ev/s
 
 test_run_generation_stop_dopo_3_pezzi_slot_coda_rilasciato (__main__.TestApiStopLogico.test_run_generation_stop_dopo_3_pezzi_slot_coda_rilasciato) ... ok
 test_slot_rilasciato_nuova_generazione_successiva (__main__.TestApiStopLogico.test_slot_rilasciato_nuova_generazione_successiva)
@@ -3828,7 +4098,7 @@ test_stop_generation_imposta_event (__main__.TestApiStopLogico.test_stop_generat
 test_stop_dopo_3_pezzi_e_slot_rilasciato (__main__.TestSidecarStopFinto.test_stop_dopo_3_pezzi_e_slot_rilasciato) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 2.172s
+Ran 4 tests in 1.489s
 
 OK
 
@@ -3855,7 +4125,7 @@ test_user_f10_esattamente_6 (__main__.TestTemplateFissi.test_user_f10_esattament
 test_user_f13_target_e_tolleranza (__main__.TestTemplateFissi.test_user_f13_target_e_tolleranza) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.002s
+Ran 18 tests in 0.001s
 
 OK
 
@@ -3881,6 +4151,7 @@ OK
   F16 -> web_frontend\html\js\modules\chatbot.js
   F17 -> web_frontend\html\js\modules\chatbot.js
 [G6] zombie totali: nessuna
+[Reranker] ONNX reale attivo (ok)
 
 test_c_audit_f01_f17 (__main__.TestG6AuditZombie.test_c_audit_f01_f17) ... ok
 test_a1_template_render_e_validate (__main__.TestG6F02Cablata.test_a1_template_render_e_validate) ... ok
@@ -3892,7 +4163,7 @@ test_b2_log_non_addestrato_e_no_crash (__main__.TestG6RerankerPlaceholder.test_b
 test_b3_attivazione_via_local_search (__main__.TestG6RerankerPlaceholder.test_b3_attivazione_via_local_search) ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 0.090s
+Ran 7 tests in 4.223s
 
 OK
 
@@ -3914,7 +4185,7 @@ test_shape_json_serializable (__main__.TestTelemetriaRuntime.test_shape_json_ser
 test_tutor_judgments_e_reset (__main__.TestTelemetriaRuntime.test_tutor_judgments_e_reset) ... ok
 
 ----------------------------------------------------------------------
-Ran 12 tests in 0.162s
+Ran 12 tests in 0.134s
 
 OK
 
@@ -3934,7 +4205,7 @@ test_h_round16_valori_da_disco (__main__.TestMetricsHistory.test_h_round16_valor
 R16: i valori chiave della entry round16 == sorgenti qa/* reali. ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.012s
+Ran 8 tests in 0.134s
 
 OK
 
@@ -3973,7 +4244,7 @@ test_07b_w6_refresh_eviction (__main__.TestW6Maintenance.test_07b_w6_refresh_evi
 Refresh dei doc versionati + eviction LRU: item o ctx dal runner. ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.219s
+Ran 17 tests in 0.135s
 
 OK
 
@@ -3982,15 +4253,20 @@ OK
 
 ..............
 ----------------------------------------------------------------------
-Ran 14 tests in 0.098s
+Ran 14 tests in 0.052s
 
 OK
 
 
 ===== testH1_parity.py (exit=0) =====
+[usearch] REBUILD da sqlite: n=20 dim=64 in 28.1ms -> hnsw_api.usearch
 [VectorStore] Boot backend sqlite fallito (OperationalError('unable to open database file')) -> rollback al backend chromadb legacy.
+[usearch] REBUILD da sqlite: n=89 dim=64 in 4.2ms -> hnsw_hyb.usearch
+[usearch] REBUILD da sqlite: n=40 dim=64 in 3.3ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=50 dim=64 in 3.3ms -> hnsw_vec_store.usearch
+[usearch] REBUILD da sqlite: n=89 dim=64 in 4.1ms -> hnsw_vector_index.usearch
 
-[PARITY] 50 query | overlap medio top-10 = 1.000 | min = 1.000 | max = 1.000
+[PARITY] 50 query | overlap medio top-10 = 0.984 | min = 0.900 | max = 1.000
 
 test_api_surface_and_shape (__main__.TestApiSurface.test_api_surface_and_shape) ... ok
 test_env_and_config_selection (__main__.TestFactorySelection.test_env_and_config_selection) ... ok
@@ -4004,7 +4280,7 @@ test_numpy_blob_fallback (__main__.TestNumpyBlobFallback.test_numpy_blob_fallbac
 test_parity_top10_50_queries (__main__.TestParityTop10.test_parity_top10_50_queries) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 5.587s
+Ran 10 tests in 3.486s
 
 OK
 
@@ -4018,7 +4294,7 @@ test_d_stato (__main__.TestCodaPriorita.test_d_stato) ... ok
 test_e_fifo_parita (__main__.TestCodaPriorita.test_e_fifo_parita) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.101s
+Ran 5 tests in 0.099s
 
 OK
 
@@ -4040,7 +4316,7 @@ test_down_senza_eccezione (__main__.TestServer.test_down_senza_eccezione) ... ok
 test_server_path_inesistente (__main__.TestServer.test_server_path_inesistente) ... ok
 
 ----------------------------------------------------------------------
-Ran 11 tests in 4.142s
+Ran 11 tests in 4.107s
 
 OK
 
@@ -4054,7 +4330,7 @@ test_d_trim_history (__main__.TestBuildPromptSegments.test_d_trim_history) ... o
 test_e_zero_date_nei_segmenti (__main__.TestBuildPromptSegments.test_e_zero_date_nei_segmenti) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.002s
+Ran 5 tests in 0.001s
 
 OK
 
@@ -4071,7 +4347,7 @@ test_g_simulazioni_complete (__main__.TestRegistryH4.test_g_simulazioni_complete
 test_h_get_function (__main__.TestRegistryH4.test_h_get_function) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.076s
+Ran 8 tests in 0.042s
 
 OK
 
@@ -4118,7 +4394,7 @@ test_repair_prompt_contiene_gli_errori (__main__.TestGrammaticheEValidatori.test
 test_repair_prompt_da_grammatica (__main__.TestGrammaticheEValidatori.test_repair_prompt_da_grammatica) ... ok
 
 ----------------------------------------------------------------------
-Ran 38 tests in 0.005s
+Ran 38 tests in 0.002s
 
 OK
 
@@ -4131,7 +4407,7 @@ test_c_chiavi_config_presenti (__main__.TestFlagConfig.test_c_chiavi_config_pres
 test_d_default_flag (__main__.TestFlagConfig.test_d_default_flag) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 0.001s
+Ran 4 tests in 0.000s
 
 OK
 
@@ -4153,12 +4429,17 @@ RESULT 12/12 test funzioni
 
 --- pytest fallback ---
 ............                                                             [100%]
-12 passed in 0.09s
+12 passed in 0.07s
 
 
 ===== testH8_retrieval.py (exit=0) =====
+[usearch] REBUILD da sqlite: n=89 dim=64 in 37.6ms -> hnsw_idx.usearch
 
 [H8-EVAL] 30 domande | recall@5 vector-only = 0.900 | hybrid (RRF) = 1.000 | gate usato = 0.7
+[usearch] REBUILD da sqlite: n=89 dim=64 in 4.4ms -> hnsw_idx.usearch
+[usearch] REBUILD da sqlite: n=89 dim=64 in 3.3ms -> hnsw_idx.usearch
+[usearch] REBUILD da sqlite: n=89 dim=64 in 4.0ms -> hnsw_idx.usearch
+[usearch] REBUILD da sqlite: n=89 dim=64 in 3.8ms -> hnsw_idx.usearch
 
 test_build_prompt_context_caps_each_chunk (__main__.TestCapParentText.test_build_prompt_context_caps_each_chunk) ... ok
 test_custom_max_chars (__main__.TestCapParentText.test_custom_max_chars) ... ok
@@ -4168,7 +4449,9 @@ test_apply_context_prefixes_deterministic_tiebreak (__main__.TestContextPrefixes
 test_apply_context_prefixes_no_overlap_returns_empty (__main__.TestContextPrefixes.test_apply_context_prefixes_no_overlap_returns_empty) ... ok
 test_apply_context_prefixes_picks_best_overlap (__main__.TestContextPrefixes.test_apply_context_prefixes_picks_best_overlap) ... ok
 test_get_context_prefix_from_store_meta (__main__.TestContextPrefixes.test_get_context_prefix_from_store_meta) ... ok
-test_recall5_hybrid_vs_vector_and_gate (__main__.TestEvalRecall5.test_recall5_hybrid_vs_vector_and_gate) ... ok
+test_recall5_hybrid_vs_vector_and_gate (__main__.TestEvalRecall5.test_recall5_hybrid_vs_vector_and_gate) ... <frozen importlib._bootstrap>:488: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x0000013B85CD6B60>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
 test_colloquial_queries_need_rewrite (__main__.TestNeedsRewrite.test_colloquial_queries_need_rewrite) ... ok
 test_rewrite_query_applies_only_when_needed (__main__.TestNeedsRewrite.test_rewrite_query_applies_only_when_needed) ... ok
 test_rewrite_removes_fillers_and_normalizes (__main__.TestNeedsRewrite.test_rewrite_removes_fillers_and_normalizes) ... ok
@@ -4177,16 +4460,14 @@ test_reranker_is_declared_placeholder (__main__.TestRerankerOptIn.test_reranker_
 ok
 test_reranker_rerank_top_indices (__main__.TestRerankerOptIn.test_reranker_rerank_top_indices) ... [Reranker] NON ADDESTRATO — usato ordinamento base
 ok
-test_search_reranker_flag_default_off (__main__.TestRerankerOptIn.test_search_reranker_flag_default_off) ... [Reranker] NON ADDESTRATO — usato ordinamento base
-[Reranker] NON ADDESTRATO — usato ordinamento base
-ok
+test_search_reranker_flag_default_off (__main__.TestRerankerOptIn.test_search_reranker_flag_default_off) ... ok
 test_confidence_gate_out_of_corpus_real_store (__main__.TestSearchHybridAndConfidence.test_confidence_gate_out_of_corpus_real_store) ... ok
 test_confidence_gate_strong_weak_empty (__main__.TestSearchHybridAndConfidence.test_confidence_gate_strong_weak_empty) ... ok
 test_hybrid_search_exposes_confidence_and_topic (__main__.TestSearchHybridAndConfidence.test_hybrid_search_exposes_confidence_and_topic) ... ok
 test_search_default_unchanged_and_hybrid_opt_in (__main__.TestSearchHybridAndConfidence.test_search_default_unchanged_and_hybrid_opt_in) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 3.186s
+Ran 20 tests in 2.026s
 
 OK
 
@@ -4196,7 +4477,7 @@ PASS test_centroidi_finti
 PASS test_centroids_path_assente_nessun_errore
 PASS test_compose_subqueries
 PASS test_nessuna_dipendenza_llm
-p95 = 0.0260 ms su 1000 chiamate
+p95 = 0.0115 ms su 1000 chiamate
 PASS test_p95_sotto_5ms_1000_chiamate
 PASS test_route_shape
 PASS test_rule_a_cache
@@ -4207,11 +4488,57 @@ PASS test_rule_e_comandi
 PASS test_rule_f_default_chat
 PASS test_subqueries_decomposizione
 RESULT 13/13 test funzioni
-P95_MS=0.026
+P95_MS=0.0115
 
 --- pytest fallback ---
 .............                                                            [100%]
-13 passed in 0.09s
+13 passed in 0.06s
+
+
+===== testP1b_ngram_flags.py (exit=0) =====
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-map-k D=5
+[SidecarServer] pronto su 127.0.0.1:53289
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] spec n-gram long-form: ngram-mod D=8
+[SidecarServer] pronto su 127.0.0.1:53290
+[Sidecar] engine auto -> upstream (regola R23: speedup xt 1.24 < 1.30, qa/x3_compare.json)
+[SidecarServer] draft richiesto ma spec.draft_model assente/inesistente: avvio senza draft
+[SidecarServer] pronto su 127.0.0.1:53291
+
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.048s
+
+OK
+
+
+===== testP1b_rag.py (exit=0) =====
+[HyDE] sidecar non disponibile (llm_down:RuntimeError) -> fallback query normale
+
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 3.412s
+
+OK
+
+
+===== testP1b_usearch.py (exit=0) =====
+[usearch] REBUILD da sqlite: n=40 dim=16 in 85.7ms -> hnsw_tstore.usearch
+[usearch] Index.load ok: n=40 ndim=16 (hnsw_tstore.usearch, 8.1ms cumulati)
+[usearch] REBUILD da sqlite: n=40 dim=16 in 2.2ms -> hnsw_tstore.usearch
+
+.....<frozen abc>:121: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x00000230836AB970>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<frozen abc>:121: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x00000230836ABA60>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<frozen importlib._bootstrap>:488: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x00000230836AB790>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..
+----------------------------------------------------------------------
+Ran 7 tests in 0.266s
+
+OK
 
 
 ===== testR13_f67.py (exit=0) =====
@@ -4226,20 +4553,27 @@ test_totale_cento_con_zero_parse_error (__main__.TestR13F67.test_totale_cento_co
 110 chiamate attraverso il motore reale -> 0 errori finali. ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 0.023s
+Ran 4 tests in 0.013s
 
 OK
 
 
 ===== testR13_rag.py (exit=0) =====
+[usearch] REBUILD da sqlite: n=12 dim=64 in 27.1ms -> hnsw_vector_index_books.usearch
 [G3][DRY-RUN] STATUS=OK parity_top10=1.000000 recall5=1.000000 n_chunks=12 chroma_count=12 dim=64 queries=12 -> C:\Users\stebo\Desktop\progetti app\StudioIA_7\qa\r13_rag_books_e2e_temp.json
-[R13][BOOKS4] STATUS=eseguito eager=0 lazy=3 dynamic={'eseguito': True, 'rc': 0, 'caricati': ['core.rag.vector_store', 'core.rag.indexer', 'core.local_search', 'data.migrate_real', 'backend.api', 'main'], 'errore': None, 'chromadb_in_sys_modules': False, 'sqlite_vec_in_sys_modules': False, 'backend_default': 'sqlite'} -> C:\Users\stebo\AppData\Local\Temp\r13_b4d_cyd_akks\b4d.json
-[R13][BOOKS4] STATUS=eseguito_con_warning eager=0 lazy=3 dynamic={'eseguito': False} -> C:\Users\stebo\AppData\Local\Temp\r13_b4_v6z313op\b4.json
-[R13][DEDUPE] STATUS=eseguito legacy=2 stage2=3 originals=1 deleted=2 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_qutexok0\apply.json
-[R13][DEDUPE] STATUS=NIENTE_DA_FARE legacy=0 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_qutexok0\idem.json
-[R13][DEDUPE] STATUS=REFUSED legacy=1 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_b4_argah\apply.json
-[R13][DEDUPE] STATUS=DRY_RUN legacy=2 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_qn5t9wlj\dry.json
-[R13][DEDUPE] STATUS=eseguito legacy=2 stage2=3 originals=1 deleted=2 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_lrxzfxha\apply.json
+[R13][BOOKS4] STATUS=eseguito eager=0 lazy=3 dynamic={'eseguito': True, 'rc': 0, 'caricati': ['core.rag.vector_store', 'core.rag.indexer', 'core.local_search', 'data.migrate_real', 'backend.api', 'main'], 'errore': None, 'chromadb_in_sys_modules': False, 'sqlite_vec_in_sys_modules': False, 'backend_default': 'sqlite'} -> C:\Users\stebo\AppData\Local\Temp\r13_b4d_az7n47k_\b4d.json
+[R13][BOOKS4] STATUS=eseguito_con_warning eager=0 lazy=3 dynamic={'eseguito': False} -> C:\Users\stebo\AppData\Local\Temp\r13_b4_ugkop2c5\b4.json
+[usearch] REBUILD da sqlite: n=6 dim=64 in 3.4ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.7ms -> hnsw_vector_index.usearch
+[R13][DEDUPE] STATUS=eseguito legacy=2 stage2=3 originals=1 deleted=2 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_ei9zr77i\apply.json
+[R13][DEDUPE] STATUS=NIENTE_DA_FARE legacy=0 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_ei9zr77i\idem.json
+[usearch] REBUILD da sqlite: n=5 dim=64 in 2.3ms -> hnsw_vector_index.usearch
+[R13][DEDUPE] STATUS=REFUSED legacy=1 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_mbpll5zo\apply.json
+[usearch] REBUILD da sqlite: n=6 dim=64 in 2.9ms -> hnsw_vector_index.usearch
+[R13][DEDUPE] STATUS=DRY_RUN legacy=2 stage2=3 originals=1 deleted=0 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_sy0uwyd0\dry.json
+[usearch] REBUILD da sqlite: n=6 dim=64 in 3.5ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.7ms -> hnsw_vector_index.usearch
+[R13][DEDUPE] STATUS=eseguito legacy=2 stage2=3 originals=1 deleted=2 -> C:\Users\stebo\AppData\Local\Temp\r13_rag_ljutl3y_\apply.json
 
 test_dry_run_books_parity_recall_1_temp (__main__.TestBooks1E2eTemp.test_dry_run_books_parity_recall_1_temp) ... ok
 test_dynamic_percorso_default_senza_chromadb (__main__.TestR13Books4Imports.test_dynamic_percorso_default_senza_chromadb) ... ok
@@ -4250,7 +4584,7 @@ test_dryrun_rileva_legacy_e_non_scrive (__main__.TestR13DedupeLegacy.test_dryrun
 test_originals_esclusi_da_dedupe (__main__.TestR13DedupeLegacy.test_originals_esclusi_da_dedupe) ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 6.640s
+Ran 7 tests in 7.323s
 
 OK
 
@@ -4278,7 +4612,7 @@ test_override_esplicito (__main__.TestWantDraft.test_override_esplicito) ... ok
 test_solo_long_form (__main__.TestWantDraft.test_solo_long_form) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 1.100s
+Ran 16 tests in 2.076s
 
 OK
 
@@ -4297,7 +4631,7 @@ test_08_acceptance_null_se_assente (__main__.TestT3PersistELive.test_08_acceptan
 test_09_ttft_da_ultimi_campioni (__main__.TestT3PersistELive.test_09_ttft_da_ultimi_campioni) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.088s
+Ran 9 tests in 0.052s
 
 OK
 
@@ -4339,7 +4673,7 @@ test_runtime_config (__main__.TestSogliaTarata.test_runtime_config)
 R3.3 (R24): soglia LETTA da ConfigManager e confrontata col ... ok
 
 ----------------------------------------------------------------------
-Ran 23 tests in 0.029s
+Ran 23 tests in 0.014s
 
 OK
 
@@ -4347,20 +4681,21 @@ OK
 ===== testR15_index.py (exit=0) =====
 [r15-index][vector_index] index_meta bootstrap: embedding_model_id='intfloat/multilingual-e5-small' (runtime='intfloat/multilingual-e5-small')
 [r15-reindex][vector_index] START target=model-new
-[r15-reindex][vector_index] DONE ms=57 chunks=1 dim=8 -> embedding_model_id='model-new'
+[r15-reindex][vector_index] DONE ms=56 chunks=1 dim=8 -> embedding_model_id='model-new'
+[usearch] REBUILD da sqlite: n=1 dim=8 in 8.9ms -> hnsw_vector_index.usearch
 [r15-index][vector_index] index_meta bootstrap: embedding_model_id='intfloat/multilingual-e5-small' (runtime='intfloat/multilingual-e5-small')
 
 test_backward_compat_two_args (__main__.TestAddChunksEmbedderId.test_backward_compat_two_args) ... ok
 test_emb_id_written_and_chunk_meta_merged (__main__.TestAddChunksEmbedderId.test_emb_id_written_and_chunk_meta_merged) ... ok
 test_books_store_meta_and_empty_query (__main__.TestBooksStore.test_books_store_meta_and_empty_query) ... ok
-test_audit_detects_orphan_repair_idempotent (__main__.TestCoverageAuditRepair.test_audit_detects_orphan_repair_idempotent) ... <frozen importlib._bootstrap_external>:781: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EC10CA4A90>
+test_audit_detects_orphan_repair_idempotent (__main__.TestCoverageAuditRepair.test_audit_detects_orphan_repair_idempotent) ... <frozen importlib._bootstrap_external>:781: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x0000024804124A90>
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_deleted_file_in_same_base_still_cleaned (__main__.TestCrossStoreScanIsolation.test_deleted_file_in_same_base_still_cleaned) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EC10CA4D60>
+test_deleted_file_in_same_base_still_cleaned (__main__.TestCrossStoreScanIsolation.test_deleted_file_in_same_base_still_cleaned) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x0000024804124D60>
   gc.collect()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_empty_books_scan_does_not_wipe_notes_rows (__main__.TestCrossStoreScanIsolation.test_empty_books_scan_does_not_wipe_notes_rows) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EC383BEF20>
+test_empty_books_scan_does_not_wipe_notes_rows (__main__.TestCrossStoreScanIsolation.test_empty_books_scan_does_not_wipe_notes_rows) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002482B77EF20>
   gc.collect()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -4371,7 +4706,10 @@ test_add_chunks_match_returns_chunk (__main__.TestFtsPopulated.test_add_chunks_m
 test_fts_scoped_per_store (__main__.TestFtsPopulated.test_fts_scoped_per_store) ... ok
 test_isolated_per_store_key (__main__.TestIndexMeta.test_isolated_per_store_key) ... ok
 test_persist_across_reopen (__main__.TestIndexMeta.test_persist_across_reopen) ... ok
-test_chunk_meta_carries_file_signature (__main__.TestIndexerScanBookkeeping.test_chunk_meta_carries_file_signature) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001EC3B68ED40>
+test_chunk_meta_carries_file_signature (__main__.TestIndexerScanBookkeeping.test_chunk_meta_carries_file_signature) ... C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002482EA4ED40>
+  gc.collect()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\Desktop\progetti app\StudioIA_7\core\rag\embedder.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002482EA4F1F0>
   gc.collect()
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -4379,7 +4717,7 @@ test_first_scan_writes_row_second_scan_zero_reembed (__main__.TestIndexerScanBoo
 test_lost_row_reconciled_without_reembed (__main__.TestIndexerScanBookkeeping.test_lost_row_reconciled_without_reembed) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 7.514s
+Ran 16 tests in 4.683s
 
 OK
 
@@ -4395,20 +4733,20 @@ OK
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [SemanticRouter] warmup esempi completato (background)
 [SemanticRouter] warmup esempi completato (background)
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=2, misses=1)
 [gate] informativa: causa=nessun_candidato score=0.0000 soglia=0.7000 stadi=['appunti', 'libri'] ws=non_eseguito query='domanda totalmente fuori corpus zzz' near_miss=[]
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.75 (hits=3, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.80 (hits=4, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.83 (hits=5, misses=1)
 [gate] informativa: causa=alta_somiglianza_senza_supporto score=0.5600 soglia=0.7000 stadi=['appunti', 'libri'] ws=vuoto query='domanda fuori corpus totalm zzz' near_miss=[('appunti', 0.8)]
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
@@ -4450,23 +4788,29 @@ x1 live: vec 0.835, fts 0.379 (nessuna evidenza), lex 1/4 = 0.25 ... ok
 test_x2_like_lex_33_parziale (__main__.TestFix3CalibrazioneSupporto.test_x2_like_lex_33_parziale) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.226s
+Ran 16 tests in 0.192s
 
 OK
 
 
 ===== testR15_pipe.py (exit=0) =====
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] MISS profile=studio hit_rate=0.00 (hits=0, misses=1)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 29.6ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 2.1ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.50 (hits=1, misses=1)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.1ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.3ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
+[SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=2, misses=1)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 1.9ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.2ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
@@ -4476,10 +4820,14 @@ OK
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.60 (hits=3, misses=2)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.7ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.5ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=4, misses=2)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.1ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.3ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
@@ -4490,18 +4838,25 @@ OK
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.75 (hits=6, misses=2)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
-[SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.78 (hits=7, misses=2)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.8ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.5ms -> hnsw_vector_index_books.usearch
+[SemanticRouter] warmup esempi completato (background)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [Router] cache HIT ammesso (B3.2): sim=1.000 intent=nuova-domanda
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.80 (hits=8, misses=2)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.82 (hits=9, misses=2)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.4ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=1 dim=64 in 1.7ms -> hnsw_vector_index_books.usearch
 [Router] validazione R18: {'depth': {'ok': True, 'words': 151, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
+[SemanticRouter] warmup esempi completato (background)
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.6ms -> hnsw_vector_index.usearch
+[usearch] REBUILD da sqlite: n=4 dim=64 in 2.1ms -> hnsw_vector_index.usearch
 [SemanticRouter] warmup esempi completato (background)
 [SemanticRouter] warmup esempi completato (background)
 
@@ -4519,25 +4874,48 @@ test_regole_esplicite (__main__.TestDecomposeRules.test_regole_esplicite) ... ok
 test_dump_fts_vec_bm25_e_near_miss (__main__.TestOutcomeBuild.test_dump_fts_vec_bm25_e_near_miss) ... ok
 test_eligibility_nessun_rumore_sub_035 (__main__.TestOutcomeBuild.test_eligibility_nessun_rumore_sub_035) ... ok
 test_rrf_pesato_per_stadio (__main__.TestOutcomeBuild.test_rrf_pesato_per_stadio) ... ok
-test_01_locale_esattamente_una_chiamata (__main__.TestPipelineCalls.test_01_locale_esattamente_una_chiamata) ... ok
-test_02_nessun_web_con_mai (__main__.TestPipelineCalls.test_02_nessun_web_con_mai) ... ok
-test_03_auto_escalation_web_una_chiamata (__main__.TestPipelineCalls.test_03_auto_escalation_web_una_chiamata) ... C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:125: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001558B94C7C0>
-  paths.extend(arg._raw_paths)
-ResourceWarning: Enable tracemalloc to get the object allocation traceback
-C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:125: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001558B94CB80>
-  paths.extend(arg._raw_paths)
-ResourceWarning: Enable tracemalloc to get the object allocation traceback
-C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:125: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000001558B94D300>
-  paths.extend(arg._raw_paths)
+test_01_locale_esattamente_una_chiamata (__main__.TestPipelineCalls.test_01_locale_esattamente_una_chiamata) ... <frozen importlib._bootstrap_external>:781: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F8D4B80>
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
+test_02_nessun_web_con_mai (__main__.TestPipelineCalls.test_02_nessun_web_con_mai) ... ok
+test_03_auto_escalation_web_una_chiamata (__main__.TestPipelineCalls.test_03_auto_escalation_web_una_chiamata) ... ok
 test_03b_locale_vuoto_escalation_web_una_chiamata (__main__.TestPipelineCalls.test_03b_locale_vuoto_escalation_web_una_chiamata) ... ok
 test_04_sempre_fuse_locale_e_web_una_chiamata (__main__.TestPipelineCalls.test_04_sempre_fuse_locale_e_web_una_chiamata) ... ok
 test_05_auto_piena_comunque_interroga_web (__main__.TestPipelineCalls.test_05_auto_piena_comunque_interroga_web)
 R18 B1.1: gate pieno NON short-circuita piu' il web. ... ok
 test_06_nulla_senza_web_informativa_zero_llm (__main__.TestPipelineCalls.test_06_nulla_senza_web_informativa_zero_llm) ... ok
 test_07_chitchat_una_chiamata (__main__.TestPipelineCalls.test_07_chitchat_una_chiamata) ... ok
-test_08_cache_miss_hit_e_fingerprint (__main__.TestPipelineCalls.test_08_cache_miss_hit_e_fingerprint) ... ok
+test_08_cache_miss_hit_e_fingerprint (__main__.TestPipelineCalls.test_08_cache_miss_hit_e_fingerprint) ... C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F8D7D30>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D4220>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D45E0>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D48B0>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D4A90>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D5300>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D55D0>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D58A0>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D5990>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\random.py:167: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x000002306F9D5E40>
+  a = int.from_bytes(a + _sha512(a).digest())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
 test_09_decompose_sempre_una_chiamata (__main__.TestPipelineCalls.test_09_decompose_sempre_una_chiamata) ... ok
 test_99_report_p1_calls_json (__main__.TestPipelineCalls.test_99_report_p1_calls_json) ... ok
 test_hybrid_accetta_variants (__main__.TestRetrievalInstrumentation.test_hybrid_accetta_variants) ... ok
@@ -4547,22 +4925,22 @@ test_router_init_invoca_warmup_non_bloccante (__main__.TestWarmupGuards.test_rou
 test_semantic_router_surface (__main__.TestWarmupGuards.test_semantic_router_surface) ... ok
 
 ----------------------------------------------------------------------
-Ran 30 tests in 3.018s
+Ran 30 tests in 2.237s
 
 OK
 
 
 ===== testR15_web.py (exit=0) =====
-[web_search][RETE] ddgs | ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site: | 3889ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
+[web_search][RETE] ddgs | ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site: | 4027ms | ok=True n=0 | trusted batch (6 domini): nessun risultato (normale)
 [web_search][RETE] ddgs | ddgs://text?q=fotosintesi clorofilliana | 0ms | ok=True n=0 | fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico
-[web_search][RETE] ddgs | ddgs://text?q=fotosintesi clorofilliana | 709ms | ok=True n=3 | generico (no site:)
-[RETE DICHIARATA] ddgs: 3 chiamate -> [{"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:", "ms": 3889.5, "ok": true, "n": 0, "note": "trusted batch (6 domini): nessun risultato (normale)"}, {"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana", "ms": 0.0, "ok": true, "n": 0, "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"}, {"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana", "ms": 708.8, "ok": true, "n": 3, "note": "generico (no site:)"}]
-[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3 | 760ms | ok=True n=0 | titoli [en]
-[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3 | 863ms | ok=True n=3 | titoli [it]
-[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana | 479ms | ok=True n=1 | summary [it]
-[RETE DICHIARATA] wikipedia: 3 chiamate -> [{"provider": "wikipedia", "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3", "ms": 760.2, "ok": true, "n": 0, "note": "titoli [en]"}, {"provider": "wikipedia", "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3", "ms": 862.9, "ok": true, "n": 3, "note": "titoli [it]"}, {"provider": "wikipedia", "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana", "ms": 478.6, "ok": true, "n": 1, "note": "summary [it]"}]
-[web_stage][RETE] fetch | https://example.com | 453ms | status=200 | readability 156 char (max 4000)
-[RETE DICHIARATA] fetch: [{"provider": "fetch", "url": "https://example.com", "ms": 452.6, "status": 200, "ok": true, "note": "readability 156 char (max 4000)"}]
+[web_search][RETE] ddgs | ddgs://text?q=fotosintesi clorofilliana | 1548ms | ok=True n=3 | generico (no site:)
+[RETE DICHIARATA] ddgs: 3 chiamate -> [{"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana (site:treccani.it OR site:sapere.it OR site:britannica.com OR site:scholar.google.com OR site:", "ms": 4026.7, "ok": true, "n": 0, "note": "trusted batch (6 domini): nessun risultato (normale)"}, {"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana", "ms": 0.0, "ok": true, "n": 0, "note": "fase trusted cap 2.0s - stop batch fidati (ottenuti 0); passo al generico"}, {"provider": "ddgs", "url": "ddgs://text?q=fotosintesi clorofilliana", "ms": 1548.0, "ok": true, "n": 3, "note": "generico (no site:)"}]
+[web_search][RETE] wikipedia | https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3 | 648ms | ok=True n=0 | titoli [en]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3 | 607ms | ok=True n=3 | titoli [it]
+[web_search][RETE] wikipedia | https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana | 558ms | ok=True n=1 | summary [it]
+[RETE DICHIARATA] wikipedia: 3 chiamate -> [{"provider": "wikipedia", "url": "https://en.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3", "ms": 648.2, "ok": true, "n": 0, "note": "titoli [en]"}, {"provider": "wikipedia", "url": "https://it.wikipedia.org/w/rest.php/v1/search/page?q=fotosintesi%20clorofilliana&limit=3", "ms": 606.7, "ok": true, "n": 3, "note": "titoli [it]"}, {"provider": "wikipedia", "url": "https://it.wikipedia.org/api/rest_v1/page/summary/Fotosintesi_clorofilliana", "ms": 558.2, "ok": true, "n": 1, "note": "summary [it]"}]
+[web_stage][RETE] fetch | https://example.com | 418ms | status=200 | readability 156 char (max 4000)
+[RETE DICHIARATA] fetch: [{"provider": "fetch", "url": "https://example.com", "ms": 417.6, "status": 200, "ok": true, "note": "readability 156 char (max 4000)"}]
 [index_web] stats={'docs': 1, 'chunks': 1, 'embedded': 1, 'added': 1, 'skipped_docs': 0, 'store_key': 'vector_index'}
 
 test_purge_expired (__main__.TestCacheTTL.test_purge_expired) ... ok
@@ -4578,8 +4956,8 @@ test_mai_zero_rete (__main__.TestEscalate.test_mai_zero_rete) ... ok
 test_ddgs_reale_searxng_vuoto_skip_wiki_off (__main__.TestProviderFallback.test_ddgs_reale_searxng_vuoto_skip_wiki_off)
 1 query ddgs REALE (rete dichiarata) + searxng_url='' -> SKIP ... ok
 test_wikipedia_on_reale_dichiarata (__main__.TestProviderFallback.test_wikipedia_on_reale_dichiarata)
-wikipedia ON: 1-2 chiamate REALI dichiarate (titoli+summary), ... C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\re\_parser.py:175: ResourceWarning: unclosed <ssl.SSLSocket fd=764, family=2, type=1, proto=0, laddr=('192.168.1.73', 62319), raddr=('40.114.177.156', 443)>
-  def append(self, code):
+wikipedia ON: 1-2 chiamate REALI dichiarate (titoli+summary), ... C:\Users\stebo\AppData\Local\Programs\Python\Python313\Lib\re\_parser.py:171: ResourceWarning: unclosed <ssl.SSLSocket fd=796, family=2, type=1, proto=0, laddr=('192.168.1.103', 56165), raddr=('40.114.177.156', 443)>
+  def __setitem__(self, index, code):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
 test_fetch_reale_opzionale (__main__.TestReadabilityLite.test_fetch_reale_opzionale)
@@ -4592,7 +4970,7 @@ test_index_web_temp_store_fts (__main__.TestWebStageIndexing.test_index_web_temp
 test_index_web_vuoto_noop (__main__.TestWebStageIndexing.test_index_web_vuoto_noop) ... ok
 
 ----------------------------------------------------------------------
-Ran 15 tests in 8.344s
+Ran 15 tests in 9.210s
 
 OK
 
@@ -4624,7 +5002,7 @@ test_vuoto_onesto (__main__.TestInformativaWebStatus.test_vuoto_onesto) ... ok
 test_web_note_aggiunto (__main__.TestInformativaWebStatus.test_web_note_aggiunto) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 0.018s
+Ran 10 tests in 0.021s
 
 OK
 
@@ -4632,15 +5010,15 @@ OK
 ===== testR16_pipe.py (exit=0) =====
 [web_search][RETE] allowlist | https://malware.example.net/p | 0ms | ok=True n=0 | fuori allowlist - scartato
 [Router] intent=chit-chat sim=None rule=saluto-iniziale
+[SemanticRouter] warmup esempi completato (background)
 [PrefixCache] MISS profile=studio hit_rate=0.00 (hits=0, misses=1)
-[SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
-[PrefixCache] HIT profile=studio hit_rate=0.50 (hits=1, misses=1)
 [SemanticRouter] warmup esempi completato (background)
+[PrefixCache] HIT profile=studio hit_rate=0.50 (hits=1, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 155, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
+[SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=2, misses=1)
-[SemanticRouter] warmup esempi completato (background)
 [gate] informativa: causa=alta_somiglianza_senza_supporto score=0.4920 soglia=0.7000 stadi=['appunti', 'libri'] ws=non_eseguito query='domanda fuori corpus zz' near_miss=[('appunti', 0.82)]
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
@@ -4659,24 +5037,24 @@ OK
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.86 (hits=6, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 155, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.88 (hits=7, misses=1)
 [gate] informativa: causa=alta_somiglianza_senza_supporto score=0.4920 soglia=0.7000 stadi=['appunti', 'libri'] ws=non_eseguito query='domanda fuori corpus zzz3' near_miss=[('appunti', 0.82)]
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.89 (hits=8, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 155, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.90 (hits=9, misses=1)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 155, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
+[SemanticRouter] warmup esempi completato (background)
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.91 (hits=10, misses=1)
-[SemanticRouter] warmup esempi completato (background)
 [gate] informativa: causa=alta_somiglianza_senza_supporto score=0.4920 soglia=0.7000 stadi=['appunti', 'libri'] ws=giu query='domanda fuori corpus zzz q2' near_miss=[('appunti', 0.82)]
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.92 (hits=11, misses=1)
 [gate] informativa: causa=alta_somiglianza_senza_supporto score=0.4920 soglia=0.7000 stadi=['appunti', 'libri'] ws=vuoto query='domanda fuori corpus zzz4' near_miss=[('appunti', 0.82)]
 
@@ -4701,7 +5079,7 @@ QA-1 (v): R16_WEB_DOWN -> zero rete, informativa, 0 LLM. ... ok
 test_vuoto_web_informativa_vuoto (__main__.TestWebUltimoLayer.test_vuoto_web_informativa_vuoto) ... ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.391s
+Ran 14 tests in 0.229s
 
 OK
 
@@ -4731,7 +5109,7 @@ test_passa_testo_pulito (__main__.TestSanitizer.test_passa_testo_pulito) ... ok
 test_taglia_ruolo_e_marker (__main__.TestSanitizer.test_taglia_ruolo_e_marker) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.011s
+Ran 16 tests in 0.007s
 
 OK
 
@@ -4758,13 +5136,13 @@ OK
 
 
 ===== testR18_pipeline.py (exit=0) =====
-[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1793641655.6864467}
-[web_stage] escalation saltata: circuit-breaker aperto fino a 1793641715 (ultimo errore: {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1793641655.6864467})
-[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1793641655.6865509}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1794411297.6898217}
+[web_stage] escalation saltata: circuit-breaker aperto fino a 1794411357 (ultimo errore: {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1794411297.6898217})
+[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://example.org/x', 'provider': 'ddgs', 'status': None, 'error': 'errore fetch: ConnectionError', 'ts': 1794411297.689878}
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] MISS profile=studio hit_rate=0.00 (hits=0, misses=1)
-[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://it.wikipedia.org/q', 'provider': 'wikipedia', 'status': None, 'error': 'errore: TimeoutError', 'ts': 1793641655.7178335}
+[web_stage] circuit-breaker APERTO (TTL 60s): {'url': 'https://it.wikipedia.org/q', 'provider': 'wikipedia', 'status': None, 'error': 'errore: TimeoutError', 'ts': 1794411297.709585}
 [gate] informativa: causa=nessun_candidato score=0.0000 soglia=0.7000 stadi=['appunti', 'libri'] ws=giu query='domanda fuori corpus zzz' near_miss=[]
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
@@ -4773,16 +5151,16 @@ OK
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=2, misses=1)
-[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.1}
+[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
+[SemanticRouter] warmup esempi completato (background)
 [Router] intent=chit-chat sim=None rule=saluto-iniziale
-[SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.75 (hits=3, misses=1)
+[SemanticRouter] warmup esempi completato (background)
 [Router] intent=sotto-domanda sim=-0.0407 rule=ref=questa,parlami meglio,meglio di | retrieval='fotosintesi produzione ossigeno'
-[SemanticRouter] warmup esempi completato (background)
 [PrefixCache] MISS profile=studio hit_rate=0.60 (hits=3, misses=2)
-[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 80, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.1}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 80, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=4, misses=2)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [Router] intent=stessa-domanda-riformulata sim=1.0 rule=subset-token
@@ -4799,24 +5177,25 @@ OK
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.67 (hits=6, misses=3)
 [Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): dato non confermato dalle fonti. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il dato diverso riportat
-[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['dato non confermato dalle fonti']}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['dato non confermato dalle fonti']}}, 'check_ms': 0.1, 'limit_declared': True}
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
+[Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['dato non confermato dalle fonti']}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ['dato non confermato dalle fonti']}}, 'check_ms': 0.0, 'limit_declared': True}
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.70 (hits=7, misses=3)
 [Router] rigenerazione vincolata (B2/B5): Affermazioni NON supportate dal contesto (da correggere o rimuovere): afferma che la fotosintesi converte l'azoto. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il dato dive
 [Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': True, 'violations': []}, 'attempts': 2, 'first': {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': False, 'violations': ["afferma che la fotosintesi converte l'azoto"]}}, 'check_ms': 0.1}
 [SQLiteVectorStore] R18 B4: 1 chunk saltati (hash gia' presente per il documento)
+[usearch] REBUILD da sqlite: n=2 dim=64 in 23.5ms -> hnsw_t.usearch
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
 [PrefixCache] HIT profile=studio hit_rate=0.73 (hits=8, misses=3)
 [gate] informativa: causa=nessun_candidato score=0.0000 soglia=0.7000 stadi=['appunti', 'libri'] ws=vuoto query='domanda fuori corpus yyy' near_miss=[]
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.75 (hits=9, misses=3)
 [Router] rigenerazione vincolata (B2/B5): Risposta troppo breve: servono almeno 120 parole ben articolate (o almeno 3 punti strutturati) SOLO sul contesto fornito. Se materiali locali e fonti web sono in contrasto, segui le fonti web e segnala in una frase il da
 [Router] validazione R18: {'depth': {'ok': False, 'words': 2, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficiente: 2 parole (min 120) / 0 punti"}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 2, 'first': {'depth': {'ok': False, 'words': 2, 'bullets': 0, 'min': 120, 'reason': "profondita' insufficien
-[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [SemanticRouter] warmup esempi completato (background)
+[Router] intent=nuova-domanda sim=None rule=nessun_legame
 [PrefixCache] HIT profile=studio hit_rate=0.77 (hits=10, misses=3)
 [Router] validazione R18: {'depth': {'ok': True, 'words': 162, 'bullets': 0, 'min': 120, 'reason': 'ok'}, 'grounding': {'ok': None, 'violations': [], 'skipped': 'sidecar check non disponibile', 'errors': ['RuntimeError: maker sidecar non disponibile']}, 'attempts': 1, 'check_ms': 0.0}
 [Router] intent=nuova-domanda sim=None rule=nessun_legame
@@ -4854,7 +5233,7 @@ test_informativa_nessuna_fonte (__main__.TestProvenienzaContribuenti.test_inform
 test_senza_duplicati_nel_contesto (__main__.TestProvenienzaContribuenti.test_senza_duplicati_nel_contesto) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 0.668s
+Ran 20 tests in 0.415s
 
 OK
 
@@ -4896,7 +5275,7 @@ test_rss_mb_senza_processo_none (__main__.TestSidecarModelSwitch.test_rss_mb_sen
 test_stesso_modello_nessun_restart (__main__.TestSidecarModelSwitch.test_stesso_modello_nessun_restart) ... ok
 
 ----------------------------------------------------------------------
-Ran 28 tests in 0.059s
+Ran 28 tests in 0.045s
 
 OK
 
@@ -4906,7 +5285,7 @@ OK
 
 ....
 ----------------------------------------------------------------------
-Ran 4 tests in 0.015s
+Ran 4 tests in 0.009s
 
 OK
 
@@ -4932,7 +5311,7 @@ test_stesso_engine_nessun_restart (__main__.TestSwitchEngineRestart.test_stesso_
 test_switch_upstream_a_xhtoken_restart (__main__.TestSwitchEngineRestart.test_switch_upstream_a_xhtoken_restart) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.020s
+Ran 16 tests in 0.013s
 
 OK
 
@@ -4941,7 +5320,14 @@ OK
 
 ...................
 ----------------------------------------------------------------------
-Ran 19 tests in 0.136s
+Ran 19 tests in 0.105s
 
 OK
+
+
+===== testR28_preview.py (exit=0) =====
+
+--- pytest fallback ---
+...........                                                              [100%]
+11 passed in 1.12s
 

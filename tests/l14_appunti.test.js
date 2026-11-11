@@ -41,7 +41,6 @@ function lagPx(trace) {
             pts.push([120 + i * 5, 200 + Math.sin(i / 6) * 6]); // moto uniforme ondulato
         }
         ink.clear();
-        ink.setShaping(false, false, 350);  // shaping OFF: isola il blocco L
         ink.setHelp(0);           // intensita' 0 (toggle on)
         await env0.stroke(env, env0.wc(env, pts), { dt: 2, settle: 120 });
         const lag0 = lagPx(ink.trace);

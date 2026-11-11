@@ -1,3 +1,96 @@
+## Round 31-bis (PROMPT ROUND 29-bis) - OMBRA di anteprima live (shadow preview) prima del rilascio + chiusura aperture 29-bis
+
+**STRATEGIA**: "SPEC-FIRST-ombra": Parte 1-bis (G01-G13, N02-bis sostitutivo di N02) implementata come LAYER di
+rendering separato dal motore ink-commit: `shadowPlan()` (ink_commit.js) riusa la classificazione T01/T02/frecce e
+ritorna SOLO il piano (mai commit, G09); `updateShadow()` in notes.js ad ogni frame con attivazione solo dopo
+sosta `shadowHoldMs=200ms` (G01) e aggiornamento live a ogni punto (G05, firma sig); `drawShadow()` layer grigio
+`shadowOpacity=0.40` (G02) sopra il grezzo (G03), sagoma punta per frecce (G08), SOLO penna giù, `ed.sh=null` al
+rilascio (G10); timer idle 40ms (gate >60ms senza input) per attivazione/render dove i rAF si fermano (headless),
+senza toccare la latenza live (M03/Q04). Assiste solo T01/T02/frecce-asta-line/arco; T03-T07/loop/chiuso mai
+ombra (G04). Commit K01-K04, undo/redo e persistenza invariati (K01-K04 validi, M04/M05).
+
+### Comportamento verificato su APP REALE (qaR31b_shadow 65/65, screenshot qa/r31b_*.png)
+- Q06 linea+sosta+miratura 245%: attivazione 201ms, G05 update max 11.9ms (misura IN-PAGINA, <=100ms),
+  commit=line endpoint ombra->commit 0.000px, zero grigio post; Q07 arco: 187ms/15.3ms/0.000px;
+  Q10 freccia: flick 4pt -> shadow arrow+head, commit arrow+head 0px; Q08/Q09 no-ombra; Q11 undo/redo
+  ['line','line'] senza elementi ombra; Q12 zoom 100% identico a 245% (G13); N02-bis confermato in ogni scenario.
+- 5 aperture del 29-bis chiuse con root-cause (tutte QA/generatori, prodotto invariato):
+  (1) Q06 commit freeform/endpoint104.058 = `penUp(ptsB)` a x+60 vs penna a x+164 (snap inkLastRaw teleporta
+  104px) -> fix QA `penUp(ptsB.concat(ext))`;
+  (2) G05 >100ms = clock nodo/CDP + **poisoning dei probe pixel:324x`getImageData` sezzano i frame
+  (31->2/500ms, persistente, evidenza `qa/_r31b_bisect.js`; screenshot innocui)** -> misura inpagina + probe
+  spostati DOPO la sezione G05 in Q06/Q07;
+  (3) Q10 flick = generatore QA sotto-soglia A01 (gamba 7.5<8px, 2pt nella finestra 250ms) -> nuovo V 4pt +
+  asta phase-0 amp3 (dev 5.08<6.50 anche troncata) -> arrow+head;
+  (4) Q12.4/6 rieseguiti verdi; (5) T1 3581/0 + qaR31_ink 87/87 sul codice finale.
+- qaR31_ink N08: la pausa mid-stroke (>=200ms) attiva l'ombra G01 che scurisce la coda bagnata (168->~109,
+  fuori banda 160-176 del probe; A/B in `qa/_r31b_n08diag.js`) -> check round-29 isolato con `shadowHoldMs`
+  fuori SOLO per il draw N08 (ripristino subito dopo) -> 87/87. N08 live>=3px / post<=0.75px sempre confermati.
+
+### File
+PRODOTTO ( Round 31-bis, gia' nel round29-bis): notes.js (ed.sh/updateShadow/drawShadow/liveTick/__ink.shadow,
+~+120 righe, nessuna rimozione), ink_commit.js (+shadowPlan), ink_cfg.js (+shadow*3). INvariati in questa
+completione. QA: qa_browser/qaR31b_shadow.js (Q06-Q12, g05Arm/g05Read inpagina), qaR31_ink.js (isolamento N08),
+diag: qa/_r31b_cadence.js, _r31b_bisect.js, _r31b_n08diag.js, _r31b_dbg_q10shaft.js, _r31b_patch2/3.js.
+
+### QA/REGRESSIONI (finali)
+qaR31b_shadow **65/65**; qaR31_ink **87/87** (latenza p95 16.3 vs baseline R0 16.0, delta 0.3<=8);
+T1 **3581/0** (baseline ufficiale). Report: qa/r31b_report.md (DONE), qa/r31_report.md (round29).
+
+## Round 31 (PROMPT ROUND 29) - Ink-commit: riscrittura totale del motore di perfezionamento tratti (riferimento video FreeNotes)
+
+**STRATEGIA**: "SPEC-FIRST-ink": Parte 1 del prompt (L/K/T/A/F/N) come UNICA fonte di verita; motore di perfezionamento
+esistente (rette/archi/forme chiuse/ghost/hold-still/oggetti forma/maniglie) ELIMINATO e riscritto da zero in un modulo
+unico "ink_commit.js" con tutti i parametri in "ink_cfg.js" (coordinate MONDO, zoom-invarianti, M02); nessun flag
+(setShaping/setReleaseRefine/nt14_shaping/nt24_releaseRefine/toggle "Perfeziona al rilascio"/slider "Fermo per snap"
+rimossi, M01); commit SEMPRE al rilascio con finestra di assestamento K01=200ms (150-300) e UNO swap discreto (K02),
+pendings indipendenti per tratto (K04) con snapshot undo/redo e salvataggio che materializzano i pendings (M04/M05);
+scrittura assistita live (One Euro + slider Intensita/Smussamento) INVARIATA e solo in fase live (M03, latenza p95
+misurata <=33ms e == baseline R0). Evidenze: qaR31_ink su APP REALE (pointer CDP, 87/87 su3 run) + T1 completo
+3581/0 (baseline3308/0) + qaR27_fonti45/45 + run.js19/19 + r18_chat40/0.
+
+### Comportamento (T/K/A/F/N)
+- T01 linea: dev corda<=2.5% o path/chord>=0.95 con nf<2 -> Theil-Sen+PCA, segmento a2 punti esatti, endpoint +-3px.
+- T02 arco: cerchio Kasa (residuo<=4px, endpoint+-3, sweep>=12, |err angolo|<=5, tangenti endpoint<=10) oppure cubica
+  singola LSQ tol=max(4px, 11% corda) per gli angoli raccordati; se countFlessi>=2 (corda corta -> artefatto anche su
+  una "C" pulita) il cerchio deve essere PERFETTO <=1.5px: arco di 280 gradi resta arco (A01), una S resta freeform.
+- T03/T04/T05/T07: Taubin topologia-preservante con rollback (auto-intersezioni e flessi invariate); chiuso -> SOLO
+  smoothing (mai cerchio/ellisse/rettangolo, N07); T07 scarabocchio denso -> mode "light"; T06 (path<20px) -> grezzo
+  + discarded. F01-F05: flick stesso tratto (core V250ms/80px + back-stroke120ms/35px + fallback a INVERSIONE
+  LOCALIZZATA per arco+flick = A06) e assorbimento secondo tratto (300ms/60px/120ms/60px) -> UN solo oggetto arrow
+  con punta triangolare 3.4x/35 gradi saldata sulla tangente finale (F03/A06) e UN solo undo (M04/F04).
+- L02/L04: coda "bagnata" grigia 30px mondo su tratto live e pendente, ZERO pixel grigi post-commit (N08 misurato con
+  sezione trasversale reale: live>=3px, post<=0.75px). N01-N09 tutti verificati su app reale (qaR31_ink).
+
+### File (M01/M02)
+CREATI: web_frontend/html/js/modules/ink_cfg.js (unico file di config), ink_commit.js (motore),
+  qa_browser/qaR31_ink.js (QA reale Q01-Q04 con screenshot live/post V01-V08).
+RIMOSSE da notes.js ~1983 righe: recognizeStroke, _tryRect, _tryTri, _closeLoop, kasaCircle, _lineFitRobust,
+  _tryCurve, _fitBezierRun, _taubinPreserve, _countFlessi, detectFlick, _detectBackStroke, _detectFlickCore,
+  findFlickTarget, convertTargetToArrow, buildArrowRec, _makeHead, finalizeStrokeWithShape, finalizeEndStroke,
+  makeShapeObj, ghostFlashLoop, drawGhostOverlay, _recIsClosed, inkEndCleanup, rotHandlePos + maniglia rotazione,
+  setShaping, setReleaseRefine, saveShaping (nt14/nt24), slider "Fermo per snap", toggle "Perfeziona al rilascio".
+INVARIATI: mkOneEuro (live), slider Intensita/Smussamento, drawShape (solo rendering legacy di note esistenti).
+
+### QA/REGRESSIONI
+- qaR31_ink.js 87/87 su3 run consecutivi (V01-V08 live+post, N01-N09, zoom100/245 identico, latenza 240Hz p95=16.8ms
+  <=33 e invariata vs baseline R0 p95=17ms). T1 3581/0 (baseline3308/0): suite ink riscritte a14=86, u20=142,
+  u22=36, u24=56, v1=95, l14=10. qaR27_fonti 45/45; run.js F0.4+4 pagine 19/19; r18_chat 40/0; stamp ?v= unificato
+  su tutti i moduli + QA_TS=2026-11-09T19:30:00+01:00 (entry metrics_history round31 con build coerente).
+- Allineamenti TEST pre-R31 (prodotto invariato, dati dichiarati): qaC2_viewer (contratto viewer mat R28/R30,
+  fonti_panel mtime 04/11 > T1 02/11), qa3_block3 P5 regex ancorata a inizio riga "^# ROUND 3" (il match aperto
+  combaciava "## Round 30" prependuto in R30), testG6_b3 accetta il ramo ONNX reale (P1b.3, modello .done+onnx>=50MB
+  scaricato il 02/11 22:20), testR15 decompose abilitato via RAG_TECH (default OFF dal P1b.3 post-T1),
+  metrics_history entry round31 (build==QA_TS, come da contratto testG8).
+
+### Resta aperto
+- slider "Intensita aiuto/Smussamento righe": UI e stato intatti ma senza effetto post-release (il commit gestisce
+  tutto il rilascio; live a parametri fissi invariato per l14/Q04) - dichiarato.
+- QA browser storici qaA19_shaping/qaR22_ink/qaR24_ink/qaLA14 richiamano API eliminate (setShaping/ghost/holdMs):
+  sostituiti da qaR31_ink; non eseguiti in questo round.
+- dist/NovaStudio contiene la copia web_frontend pre-R31: rigenerare con build.sh.
+- F01 secondo tratto: finestra letterale 300ms/60px puo intercettare tratti brevissimi in corsivo veloce (gate extra:
+  durata<120ms, len<=60px, target line/arc senza testa) - monitorabile via trace "absorb".
 ﻿## Round 30 (PROMPT ROUND 28) - Preview Fonti responsiva: ogni adattatore si adatta a pannello, collasso e finestra
 
 **STRATEGIA**: "FE-RESP-first: layout flex del contenitore preview + rigenerazione adattiva

@@ -56,10 +56,10 @@
     }
   ],
   "n_queries": 12,
-  "metodo": "(a) parity top-10 su 12 query derivate dai .md di C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\md; DeterministicEmbedder (tests/testH1_parity.py) con dim=64 (vettore reale dell'indice); STESSO embedder per chroma (copia read-only) e sqlite (file temp); overlap = intersezione(top10_chroma, top10_sqlite) / min(10). (b) recall@5 con query vettoriali ANCORATE al centroide dei vettori reali del .md gold + 10% rumore deterministico DeterministicEmbedder (modello di produzione non caricabile o dimensione diversa); hit = >=1 risultato top-5 dal .md di origine.",
+  "metodo": "(a) parity top-10 su 12 query derivate dai .md di C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_4u4p3xu_\\md; DeterministicEmbedder (tests/testH1_parity.py) con dim=64 (vettore reale dell'indice); STESSO embedder per chroma (copia read-only) e sqlite (file temp); overlap = intersezione(top10_chroma, top10_sqlite) / min(10). (b) recall@5 con query vettoriali ANCORATE al centroide dei vettori reali del .md gold + 10% rumore deterministico DeterministicEmbedder (modello di produzione non caricabile o dimensione diversa); hit = >=1 risultato top-5 dal .md di origine.",
   "comando_riproduzione": "python data/migrate_real.py",
-  "chroma_source": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\vector_index_books",
-  "corpus": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_hwqnsdl1\\md",
+  "chroma_source": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_4u4p3xu_\\vector_index_books",
+  "corpus": "C:\\Users\\stebo\\AppData\\Local\\Temp\\r13_books_e2e_4u4p3xu_\\md",
   "migrate_stats": {
     "ok": true,
     "migrated": 12,
@@ -191,7 +191,7 @@
       "hit": true
     }
   ],
-  "ts": "2026-11-02T18:46:57",
+  "ts": "2026-11-11T16:34:24",
   "error": null,
   "gate": {
     "parity_min": 1.0,

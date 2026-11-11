@@ -373,20 +373,29 @@ class TestConfigAndOverride(unittest.TestCase):
 
 class TestDecomposeRules(unittest.TestCase):
     def test_regole_esplicite(self):
-        subs = Router._decompose(
-            "spiega la mitosi e anche la meiosi inoltre confronta le differenze")
-        self.assertGreaterEqual(len(subs), 2)
-        subs2 = Router._decompose(
-            "spiega la cellula. descrivi i mitocondri. confronta i ribosomi.")
-        self.assertGreaterEqual(len(subs2), 2)
-        # "tutto su" (regola R15b P1)
-        subs3 = Router._decompose(
-            "vorrei un riassunto preciso e completo con esempi di tutto su chimica organica")
-        self.assertGreaterEqual(len(subs3), 2)
-        # query semplice -> nessuna decomposizione
-        self.assertEqual(Router._decompose("che cos'è la mitosi"), [])
-        # intent non-rag -> nessuna decomposizione
-        self.assertEqual(Router._decompose("salva come nota"), [])
+        # ALLINEAMENTO R31: default rag.decompose OFF dal P1b.3 (02/11
+        # serale, esito A/B qa/p1b_rag.json) DOPO l'ultimo T1 del 02/11
+        # 18:47. Le REGOLE di split si verificano abilitando la tecnica
+        # con RAG_TECH (meccanismo A/B dichiarato in gate.rag_flag).
+        import os as _os
+        _os.environ["RAG_TECH"] = "decompose"
+        try:
+            subs = Router._decompose(
+                "spiega la mitosi e anche la meiosi inoltre confronta le differenze")
+            self.assertGreaterEqual(len(subs), 2)
+            subs2 = Router._decompose(
+                "spiega la cellula. descrivi i mitocondri. confronta i ribosomi.")
+            self.assertGreaterEqual(len(subs2), 2)
+            # "tutto su" (regola R15b P1)
+            subs3 = Router._decompose(
+                "vorrei un riassunto preciso e completo con esempi di tutto su chimica organica")
+            self.assertGreaterEqual(len(subs3), 2)
+            # query semplice -> nessuna decomposizione
+            self.assertEqual(Router._decompose("che cos'è la mitosi"), [])
+            # intent non-rag -> nessuna decomposizione
+            self.assertEqual(Router._decompose("salva come nota"), [])
+        finally:
+            _os.environ.pop("RAG_TECH", None)
 
 
 # ======================================================================
@@ -719,14 +728,23 @@ class TestPipelineCalls(unittest.TestCase):
 
     # --------------------------------- 09: decompose wire = ancora 1 chiamata
     def test_09_decompose_sempre_una_chiamata(self):
-        q = ("spiega la fotosintesi clorofilliana negli organismi "
-             "autotrofi del regno vegetale. inoltre confronta con la "
-             "respirazione cellulare che avviene nei mitocondri")
-        res = self._run(q, web_override="mai")
-        CALLS_REPORT["decompose_una_sola_generazione"] = res["calls"]
-        self.assertEqual(res["calls"], 1)
-        # le sub-query hanno alimentato il retrieval (varianti > 1)
-        self.assertGreaterEqual(self.local.last_probe.get("variants", 0), 2)
+        # ALLINEAMENTO R31: come test_regole_esplicite — flag
+        # rag.decompose default OFF dal P1b.3; tecnica abilitata esplicita
+        # via RAG_TECH per verificare il wire (1 sola generazione con
+        # >=2 varianti di retrieval).
+        import os as _os
+        _os.environ["RAG_TECH"] = "decompose"
+        try:
+            q = ("spiega la fotosintesi clorofilliana negli organismi "
+                 "autotrofi del regno vegetale. inoltre confronta con la "
+                 "respirazione cellulare che avviene nei mitocondri")
+            res = self._run(q, web_override="mai")
+            CALLS_REPORT["decompose_una_sola_generazione"] = res["calls"]
+            self.assertEqual(res["calls"], 1)
+            # le sub-query hanno alimentato il retrieval (varianti > 1)
+            self.assertGreaterEqual(self.local.last_probe.get("variants", 0), 2)
+        finally:
+            _os.environ.pop("RAG_TECH", None)
 
     # ------------------------------------------------------ 99: report JSON
     def test_99_report_p1_calls_json(self):

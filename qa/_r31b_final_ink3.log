@@ -1,0 +1,116 @@
+BROWSER OK: Chrome/155.0.8059.79
+OPEN http://127.0.0.1:8879/index.html [V01]
+V01: NOTES READY patch=true
+  PASS  V01: classe attesa=line
+  PASS  V01: oggetto resta t=stroke (N04, nessuna shape)
+  PASS  V01: residuo render vs modello <=0.5px (Q01)
+  PASS  V01: endpoint preservati +-3px (Q01)
+  PASS  V01: sizes=null dopo commit (N09)
+  PASS  V01: segmento esatto a2 punti (T01)
+  PASS  V01: LIVE punta grigia >=3px pixel (L02)
+  PASS  V01: ESATTAMENTE1 swap (K02)
+  PASS  V02: UN oggetto arrow (F02/F04)
+  PASS  V02: params.head + shaftKind=line
+  PASS  V02: punta 3-4x spessore (F03)
+  PASS  V02: ali 30-40gradi (F03)
+  PASS  V02: punta lungo tangente finale asta <=10gradi (F03/A06)
+  PASS  V02: base punta saldata all end asta <=0.05px
+  PASS  V02: endpoint asta vs grezzo +-3px
+  PASS  V02: flick grezzo assorbito (nessun pt ideale sul flick)
+  PASS  V02: classe attesa arrow
+  PASS  V03: tre archi =3 oggetti
+  PASS  V03: tutti e3 arc (stessa famiglia, T02)
+  PASS  V03: tutte le curve RESTANO APERTE (N01)
+  PASS  V03: endpoint +-3px su tutti e3
+  PASS  V03: modello parametrico unico (circle|bez)
+  PASS  V04: classe attesa=line
+  PASS  V04: oggetto resta t=stroke (N04, nessuna shape)
+  PASS  V04: residuo render vs modello <=0.5px (Q01)
+  PASS  V04: endpoint preservati +-3px (Q01)
+  PASS  V04: sizes=null dopo commit (N09)
+  PASS  V04: angolo diagonale vs generatore <=1.5gradi
+  PASS  V05: S -> freeform (nessuno snap, T03)
+  PASS  V05: DUE flessi preservati (V05/T03)
+  PASS  V05: nessun modello parametrico (smooth only)
+  PASS  V05: endpoint +-3px
+  PASS  V06: due tratti =2 oggetti
+  PASS  V06: loop -> freeform (T04)
+  PASS  V06: zigzag -> freeform (T03)
+  PASS  V06: loop/INCROCI preservati (T04/V06)
+  PASS  V06: zigzag flessi >=2 preservati
+  PASS  V07: due tratti
+  PASS  V07: C APERTA -> arc (mai closed, N01/T05)
+  PASS  V07: gap C preservato aperto
+  PASS  V07: endpoint C +-3px
+  PASS  V07: verticale ondulata -> linea perfetta
+  PASS  V08: due diagonali ->2 linee perfette
+  PASS  V08: endpoint +-3px su entrambe
+  PASS  V08: LIVE punta grigia >=3px (L02)
+  PASS  N01: C resta della famiglia aperta (mai closed)
+  PASS  N01: gap post≈pre e aperto (nessuna chiusura)
+  PASS  N02: state() SENZA campo ghost (nessun hold-still)
+  PASS  N02: zero nodi DOM ghost
+  PASS  N02: NESSUN release/swap durante l hold (N03/N06)
+  PASS  N02: nessun oggetto/anteprima creato durante l hold
+  PASS  N02: al rilascio il tratto commesso normalmente
+  PASS  N03: release tracciato
+  PASS  N03: swap comunque dopo150-320ms senza alcuna pausa (N03)
+  PASS  N03: tratto perfezionato
+  PASS  N04: NESSUN nuovo nodo DOM maniglie/handle dopo commit
+  PASS  N04: nessuna selezione auto-generata (selected/lasel false)
+  PASS  N04: tratto resta inchiostrato (t=stroke, zero oggetti shape)
+  PASS  N04: tool invariato (penna)
+  PASS  N05: secondo tratto commesso
+  PASS  N05: il tratto A commesso resta IDENTICO dopo il tratto B (N05)
+  PASS  N06: in live NESSUN oggetto in doc (il tratto entra al rilascio)
+  PASS  N06: NESSUN release/swap/morfing durante il live
+  PASS  N06: al rilascio parte il commit
+  PASS  N07: cerchio chiuso -> classe closed
+  PASS  N07: MAI conversione in cerchio/ellisse/rett (params solo smooth)
+  PASS  N07: resta un tratto inked
+  PASS  N07: il cerchio resta STORTO (nessun snap a circonferenza perfetta)
+  PASS  N08: LIVE la coda grigia ESISTE (>=3 px wet)
+  PASS  N08: LIVE sezione trasversale grigia >=3px mondo (L02 pixel)
+  PASS  N08: POST-commit ZERO pixel grigi in sezione (<=0.75px mondo)
+  PASS  N08 INFO: pixel grigi in bbox (AA bordi, non vincolante)
+  PASS  N08: flag _wet assente post-commit
+  PASS  N09: sizes=null (nessuna larghezza variabile post-commit)
+  PASS  N09: size == setting penna (base) dopo commit
+  PASS  N09: larghezza renderizzata uniforme (2 sezioni +-1.5px mondo)
+  PASS  Q03 zoom100%: onda->line, S->freeform
+  PASS  Q03 zoom245%: stesse classi
+  PASS  Q03: classi+modelli IDENTICI a100% e245% (soglie MONDO)
+  PASS  Q04: stream sintetico240Hz generato (>=120 evt)
+  PASS  Q04: latenza live p95 <=33ms aggiunti
+  PASS  Q04: latenza INVARIATA vs baseline notes.js R0 (delta p95 <=8ms)
+  PASS  GLOBAL: zero pageerror
+  PASS  GLOBAL: zero risposte HTTP>=400
+  PASS  GLOBAL: log [ink24] presenti (28)
+  PASS  GLOBAL: nessun pending residuo a fine sessione
+  PASS  GLOBAL: flag shaping assenti in state
+\n================ TABELLA V01-V08 ================
+case | classe | residuo | endErr | note
+v01 | "line" | 0 | 0
+v02 | "arrow" | - | 0
+v03 | ["arc","arc","arc"] | - | -
+v04 | "line" | - | -
+v05 | "freeform" | - | -
+v06 | {"loop":{"in":13,"out":13},"zig":4} | - | -
+v07 | {"c":"arc","v":"line"} | - | -
+v08 | ["line","line"] | - | 0,0
+================ TABELLA N01-N09 ================
+n01: {"vclass":"arc","gPre":65.5,"gPost":65.5}
+n02: {"dom":0,"duringObjs":0}
+n03: {"swap":{"k":"swap","cls":"line","t":63145,"dt":211.10000002384186},"cls":"line"}
+n04: {"domBefore":0,"domAfter":0,"selected":false,"lasel":false,"tool":"penna"}
+n05: {"same":true,"n":2}
+n06: {"duringDelta":0,"relD":0,"swD":0}
+n07: {"cls":"closed","kind":"smooth","hasCX":false,"wobble":2.89}
+n08: {"liveWet":{"wet":99,"dark":0},"liveCross":{"run":14,"wrun":3.5,"n":14},"postWet":{"wet":164,"px":32852},"postCross":{"run":0,"wrun":0,"n":0}}
+n09: {"sizes":null,"size":4,"base":4,"widths":[4,4]}
+================ Q03/Q04 ========================
+zoom: {"z100":{"zoom":1,"cls":["line","freeform"],"kinds":["line","smooth"]},"z245":{"zoom":2.45,"cls":["line","freeform"],"kinds":["line","smooth"]}}
+latenza NEW: {"n":190,"nPaint":94,"p50":14.5,"p95":16.300000071525574,"max":18.700000047683716,"rafN":95,"tickP95":16.300000071525574,"tickMax":20.800000071525574,"paintMax":19.5} BASE: {"n":190,"nPaint":99,"p50":14.899999976158142,"p95":16,"max":16.299999952316284,"rafN":100,"tickP95":16.700000047683716,"tickMax":17.699999928474426,"paintMax":17.1}
+
+===== TOTALE: 87/87 check OK =====
+Misure -> qa/r31_ink_measures.json; screenshot -> qa/r31_*.png

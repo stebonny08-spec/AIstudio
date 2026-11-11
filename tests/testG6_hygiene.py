@@ -171,15 +171,25 @@ class TestG6RerankerPlaceholder(unittest.TestCase):
     def test_b3_attivazione_via_local_search(self):
         # reranker=True in search -> _apply_reranker costruisce l'istanza
         # -> GUARDIA logga "NON ADDESTRATO" senza crashare.
+        # ALLINEAMENTO R31: dal P1b.3 (02/11 serale, DOPO l'ultimo T1 del
+        # 02/11 18:47) model_ready() e' True quando il modello ONNX reale
+        # (tools/models/rerank_bge-v2m3: .done + onnx >=50MB) e' presente:
+        # allora _apply_reranker usa il percorso ONNX e NON logga il
+        # placeholder. Il test accetta ENTRAMBI i rami contrattuali.
         from core import local_search
         rows = [
             {"id": 1, "text": "fotosintesi clorofilliana piante"},
             {"id": 2, "text": "riscaldamento globale oceani ghiaccio"},
         ]
-        with self.assertLogs("core.rag.reranker_int8", level="WARNING") as cm:
+        ready, why = rrmod.model_ready()
+        if ready:
             out = local_search._apply_reranker("fotosintesi", rows, top_n=10)
-        self.assertEqual(len(out), 2)
-        self.assertIn("NON ADDESTRATO", "\n".join(cm.output))
+            self.assertEqual(len(out), 2)
+        else:
+            with self.assertLogs("core.rag.reranker_int8", level="WARNING") as cm:
+                out = local_search._apply_reranker("fotosintesi", rows, top_n=10)
+            self.assertEqual(len(out), 2)
+            self.assertIn("NON ADDESTRATO", "\n".join(cm.output))
 
 
 # --------------------------------------------------------------------------

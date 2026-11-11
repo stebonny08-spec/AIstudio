@@ -1,0 +1,20 @@
+[
+ {
+  "f": "qa_browser/qaR31b_shadow.js",
+  "n": 1,
+  "find": "        await penDown(ptsB);\n        await penMoves(ptsB, 1, 61, 5);",
+  "repl": "        await penDown(ptsB);\n        await penMoves(ptsB, 1, ptsB.length, 5);"
+ },
+ {
+  "f": "qa_browser/qaR31b_shadow.js",
+  "n": 1,
+  "find": "        const tMove0 = Date.now();\n        await penMoves(ext, 0, ext.length, 5);",
+  "repl": "        await penMoves(ext, 0, ext.length, 5);\n        const tMove0 = Date.now();"
+ },
+ {
+  "f": "qa_browser/qaR31b_shadow.js",
+  "n": 1,
+  "find": "        const tU0 = Date.now();\n        await penMoves(ext, 0, ext.length, 5);",
+  "repl": "        await penMoves(ext, 0, ext.length, 5);\n        const tU0 = Date.now();"
+ }
+]

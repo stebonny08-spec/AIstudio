@@ -9,6 +9,8 @@ const path = require('path');
 const { JSDOM, VirtualConsole } = require('./harness/node_modules/jsdom');
 
 const ROOT = path.join(__dirname, '..');
+const SRC_CFG = fs.readFileSync(path.join(ROOT, 'web_frontend', 'html', 'js', 'modules', 'ink_cfg.js'), 'utf8');
+const SRC_COMMIT = fs.readFileSync(path.join(ROOT, 'web_frontend', 'html', 'js', 'modules', 'ink_commit.js'), 'utf8');
 const SRC_PANEL = fs.readFileSync(
     path.join(ROOT, 'web_frontend', 'html', 'js', 'modules', 'fonti_panel.js'), 'utf8');
 const SRC_NOTES = fs.readFileSync(
@@ -141,6 +143,8 @@ function makeEnv() {
     };
 
     win.eval(SRC_PANEL);
+    win.eval(SRC_CFG);
+    win.eval(SRC_COMMIT);
     win.eval(SRC_NOTES);
     return { dom, win, doc, store, mod: win.App._mod, consoleErrors };
 }

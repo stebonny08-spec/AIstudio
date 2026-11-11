@@ -272,14 +272,49 @@
             ed.helpOn = true;   // il toggle "migliora scrittura" deve essere
                                 // ON per misurare l'effetto dell'intensita'
         },
+        // 29-bis: stato OMBRA per QA (G01-G12) — non e' un tratto, non e'
+        // persistita; pts = copia del piano ideale corrente
+        shadow: function () {
+            if (!ed) return null;
+            const sh = ed.sh;
+            const dbg = {
+                has: !!sh,
+                tick: !!ed.liveTick,
+                age: sh ? Math.round(performance.now() - sh.lastMoveT) : -1,
+                evtAge: Math.round(performance.now() - (ed.inkLastEvt || 0)),
+                n: ed.active ? ed.active.pts.length : -1,
+                tool: ed.active ? ed.active.tool : null,
+                hold: (window.InkCommit && InkCommit.CFG.shadowHoldMs) || 200,
+                plan: sh && sh.plan ? sh.plan.cls : null,
+                noSnap: !!ed.inkNoSnap,
+                sp: typeof (window.InkCommit && window.InkCommit.shadowPlan)
+            };
+            if (!sh) return { visible: false, cls: null, head: false, pts: null, dbg: dbg };
+            return {
+                visible: !!sh.visible,
+                cls: sh.plan ? sh.plan.cls : null,
+                head: !!(sh.plan && sh.plan.params && sh.plan.params.head),
+                pts: (sh.visible && sh.plan && sh.plan.pts)
+                    ? sh.plan.pts.map(p => [p[0], p[1]]) : null,
+                dbg: dbg
+            };
+        },
+        // 29-bis: punti GREZZI del tratto attivo (N02-bis: nessun morfing)
+        activePts: function () {
+            return (ed && ed.active && ed.active.pts)
+                ? JSON.parse(JSON.stringify(ed.active.pts)) : null;
+        },
         state: function () {
             return ed ? { tool: ed.tool, helpOn: !!ed.helpOn,
                           assist: ed.helpAssist, smooth: ed.helpSmooth,
-                          active: !!ed.active, shpOn: !!ed.shpOn,
-                          arrowOn: !!ed.arrowOn, holdMs: ed.holdMs,
-                          releaseRefine: ed.releaseRefine !== false,
+                          active: !!ed.active,
+                          settleMs: (window.InkCommit
+                              ? InkCommit.CFG.settleMs : 200),
+                          pending: ed.inkPendings
+                              ? ed.inkPendings.length : 0,
+                          selected: !!ed.selected,
+                          lasel: !!(ed.lasel && ed.lasel.length),
                           zoom: ed.scale,
-                          ghost: !!ed.ghost, ghostFlash: !!ed.ghostFlash,
                           dw: ed.doc ? ed.doc.w : 0,
                           dh: ed.doc ? ed.doc.h : 0,
                           pointers: ed.pointers ? ed.pointers.size : -1,
@@ -288,24 +323,8 @@
         pageAt: function (wx, wy) {
             try { return inPage({ x: wx, y: wy }); } catch (e) { return 'err'; }
         },
-        // R14 A4: setter per test/T2 (persistenza localStorage)
-        setShaping: function (shp, arrow, holdMs) {
-            if (!ed) return null;
-            if (shp !== undefined) ed.shpOn = !!shp;
-            if (arrow !== undefined) ed.arrowOn = !!arrow;
-            if (holdMs !== undefined) {
-                ed.holdMs = Math.min(800, Math.max(200, Number(holdMs) || 350));
-            }
-            saveShaping();
-            return window.__ink.state();
-        },
-        // R24 FE-INK: setter test/T2 del toggle "perfeziona al rilascio"
-        setReleaseRefine: function (v) {
-            if (!ed) return null;
-            ed.releaseRefine = (v === undefined) ? true : !!v;
-            saveShaping();
-            return window.__ink.state();
-        },
+        // R31 (PROMPT R29): setShaping/setReleaseRefine ELIMINATI —
+        // il motore ink-commit e' sempre attivo (nessun flag, M01).
         // R25 V1.4: zoom testabile. Tutte le soglie di classificazione
         // vivono su punti MONDO (divise per lo zoom per costruzione):
         // il setter serve ai test 100% / 245%.
@@ -346,17 +365,9 @@
             return true;
         }
     };
-    function saveShaping() {
-        if (!ed) return;
-        try {
-            localStorage.setItem('nt14_shaping', JSON.stringify(
-                { shpOn: ed.shpOn, arrowOn: ed.arrowOn, holdMs: ed.holdMs }));
-            // R24 FE-INK: toggle "perfeziona al rilascio" in una chiave
-            // SEPARATA accanto a nt14_shaping (nt14_shaping invariato)
-            localStorage.setItem('nt24_releaseRefine', JSON.stringify(
-                { on: ed.releaseRefine !== false }));
-        } catch (e) { /* storage non disponibile: stato in memoria */ }
-    }
+    // R31: saveShaping/nt14_shaping/nt24_releaseRefine ELIMINATI (M01:
+    // nessun flag di shaping persistito — il motore dipende solo da
+    // ink_cfg.js)
     // ---- R24 FE-INK: strumentazione rilascio (contatori + console) --------
     // A ogni rilascio di un tratto di disegno: console.info '[ink24] ...' +
     // window.__ink.counters (cumulati sessione) / .counters.stroke (questo
@@ -442,60 +453,27 @@
                 ' live=' + (c.strokes_live || 0));
         } catch (e) { /* console non disponibile */ }
     }
-    // R25 V1: residuo dello swap = massima distanza dei punti RENDERIZZATI
-    // dal modello ideale (line: segmento; arc: cerchio/bez; closed:
-    // modello parametrico; arrow: asta; freeform: 0 dichiarato).
-    function _swapResidual(o, cls) {
-        if (!o) return 0;
-        if (cls === 'freeform') return 0;   // smoothing topologia-preservante
-        const pts = o.pts || [];
-        if (pts.length < 2) return 0;       // circle/ellipse: render parametrico
-        const pr = o.params || {};
-        const sf = (o.kind === 'arrow' && pr.shaft) ? pr.shaft : pr;
-        const lp = (o.kind === 'line' || sf.kind === 'line') ? (sf.pts || pts) : null;
-        if (lp && lp.length === 2) {
-            let m = 0;
-            for (const q of pts) {
-                const d = _distToPoly(q, [lp[0], lp[1]]).d;
-                if (d > m) m = d;
-            }
-            return m;
-        }
-        if (sf.arc && sf.arc.cx !== undefined) {
-            let m = 0;
-            for (const q of pts) {
-                const d = Math.abs(Math.hypot(q[0] - sf.arc.cx,
-                                              q[1] - sf.arc.cy) - sf.arc.r);
-                if (d > m) m = d;
-            }
-            return m;
-        }
-        if (sf.bez && sf.bez.length) {
-            const dense = _bezDense(sf.bez, 16);
-            let m = 0;
-            for (const q of pts) {
-                const d = _distToPoly(q, dense).d;
-                if (d > m) m = d;
-            }
-            return m;
-        }
-        return 0;   // polilinea ideale (rect/tri/quad): punti sul modello
-    }
     // R25 V1: UNO swap singolo al rilascio -> tutta la strumentazione
     // (classified per classe, refined, perfected_on_release, swapped_pixels,
     // residual_px) calcolata in UN punto coerente. nRaw = punti grezzi
     // sostituiti dal tratto appena commesso.
-    function ink24Commit(obj, vclass, nRaw) {
-        const cls = _clsOf(obj ? obj.kind : null, vclass);
-        ink24Add('classified', obj ? obj.kind : null, cls);
-        ink24Add('refined', obj ? obj.kind : null);
+    // R31: UNO swap discreto al termine della finestra di assestamento
+    // (K01/K02): tutta la strumentazione (classified per classe,
+    // refined, perfected_on_release, swapped_pixels, residual_px) in UN
+    // punto coerente. residPx = distanza punti renderizzati -> modello
+    // parametrico (InkCommit.residualOf; Q01: <=0.5px).
+    function ink24Commit(obj, vclass, nRaw, residPx) {
+        const cls = V1_CLASSES.indexOf(vclass) >= 0
+            ? vclass : _clsOf(obj ? obj.kind : null, vclass);
+        ink24Add('classified', cls, cls);
+        ink24Add('refined', cls);
         ink24Add('perfected_on_release', null);
         const c = window.__ink && window.__ink.counters;
         if (c) {
             const nId = (obj && obj.pts && obj.pts.length) ? obj.pts.length : 0;
             c.swapped_pixels = (c.swapped_pixels || 0) +
                 Math.max(nRaw || 0, nId);
-            c.residual_px = _swapResidual(obj, cls);   // ultimo valore
+            c.residual_px = (typeof residPx === 'number') ? residPx : 0;
         }
     }
     const measureCtx = document.createElement('canvas').getContext('2d');
@@ -1049,74 +1027,67 @@
         if (inkRafId) return;
         inkRafId = requestAnimationFrame(inkFrame);
     }
-    // R24 FE-INK: la forma riconosciuta e' CHIUSA? Gate del ghost
-    // hold-still. rect/square/triangle/circle/ellipse si; line mai;
-    // curve = stessa regola gap R20 di recognizeStroke (gapTol =
-    // max(12, 8% della diagonale del bbox del tratto)).
-    function _recIsClosed(rec, pts) {
-        if (!rec || !pts || pts.length < 2) return false;
-        if (rec.kind === 'line') return false;
-        if (rec.kind !== 'curve') return true;
-        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-        for (const q of pts) {
-            if (q[0] < x0) x0 = q[0];
-            if (q[0] > x1) x1 = q[0];
-            if (q[1] < y0) y0 = q[1];
-            if (q[1] > y1) y1 = q[1];
-        }
-        const gapTol = Math.max(12, Math.hypot(x1 - x0, y1 - y0) * 0.08);
-        const a = pts[0], b = pts[pts.length - 1];
-        return Math.hypot(a[0] - b[0], a[1] - b[1]) <= gapTol;
-    }
 
+    // ---- 29-bis: OMBRA (anteprima live linea/arco, PARTE 1-bis) ----
+    // Chiamata a ogni frame finche' la penna e' giu (la catena rAF vive
+    // finche' ed.active): attivazione dopo sosta >=shadowHoldMs (G01),
+    // aggiornamento continuo su ogni movimento con latenza <=1 frame
+    // (~16ms <= 80-100ms di G05), sparizione immediata se la classe esce
+    // da T01/T02 (G07). Layer separato: NON tocca mai i punti grezzi
+    // (N02-bis) e NON commetta mai (G09).
+    function shadowPlanFor(o) {
+        try {
+            if (!window.InkCommit) return null;
+            const plan = InkCommit.shadowPlan(o.pts, {
+                ts: o.ts,
+                size: o.base || o.size || 3,
+                noSnap: !!ed.inkNoSnap
+            });
+            return plan || null;
+        } catch (e) { return null; }
+    }
+    function updateShadow() {
+        if (!ed || !ed.active || !ed.sh) return;
+        const o = ed.active;
+        if (o.tool === 'highlighter') { ed.sh.visible = false; ed.sh.plan = null; return; }
+        const pts = o.pts;
+        if (!pts.length) { ed.sh.visible = false; return; }
+        const last = pts[pts.length - 1];
+        const sig = pts.length + '|' + last[0].toFixed(2) + '|' + last[1].toFixed(2);
+        const now = performance.now();
+        const hold = (window.InkCommit && InkCommit.CFG.shadowHoldMs) || 200;
+        if (ed.sh.visible) {
+            if (sig !== ed.sh.sig) {
+                ed.sh.sig = sig;
+                const p = shadowPlanFor(o);
+                if (p) { ed.sh.plan = p; }          // G05: aggiornamento live
+                else { ed.sh.visible = false; ed.sh.plan = null; }  // G07
+            }
+            return;
+        }
+        // G01/G07: attivazione SOLO dopo una sosta >= hold
+        if (ed.sh.lastMoveT && (now - ed.sh.lastMoveT) >= hold) {
+            const p = shadowPlanFor(o);
+            if (p) {
+                ed.sh.visible = true;
+                ed.sh.plan = p;
+                ed.sh.sig = sig;
+            }
+        }
+    }
     function inkFrame() {
         inkRafId = 0;
         if (!ed || !ed.active) return;
         const now = performance.now();
         // L3: puntatore fermo -> la punta renderizzata converge al punto
         // reale ENTRO <=2 frame (snap al primo frame di quiete)
-        // R14 A1/A3: hold-still >= holdMs (default 350ms): stabilizzazione
-        // del tratto in pausa e, se riconosciuto, snap a shape DURANTE il
-        // fermo (il rilascio resta l'altro trigger di riconoscimento)
-        if (!ed.inkHeld && ed.inkLastMoveT &&
-            (now - ed.inkLastMoveT) >= (ed.holdMs || 350)) {
-            ed.inkHeld = true;
-            const oAct = ed.active;
-            if (ed.helpOn && oAct.pts.length >= 3) {
-                inkEndCleanup(oAct);   // A3: rimozione tremolio in pausa
-            }
-            if (ed.shpOn && oAct.pts.length >= 5) {
-                const recH = recognizeStroke(oAct.pts, ed.inkSnapAmp || 0);
-                // R24 FE-INK: con "perfeziona al rilascio" ON il ghost vale
-                // SOLO per le forme CHIUSE (R20 invariato); i tratti APERTI
-                // aspettano il rilascio (settle 150ms). OFF -> hold-still
-                // STORICO anche per gli aperti.
-                if (recH && (ed.releaseRefine === false ||
-                             _recIsClosed(recH, oAct.pts))) {
-                    if (window.__ink) {
-                        window.__ink.trace.push({ k: 'stop',
-                            t: performance.now(), hold: true });
-                    }
-                    // R20 G/U8: GHOST PREVIEW - la penna e' ancora GIU':
-                    // la candidata NON viene commessa, resta in ed.ghost
-                    // (overlay tratteggiato in drawAll). Il COMMIT avviene
-                    // al RILASCIO (endPointer + flash ~150ms); se la penna
-                    // riprende a muoversi il ghost viene annullato
-                    // (onPointerMove). Nessun return: il frame continua e
-                    // ed.active resta vivo (nessun cambio al percorso
-                    // live: riconoscimento solo al momento dell'hold).
-                    ed.ghost = { rec: recH,
-                                 pts: oAct.pts.map(q => [q[0], q[1]]),
-                                 t: performance.now() };
-                }
-            }
-        }
         if (ed.inkFx && ed.inkLastRaw && (now - (ed.inkLastEvt || 0)) > 16) {
             ed.inkFx.snap(ed.inkLastRaw.x, ed.inkLastRaw.y, now);
             const pts = ed.active.pts;
             const l = pts[pts.length - 1];
             if (l) { l[0] = ed.inkLastRaw.x; l[1] = ed.inkLastRaw.y; }
         }
+        updateShadow();   // 29-bis: ombra live (G01-G07)
         drawAll();
         if (window.__ink && ed.active && ed.active.pts.length) {
             const l = ed.active.pts[ed.active.pts.length - 1];
@@ -1130,1877 +1101,246 @@
         if (ed.active) scheduleInkFrame();
     }
 
-    // L2: Intensita' aiuto influenza SOLO la pulizia/stabilizzazione di
-    // FINE TRATTO (+ ampiezza dello snap, inkSnapAmp usato dallo shaping A).
-    // Mai nel percorso live (latenza invariante).
-    function inkEndCleanup(o) {
-        if (!ed || !o || o.t !== 'stroke' || !o.pts || o.pts.length < 3) return;
-        if (o.tool === 'highlighter') return;
-        // snap finale: l'ultimo punto diventa il punto REALE (verita')
-        if (ed.inkLastRaw) {
-            const l = o.pts[o.pts.length - 1];
-            l[0] = ed.inkLastRaw.x;
-            l[1] = ed.inkLastRaw.y;
-        }
-        const pts = o.pts;
-        // R19 A2.5: riferimento GREZZO (verita' di tracciato) prima di ogni
-        // filtraggio: serve per il clamp di tolleranza dello smussamento.
-        // R20 lotto 1: ed.inkRawRef e' la base del residuo GREZZO->ideale
-        // del gate 'curve' (<=2.5px dichiarati).
-        const raw0 = pts.map(pt => [pt[0], pt[1]]);
-        ed.inkRawRef = raw0;
-        if (!ed.helpOn) return;   // toggle spento -> scrittura grezza
-        const a = ed.helpAssist || 0;
-        const s = ed.helpSmooth || 0;
-        ed.inkSnapAmp = a;        // ampiezza snap per A1 (shaping)
-        // (b) pulizia/fissaggio di fine tratto con la Forza aiuto (a):
-        // rimozione tremolio (media locale sui punti interni)
-        if (a > 0) {
-            const src = pts.map(pt => [pt[0], pt[1]]);
-            for (let i = 1; i < pts.length - 1; i++) {
-                const mx = (src[i - 1][0] + src[i][0] + src[i + 1][0]) / 3;
-                const my = (src[i - 1][1] + src[i][1] + src[i + 1][1]) / 3;
-                pts[i][0] += (mx - pts[i][0]) * (0.3 * a);
-                pts[i][1] += (my - pts[i][1]) * (0.3 * a);
-            }
-        }
-        // (a) R19 A2.5: SMUSSAMENTO TOTALIZZANTE a fine tratto
-        // - resample UNIFORME (5px) del tracciato grezzo
-        // - fit spline: 3 passate Catmull-Rom -> Bézier equispaziata
-        //   (media (1,2,1)/4 sui nodi = passata offline forte)
-        // - ri-campionamento alla posizione arc-length di OGNI punto grezzo
-        //   (n e ts INVARIATI: finestra flick e size map restano allineate)
-        // - clamp: ogni punto resta entro 2.4px dal tracciato grezzo =>
-        //   tolleranza DICHIARATA A2.5: scostamento max <= 2.5px vs il
-        //   tracciato ideale campionato (assertato in a14 15.1 + QA browser)
-        if (s > 0 && pts.length >= 5) {
-            const rs = _resampleUniform(raw0, 5);
-            if (rs.length >= 6) {
-                for (let it = 0; it < 3; it++) {
-                    const cp = rs.map(p => [p[0], p[1]]);
-                    for (let i = 1; i < rs.length - 1; i++) {
-                        rs[i][0] = (cp[i - 1][0] + 2 * cp[i][0] + cp[i + 1][0]) / 4;
-                        rs[i][1] = (cp[i - 1][1] + 2 * cp[i][1] + cp[i + 1][1]) / 4;
-                    }
-                }
-                const L = _cumLen(raw0);
-                const LR = _cumLen(rs);
-                const total = L[L.length - 1] || 0;
-                const totalR = LR[LR.length - 1] || 0;
-                const clampD = 2.4;   // margine sotto la tolleranza 2.5px
-                for (let i = 0; i < pts.length; i++) {
-                    const f = total > 0 ? L[i] / total : 0;
-                    const q = _evalPolyAt(rs, LR, f * totalR);
-                    const d = _distToPoly(q, raw0);
-                    if (d.d > clampD && d.d > 0) {
-                        const t = (clampD / d.d) * 0.98;
-                        q[0] = d.cx + (q[0] - d.cx) * t;
-                        q[1] = d.cy + (q[1] - d.cy) * t;
-                    }
-                    pts[i][0] = q[0];
-                    pts[i][1] = q[1];
-                }
-            }
-            const l2 = pts[pts.length - 1];
-            if (ed.inkLastRaw) { l2[0] = ed.inkLastRaw.x; l2[1] = ed.inkLastRaw.y; }
-        }
-    }
-    // ---- R19 A2.1/A2.5: utilita' geometriche (chiusura, campionamento) ----
-    // intersezione stretta tra segmenti (punti condivisi non contano)
-    function _segCross(a, b, c, d) {
-        const o1 = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
-        const o2 = (b[0] - a[0]) * (d[1] - a[1]) - (b[1] - a[1]) * (d[0] - a[0]);
-        const o3 = (d[0] - c[0]) * (a[1] - c[1]) - (d[1] - c[1]) * (a[0] - c[0]);
-        const o4 = (d[0] - c[0]) * (b[1] - c[1]) - (d[1] - c[1]) * (b[0] - c[0]);
-        return (o1 * o2 < -1e-9) && (o3 * o4 < -1e-9);
-    }
-    // auto-intersezioni del polilinea: scarta coppie adiacenti (|i-j|<=2)
-    // e la coppia di chiusura (0, ultimo); bound 8 (oltre: "molte")
-    function _selfIntersections(pts) {
-        const n0 = pts.length;
-        if (n0 < 4) return 0;
-        const stride = n0 > 500 ? Math.ceil(n0 / 400) : 1;
-        const P = [];
-        for (let i = 0; i < n0; i += stride) P.push(pts[i]);
-        if (P[P.length - 1] !== pts[n0 - 1]) P.push(pts[n0 - 1]);
-        const n = P.length;
-        let cnt = 0;
-        for (let i = 0; i < n - 1; i++) {
-            for (let j = i + 3; j < n - 1; j++) {
-                if (i === 0 && j === n - 2) continue;
-                if (_segCross(P[i], P[i + 1], P[j], P[j + 1])) {
-                    cnt++;
-                    if (cnt >= 8) return cnt;
-                }
-            }
-        }
-        return cnt;
-    }
-    // lunghezze cumulate
-    function _cumLen(pts) {
-        const L = [0];
-        for (let i = 1; i < pts.length; i++) {
-            L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
-        }
-        return L;
-    }
-    // resample UNIFORME a passo fisso (estremi inclusi)
-    function _resampleUniform(pts, step) {
-        if (!pts || pts.length < 2) return (pts || []).map(p => [p[0], p[1]]);
-        const cum = _cumLen(pts);
-        const total = cum[cum.length - 1];
-        if (!(total > 0)) return [[pts[0][0], pts[0][1]]];
-        const out = [];
-        let j = 0;
-        for (let d = 0; d < total; d += step) {
-            while (j < cum.length - 2 && cum[j + 1] < d) j++;
-            const seg = (cum[j + 1] - cum[j]) || 1;
-            const t = Math.min(1, Math.max(0, (d - cum[j]) / seg));
-            out.push([pts[j][0] + (pts[j + 1][0] - pts[j][0]) * t,
-                      pts[j][1] + (pts[j + 1][1] - pts[j][1]) * t]);
-        }
-        out.push([pts[pts.length - 1][0], pts[pts.length - 1][1]]);
-        return out;
-    }
-    // punto del polilinea a distanza arc-length t (cum = _cumLen del poly)
-    function _evalPolyAt(poly, cum, t) {
-        if (t <= 0) return [poly[0][0], poly[0][1]];
-        const total = cum[cum.length - 1];
-        if (t >= total) return [poly[poly.length - 1][0], poly[poly.length - 1][1]];
-        let i = 0;
-        while (i < cum.length - 2 && cum[i + 1] < t) i++;
-        const seg = (cum[i + 1] - cum[i]) || 1;
-        const f = (t - cum[i]) / seg;
-        return [poly[i][0] + (poly[i + 1][0] - poly[i][0]) * f,
-                poly[i][1] + (poly[i + 1][1] - poly[i][1]) * f];
-    }
-    // distanza punto->polilinea: {d, cx, cy} (punto piu' vicino sul tracciato)
-    function _distToPoly(p, poly) {
-        let bd = Infinity, bx = p[0], by = p[1];
-        for (let i = 0; i < poly.length - 1; i++) {
-            const a = poly[i], b = poly[i + 1];
-            const dx = b[0] - a[0], dy = b[1] - a[1];
-            const l2 = dx * dx + dy * dy;
-            let t = l2 > 0 ? ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / l2 : 0;
-            t = t < 0 ? 0 : (t > 1 ? 1 : t);
-            const qx = a[0] + t * dx, qy = a[1] + t * dy;
-            const d = Math.hypot(p[0] - qx, p[1] - qy);
-            if (d < bd) { bd = d; bx = qx; by = qy; }
-        }
-        return { d: bd, cx: bx, cy: by };
-    }
-    // ==================== R14 A - ink shaping ====================
-    function _centroid2(pts) {
-        let x = 0, y = 0;
-        for (const p of pts) { x += p[0]; y += p[1]; }
-        return [x / pts.length, y / pts.length];
-    }
-    function _bbox(pts) {
-        let minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
-        for (const p of pts) {
-            if (p[0] < minx) minx = p[0];
-            if (p[0] > maxx) maxx = p[0];
-            if (p[1] < miny) miny = p[1];
-            if (p[1] > maxy) maxy = p[1];
-        }
-        return { x: minx, y: miny, w: maxx - minx, h: maxy - miny };
-    }
-    function _solve3(A, b) {
-        // eliminazione gaussiana 3x3 (matrice simmetrica di Kasa)
-        const m = [A[0].slice().concat([b[0]]),
-                   A[1].slice().concat([b[1]]),
-                   A[2].slice().concat([b[2]])];
-        for (let i = 0; i < 3; i++) {
-            let piv = i;
-            for (let r = i + 1; r < 3; r++) if (Math.abs(m[r][i]) > Math.abs(m[piv][i])) piv = r;
-            if (Math.abs(m[piv][i]) < 1e-12) return null;
-            const t = m[i]; m[i] = m[piv]; m[piv] = t;
-            for (let r = 0; r < 3; r++) {
-                if (r === i) continue;
-                const f = m[r][i] / m[i][i];
-                for (let c = i; c < 4; c++) m[r][c] -= f * m[i][c];
-            }
-        }
-        return [m[0][3] / m[0][0], m[1][3] / m[1][1], m[2][3] / m[2][2]];
-    }
-    // A1: fit algebrico del cerchio (Kasa) su x^2+y^2 + D x + E y + F = 0
-    function kasaCircle(pts) {
-        let Sxx = 0, Sxy = 0, Syy = 0, Sx = 0, Sy = 0,
-            Sxxx = 0, Sxyy = 0, Sxxy = 0, Syyy = 0, Sz = 0;
-        const n = pts.length;
-        for (const q of pts) {
-            const x = q[0], y = q[1], z = x * x + y * y;
-            Sxx += x * x; Sxy += x * y; Syy += y * y;
-            Sx += x; Sy += y; Sz += z;
-            Sxxx += x * z; Sxyy += y * z;
-            Sxxy += x * x * y; Syyy += y * y * y;
-        }
-        const sol = _solve3([[Sxx, Sxy, Sx], [Sxy, Syy, Sy], [Sx, Sy, n]],
-                            [-Sxxx, -Sxyy, -Sz]);
-        if (!sol) return null;
-        const cx = -sol[0] / 2, cy = -sol[1] / 2;
-        const F = sol[2];
-        const r2 = cx * cx + cy * cy - F;
-        if (!(r2 > 0)) return null;
-        const r = Math.sqrt(r2);
-        if (!(r > 4)) return null;
-        return { cx: cx, cy: cy, r: r };
-    }
-    // R19 A2.2: rettangolo/quadrato = tratto CHIUSO + 4 cluster di curvatura
-    // (angoli 90gradi +/-20) + lati rettilinei (deviazione <= tol).
-    function _tryRect(pts, rotDeg, tol) {
-        const bb = _bbox(pts);
-        if (bb.w < 15 || bb.h < 15) return null;
-        const aspect0 = bb.w / bb.h;
-        if (aspect0 < 0.25 || aspect0 > 4) return null;
-        // A2.1: chiusura obbligatoria (stessa regola di recognizeStroke)
-        const gap = Math.hypot(pts[0][0] - pts[pts.length - 1][0],
-                               pts[0][1] - pts[pts.length - 1][1]);
-        if (gap > Math.max(12, Math.hypot(bb.w, bb.h) * 0.08)) return null;
-        if (_selfIntersections(pts) > 1) return null;
-        // dedupe: niente vertici (quasi) duplicati agli angoli
-        const P = [];
-        for (const q of pts) {
-            const last = P[P.length - 1];
-            if (!last || Math.hypot(q[0] - last[0], q[1] - last[1]) > 0.7) {
-                P.push([q[0], q[1]]);
-            }
-        }
-        const m = P.length;
-        if (m < 12) return null;
-        // perimetro + passo medio dei campioni (servono PRIMA delle svolte)
-        let per = 0;
-        for (let i = 0; i < m; i++) {
-            const nx = P[(i + 1) % m];
-            per += Math.hypot(nx[0] - P[i][0], nx[1] - P[i][1]);
-        }
-        // separazione minima dei cluster (~12%, min 8px)
-        const minSep = Math.max(8, per * 0.12);
-        const cell = per / m;
-        // svolta su gambe ~6px (k campioni, ciclica): lo smussamento di
-        // fine tratto arrotonda l'angolo e la svolta PUNTUALE cade da 90
-        // a ~15-25gradi (cluster di vertice persi -> rect diventava
-        // curve/stroke). Su gambe lunghe l'angolo interno resta ~70-90
-        // mentre il rumore sui lati resta < 30.
-        const kL = Math.max(1, Math.min(4, Math.round(6 / (cell || 1))));
-        const turns = new Array(m);
-        for (let i = 0; i < m; i++) {
-            const a = P[(i - kL + m) % m], b = P[i], c = P[(i + kL) % m];
-            const v1 = [b[0] - a[0], b[1] - a[1]], v2 = [c[0] - b[0], c[1] - b[1]];
-            const n1 = Math.hypot(v1[0], v1[1]), n2 = Math.hypot(v2[0], v2[1]);
-            if (n1 < 1e-9 || n2 < 1e-9) { turns[i] = 0; continue; }
-            const cs = (v1[0] * v2[0] + v1[1] * v2[1]) / (n1 * n2);
-            turns[i] = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-        }
-        // 4 angoli = 4 massimi di svolta con soppressione circolare
-        const idxs = [];
-        for (let c = 0; c < 4; c++) {
-            let bi = -1, bs = 0;
-            for (let i = 0; i < m; i++) {
-                let ok = true;
-                for (const j of idxs) {
-                    let d = Math.abs(i - j);
-                    if (d > m / 2) d = m - d;
-                    if (d * cell < minSep) { ok = false; break; }
-                }
-                if (ok && turns[i] > bs) { bs = turns[i]; bi = i; }
-            }
-            if (bi < 0) return null;
-            idxs.push(bi);
-        }
-        idxs.sort((a, b) => a - b);
-        // nessun angolo piatto: tutti >= 30gradi di svolta
-        for (const i of idxs) if (turns[i] < 30) return null;
-        // lati: fit LSQ (asse principale) da corner k a corner k+1 (ciclico)
-        const sides = [];
-        for (let k = 0; k < 4; k++) {
-            const a = idxs[k], b = idxs[(k + 1) % 4];
-            const seq = [];
-            let i = a;
-            for (;;) {
-                seq.push(P[i]);
-                if (i === b) break;
-                i = (i + 1) % m;
-                if (seq.length > m) break;
-            }
-            if (seq.length < 3) return null;
-            let mx = 0, my = 0;
-            for (const q of seq) { mx += q[0]; my += q[1]; }
-            mx /= seq.length; my /= seq.length;
-            let sxx = 0, sxy = 0, syy = 0;
-            for (const q of seq) {
-                const dx = q[0] - mx, dy = q[1] - my;
-                sxx += dx * dx; sxy += dx * dy; syy += dy * dy;
-            }
-            const th = 0.5 * Math.atan2(2 * sxy, sxx - syy);
-            let ux = Math.cos(th), uy = Math.sin(th);
-            const ddx = P[b][0] - P[a][0], ddy = P[b][1] - P[a][1];
-            if (ux * ddx + uy * ddy < 0) { ux = -ux; uy = -uy; }
-            // R20 lotto 1 (parita' col fit cerchio): RMS punti->lato <=
-            // tolleranza (2.5+amp*3). Il maxDev puro era troppo severo per
-            // il freehand sfalsato (cadeva in stroke/ellisse); gli angoli
-            // 90+/-20 e la chiusura restano i vincoli di forma.
-            let accDev = 0;
-            for (const q of seq) {
-                const dev = -uy * (q[0] - mx) + ux * (q[1] - my);
-                accDev += dev * dev;
-            }
-            const rmsSide = Math.sqrt(accDev / seq.length);
-            if (rmsSide > tol) return null;   // lato non rettilineo
-            sides.push({ mx: mx, my: my, ux: ux, uy: uy });
-        }
-        // angoli 90 +/- 20: svolta tra lati consecutivi (diretta)
-        for (let k = 0; k < 4; k++) {
-            const p = sides[(k + 3) % 4], q = sides[k];
-            const dot = p.ux * q.ux + p.uy * q.uy;
-            const crs = p.ux * q.uy - p.uy * q.ux;
-            const ang = Math.abs(Math.atan2(crs, dot) * 180 / Math.PI);
-            if (ang < 70 || ang > 110) return null;
-        }
-        // corner = intersezione tra le rette dei lati adiacenti
-        const corners = [];
-        for (let k = 0; k < 4; k++) {
-            const p = sides[(k + 3) % 4], q = sides[k];
-            const den = p.ux * (-q.uy) - p.uy * (-q.ux);
-            if (Math.abs(den) < 1e-9) return null;
-            const dx = q.mx - p.mx, dy = q.my - p.my;
-            const t = (dx * (-q.uy) - dy * (-q.ux)) / den;
-            corners.push([p.mx + t * p.ux, p.my + t * p.uy]);
-        }
-        const cb = _bbox(corners);
-        const aspect = cb.w / cb.h;
-        const kind = (aspect >= 0.8 && aspect <= 1.25) ? 'square' : 'rectangle';
-        if (rotDeg) {
-            // R20: rotazione INVERSA sull'origine del frame PCA (i corner
-            // sono gia' centrati: sottrarli di nuovo traslava la shape di
-            // -R*centroid -> box fuori posto sul rettangolo storto)
-            const th2 = rotDeg * Math.PI / 180;
-            const cs = Math.cos(th2), sn = Math.sin(th2);
-            const rc = corners.map(q => [q[0] * cs - q[1] * sn,
-                                         q[0] * sn + q[1] * cs]);
-            const rb = _bbox(rc);
-            return { kind: kind, box: rb, rot: rotDeg, pts: rc, params: {} };
-        }
-        return { kind: kind, box: cb, rot: 0, pts: corners, params: {} };
-    }
-        // ================= R20 lotto 1: classi di fit con parita' ============
-    // Nessun re-snap: se >=60% dei punti del nuovo tratto cade dentro il
-    // bbox di uno shape esistente, il tratto resta stroke grezzo.
-    function _insideExisting(pts) {
-        if (!ed || !ed.doc || !ed.doc.objects) return false;
-        let inside = 0;
-        for (const q of pts) {
-            for (const t of ed.doc.objects) {
-                if (t.t !== 'shape') continue;
-                const b = objBBox(t);
-                if (q[0] >= b.x && q[0] <= b.x + b.w &&
-                    q[1] >= b.y && q[1] <= b.y + b.h) { inside++; break; }
-            }
-        }
-        return inside >= pts.length * 0.6;
-    }
-    // Scarabocchio/coloring: riempimento denso del bbox (percorso cumulato
-    // >= 1.6x il perimetro del bbox = passate ripetute dentro la scatola)
-    function _denseFill(pts) {
-        const bb = _bbox(pts);
-        const per = 2 * (bb.w + bb.h);
-        if (!(per > 0)) return true;
-        const L = _cumLen(pts);
-        return (L[L.length - 1] || 0) / per >= 1.6;
-    }
-    // Gap-closing esplicito: campiona di segmento retto il gap punta-coda
-    // PRIMA del fit (Kasa/triangolo/rett). Da chiamare SOLO se gap <=
-    // tolleranza-gap: la "C" aperta non viene mai chiusa forzatamente.
-    function _closeLoop(pts) {
-        const n = pts.length;
-        const a = pts[n - 1], b = pts[0];
-        const gap = Math.hypot(b[0] - a[0], b[1] - a[1]);
-        const out = pts.map(q => [q[0], q[1]]);
-        // niente COPIA di pts[0] in coda: renderebbe collineari (turn=0)
-        // sia l'ultimo punto sia pts[0] e il cluster d'angolo all'avvio
-        // sparirebbe (rettangolo -> solo 3 vertici su 4). Il segmento di
-        // chiusura esiste comunque via gestione ciclica + punti interni.
-        if (gap < 1.4) return out;
-        const k = Math.max(1, Math.min(8, Math.round(gap / 6)));
-        for (let i = 1; i <= k; i++) {
-            const f = i / (k + 1);
-            out.push([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f]);
-        }
-        return out;
-    }
-    // R20 (5): TRIANGOLO - tratto CHIUSO + 3 cluster vertici con angoli
-    // interni 60+/-25 (NON 4 lati) -> fit LSQ a 3 segmenti. Stessa struttura
-    // di _tryRect: dedupe, svolte cicliche, soppressione circolare dei
-    // cluster, RMS punti->lato <= tolleranza del fit cerchio.
-    function _tryTri(pts, rotDeg, tol) {
-        const bb = _bbox(pts);
-        if (bb.w < 20 || bb.h < 20) return null;
-        if (_selfIntersections(pts) > 1) return null;
-        const P = [];
-        for (const q of pts) {
-            const last = P[P.length - 1];
-            if (!last || Math.hypot(q[0] - last[0], q[1] - last[1]) > 0.7) {
-                P.push([q[0], q[1]]);
-            }
-        }
-        const m = P.length;
-        if (m < 10) return null;
-        // perimetro + passo medio dei campioni (servono PRIMA delle svolte)
-        let per = 0;
-        for (let i = 0; i < m; i++) {
-            const nx = P[(i + 1) % m];
-            per += Math.hypot(nx[0] - P[i][0], nx[1] - P[i][1]);
-        }
-        const minSep = Math.max(10, per * 0.15);
-        const cell = per / m;
-        // svolta su gambe ~6px (k campioni, ciclica): stessa motivazione
-        // di _tryRect - la svolta puntuale a 1 campione viene arrotondata
-        // dallo smussamento di fine tratto (120 -> ~20gradi) e i 3 vertici
-        // non superavano piu' la soglia 45. Su gambe lunghe l'angolo
-        // interno ~60 resta ben sopra 45, i lati retti restano < 30.
-        const kL = Math.max(1, Math.min(4, Math.round(6 / (cell || 1))));
-        const turns = new Array(m);
-        for (let i = 0; i < m; i++) {
-            const a = P[(i - kL + m) % m], b = P[i], c = P[(i + kL) % m];
-            const v1 = [b[0] - a[0], b[1] - a[1]], v2 = [c[0] - b[0], c[1] - b[1]];
-            const n1 = Math.hypot(v1[0], v1[1]), n2 = Math.hypot(v2[0], v2[1]);
-            if (n1 < 1e-9 || n2 < 1e-9) { turns[i] = 0; continue; }
-            const cs = (v1[0] * v2[0] + v1[1] * v2[1]) / (n1 * n2);
-            turns[i] = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-        }
-        const idxs = [];
-        for (let c = 0; c < 3; c++) {
-            let bi = -1, bs = 0;
-            for (let i = 0; i < m; i++) {
-                let ok = true;
-                for (const j of idxs) {
-                    let d = Math.abs(i - j);
-                    if (d > m / 2) d = m - d;
-                    if (d * cell < minSep) { ok = false; break; }
-                }
-                if (ok && turns[i] > bs) { bs = turns[i]; bi = i; }
-            }
-            if (bi < 0) return null;
-            idxs.push(bi);
-        }
-        idxs.sort((a, b) => a - b);
-        // svolta al vertice: interno 60gradi => svolta ~120; almeno 45
-        // (esclude archi/ellissi lisce; i rett cadono sul vincolo angoli)
-        for (const i of idxs) if (turns[i] < 45) return null;
-        // lati: fit LSQ (asse principale) da corner k a corner k+1 (ciclico)
-        const sides = [];
-        for (let k = 0; k < 3; k++) {
-            const a = idxs[k], b = idxs[(k + 1) % 3];
-            const seq = [];
-            let i = a;
-            for (;;) {
-                seq.push(P[i]);
-                if (i === b) break;
-                i = (i + 1) % m;
-                if (seq.length > m) break;
-            }
-            if (seq.length < 3) return null;
-            let mx = 0, my = 0;
-            for (const q of seq) { mx += q[0]; my += q[1]; }
-            mx /= seq.length; my /= seq.length;
-            let sxx = 0, sxy = 0, syy = 0;
-            for (const q of seq) {
-                const dx = q[0] - mx, dy = q[1] - my;
-                sxx += dx * dx; sxy += dx * dy; syy += dy * dy;
-            }
-            const thl = 0.5 * Math.atan2(2 * sxy, sxx - syy);
-            let ux = Math.cos(thl), uy = Math.sin(thl);
-            const ddx = P[b][0] - P[a][0], ddy = P[b][1] - P[a][1];
-            if (ux * ddx + uy * ddy < 0) { ux = -ux; uy = -uy; }
-            let acc = 0;
-            for (const q of seq) {
-                const dev = -uy * (q[0] - mx) + ux * (q[1] - my);
-                acc += dev * dev;
-            }
-            if (Math.sqrt(acc / seq.length) > tol) return null;
-            sides.push({ mx: mx, my: my, ux: ux, uy: uy });
-        }
-        // angoli INTERNI 60 +/- 25 => 35..85: l'angolo fra le direzioni
-        // dei lati vale 180 - interno (svolta di percorso)
-        for (let k = 0; k < 3; k++) {
-            const pa = sides[(k + 2) % 3], qa = sides[k];
-            const dot = pa.ux * qa.ux + pa.uy * qa.uy;
-            const crs = pa.ux * qa.uy - pa.uy * qa.ux;
-            const defl = Math.abs(Math.atan2(crs, dot) * 180 / Math.PI);
-            const interior = 180 - defl;
-            if (interior < 35 || interior > 85) return null;
-        }
-        // corner = intersezione fra le rette dei lati adiacenti
-        const corners = [];
-        for (let k = 0; k < 3; k++) {
-            const pa = sides[(k + 2) % 3], qa = sides[k];
-            const den = pa.ux * (-qa.uy) - pa.uy * (-qa.ux);
-            if (Math.abs(den) < 1e-9) return null;
-            const dx = qa.mx - pa.mx, dy = qa.my - pa.my;
-            const tt = (dx * (-qa.uy) - dy * (-qa.ux)) / den;
-            corners.push([pa.mx + tt * pa.ux, pa.my + tt * pa.uy]);
-        }
-        const cb = _bbox(corners);
-        if (rotDeg) {
-            const th2 = rotDeg * Math.PI / 180;
-            const cs = Math.cos(th2), sn = Math.sin(th2);
-            const rc = corners.map(q => [q[0] * cs - q[1] * sn,
-                                         q[0] * sn + q[1] * cs]);
-            return { kind: 'triangle', box: _bbox(rc), rot: rotDeg,
-                     pts: rc, params: {} };
-        }
-        return { kind: 'triangle', box: cb, rot: 0, pts: corners, params: {} };
-    }
-
-    // ===== R22 BLOCCO 3: rette/archi ricostruiti DA ZERO ==============
-    // Solo tratti APERTI: le forme chiuse (gap-closing/corner/ghost)
-    // restano con le regole R20 INVARiate. Il tratto grezzo serve SOLO a
-    // stimare i parametri; il rendering riparte ex novo dai parametri
-    // (punti della curva parametrica, mai il grezzo smussato).
-    //
-    // --- 3.1 retta robusta: Theil-Sen (mediana angoli coppie) + PCA,
-    // scelta sul minore residuo perpendicolare; endpoint = PROIEZIONE
-    // sugli estremi reali dei punti -> segmento ideale perfetto.
-    function _lineFitRobust(pts, cen0, th0) {
-        const n = (pts || []).length;
-        if (n < 2) return null;
-        let cen = cen0, th = th0;
-        if (!cen || th === undefined) {
-            cen = _centroid2(pts);
-            let sxx = 0, sxy = 0, syy = 0;
-            for (const q of pts) {
-                const dx = q[0] - cen[0], dy = q[1] - cen[1];
-                sxx += dx * dx; sxy += dx * dy; syy += dy * dy;
-            }
-            sxx /= n; sxy /= n; syy /= n;
-            th = 0.5 * Math.atan2(2 * sxy, sxx - syy);
-        }
-        // Theil-Sen: mediana degli angoli (campionati a max ~48 punti)
-        // rispetto alla direzione PCA con wrap +-90gradi (una retta e'
-        // una direzione non orientata) -> robusto a jitter/outlier
-        const idx = [];
-        if (n <= 48) { for (let i = 0; i < n; i++) idx.push(i); }
-        else {
-            const st = (n - 1) / 47;
-            for (let k = 0; k < 48; k++) idx.push(Math.round(k * st));
-            if (idx[idx.length - 1] !== n - 1) idx.push(n - 1);
-        }
-        const deltas = [];
-        for (let i = 0; i < idx.length; i++) {
-            for (let j = i + 1; j < idx.length; j++) {
-                const p = pts[idx[i]], q = pts[idx[j]];
-                const dx = q[0] - p[0], dy = q[1] - p[1];
-                if (dx * dx + dy * dy < 1e-12) continue;
-                let d = Math.atan2(dy, dx) - th;
-                while (d > Math.PI / 2) d -= Math.PI;
-                while (d < -Math.PI / 2) d += Math.PI;
-                deltas.push(d);
-            }
-        }
-        const cands = [th];
-        if (deltas.length >= 10) {
-            deltas.sort((a, b) => a - b);
-            cands.push(th + deltas[Math.floor(deltas.length / 2)]);
-        }
-        let best = null;
-        for (const t of cands) {
-            const ux = Math.cos(t), uy = Math.sin(t);
-            let maxPerp = 0, tmin = Infinity, tmax = -Infinity;
-            for (const q of pts) {
-                const dx = q[0] - cen[0], dy = q[1] - cen[1];
-                const perp = Math.abs(-uy * dx + ux * dy);
-                if (perp > maxPerp) maxPerp = perp;
-                const tt = ux * dx + uy * dy;
-                if (tt < tmin) tmin = tt;
-                if (tt > tmax) tmax = tt;
-            }
-            if (!best || maxPerp < best.maxPerp) {
-                best = { a: [cen[0] + ux * tmin, cen[1] + uy * tmin],
-                         b: [cen[0] + ux * tmax, cen[1] + uy * tmax],
-                         th: t, maxPerp: maxPerp, tlen: tmax - tmin };
-            }
-        }
-        return best;
-    }
-    // solutore lineare piccolo (gauss con pivoting)
-    function _solveLin(A, b) {
-        const n = b.length;
-        const M = A.map((r, i) => r.concat([b[i]]));
-        for (let i = 0; i < n; i++) {
-            let p = i;
-            for (let r = i + 1; r < n; r++) if (Math.abs(M[r][i]) > Math.abs(M[p][i])) p = r;
-            const tmp = M[i]; M[i] = M[p]; M[p] = tmp;
-            if (Math.abs(M[i][i]) < 1e-12) return null;
-            for (let r = 0; r < n; r++) {
-                if (r === i) continue;
-                const f = M[r][i] / M[i][i];
-                for (let c = i; c <= n; c++) M[r][c] -= f * M[i][c];
-            }
-        }
-        const x = [];
-        for (let i = n - 1; i >= 0; i--) {
-            let s = M[i][n];
-            for (let c = i + 1; c < n; c++) s -= M[i][c] * x[c];
-            x[i] = s / M[i][i];
-        }
-        return x;
-    }
-    // campionatura densa di una lista di segmenti cubici
-    function _bezDense(bez, sub) {
-        const out = [];
-        for (let i = 0; i < bez.length; i++) {
-            const sg = bez[i];
-            for (let j = (i === 0 ? 0 : 1); j <= sub; j++) out.push(_bezPt(sg, j / sub));
-        }
-        return out;
-    }
-    // residui (d, vettore corrente) dei punti run[i0..i1] vs segmento
-    function _segResiduals(run, i0, i1, sg) {
-        const samp = [];
-        for (let j = 0; j <= 32; j++) samp.push(_bezPt(sg, j / 32));
-        const out = [];
-        for (let i = i0; i <= i1; i++) {
-            const q = run[i];
-            let m = Infinity, mx = q[0], my = q[1];
-            for (let j = 0; j < samp.length - 1; j++) {
-                const a = samp[j], b = samp[j + 1];
-                const dx = b[0] - a[0], dy = b[1] - a[1];
-                const l2 = dx * dx + dy * dy;
-                let t = l2 > 0 ? ((q[0] - a[0]) * dx + (q[1] - a[1]) * dy) / l2 : 0;
-                t = t < 0 ? 0 : (t > 1 ? 1 : t);
-                const px = a[0] + t * dx, py = a[1] + t * dy;
-                const d = Math.hypot(q[0] - px, q[1] - py);
-                if (d < m) { m = d; mx = px; my = py; }
-            }
-            out.push({ d: m, vx: q[0] - mx, vy: q[1] - my });
-        }
-        return out;
-    }
-    // fit LSQ LIBERO del segmento cubico (P0/P3 fissati = nodi, P1/P2
-    // incognite) con pesi IRLS (spinge sui residui peggiori)
-    function _fitSegFree(run, i0, i1, w) {
-        const P0 = run[i0], P3 = run[i1];
-        const A = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-        const b = [0, 0, 0, 0];
-        const nseg = i1 - i0;
-        for (let i = i0; i <= i1; i++) {
-            const wi = w ? w[i - i0] : 1;
-            const t = nseg > 0 ? (i - i0) / nseg : 0;
-            const u = 1 - t;
-            const w0 = u * u * u, w1 = 3 * u * u * t, w2 = 3 * u * t * t, w3 = t * t * t;
-            const bx = run[i][0] - (w0 * P0[0] + w3 * P3[0]);
-            const by = run[i][1] - (w0 * P0[1] + w3 * P3[1]);
-            const rows = [[w1, 0, w2, 0], [0, w1, 0, w2]];
-            const rhs = [bx, by];
-            for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) {
-                for (let d2 = 0; d2 < 4; d2++) A[c][d2] += wi * rows[r][c] * rows[r][d2];
-                b[c] += wi * rows[r][c] * rhs[r];
-            }
-        }
-        const x = _solveLin(A, b);
-        if (!x) return null;
-        return [[P0[0], P0[1]], [x[0], x[1]], [x[2], x[3]], [P3[0], P3[1]]];
-    }
-    // fit con tangenti unitarie fisse ai due estremi (vincolo G1):
-    // incognite lunghezze braccia s0,s1 -> sistema 2x2 lineare
-    function _fitSegT(run, i0, i1, T0, T1, w) {
-        const P0 = run[i0], P3 = run[i1];
-        let a11 = 0, a12 = 0, a22 = 0, b1 = 0, b2 = 0;
-        const nseg = i1 - i0;
-        for (let i = i0; i <= i1; i++) {
-            const wi = w ? w[i - i0] : 1;
-            const t = nseg > 0 ? (i - i0) / nseg : 0;
-            const u = 1 - t;
-            const w0 = u * u * u + 3 * u * u * t;
-            const w3 = 3 * u * t * t + t * t * t;
-            const bv1 = 3 * u * u * t, bv2 = 3 * u * t * t;
-            const bx = run[i][0] - (w0 * P0[0] + w3 * P3[0]);
-            const by = run[i][1] - (w0 * P0[1] + w3 * P3[1]);
-            const vx1 = bv1 * T0[0], vy1 = bv1 * T0[1];
-            const vx2 = -bv2 * T1[0], vy2 = -bv2 * T1[1];
-            a11 += wi * (vx1 * vx1 + vy1 * vy1);
-            a12 += wi * (vx1 * vx2 + vy1 * vy2);
-            a22 += wi * (vx2 * vx2 + vy2 * vy2);
-            b1 += wi * (vx1 * bx + vy1 * by);
-            b2 += wi * (vx2 * bx + vy2 * by);
-        }
-        const det = a11 * a22 - a12 * a12;
-        let s0 = 0, s1 = 0;
-        if (Math.abs(det) > 1e-9) {
-            s0 = (b1 * a22 - b2 * a12) / det;
-            s1 = (a11 * b2 - a12 * b1) / det;
-        } else if (a11 > 1e-12) s0 = b1 / a11;
-        const Lseg = Math.hypot(P3[0] - P0[0], P3[1] - P0[1]) || 1;
-        s0 = Math.max(0.05 * Lseg, Math.min(1.8 * Lseg, s0));
-        s1 = Math.max(0.05 * Lseg, Math.min(1.8 * Lseg, s1));
-        return [[P0[0], P0[1]], [P0[0] + s0 * T0[0], P0[1] + s0 * T0[1]],
-                [P3[0] - s1 * T1[0], P3[1] - s1 * T1[1]], [P3[0], P3[1]]];
-    }
-    // proiezione G1 sui join (tangenti derivate dal fit libero, media
-    // angolare) + tune di curvatura (allinea kappa ai join, 2 iterazioni
-    // con REVERT se peggiora la fedelta' eps)
-    function _projectG1(bez, idx, run, wsegs) {
-        const T = [];
-        for (let k = 0; k <= bez.length; k++) {
-            if (k === 0) {
-                const a = run[idx[0]], b = bez[0][1];
-                const v = [b[0] - a[0], b[1] - a[1]];
-                const n = Math.hypot(v[0], v[1]) || 1;
-                T.push([v[0] / n, v[1] / n]);
-            } else if (k === bez.length) {
-                const s = bez[k - 1];
-                const a = s[2], b = run[idx[k]];
-                const v = [b[0] - a[0], b[1] - a[1]];
-                const n = Math.hypot(v[0], v[1]) || 1;
-                T.push([v[0] / n, v[1] / n]);
-            } else {
-                const s = bez[k - 1], e = bez[k];
-                const v1 = [s[3][0] - s[2][0], s[3][1] - s[2][1]];
-                const v2 = [e[1][0] - e[0][0], e[1][1] - e[0][1]];
-                let a1 = Math.atan2(v1[1], v1[0]), a2 = Math.atan2(v2[1], v2[0]);
-                let d = a2 - a1;
-                while (d > Math.PI) d -= 2 * Math.PI;
-                while (d < -Math.PI) d += 2 * Math.PI;
-                const am = a1 + d / 2;
-                T.push([Math.cos(am), Math.sin(am)]);
-            }
-        }
-        const out = [];
-        for (let k = 0; k < bez.length; k++) {
-            out.push(_fitSegT(run, idx[k], idx[k + 1], T[k], T[k + 1],
-                              wsegs ? wsegs[k] : null));
-        }
-        const epsOf = (segs) => {
-            const ideal = _bezDense(segs, 8);
-            let e = 0;
-            for (const q of run) {
-                const d = _distToPoly(q, ideal).d;
-                if (d > e) e = d;
-            }
-            return e;
-        };
-        const preTune = out.map(sg => sg.map(p => [p[0], p[1]]));
-        const epsPre = epsOf(out);
-        for (let it = 0; it < 2; it++) {
-            for (let k = 1; k < out.length; k++) {
-                const L = out[k - 1], R = out[k];
-                const J = R[0], d = T[k];
-                const cL = d[0] * (L[1][1] - J[1]) - d[1] * (L[1][0] - J[0]);
-                const cR = d[0] * (R[2][1] - J[1]) - d[1] * (R[2][0] - J[0]);
-                if (cL * cR <= 1e-9) continue;   // inflessione al join: skip
-                const aL = Math.hypot(L[3][0] - L[2][0], L[3][1] - L[2][1]) || 1;
-                const aR = Math.hypot(R[1][0] - R[0][0], R[1][1] - R[0][1]) || 1;
-                const kL = cL / (1.5 * aL * aL), kR = cR / (1.5 * aR * aR);
-                const kt = (Math.abs(kL) + Math.abs(kR)) / 2 * (cL > 0 ? 1 : -1);
-                if (!(Math.abs(kt) > 1e-9)) continue;
-                const segL = Math.hypot(L[3][0] - L[0][0], L[3][1] - L[0][1]) || 1;
-                const segR = Math.hypot(R[3][0] - R[0][0], R[3][1] - R[0][1]) || 1;
-                const sL = Math.sqrt(Math.abs(cL) / (1.5 * Math.abs(kt)));
-                const sR = Math.sqrt(Math.abs(cR) / (1.5 * Math.abs(kt)));
-                const sLc = Math.max(0.05 * segL, Math.min(1.8 * segL, sL));
-                const sRc = Math.max(0.05 * segR, Math.min(1.8 * segR, sR));
-                L[2] = [J[0] - d[0] * sLc, J[1] - d[1] * sLc];
-                R[1] = [J[0] + d[0] * sRc, J[1] + d[1] * sRc];
-            }
-        }
-        if (epsOf(out) > epsPre + 0.02) {
-            for (let k = 0; k < out.length; k++) out[k] = preTune[k];
-        }
-        return out;
-    }
-    // fit Bezier cubico pezzo-pezzo: K segmenti crescenti con nodi a
-    // lunghezza uniforme; per segmento LSQ libero + IRLS, poi G1+curva.
-    // Accettazione: eps (ideale -> run) <= epsT E, se fornito, residuo
-    // GREZZO->ideale <= rawT (il gate crudo viene rivalutato a ogni K).
-    function _fitBezierRun(run, epsT, rawT, src) {
-        const m = run.length;
-        if (m < 4) return null;
-        const cum = _cumLen(run), total = cum[m - 1];
-        if (!(total > 0)) return null;
-        const rawOf = (segs) => {
-            if (rawT == null || !src) return 0;
-            const dense = _bezDense(segs, 16);
-            let mr = 0;
-            for (const q of src) {
-                const d = _distToPoly(q, dense).d;
-                if (d > mr) mr = d;
-            }
-            return mr;
-        };
-        const Kmax = Math.max(1, Math.min(10, Math.floor(m / 3)));
-        for (let K = 1; K <= Kmax; K++) {
-            if (K > 1 && m < K * 3 + 2) break;
-            const idx = [0];
-            let bad = false;
-            for (let k = 1; k < K; k++) {
-                const target = total * k / K;
-                let i = idx[idx.length - 1] + 1;
-                while (i < m - 1 && cum[i] < target) i++;
-                if (i >= m - 1) { bad = true; break; }
-                idx.push(i);
-            }
-            if (bad || idx.length !== K) continue;
-            idx.push(m - 1);
-            const bez = [], wsegs = [];
-            for (let k = 0; k < K; k++) {
-                const i0 = idx[k], i1 = idx[k + 1];
-                if (i1 <= i0) { bad = true; break; }
-                let sg = _fitSegFree(run, i0, i1, null);
-                let w = null;
-                for (let ir = 0; ir < 2 && sg; ir++) {
-                    const dv = _segResiduals(run, i0, i1, sg);
-                    let dmax = 0;
-                    for (const t of dv) if (t.d > dmax) dmax = t.d;
-                    if (dmax < 0.05) break;
-                    w = dv.map(t => {
-                        const q = Math.min(1, t.d / dmax);
-                        return 1 + 3 * q * q;
-                    });
-                    sg = _fitSegFree(run, i0, i1, w);
-                }
-                if (!sg) { bad = true; break; }
-                bez.push(sg); wsegs.push(w);
-            }
-            if (bad || bez.length !== K) continue;
-            const proj = _projectG1(bez, idx, run, wsegs);
-            const ideal = _bezDense(proj, 8);
-            let eps = 0;
-            for (const q of run) {
-                const d = _distToPoly(q, ideal).d;
-                if (d > eps) eps = d;
-            }
-            if (eps <= epsT && rawOf(proj) <= rawT) {
-                return { bez: proj, eps: eps, K: K };
-            }
-            // fallback: fit libero (senza G1) con kink <= 15gradi
-            const freeIdeal = _bezDense(bez, 8);
-            let epsF = 0;
-            for (const q of run) {
-                const d = _distToPoly(q, freeIdeal).d;
-                if (d > epsF) epsF = d;
-            }
-            if (epsF <= epsT && rawOf(bez) <= rawT) {
-                let kink = 0;
-                for (let i = 1; i < bez.length; i++) {
-                    const e = bez[i - 1], s = bez[i];
-                    const v1 = [e[3][0] - e[2][0], e[3][1] - e[2][1]];
-                    const v2 = [s[1][0] - s[0][0], s[1][1] - s[0][1]];
-                    let dd = (Math.atan2(v2[1], v2[0]) - Math.atan2(v1[1], v1[0])) * 180 / Math.PI;
-                    while (dd > 180) dd -= 360;
-                    while (dd < -180) dd += 360;
-                    if (Math.abs(dd) > kink) kink = Math.abs(dd);
-                }
-                if (kink <= 15) return { bez: bez, eps: epsF, K: K };
-            }
-        }
-        return null;
-    }
-    // approssimazione cubica dell'arco (segmenti <= 90gradi, k=4/3 tg/4)
-    function _bezFromArc(ac) {
-        const span = ac.a1 - ac.a0;
-        const nSeg = Math.max(1, Math.ceil(Math.abs(span) / (Math.PI / 2)));
-        const bez = [];
-        for (let i = 0; i < nSeg; i++) {
-            const s0 = ac.a0 + span * i / nSeg;
-            const s1 = ac.a0 + span * (i + 1) / nSeg;
-            const d = s1 - s0;
-            const k = 4 / 3 * Math.tan(d / 4);
-            const c0 = [ac.cx + ac.r * Math.cos(s0), ac.cy + ac.r * Math.sin(s0)];
-            const c3 = [ac.cx + ac.r * Math.cos(s1), ac.cy + ac.r * Math.sin(s1)];
-            bez.push([c0,
-                      [c0[0] - k * ac.r * Math.sin(s0), c0[1] + k * ac.r * Math.cos(s0)],
-                      [c3[0] + k * ac.r * Math.sin(s1), c3[1] - k * ac.r * Math.cos(s1)],
-                      c3]);
-        }
-        return bez;
-    }
-    // --- 3.2 ARCO: fit algebrico Kasa sui parametri + coerenza della
-    // curvatura (monotonia' angolare sul centro fit; gli S si invertono).
-    // La curva ideale viene RICAMPIONATA dall'equazione del cerchio.
-    function _tryArcFit(rs, src, epsT, rawT) {
-        const m = rs.length;
-        if (m < 8) return null;
-        const kc = kasaCircle(rs);
-        if (!kc || kc.r < 12 || kc.r > 4000) return null;
-        let eps = 0;
-        for (const q of rs) {
-            const d = Math.abs(Math.hypot(q[0] - kc.cx, q[1] - kc.cy) - kc.r);
-            if (d > eps) eps = d;
-        }
-        if (eps > epsT) return null;
-        // passata (1,2,1)/4 SOLO per la stima angolare (mai nel rendering)
-        const sm = rs.map(p => [p[0], p[1]]);
-        const cp = rs.map(p => [p[0], p[1]]);
-        for (let i = 1; i < m - 1; i++) {
-            sm[i][0] = (cp[i - 1][0] + 2 * cp[i][0] + cp[i + 1][0]) / 4;
-            sm[i][1] = (cp[i - 1][1] + 2 * cp[i][1] + cp[i + 1][1]) / 4;
-        }
-        let prev = Math.atan2(sm[0][1] - kc.cy, sm[0][0] - kc.cx);
-        const a0 = prev;
-        let unw = prev;
-        const ds = [];
-        for (let i = 1; i < m; i++) {
-            const a = Math.atan2(sm[i][1] - kc.cy, sm[i][0] - kc.cx);
-            let d = a - prev;
-            while (d > Math.PI) d -= 2 * Math.PI;
-            while (d < -Math.PI) d += 2 * Math.PI;
-            if (Math.abs(d) > Math.PI / 3) return null;   // salto angolare
-            unw += d; ds.push(d);
-            prev = a;
-        }
-        const sig = [];
-        for (const d of ds) if (Math.abs(d) > 1.5 * Math.PI / 180) sig.push(d);
-        if (sig.length < 4) return null;
-        let nPos = 0;
-        for (const d of sig) if (d > 0) nPos++;
-        const frac = Math.max(nPos, sig.length - nPos) / sig.length;
-        let totDeg = 0;
-        for (const d of ds) totDeg += Math.abs(d) * 180 / Math.PI;
-        if (frac < 0.9) return null;
-        if (totDeg < 40 || totDeg > 350) return null;
-        const span = Math.abs(unw - a0);
-        if (span < 40 * Math.PI / 180 || span > 350 * Math.PI / 180) return null;
-        // ricampionatura ideale EX NOVO dall'equazione (passo ~4px)
-        const N = Math.max(6, Math.min(400, Math.round(span * kc.r / 4)));
-        const pts = [];
-        for (let i = 0; i <= N; i++) {
-            const a = a0 + (unw - a0) * (i / N);
-            pts.push([kc.cx + kc.r * Math.cos(a), kc.cy + kc.r * Math.sin(a)]);
-        }
-        // gate 2: residuo GREZZO -> arco ideale
-        let maxRes = 0;
-        for (const q of src) {
-            const d = _distToPoly(q, pts).d;
-            if (d > maxRes) maxRes = d;
-        }
-        if (maxRes > rawT) return null;
-        const arc = { cx: kc.cx, cy: kc.cy, r: kc.r,
-                      a0: a0, a1: unw, ccw: (unw - a0) > 0 };
-        return { arc: arc, bez: _bezFromArc(arc), pts: pts,
-                 eps: eps, maxRes: maxRes };
-    }
-    // ===== R22: riconoscimento tratti APERTI ricostruiti DA ZERO =====
-    // - rette: _lineFitRobust (da recognizeStroke/_fitShaftPre)
-    // - archi coerenti: Kasa + ricampionatura circolare ex novo
-    // - curve: fit Bezier cubico LSQ pezzo-pezzo (IRLS) + continuita' G1
-    //   ai join + tune di curvatura (revert se peggiora la fedelta')
-    // Gate R22: eps (ideale -> tracciato ripulito) <= 2.5px; residuo
-    // GREZZO->ideale <= 2.5 + amp*1.5 (a amp=0 resta il gate duro R20).
-    function _tryCurve(pts, amp, raw) {
-        const n = (pts || []).length;
-        if (n < 5) { if (window.__ink) window.__ink.trace.push({ k: 'dbgC', g: 'n', n: n }); return null; }
-        const bb = _bbox(pts);
-        if (Math.hypot(bb.w, bb.h) < 40) { if (window.__ink) window.__ink.trace.push({ k: 'dbgC', g: 'bb', d: +Math.hypot(bb.w, bb.h).toFixed(1) }); return null; }
-        const src = (raw && raw.length === n) ? raw : pts;
-        let rs = _resampleUniform(pts, 4);
-        if (rs.length < 8) rs = _resampleUniform(pts, 2);
-        if (rs.length < 6) { if (window.__ink) window.__ink.trace.push({ k: 'dbgC', g: 'rs', n: rs.length }); return null; }
-        const m = rs.length;
-        const epsT = 2.5;
-        const rawT = 2.5 + (amp || 0) * 1.5;
-        // (a) rilevamento ANGOLI: svolta su gambe 8px >= 50gradi (R20,
-        //     invariato): il corner viene tagliato e i run fittati a
-        //     tratti con continuita' G1 SOLO all'interno del run
-        const locked = new Array(m).fill(false);
-        locked[0] = true;
-        locked[m - 1] = true;
-        for (let i = 2; i <= m - 3; i++) {
-            const a = rs[i - 2], b = rs[i], c = rs[i + 2];
-            const v1 = [b[0] - a[0], b[1] - a[1]], v2 = [c[0] - b[0], c[1] - b[1]];
-            const n1 = Math.hypot(v1[0], v1[1]), n2 = Math.hypot(v2[0], v2[1]);
-            if (n1 < 1e-9 || n2 < 1e-9) continue;
-            const cs = (v1[0] * v2[0] + v1[1] * v2[1]) / (n1 * n2);
-            const ang = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-            if (ang >= 50) locked[i] = true;
-        }
-        const cuts = [];
-        for (let i = 1; i <= m - 2; i++) if (locked[i]) cuts.push(i);
-        const runs = [];
-        {
-            let start = 0;
-            for (const c of cuts) {
-                if (c > start) { runs.push(rs.slice(start, c + 1)); start = c; }
-            }
-            runs.push(rs.slice(start));
-        }
-        const segs = (runs.length >= 1 && runs.every(r => r.length >= 4))
-            ? runs : [rs];
-        let bez = null, arc = null, ideal = null;
-        // (b) ARCO: solo tratto unico (nessun angolo interno)
-        if (segs.length === 1) {
-            const A = _tryArcFit(segs[0], src, epsT, rawT);
-            if (A) { arc = A.arc; bez = A.bez; ideal = A.pts; }
-        }
-        if (!bez) {
-            bez = [];
-            let okFit = true;
-            const single = segs.length === 1;
-            for (const run of segs) {
-                const f = _fitBezierRun(run, epsT,
-                    single ? rawT : null, single ? src : null);
-                if (!f) { okFit = false; break; }
-                for (const sg of f.bez) bez.push(sg);
-            }
-            if (!okFit) {
-                if (window.__ink) window.__ink.trace.push({ k: 'dbgC', g: 'fit', n: n, m: m });
-                return null;
-            }
-            ideal = _bezDense(bez, 16);
-            if (ideal.length < 2) return null;
-        }
-        // gate: residuo GREZZO->ideale (R22: 2.5 + amp*1.5)
-        let maxRes = 0, wi = 0;
-        for (let i = 0; i < src.length; i++) {
-            const d = _distToPoly(src[i], ideal).d;
-            if (d > maxRes) { maxRes = d; wi = i; }
-        }
-        if (maxRes > rawT) {
-            if (window.__ink) window.__ink.trace.push({ k: 'dbgC',
-                g: 'res', r: +maxRes.toFixed(2), n: n, raw: raw ? 1 : 0,
-                m: m, tol: +rawT.toFixed(2), wi: wi });
-            return null;
-        }
-        if (window.__ink) {
-            let maxResP = 0;
-            for (const q of pts) {
-                const d = _distToPoly(q, ideal).d;
-                if (d > maxResP) maxResP = d;
-            }
-            window.__ink.trace.push({ k: 'dbgC',
-                g: maxRes > 2.5 ? 'res' : 'ok', r: +maxRes.toFixed(2), n: n,
-                raw: raw ? 1 : 0, m: m, rp: +maxResP.toFixed(2), wi: wi,
-                arc: arc ? 1 : 0,
-                e0: [+pts[0][0].toFixed(1), +pts[0][1].toFixed(1)],
-                e1: [+pts[n - 1][0].toFixed(1), +pts[n - 1][1].toFixed(1)],
-                r0: [+rs[0][0].toFixed(1), +rs[0][1].toFixed(1)],
-                r1: [+rs[rs.length - 1][0].toFixed(1), +rs[rs.length - 1][1].toFixed(1)] });
-        }
-        const params = arc ? { bez: bez, arc: arc } : { bez: bez };
-        return { kind: 'curve', box: _bbox(ideal), rot: 0,
-                 pts: ideal, params: params };
-    }
-    // R20 (7): spessore/pressione del tratto grezzo campionato attorno al
-    // perimetro di un cerchio (K=48 settori); a0 = angolo iniziale,
-    // dir = verso di traversata del tratto
-    function _ringForStroke(stroke, cx, cy) {
-        const pts = stroke.pts, sizes = stroke.sizes;
-        if (!sizes || !pts || sizes.length !== pts.length || pts.length < 2) return null;
-        const K = 48;
-        const cum = _cumLen(pts);
-        const tot = cum[cum.length - 1];
-        if (!(tot > 0)) return null;
-        const ring = new Array(K).fill(0), cnt = new Array(K).fill(0);
-        for (let i = 0; i < pts.length; i++) {
-            const b = Math.max(0, Math.min(K - 1, Math.floor(cum[i] / tot * K)));
-            ring[b] += sizes[i]; cnt[b]++;
-        }
-        let prev = sizes[0];
-        for (let i = 0; i < K; i++) {
-            if (cnt[i] > 0) { ring[i] = ring[i] / cnt[i]; prev = ring[i]; }
-            else ring[i] = prev;
-        }
-        let first = -1;
-        for (let i = 0; i < K; i++) if (cnt[i] > 0) { first = i; break; }
-        if (first > 0) for (let i = 0; i < first; i++) ring[i] = ring[first];
-        const a0 = Math.atan2(pts[0][1] - cy, pts[0][0] - cx);
-        const q25 = _evalPolyAt(pts, cum, tot * 0.25);
-        let da = Math.atan2(q25[1] - cy, q25[0] - cx) - a0;
-        while (da > Math.PI) da -= 2 * Math.PI;
-        while (da < -Math.PI) da += 2 * Math.PI;
-        return { ring: ring, a0: a0, dir: da >= 0 ? 1 : -1 };
-    }
-    // R20 (7): mappa le sizes per punto del tratto GREZZO sui punti della
-    // shape polilinea (corner/curve): indice del punto grezzo piu' vicino
-    function _mapSizesToPts(stroke, shapePts) {
-        const sp = stroke.pts, sz = stroke.sizes;
-        if (!sz || !sp || sz.length !== sp.length || !shapePts || !shapePts.length) return null;
-        const out = [];
-        for (const q of shapePts) {
-            let bi = 0, bd = Infinity;
-            for (let i = 0; i < sp.length; i++) {
-                const d = (q[0] - sp[i][0]) * (q[0] - sp[i][0]) +
-                          (q[1] - sp[i][1]) * (q[1] - sp[i][1]);
-                if (d < bd) { bd = d; bi = i; }
-            }
-            out.push(sz[bi]);
-        }
-        return out;
-    }
-    // R25 V1: numero di FLESSI (cambi di curvatura significativi) di un
-    // tratto aperto. Proiezione sulla corda + smoothing box (finestra =
-    // max(8px, 10% corda) in coordinate MONDO -> zoom-invariante) e
-    // conteggio dei cambi segno della derivata con dead-band: il jitter
-    // micro NON conta come flesso. Corda degenera (<15px, loop/chiuso)
-    // -> 0 (la chiusura e' gestita dal ramo closed di recognizeStroke).
-    function _countFlessi(pts) {
-        const n = (pts || []).length;
-        if (n < 6) return 0;
-        const a = pts[0], b = pts[n - 1];
-        const cx = b[0] - a[0], cy = b[1] - a[1];
-        const L = Math.hypot(cx, cy);
-        if (L < 15) return 0;
-        const ux = cx / L, uy = cy / L;
-        const W = Math.max(8, L * 0.10);          // finestra smoothing (MONDO)
-        const eps = Math.max(0.5, L * 0.004);     // dead-band derivata (MONDO)
-        const t = [], d = [];
-        for (let i = 0; i < n; i++) {
-            const dx = pts[i][0] - a[0], dy = pts[i][1] - a[1];
-            t.push(dx * ux + dy * uy);
-            d.push(-uy * dx + ux * dy);           // distanza con segno dalla corda
-        }
-        const ds = [];
-        for (let i = 0; i < n; i++) {
-            let s = 0, k = 0;
-            for (let j = 0; j < n; j++) {
-                if (Math.abs(t[j] - t[i]) <= W) { s += d[j]; k++; }
-            }
-            ds.push(k ? s / k : d[i]);
-        }
-        let last = 0, cnt = 0;
-        for (let i = 1; i < n; i++) {
-            const dd = ds[i] - ds[i - 1];
-            if (Math.abs(dd) < eps) continue;
-            const sg = dd > 0 ? 1 : -1;
-            if (last && sg !== last) cnt++;
-            last = sg;
-        }
-        return cnt;
-    }
-    // R25 V1 FREEFORM: smoothing TOPOLOGIA-PRESERVANTE (Taubin
-    // corner-preserving, alla Wang et al.): resample 4px, passate Taubin
-    // lambda=0.5 / mu=-0.53, corner-lock su svolte >=50gradi (gambe 8px,
-    // gate R20) + estremi bloccati, clamp di ogni nodo entro 1.5px dal
-    // tracciato GREZZO (mondo -> zoom-invariante). Itera fino a
-    // spostamento < 0.2px (max 6 passate). Guard finale: se le
-    // auto-intersezioni aumentano o i flessi scendono sotto 2 (quando il
-    // grezzo ne aveva >=2) si torna al pulito originale -> MAI snap,
-    // MAI cambio di topologia.
-    function _taubinPreserve(pts, raw) {
-        const srcRaw = (raw && raw.length >= 2) ? raw : pts;
-        let sm = _resampleUniform(pts, 4);
-        if (sm.length < 5) sm = pts.map(p => [p[0], p[1]]);
-        const n = sm.length;
-        const lock = new Array(n).fill(false);
-        lock[0] = true;
-        lock[n - 1] = true;
-        for (let i = 2; i <= n - 3; i++) {
-            const a = sm[i - 2], b = sm[i], c = sm[i + 2];
-            const v1 = [b[0] - a[0], b[1] - a[1]];
-            const v2 = [c[0] - b[0], c[1] - b[1]];
-            const n1 = Math.hypot(v1[0], v1[1]), n2 = Math.hypot(v2[0], v2[1]);
-            if (n1 < 1e-9 || n2 < 1e-9) continue;
-            const cs = (v1[0] * v2[0] + v1[1] * v2[1]) / (n1 * n2);
-            const ang = Math.acos(Math.max(-1, Math.min(1, cs))) * 180 / Math.PI;
-            if (ang >= 50) lock[i] = true;
-        }
-        const LAM = 0.5, MU = -0.53;
-        const pass = (k) => {
-            const cp = sm.map(p => [p[0], p[1]]);
-            for (let i = 0; i < n; i++) {
-                if (lock[i]) continue;
-                let sx = 0, sy = 0, cnt = 0;
-                if (i > 0) { sx += cp[i - 1][0]; sy += cp[i - 1][1]; cnt++; }
-                if (i < n - 1) { sx += cp[i + 1][0]; sy += cp[i + 1][1]; cnt++; }
-                if (!cnt) continue;
-                sm[i][0] = cp[i][0] + k * (sx / cnt - cp[i][0]);
-                sm[i][1] = cp[i][1] + k * (sy / cnt - cp[i][1]);
-            }
-        };
-        const clampRaw = () => {
-            for (let i = 1; i < n - 1; i++) {
-                if (lock[i]) continue;
-                const d = _distToPoly(sm[i], srcRaw);
-                if (d.d > 1.5 && d.d > 0) {
-                    const t = 1.5 / d.d;
-                    sm[i][0] = d.cx + (sm[i][0] - d.cx) * t;
-                    sm[i][1] = d.cy + (sm[i][1] - d.cy) * t;
-                }
-            }
-        };
-        for (let it = 0; it < 6; it++) {
-            const before = sm.map(p => [p[0], p[1]]);
-            pass(LAM); pass(MU); clampRaw();
-            let mv = 0;
-            for (let i = 0; i < n; i++) {
-                const dd = Math.hypot(sm[i][0] - before[i][0],
-                                      sm[i][1] - before[i][1]);
-                if (dd > mv) mv = dd;
-            }
-            if (mv < 0.2) break;   // jitter sotto tolleranza
-        }
-        if (_selfIntersections(sm) > _selfIntersections(pts) ||
-            (_countFlessi(pts) >= 2 && _countFlessi(sm) < 2)) {
-            return pts.map(p => [p[0], p[1]]);   // rollback: nessun snap
-        }
-        return sm;
-    }
-    function recognizeStroke(pts, amp) {
-        const n = (pts || []).length;
-        if (n < 5) return null;                       // >= 5 punti
-        const bb = _bbox(pts);
-        if (Math.hypot(bb.w, bb.h) < 40) return null; // R20 (6): bbox < 40px
-        // --- R20 (6) ESCLUSIONI: testo, scarabocchio/coloring, re-snap ---
-        // inkNoSnap: tratto avviato con overlay testo aperto -> resta stroke
-        if (ed && (ed.tool === 'testo' || ed.textTa || ed.inkNoSnap)) return null;
-        const si0 = _selfIntersections(pts);
-        if (si0 >= 3) return null;                    // auto-inters >= 3
-        if (_denseFill(pts)) return null;             // riempimento denso
-        if (_insideExisting(pts)) return null;        // nessun re-snap
-        const tol = 2.5 + (amp || 0) * 3;             // ampiezza snap (L2)
-        const cen = _centroid2(pts);
-        let sxx = 0, sxy = 0, syy = 0;
-        for (const q of pts) {
-            const dx = q[0] - cen[0], dy = q[1] - cen[1];
-            sxx += dx * dx; sxy += dx * dy; syy += dy * dy;
-        }
-        sxx /= n; sxy /= n; syy /= n;
-        const th = 0.5 * Math.atan2(2 * sxy, sxx - syy);
-        const ux = Math.cos(th), uy = Math.sin(th);
-        // --- LINE (R22): fit robusto Theil-Sen + PCA con proiezione
-        //     sugli endpoint reali dei punti -> segmento IDEALE esatto;
-        //     residuo perpendicolare grezzo->ideale entro 2.5+amp*3
-        const LF = _lineFitRobust(pts, cen, th);
-        if (LF && LF.maxPerp <= tol && LF.tlen >= 40) {
-            // V1.2 LINEA (gate stretto R20: residuo <= 2.5+amp*3)
-            const lb = _bbox([LF.a, LF.b]);
-            return { kind: 'line', vclass: 'line', box: lb,
-                     rot: LF.th * 180 / Math.PI,
-                     pts: [LF.a, LF.b], params: {} };
-        }
-        // --- R20 (3): CHIUSURA con gap-closing esplicito ---------------
-        // gap <= tolleranza-gap -> si chiude il loop col segmento retto
-        // (campionato ~6px) PRIMA del fit; gap grande (lettera C) -> il
-        // loop NON viene chiuso: mai circle/ellipse/rectangle da li'.
-        const gapTol = Math.max(12, Math.hypot(bb.w, bb.h) * 0.08);
-        const gap0 = Math.hypot(pts[0][0] - pts[n - 1][0], pts[0][1] - pts[n - 1][1]);
-        const closed = gap0 <= gapTol;
-        if (closed && si0 <= 1) {
-            const cps = _closeLoop(pts);
-            // --- RETTANGOLO/QUADRATO (R20 4): parita' col cerchio -------
-            const r0 = _tryRect(cps, 0, tol);
-            if (r0) return r0;
-            if (Math.abs(th) > 0.02) {
-                const c = cen;
-                const rp = cps.map(q => {
-                    const dx = q[0] - c[0], dy = q[1] - c[1];
-                    return [dx * Math.cos(-th) - dy * Math.sin(-th),
-                            dx * Math.sin(-th) + dy * Math.cos(-th)];
-                });
-                const rr = _tryRect(rp, th * 180 / Math.PI, tol);
-                if (rr) {
-                    rr.pts = rr.pts.map(q => [q[0] + c[0], q[1] + c[1]]);
-                    rr.box = _bbox(rr.pts);
-                    return rr;
-                }
-            }
-            // --- TRIANGOLO (R20 5): 3 cluster vertici, angoli 60+/-25 ----
-            const t0 = _tryTri(cps, 0, tol);
-            if (t0) return t0;
-            if (Math.abs(th) > 0.02) {
-                const c = cen;
-                const rp = cps.map(q => {
-                    const dx = q[0] - c[0], dy = q[1] - c[1];
-                    return [dx * Math.cos(-th) - dy * Math.sin(-th),
-                            dx * Math.sin(-th) + dy * Math.cos(-th)];
-                });
-                const tr = _tryTri(rp, th * 180 / Math.PI, tol);
-                if (tr) {
-                    tr.pts = tr.pts.map(q => [q[0] + c[0], q[1] + c[1]]);
-                    tr.box = _bbox(tr.pts);
-                    return tr;
-                }
-            }
-            // --- CIRCLE (Kasa) / ELLISSE: fit sul loop CHIUSO ------------
-            const kc = kasaCircle(cps);
-            if (kc) {
-                let rms = 0;
-                for (const q of cps) {
-                    const d = Math.abs(Math.hypot(q[0] - kc.cx, q[1] - kc.cy) - kc.r);
-                    rms += d * d;
-                }
-                rms = Math.sqrt(rms / cps.length);
-                const tr2 = (sxx + syy) / 2;
-                const dt = Math.sqrt(Math.max(0, ((sxx - syy) / 2) * ((sxx - syy) / 2) + sxy * sxy));
-                const lam1 = tr2 + dt, lam2 = Math.max(0, tr2 - dt);
-                const aE = 2 * Math.sqrt(lam1), bE = 2 * Math.sqrt(lam2);
-                const aspect = bE > 0.01 ? aE / bE : 99;
-                if (rms <= tol && aspect <= 1.3) {
-                    return { kind: 'circle', rot: 0,
-                             box: { x: kc.cx - kc.r, y: kc.cy - kc.r,
-                                    w: kc.r * 2, h: kc.r * 2 },
-                             pts: [], params: { cx: kc.cx, cy: kc.cy, r: kc.r } };
-                }
-                if (aspect > 1.3 && aspect <= 5) {
-                    // assi/centro da ESTREMITA' nel frame PCA (invariante
-                    // al campionamento angolare del tracciato)
-                    const rot = Math.atan2(uy, ux);
-                    const ct = Math.cos(-th), st = Math.sin(-th);
-                    let umin = Infinity, umax = -Infinity,
-                        vmin = Infinity, vmax = -Infinity;
-                    for (const q of cps) {
-                        const dx = q[0] - kc.cx, dy = q[1] - kc.cy;
-                        const u = dx * ct - dy * st, v = dx * st + dy * ct;
-                        if (u < umin) umin = u;
-                        if (u > umax) umax = u;
-                        if (v < vmin) vmin = v;
-                        if (v > vmax) vmax = v;
-                    }
-                    const ea = (umax - umin) / 2, eb = (vmax - vmin) / 2;
-                    const uc = (umax + umin) / 2, vc = (vmax + vmin) / 2;
-                    const ecx = kc.cx + uc * Math.cos(th) - vc * Math.sin(th);
-                    const ecy = kc.cy + uc * Math.sin(th) + vc * Math.cos(th);
-                    if (ea > 4 && eb > 1) {
-                        let accE = 0;
-                        for (const q of cps) {
-                            const dx = q[0] - ecx, dy = q[1] - ecy;
-                            const u = dx * ct - dy * st, v = dx * st + dy * ct;
-                            const eN = Math.sqrt((u * u) / (ea * ea) +
-                                                 (v * v) / (eb * eb)) - 1;
-                            accE += eN * eN;
-                        }
-                        const rmsE = Math.sqrt(accE / cps.length) * ((ea + eb) / 2);
-                        if (rmsE <= tol * 1.8) {
-                            return { kind: 'ellipse', rot: rot * 180 / Math.PI,
-                                     box: { x: ecx - ea, y: ecy - eb,
-                                            w: ea * 2, h: eb * 2 },
-                                     pts: [],
-                                     params: { cx: ecx, cy: ecy, a: ea, b: eb } };
-                        }
-                    }
-                }
-            }
-        }
-        // --- R25 V1: classificazione tratti APERTI (line/arc/freeform) --
-        // Ogni soglia e su punti MONDO -> zoom-invariante per costruzione
-        // (V1.4); qui si arriva solo con tratti NON stretti-abbastanza per
-        // il gate linea R20 e NON fittabili come forme chiuse.
-        const nf = _countFlessi(pts);
-        if (si0 >= 1 || nf >= 2) {
-            // FREEFORM (V1.2): >=2 flessi O auto-intersezioni (si0 1-2;
-            // >=3 escluso in cima -> resta stroke) O loop -> SOLO smoothing
-            // topologia-preservante (Taubin corner-preserving): forma e
-            // numero di flessi conservati, NESSUN snap a modello ideale.
-            // Resa come polyline (kind 'curve' compat R20, params.freeform).
-            const smF = _taubinPreserve(pts,
-                (ed && ed.inkRawRef && ed.inkRawRef.length === n)
-                    ? ed.inkRawRef : null);
-            return { kind: 'curve', vclass: 'freeform', box: _bbox(smF),
-                     rot: 0, pts: smF, params: { freeform: true } };
-        }
-        // LINEA LASSA (V1.1): deviazione max dalla corda <=2.5+amp*3 GIA'
-        // provata sopra; oltre quella, <=3% della lunghezza con <=1 flesso
-        // (garantito qui sopra) -> segmento ideale ex novo Theil-Sen.
-        if (LF && LF.tlen >= 40 &&
-            LF.maxPerp <= Math.max(tol, 0.03 * LF.tlen)) {
-            const lb2 = _bbox([LF.a, LF.b]);
-            return { kind: 'line', vclass: 'line', box: lb2,
-                     rot: LF.th * 180 / Math.PI, pts: [LF.a, LF.b],
-                     params: {} };
-        }
-        // --- R20 (2): CURVA -> ARCO SEMPLICE (V1.2): <=1 flesso, curvatura
-        //     monotona, auto-intersezioni 0, APERTO -> Kasa o Bézier cubica
-        //     LSQ ritracciati da zero (kind 'curve' compat, vclass 'arc')
-        const rc = _tryCurve(pts, amp,
-            (ed && ed.inkRawRef && ed.inkRawRef.length === n) ? ed.inkRawRef : null);
-        if (rc) rc.vclass = 'arc';
-        return rc;
-    }
-    // A2: flick finale a V = ultimo tratto (<=250ms) con svolta >=100gradi.
-    // R19 A2.4: ritorna l'INDICE di inizio del flick (>=0) oppure -1: la
-    // porzione PRE-flick viene riconosciuta per ricostruire la freccia.
-    function detectFlick(o) {
-        const dbg = { n: (o.pts || []).length,
-                      tsN: (o.ts && o.pts && o.ts.length === o.pts.length)
-                          ? o.ts.length : -1 };
-        let r = _detectFlickCore(o, dbg);
-        dbg.r = r;
-        // R25 V1.2: fallback BACK-STROKE - V0: flick senza pausa (2 move a
-        // <5ms) NON scatta col gate 250ms/bbox<=80px. Finestra TEMPo+SPAZIO
-        // sul back-stroke finale: <=120ms E <=35px (coordinate MONDO ->
-        // zoom-invariante) con inversione >=100gradi rispetto alla direzione
-        // in ingresso.
-        if (r < 0) r = _detectBackStroke(o, dbg);
-        dbg.r2 = r;
-        if (window.__ink) window.__ink.trace.push({ k: 'dbgF', d: dbg });
-        return r;
-    }
-    // R25 V1.2: rilevamento flick/back-stroke ROBUSTO (fallback del core).
-    // Restituisce l'indice d'inizio della finestra di flick (pre-flick =
-    // pts[0..s-1], >=4 punti per l'asta) oppure -1.
-    function _detectBackStroke(o, dbg) {
-        const pts = o.pts;
-        const ts = (o.ts && o.pts && o.ts.length === o.pts.length) ? o.ts : null;
-        if (!pts || pts.length < 7) return -1;
-        const n = pts.length;
-        const T_WIN = 120, S_WIN = 35;   // MONDO (soglie su punti mondo)
-        let s = n - 1, arc = 0;
-        const endT = ts ? ts[n - 1] : 0;
-        while (s > 0) {
-            const seg = Math.hypot(pts[s][0] - pts[s - 1][0],
-                                   pts[s][1] - pts[s - 1][1]);
-            if (arc + seg > S_WIN) break;
-            if (ts && endT - ts[s - 1] > T_WIN) break;
-            arc += seg;
-            s--;
-        }
-        dbg.bsl = { s: s, arc: +arc.toFixed(1) };
-        if (s < 4) return -1;            // pre-flick >= 4 punti (asta)
-        if (n - s < 3) return -1;        // flick >= 3 punti (>=2 segmenti)
-        if (arc < 12) return -1;         // non un micro-tremolio
-        // direzione IN ingresso: baseline ~6 punti PRIMA della finestra
-        const i0 = Math.max(0, s - 6);
-        const din = [pts[s][0] - pts[i0][0], pts[s][1] - pts[i0][1]];
-        const nin = Math.hypot(din[0], din[1]);
-        if (nin < 8) return -1;
-        // direzione del back-stroke: corda finestra (inizio -> fine)
-        const dfx = pts[n - 1][0] - pts[s][0];
-        const dfy = pts[n - 1][1] - pts[s][1];
-        const nfx = Math.hypot(dfx, dfy);
-        if (nfx < 10) return -1;
-        const cosang = (din[0] * dfx + din[1] * dfy) / (nin * nfx);
-        const ang = Math.acos(Math.max(-1, Math.min(1, cosang))) * 180 / Math.PI;
-        dbg.bsl.ang = +ang.toFixed(1);
-        if (ang < 100) return -1;
-        return s;
-    }
-    function _detectFlickCore(o, dbg) {
-        const pts = o.pts;
-        if (!pts || pts.length < 5) return -1;
-        const ts = o.ts && o.ts.length === pts.length ? o.ts : null;
-        let start = 0;
-        if (ts) {
-            const endT = ts[ts.length - 1];
-            start = 0;
-            for (let i = ts.length - 1; i >= 0; i--) {
-                if (endT - ts[i] > 250) { start = i; break; }
-            }
-            start = Math.max(0, start);
-        } else {
-            start = Math.max(0, pts.length - Math.ceil(pts.length * 0.4));
-        }
-        dbg.start = start;
-        const win = pts.slice(start);
-        if (win.length < 4) return -1;   // R14: micro-V brevi compatibili
-        // finestra spaziale contenuta (il flick e' piccolo)
-        const wb = _bbox(win);
-        dbg.bw = +wb.w.toFixed(1); dbg.bh = +wb.h.toFixed(1);
-        if (Math.hypot(wb.w, wb.h) > 80) return -1;
-        // (R20 F1) deflessione: v1 = da inizio finestra a split,
-        // v2 = da split a fine finestra; gambe entrambe >= 8px
-        const defl = k => {
-            const v1 = [win[k][0] - win[0][0], win[k][1] - win[0][1]];
-            const v2 = [win[win.length - 1][0] - win[k][0],
-                        win[win.length - 1][1] - win[k][1]];
-            const n1 = Math.hypot(v1[0], v1[1]), n2 = Math.hypot(v2[0], v2[1]);
-            if (n1 < 8 || n2 < 8) return -1;
-            const cosang = (v1[0] * v2[0] + v1[1] * v2[1]) / (n1 * n2);
-            return Math.acos(Math.max(-1, Math.min(1, cosang))) * 180 / Math.PI;
-        };
-        const mid = Math.floor(win.length / 2);
-        const dm = defl(mid);
-        dbg.mid = mid; dbg.dm = +dm.toFixed(1);
-        if (dm >= 100) return start;     // flick a V classico
-        // (R20 F1) BACK-STROKE: inversione di direzione netta in uno split
-        // NON centrale (>=120gradi, oltre la soglia angolare del V). Copre
-        // l'inversione su tratti retti/curvi; gli archi morbidi restano
-        // sotto soglia per costruzione e il gate bbox<=80 li limita gia'.
-        let bestA = -1, bestK = -1;
-        for (let k = 1; k < win.length - 1; k++) {
-            if (k === mid) continue;
-            const a = defl(k);
-            if (a > bestA) { bestA = a; bestK = k; }
-            if (a >= 120) return start;
-        }
-        dbg.bestA = +bestA.toFixed(1); dbg.bestK = bestK;
-        return -1;
-    }
-    function findFlickTarget(o) {
-        // linea/arco precedente entro 45px dall'inizio del flick
+    // ==================== R31: MOTORE INK-COMMIT ====================
+    // Parte 1 (PROMPT R29): al RILASCIO il tratto resta visibile e
+    // INVARIATO per InkCommit.CFG.settleMs (K01, 150-300ms); poi UNO
+    // swap discreto (K02) sostituisce i punti grezzi con la curva
+    // ideale del piano (K03, modulo ink_commit.js - M02). Ogni tratto
+    // ha il SUO pending con timer indipendente (K04: dieci tratti =
+    // dieci commit separati, nell'ordine disegnato).
+    // Nessun ghost/hold-still: il commit parte SOLO dal rilascio (N03).
+    function snapshotObjects() {
+        if (!ed) return '[]';
         const objs = ed.doc.objects;
-        const p0 = o.pts[0];
-        for (let i = objs.length - 1; i >= 0; i--) {
-            const t = objs[i];
-            if (t.t !== 'shape') continue;
-            if (['line', 'circle', 'ellipse', 'curve', 'rectangle', 'square', 'triangle'].indexOf(t.kind) < 0) continue;
-            const samples = (t.pts && t.pts.length) ? t.pts :
-                (t.params && t.params.cx !== undefined
-                    ? [[t.params.cx, t.params.cy]] : []);
-            let best = Infinity;
-            for (const s of samples) best = Math.min(best, Math.hypot(s[0] - p0[0], s[1] - p0[1]));
-            if (t.params && t.params.r) {
-                const rr = Math.abs(Math.hypot(p0[0] - t.params.cx, p0[1] - t.params.cy) - t.params.r);
-                best = Math.min(best, rr);
+        const pend = ed.inkPendings || [];
+        if (!pend.length || !window.InkCommit) return JSON.stringify(objs);
+        // i commit in finestra vengono materializzati nello snapshot:
+        // undo/redo e salvataggio contengono SEMPRE la versione ideale
+        return JSON.stringify(objs.map(o => {
+            for (let i = 0; i < pend.length; i++) {
+                if (pend[i].obj === o) {
+                    return InkCommit.materialize(o, pend[i].plan);
+                }
             }
-            if (best <= 45) return t;
-        }
-        return null;
+            return o;
+        }));
     }
-    // R19 A2.3/A2.4: shape "curve" da tratto curvo, SENZA limite di
-    // curvatura: polilinea smussata + box. Usata SOLO nella ricostruzione
-    // della freccia (flick): le curve libere senza flick restano stroke.
-    function _curveRec(pts) {
-        if (!pts || pts.length < 4) return null;
-        const bb = _bbox(pts);
-        if (Math.hypot(bb.w, bb.h) < 20) return null;
-        const sm = pts.map(p => [p[0], p[1]]);
-        for (let it = 0; it < 2; it++) {
-            const cp = sm.map(p => [p[0], p[1]]);
-            for (let i = 1; i < sm.length - 1; i++) {
-                sm[i][0] = (cp[i - 1][0] + 2 * cp[i][0] + cp[i + 1][0]) / 4;
-                sm[i][1] = (cp[i - 1][1] + 2 * cp[i][1] + cp[i + 1][1]) / 4;
-            }
+    function applyCommit(e) {
+        if (!e) return false;
+        if (e.timer) { clearTimeout(e.timer); e.timer = 0; }
+        if (!ed || !ed.doc || !window.InkCommit) return false;
+        const pi = (ed.inkPendings || []).indexOf(e);
+        if (pi >= 0) ed.inkPendings.splice(pi, 1);
+        if (ed.doc.objects.indexOf(e.obj) < 0) return false;  // annullato
+        const ok = InkCommit.applyPlan(e.obj, e.plan);
+        if (!ok) return false;
+        ink24Commit(e.obj, e.plan.cls, e.nRaw,
+                    InkCommit.residualOf(e.obj));
+        if (window.__ink) {
+            window.__ink.trace.push({ k: 'swap', cls: e.plan.cls,
+                t: performance.now(), dt: performance.now() - e.t0 });
         }
-        return { kind: 'curve', box: bb, rot: 0, pts: sm, params: {} };
-    }
-    // ===== R20 FRECCIA COMPOSTA (F1-F4) ================================
-    // F2: asta = porzione pre-flick perfezionata con la SUA classe
-    function _fitShaftPre(pre, amp, rawPre) {
-        const n = pre.length;
-        if (n < 3) return null;
-        const tol = 2.5 + (amp || 0) * 3;
-        // --- LINE (R22): fit robusto Theil-Sen + PCA, endpoint =
-        //     proiezione sugli estremi reali; stesse soglie R20 F2
-        const LF = _lineFitRobust(pre);
-        // R25 V1: stesso gate linea di recognizeStroke (stretto R20 o
-        // lasso <=3% corda con <=1 flesso) - soglie su punti MONDO
-        const nfPre = LF ? _countFlessi(pre) : 99;
-        const lineOK = LF && (LF.maxPerp <= tol ||
-            (LF.maxPerp <= 0.03 * LF.tlen && nfPre <= 1));
-        if (lineOK &&
-            (LF.tlen >= 40 || (LF.tlen >= 24 && LF.maxPerp <= 1.5))) {
-            let a = LF.a, b = LF.b;
-            // orientamento lungo il verso di disegno (la punta va alla FINE)
-            const dtx = pre[n - 1][0] - pre[0][0], dty = pre[n - 1][1] - pre[0][1];
-            if ((b[0] - a[0]) * dtx + (b[1] - a[1]) * dty < 0) {
-                const tmp = a; a = b; b = tmp;
-            }
-            if (window.__ink) window.__ink.trace.push({ k: 'dbgfS', out: 'line',
-                n: n, mp: +LF.maxPerp.toFixed(2), tR: +LF.tlen.toFixed(1),
-                tol: +tol.toFixed(2) });
-            return { kind: 'line', pts: [a, b] };
-        }
-        // --- CURVE: fit Bezier U2 (_tryCurve) con gate residuo GREZZO->
-        //     ideale <=2.5px: un arco diventa ARCO PERFETTO con punta ---
-        const src = (rawPre && rawPre.length === n) ? rawPre : null;
-        let c = _tryCurve(pre, amp, src);
-        if (!(c && c.params && c.params.bez && c.params.bez.length) && src) {
-            // R20 F2b: lo smussamento di fine tratto scorre i punti lungo
-            // il tratto (la coda pre-flick si accorcia rispetto ai grezzi)
-            // e il gate grezzo->ideale va oltre 2.5px sulla coda. Retry:
-            // fitta i GREZZI pre-flick (copertura piena) con un leggero
-            // anti-tremolio (1,2,1)/4 stabile -> residuo = tremolio ~1px
-            const lite = src.map(p => [p[0], p[1]]);
-            const cp0 = src.map(p => [p[0], p[1]]);
-            for (let i = 1; i < src.length - 1; i++) {
-                lite[i][0] = (cp0[i - 1][0] + 2 * cp0[i][0] + cp0[i + 1][0]) / 4;
-                lite[i][1] = (cp0[i - 1][1] + 2 * cp0[i][1] + cp0[i + 1][1]) / 4;
-            }
-            c = _tryCurve(lite, amp, src) || _tryCurve(src, amp, src);
-        }
-        if (c && c.params && c.params.bez && c.params.bez.length) {
-            if (window.__ink) window.__ink.trace.push({ k: 'dbgfS', out: 'curve',
-                n: n, hasRaw: !!src });
-            return { kind: 'curve', pts: c.pts, params: c.params };
-        }
-        if (window.__ink) window.__ink.trace.push({ k: 'dbgfS', out: 'NULL',
-            n: n, mp: LF ? +LF.maxPerp.toFixed(2) : -1,
-            tR: LF ? +LF.tlen.toFixed(1) : -1,
-            tol: +tol.toFixed(2), curve: c ? 1 : 0, hasRaw: !!src,
-            bb: +Math.hypot(_bbox(pre).w, _bbox(pre).h).toFixed(1) });
-        return null;
-    }
-    // F3: punta ricostruita - triangolo pulito, base sul punto terminale
-    // dell'asta, ali simmetriche ad angoloAla rispetto alla TANGENTE FINALE
-    function _makeHead(base, tangent, size) {
-        const n = Math.hypot(tangent[0], tangent[1]);
-        if (!(n > 0)) return null;
-        const tx = tangent[0] / n, ty = tangent[1] / n;
-        const sp = (size > 0 ? size : 2);
-        const L = 3.2 * sp;                      // ali = 3-4x spessore
-        if (!(L > 1)) return null;
-        return { angoloAlaDeg: 35, lunghezza: L, tangente: [tx, ty],
-                 base: [base[0], base[1]] };
-    }
-    function _headPoly(head) {
-        if (!head || !head.base || !head.tangente) return null;
-        const tx = head.tangente[0], ty = head.tangente[1];
-        const n = Math.hypot(tx, ty);
-        if (!(n > 0)) return null;
-        const ux = tx / n, uy = ty / n, nx = -uy, ny = ux;
-        const a = ((head.angoloAlaDeg || 35) * Math.PI) / 180;
-        const L = head.lunghezza || 8;
-        const w = L * Math.sin(a), d = L * Math.cos(a);
-        const bx = head.base[0], by = head.base[1];
-        return [[bx + w * nx, by + w * ny], [bx + d * ux, by + d * uy],
-                [bx - w * nx, by - w * ny]];
-    }
-    // F1-F4: porzione pre-flick -> rec per l'oggetto 'arrow' UNICO
-    function buildArrowRec(o, fi) {
-        // R25 V1.2: flick BREVILE ammesso (>=3 punti = 2 segmenti; V0 ha
-        // solo 2 move dopo la linea)
-        if (fi < 4 || o.pts.length - fi < 3) return null;
-        const pre = o.pts.slice(0, fi);
-        if (pre.length < 3) return null;
-        const amp = ed.inkSnapAmp || 0;
-        const rawPre = (ed.inkRawRef && ed.inkRawRef.length === o.pts.length)
-            ? ed.inkRawRef.slice(0, fi) : null;
-        const fit = _fitShaftPre(pre, amp,
-            (rawPre && rawPre.length === pre.length) ? rawPre : null);
-        if (window.__ink) window.__ink.trace.push({ k: 'dbgf2', fi: fi,
-            pre: pre.length, fit: fit ? fit.kind : 'NULL' });
-        if (!fit) return null;
-        const preSizes = (o.sizes && o.sizes.length === o.pts.length)
-            ? o.sizes.slice(0, fi) : null;
-        // tangente FINALE (derivata Bezier in t=1 per le curve) + terminale
-        let terminal, tangent;
-        if (fit.kind === 'line') {
-            const e = fit.pts[fit.pts.length - 1];
-            terminal = [e[0], e[1]];
-            const a0 = fit.pts[0];
-            tangent = [terminal[0] - a0[0], terminal[1] - a0[1]];
-        } else {
-            const bez = fit.params.bez;
-            const sg = bez[bez.length - 1];
-            terminal = [sg[3][0], sg[3][1]];
-            tangent = [3 * (sg[3][0] - sg[2][0]), 3 * (sg[3][1] - sg[2][1])];
-            if (Math.hypot(tangent[0], tangent[1]) < 1e-6) {
-                tangent = [sg[3][0] - sg[0][0], sg[3][1] - sg[0][1]];
-            }
-        }
-        if (!tangent || Math.hypot(tangent[0], tangent[1]) < 1e-6) return null;
-        // spessore di coda (sizes in coda) -> lunghezza delle ali
-        let tail = o.size || 2;
-        if (preSizes && preSizes.length) {
-            const k = Math.min(3, preSizes.length);
-            let s = 0;
-            for (let i = preSizes.length - k; i < preSizes.length; i++) s += preSizes[i];
-            if (s > 0) tail = s / k;
-        }
-        const head = _makeHead(terminal, tangent, tail);
-        if (!head) return null;
-        // copie profonde: params.shaft.pts NON aliasa o.pts (move/scale)
-        const objPts = fit.pts.map(p => [p[0], p[1]]);
-        const shaftPts = fit.pts.map(p => [p[0], p[1]]);
-        const sizes = preSizes
-            ? _mapSizesToPts({ pts: pre, sizes: preSizes }, objPts) : null;
-        const bp = fit.pts.map(p => [p[0], p[1]]);
-        if (fit.params && fit.params.bez) {
-            for (const sg of fit.params.bez) for (const pb of sg) bp.push(pb);
-        }
-        const tri = _headPoly(head);
-        if (tri) bp.push(tri[0], tri[1], tri[2]);
-        const shaft = { kind: fit.kind, pts: shaftPts };
-        const params = { shaft: shaft, head: head };
-        if (fit.params && fit.params.arc) {
-            // R22: arco ideale condiviso fra asta e top-level (stesso
-            // riferimento: move/scale lo trasformano UNA volta)
-            params.arc = fit.params.arc;
-            shaft.arc = fit.params.arc;
-        }
-        if (fit.params && fit.params.bez) {
-            // params.bez in cima (spec Q6); shaft.bez stesso riferimento:
-            // moveObj/scaleObj traducono UNA sola volta con il guard !=
-            params.bez = fit.params.bez;
-            shaft.bez = fit.params.bez;
-        }
-        return { kind: 'arrow', vclass: 'arrow', rot: 0, pts: objPts,
-                 box: _bbox(bp), sizes: sizes, params: params };
-    }
-    // F4 retrocompat: target line/curve esistente CONVERTITO in 'arrow'
-    // (il vecchio "flag arrow su shape" resta solo per i target non
-    // convertibili: cerchio/ellisse/rettangolo/quadrato/triangolo)
-    function convertTargetToArrow(tgt, p0) {
-        if (!tgt || tgt.t !== 'shape' || !p0) return null;
-        let terminal, tangent, shaft;
-        if (tgt.kind === 'line' && tgt.pts && tgt.pts.length === 2) {
-            const a = tgt.pts[0], b = tgt.pts[1];
-            const da = Math.hypot(p0[0] - a[0], p0[1] - a[1]);
-            const db = Math.hypot(p0[0] - b[0], p0[1] - b[1]);
-            const end = da <= db ? a : b, st = da <= db ? b : a;
-            terminal = [end[0], end[1]];
-            tangent = [terminal[0] - st[0], terminal[1] - st[1]];
-            shaft = { kind: 'line',
-                      pts: [[st[0], st[1]], [terminal[0], terminal[1]]] };
-        } else if (tgt.kind === 'curve' && tgt.params && tgt.params.bez &&
-                   tgt.params.bez.length) {
-            const bez = tgt.params.bez;
-            const s0 = bez[0][0], c1 = bez[0][1];
-            const e2 = bez[bez.length - 1][2], e0 = bez[bez.length - 1][3];
-            const dS = Math.hypot(p0[0] - s0[0], p0[1] - s0[1]);
-            const dE = Math.hypot(p0[0] - e0[0], p0[1] - e0[1]);
-            if (dE <= dS) {
-                terminal = [e0[0], e0[1]];
-                tangent = [3 * (e0[0] - e2[0]), 3 * (e0[1] - e2[1])];
-            } else {
-                terminal = [s0[0], s0[1]];
-                tangent = [3 * (s0[0] - c1[0]), 3 * (s0[1] - c1[1])];
-                tangent = [-tangent[0], -tangent[1]];   // verso di ARRIVO
-            }
-            shaft = { kind: 'curve',
-                      pts: (tgt.pts || []).map(q => [q[0], q[1]]),
-                      bez: tgt.params.bez,
-                      arc: tgt.params.arc };
-        } else {
-            return null;
-        }
-        if (!tangent || Math.hypot(tangent[0], tangent[1]) < 1e-6) return null;
-        // spessore di coda dal target (size/presenza sizes)
-        let tail = tgt.size || 2;
-        if (tgt.sizes && tgt.sizes.length === (tgt.pts || []).length &&
-            tgt.pts && tgt.pts.length) {
-            let bi = 0, bd = Infinity;
-            for (let i = 0; i < tgt.pts.length; i++) {
-                const d = Math.hypot(tgt.pts[i][0] - terminal[0],
-                                     tgt.pts[i][1] - terminal[1]);
-                if (d < bd) { bd = d; bi = i; }
-            }
-            if (tgt.sizes[bi] > 0) tail = tgt.sizes[bi];
-        }
-        const head = _makeHead(terminal, tangent, tail);
-        if (!head) return null;
-        const pts = (tgt.pts || []).map(q => [q[0], q[1]]);
-        const bp = (tgt.pts || []).map(q => [q[0], q[1]]);
-        if (shaft.bez) for (const sg of shaft.bez) for (const pb of sg) bp.push(pb);
-        const tri = _headPoly(head);
-        if (tri) bp.push(tri[0], tri[1], tri[2]);
-        const params = { shaft: shaft, head: head };
-        if (shaft.bez) params.bez = shaft.bez;
-        if (shaft.arc) params.arc = shaft.arc;
-        return { t: 'shape', kind: 'arrow', color: tgt.color,
-                 size: tgt.size, alpha: tgt.alpha, box: _bbox(bp), rot: 0,
-                 pts: pts,
-                 sizes: (tgt.sizes && tgt.sizes.length === (tgt.pts || []).length)
-                     ? tgt.sizes.slice() : null,
-                 params: params };
-    }
-        function makeShapeObj(stroke, rec) {
-        const o = {
-            t: 'shape', kind: rec.kind,
-            color: stroke.color || '#141414',
-            size: stroke.size || 2,
-            alpha: (stroke.alpha !== undefined ? stroke.alpha : 1),
-            box: rec.box, rot: rec.rot || 0, pts: rec.pts || [],
-            arrow: !!rec.arrow, params: rec.params || null,
-            // R25 V1: classe di classificazione V1 (line/arc/freeform/
-            // closed/arrow) - leggibile anche dal QA su window.__ink
-            vclass: rec.vclass || null
-        };
-        // R20 (7): larghezza/pressione PER PUNTO del tratto grezzo
-        // preservata sulla shape: polyline/curve -> per nodo; cerchio ->
-        // 48 settori sul perimetro campionati dal tratto
-        const hasSz = !!(stroke.sizes && stroke.sizes.length &&
-            (stroke.pts || []).length === stroke.sizes.length);
-        if (rec.kind === 'arrow') {
-            // R20 F4: sizes gia' calcolate sull'asta dal builder (coda fit)
-            if (rec.sizes && rec.sizes.length) o.sizes = rec.sizes;
-        } else if (hasSz && rec.kind === 'circle' && o.params &&
-            o.params.cx !== undefined) {
-            const rg = _ringForStroke(stroke, o.params.cx, o.params.cy);
-            if (rg) { o.sizes = rg.ring; o.params.a0 = rg.a0; o.params.dir = rg.dir; }
-        } else if (hasSz && o.pts && o.pts.length) {
-            o.sizes = _mapSizesToPts(stroke, o.pts);
-        }
-        return o;
-    }
-    // A5: 1) push tratto grezzo + pushUndo(col grezzo) + sostituisci con
-    // shape -> primo undo ripristina il tratto grezzo, secondo lo rimuove
-    function finalizeStrokeWithShape(o, rec) {
-        // R20 F5: se il push al primo movimento non e' ancora partito
-        // (tratto mai mosso), garantisco comunque il pre-push a 2 livelli
-        if (ed.penUndoPending) { ed.penUndoPending = false; pushUndo(); }
-        ed.doc.objects.push(o);
-        pushUndo();
-        const shp = makeShapeObj(o, rec);
-        ed.doc.objects[ed.doc.objects.length - 1] = shp;
-        // R25 V1: UNO swap singolo al rilascio -> tutta la strumentazione
-        // (classified per classe, refined, perfected_on_release,
-        // swapped_pixels, residual_px) in UN punto coerente
-        ink24Commit(shp, rec.vclass, (o.pts || []).length);
-        scheduleSave();
         drawAll();
+        scheduleSave();
+        return true;
     }
-    function finalizeEndStroke(o) {
-        // R20 FRECCIA COMPOSTA (F1-F4): flick finale a V o back-stroke ->
-        // UN oggetto 'arrow' = asta perfezionata (linea LSQ / curva Bezier
-        // con residuo entro tolleranza) + punta saldata sulla tangente
-        // finale. Undo: 1 = tratto grezzo pre-flick, 2 = rimosso.
-        if (ed.arrowOn) {
-            const fi = detectFlick(o);
-            if (window.__ink) window.__ink.trace.push({ k: 'dbgf', fi: fi,
-                n: (o.pts || []).length, tsN: o.ts ? o.ts.length : -1 });
-            if (fi >= 0) {
-                // (a) stesso tratto: porzione pre-flick = asta (F2) + punta (F3)
-                if (ed.shpOn && fi >= 4 && o.pts.length - fi >= 3) {
-                    const recA = buildArrowRec(o, fi);
-                    if (recA) {
-                        // R24/R25: contatori arrow (classified/refined/
-                        // perfected/swapPx/residuo) via ink24Commit dentro
-                        // finalizeStrokeWithShape -> UNO swap al rilascio
-                        finalizeStrokeWithShape(o, recA);
-                        return;   // undo 1 = tratto grezzo, undo 2 = via
-                    }
-                }
-                // (b) due tratti: target line/curve esistente CONVERTITO in
-                // 'arrow' (retrocompat dell'attach); altri target ->
-                // flag legacy (drawShape con o.arrow sull'ultimo segmento)
-                const tgt = findFlickTarget(o);
-                if (tgt) {
-                    const conv = convertTargetToArrow(tgt, o.pts[0]);
-                    if (conv) {
-                        const idx = ed.doc.objects.indexOf(tgt);
-                        if (idx >= 0) ed.doc.objects[idx] = conv;
-                    } else {
-                        tgt.arrow = true;
-                    }
-                    // R24/R25: target convertito in arrow -> swap al
-                    // rilascio (contatori V1 tutti in un punto)
-                    ink24Commit(conv || tgt, 'arrow', (o.pts || []).length);
-                    scheduleSave();
-                    drawAll();
-                    return;   // flick scartato: undo torna allo stato pre-flick
-                }
-            }
+    function flushPendings() {
+        if (!ed || !ed.inkPendings || !ed.inkPendings.length) return;
+        ed.inkPendings.slice().forEach(e => applyCommit(e));
+    }
+    // F01 secondo tratto breve: assorbito come PUNTA della freccia sul
+    // tratto appena commesso (F02/F03/F04: UN oggetto, un solo undo).
+    // Finestra e soglie sono in ink_cfg.js (parte da 300ms/60px/120ms).
+    function tryAbsorbFlick(o2) {
+        if (!window.InkCommit || !ed.lastCommit || ed.inkNoSnap) return false;
+        const lc = ed.lastCommit;
+        const now = performance.now();
+        const C = InkCommit.CFG;
+        if (now - lc.t > C.flick2Ms) return false;
+        const ts = o2.ts;
+        if (!ts || ts.length !== o2.pts.length || ts.length < 2) return false;
+        if (ts[ts.length - 1] - ts[0] >= C.flick2DurMs) return false;
+        const len = InkCommit.pathLen(o2.pts);
+        if (len < 3 || len > C.flick2LenPx) return false;
+        if (!lc.ref || !lc.ref.obj || !lc.ref.plan) return false;
+        if (ed.doc.objects.indexOf(lc.ref.obj) < 0) return false;
+        const tgt = lc.ref.obj, plan1 = lc.ref.plan;
+        const p1 = tgt.params || plan1.params || {};
+        if (p1.head) return false;                  // una sola punta (F05)
+        // F03: asta = retta o arco (la punta segue la tangente finale)
+        if (['line', 'arc'].indexOf(plan1.cls) < 0) return false;
+        const d0 = Math.hypot(o2.pts[0][0] - lc.end[0],
+                              o2.pts[0][1] - lc.end[1]);
+        if (d0 > C.flick2DistPx) return false;
+        const ei = InkCommit.endInfo(plan1);
+        if (!ei) return false;
+        const head = InkCommit.planHead(ei.end, ei.tangent,
+                                        tgt.base || tgt.size || 3);
+        if (!head) return false;
+        // attach: pending -> punta dentro il piano (scatta al SUO swap);
+        // commesso -> muta in posto (N05: nessun ri-fit del vecchio)
+        let entry = null;
+        for (const e of ed.inkPendings) if (e.obj === tgt) { entry = e; break; }
+        if (entry) {
+            entry.plan.params = entry.plan.params || {};
+            entry.plan.params.head = head;
+            entry.plan.params.shaftKind = entry.plan.cls;
+            entry.plan.params.cls = 'arrow';
+            entry.plan.cls = 'arrow';
+        } else {
+            tgt.params = tgt.params || {};
+            tgt.params.head = head;
+            tgt.params.shaftKind = tgt.params.cls || plan1.cls;
+            tgt.params.cls = 'arrow';
+            tgt.vclass = 'arrow';
+            ink24Commit(tgt, 'arrow', o2.pts.length, 0);
         }
-        if (ed.shpOn) {
-            const rec = recognizeStroke(o.pts, ed.inkSnapAmp || 0);
-            if (rec) {
-                // R24/R25: perfezionamento AL RILASCIO sul percorso
-                // pointerup reale (line Theil-Sen / arc Kasa-Bezier /
-                // freeform Taubin / closed R20) - contatori V1 dentro
-                // finalizeStrokeWithShape (UNO swap singolo)
-                finalizeStrokeWithShape(o, rec);
-                return;
-            }
+        // F04/M04: UN solo undo rimuove asta+punta insieme -> tolgo dal
+        // stack lo snapshot creato al PRIMO movimento di o2
+        if (!ed.penUndoPending && ed.undo.length) ed.undo.pop();
+        ed.penUndoPending = false;
+        ed.lastCommit = { t: now, end: ei.end.slice(), ref: lc.ref };
+        if (window.__ink) {
+            window.__ink.trace.push({ k: 'absorb', t: now, by: plan1.cls });
         }
-        // R24: riconoscimento tentato ma nulla passato -> tratto resta grezzo
-        ink24Add('discarded', null);
+        return true;
+    }
+    // rilascio di un tratto penna/evidenziatore -> piano + settle + swap
+    function commitStroke(o) {
+        if (!ed || !o || !o.pts || !o.pts.length) return;
+        // snap di verita' dell'assist: l'ultimo punto diventa il punto
+        // REALE del puntatore (la punta live era gia' convergente L3)
+        if (ed.inkLastRaw && o.tool !== 'highlighter') {
+            const lp = o.pts[o.pts.length - 1];
+            lp[0] = ed.inkLastRaw.x;
+            lp[1] = ed.inkLastRaw.y;
+        }
+        // F01: il secondo tratto breve viene assorbito PRIMA della
+        // classificazione (diventa punta, mai oggetto separato)
+        if (tryAbsorbFlick(o)) return;
+        let plan = null;
+        try {
+            plan = (window.InkCommit) ? InkCommit.classify(o.pts, {
+                ts: o.ts,
+                size: o.base || o.size || 3,
+                noSnap: !!ed.inkNoSnap
+            }) : null;
+        } catch (err) { plan = null; }
+        if (!plan) plan = { raw: true, cls: 'raw', pts: null,
+                            params: null, nRaw: o.pts.length };
+        if (window.__ink) {
+            window.__ink.trace.push({ k: 'release', cls: plan.cls,
+                                      t: performance.now() });
+        }
+        // push UNO snapshot pre-tratto (M04: un solo undo rimuove tutto)
         if (ed.penUndoPending) { ed.penUndoPending = false; pushUndo(); }
         ed.doc.objects.push(o);
+        const nRaw = o.pts.length;
+        if (plan.raw || !plan.pts) {
+            // T06 / forceRaw: nessun commit di perfezione (grezzo com'e')
+            delete o._wet;
+            ink24Add('discarded');
+            ed.lastCommit = null;
+            return;
+        }
+        // K01: il grezzo resta visibile invariato per settleMs con la
+        // coda grigia (L02); L04: la coda sparisce allo swap (N08)
+        o._wet = true;
+        const e = { obj: o, plan: plan, nRaw: nRaw,
+                    t0: performance.now(), timer: 0 };
+        e.timer = setTimeout(() => { e.timer = 0; applyCommit(e); },
+                             InkCommit.CFG.settleMs);
+        ed.inkPendings.push(e);
+        ed.lastCommit = { t: e.t0,
+            end: plan.end ? plan.end.slice()
+                : [o.pts[nRaw - 1][0], o.pts[nRaw - 1][1]],
+            ref: { obj: o, plan: plan } };
     }
-    // R20 G/U8: FLASH ~150ms sulla shape appena commessa da ghost preview.
-    // Solo un breve ciclo rAF con guard su ed (nessun setTimeout che resti
-    // vivo dopo close/teardown): l'id vive in ed.ghostFlashRaf ed e' annullato
-    // in teardownEditor.
-    function ghostFlashLoop() {
-        const st = ed;
-        if (!st || !st.ghostFlash || st.ghostFlashRaf) return;
-        const t0 = performance.now();
-        const step = () => {
-            if (!ed || ed !== st || !st.ghostFlash) {
-                st.ghostFlashRaf = 0;
-                return;
+    // ---- rendering di un tratto di inchiostro ----
+    function isWet(o) {
+        if (o._wet) return true;
+        return !!(ed && ed.active === o && o.tool !== 'highlighter');
+    }
+    function wetColor() {
+        return (window.InkCommit && InkCommit.CFG.wetColor) || '#a8a8a8';
+    }
+    // F03: punta freccia — triangolo pieno con angoli leggermente
+    // arrotondati, base saldata esattamente sull'estremo dell'asta,
+    // orientata lungo la tangente finale (retta o arco); asta+punta =
+    // UN solo oggetto (F04 -> drawStroke + params.head).
+    function drawHead(ctx, o) {
+        const p = o.params;
+        if (!p || !p.head || !window.InkCommit) return;
+        const tri = InkCommit.headPoly(p.head);
+        if (!tri) return;
+        ctx.save();
+        ctx.globalAlpha = o.alpha != null ? o.alpha : 1;
+        ctx.fillStyle = o.color || '#141414';
+        ctx.strokeStyle = o.color || '#141414';
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        const r = (InkCommit.CFG.headRoundPx || 0.9) *
+                  Math.max(1, (o.size || 2) / 2);
+        ctx.lineWidth = r * 2;
+        ctx.beginPath();
+        ctx.moveTo(tri[0][0], tri[0][1]);
+        ctx.lineTo(tri[1][0], tri[1][1]);
+        ctx.lineTo(tri[2][0], tri[2][1]);
+        ctx.closePath();
+        ctx.fill();    // corpo pieno
+        ctx.stroke();  // angoli leggermente arrotondati (round join)
+        ctx.restore();
+    }
+    // 29-bis: render dell'OMBRA (G02: grigio ~40% opacita', stesso
+    // spessore, estremities arrotondate; G08: sagoma della punta se
+    // l'asta ha un flick). Sopra il grezzo con alpha: il nero sotto resta
+    // leggibile (G03). Nessun handle/etichetta/badge.
+    function drawShadow(ctx, sh) {
+        const o = ed.active;
+        if (!o || !sh || !sh.visible || !sh.plan || !sh.plan.pts) return;
+        const p = sh.plan;
+        const CFGs = (window.InkCommit && InkCommit.CFG) || {};
+        const op = (CFGs.shadowOpacity != null) ? CFGs.shadowOpacity : 0.40;
+        const wDelta = (CFGs.shadowWidthDeltaPx != null) ? CFGs.shadowWidthDeltaPx : 0;
+        ctx.save();
+        ctx.globalAlpha = (o.alpha != null ? o.alpha : 1) * op;
+        ctx.strokeStyle = o.color || '#141414';
+        ctx.fillStyle = o.color || '#141414';
+        ctx.lineWidth = Math.max(1, (o.size || 2) - wDelta);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        const pts = p.pts;
+        if (pts.length === 1) {
+            ctx.beginPath();
+            ctx.arc(pts[0][0], pts[0][1], Math.max(0.6, ctx.lineWidth / 2),
+                    0, Math.PI * 2);
+            ctx.fill();
+        } else {
+            ctx.beginPath();
+            ctx.moveTo(pts[0][0], pts[0][1]);
+            for (let i = 1; i < pts.length - 1; i++) {
+                const a = pts[i], b = pts[i + 1];
+                ctx.quadraticCurveTo(a[0], a[1],
+                    (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
             }
-            if (performance.now() - t0 >= 150) {
-                st.ghostFlash = 0;
-                st.ghostFlashObj = null;
-                st.ghostFlashRaf = 0;
-                drawAll();
-                return;
+            ctx.lineTo(pts[pts.length - 1][0], pts[pts.length - 1][1]);
+            ctx.stroke();
+        }
+        // G08: sagoma della punta (stessa geometria F03, colore ombra)
+        if (p.params && p.params.head && window.InkCommit) {
+            const tri = InkCommit.headPoly(p.params.head);
+            if (tri) {
+                ctx.beginPath();
+                ctx.moveTo(tri[0][0], tri[0][1]);
+                ctx.lineTo(tri[1][0], tri[1][1]);
+                ctx.lineTo(tri[2][0], tri[2][1]);
+                ctx.closePath();
+                ctx.fill();
+                ctx.lineWidth = Math.max(0.8, ctx.lineWidth * 0.5);
+                ctx.stroke();
             }
-            drawAll();
-            st.ghostFlashRaf = requestAnimationFrame(step);
-        };
-        st.ghostFlashRaf = requestAnimationFrame(step);
+        }
+        ctx.restore();
     }
     function drawStroke(ctx, o) {
         const pts = o.pts;
@@ -3013,31 +1353,65 @@
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         if (pts.length === 1) {
+            // puntino (tap): grigio finche' non commesso (L02/L04/N08)
+            if (isWet(o)) ctx.fillStyle = wetColor();
             ctx.beginPath();
             ctx.arc(pts[0][0], pts[0][1], Math.max(0.6, (o.size || 2) / 2), 0, Math.PI * 2);
             ctx.fill();
-        } else if (o.sizes && o.sizes.length === pts.length) {
-            // tratto a spessore variabile (pressione penna): segmenti
-            // con larghezza interpolata
-            for (let i = 1; i < pts.length; i++) {
-                ctx.lineWidth = Math.max(0.5, (o.sizes[i - 1] + o.sizes[i]) / 2);
+            ctx.restore();
+            drawHead(ctx, o);
+            return;
+        }
+        // L02: coda "bagnata" grigia = porzione non ancora commitata
+        // (ultimi CFG.wetTailPx mondo, ~20-40px); sparisce al commit.
+        const wet = isWet(o);
+        let split = pts.length - 1;   // indice d'inizio della coda
+        if (wet) {
+            const tail = (window.InkCommit ? InkCommit.CFG.wetTailPx : 30);
+            let acc = 0;
+            split = pts.length - 1;
+            for (let i = pts.length - 1; i > 0; i--) {
+                acc += Math.hypot(pts[i][0] - pts[i - 1][0],
+                                  pts[i][1] - pts[i - 1][1]);
+                split = i - 1;
+                if (acc >= tail) break;
+            }
+            if (split < 0) split = 0;
+        }
+        const drawRange = (i0, i1, color) => {
+            if (i1 <= i0) return;
+            ctx.strokeStyle = color;
+            if (o.sizes && o.sizes.length === pts.length) {
+                // spessore variabile (pressione, SOLO live)
+                for (let i = i0 + 1; i <= i1; i++) {
+                    ctx.lineWidth = Math.max(0.5,
+                        (o.sizes[i - 1] + o.sizes[i]) / 2);
+                    ctx.beginPath();
+                    ctx.moveTo(pts[i - 1][0], pts[i - 1][1]);
+                    ctx.lineTo(pts[i][0], pts[i][1]);
+                    ctx.stroke();
+                }
+            } else {
+                ctx.lineWidth = Math.max(0.5, o.size || 2);
                 ctx.beginPath();
-                ctx.moveTo(pts[i - 1][0], pts[i - 1][1]);
-                ctx.lineTo(pts[i][0], pts[i][1]);
+                ctx.moveTo(pts[i0][0], pts[i0][1]);
+                for (let i = i0 + 1; i < i1; i++) {
+                    const a = pts[i], b = pts[i + 1];
+                    ctx.quadraticCurveTo(a[0], a[1],
+                        (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+                }
+                ctx.lineTo(pts[i1][0], pts[i1][1]);
                 ctx.stroke();
             }
+        };
+        if (!wet || split <= 0) {
+            drawRange(0, pts.length - 1, o.color || '#141414');
         } else {
-            ctx.beginPath();
-            ctx.moveTo(pts[0][0], pts[0][1]);
-            for (let i = 1; i < pts.length - 1; i++) {
-                const a = pts[i], b = pts[i + 1];
-                ctx.quadraticCurveTo(a[0], a[1], (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
-            }
-            const last = pts[pts.length - 1];
-            ctx.lineTo(last[0], last[1]);
-            ctx.stroke();
+            drawRange(0, split, o.color || '#141414');       // corpo nero
+            drawRange(split, pts.length - 1, wetColor());    // coda grigia
         }
         ctx.restore();
+        drawHead(ctx, o);
     }
 
     function drawTextObj(ctx, o) {
@@ -3132,23 +1506,6 @@
                 3 * u * t * t * sg[2][0] + t * t * t * sg[3][0],
                 u * u * u * sg[0][1] + 3 * u * u * t * sg[1][1] +
                 3 * u * t * t * sg[2][1] + t * t * t * sg[3][1]];
-    }
-    // R20 G/U8: overlay della forma CANDIDATA durante l'hold (ghost
-    // preview): outline tratteggiato in trasparenza (alfa ~0.45) sopra il
-    // tratto grezzo. Geometria leggera eseguita SOLO quando ed.ghost esiste
-    // (penna ferma dopo l'hold): nessun lavoro nel percorso di movimento.
-    function drawGhostOverlay(ctx, g) {
-        if (!g || !g.rec) return;
-        let go = null;
-        try {
-            go = makeShapeObj({ color: '#141414', size: 3, alpha: 0.45,
-                                pts: g.pts || [] }, g.rec);
-        } catch (e) { return; }
-        if (!go) return;
-        ctx.save();
-        ctx.setLineDash([6 / (ed.scale || 1), 5 / (ed.scale || 1)]);
-        drawShape(ctx, go);
-        ctx.restore();
     }
     function drawShape(ctx, o) {
         // R14 A1/A2 + R20: shape vettoriale pulita (line/circle/ellipse/
@@ -3395,21 +1752,14 @@
         // grana della carta (entro il clip)
         drawGrainPage(ctx, doc.w, doc.h);
         // oggetti e tratti in corso (clippati ai bordi pagina)
-        objs.forEach(o => {
-            drawObj(ctx, o);
-            // R20 G/U8: evidenziazione ~150ms della shape commessa da ghost
-            if (ed.ghostFlash && o === ed.ghostFlashObj) {
-                const gb = objBBox(o);
-                ctx.save();
-                ctx.strokeStyle = '#ffca3a';
-                ctx.lineWidth = 3 / ed.scale;
-                ctx.strokeRect(gb.x - 4, gb.y - 4, gb.w + 8, gb.h + 8);
-                ctx.restore();
-            }
-        });
+        objs.forEach(o => { drawObj(ctx, o); });
         if (ed.active) drawObj(ctx, ed.active);
-        // R20 G/U8: overlay GHOST (forma candidata) sopra il tratto grezzo
-        if (ed.ghost && ed.active) drawGhostOverlay(ctx, ed.ghost);
+        // 29-bis: OMBRA live — layer SEPARATO sopra il grezzo (G03), mai
+        // un tratto/ghost (N02-bis): solo con sosta e solo su T01/T02;
+        // sparisce con ed.active al rilascio (G10).
+        if (ed.active && ed.sh && ed.sh.visible && ed.sh.plan) {
+            drawShadow(ctx, ed.sh);
+        }
         // linea di margine rossa opzionale (solo righe)
         if (doc.sheet === 'righe' && doc.margin) {
             ctx.strokeStyle = 'rgba(220,70,70,.55)';
@@ -3486,29 +1836,8 @@
                 ctx.fill();
                 ctx.stroke();
                 ctx.restore();
-                // R20 G/U7: maniglia di ROTAZIONE (rombo in cima al centro
-                // alto del bbox + connettore) - solo selezioni con shape
-                if (ed.lasel.some(o => o.t === 'shape')) {
-                    const rh = rotHandlePos(ub);
-                    const rr = 6 / ed.scale;
-                    ctx.save();
-                    ctx.strokeStyle = '#ffffff';
-                    ctx.fillStyle = '#3aa0ff';
-                    ctx.lineWidth = 1.5 / ed.scale;
-                    ctx.beginPath();
-                    ctx.moveTo(rh.x, rh.y - rr);
-                    ctx.lineTo(rh.x + rr, rh.y);
-                    ctx.lineTo(rh.x, rh.y + rr);
-                    ctx.lineTo(rh.x - rr, rh.y);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.moveTo(rh.x, rh.y + rr);
-                    ctx.lineTo(rh.x, ub.y - 3 / ed.scale);
-                    ctx.stroke();
-                    ctx.restore();
-                }
+                // R31: maniglia di rotazione ELIMINATA (N04: nessuna
+                // maniglia su tratti commessi; le shape non esistono piu')
             }
         }
         ctx.restore();
@@ -3609,7 +1938,7 @@
     // ---------- undo / redo ----------
     function pushUndo() {
         if (!ed) return;
-        ed.undo.push(JSON.stringify(ed.doc.objects));
+        ed.undo.push(snapshotObjects());
         if (ed.undo.length > 50) ed.undo.shift();
         ed.redo.length = 0;
     }
@@ -3624,7 +1953,7 @@
 
     function undo() {
         if (!ed || !ed.undo.length) return;
-        ed.redo.push(JSON.stringify(ed.doc.objects));
+        ed.redo.push(snapshotObjects());
         ed.doc.objects = JSON.parse(ed.undo.pop());
         repointPage();
         ed.selected = null;
@@ -3635,7 +1964,7 @@
 
     function redo() {
         if (!ed || !ed.redo.length) return;
-        ed.undo.push(JSON.stringify(ed.doc.objects));
+        ed.undo.push(snapshotObjects());
         ed.doc.objects = JSON.parse(ed.redo.pop());
         repointPage();
         ed.selected = null;
@@ -3649,10 +1978,6 @@
     function multiFingerTap(n) {
         if (!ed) return false;
         if (n === 2) {
-            // R20 G/U8: 2 dita su una GHOST preview = ANNULLA la ghost e
-            // basta (nessun undo: la forma candidata viene scartata, il
-            // tratto resta in corso e si classifica al rilascio)
-            if (ed.ghost) { ed.ghost = null; return true; }
             undo(); return true;
         }
         if (n === 3) { redo(); return true; }
@@ -3661,6 +1986,10 @@
 
     // ---------- salvataggio ----------
     function buildPayload(st) {
+        // i commit in finestra di assestamento vengono applicati PRIMA
+        // di serializzare/thumbnail: il salvataggio contiene SEMPRE la
+        // versione perfezionata (M05: reload senza ondulazioni grezze)
+        flushPendings();
         let thumb = '';
         try { thumb = makeThumb(st.doc); } catch (e) { thumb = ''; }
         return {
@@ -4029,13 +2358,6 @@
         return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
     }
 
-    // R20 G/U7: posizione (mondo) della maniglia di ROTAZIONE = centro alto
-    // del bbox union, staccato di 14px SCHERMO (in mondo: 14/scale) verso
-    // l'alto. Disegnata in drawAll, colpita in lassoDown (mode 'rotate').
-    function rotHandlePos(ub) {
-        return { x: ub.x + ub.w / 2, y: ub.y - 14 / (ed.scale || 1) };
-    }
-
     // test punto-in-poligono (ray casting): scelta semplice e stabile per
     // decidere quali oggetti "cadono" nel lazo (centro del bbox dentro il poligono)
     function pointInPoly(pt, poly) {
@@ -4176,21 +2498,6 @@
         const ub = selUnion();
         const hr = 9 / ed.scale;
         if (ub && ed.lasel && ed.lasel.length && ub.w > 0 && ub.h > 0) {
-            // R20 G/U7: maniglia di ROTAZIONE (rombo in cima al bbox,
-            // solo selezioni con almeno una shape) - PRIORITARIA
-            if (ed.lasel.some(o => o.t === 'shape')) {
-                const rh = rotHandlePos(ub);
-                if (Math.hypot(p.x - rh.x, p.y - rh.y) <= hr) {
-                    const rc = { x: ub.x + ub.w / 2, y: ub.y + ub.h / 2 };
-                    ed.selDrag = {
-                        mode: 'rotate', c: rc,
-                        a0: Math.atan2(p.y - rc.y, p.x - rc.x) * 180 / Math.PI,
-                        rots: ed.lasel.map(o => (o.t === 'shape' ? (o.rot || 0) : 0)),
-                        moved: false
-                    };
-                    return;
-                }
-            }
             // maniglia angolo -> ridimensionamento proporzionale dal centro
             if (Math.abs(p.x - (ub.x + ub.w)) <= hr && Math.abs(p.y - (ub.y + ub.h)) <= hr) {
                 ed.selDrag = {
@@ -4259,26 +2566,6 @@
                 const kk = k / prev;
                 ed.lasel.forEach(o => scaleObj(o, d.c, kk));
                 d.k = k;
-                drawAll();
-            }
-        } else if (d.mode === 'rotate') {
-            // R20 G/U7: rotazione attorno al centro del bbox (gradi): delta
-            // dall'angolo iniziale del drag, SOLO o.rot toccato (nessun
-            // cambio di bbox/pts/params -> move/scale delle shape restano
-            // saldati come da Q7)
-            const a = Math.atan2(p.y - d.c.y, p.x - d.c.x) * 180 / Math.PI;
-            let delta = a - d.a0;
-            while (delta > 180) delta -= 360;
-            while (delta < -180) delta += 360;
-            if (Math.abs(delta) > 0.4) {
-                if (!d.moved) { pushUndo(); d.moved = true; }
-                ed.lasel.forEach((o, i) => {
-                    if (o.t !== 'shape') return;
-                    let r = (d.rots ? (d.rots[i] || 0) : 0) + delta;
-                    while (r > 180) r -= 360;
-                    while (r < -180) r += 360;
-                    o.rot = r;
-                });
                 drawAll();
             }
         }
@@ -4610,7 +2897,8 @@
             }
             // annulla eventuale tratto in corso e passa alla pinza
             if (ed.active) { ed.active = null; ink24Live(-1); }
-            ed.ghost = null;   // R20 G/U8: pinch -> niente ghost orfana
+            if (ed.liveTick) { clearInterval(ed.liveTick); ed.liveTick = null; }
+            ed.sh = null;
             if (ed.eraserOn) ed.eraserOn = false;
             if (ed.lasso) ed.lasso = null;
             if (ed.selDrag) ed.selDrag = null;
@@ -4670,14 +2958,24 @@
         // R20 F5: il push dell'undo e' RIMANDATO al primo movimento: un tap
         // multi-dito (2/3 dita) non deve inquinare lo stack e la redo deve
         // sopravvivere al tocco del primo dito. Il push resta garantito da
-        // finalizeStrokeWithShape/finalizeEndStroke (punti fermi).
+        // commitStroke al rilascio (snap singolo -> M04 un solo undo).
         ed.penUndoPending = true;
         ed.strokeFromPen = (e.pointerType === 'pen');
-        ed.inkHeld = false;
-        ed.inkLastMoveT = 0;
-        ed.ghost = null;   // R20 G/U8: nuovo tratto -> ghost eventuale scartata
-        ed.inkRawRef = null;   // R20: nessun riferimento grezzo da tratti precedenti
+        // 29-bis: pump IDLE (batteria di sicurezza): con la penna ferma in
+        // ambienti dove i frame rAF si fermano (headless/compositore a
+        // frequenza variabile) quiet-snap e OMBRA non partirebbero mai.
+        // Un timer a40ms gira SOLO da >60ms senza input: NON tocca la
+        // latenza live (L1/Q04) e ridisegna con la stessa passata di
+        // inkFrame finche' la penna e' giu.
+        if (ed.liveTick) clearInterval(ed.liveTick);
+        ed.liveTick = setInterval(() => {
+            if (ed && ed.active &&
+                performance.now() - (ed.inkLastEvt || 0) > 60) inkFrame();
+        }, 40);
         ink24ResetStroke();   // R24: contatori rilascio azzerati a ogni tratto
+        // 29-bis: stato OMBRA per questo tratto (G01: sosta ~150-250ms)
+        ed.sh = { lastMoveT: performance.now(), sig: '', visible: false,
+                  plan: null };
         if (ed.tool === 'evidenziatore') {
             ed.active = {
                 t: 'stroke', tool: 'highlighter',
@@ -4691,9 +2989,11 @@
                 color: ed.penColor, size: ed.penSize, alpha: alpha,
                 base: ed.penSize, sizes: [ed.penSize],
                 pts: [[p.x, p.y]],
-                // R14 A2: timestamp ALINATO con pts[0] (finestra flick)
-                ts: [(typeof e.timeStamp === 'number' && e.timeStamp > 0)
-                    ? e.timeStamp : performance.now()]
+                // R31: timestamp SEMPRE performance.now() — domini coerenti
+                // con i ts dei move (finestra flick + durata F01 funzionano
+                // anche in jsdom dove e.timeStamp e' un'epoca; nei browser
+                // reali timeStamp condivide comunque il time-origin)
+                ts: [performance.now()]
             };
             // "Migliora scrittura": ancora per l'assistenza al tratto
             ed.helpAnchor = ed.helpOn ? { x: p.x, y: p.y } : null;
@@ -4794,10 +3094,7 @@
                     // di movimento per l'hold-still
                     if (!ed.active.ts) ed.active.ts = [];
                     ed.active.ts.push(ct);
-                    ed.inkLastMoveT = performance.now();
-                    ed.inkHeld = false;
-                    // R20 G/U8: la penna riprende -> ghost annullata
-                    if (ed.ghost) ed.ghost = null;
+                    if (ed.sh) ed.sh.lastMoveT = performance.now();
                 }
             }
             if (window.__ink) {
@@ -4861,38 +3158,21 @@
                 window.__ink.trace.push({ k: 'stop', t: performance.now() });
             }
             ed.active = null;
+            ed.sh = null;   // 29-bis: l'ombra cessa istantaneamente (G10)
+            if (ed.liveTick) { clearInterval(ed.liveTick); ed.liveTick = null; }
             ink24Live(-1);   // R25 V1: tratto concluso (commit o scarto)
             ed.helpAnchor = null;
             ed.strokeFromPen = false;
             if (o.pts.length) {
-                // R14 L2: qui contano Intensita aiuto/Smussamento (fine
-                // tratto + ampiezza snap); R14 A: riconoscimento forme e
-                // frecce solo qui (o all'hold-still)
-                inkEndCleanup(o);
-                const gh = ed.ghost;
-                ed.ghost = null;
-                if (gh && gh.rec) {
-                    // R20 G/U8: CONFERMA della ghost preview al rilascio:
-                    // stessa sequenza undo a 2 livelli del vecchio commit
-                    // all'hold (1 = tratto grezzo, 2 = rimosso) + FLASH
-                    // ~150ms sull'oggetto committato (ciclo rAF breve con
-                    // guard su ed, id annullato in teardownEditor: nessun
-                    // setTimeout/timer che sopravviva a close)
-                    // R24/R25: ghost commessa al rilascio -> contatori V1
-                    // (classified/refined/perfected/swapPx/residuo) dentro
-                    // finalizeStrokeWithShape
-                    finalizeStrokeWithShape(o, gh.rec);
-                    ed.ghostFlash = performance.now();
-                    ed.ghostFlashObj = ed.doc.objects[ed.doc.objects.length - 1];
-                    ghostFlashLoop();
-                } else {
-                    finalizeEndStroke(o);
-                }
+                // R31 (PROMPT R29): NESSUNA pulizia/ricostruzione qui.
+                // Il tratto resta grezzo e visibile per la finestra di
+                // assestamento (K01) e poi viene sostituito in UN frame
+                // (K02/K03) dal piano del modulo ink_commit (M02).
+                // Nessun ghost, nessun hold-still (N02/N03/N06).
+                commitStroke(o);
                 // R24: evidenza console a OGNI rilascio di un tratto
                 ink24Log();
                 scheduleSave();
-            } else if (ed.ghost) {
-                ed.ghost = null;
             }
             ed.inkFx = null;
             ed.inkLastRaw = null;
@@ -5218,25 +3498,11 @@
         ed.helpAssist = 0.6;    // 0..1 intensita' aiuto
         ed.helpSmooth = 0.5;    // 0..1 smussamento righe
         ed.helpAnchor = null;
-        // R14 A4: ink shaping (toggle + hold-still) persistito in
-        // localStorage 'nt14_shaping' (default: forme ON, frecce ON, 350ms)
-        (function () {
-            var s = {};
-            try { s = JSON.parse(localStorage.getItem('nt14_shaping') || '{}'); }
-            catch (e) { s = {}; }
-            ed.shpOn = (s.shpOn !== undefined) ? !!s.shpOn : true;
-            ed.arrowOn = (s.arrowOn !== undefined) ? !!s.arrowOn : true;
-            ed.holdMs = isFinite(s.holdMs) ? Math.min(800, Math.max(200, s.holdMs)) : 350;
-            ed.inkSnapAmp = 0;
-        })();
-        // R24 FE-INK: "perfeziona al rilascio" (DEFAULT ON): localStorage
-        // 'nt24_releaseRefine' accanto a nt14_shaping
-        (function () {
-            var r = null;
-            try { r = JSON.parse(localStorage.getItem('nt24_releaseRefine') || 'null'); }
-            catch (e) { r = null; }
-            ed.releaseRefine = (r && r.on !== undefined) ? !!r.on : true;
-        })();
+        // R31 (PROMPT R29): nessun flag shaping (M01). Il motore
+        // ink-commit e' sempre attivo con i parametri di ink_cfg.js;
+        // ogni tratto ha il SUO pending di commit indipendente (K04).
+        ed.inkPendings = [];
+        ed.lastCommit = null;
         ed.penTondaColor = '#141414';  // colore memorizzato penna tonda
         ed.matitaColor = '#5c5c5c';    // colore memorizzato matita
         ed.markerColor = '#d63b3b';    // colore memorizzato pennarello
@@ -5308,8 +3574,8 @@
         const pillL = App.el('div', 'fn-pill fn-pill-left');
         ed.btnUndo = fnBtn(IC.undo, 'Annulla (Ctrl+Z)', 'fn-tb');
         // R14 A5: undo a due livelli sugli shape (dichiarato nel tooltip)
-        ed.btnUndo.title = 'Annulla (Ctrl+Z): su una forma riconosciuta, '
-            + 'il 1° annulla riporta al tratto grezzo, il 2° lo rimuove';
+        ed.btnUndo.title = 'Annulla (Ctrl+Z): rimuove l\'ultimo tratto '
+            + 'perfezionato (asta + punta insieme se freccia)';
         ed.btnUndo.addEventListener('click', () => undo());
         ed.btnRedo = fnBtn(IC.redo, 'Ripeti (Ctrl+Y)', 'fn-tb');
         ed.btnRedo.addEventListener('click', () => redo());
@@ -5649,55 +3915,15 @@
             () => ed.helpAssist, v => { ed.helpAssist = v; }));
         popHelp.appendChild(mkSlider('Smussamento righe',
             () => ed.helpSmooth, v => { ed.helpSmooth = v; }));
-        // R14 A4: tempo di fermo per snap (hold-still) 200-800ms, default 350
-        (function () {
-            const row = App.el('div', 'fn-slider-row');
-            const lab = App.el('span', 'fn-slider-lab', 'Fermo per snap (ms)');
-            const rng = document.createElement('input');
-            rng.type = 'range';
-            rng.min = 200; rng.max = 800; rng.step = 50;
-            rng.value = ed.holdMs || 350;
-            const val = App.el('span', 'fn-slider-val', rng.value + ' ms');
-            rng.addEventListener('input', () => {
-                val.textContent = rng.value + ' ms';
-                ed.holdMs = Number(rng.value);
-                saveShaping();
-            });
-            row.appendChild(lab);
-            row.appendChild(rng);
-            row.appendChild(val);
-            popHelp.appendChild(row);
-        })();
-        // R24 FE-INK: "Perfeziona al rilascio" (default ON) ACCANTO a
-        // "Fermo per snap": tratti aperti -> classificazione+fit idealizzati
-        // AL RILASCIO (settle 150ms); spento -> hold-still storico anche per
-        // gli aperti. Persistito in localStorage 'nt24_releaseRefine'.
-        (function () {
-            const row = App.el('div', 'fn-slider-row');
-            const lab = App.el('span', 'fn-slider-lab', 'Perfeziona al rilascio');
-            const tg = document.createElement('button');
-            tg.type = 'button';
-            tg.id = 'fn-releaseRefine';
-            const sync = () => {
-                const on = ed.releaseRefine !== false;
-                tg.className = 'fn-relref' + (on ? ' on' : '');
-                tg.textContent = on ? 'ON' : 'OFF';
-                tg.setAttribute('aria-pressed', String(on));
-            };
-            sync();
-            tg.addEventListener('click', () => {
-                ed.releaseRefine = !(ed.releaseRefine !== false);
-                sync();
-                saveShaping();
-            });
-            row.appendChild(lab);
-            row.appendChild(tg);
-            popHelp.appendChild(row);
-        })();
+        // R31 (PROMPT R29): via "Fermo per snap" (hold-still eliminato,
+        // N03) e via "Perfeziona al rilascio" (flag eliminato, M01):
+        // il commit avviene SEMPRE al rilascio con la finestra di
+        // assestamento di ink_cfg.js. La scrittura assistita (slider
+        // sopra) resta invariata e agisce solo in fase live (M03).
         popHelp.appendChild(App.el('div', 'fn-hint',
-            'Con il toggle acceso la scrittura viene stabilizzata al rilascio '
-            + '(e le forme riconosciute, con frecce automatiche); spento, la '
-            + 'scrittura resta grezza.'));
+            'La scrittura assistita resta fluida mentre disegni; al '
+            + 'rilascio ogni tratto viene perfezionato all\'istante '
+            + '(linee, archi, frecce) senza ghost ne maniglie.'));
         root.appendChild(popHelp);
         ed.popHelp = popHelp;
 
@@ -6211,13 +4437,13 @@
         st.pendingClose = true;
         if (st.saveTimer) { clearTimeout(st.saveTimer); st.saveTimer = null; }
         if (st.popOutsideT) { clearTimeout(st.popOutsideT); st.popOutsideT = null; }
-        // R20 G/U8: fermare il breve ciclo rAF del flash ghost
-        if (st.ghostFlashRaf) {
-            try { cancelAnimationFrame(st.ghostFlashRaf); } catch (e) { /* ok */ }
-            st.ghostFlashRaf = 0;
+        // R31: stop dei commit in finestra (buildPayload/flush ha gia'
+        // materializzato i pendings prima del salvataggio — M05)
+        if (st.liveTick) { clearInterval(st.liveTick); st.liveTick = null; }
+        if (st.inkPendings) {
+            st.inkPendings.forEach(e => { if (e.timer) clearTimeout(e.timer); });
+            st.inkPendings.length = 0;
         }
-        st.ghost = null;
-        st.ghostFlash = 0;
         document.removeEventListener('click', onDocOutside, true);
         window.removeEventListener('keydown', onKeyDown);
         window.removeEventListener('resize', onResize);

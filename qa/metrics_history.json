@@ -78,9 +78,9 @@
       "ok": 5
      }
     },
-    "recall5": 1.0,
+    "recall5": 1,
     "recall5_vector": 0.9,
-    "parity": 1.0,
+    "parity": 1,
     "router_p95_ms": 0.0107,
     "t1_total": 10
    },
@@ -222,9 +222,9 @@
       "n": 15
      }
     },
-    "recall5": 1.0,
+    "recall5": 1,
     "recall5_vector": null,
-    "parity": 1.0,
+    "parity": 1,
     "router_p95_ms": 0.0108,
     "t1_total": 2057
    },
@@ -264,11 +264,11 @@
     },
     "latency_p50_ms": null,
     "latency_p95_ms": null,
-    "ttft_p50_ms": 95972.0,
+    "ttft_p50_ms": 95972,
     "ttft_p95_ms": 140964.1,
     "ttft_n": 2,
     "prompt_cache_hit_rate": 0.7767,
-    "kv_delta_mb": -1.0,
+    "kv_delta_mb": -1,
     "idle_unload_delta_mb": 3.1,
     "prompt_lookup": "OFF",
     "gate": {
@@ -292,8 +292,8 @@
      },
      "stato": "invariato R13 (non rimisurato, vedi method)"
     },
-    "recall5": 1.0,
-    "parity": 1.0,
+    "recall5": 1,
+    "parity": 1,
     "router_p95_ms": 0.0107,
     "t1_total": 2145,
     "books_parity": "BLOCKED (corpus vuoto 0/0 dichiarato)",
@@ -336,7 +336,7 @@
     "latency_p95_ms": null,
     "ttft_p50_ms": 350.5,
     "ttft_p95_ms": 357.7,
-    "ttft_hit_p50_ms": 92.0,
+    "ttft_hit_p50_ms": 92,
     "prompt_cache_hit_rate": 0.7767,
     "kv_delta_mb": 0.1,
     "idle_unload_delta_mb": 2.5,
@@ -362,11 +362,11 @@
      },
      "stato": "invariato R15b (non rimisurato, vedi method)"
     },
-    "recall5": 1.0,
-    "parity": 1.0,
+    "recall5": 1,
+    "parity": 1,
     "router_p95_ms": 0.0107,
     "t1_total": 2247,
-    "gt_recall5": 1.0,
+    "gt_recall5": 1,
     "gate_threshold": 0.7,
     "qa1_esiti": {
      "ok": 6,
@@ -427,7 +427,7 @@
     "ttft_p95_ms": 481.1,
     "ttft_hit_p50_ms": 82.7,
     "prompt_cache_hit_rate": 0.7767,
-    "kv_delta_mb": 0.0,
+    "kv_delta_mb": 0,
     "gate": {
      "total": 60,
      "ok": 58,
@@ -449,11 +449,11 @@
      },
      "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
     },
-    "recall5": 1.0,
-    "parity": 1.0,
+    "recall5": 1,
+    "parity": 1,
     "router_p95_ms": 0.0107,
     "t1_total": 2323,
-    "gt_recall5": 1.0,
+    "gt_recall5": 1,
     "gate_threshold": 0.7,
     "qa1_esiti": {
      "ok": 5,
@@ -473,7 +473,7 @@
     "embed_query_p95_ms": 28.767,
     "retrieve_p95_ms": 81.17,
     "first_feedback_p95_ms": 30.02,
-    "web_budget_s": 5.0,
+    "web_budget_s": 5,
     "web_allowlist_domains": 22,
     "gate_umano": {
      "ok": 1,
@@ -573,7 +573,7 @@
     "ttft_p50_ms": 465.5,
     "ttft_p95_ms": 481.1,
     "prompt_cache_hit_rate": 0.7767,
-    "kv_delta_mb": 0.0,
+    "kv_delta_mb": 0,
     "gate": {
      "total": 60,
      "ok": 58,
@@ -596,9 +596,9 @@
      "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
     },
     "router_p95_ms": 0.0107,
-    "recall5": 1.0,
-    "gt_recall5": 1.0,
-    "parity": 1.0,
+    "recall5": 1,
+    "gt_recall5": 1,
+    "parity": 1,
     "t1_total": 2356,
     "t1_fail": -1,
     "t1_target_ok": true,
@@ -638,8 +638,8 @@
      "vincolo": "ux_chunks_hash_doc (store_key, source_file, content_hash)"
     },
     "web": {
-     "budget_s": 7.0,
-     "breaker_ttl_s": 60.0,
+     "budget_s": 7,
+     "breaker_ttl_s": 60,
      "allowlist_domains": 22,
      "wiki_lead_rescue": true,
      "wiki_in_front": true
@@ -786,8 +786,8 @@
      "l14": 10,
      "a14": 29
     },
-    "recall5": 1.0,
-    "parity": 1.0
+    "recall5": 1,
+    "parity": 1
    },
    "method": {
     "latenza_aggiunta_ms": "node qa_browser/qaLA14_appunti.js [prima|dopo] -> qa/l14_measures.json: PointerEvent sintetici ~240Hz (250 move+fermo600ms+up) su canvas reale qa_ui/notes.html; trace window.__ink (performance.now unico); latenza=paint(n>=evt.n)-evt.t p50/p95; settle=lastRaw al primo paint<=2px; warmup 6 rAF dichiarato",
@@ -856,8 +856,8 @@
     "ttft_hit_p50_ms": 94.8,
     "ttft_hit_p95_ms": 98.6,
     "ttft_slo": {
-     "hit_p50_le": 1500.0,
-     "miss_p50_le": 4000.0
+     "hit_p50_le": 1500,
+     "miss_p50_le": 4000
     },
     "rss_30req_mb": 39.7,
     "load_sec": 2.26,
@@ -867,7 +867,7 @@
      "tool": 12.56
     },
     "prompt_cache_hit_rate": 0.7767,
-    "kv_delta_mb": 0.0,
+    "kv_delta_mb": 0,
     "gate": {
      "total": 60,
      "ok": 58,
@@ -889,8 +889,8 @@
      },
      "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
     },
-    "recall5": 1.0,
-    "parity": 1.0,
+    "recall5": 1,
+    "parity": 1,
     "router_p95_ms": 0.0107,
     "engine_select": {
      "criteria": "engine default = XHToken SE draft Spark nativo acceptance >= 0.70 E speedup >= 1.30x sul pro; altrimenti upstream",
@@ -969,6 +969,59 @@
     "t1_meta_legacy_fail": {
      "n": 6,
      "note": "suite escluse dalla baseline dal R11/R12: qaF pre-H11, qaB1 baseline count, qaV 5.24 legacy - non regressioni R23 (motivi visibili in qa/t1_r13.log)"
+    }
+   },
+   "method": {
+    "t1_total": "python tests/run_t1.py -> qa/t1_r13.json (TOTALE ufficiale, baseline 3205 -> 3224)",
+    "ttft_p50_ms": "python qa/x_qa2_slo.py -> qa/x_qa2_slo.json: sidecar REALE (core.sidecar), miss = prefisso unico x5, TTFT = primo chunk SSE, motore = config reale (llama.engine auto -> upstream)",
+    "ttft_p95_ms": "stesso run di ttft_p50_ms (qa/x_qa2_slo.json): p95 nearest-rank sui5 campioni miss (prefissi unici) - p95=1040.8ms <=4000",
+    "ttft_hit_p50_ms": "idem: hit = prompt identico ripetuto x5 dopo warmup (prefix cache)",
+    "engine_select": "python qa/_x_draftbench.py + llama-bench (qa/_x_bench_*.log) -> qa/x3_compare.json (regola X3.3 applicata con i numeri)",
+    "tok_s_bench_pp512_tg128": "llama-bench -p 512 -n 128 su entrambi i motori (qa/_x_bench_{up,xt}_{17b,4b}.log) - stessi argomenti, stessa macchina",
+    "draft_1_7b_to_4b": "python qa/_x_draftbench.py: server REALI -c4096 q8_0, --spec-type draft-simple, n_predict=200 temp=0; acceptance = draft_n_accepted/draft_n dalle timings",
+    "rss_mb_steady_ctx4096_q8": "stesso probe: psutil RSS steady post-load per motore x modello (qa/x3_draftbench.json, qa/x3_rssbase.json)",
+    "qa1_switch_kill": "python qa/x_qa1_switch.py: StudioIAAPI REALE (stub webview) + sidecar reale; switch base->pro->base con engine xhtoken, kill binario fork -> upstream, gguf corrotto -> MiniCPM5; cleanup config/file in finally",
+    "qa2_slo_pass": "qa/x_qa2_slo.json pass (miss<=4000, hit<=1500, streaming, complete)",
+    "models_ui_dropdown": "node qa_browser/qaR23_models.js: dati = python list_models REALE, Chrome/CDP reale, screenshot qa/r23_models_*.png",
+    "rss_30req_mb": "PORTATA da round18 (qa/g2_kv_rss.json, invariato)",
+    "load_sec": "PORTATA da round18 (qa/g1_measures.json, invariato)",
+    "tok_s": "PORTATA da round18 (qa/g1_measures.json profili sidecar invariati)",
+    "prompt_cache_hit_rate": "PORTATA da round18 (qa/g1_measures.json)",
+    "kv_delta_mb": "PORTATA da round18 (qa/g2_kv_rss.json)",
+    "gate": "PORTATA da round18 (qa/gate_outputs_r12.json; testH4 verdi nel T1 R23)",
+    "recall5": "PORTATA da round18 (qa/h8_eval.json)",
+    "parity": "PORTATA da round18 (testH1_parity in T1)",
+    "router_p95_ms": "PORTATA da round18 (qa/h7_cache_measures.json)"
+   }
+  },
+  {
+   "round": "31",
+   "timestamp": "2026-11-10T15:25:15.418+00:00",
+   "build": "2026-11-09T19:30:00+01:00",
+   "metrics": {
+    "t1_total": 3581,
+    "recall5": 1,
+    "parity": 1,
+    "gate": {
+     "total": 60,
+     "ok": 58,
+     "f01": {
+      "ok": 15,
+      "n": 15
+     },
+     "f04": {
+      "ok": 15,
+      "n": 15
+     },
+     "f10": {
+      "ok": 15,
+      "n": 15
+     },
+     "f13": {
+      "ok": 13,
+      "n": 15
+     },
+     "stato": "invariato R16 (registry intoccato) - riconteggio qa/gate_outputs_r12.json + testH4 verdi in T1"
     }
    },
    "method": {

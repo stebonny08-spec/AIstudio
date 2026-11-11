@@ -341,10 +341,20 @@ async function notesWithoutBackend() {
         const txt = prev ? prev.textContent : '';
         /* fallback senza metadati (solo titolo + msg del componente) */
         ok(!/Percorso:/.test(txt), 'ii.2 fallback SENZA percorso', 'prev=' + txt.slice(0, 80));
-        ok(/Nessun testo raggiungibile/.test(txt), 'ii.3 fallback msg "Nessun testo raggiungibile"', 'prev=' + txt.slice(-80));
+        /* Contratto R28/R30 (viewer mat previewMat21): fallback = msg
+           "Nessuna anteprima raggiungibile" + riga-file "apri file".
+           ALLINEAMENTO R31: fonti_panel.js e' stato modificato in R30
+           (04/11) DOPO l'ultimo T1 completo (02/11): il vecchio
+           aspettativa "Nessun testo raggiungibile"/nessun pulsante era
+           il contratto pre-R28. Copertura invariata (check aggiunti). */
+        ok(/Nessuna anteprima raggiungibile/.test(txt),
+            'ii.3 fallback msg "Nessuna anteprima raggiungibile" (contratto R28/R30)',
+            'prev=' + txt.slice(-80));
         ok(!/Caricamento/.test(txt), 'ii.4 nessun "Caricamento" residuo (promise risolta)', txt.slice(0, 40));
-        const btnFull = prev ? prev.querySelector('button') : null;
-        ok(!btnFull, 'ii.5 NESSUN pulsante "testo completo" senza contenuto');
+        const btnFull = prev ? prev.querySelector('button:not(.fp21-filerow)') : null;
+        ok(!btnFull, 'ii.5 NESSUN pulsante "testo completo" senza contenuto (solo riga apri-file ammessa)');
+        const fileRow = prev ? prev.querySelector('button.fp21-filerow') : null;
+        ok(!!fileRow, 'ii.5b riga "apri file" presente (viewer mat R28)', '');
     }
     ok(env.consoleErrors.length === 0, 'ii.6 zero eccezioni console (nessuna eccezione)', env.consoleErrors.slice(0, 3).join(' | '));
     // insert (logica notes invariata): sul mat senza backend -> t:'file'

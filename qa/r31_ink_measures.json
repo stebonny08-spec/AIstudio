@@ -1,0 +1,241 @@
+{
+ "ts": "2026-11-11T15:39:43.454Z",
+ "viewport": "1440x900",
+ "tool": "Puppeteer/CDP reale (pointer events nativi)",
+ "zoomDefault": 0.9,
+ "liveWet": {
+  "wet": 99,
+  "dark": 0
+ },
+ "liveCross": {
+  "run": 14,
+  "wrun": 3.5,
+  "n": 14
+ },
+ "latencyNew": {
+  "n": 190,
+  "nPaint": 94,
+  "p50": 14.5,
+  "p95": 16.300000071525574,
+  "max": 18.700000047683716,
+  "rafN": 95,
+  "tickP95": 16.300000071525574,
+  "tickMax": 20.800000071525574,
+  "paintMax": 19.5
+ },
+ "latencyBaseline": {
+  "n": 190,
+  "nPaint": 99,
+  "p50": 14.899999976158142,
+  "p95": 16,
+  "max": 16.299999952316284,
+  "rafN": 100,
+  "tickP95": 16.700000047683716,
+  "tickMax": 17.699999928474426,
+  "paintMax": 17.1
+ },
+ "cases": {
+  "v01": {
+   "cls": "line",
+   "residual": 0,
+   "endErr": 0,
+   "rawDev": 7.68,
+   "liveWet": {
+    "wet": 97,
+    "dark": 0
+   },
+   "swaps": 1,
+   "ptsRendered": 2
+  },
+  "v02": {
+   "cls": "arrow",
+   "n": 1,
+   "endErr": 0
+  },
+  "v03": {
+   "cls": [
+    "arc",
+    "arc",
+    "arc"
+   ],
+   "kinds": [
+    "bez",
+    "circle",
+    "circle"
+   ]
+  },
+  "v04": {
+   "cls": "line",
+   "angleErr": 0
+  },
+  "v05": {
+   "cls": "freeform",
+   "flessi": [
+    2,
+    2
+   ]
+  },
+  "v06": {
+   "loop": {
+    "in": 13,
+    "out": 13
+   },
+   "zig": 4
+  },
+  "v07": {
+   "c": "arc",
+   "v": "line"
+  },
+  "v08": {
+   "cls": [
+    "line",
+    "line"
+   ],
+   "endErr": [
+    0,
+    0
+   ]
+  }
+ },
+ "N": {
+  "n01": {
+   "vclass": "arc",
+   "gPre": 65.5,
+   "gPost": 65.5
+  },
+  "n02": {
+   "dom": 0,
+   "duringObjs": 0
+  },
+  "n03": {
+   "swap": {
+    "k": "swap",
+    "cls": "line",
+    "t": 63145,
+    "dt": 211.10000002384186
+   },
+   "cls": "line"
+  },
+  "n04": {
+   "domBefore": 0,
+   "domAfter": 0,
+   "selected": false,
+   "lasel": false,
+   "tool": "penna"
+  },
+  "n05": {
+   "same": true,
+   "n": 2
+  },
+  "n06": {
+   "duringDelta": 0,
+   "relD": 0,
+   "swD": 0
+  },
+  "n07": {
+   "cls": "closed",
+   "kind": "smooth",
+   "hasCX": false,
+   "wobble": 2.89
+  },
+  "n08": {
+   "liveWet": {
+    "wet": 99,
+    "dark": 0
+   },
+   "liveCross": {
+    "run": 14,
+    "wrun": 3.5,
+    "n": 14
+   },
+   "postWet": {
+    "wet": 164,
+    "px": 32852
+   },
+   "postCross": {
+    "run": 0,
+    "wrun": 0,
+    "n": 0
+   }
+  },
+  "n09": {
+   "sizes": null,
+   "size": 4,
+   "base": 4,
+   "widths": [
+    4,
+    4
+   ]
+  }
+ },
+ "zoom": {
+  "z100": {
+   "zoom": 1,
+   "cls": [
+    "line",
+    "freeform"
+   ],
+   "kinds": [
+    "line",
+    "smooth"
+   ]
+  },
+  "z245": {
+   "zoom": 2.45,
+   "cls": [
+    "line",
+    "freeform"
+   ],
+   "kinds": [
+    "line",
+    "smooth"
+   ]
+  }
+ },
+ "counters": {
+  "classified": {
+   "line": 13,
+   "arc": 6,
+   "freeform": 7,
+   "closed": 1,
+   "arrow": 1
+  },
+  "total": 28,
+  "n_classified": 28,
+  "refined": 28,
+  "discarded": 0,
+  "byKind": {
+   "line": 13,
+   "arrow": 1,
+   "arc": 6,
+   "freeform": 7,
+   "closed": 1
+  },
+  "strokes_live": 0,
+  "perfected_on_release": 28,
+  "swapped_pixels": 2089,
+  "residual_px": 0,
+  "stroke": {
+   "classified": {
+    "line": 0,
+    "arc": 0,
+    "freeform": 1,
+    "closed": 0,
+    "arrow": 0
+   },
+   "total": 1,
+   "n_classified": 1,
+   "refined": 1,
+   "discarded": 0,
+   "byKind": {
+    "freeform": 1
+   },
+   "perfected_on_release": 1
+  }
+ },
+ "ink24Lines": 28,
+ "checks": {
+  "pass": 87,
+  "fail": 0
+ }
+}

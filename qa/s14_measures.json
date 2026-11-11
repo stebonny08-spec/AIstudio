@@ -167,7 +167,7 @@
  ],
  "dopo": {
   "command": "node qa_browser/qaS14_schemi.js dopo",
-  "timestamp": "2026-11-04T18:59:42.489Z",
+  "timestamp": "2026-11-11T15:25:55.994Z",
   "viewport": "1366x900",
   "totale": {
    "doc": 5,

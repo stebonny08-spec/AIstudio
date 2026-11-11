@@ -2,8 +2,8 @@
  {
   "id": "F0 catena ?v coerente su index.html reale (stesso stamp su tutti i moduli)",
   "ok": true,
-  "expected": "stesso ?v=2026-10-30T15:49:23+01:00",
-  "evidence": "[\"js/modules/fonti_panel.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/notes.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/documenti.js?v=2026-10-30T15:49:23+01:00\",\"js/modules/schemi.js?v=2026-10-30T15:49:23+01:00\"] | OSSERVATO pre-esistente: srcs ?v=2026-10-30T15:49:23+01:00 vs QA_TS=2026-10-27T20:03:00+01:00"
+  "expected": "stesso ?v=2026-11-09T19:30:00+01:00",
+  "evidence": "[\"js/modules/fonti_panel.js?v=2026-11-09T19:30:00+01:00\",\"js/modules/notes.js?v=2026-11-09T19:30:00+01:00\",\"js/modules/documenti.js?v=2026-11-09T19:30:00+01:00\",\"js/modules/schemi.js?v=2026-11-09T19:30:00+01:00\"] | QA_TS=2026-11-09T19:30:00+01:00"
  },
  {
   "id": "BOOT editor Appunti (Apri su nota reale)",
